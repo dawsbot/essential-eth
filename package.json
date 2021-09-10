@@ -1,7 +1,7 @@
 {
   "name": "essential-eth",
   "description": "Ultralight JS library for Ethereum utilities",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "sideEffects": false,
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
