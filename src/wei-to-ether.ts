@@ -9,7 +9,7 @@ const stripScientificNotation = (num: number) =>
 export const weiToEther = (weiQuantity: string | number) => {
   if (!["string", "number"].includes(typeof weiQuantity)) {
     throw new Error(
-      "String or number required. Received " + typeof weiQuantity
+      "String or number required. Received " + typeof weiQuantity,
     );
   }
   // return new Decimal(etherQuantity).mul("1000000000000000000").toNumber();
