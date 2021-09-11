@@ -44,13 +44,4 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-module.exports = {
-  roots: ["<rootDir>/test"],
-  testMatch: [
-    "**/__tests__/**/*.+(ts|tsx|js)",
-    "**/?(*.)+(spec|test).+(ts|tsx|js)",
-  ],
-  transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest",
-  },
-};
+window.searchData = {"kinds":{"64":"Function"},"rows":[{"id":0,"kind":64,"name":"etherToWei","url":"modules.html#etherToWei","classes":"tsd-kind-function"},{"id":1,"kind":64,"name":"weiToEther","url":"modules.html#weiToEther","classes":"tsd-kind-function"}],"index":{"version":"2.3.9","fields":["name","parent"],"fieldVectors":[["name/0",[0,6.931]],["parent/0",[]],["name/1",[1,6.931]],["parent/1",[]]],"invertedIndex":[["ethertowei",{"_index":0,"name":{"0":{}},"parent":{}}],["weitoether",{"_index":1,"name":{"1":{}},"parent":{}}]],"pipeline":[]}}

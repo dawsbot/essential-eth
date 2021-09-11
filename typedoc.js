@@ -44,13 +44,12 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
+const version =
+  process.env.npm_package_version; /* auto-pulls from package.json */
+
 module.exports = {
-  roots: ["<rootDir>/test"],
-  testMatch: [
-    "**/__tests__/**/*.+(ts|tsx|js)",
-    "**/?(*.)+(spec|test).+(ts|tsx|js)",
-  ],
-  transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest",
-  },
+  entryPoints: ["src"],
+  out: `docs/${version}`,
+  includeVersion: true,
+  hideGenerator: true,
 };
