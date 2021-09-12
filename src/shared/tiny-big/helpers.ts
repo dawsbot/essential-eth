@@ -68,7 +68,7 @@ export function scientificStrToDecimalStr(scientificString: string): string {
           "0",
         );
       }
-      let splitPaddedNumber = base.split("");
+      const splitPaddedNumber = base.split("");
       if (fraction.length > Math.abs(Number(power))) {
         splitPaddedNumber.splice(
           splitPaddedNumber.length - Math.abs(Number(power)),

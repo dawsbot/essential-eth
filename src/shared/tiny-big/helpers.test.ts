@@ -1,7 +1,7 @@
 import { scientificStrToDecimalStr } from "./helpers";
 
 describe("scientificStrToDecimalStr", () => {
-  test.only("not even scientific", () => {
+  test("not even scientific", () => {
     expect(scientificStrToDecimalStr("010")).toEqual("10");
     expect(scientificStrToDecimalStr("-010")).toEqual("-10");
   });

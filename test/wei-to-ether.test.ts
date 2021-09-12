@@ -10,7 +10,7 @@ test("happy path", () => {
 });
 
 describe("Matches ethers and web3 toString", () => {
-  test.only("toString", () => {
+  test("toString", () => {
     expect(weiToEther("10").toString()).toEqual(ethers.utils.formatEther("10"));
     expect(weiToEther("1000000000000000000000").toString()).toEqual(
       "1000",
