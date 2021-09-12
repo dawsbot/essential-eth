@@ -1,7 +1,7 @@
 // import { parseEther } from "@ethersproject/units";
 import * as ethers from "ethers";
 import web3 from "web3";
-import { stripScientificNotation } from "../src/shared/tiny-big";
+import { stripScientificNotation } from "../src/shared/tiny-big/tiny-big";
 import { etherToWei } from "./../src";
 
 test("happy path", () => {

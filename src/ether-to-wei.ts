@@ -1,5 +1,5 @@
 import Big from "big.js";
-import { TinyBig, tinyBig } from "./shared/tiny-big";
+import { TinyBig, tinyBig } from "./shared/tiny-big/tiny-big";
 import { validateType } from "./shared/validate-type";
 
 /**
