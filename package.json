@@ -14,10 +14,11 @@
     "tsc": "npm-run-all --parallel tsc:esm tsc:cjs",
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
-    "build": "rm -rf lib && npm-run-all --parallel tsc build:docs",
-    "prepublishOnly": "npm run build",
+    "build": "rm -rf lib",
+    "prepublishOnly": "npm run build && npm-run-all build:website build:website:new-version",
     "jest": "jest",
-    "build:docs": "typedoc"
+    "build:website": "typedoc --options typedoc/options.js",
+    "build:website:new-version": "typedoc --options typedoc/options-new-version.json"
   },
   "devDependencies": {
     "@types/big.js": "^6.1.2",
@@ -41,7 +42,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm-run-all --parallel test build:docs"
+      "pre-commit": "lint-staged && npm-run-all --parallel test build:website"
     }
   },
   "lint-staged": {
