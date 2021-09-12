@@ -1,4 +1,5 @@
 import Big from "big.js";
+import { tinyBig } from "./shared/tiny-big/tiny-big";
 import { validateType } from "./shared/validate-type";
 
 /**
@@ -20,9 +21,9 @@ import { validateType } from "./shared/validate-type";
  */
 export function weiToEther(weiQuantity: string | number) {
   validateType(weiQuantity, ["string", "number"]);
-  return Big(weiQuantity).div("1000000000000000000");
+  const result = Big(weiQuantity).div("1000000000000000000").toString();
   // console.log({ result });
-  // return tinyBig(result);
+  return tinyBig(result);
   // const result = Big(weiQuantity).div("1000000000000000000").toString();
   // console.log({ result });
   // return tinyBig(result);

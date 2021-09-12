@@ -1,33 +1,34 @@
+// strips both leading and trailing zeroes
 function stripTrailingZeroes(numberString: string) {
+  const isNegative = numberString.startsWith("-");
+  numberString = numberString.replace("-", "");
+
   numberString = numberString.replace(
     /\.0*$/g,
     "" /* for numbers like "1.0" -> "1" */,
   );
+  numberString = numberString.replace(/^0+/, "");
   // for numbers like "1.10" -> "1.1"
-  const result = /(.*\.0*[1-9]+)0*/.exec(numberString);
-  let toReturn;
-  if (result !== null) {
-    toReturn = result[1];
-  } else {
-    toReturn = numberString;
+  if (numberString.includes(".")) {
+    numberString = numberString.replace(/0+$/, "");
   }
-  if (toReturn.startsWith(".")) {
-    return `0${toReturn}`;
-  } else {
-    return toReturn;
+  if (numberString.startsWith(".")) {
+    // so that ".1" returns as "0.1"
+    numberString = `0${numberString}`;
   }
+  return `${isNegative ? "-" : ""}${numberString}`;
 }
 
 export function scientificStrToDecimalStr(scientificString: string): string {
   // Does not contain "e" nor "E"
   if (!scientificString.match(/e/i /* lowercase and uppercase E */)) {
-    return scientificString;
+    return stripTrailingZeroes(scientificString);
   }
 
   let [base, power] = scientificString.split(
     /e/i /* lowercase and uppercase E */,
   );
-  const [wholeNumber, fraction /* move decimal this many places */] =
+  const [wholeNumber, fraction /* move decimal this many places */ = ""] =
     base.split(".");
   if (Number(power) === 0) {
     return stripTrailingZeroes(base);
@@ -39,12 +40,10 @@ export function scientificStrToDecimalStr(scientificString: string): string {
     }
     const decimalIndex = base.indexOf(".");
     base = base.replace(".", "");
-    const splitBase = base.split("");
+    const baseLength = base.length;
     if (Number(power) < 0) {
+      // move decimal left
       if (wholeNumber.length < Math.abs(Number(power))) {
-        //       splitPaddedNumber = Array()
-        const baseLength = base.length;
-
         base = base.padStart(
           baseLength + Math.abs(Number(power)) - wholeNumber.length,
           "0",
@@ -57,18 +56,28 @@ export function scientificStrToDecimalStr(scientificString: string): string {
       } else {
         splitPaddedNumber.splice(
           splitPaddedNumber.length - Math.abs(Number(power)),
-          // wholeNumber.length - Math.abs(Number(power)),
           0,
           ".",
         );
       }
-      //       console.log({ paddedNumber });
-
       return stripTrailingZeroes(splitPaddedNumber.join(""));
-      // move decimal left
     } else {
+      if (fraction.length < Math.abs(Number(power))) {
+        base = base.padEnd(
+          baseLength + Math.abs(Number(power)) - fraction.length,
+          "0",
+        );
+      }
+      let splitPaddedNumber = base.split("");
+      if (fraction.length > Math.abs(Number(power))) {
+        splitPaddedNumber.splice(
+          splitPaddedNumber.length - Math.abs(Number(power)),
+          0,
+          ".",
+        );
+      }
+      return stripTrailingZeroes(splitPaddedNumber.join(""));
       // move decimal right
     }
-    return "not setup";
   }
 }
