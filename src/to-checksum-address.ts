@@ -1,4 +1,5 @@
 import createKeccakHash from 'keccak';
+import { validateType } from './shared/validate-type';
 
 /**
  * Returns an Ethereum address in proper mixed-case checksum.
@@ -16,6 +17,10 @@ import createKeccakHash from 'keccak';
  * Similar to ["toChecksumAddress" in web3](https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html#tochecksumaddress)
  */
 export function toChecksumAddress(address: string) {
+  validateType(address, ['string']);
+  if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+    throw new Error(`Invalid Ethereum address "${address}"`);
+  }
   address = address.toLowerCase().replace('0x', '');
   const hash = createKeccakHash('keccak256').update(address).digest('hex');
   let ret = '0x';
