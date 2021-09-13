@@ -16,7 +16,7 @@
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
     "build": "rm -rf lib && npm run compile",
-    "prepublishOnly": "npm run build && npm-run-all build:website build:website:new-version",
+    "prepublishOnly": "npm run build && npm run build:website && npm run build:website:new-version",
     "jest": "jest",
     "build:website": "sh scripts/build-website.sh",
     "build:website:new-version": "typedoc --options typedoc/options-new-version.js"
