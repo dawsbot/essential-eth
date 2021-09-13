@@ -19,7 +19,7 @@
     "prepublishOnly": "npm run build && npm-run-all build:website build:website:new-version",
     "jest": "jest",
     "build:website": "typedoc --options typedoc/options.js",
-    "build:website:new-version": "typedoc --options typedoc/options-new-version.json"
+    "build:website:new-version": "typedoc --options typedoc/options-new-version.js"
   },
   "devDependencies": {
     "@types/big.js": "^6.1.2",

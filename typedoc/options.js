@@ -1,7 +1,7 @@
 module.exports = {
   entryPoints: ['../src'],
   out: '../website',
-  includeVersion: true,
+  includeVersion: false,
   hideGenerator: true,
   lightHighlightTheme: 'github-light',
   darkHighlightTheme: 'github-dark',
