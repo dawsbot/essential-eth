@@ -10,15 +10,15 @@
     "lib/"
   ],
   "scripts": {
-    "test": "npm-run-all --parallel jest tsc lint",
+    "test": "npm-run-all --parallel jest compile lint",
     "lint": "eslint .",
-    "tsc": "npm-run-all --parallel tsc:esm tsc:cjs",
+    "compile": "npm-run-all --parallel tsc:esm tsc:cjs",
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
-    "build": "rm -rf lib && tsc",
+    "build": "rm -rf lib && npm run compile",
     "prepublishOnly": "npm run build && npm-run-all build:website build:website:new-version",
     "jest": "jest",
-    "build:website": "typedoc --options typedoc/options.js",
+    "build:website": "sh scripts/build-website.sh",
     "build:website:new-version": "typedoc --options typedoc/options-new-version.js"
   },
   "devDependencies": {
