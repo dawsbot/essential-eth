@@ -37,6 +37,15 @@ npm install --save essential-eth # TypeScript types load automatically
 yarn add essential-eth # TypeScript types load automatically
 ```
 
+## Require
+
+```typescript
+import { etherToWei } from 'essential-eth';
+
+// or in a non-import environment
+const { etherToWei } = require('essential-eth');
+```
+
 ## Functions
 
 ```typescript
