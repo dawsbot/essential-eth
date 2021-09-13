@@ -2,6 +2,7 @@
   "name": "essential-eth",
   "description": "Ultralight JS library for Ethereum utilities",
   "version": "0.0.2",
+  "license": "MIT",
   "sideEffects": false,
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
@@ -9,16 +10,26 @@
     "lib/"
   ],
   "scripts": {
-    "test": "npm-run-all --parallel jest && tsc",
-    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "build": "rm -rf lib && npm run tsc",
-    "prepublishOnly": "npm run build",
-    "jest": "jest"
+    "test": "npm-run-all --parallel jest tsc lint",
+    "lint": "eslint .",
+    "tsc": "npm-run-all --parallel tsc:esm tsc:cjs",
+    "tsc:esm": "tsc -p tsconfig.json",
+    "tsc:cjs": "tsc -p tsconfig-cjs.json",
+    "build": "rm -rf lib",
+    "prepublishOnly": "npm run build && npm-run-all build:website build:website:new-version",
+    "jest": "jest",
+    "build:website": "typedoc --options typedoc/options.js",
+    "build:website:new-version": "typedoc --options typedoc/options-new-version.js"
   },
   "devDependencies": {
     "@types/big.js": "^6.1.2",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.9.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-jest": "^24.4.0",
+    "ethers": "^5.4.6",
     "husky": "^4.3.0",
     "jest": "^27.1.1",
     "lint-staged": "^11.1.2",
@@ -27,14 +38,16 @@
     "prettier-plugin-organize-imports": "^2.3.3",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
+    "typedoc": "^0.22.2",
+    "typescript": "^4.4.3",
+    "web3": "^1.5.2"
   },
   "dependencies": {
     "big.js": "^6.1.1"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run test"
+      "pre-commit": "lint-staged && npm-run-all --parallel test build:website"
     }
   },
   "lint-staged": {
@@ -44,6 +57,7 @@
   },
   "prettier": {
     "trailingComma": "all",
-    "tabWidth": 2
+    "tabWidth": 2,
+    "singleQuote": true
   }
 }
