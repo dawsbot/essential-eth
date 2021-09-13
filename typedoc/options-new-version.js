@@ -1,9 +1,8 @@
+const basicOptions = require('./options.js');
 const version =
   process.env.npm_package_version; /* auto-pulls from package.json */
 
 module.exports = {
-  entryPoints: ['../src'],
+  ...basicOptions,
   out: `../website/${version}`,
-  includeVersion: true,
-  hideGenerator: true,
 };
