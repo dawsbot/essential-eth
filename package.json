@@ -15,7 +15,7 @@
     "tsc": "npm-run-all --parallel tsc:esm tsc:cjs",
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
-    "build": "rm -rf lib",
+    "build": "rm -rf lib && tsc",
     "prepublishOnly": "npm run build && npm-run-all build:website build:website:new-version",
     "jest": "jest",
     "build:website": "typedoc --options typedoc/options.js",
