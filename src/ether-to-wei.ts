@@ -9,14 +9,18 @@ import { validateType } from './shared/validate-type';
  *
  * @example
  * ```javascript
- * expect(etherToWei("1000").toString()).toStrictEqual("1000000000000000000000");
- * expect(etherToWei(1000).toString()).toStrictEqual("1000000000000000000000");
+ * etherToWei('1000').toString()
+ * // '1000000000000000000000'
+ * etherToWei(1000).toString()
+ * // '1000000000000000000000'
  * ```
  *
  * @example
  * ```javascript
- * expect(etherToWei("1000").toNumber()).toStrictEqual(1000000000000000000000);
- * expect(etherToWei(1000).toNumber()).toStrictEqual(1000000000000000000000);
+ * etherToWei('1000').toNumber()
+ * // 1000000000000000000000
+ * etherToWei(1000).toNumber()
+ * // 1000000000000000000000
  * ```
  */
 export function etherToWei(etherQuantity: string | number): TinyBig {

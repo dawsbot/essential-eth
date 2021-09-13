@@ -1,4 +1,5 @@
 import { etherToWei } from './ether-to-wei';
-import { TinyBig, tinyBig } from './shared/tiny-big/tiny-big';
+import { tinyBig, TinyBig } from './shared/tiny-big/tiny-big';
+import { toChecksumAddress } from './to-checksum-address';
 import { weiToEther } from './wei-to-ether';
-export { etherToWei, weiToEther, tinyBig, TinyBig };
+export { toChecksumAddress, etherToWei, weiToEther, tinyBig, TinyBig };

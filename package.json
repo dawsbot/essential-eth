@@ -22,8 +22,10 @@
     "build:website:new-version": "typedoc --options typedoc/options-new-version.js"
   },
   "devDependencies": {
+    "@ethersproject/keccak256": "^5.4.0",
     "@types/big.js": "^6.1.2",
     "@types/jest": "^27.0.1",
+    "@types/keccak": "^3.0.1",
     "@types/node": "^16.9.1",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
@@ -43,7 +45,8 @@
     "web3": "^1.5.2"
   },
   "dependencies": {
-    "big.js": "^6.1.1"
+    "big.js": "^6.1.1",
+    "keccak": "^3.0.2"
   },
   "husky": {
     "hooks": {
