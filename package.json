@@ -9,6 +9,13 @@
   "files": [
     "lib/"
   ],
+  "bugs": {
+    "url": "https://github.com/dawsbot/essential-eth/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dawsbot/essential-eth.git"
+  },
   "scripts": {
     "test": "npm-run-all --parallel jest compile lint",
     "lint": "eslint .",
