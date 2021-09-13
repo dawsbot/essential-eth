@@ -1,5 +1,5 @@
 <p align="center">
-  <a><img src="https://blog.ethereum.org/img/2018/08/grants_eth_logo.png" title="Ethereum triangle" height="200"/></a>
+  <a><img src="https://blog.ethereum.org/img/2018/08/grants_eth_logo.png" title="Ethereum triangle" height="300"/></a>
 </p>
 <p align="center">
   <b>
