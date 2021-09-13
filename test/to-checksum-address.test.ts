@@ -23,4 +23,17 @@ describe('ether-to-wei', () => {
       );
     });
   });
+  it('invalid inputs', () => {
+    expect(() => {
+      // @ts-expect-error should not accept boolean
+      toChecksumAddress(false);
+    }).toThrow('string required. Received boolean');
+    expect(() => {
+      // @ts-expect-error should not accept array
+      toChecksumAddress([1, 2, 3]);
+    }).toThrow('string required. Received object');
+    expect(() => {
+      toChecksumAddress('0x1');
+    }).toThrow('Invalid Ethereum address "0x1"');
+  });
 });
