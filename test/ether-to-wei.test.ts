@@ -1,4 +1,3 @@
-// import { parseEther } from "@ethersproject/units";
 import * as ethers from 'ethers';
 import web3 from 'web3';
 import { scientificStrToDecimalStr } from '../src/shared/tiny-big/helpers';
