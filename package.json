@@ -10,7 +10,8 @@
     "lib/"
   ],
   "scripts": {
-    "test": "npm-run-all --parallel jest tsc",
+    "test": "npm-run-all --parallel jest tsc lint",
+    "lint": "eslint .",
     "tsc": "npm-run-all --parallel tsc:esm tsc:cjs",
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
@@ -56,6 +57,7 @@
   },
   "prettier": {
     "trailingComma": "all",
-    "tabWidth": 2
+    "tabWidth": 2,
+    "singleQuote": true
   }
 }

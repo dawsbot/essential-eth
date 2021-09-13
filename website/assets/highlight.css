@@ -1,65 +1,50 @@
 :root {
-  --light-hl-0: #6f42c1;
-  --dark-hl-0: #b392f0;
-  --light-hl-1: #24292eff;
-  --dark-hl-1: #b392f0;
-  --light-hl-2: #22863a;
-  --dark-hl-2: #ffab70;
-  --light-hl-3: #1976d2;
-  --dark-hl-3: #f8f8f8;
-  --light-code-background: #ffffff;
-  --dark-code-background: #1f1f1f;
+    --light-hl-0: #6F42C1;
+    --dark-hl-0: #B392F0;
+    --light-hl-1: #24292EFF;
+    --dark-hl-1: #B392F0;
+    --light-hl-2: #22863A;
+    --dark-hl-2: #FFAB70;
+    --light-hl-3: #1976D2;
+    --dark-hl-3: #F8F8F8;
+    --light-code-background: #ffffff;
+    --dark-code-background: #1f1f1f;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
+@media (prefers-color-scheme: light) { :root {
     --hl-0: var(--light-hl-0);
     --hl-1: var(--light-hl-1);
     --hl-2: var(--light-hl-2);
     --hl-3: var(--light-hl-3);
     --code-background: var(--light-code-background);
-  }
-}
+} }
 
-@media (prefers-color-scheme: dark) {
-  :root {
+@media (prefers-color-scheme: dark) { :root {
     --hl-0: var(--dark-hl-0);
     --hl-1: var(--dark-hl-1);
     --hl-2: var(--dark-hl-2);
     --hl-3: var(--dark-hl-3);
     --code-background: var(--dark-code-background);
-  }
-}
+} }
 
 body.light {
-  --hl-0: var(--light-hl-0);
-  --hl-1: var(--light-hl-1);
-  --hl-2: var(--light-hl-2);
-  --hl-3: var(--light-hl-3);
-  --code-background: var(--light-code-background);
+    --hl-0: var(--light-hl-0);
+    --hl-1: var(--light-hl-1);
+    --hl-2: var(--light-hl-2);
+    --hl-3: var(--light-hl-3);
+    --code-background: var(--light-code-background);
 }
 
 body.dark {
-  --hl-0: var(--dark-hl-0);
-  --hl-1: var(--dark-hl-1);
-  --hl-2: var(--dark-hl-2);
-  --hl-3: var(--dark-hl-3);
-  --code-background: var(--dark-code-background);
+    --hl-0: var(--dark-hl-0);
+    --hl-1: var(--dark-hl-1);
+    --hl-2: var(--dark-hl-2);
+    --hl-3: var(--dark-hl-3);
+    --code-background: var(--dark-code-background);
 }
 
-.hl-0 {
-  color: var(--hl-0);
-}
-.hl-1 {
-  color: var(--hl-1);
-}
-.hl-2 {
-  color: var(--hl-2);
-}
-.hl-3 {
-  color: var(--hl-3);
-}
-pre,
-code {
-  background: var(--code-background);
-}
+.hl-0 { color: var(--hl-0); }
+.hl-1 { color: var(--hl-1); }
+.hl-2 { color: var(--hl-2); }
+.hl-3 { color: var(--hl-3); }
+pre, code { background: var(--code-background); }

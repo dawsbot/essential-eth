@@ -1,26 +1,26 @@
-import Big from "big.js";
-import { TinyBig, tinyBig } from "./shared/tiny-big/tiny-big";
-import { validateType } from "./shared/validate-type";
+import Big from 'big.js';
+import { TinyBig, tinyBig } from './shared/tiny-big/tiny-big';
+import { validateType } from './shared/validate-type';
 
 /**
- * Named ["parseEther" in ethers.js](https://docs.ethers.io/v4/api-utils.html#ether-strings-and-wei)
+ * Similar to ["parseEther" in ethers.js](https://docs.ethers.io/v4/api-utils.html#ether-strings-and-wei)
  *
- * Named ["toWei" in web3](https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html?highlight=towei#towei)
+ * Similar to ["toWei" in web3](https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html?highlight=towei#towei)
  *
  * @example
  * ```javascript
- * expect(etherToWei("1000").toString()).toEqual("1000000000000000000000");
- * expect(etherToWei(1000).toString()).toEqual("1000000000000000000000");
+ * expect(etherToWei("1000").toString()).toStrictEqual("1000000000000000000000");
+ * expect(etherToWei(1000).toString()).toStrictEqual("1000000000000000000000");
  * ```
  *
  * @example
  * ```javascript
- * expect(etherToWei("1000").toNumber()).toEqual(1000000000000000000000);
- * expect(etherToWei(1000).toNumber()).toEqual(1000000000000000000000);
+ * expect(etherToWei("1000").toNumber()).toStrictEqual(1000000000000000000000);
+ * expect(etherToWei(1000).toNumber()).toStrictEqual(1000000000000000000000);
  * ```
  */
 export function etherToWei(etherQuantity: string | number): TinyBig {
-  validateType(etherQuantity, ["string", "number"]);
-  const result = Big(etherQuantity).times("1000000000000000000").toString();
+  validateType(etherQuantity, ['string', 'number']);
+  const result = Big(etherQuantity).times('1000000000000000000').toString();
   return tinyBig(result);
 }
