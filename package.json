@@ -12,10 +12,8 @@
   "bugs": {
     "url": "https://github.com/dawsbot/essential-eth/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dawsbot/essential-eth.git"
-  },
+  "repository": "https://github.com/dawsbot/essential-eth.git",
+  "author": "@dawsbot",
   "scripts": {
     "test": "npm-run-all --parallel jest compile lint",
     "lint": "eslint .",
