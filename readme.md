@@ -12,6 +12,12 @@
 
 ---
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/3408480/133322814-f3d18424-4ba8-4a37-8cbc-c5e6828354a3.png" title="Ethereum triangle" width="900"/>
+</p>
+
+---
+
 <br>
 
 ![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth)
