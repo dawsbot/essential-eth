@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: carlesnunez/check-my-bundlephobia@v1
+      - uses: carlesnunez/check-my-bundlephobia@v1.7.0
         with:
           repo-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           ignore-dev-dependencies: true
