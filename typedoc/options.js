@@ -5,4 +5,5 @@ module.exports = {
   hideGenerator: true,
   lightHighlightTheme: 'github-light',
   darkHighlightTheme: 'github-dark',
+  includeVersion: true,
 };

@@ -5,5 +5,4 @@ const version =
 module.exports = {
   ...basicOptions,
   out: `../website/versions/${version}`,
-  includeVersion: true,
 };
