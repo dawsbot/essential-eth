@@ -1,4 +1,4 @@
-import createKeccakHash from 'keccak';
+import { Keccak } from 'sha3';
 import { validateType } from './shared/validate-type';
 
 /**
@@ -21,17 +21,19 @@ export function toChecksumAddress(address: string) {
   if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
     throw new Error(`Invalid Ethereum address "${address}"`);
   }
-  address = address.toLowerCase().replace('0x', '');
-  const hash = createKeccakHash('keccak256').update(address).digest('hex');
-  let ret = '0x';
+
+  address = address.toLowerCase().replace(/^0x/i, '');
+  const keccak = new Keccak(256);
+  const addressHash = keccak.update(address).digest('hex').replace(/^0x/i, '');
+  let checksumAddress = '0x';
 
   for (let i = 0; i < address.length; i++) {
-    if (parseInt(hash[i], 16) >= 8) {
-      ret += address[i].toUpperCase();
+    // If ith character is 8 to f then make it uppercase
+    if (parseInt(addressHash[i], 16) > 7) {
+      checksumAddress += address[i].toUpperCase();
     } else {
-      ret += address[i];
+      checksumAddress += address[i];
     }
   }
-
-  return ret;
+  return checksumAddress;
 }
