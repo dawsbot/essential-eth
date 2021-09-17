@@ -16,6 +16,9 @@ export class TinyBig {
   }
 
   toString(): string {
+    if (this.__value.toNumber() === 0) {
+      return '0';
+    }
     return scientificStrToDecimalStr(this.__value.toString());
   }
 }

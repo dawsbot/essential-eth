@@ -26,6 +26,8 @@
 ![](https://badgen.net/bundlephobia/min/essential-eth)
 ![](https://badgen.net/bundlephobia/dependency-count/essential-eth)
 
+👨🏻‍💻 Breaking changes will exist between minor versions until `1.0.0` (Versions go `major.minor.patch`)
+
 ## Features
 
 - ⚡️ A replacement for the utils in web3.js and ethers.js
