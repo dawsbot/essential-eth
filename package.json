@@ -30,28 +30,27 @@
     "@ethersproject/keccak256": "^5.4.0",
     "@types/big.js": "^6.1.2",
     "@types/jest": "^27.0.1",
-    "@types/keccak": "^3.0.1",
-    "@types/node": "^16.9.1",
-    "@typescript-eslint/eslint-plugin": "^4.31.0",
-    "@typescript-eslint/parser": "^4.31.0",
+    "@types/node": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
     "eslint": "^7.32.0",
-    "eslint-plugin-jest": "^24.4.0",
-    "ethers": "^5.4.6",
+    "eslint-plugin-jest": "^24.4.2",
+    "ethers": "^5.4.7",
     "husky": "^4.3.0",
-    "jest": "^27.1.1",
+    "jest": "^27.2.0",
     "lint-staged": "^11.1.2",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.4.0",
+    "prettier": "^2.4.1",
     "prettier-plugin-organize-imports": "^2.3.3",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
-    "typedoc": "^0.22.2",
+    "typedoc": "^0.22.3",
     "typescript": "^4.4.3",
     "web3": "^1.5.2"
   },
   "dependencies": {
     "big.js": "^6.1.1",
-    "keccak": "^3.0.2"
+    "sha3": "^2.1.4"
   },
   "husky": {
     "hooks": {

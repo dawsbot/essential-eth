@@ -1,4 +1,5 @@
 module.exports = {
+  ignorePatterns: ['scripts/calculate-bundle-size.js'],
   env: {
     browser: true,
     es2021: true,
