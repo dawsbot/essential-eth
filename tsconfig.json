@@ -10,6 +10,6 @@
     "declaration": true,
     "removeComments": true
   },
-  "include": ["./src"],
+  "include": ["./"],
   "types": ["node", "jest"]
 }
