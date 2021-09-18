@@ -5,20 +5,15 @@ export class EssentialEth {
   /**
    * The URL to your Eth node. Consider POKT or Infura
    */
-  private _rpcUrl: string;
-  constructor(rpcUrl: string) {
-    if (!rpcUrl) {
-      throw new Error(
-        'rpc required to initialize essential-eth. Consider POKT or Infura',
-      );
-    }
-    this._rpcUrl = rpcUrl;
+  _rpcUrl: string;
+  constructor(rpcUrl?: string) {
+    this._rpcUrl = rpcUrl || 'https://free-eth-node.com/api/eth';
   }
 
   /**
    * Returns the block requested
    */
-  async getBlock(
+  public async getBlock(
     timeFrame:
       | 'latest'
       | 'earliest'

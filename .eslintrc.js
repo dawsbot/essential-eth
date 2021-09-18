@@ -22,5 +22,6 @@ module.exports = {
     'jest/prefer-expect-assertions': 'off',
     'jest/require-to-throw-message': 'off',
     'jest/expect-expect': 'off',
+    '@typescript-eslint/ban-ts-comment': 'warn',
   },
 };

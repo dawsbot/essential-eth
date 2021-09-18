@@ -81,16 +81,18 @@ toChecksumAddress(address: string): string
 ```typescript
 import { EssentialEth } from 'essential-eth';
 const essentialEth = new EssentialEth('RPC URL HERE' /* Try POKT or Infura */);
+// OR for very quick testing (limited to 500 requests)
+const essentialEth = new EssentialEth();
 ```
 
 #### `getBlock`
 
+Returns a [Block](src/types/block.types.ts)
+
 ```typescript
 // Same API as web3.eth.getBlock
-getBlock(address: string | number): Block
+getBlock(timeFrame: number | "latest" | "earliest" | "pending", returnTransactionObjects?: boolean): Promise<Block>
 ```
-
-Returns a [Block](src/types/block.types.ts)
 
 - [📓 View full docs](https://essential-eth.vercel.app)
 - [📓 View docs for an older version](https://essential-eth.vercel.app/versions)

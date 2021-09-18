@@ -5,7 +5,7 @@ import { EssentialEth } from '.';
 import { Block } from '../types/block.types';
 
 // const rpcUrl = 'http://localhost:3001/post';
-const rpcUrl = 'https://mainnet.infura.io/v3/b092cda5108a4b059115083bb5d1a773';
+const rpcUrl = 'https://free-eth-node.com/api/eth';
 
 describe('matches web3', () => {
   function testBlockEquality(block1: Block, block2: Block) {
@@ -27,6 +27,15 @@ describe('matches web3', () => {
     ).toBeLessThan(4000000 /* 2616793 and 1187442 on recent tests */);
   }
 
+  it('should allow default eth node to get latest block', async () => {
+    const essentialEth = new EssentialEth();
+    const web3 = new Web3(rpcUrl);
+    const [eeLatestBlock, web3LatestBlock] = await Promise.all([
+      essentialEth.getBlock('latest'),
+      web3.eth.getBlock('latest'),
+    ]);
+    testBlockEquality(eeLatestBlock, web3LatestBlock as unknown as Block);
+  });
   it('should get latest block', async () => {
     const essentialEth = new EssentialEth(rpcUrl);
     const web3 = new Web3(rpcUrl);
