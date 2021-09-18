@@ -94,5 +94,9 @@ Returns a [Block](src/types/block.types.ts)
 getBlock(timeFrame: number | "latest" | "earliest" | "pending", returnTransactionObjects?: boolean): Promise<Block>
 ```
 
+<br/>
+<br/>
+
 - [📓 View full docs](https://essential-eth.vercel.app)
+- [📓 View changelog (by looking at releases diff)](https://github.com/dawsbot/essential-eth/releases)
 - [📓 View docs for an older version](https://essential-eth.vercel.app/versions)
