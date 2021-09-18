@@ -1,5 +1,4 @@
 import unfetch from 'isomorphic-unfetch';
-import { tinyBig } from '..';
 import { toChecksumAddress } from '../to-checksum-address';
 function buildRPCPostBody(...params: any[]) {
   return {
@@ -17,6 +16,9 @@ function post(url: string, body: Record<string, unknown>) {
     },
     body: JSON.stringify(body),
   }).then((r) => r.json());
+}
+function hexToDecimal(hex: string) {
+  return BigInt(hex).toString();
 }
 export class EssentialEth {
   _rpcUrl: string;
@@ -68,11 +70,11 @@ function cleanBlock(block: RPCBlock, returnTransactionObjects: boolean): Block {
       case 'number':
       case 'size':
       case 'timestamp':
-        cleanedBlock[key] = parseInt(block[key], 16);
+        cleanedBlock[key] = Number(hexToDecimal(block[key]));
         break;
       case 'difficulty':
       case 'totalDifficulty':
-        cleanedBlock[key] = tinyBig(parseInt(block[key], 16)).toString();
+        cleanedBlock[key] = hexToDecimal(block[key]);
         break;
       case 'miner':
         if (block[key]) {
@@ -96,13 +98,11 @@ function cleanBlock(block: RPCBlock, returnTransactionObjects: boolean): Block {
             case 'nonce':
             case 'transactionIndex':
             case 'type':
-              cleanedTransaction[key] = parseInt(transaction[key], 16);
+              cleanedTransaction[key] = Number(hexToDecimal(transaction[key]));
               break;
             case 'gasPrice':
             case 'value':
-              cleanedTransaction[key] = tinyBig(
-                parseInt(transaction[key], 16),
-              ).toString();
+              cleanedTransaction[key] = hexToDecimal(transaction[key]);
               break;
             case 'from':
             case 'to':

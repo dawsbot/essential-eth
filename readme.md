@@ -34,6 +34,7 @@
 - 🏎 [The TINIEST code size possible](https://bundlephobia.com/package/essential-eth)
 - ʦ Fully typed with TypeScript (also works with JavaScript)
 - 🌲 Tree-shaking and no side-effects
+- 🧪 Tested heavily to match both web3 and ethers.js
 - 👩‍⚖️ MIT License
 
 ## Install
@@ -45,7 +46,9 @@ npm install --save essential-eth # TypeScript types load automatically
 yarn add essential-eth # TypeScript types load automatically
 ```
 
-## Require
+## Functions
+
+### Utils (do not require connecting to an Eth node)
 
 ```typescript
 import { etherToWei } from 'essential-eth';
@@ -53,8 +56,6 @@ import { etherToWei } from 'essential-eth';
 // or in a non-import environment
 const { etherToWei } = require('essential-eth');
 ```
-
-## Functions
 
 ```typescript
 // convert ether to wei
@@ -65,6 +66,20 @@ weiToEther(weiQuantity: string | number): TinyBig
 
 // return proper mixed-case address
 toChecksumAddress(address: string): string
+
+```
+
+### RPC
+
+```typescript
+import { EssentialEth } from 'essential-eth';
+```
+
+```typescript
+const essentialEth = new EssentialEth('RPC URL HERE' /* Try POKT or Infura */);
+
+// Same API as web3.eth.getBlock
+getBlock(address: string | number): Block
 ```
 
 - [📓 View full docs](https://essential-eth.vercel.app)

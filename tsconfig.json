@@ -9,6 +9,7 @@
     "outDir": "./lib/esm",
     "declaration": true,
     "removeComments": true,
+    "skipLibCheck": true,
     "paths": {
       "*": ["./types/*"]
     }
