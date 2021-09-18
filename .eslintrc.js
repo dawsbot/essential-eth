@@ -21,5 +21,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'jest/prefer-expect-assertions': 'off',
     'jest/require-to-throw-message': 'off',
+    'jest/expect-expect': 'off',
   },
 };

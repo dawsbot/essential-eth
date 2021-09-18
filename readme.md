@@ -46,9 +46,7 @@ npm install --save essential-eth # TypeScript types load automatically
 yarn add essential-eth # TypeScript types load automatically
 ```
 
-## Functions
-
-### Utils (do not require connecting to an Eth node)
+## Utils (do not require connecting to an Eth node)
 
 ```typescript
 import { etherToWei } from 'essential-eth';
@@ -57,30 +55,42 @@ import { etherToWei } from 'essential-eth';
 const { etherToWei } = require('essential-eth');
 ```
 
+#### `etherToWei`
+
 ```typescript
 // convert ether to wei
 etherToWei(etherQuantity: string | number): TinyBig
-
-// convert wei to ether
-weiToEther(weiQuantity: string | number): TinyBig
-
-// return proper mixed-case address
-toChecksumAddress(address: string): string
-
 ```
 
-### RPC
+#### `weiToEther`
+
+```typescript
+// convert wei to ether
+weiToEther(weiQuantity: string | number): TinyBig
+```
+
+#### `toChecksumAddress`
+
+```typescript
+// return proper mixed-case address
+toChecksumAddress(address: string): string
+```
+
+## RPC
 
 ```typescript
 import { EssentialEth } from 'essential-eth';
+const essentialEth = new EssentialEth('RPC URL HERE' /* Try POKT or Infura */);
 ```
 
-```typescript
-const essentialEth = new EssentialEth('RPC URL HERE' /* Try POKT or Infura */);
+#### `getBlock`
 
+```typescript
 // Same API as web3.eth.getBlock
 getBlock(address: string | number): Block
 ```
+
+Returns a [Block](src/types/block.types.ts)
 
 - [📓 View full docs](https://essential-eth.vercel.app)
 - [📓 View docs for an older version](https://essential-eth.vercel.app/versions)
