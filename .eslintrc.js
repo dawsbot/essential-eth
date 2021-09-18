@@ -1,5 +1,5 @@
 module.exports = {
-  ignorePatterns: ['scripts/calculate-bundle-size.js'],
+  ignorePatterns: ['scripts/calculate-bundle-size.js', 'test/*.js'],
   env: {
     browser: true,
     es2021: true,
@@ -21,5 +21,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'jest/prefer-expect-assertions': 'off',
     'jest/require-to-throw-message': 'off',
+    'jest/expect-expect': 'off',
+    '@typescript-eslint/ban-ts-comment': 'warn',
   },
 };
