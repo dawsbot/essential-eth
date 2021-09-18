@@ -8,7 +8,11 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./lib/esm",
     "declaration": true,
-    "removeComments": true
+    "removeComments": true,
+    "skipLibCheck": true,
+    "paths": {
+      "*": ["./types/*"]
+    }
   },
   "include": ["./src"],
   "types": ["node", "jest"]
