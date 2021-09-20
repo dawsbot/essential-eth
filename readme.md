@@ -78,8 +78,18 @@ weiToEther(weiQuantity: string | number): TinyBig
 
 ```typescript
 // return proper mixed-case address
+// does not support ICAP addresses
 toChecksumAddress(address: string): string
 ```
+
+#### `isAddress`
+
+```typescript
+// returns boolean as to whether input is a valid address
+// does not support ENS nor ICAP
+isAddress(address: string): boolean
+```
+
 
 ## RPC
 
