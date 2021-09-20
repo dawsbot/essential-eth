@@ -20,7 +20,7 @@ describe('is-address', () => {
       expect(isAddress(address)).toStrictEqual(web3.utils.isAddress(address));
     });
   });
-  it('should fail on invalid addresses', () => {
+  it('should return false on invalid addresses', () => {
     const addresses = [
       '0x5290840009852',
       '0x8617E340b3D01FA5F11F306F4090FD50E238070D',
