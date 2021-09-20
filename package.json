@@ -16,6 +16,7 @@
   "author": "@dawsbot",
   "scripts": {
     "test": "npm-run-all --parallel jest compile lint",
+    "test:all-node-versions": "npx trevor",
     "lint": "eslint .",
     "compile": "npm-run-all --parallel tsc:esm tsc:cjs",
     "tsc:esm": "tsc -p tsconfig.json",
@@ -66,7 +67,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm-run-all --parallel test build:website"
+      "pre-commit": "lint-staged && npm-run-all --parallel test:all-node-versions build:website"
     }
   },
   "lint-staged": {

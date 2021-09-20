@@ -35,6 +35,11 @@
 - ʦ Fully typed with TypeScript (also works with JavaScript)
 - 🌲 Tree-shaking and no side-effects
 - 🧪 Tested heavily to match both web3 and ethers.js
+- 🤓 Exports for either CommonJS and ESM usage
+- 🙌 Supports multiple Node versions
+  - ✅ Node 14
+  - ✅ Node 12
+  - ✅ Node 10
 - 👩‍⚖️ MIT License
 
 ## Install

@@ -24,6 +24,10 @@ describe('ether-to-wei', () => {
     });
   });
   it('invalid inputs', () => {
+    const invalidChecksumAddress = '0x8617E340b3D01FA5F11F306F4090FD50E238070D';
+    expect(() => {
+      toChecksumAddress(invalidChecksumAddress);
+    }).toThrow(`Invalid Checksum address for "${invalidChecksumAddress}"`);
     expect(() => {
       // @ts-expect-error should not accept boolean
       toChecksumAddress(false);
