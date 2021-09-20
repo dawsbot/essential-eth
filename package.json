@@ -67,7 +67,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm-run-all --parallel test:all-node-versions build:website"
+      "pre-commit": "lint-staged && npm-run-all --parallel test build:website"
     }
   },
   "lint-staged": {
