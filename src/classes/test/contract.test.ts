@@ -11,7 +11,8 @@ const rpcURL = 'https://free-eth-node.com/api/eth';
 const ethersProvider = getDefaultProvider(rpcURL);
 const essentialEthProvider = new EssentialEth(rpcURL);
 
-// The UNI merkle address
+// The UNI airdrop merkle address
+// https://etherscan.io/address/0x090D4613473dEE047c3f2706764f49E0821D256e#readContract
 const contractAddress = '0x090D4613473dEE047c3f2706764f49E0821D256e';
 
 const smartContractIsUniClaimed = async (contract: any, index: number) => {
