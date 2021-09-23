@@ -1,7 +1,7 @@
 import * as ethers from 'ethers';
 import web3 from 'web3';
-import { scientificStrToDecimalStr } from '../src/shared/tiny-big/helpers';
-import { etherToWei } from './../src';
+import { etherToWei } from '../../index';
+import { scientificStrToDecimalStr } from '../../shared/tiny-big/helpers';
 
 describe('ether-to-wei', () => {
   it('happy path', () => {

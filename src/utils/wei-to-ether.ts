@@ -1,6 +1,6 @@
 import Big from 'big.js';
-import { tinyBig } from './shared/tiny-big/tiny-big';
-import { validateType } from './shared/validate-type';
+import { tinyBig } from '../shared/tiny-big/tiny-big';
+import { validateType } from '../shared/validate-type';
 
 /**
  * Convert from Ether to Wei

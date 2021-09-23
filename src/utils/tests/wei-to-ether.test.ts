@@ -1,6 +1,6 @@
 import * as ethers from 'ethers';
 import web3 from 'web3';
-import { weiToEther } from './../src';
+import { weiToEther } from '../../index';
 
 describe('wei-to-ether', () => {
   it('happy path', () => {

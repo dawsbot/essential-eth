@@ -9,10 +9,8 @@ export function post(url: string, body: Record<string, unknown>) {
   }).then((r) => r.json());
 }
 
-export function buildRPCPostBody(
-  method: 'eth_getBlockByNumber',
-  params: any[],
-) {
+type RPCMethodName = 'eth_getBlockByNumber' | 'eth_call';
+export function buildRPCPostBody(method: RPCMethodName, params: any[]) {
   return {
     jsonrpc: '2.0',
     id: 1,

@@ -1,6 +1,6 @@
 import Big from 'big.js';
-import { TinyBig, tinyBig } from './shared/tiny-big/tiny-big';
-import { validateType } from './shared/validate-type';
+import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
+import { validateType } from '../shared/validate-type';
 
 /**
  * Similar to ["parseEther" in ethers.js](https://docs.ethers.io/v4/api-utils.html#ether-strings-and-wei)
