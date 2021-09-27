@@ -34,7 +34,6 @@ export class BaseContract {
             const rawOutputs = argument.outputs;
 
             /* first 4 bytes will create the data parameter */
-            // TODO: only supports one input
             const functionString = `${argument.name}(${argument.inputs.map(
               (input) => input.internalType,
             )})`;

@@ -8,8 +8,7 @@ import { feiABI } from './fei-abi';
 // The JSONABI
 const JSONABI = feiABI;
 
-const rpcURL = 'http://localhost:3000/api/eth';
-// const rpcURL = 'https://free-eth-node.com/api/eth';
+const rpcURL = 'https://free-eth-node.com/api/eth';
 const ethersProvider = getDefaultProvider(rpcURL);
 const essentialEthProvider = new EssentialEth(rpcURL);
 
