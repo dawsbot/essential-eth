@@ -1,3 +1,4 @@
+import { Contract } from './classes/Contract';
 import { EssentialEth } from './classes/EssentialEth';
 import { tinyBig, TinyBig } from './shared/tiny-big/tiny-big';
 import { etherToWei } from './utils/ether-to-wei';
@@ -12,4 +13,5 @@ export {
   tinyBig,
   TinyBig,
   EssentialEth,
+  Contract,
 };

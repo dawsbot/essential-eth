@@ -1,13 +1,12 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
 import { getDefaultProvider } from 'ethers';
-import { Contract as EssentialEthContract } from '../Contract';
-import { EssentialEth } from '../EssentialEth';
+import { Contract as EssentialEthContract } from '../../Contract';
+import { EssentialEth } from '../../EssentialEth';
 import { uniswapABI } from './uniswap-abi';
 
 // The JSONABI
 const JSONABI = uniswapABI;
 
-// const rpcURL = 'http://localhost:3000/api/eth';
 const rpcURL = 'https://free-eth-node.com/api/eth';
 const ethersProvider = getDefaultProvider(rpcURL);
 const essentialEthProvider = new EssentialEth(rpcURL);
@@ -25,6 +24,10 @@ const smartContractGetUniMerkleRoot = async (contract: any) => {
   const merkleRoot = (await contract.merkleRoot()) as string;
   return merkleRoot;
 };
+const smartContractGetUniTokenAddress = async (contract: any) => {
+  const merkleRoot = (await contract.token()) as string;
+  return merkleRoot;
+};
 
 const ethersContract = new EthersContract(
   contractAddress,
@@ -37,7 +40,15 @@ const essentialEthContract = new EssentialEthContract(
   essentialEthProvider,
 );
 describe('UNI contract', () => {
-  it('should find bytes32 merkle root', async () => {
+  it('should fetch "address" data-type', async () => {
+    const [ethersResponse, essentialEthResponse] = await Promise.all([
+      smartContractGetUniTokenAddress(ethersContract),
+      smartContractGetUniTokenAddress(essentialEthContract),
+    ]);
+    /* 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984 */
+    expect(ethersResponse).toStrictEqual(essentialEthResponse);
+  });
+  it('should fetch "bytes32" merkle root', async () => {
     const [ethersResponse, essentialEthResponse] = await Promise.all([
       smartContractGetUniMerkleRoot(ethersContract),
       smartContractGetUniMerkleRoot(essentialEthContract),
@@ -46,7 +57,7 @@ describe('UNI contract', () => {
     expect(ethersResponse).toStrictEqual(essentialEthResponse);
   });
 
-  it('isClaimed', async () => {
+  it('should fetch isClaimed "boolean" for random airdrop indexes', async () => {
     /* indexes of addresses in the merkle tree */
     const randomIndexes = [0, 4, 102, 999, 999999];
 

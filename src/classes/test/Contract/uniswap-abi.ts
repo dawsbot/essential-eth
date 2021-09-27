@@ -1,28 +1,4 @@
-export type ContractTypes =
-  | 'bool'
-  | 'bytes32'
-  | 'bytes32[]'
-  | 'address'
-  | 'uint256';
-export type ContractInterface = JSONABI;
-export type ContractFunction<T = any> = (...args: Array<any>) => Promise<T>;
-export type JSONABI = {
-  anonymous?: false;
-  inputs: {
-    internalType: ContractTypes;
-    name: string;
-    type: ContractTypes;
-    indexed?: boolean;
-  }[];
-  name?: string;
-  outputs?: {
-    internalType: ContractTypes;
-    name: string;
-    type: ContractTypes;
-  }[];
-  stateMutability?: 'view' | 'nonpayable' | string;
-  type: 'function' | 'event' | 'constructor';
-}[];
+import { JSONABI } from '../../../types/Contract.types';
 
 export const uniswapABI: JSONABI =
   // http://api.etherscan.io/api?module=contract&action=getabi&address=0x090d4613473dee047c3f2706764f49e0821d256e&format=raw

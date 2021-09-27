@@ -1,6 +1,7 @@
 import Big from 'big.js';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { validateType } from '../shared/validate-type';
+import { TinyBig } from './../shared/tiny-big/tiny-big';
 
 /**
  * Convert from Ether to Wei
@@ -25,8 +26,8 @@ import { validateType } from '../shared/validate-type';
  * // 1000000000000000000000
  * ```
  */
-export function weiToEther(weiQuantity: string | number) {
-  validateType(weiQuantity, ['string', 'number']);
-  const result = Big(weiQuantity).div('1000000000000000000').toString();
+export function weiToEther(weiQuantity: string | number | TinyBig | Big) {
+  validateType(weiQuantity, ['string', 'number', 'object']);
+  const result = tinyBig(weiQuantity).div('1000000000000000000');
   return tinyBig(result);
 }

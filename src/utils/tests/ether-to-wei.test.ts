@@ -1,6 +1,7 @@
+import Big from 'big.js';
 import * as ethers from 'ethers';
 import web3 from 'web3';
-import { etherToWei } from '../../index';
+import { etherToWei, tinyBig } from '../../index';
 import { scientificStrToDecimalStr } from '../../shared/tiny-big/helpers';
 
 describe('ether-to-wei', () => {
@@ -12,6 +13,18 @@ describe('ether-to-wei', () => {
     );
     expect(etherToWei(1000).toString()).toStrictEqual('1000000000000000000000');
     expect(etherToWei('1000.0').toNumber()).toStrictEqual(
+      1000000000000000000000,
+    );
+    expect(etherToWei(tinyBig(1000)).toString()).toStrictEqual(
+      '1000000000000000000000',
+    );
+    expect(etherToWei(tinyBig('1000.0')).toNumber()).toStrictEqual(
+      1000000000000000000000,
+    );
+    expect(etherToWei(Big(1000)).toString()).toStrictEqual(
+      '1000000000000000000000',
+    );
+    expect(etherToWei(Big('1000.0')).toNumber()).toStrictEqual(
       1000000000000000000000,
     );
   });

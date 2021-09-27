@@ -6,7 +6,7 @@ import { scientificStrToDecimalStr } from './helpers';
  * The only important things to know are the "toString" and "toNumber" functions
  */
 export class TinyBig extends Big {
-  constructor(value: number | string) {
+  constructor(value: number | string | TinyBig) {
     super(value);
   }
   toNumber(): number {
@@ -24,6 +24,6 @@ export class TinyBig extends Big {
 /**
  * Helper factory function so that you don't have to type "new" when instantiating a new TinyBig
  */
-export function tinyBig(value: number | string): TinyBig {
+export function tinyBig(value: number | string | TinyBig): TinyBig {
   return new TinyBig(value);
 }
