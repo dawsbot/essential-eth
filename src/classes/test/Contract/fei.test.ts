@@ -1,6 +1,6 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
 import { getDefaultProvider } from 'ethers';
-import { TinyBig, weiToEther } from '../../..';
+import { TinyBig } from '../../..';
 import { Contract as EssentialEthContract } from '../../Contract';
 import { EssentialEth } from '../../EssentialEth';
 import { feiABI } from './fei-abi';
@@ -46,14 +46,22 @@ describe('FEI contract', () => {
         '0xf5dBA31743ea341057280bb3AdD5c2Fb505BDC4C',
       ),
     ]);
-    expect(weiToEther(ethersResponse[0]).toNumber()).toStrictEqual(
-      weiToEther(essentialEthResponse[0]).toNumber(),
+    expect(ethersResponse[0].toString()).toStrictEqual(
+      essentialEthResponse[0].toString(),
     );
-    expect(weiToEther(ethersResponse[1]).toNumber()).toStrictEqual(
-      weiToEther(essentialEthResponse[1]).toNumber(),
+    expect(ethersResponse[1].toString()).toStrictEqual(
+      essentialEthResponse[1].toString(),
     );
-    expect(weiToEther(ethersResponse[2]).toNumber()).toStrictEqual(
-      weiToEther(essentialEthResponse[2]).toNumber(),
+    expect(ethersResponse[2].toString()).toStrictEqual(
+      essentialEthResponse[2].toString(),
     );
+
+    expect(essentialEthResponse[0].toNumber()).toStrictEqual(
+      611330334598773765981,
+    );
+    expect(essentialEthResponse[1].toNumber()).toStrictEqual(
+      46931053833712274879,
+    );
+    expect(essentialEthResponse[2].toNumber()).toStrictEqual(0);
   });
 });
