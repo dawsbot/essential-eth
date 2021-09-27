@@ -2,7 +2,6 @@ import { Keccak } from 'sha3';
 import { EssentialEth } from './EssentialEth';
 import { ContractInterface } from './test/uniswap-abi';
 import { buildRPCPostBody, post } from './utils/fetchers';
-const hash = new Keccak(256);
 /**
  * Only accepts ABIS in JSON format. This allows for stronger typing and assurances of data-types
  *
@@ -27,6 +26,7 @@ export class BaseContract {
       .forEach((argument) => {
         if ('name' in argument && typeof argument.name === 'string') {
           defineReadOnly(this, argument.name, async (...args: any) => {
+            const hash = new Keccak(256);
             const outputs = argument.outputs;
 
             /* first 4 bytes will create the data parameter */
@@ -37,23 +37,36 @@ export class BaseContract {
 
             // encoding learnt from https://ethereum.stackexchange.com/questions/3514/how-to-call-a-contract-method-using-the-eth-call-json-rpc-api
             const functionHash = hash.update(functionString).digest('hex');
-            // TODO: only supports integer inputs
-            const inputsEncoded = args[0].toString(16);
+            console.log({ functionHash, functionString });
+            const encodedArgs = (args || []).map((arg: any) => {
+              const argEncoded = arg.toString(16);
+              const paddedEncodedArg = argEncoded.padStart(64, '0');
+              return paddedEncodedArg;
+            });
             const functionEncoded = functionHash.slice(0, 8);
-            const myData = `0x${functionEncoded}${inputsEncoded.padStart(
-              64,
-              '0',
-            )}`;
+            const myData = `0x${functionEncoded}${encodedArgs.join('')}`;
+            // console.log({
+            //   functionHash,
+            //   functionString,
+            //   encodedArgs,
+            //   args,
+            //   functionEncoded,
+            //   myData,
+            // });
+            // TODO: only supports integer inputs
             const nodeResponse = await post(
               this._provider._rpcUrl,
               buildRPCPostBody('eth_call', [
                 {
                   to: this._address,
-                  myData,
+                  data: myData,
                 },
                 'latest',
               ]),
-            ).then((res) => res.result as any);
+            ).then((res) => {
+              const data = res.result as any;
+              return data;
+            });
             // TODO: make this dynamic and not manually hard-coded case/switch
             if (
               Array.isArray(outputs) &&

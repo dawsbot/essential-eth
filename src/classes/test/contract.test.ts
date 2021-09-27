@@ -7,6 +7,7 @@ import { uniswapABI } from './uniswap-abi';
 // The JSONABI
 const JSONABI = uniswapABI;
 
+// const rpcURL = 'http://localhost:3000/api/eth';
 const rpcURL = 'https://free-eth-node.com/api/eth';
 const ethersProvider = getDefaultProvider(rpcURL);
 const essentialEthProvider = new EssentialEth(rpcURL);
@@ -20,27 +21,41 @@ const smartContractIsUniClaimed = async (contract: any, index: number) => {
   return isClaimed;
 };
 
-describe('check isClaimed on UNI contract', () => {
-  it('should be claimed', async () => {
-    const ethersContract = new EthersContract(
-      contractAddress,
-      JSONABI,
-      ethersProvider,
-    );
-    const essentialEthContract = new EssentialEthContract(
-      contractAddress,
-      JSONABI,
-      essentialEthProvider,
-    );
+const smartContractGetUniMerkleRoot = async (contract: any) => {
+  const merkleRoot = (await contract.merkleRoot()) as string;
+  return merkleRoot;
+};
 
-    const randomNumbers = [0, 4, 102, 999, 999999];
+const ethersContract = new EthersContract(
+  contractAddress,
+  JSONABI,
+  ethersProvider,
+);
+const essentialEthContract = new EssentialEthContract(
+  contractAddress,
+  JSONABI,
+  essentialEthProvider,
+);
+describe('UNI contract', () => {
+  it('should find bytes32 merkle root', async () => {
+    const [ethersResponse, essentialEthResponse] = await Promise.all([
+      smartContractGetUniMerkleRoot(ethersContract),
+      smartContractGetUniMerkleRoot(essentialEthContract),
+    ]);
+    /* 0xc8500f8e2fcf3c9a32880e1b973fb28acc88be35787a8abcf9981b2b65dbdeb5 */
+    expect(ethersResponse).toStrictEqual(essentialEthResponse);
+  });
 
-    randomNumbers.forEach(async (num) => {
+  it('isClaimed', async () => {
+    /* indexes of addresses in the merkle tree */
+    const randomIndexes = [0, 4, 102, 999, 999999];
+
+    for (const i of randomIndexes) {
       const [ethersClaimed, essentialEthClaimed] = await Promise.all([
-        smartContractIsUniClaimed(ethersContract, num),
-        smartContractIsUniClaimed(essentialEthContract, num),
+        smartContractIsUniClaimed(ethersContract, i),
+        smartContractIsUniClaimed(essentialEthContract, i),
       ]);
       expect(ethersClaimed).toStrictEqual(essentialEthClaimed);
-    });
+    }
   });
 });
