@@ -1,5 +1,6 @@
 import { Keccak } from 'sha3';
-import { JsonRpcProvider, tinyBig, toChecksumAddress } from '..';
+import { tinyBig, toChecksumAddress } from '..';
+import { JsonRpcProvider } from '../providers/JsonRpcProvider';
 import { ContractInterface } from '../types/Contract.types';
 import { buildRPCPostBody, post } from './utils/fetchers';
 import { hexToDecimal } from './utils/hex-to-decimal';

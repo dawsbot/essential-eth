@@ -1,8 +1,8 @@
 import Big from 'big.js';
 import omit from 'just-omit';
 import Web3 from 'web3';
+import { JsonRpcProvider } from '../providers/JsonRpcProvider';
 import { Block } from '../types/block.types';
-import { JsonRpcProvider } from './JsonRpcProvider';
 
 // const rpcUrl = 'http://localhost:3001/post';
 const rpcUrl = 'https://free-eth-node.com/api/eth';

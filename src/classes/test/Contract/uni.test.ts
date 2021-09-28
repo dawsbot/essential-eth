@@ -1,7 +1,7 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
 import { getDefaultProvider } from 'ethers';
+import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
 import { Contract as EssentialEthContract } from '../../Contract';
-import { JsonRpcProvider } from '../../JsonRpcProvider';
 import { uniswapABI } from './uniswap-abi';
 
 // The JSONABI

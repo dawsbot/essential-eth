@@ -1,8 +1,8 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
 import { getDefaultProvider } from 'ethers';
 import { TinyBig } from '../../..';
+import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
 import { Contract as JsonRpcProviderContract } from '../../Contract';
-import { JsonRpcProvider } from '../../JsonRpcProvider';
 import { feiABI } from './fei-abi';
 
 // The JSONABI

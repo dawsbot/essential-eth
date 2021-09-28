@@ -1,6 +1,6 @@
+import { cleanBlock } from '../classes/utils/clean-block';
+import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { Block, RPCBlock } from '../types/block.types';
-import { cleanBlock } from './utils/clean-block';
-import { buildRPCPostBody, post } from './utils/fetchers';
 export class JsonRpcProvider {
   /**
    * The URL to your Eth node. Consider POKT or Infura
@@ -39,4 +39,11 @@ export class JsonRpcProvider {
 
     return cleanBlock(nodeResponse, returnTransactionObjects);
   }
+}
+
+/**
+ * Helper function to avoid "new"
+ */
+export function jsonRpcProvider(rpcUrl?: string) {
+  return new JsonRpcProvider(rpcUrl);
 }
