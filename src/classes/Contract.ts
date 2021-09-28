@@ -1,7 +1,6 @@
 import { Keccak } from 'sha3';
-import { tinyBig, toChecksumAddress } from '..';
+import { JsonRpcProvider, tinyBig, toChecksumAddress } from '..';
 import { ContractInterface } from '../types/Contract.types';
-import { EssentialEth } from './EssentialEth';
 import { buildRPCPostBody, post } from './utils/fetchers';
 import { hexToDecimal } from './utils/hex-to-decimal';
 export class BaseContract {
@@ -10,7 +9,7 @@ export class BaseContract {
    */
   readonly _address: string;
   readonly _contractInterface: ContractInterface /* JSON ABI's only for stronger types */;
-  readonly _provider: EssentialEth;
+  readonly _provider: JsonRpcProvider;
 
   /**
    * @param addressOrName - The ethereum address of the smart-contract
@@ -20,7 +19,7 @@ export class BaseContract {
   constructor(
     addressOrName: string,
     contractInterface: ContractInterface,
-    signerOrProvider: EssentialEth,
+    signerOrProvider: JsonRpcProvider,
   ) {
     this._address = addressOrName;
     this._contractInterface = contractInterface;
@@ -115,10 +114,10 @@ export function defineReadOnly<T>(object: T, name: string, value: any): void {
  *
  * @example
  * ```typescript
- * import { Contract, EssentialEth } from 'essential-eth';
+ * import { Contract, JsonRpcProvider } from 'essential-eth';
  * // UNI airdrop contract
  * const contractAddress = '0x090D4613473dEE047c3f2706764f49E0821D256e';
- * const provider = new EssentialEth();
+ * const provider = new JsonRpcProvider();
  *
  * const JSONABI = [
  *   {

@@ -1,7 +1,7 @@
 import { Block, RPCBlock } from '../types/block.types';
 import { cleanBlock } from './utils/clean-block';
 import { buildRPCPostBody, post } from './utils/fetchers';
-export class EssentialEth {
+export class JsonRpcProvider {
   /**
    * The URL to your Eth node. Consider POKT or Infura
    */

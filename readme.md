@@ -97,10 +97,12 @@ isAddress(address: string): boolean
 ## RPC
 
 ```typescript
-import { EssentialEth } from 'essential-eth';
-const essentialEth = new EssentialEth('RPC URL HERE' /* Try POKT or Infura */);
+import { JsonRpcProvider } from 'essential-eth';
+const essentialEth = new JsonRpcProvider(
+  'RPC URL HERE' /* Try POKT or Infura */,
+);
 // OR for very quick testing (limited to 500 requests)
-const essentialEth = new EssentialEth();
+const essentialEth = new JsonRpcProvider();
 ```
 
 #### `getBlock`
@@ -121,12 +123,12 @@ getBlock(timeFrame: number | "latest" | "earliest" | "pending", returnTransactio
 - This is highly experimental, do not use this in production yet.
 
 ```typescript
-import { Contract, EssentialEth } from 'essential-eth';
+import { Contract, JsonRpcProvider, JSONABI } from 'essential-eth';
 // UNI airdrop contract
 const contractAddress = '0x090D4613473dEE047c3f2706764f49E0821D256e';
-const provider = new EssentialEth();
+const provider = new JsonRpcProvider();
 
-const JSONABI = [
+const abi: JSONABI = [
   {
     inputs: [
       {
@@ -148,7 +150,7 @@ const JSONABI = [
   },
 ];
 
-const contract = new Contract(contractAddress, JSONABI, provider);
+const contract = new Contract(contractAddress, abi, provider);
 
 (async () => {
   // prints boolean as to whether index 0 has claimed airdrop or not

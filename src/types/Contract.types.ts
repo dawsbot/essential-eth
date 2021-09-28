@@ -6,23 +6,25 @@ export type ContractTypes =
   | 'address payable'
   | 'uint256'
   | 'uint8'
+  | 'uint32'
   | 'string';
 export type ContractInterface = JSONABI;
 export type ContractFunction<T = any> = (...args: Array<any>) => Promise<T>;
 export type JSONABI = {
   anonymous?: false;
   inputs: {
-    internalType: ContractTypes;
+    internalType?: ContractTypes | string;
     name: string;
     type: ContractTypes;
     indexed?: boolean;
   }[];
   name?: string;
   outputs?: {
-    internalType: ContractTypes | string;
+    internalType?: ContractTypes | string;
     name: string;
     type: ContractTypes;
   }[];
   stateMutability?: 'view' | 'nonpayable' | string;
-  type: 'function' | 'event' | 'constructor';
+  type: 'function' | 'event' | 'constructor' | 'error';
+  // gas?: number;
 }[];

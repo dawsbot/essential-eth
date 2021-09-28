@@ -1,5 +1,5 @@
 import { Contract } from './classes/Contract';
-import { EssentialEth } from './classes/EssentialEth';
+import { JsonRpcProvider } from './classes/JsonRpcProvider';
 import { tinyBig, TinyBig } from './shared/tiny-big/tiny-big';
 import { JSONABI } from './types/Contract.types';
 import { etherToWei } from './utils/ether-to-wei';
@@ -13,7 +13,7 @@ export {
   weiToEther,
   tinyBig,
   TinyBig,
-  EssentialEth,
+  JsonRpcProvider,
   Contract,
   JSONABI,
 };

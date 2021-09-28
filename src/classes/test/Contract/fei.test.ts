@@ -1,8 +1,8 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
 import { getDefaultProvider } from 'ethers';
 import { TinyBig } from '../../..';
-import { Contract as EssentialEthContract } from '../../Contract';
-import { EssentialEth } from '../../EssentialEth';
+import { Contract as JsonRpcProviderContract } from '../../Contract';
+import { JsonRpcProvider } from '../../JsonRpcProvider';
 import { feiABI } from './fei-abi';
 
 // The JSONABI
@@ -10,7 +10,7 @@ const JSONABI = feiABI;
 
 const rpcURL = 'https://free-eth-node.com/api/eth';
 const ethersProvider = getDefaultProvider(rpcURL);
-const essentialEthProvider = new EssentialEth(rpcURL);
+const essentialEthProvider = new JsonRpcProvider(rpcURL);
 
 // The UNI airdrop merkle address
 // https://etherscan.io/address/0xBFfB152b9392e38CdDc275D818a3Db7FE364596b
@@ -29,7 +29,7 @@ const ethersContract = new EthersContract(
   JSONABI,
   ethersProvider,
 );
-const essentialEthContract = new EssentialEthContract(
+const essentialEthContract = new JsonRpcProviderContract(
   contractAddress,
   JSONABI,
   essentialEthProvider,

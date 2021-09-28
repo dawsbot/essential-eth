@@ -2,7 +2,7 @@ import Big from 'big.js';
 import omit from 'just-omit';
 import Web3 from 'web3';
 import { Block } from '../types/block.types';
-import { EssentialEth } from './EssentialEth';
+import { JsonRpcProvider } from './JsonRpcProvider';
 
 // const rpcUrl = 'http://localhost:3001/post';
 const rpcUrl = 'https://free-eth-node.com/api/eth';
@@ -28,7 +28,7 @@ describe('matches web3', () => {
   }
 
   it('should allow default eth node to get latest block', async () => {
-    const essentialEth = new EssentialEth();
+    const essentialEth = new JsonRpcProvider();
     const web3 = new Web3(rpcUrl);
     const [eeLatestBlock, web3LatestBlock] = await Promise.all([
       essentialEth.getBlock('latest'),
@@ -37,7 +37,7 @@ describe('matches web3', () => {
     testBlockEquality(eeLatestBlock, web3LatestBlock as unknown as Block);
   });
   it('should get latest block', async () => {
-    const essentialEth = new EssentialEth(rpcUrl);
+    const essentialEth = new JsonRpcProvider(rpcUrl);
     const web3 = new Web3(rpcUrl);
     const [eeLatestBlock, web3LatestBlock] = await Promise.all([
       essentialEth.getBlock('latest'),
@@ -46,7 +46,7 @@ describe('matches web3', () => {
     testBlockEquality(eeLatestBlock, web3LatestBlock as unknown as Block);
   });
   it('should get earliest block', async () => {
-    const essentialEth = new EssentialEth(rpcUrl);
+    const essentialEth = new JsonRpcProvider(rpcUrl);
     const web3 = new Web3(rpcUrl);
     const [eeEarliestBlock, web3EarliestBlock] = await Promise.all([
       essentialEth.getBlock('earliest'),
@@ -56,7 +56,7 @@ describe('matches web3', () => {
   });
   const blockNumber = Math.floor(Math.random() * 13250630);
   it(`should get random block as decimal integer. (block #${blockNumber})`, async () => {
-    const essentialEth = new EssentialEth(rpcUrl);
+    const essentialEth = new JsonRpcProvider(rpcUrl);
     const web3 = new Web3(rpcUrl);
     const [eeRandomBlock, web3RandomBlock] = await Promise.all([
       essentialEth.getBlock(blockNumber, true),
