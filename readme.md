@@ -51,6 +51,8 @@ npm install --save essential-eth # TypeScript types load automatically
 yarn add essential-eth # TypeScript types load automatically
 ```
 
+<br/>
+
 ## Utils (do not require connecting to an Eth node)
 
 ```typescript
@@ -64,14 +66,14 @@ const { etherToWei } = require('essential-eth');
 
 ```typescript
 // convert ether to wei
-etherToWei(etherQuantity: string | number): TinyBig
+etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
 ```
 
 #### `weiToEther`
 
 ```typescript
 // convert wei to ether
-weiToEther(weiQuantity: string | number): TinyBig
+weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
 ```
 
 #### `toChecksumAddress`
@@ -90,14 +92,17 @@ toChecksumAddress(address: string): string
 isAddress(address: string): boolean
 ```
 
+<br/>
 
 ## RPC
 
 ```typescript
-import { EssentialEth } from 'essential-eth';
-const essentialEth = new EssentialEth('RPC URL HERE' /* Try POKT or Infura */);
+import { JsonRpcProvider } from 'essential-eth';
+const essentialEth = new JsonRpcProvider(
+  'RPC URL HERE' /* Try POKT or Infura */,
+);
 // OR for very quick testing (limited to 500 requests)
-const essentialEth = new EssentialEth();
+const essentialEth = new JsonRpcProvider();
 ```
 
 #### `getBlock`
@@ -108,6 +113,54 @@ Returns a [Block](src/types/block.types.ts)
 // Same API as web3.eth.getBlock
 getBlock(timeFrame: number | "latest" | "earliest" | "pending", returnTransactionObjects?: boolean): Promise<Block>
 ```
+
+<br/>
+
+## Contract
+
+⚠️ Only read functions are currently supported. ⚠️
+
+- This is highly experimental, do not use this in production yet.
+
+```typescript
+import { Contract, jsonRpcProvider, JSONABI } from 'essential-eth';
+// UNI airdrop contract
+const contractAddress = '0x090D4613473dEE047c3f2706764f49E0821D256e';
+const provider = jsonRpcProvider(/* RPC URL optional */);
+
+const abi: JSONABI = [
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'index',
+        type: 'uint256',
+      },
+    ],
+    name: 'isClaimed',
+    outputs: [
+      {
+        internalType: 'bool',
+        name: '',
+        type: 'bool',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+];
+
+const contract = new Contract(contractAddress, abi, provider);
+
+(async () => {
+  // prints boolean as to whether index 0 has claimed airdrop or not
+  console.log(await contract.isClaimed(0));
+})();
+```
+
+#### `contractFunctionName(args)`
+
+Any function on a contract. Returns are the same as `ethers.js`, except that instead of BigNumber, `essential-eth` always returns a [`TinyBig`](https://essential-eth.vercel.app/classes/TinyBig.html)
 
 <br/>
 <br/>

@@ -1,5 +1,5 @@
 import { Keccak } from 'sha3';
-import { validateType } from './shared/validate-type';
+import { validateType } from '../shared/validate-type';
 
 /**
  * Returns an Ethereum address in proper mixed-case checksum.

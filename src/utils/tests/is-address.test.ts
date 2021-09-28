@@ -1,6 +1,6 @@
 import { utils } from 'ethers';
 import web3 from 'web3';
-import { isAddress } from '../src';
+import { isAddress } from '../../index';
 
 describe('is-address', () => {
   it('should validate real addresses', () => {
