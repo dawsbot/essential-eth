@@ -1,6 +1,6 @@
 import Big from 'big.js';
-import { TinyBig, tinyBig } from './shared/tiny-big/tiny-big';
-import { validateType } from './shared/validate-type';
+import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
+import { validateType } from '../shared/validate-type';
 
 /**
  * Similar to ["parseEther" in ethers.js](https://docs.ethers.io/v4/api-utils.html#ether-strings-and-wei)
@@ -23,8 +23,10 @@ import { validateType } from './shared/validate-type';
  * // 1000000000000000000000
  * ```
  */
-export function etherToWei(etherQuantity: string | number): TinyBig {
-  validateType(etherQuantity, ['string', 'number']);
-  const result = Big(etherQuantity).times('1000000000000000000').toString();
+export function etherToWei(
+  etherQuantity: string | number | TinyBig | Big,
+): TinyBig {
+  validateType(etherQuantity, ['string', 'number', 'object']);
+  const result = tinyBig(etherQuantity).times('1000000000000000000');
   return tinyBig(result);
 }

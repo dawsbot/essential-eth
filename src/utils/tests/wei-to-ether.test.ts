@@ -1,6 +1,7 @@
+import Big from 'big.js';
 import * as ethers from 'ethers';
 import web3 from 'web3';
-import { weiToEther } from './../src';
+import { tinyBig, weiToEther } from '../../index';
 
 describe('wei-to-ether', () => {
   it('happy path', () => {
@@ -12,6 +13,19 @@ describe('wei-to-ether', () => {
       1000,
     );
     expect(weiToEther(1000000000000000000000.0).toNumber()).toStrictEqual(1000);
+
+    expect(
+      weiToEther(tinyBig('1000000000000000000000.0')).toNumber(),
+    ).toStrictEqual(1000);
+    expect(
+      weiToEther(tinyBig(1000000000000000000000.0)).toNumber(),
+    ).toStrictEqual(1000);
+    expect(
+      weiToEther(Big('1000000000000000000000.0')).toNumber(),
+    ).toStrictEqual(1000);
+    expect(weiToEther(Big(1000000000000000000000.0)).toNumber()).toStrictEqual(
+      1000,
+    );
   });
 
   describe('matches ethers and web3 toString', () => {

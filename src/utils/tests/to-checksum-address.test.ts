@@ -1,6 +1,6 @@
 import { utils } from 'ethers';
 import web3 from 'web3';
-import { toChecksumAddress } from '../src';
+import { toChecksumAddress } from '../../index';
 
 describe('ether-to-wei', () => {
   it('happy path', () => {
