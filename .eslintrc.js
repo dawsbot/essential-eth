@@ -25,6 +25,7 @@ module.exports = {
     'jest/expect-expect': 'off',
     'jest/lowercase-name': 'off',
     'jest/no-disabled-tests': 'warn',
+    'jest/no-commented-out-tests': 'warn',
     '@typescript-eslint/ban-ts-comment': 'warn',
   },
 };

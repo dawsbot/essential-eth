@@ -2,7 +2,7 @@ import { Contract as EthersContract } from '@ethersproject/contracts';
 import { getDefaultProvider } from 'ethers';
 import { TinyBig } from '../../..';
 import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
-import { Contract as JsonRpcProviderContract } from '../../Contract';
+import { Contract as EssentialEthContract } from '../../Contract';
 import { feiABI } from './fei-abi';
 
 // The JSONABI
@@ -29,7 +29,7 @@ const ethersContract = new EthersContract(
   JSONABI,
   ethersProvider,
 );
-const essentialEthContract = new JsonRpcProviderContract(
+const essentialEthContract = new EssentialEthContract(
   contractAddress,
   JSONABI,
   essentialEthProvider,
@@ -64,4 +64,24 @@ describe('FEI contract', () => {
     );
     expect(essentialEthResponse[2].toNumber()).toStrictEqual(0);
   });
+  it('should fetch "uint8" data-type', async () => {
+    const [ethersResponse, essentialEthResponse] = await Promise.all([
+      ethersContract.decimals(),
+      essentialEthContract.decimals(),
+    ]);
+    expect(ethersResponse).toStrictEqual(essentialEthResponse);
+  });
+  // it.only('should fetch "string" name data-type', async () => {
+  //   const [ethersResponse, essentialEthResponse] = await Promise.all([
+  //     ethersContract.symbol(),
+  //     essentialEthContract.symbol(),
+  //   ]);
+  //   expect(ethersResponse).toStrictEqual(essentialEthResponse);
+
+  //   const [ethers2Response, essential2EthResponse] = await Promise.all([
+  //     ethersContract.name(),
+  //     essentialEthContract.name(),
+  //   ]);
+  //   expect(ethers2Response).toStrictEqual(essential2EthResponse);
+  // });
 });

@@ -123,10 +123,10 @@ getBlock(timeFrame: number | "latest" | "earliest" | "pending", returnTransactio
 - This is highly experimental, do not use this in production yet.
 
 ```typescript
-import { Contract, JsonRpcProvider, JSONABI } from 'essential-eth';
+import { Contract, jsonRpcProvider, JSONABI } from 'essential-eth';
 // UNI airdrop contract
 const contractAddress = '0x090D4613473dEE047c3f2706764f49E0821D256e';
-const provider = new JsonRpcProvider();
+const provider = jsonRpcProvider(/* RPC URL optional */);
 
 const abi: JSONABI = [
   {

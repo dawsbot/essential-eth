@@ -70,31 +70,35 @@ export class BaseContract {
             const outputs = (encodedOutputs || []).map(
               (output: string, i: number) => {
                 const outputType = (rawOutputs || [])[i].type;
-                if (outputType === 'bool') {
-                  // TODO: make this dynamic and not manually hard-coded case/switch
-                  switch (output) {
-                    case '0000000000000000000000000000000000000000000000000000000000000001':
-                      return true;
-                      break;
-                    case '0000000000000000000000000000000000000000000000000000000000000000':
-                      return false;
-                      break;
-                    default:
-                      throw new Error(
-                        `boolean response of ${output} not defined`,
-                      );
-                      break;
-                  }
-                } else if (outputType === 'address') {
-                  /* address types have 26 leading zeroes to remove */
-                  return toChecksumAddress(`0x${output.slice(24)}`);
-                } else if (outputType === 'uint256') {
-                  return tinyBig(hexToDecimal(`0x${output}`));
-                } else if (outputType === 'bytes32') {
-                  return `0x${output}`;
+                switch (outputType) {
+                  case 'bool':
+                    switch (output) {
+                      case '0000000000000000000000000000000000000000000000000000000000000001':
+                        return true;
+                      case '0000000000000000000000000000000000000000000000000000000000000000':
+                        return false;
+                      default:
+                        throw new Error(
+                          `boolean response of ${output} not defined`,
+                        );
+                    }
+                  case 'address':
+                    /* address types have 26 leading zeroes to remove */
+                    return toChecksumAddress(`0x${output.slice(24)}`);
+                  case 'uint256':
+                    return tinyBig(hexToDecimal(`0x${output}`));
+                  case 'bytes32':
+                    return `0x${output}`;
+                  case 'uint8':
+                    return Number(hexToDecimal(`0x${output}`));
+                  default:
+                    throw new Error(
+                      `essential-eth does not yet support "${outputType}" inputs. Make a PR today!"`,
+                    );
                 }
               },
             );
+
             return outputs.length === 1 ? outputs[0] : outputs;
           });
         }
