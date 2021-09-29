@@ -4,6 +4,17 @@ import { JsonRpcProvider } from '../providers/JsonRpcProvider';
 import { ContractInterface } from '../types/Contract.types';
 import { buildRPCPostBody, post } from './utils/fetchers';
 import { hexToDecimal } from './utils/hex-to-decimal';
+function estimateGas(txnData: string) {
+  // https://ethereum.stackexchange.com/questions/1570/what-does-intrinsic-gas-too-low-mean/1694
+  txnData.split('').reduce((previousValue, currentValue) => {
+    const characterCost = currentValue === '0' ? 4 : 68;
+    return previousValue + characterCost;
+  }, 0);
+}
+
+type Options = {
+  gasLimit?: number;
+};
 export class BaseContract {
   /**
    * The URL to your Eth node. Consider POKT or Infura
@@ -29,17 +40,30 @@ export class BaseContract {
       .filter((argument) => argument.type === 'function')
       .forEach((argument) => {
         if ('name' in argument && typeof argument.name === 'string') {
-          defineReadOnly(this, argument.name, async (...args: any) => {
+          defineReadOnly(this, argument.name, async (..._args: any) => {
+            let args = _args;
+            let options: Options = {};
+            // remove options from encoding
+            const lastArg = _args[_args.length - 1];
+            if (!Array.isArray(lastArg) && typeof lastArg === 'object') {
+              options = lastArg;
+              args = _args.slice(0, _args.length - 1);
+            }
             const hash = new Keccak(256);
             const rawOutputs = argument.outputs;
 
             /* first 4 bytes will create the data parameter */
             const functionString = `${argument.name}(${argument.inputs.map(
-              (input) => input.internalType,
+              (input) => input.type,
             )})`;
 
             // encoding learnt from https://ethereum.stackexchange.com/questions/3514/how-to-call-a-contract-method-using-the-eth-call-json-rpc-api
             const functionHash = hash.update(functionString).digest('hex');
+            if (args.length !== argument.inputs.length) {
+              throw new Error(
+                `args inputs  of "${args.length}" does not match expected length of "${argument.inputs.length}"`,
+              );
+            }
             const encodedArgs = (args || []).map((arg: any, i: number) => {
               let rawArg = arg;
               // remove leading "0x" on address types
@@ -52,19 +76,27 @@ export class BaseContract {
             });
             const functionEncoded = functionHash.slice(0, 8);
             const myData = `0x${functionEncoded}${encodedArgs.join('')}`;
+            const decimalGas =
+              typeof options.gasLimit === 'number'
+                ? options.gasLimit /* user passed in "gasLimit" directly */
+                : typeof argument?.gas === 'number' /* ABI specified "gas". */
+                ? estimateGas(myData)
+                : null;
             const nodeResponse = await post(
               this._provider._rpcUrl,
+
               buildRPCPostBody('eth_call', [
                 {
-                  to: this._address,
+                  to: this._address.toLowerCase(),
                   data: myData,
+                  // sometimes gas is defined in the ABI
+                  ...(decimalGas
+                    ? { gas: `0x${decimalGas.toString(16)}` }
+                    : {}),
                 },
                 'latest',
               ]),
-            ).then((res) => {
-              const data = res.result as any;
-              return data;
-            });
+            );
             // chunk response every 64 characters
             const encodedOutputs = nodeResponse.slice(2).match(/.{1,64}/g);
             const outputs = (encodedOutputs || []).map(

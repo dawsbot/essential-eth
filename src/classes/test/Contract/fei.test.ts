@@ -12,7 +12,6 @@ const rpcURL = 'https://free-eth-node.com/api/eth';
 const ethersProvider = getDefaultProvider(rpcURL);
 const essentialEthProvider = new JsonRpcProvider(rpcURL);
 
-// The UNI airdrop merkle address
 // https://etherscan.io/address/0xBFfB152b9392e38CdDc275D818a3Db7FE364596b
 const contractAddress = '0xBFfB152b9392e38CdDc275D818a3Db7FE364596b';
 
@@ -26,7 +25,7 @@ const smartContractGetFeiAmountsToRedeem = async (
 
 const ethersContract = new EthersContract(
   contractAddress,
-  JSONABI,
+  JSONABI as any,
   ethersProvider,
 );
 const essentialEthContract = new EssentialEthContract(

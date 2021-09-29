@@ -31,7 +31,7 @@ const smartContractGetUniTokenAddress = async (contract: any) => {
 
 const ethersContract = new EthersContract(
   contractAddress,
-  JSONABI,
+  JSONABI as any,
   ethersProvider,
 );
 const essentialEthContract = new EssentialEthContract(
