@@ -4,7 +4,10 @@ export type ContractTypes =
   | 'bytes32[]'
   | 'address'
   | 'address payable'
+  | 'address[4]'
+  | 'address[100]'
   | 'uint256'
+  | 'uint256[100]'
   | 'uint8'
   | 'uint32'
   | 'string';
@@ -26,5 +29,5 @@ export type JSONABI = {
   }[];
   stateMutability?: 'view' | 'nonpayable' | string;
   type: 'function' | 'event' | 'constructor' | 'error';
-  // gas?: number;
+  gas?: number;
 }[];

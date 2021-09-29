@@ -29,13 +29,13 @@ export class JsonRpcProvider {
       // "latest", "earliest", and "pending" require no manipulation
       rpcTimeFrame = timeFrame;
     }
-    const nodeResponse = await post(
+    const nodeResponse = (await post(
       this._rpcUrl,
       buildRPCPostBody('eth_getBlockByNumber', [
         rpcTimeFrame,
         returnTransactionObjects,
       ]),
-    ).then((data) => data.result as RPCBlock);
+    )) as RPCBlock;
 
     return cleanBlock(nodeResponse, returnTransactionObjects);
   }
