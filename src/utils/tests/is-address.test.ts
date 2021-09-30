@@ -24,7 +24,12 @@ describe('is-address', () => {
     const addresses = [
       '0x5290840009852',
       '0x8617E340b3D01FA5F11F306F4090FD50E238070D',
+      '0x8617e340b3d01FA5F11F306F4090FD50E238070D' /* invalid checksum */,
+      ' 0xde709f2102306220921060314715629080e2fb77',
       'dawsbot.eth' /* ens invalid */,
+      '',
+      'xyz',
+      '0x123',
     ];
     addresses.forEach((address) => {
       const essentialEthIsAddress = isAddress(address);

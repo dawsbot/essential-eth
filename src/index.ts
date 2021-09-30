@@ -1,5 +1,5 @@
 import { Contract } from './classes/Contract';
-import { jsonRpcProvider } from './providers/JsonRpcProvider';
+import { JsonRpcProvider, jsonRpcProvider } from './providers/JsonRpcProvider';
 import { tinyBig, TinyBig } from './shared/tiny-big/tiny-big';
 import { JSONABI } from './types/Contract.types';
 import { etherToWei } from './utils/ether-to-wei';
@@ -9,6 +9,7 @@ import { weiToEther } from './utils/wei-to-ether';
 
 export {
   jsonRpcProvider,
+  JsonRpcProvider,
   toChecksumAddress,
   isAddress,
   etherToWei,
