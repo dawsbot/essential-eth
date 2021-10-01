@@ -31,20 +31,19 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
 
   const argsWithTypes: [arg: any, type: ContractTypes][] = (
     jsonABIArgument.inputs || []
-  ).map((input, i: number) => {
+  ).reduce((acc, input, i) => {
     if (input.type.includes('[')) {
       // strip array and length like "[2]" from type
       const basicType = /([^[]*)\[.*$/g.exec(input.type)?.[1] as string;
-      //       return args.map((arg: any) => {
-      return [args[i], basicType];
-      //       });
-      // return [args[i], input.type];
+      args.forEach((arg: any) => {
+        acc = acc.concat([[arg, basicType]]);
+      });
+      return acc;
     } else {
-      return [args[i], input.type];
+      return acc.concat([[args[i], input.type]]);
     }
-  });
+  }, [] as [arg: any, type: ContractTypes][]);
 
-  console.log({ argsWithTypes });
   const encodedArgs = argsWithTypes.map(([arg, inputType]) => {
     let rawArg = arg;
     if (inputType === 'bool') {
@@ -55,7 +54,6 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
       }
     } else if (inputType.startsWith('bytes')) {
       // encode each character to hex
-
       const argEncoded = rawArg
         .split('')
         .map((character: string) => character.charCodeAt(0).toString(16))

@@ -12,7 +12,7 @@ describe('foo encode', () => {
       '0xcdcd77c000000000000000000000000000000000000000000000000000000000000000450000000000000000000000000000000000000000000000000000000000000001',
     );
   });
-  it.only('encodes "bar" function', () => {
+  it('encodes "bar" function', () => {
     const jsonABIArgument = fooABI.find(
       (abi) => abi.name === 'bar',
     ) as JSONABIArgument;
