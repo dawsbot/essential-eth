@@ -18,8 +18,16 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
   }
   const encodedArgs = (args || []).map((arg: any, i: number) => {
     let rawArg = arg;
+    const inputType = jsonABIArgument.inputs[i].type;
+    if (inputType === 'bool') {
+      if (arg) {
+        return '0000000000000000000000000000000000000000000000000000000000000001';
+      } else {
+        return '0000000000000000000000000000000000000000000000000000000000000000';
+      }
+    }
     // remove leading "0x" on address types
-    if (jsonABIArgument.inputs[i].type === 'address') {
+    else if (inputType === 'address') {
       rawArg = arg.replace(/^0x/g, '').toLowerCase();
     }
     const argEncoded = rawArg.toString(16);
