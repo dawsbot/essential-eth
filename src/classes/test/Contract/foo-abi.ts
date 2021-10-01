@@ -10,6 +10,18 @@ import { JSONABI } from '../../..';
 export const fooABI: JSONABI = [
   {
     inputs: [
+      {
+        internalType: 'bytes3[2]',
+        name: 'memory',
+        type: 'bytes3[2]',
+      },
+    ],
+    name: 'bar',
+    outputs: [],
+    type: 'function',
+  },
+  {
+    inputs: [
       { internalType: 'uint32', name: 'x', type: 'uint32' },
       { internalType: 'bool', name: 'y', type: 'bool' },
     ],
