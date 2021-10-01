@@ -13,7 +13,7 @@ export type ContractTypes =
   | 'string';
 export type ContractInterface = JSONABI;
 export type ContractFunction<T = any> = (...args: Array<any>) => Promise<T>;
-export type JSONABI = {
+export type JSONABIArgument = {
   anonymous?: false;
   inputs: {
     internalType?: ContractTypes | string;
@@ -30,4 +30,5 @@ export type JSONABI = {
   stateMutability?: 'view' | 'nonpayable' | string;
   type: 'function' | 'event' | 'constructor' | 'error';
   gas?: number;
-}[];
+};
+export type JSONABI = JSONABIArgument[];
