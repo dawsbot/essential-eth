@@ -57,11 +57,7 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
   const encodedArgs = argsWithTypes.map(([arg, inputType]) => {
     let rawArg = arg;
     if (inputType === 'bool') {
-      if (arg) {
-        return hexTrue;
-      } else {
-        return hexFalse;
-      }
+      return arg ? hexTrue : hexFalse;
     } else if (inputType.startsWith('bytes')) {
       // encode each character to hex
       const argEncoded = rawArg
@@ -95,14 +91,7 @@ export function decodeRPCResponse(
     const outputType = (rawOutputs || [])[i].type;
     switch (outputType) {
       case 'bool':
-        switch (output) {
-          case hexTrue:
-            return true;
-          case hexFalse:
-            return false;
-          default:
-            throw new Error(`boolean response of ${output} not defined`);
-        }
+        return output === hexTrue;
       case 'address':
         /* address types have 26 leading zeroes to remove */
         return toChecksumAddress(`0x${output.slice(24)}`);
