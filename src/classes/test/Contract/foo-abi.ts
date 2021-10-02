@@ -29,4 +29,14 @@ export const fooABI: JSONABI = [
     outputs: [{ internalType: 'bool', name: 'r', type: 'bool' }],
     type: 'function',
   },
+  {
+    inputs: [
+      { internalType: 'bytes', name: 'memory', type: 'bytes' },
+      { internalType: 'bool', name: '', type: 'bool' },
+      { internalType: 'uint[]', name: 'memory', type: 'uint[]' },
+    ],
+    name: 'sam',
+    outputs: [],
+    type: 'function',
+  },
 ];

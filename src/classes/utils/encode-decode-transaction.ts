@@ -6,11 +6,21 @@ const hexTrue =
   '0000000000000000000000000000000000000000000000000000000000000001';
 const hexFalse =
   '0000000000000000000000000000000000000000000000000000000000000000';
+
+function expandType(type: ContractTypes) {
+  // https://docs.soliditylang.org/en/v0.8.7/types.html#integers
+  if (type === 'uint[]') {
+    return 'uint256[]';
+  } else if (type === 'int[]') {
+    return 'int256[]';
+  }
+  return type;
+}
 export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
   const hash = new Keccak(256);
   /* first 4 bytes will create the data parameter */
   const functionString = `${jsonABIArgument.name}(${jsonABIArgument.inputs.map(
-    (input) => input.type,
+    (input) => expandType(input.type),
   )})`;
 
   // encoding learnt from https://ethereum.stackexchange.com/questions/3514/how-to-call-a-contract-method-using-the-eth-call-json-rpc-api
