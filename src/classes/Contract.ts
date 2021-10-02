@@ -1,9 +1,10 @@
-import { Keccak } from 'sha3';
-import { tinyBig, toChecksumAddress } from '..';
 import { JsonRpcProvider } from '../providers/JsonRpcProvider';
 import { ContractInterface } from '../types/Contract.types';
+import {
+  decodeRPCResponse,
+  encodeData,
+} from './utils/encode-decode-transaction';
 import { buildRPCPostBody, post } from './utils/fetchers';
-import { hexToDecimal } from './utils/hex-to-decimal';
 function estimateGas(txnData: string) {
   // https://ethereum.stackexchange.com/questions/1570/what-does-intrinsic-gas-too-low-mean/1694
   txnData.split('').reduce((previousValue, currentValue) => {
@@ -11,7 +12,6 @@ function estimateGas(txnData: string) {
     return previousValue + characterCost;
   }, 0);
 }
-
 type Options = {
   gasLimit?: number;
 };
@@ -37,102 +37,52 @@ export class BaseContract {
     this._contractInterface = contractInterface;
     this._provider = signerOrProvider;
     contractInterface
-      .filter((argument) => argument.type === 'function')
-      .forEach((argument) => {
-        if ('name' in argument && typeof argument.name === 'string') {
-          defineReadOnly(this, argument.name, async (..._args: any) => {
-            let args = _args;
-            let options: Options = {};
-            // remove options from encoding
-            const lastArg = _args[_args.length - 1];
-            if (!Array.isArray(lastArg) && typeof lastArg === 'object') {
-              options = lastArg;
-              args = _args.slice(0, _args.length - 1);
-            }
-            const hash = new Keccak(256);
-            const rawOutputs = argument.outputs;
-
-            /* first 4 bytes will create the data parameter */
-            const functionString = `${argument.name}(${argument.inputs.map(
-              (input) => input.type,
-            )})`;
-
-            // encoding learnt from https://ethereum.stackexchange.com/questions/3514/how-to-call-a-contract-method-using-the-eth-call-json-rpc-api
-            const functionHash = hash.update(functionString).digest('hex');
-            if (args.length !== argument.inputs.length) {
-              throw new Error(
-                `args inputs  of "${args.length}" does not match expected length of "${argument.inputs.length}"`,
-              );
-            }
-            const encodedArgs = (args || []).map((arg: any, i: number) => {
-              let rawArg = arg;
-              // remove leading "0x" on address types
-              if (argument.inputs[i].type === 'address') {
-                rawArg = arg.replace(/^0x/g, '').toLowerCase();
+      .filter((jsonABIArgument) => jsonABIArgument.type === 'function')
+      .forEach((jsonABIArgument) => {
+        if (
+          'name' in jsonABIArgument &&
+          typeof jsonABIArgument.name === 'string'
+        ) {
+          defineReadOnly(
+            this,
+            jsonABIArgument.name,
+            async (..._args: any[]) => {
+              let functionArguments = _args;
+              let options: Options = {};
+              // remove options from encoding
+              const lastArg = _args[_args.length - 1];
+              if (!Array.isArray(lastArg) && typeof lastArg === 'object') {
+                options = lastArg;
+                functionArguments = _args.slice(0, _args.length - 1);
               }
-              const argEncoded = rawArg.toString(16);
-              const paddedEncodedArg = argEncoded.padStart(64, '0');
-              return paddedEncodedArg;
-            });
-            const functionEncoded = functionHash.slice(0, 8);
-            const myData = `0x${functionEncoded}${encodedArgs.join('')}`;
-            const decimalGas =
-              typeof options.gasLimit === 'number'
-                ? options.gasLimit /* user passed in "gasLimit" directly */
-                : typeof argument?.gas === 'number' /* ABI specified "gas". */
-                ? estimateGas(myData)
-                : null;
-            const nodeResponse = await post(
-              this._provider._rpcUrl,
 
-              buildRPCPostBody('eth_call', [
-                {
-                  to: this._address.toLowerCase(),
-                  data: myData,
-                  // sometimes gas is defined in the ABI
-                  ...(decimalGas
-                    ? { gas: `0x${decimalGas.toString(16)}` }
-                    : {}),
-                },
-                'latest',
-              ]),
-            );
-            // chunk response every 64 characters
-            const encodedOutputs = nodeResponse.slice(2).match(/.{1,64}/g);
-            const outputs = (encodedOutputs || []).map(
-              (output: string, i: number) => {
-                const outputType = (rawOutputs || [])[i].type;
-                switch (outputType) {
-                  case 'bool':
-                    switch (output) {
-                      case '0000000000000000000000000000000000000000000000000000000000000001':
-                        return true;
-                      case '0000000000000000000000000000000000000000000000000000000000000000':
-                        return false;
-                      default:
-                        throw new Error(
-                          `boolean response of ${output} not defined`,
-                        );
-                    }
-                  case 'address':
-                    /* address types have 26 leading zeroes to remove */
-                    return toChecksumAddress(`0x${output.slice(24)}`);
-                  case 'uint256':
-                    return tinyBig(hexToDecimal(`0x${output}`));
-                  case 'bytes32':
-                    return `0x${output}`;
-                  case 'uint8':
-                    return Number(hexToDecimal(`0x${output}`));
-                  default:
-                    throw new Error(
-                      `essential-eth does not yet support "${outputType}" inputs. Make a PR today!"`,
-                    );
-                }
-              },
-            );
+              const data = encodeData(jsonABIArgument, functionArguments);
 
-            return outputs.length === 1 ? outputs[0] : outputs;
-          });
+              const decimalGas =
+                typeof options.gasLimit === 'number'
+                  ? options.gasLimit /* user passed in "gasLimit" directly */
+                  : typeof jsonABIArgument?.gas ===
+                    'number' /* ABI specified "gas". */
+                  ? estimateGas(data)
+                  : null;
+              const nodeResponse = await post(
+                this._provider._rpcUrl,
+
+                buildRPCPostBody('eth_call', [
+                  {
+                    to: this._address.toLowerCase(),
+                    data: data,
+                    // sometimes gas is defined in the ABI
+                    ...(decimalGas
+                      ? { gas: `0x${decimalGas.toString(16)}` }
+                      : {}),
+                  },
+                  'latest',
+                ]),
+              );
+              return decodeRPCResponse(jsonABIArgument, nodeResponse);
+            },
+          );
         }
       });
   }
