@@ -1,5 +1,5 @@
 <p align="center">
-  <a><img src="https://user-images.githubusercontent.com/3408480/136682603-992738fa-f774-438c-a80f-488ebe94d5b4.gif" title="Logo" height="400"/></a>
+  <a><img src="https://blog.ethereum.org/img/2018/08/grants_eth_logo.png" title="Logo" height="400"/></a>
 </p>
 <p align="center">
   <b>
@@ -11,7 +11,6 @@
 </p>
 
 ---
-
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/3408480/133322814-f3d18424-4ba8-4a37-8cbc-c5e6828354a3.png" title="Ethereum triangle" width="900"/>
