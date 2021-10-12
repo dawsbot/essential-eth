@@ -8,6 +8,7 @@ import { buildRPCPostBody, post } from './utils/fetchers';
 function estimateGas(txnData: string) {
   // https://ethereum.stackexchange.com/questions/1570/what-does-intrinsic-gas-too-low-mean/1694
   txnData.split('').reduce((previousValue, currentValue) => {
+    // 0 characters are 4 gwei, all others are 48 gwei
     const characterCost = currentValue === '0' ? 4 : 68;
     return previousValue + characterCost;
   }, 0);
@@ -88,6 +89,9 @@ export class BaseContract {
   }
 }
 
+/**
+ * Applies the unique contract's methods to the instantiated Contract in the constructor based-upon the provided ABI
+ */
 export function defineReadOnly<T>(object: T, name: string, value: any): void {
   Object.defineProperty(object, name, {
     enumerable: true,
