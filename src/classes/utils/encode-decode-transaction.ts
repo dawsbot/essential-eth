@@ -56,20 +56,29 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
 
   const encodedArgs = argsWithTypes.map(([arg, inputType]) => {
     let rawArg = arg;
-    if (inputType === 'bool') {
-      return arg ? hexTrue : hexFalse;
-    } else if (inputType.startsWith('bytes')) {
-      // encode each character to hex
-      const argEncoded = rawArg
-        .split('')
-        .map((character: string) => character.charCodeAt(0).toString(16))
-        .join('');
-      const paddedEncodedArg = argEncoded.padEnd(64, '0');
-      return paddedEncodedArg;
-    }
-    // remove leading "0x" on address types
-    else if (inputType === 'address') {
-      rawArg = arg.replace(/^0x/g, '').toLowerCase();
+    switch (inputType) {
+      case 'bool':
+        return arg ? hexTrue : hexFalse;
+      case 'address':
+        // remove leading "0x"
+        rawArg = arg.replace(/^0x/g, '').toLowerCase();
+        break;
+      default:
+        if (inputType.startsWith('bytes')) {
+          // encode each character to hex
+          const argEncoded = rawArg
+            .split('')
+            .map((character: string) => character.charCodeAt(0).toString(16))
+            .join('');
+          const paddedEncodedArg = argEncoded.padEnd(64, '0');
+          return paddedEncodedArg;
+        } else if (inputType.startsWith('uint')) {
+          break;
+        } else {
+          throw new Error(
+            `essential-eth does not yet support "${inputType}" inputs. Make a PR today!"`,
+          );
+        }
     }
     const argEncoded = rawArg.toString(16) as string;
     const paddedEncodedArg = argEncoded.padStart(64, '0');
@@ -103,7 +112,7 @@ export function decodeRPCResponse(
         return Number(hexToDecimal(`0x${output}`));
       default:
         throw new Error(
-          `essential-eth does not yet support "${outputType}" inputs. Make a PR today!"`,
+          `essential-eth does not yet support "${outputType}" outputs. Make a PR today!"`,
         );
     }
   });

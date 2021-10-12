@@ -12,6 +12,7 @@ export class JsonRpcProvider {
 
   /**
    * Returns the block requested
+   * Same as `web3.eth.getBlock`
    */
   public async getBlock(
     timeFrame:
