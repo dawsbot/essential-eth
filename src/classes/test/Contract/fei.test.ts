@@ -70,6 +70,12 @@ describe('FEI contract', () => {
     ]);
     expect(ethersResponse).toStrictEqual(essentialEthResponse);
   });
+
+  it('should throw errors for methods using unsupported data-types', async () => {
+    await expect(essentialEthContract.name()).rejects.toThrow(
+      'essential-eth does not yet support "string" outputs. Make a PR today!',
+    );
+  });
   // it.only('should fetch "string" name data-type', async () => {
   //   const [ethersResponse, essentialEthResponse] = await Promise.all([
   //     ethersContract.symbol(),
