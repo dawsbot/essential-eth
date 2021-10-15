@@ -20,15 +20,14 @@
 
 <br>
 
-
 - ⚡️ A replacement for `web3` and `ethers`
 - 🏎 [The TINIEST code size possible](https://bundlephobia.com/package/essential-eth)
 - ʦ Fully typed with TypeScript (also works with JavaScript)
 - 🧪 Tested to match both `web3` and `ethers`
 - 🌲 Tree-shaking and no side-effects
 - 🙌 Supports multiple JS versions (CommonJS and ESM)
-  - ✅  Node 14, 12, & 10
-  - ✅  Web
+  - ✅ Node 14, 12, & 10
+  - ✅ Web
 
 <br/>
 
@@ -62,7 +61,7 @@ import { etherToWei } from 'essential-eth';
 const { etherToWei } = require('essential-eth');
 ```
 
-* The return-type `TinyBig` is just [`Big`](https://github.com/MikeMcl/big.js) but expands scientific notation on `toNumber()` and `toString()`
+- The return-type `TinyBig` is just [`Big`](https://github.com/MikeMcl/big.js) but expands scientific notation on `toNumber()` and `toString()`
 
 #### `etherToWei`
 
@@ -107,9 +106,42 @@ const essentialEth = new JsonRpcProvider(
 const essentialEth = new JsonRpcProvider();
 ```
 
+#### `getNetwork`
+
+Returns a [Network](src/types/network.types.ts)
+
+```typescript
+// Same API as ethers getNetwork
+getNetwork(): Promise<Network>
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { JsonRpcProvider } from 'essential-eth';
+const maticProvider = new JsonRpcProvider(
+  'https://free-eth-node.com/api/matic',
+);
+maticProvider.getNetwork();
+/*
+{ chainId: 137, name: 'matic', ensAddress: null }
+*/
+
+const xdaiProvider = new JsonRpcProvider('https://free-eth-node.com/api/xdai');
+xdaiProvider.getNetwork();
+/*
+{ chainId: 100, name: 'xdai', ensAddress: null } }
+*/
+```
+
+</details>
+
+<br/>
+
 #### `getBlock`
 
-Returns a [Block](src/types/block.types.ts)
+Returns a [Block](src/types/Block.types.ts)
 
 ```typescript
 // Same API as web3.eth.getBlock

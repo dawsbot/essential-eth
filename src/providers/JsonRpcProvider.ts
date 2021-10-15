@@ -1,6 +1,9 @@
 import { cleanBlock } from '../classes/utils/clean-block';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
-import { Block, RPCBlock } from '../types/block.types';
+import { hexToDecimal } from '../classes/utils/hex-to-decimal';
+import { Block, RPCBlock } from '../types/Block.types';
+import { Network } from '../types/Network.types';
+import networkInfo from './utils/network-info.json';
 export class JsonRpcProvider {
   /**
    * The URL to your Eth node. Consider POKT or Infura
@@ -39,6 +42,22 @@ export class JsonRpcProvider {
     )) as RPCBlock;
 
     return cleanBlock(nodeResponse, returnTransactionObjects);
+  }
+  /**
+   * Returns the network this provider is connected to
+   */
+  public async getNetwork(): Promise<Network> {
+    const nodeResponse = (await post(
+      this._rpcUrl,
+      buildRPCPostBody('eth_chainId', []),
+    )) as string;
+    const chainId = hexToDecimal(nodeResponse);
+    const info = (networkInfo as any)[chainId];
+    return {
+      chainId: Number(chainId),
+      name: info[0] || 'unknown',
+      ensAddress: info[1] || null, // only send ensAddress if it exists
+    };
   }
 }
 

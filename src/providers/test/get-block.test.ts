@@ -1,11 +1,10 @@
 import Big from 'big.js';
 import omit from 'just-omit';
 import Web3 from 'web3';
-import { JsonRpcProvider } from '../providers/JsonRpcProvider';
-import { Block } from '../types/block.types';
+import { Block, JsonRpcProvider } from '../..';
 
-// const rpcUrl = 'http://localhost:3001/post';
-const rpcUrl = 'https://free-eth-node.com/api/eth';
+const rpcUrl = 'http://localhost:3000/api/matic';
+// const rpcUrl = 'https://free-eth-node.com/api/eth';
 
 describe('matches web3', () => {
   function testBlockEquality(block1: Block, block2: Block) {
@@ -24,18 +23,9 @@ describe('matches web3', () => {
         .minus(block2.totalDifficulty)
         .abs()
         .toNumber(),
-    ).toBeLessThan(4000000 /* 2616793 and 1187442 on recent tests */);
+    ).toBeLessThan(5000000 /* 2616793 and 1187442 on recent tests */);
   }
 
-  it('should allow default eth node to get latest block', async () => {
-    const essentialEth = new JsonRpcProvider();
-    const web3 = new Web3(rpcUrl);
-    const [eeLatestBlock, web3LatestBlock] = await Promise.all([
-      essentialEth.getBlock('latest'),
-      web3.eth.getBlock('latest'),
-    ]);
-    testBlockEquality(eeLatestBlock, web3LatestBlock as unknown as Block);
-  });
   it('should get latest block', async () => {
     const essentialEth = new JsonRpcProvider(rpcUrl);
     const web3 = new Web3(rpcUrl);

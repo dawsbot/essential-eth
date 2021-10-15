@@ -1,4 +1,9 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "compilerOptions": {
     "target": "ES2015",
     "module": "ES2020",
@@ -12,7 +17,8 @@
     "skipLibCheck": true,
     "paths": {
       "*": ["./types/*"]
-    }
+    },
+    "resolveJsonModule": true
   },
   "include": ["./src"],
   "types": ["node", "jest"]

@@ -1,6 +1,6 @@
-import { toChecksumAddress } from '../..';
-import { Block, RPCBlock } from '../../types/block.types';
-import { RPCTransaction } from '../../types/transaction.types';
+import { Block, toChecksumAddress } from '../..';
+import { RPCBlock } from '../../types/Block.types';
+import { RPCTransaction } from '../../types/Transaction.types';
 import { cleanTransaction } from './clean-transaction';
 import { hexToDecimal } from './hex-to-decimal';
 
