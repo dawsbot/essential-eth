@@ -7,7 +7,7 @@ import { uniswapABI } from './uniswap-abi';
 // The JSONABI
 const JSONABI = uniswapABI;
 
-const rpcURL = 'https://free-eth-node.com/api/eth';
+const rpcURL = `${process.env.RPC_ORIGIN}/api/eth`;
 const ethersProvider = getDefaultProvider(rpcURL);
 const essentialEthProvider = new JsonRpcProvider(rpcURL);
 
