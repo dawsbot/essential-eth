@@ -24,7 +24,7 @@
     "build": "rm -rf lib && npm run compile",
     "prepublishOnly": "npm run build && npm run build:website && npm run build:website:new-version",
     "jest": "jest",
-    "build:networks": "npx ts-node scripts/fetch-eth-network-info.ts # used in getNetwork()",
+    "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
     "build:website": "sh scripts/build-website.sh",
     "build:website:new-version": "typedoc --options typedoc/options-new-version.js"
   },
@@ -68,7 +68,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm-run-all --parallel test build:website build:networks"
+      "pre-commit": "lint-staged && npm-run-all --parallel test build:website build:chains-info"
     }
   },
   "lint-staged": {
