@@ -3,8 +3,7 @@ import omit from 'just-omit';
 import Web3 from 'web3';
 import { Block, JsonRpcProvider } from '../..';
 
-const rpcUrl = 'http://localhost:3000/api/matic';
-// const rpcUrl = 'https://free-eth-node.com/api/eth';
+const rpcUrl = `${process.env.RPC_ORIGIN}/api/eth`;
 
 describe('matches web3', () => {
   function testBlockEquality(block1: Block, block2: Block) {

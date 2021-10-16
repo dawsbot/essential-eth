@@ -1,10 +1,10 @@
 import { ethers } from 'ethers';
 import { JsonRpcProvider } from '../..';
 
-const maticRPCUrl = 'http://localhost:3000/api/matic';
-const xdaiRPCUrl = 'http://localhost:3000/api/xdai';
-const bscRPCUrl = 'http://localhost:3000/api/bsc';
-const kovanRPCUrl = 'http://localhost:3000/api/kovan';
+const maticRPCUrl = `${process.env.RPC_ORIGIN}/api/matic`;
+const xdaiRPCUrl = `${process.env.RPC_ORIGIN}/api/xdai`;
+const bscRPCUrl = `${process.env.RPC_ORIGIN}/api/bsc`;
+// const kovanRPCUrl = `${process.env.RPC_ORIGIN}/api/kovan`;
 
 describe('get-network', () => {
   async function testNetwork(rpcUrl: string) {

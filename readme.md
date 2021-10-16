@@ -108,7 +108,7 @@ const essentialEth = new JsonRpcProvider();
 
 #### `getNetwork`
 
-Returns a [Network](src/types/network.types.ts)
+Returns a [Network](src/types/Network.types.ts)
 
 ```typescript
 // Same API as ethers getNetwork
