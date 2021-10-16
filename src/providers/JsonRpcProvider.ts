@@ -3,7 +3,7 @@ import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { Block, RPCBlock } from '../types/Block.types';
 import { Network } from '../types/Network.types';
-import networkInfo from './utils/network-info.json';
+import networkInfo from './utils/network-info';
 export class JsonRpcProvider {
   /**
    * The URL to your Eth node. Consider POKT or Infura
