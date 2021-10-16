@@ -1,5 +1,5 @@
 import { toChecksumAddress } from '../..';
-import { RPCTransaction, Transaction } from '../../types/transaction.types';
+import { RPCTransaction, Transaction } from '../../types/Transaction.types';
 import { hexToDecimal } from './hex-to-decimal';
 
 /**

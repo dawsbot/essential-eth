@@ -16,7 +16,7 @@ export function post(url: string, body: Record<string, unknown>) {
     });
 }
 
-type RPCMethodName = 'eth_getBlockByNumber' | 'eth_call';
+type RPCMethodName = 'eth_getBlockByNumber' | 'eth_call' | 'eth_chainId';
 export function buildRPCPostBody(method: RPCMethodName, params: any[]) {
   return {
     jsonrpc: '2.0',

@@ -20,15 +20,14 @@
 
 <br>
 
-
 - ⚡️ A replacement for `web3` and `ethers`
 - 🏎 [The TINIEST code size possible](https://bundlephobia.com/package/essential-eth)
 - ʦ Fully typed with TypeScript (also works with JavaScript)
 - 🧪 Tested to match both `web3` and `ethers`
 - 🌲 Tree-shaking and no side-effects
 - 🙌 Supports multiple JS versions (CommonJS and ESM)
-  - ✅  Node 14, 12, & 10
-  - ✅  Web
+  - ✅ Node 14, 12, & 10
+  - ✅ Web
 
 <br/>
 
@@ -62,7 +61,9 @@ import { etherToWei } from 'essential-eth';
 const { etherToWei } = require('essential-eth');
 ```
 
-* The return-type `TinyBig` is just [`Big`](https://github.com/MikeMcl/big.js) but expands scientific notation on `toNumber()` and `toString()`
+- The return-type `TinyBig` is just [`Big`](https://github.com/MikeMcl/big.js) but expands scientific notation on `toNumber()` and `toString()`
+
+<br/>
 
 #### `etherToWei`
 
@@ -71,12 +72,51 @@ const { etherToWei } = require('essential-eth');
 etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
 ```
 
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { etherToWei } from 'essential-eth';
+
+etherToWei(1).toString();
+// "1000000000000000000"
+
+etherToWei(1).toNumber();
+// 1000000000000000000
+
+etherToWei('1').toNumber();
+// 1000000000000000000
+```
+
+</details>
+
+<br/>
+
 #### `weiToEther`
 
 ```typescript
 // convert wei to ether
 weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
 ```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { weiToEther } from 'essential-eth';
+
+weiToEther(1000000000000000000).toString();
+// "1"
+
+weiToEther(1000000000000000000).toNumber();
+// 1
+weiToEther('1000000000000000000').toNumber();
+// 1
+```
+
+</details>
+
+<br/>
 
 #### `toChecksumAddress`
 
@@ -86,6 +126,20 @@ weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
 toChecksumAddress(address: string): string
 ```
 
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { toChecksumAddress } from 'essential-eth';
+
+toChecksumAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
+// "0xc0DEAF6bD3F0c6574a6a625EF2F22f62A5150EAB"
+```
+
+</details>
+
+<br/>
+
 #### `isAddress`
 
 ```typescript
@@ -93,6 +147,25 @@ toChecksumAddress(address: string): string
 // does not support ENS nor ICAP
 isAddress(address: string): boolean
 ```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { isAddress } from 'essential-eth';
+
+isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
+// true
+
+isAddress('bad');
+// false
+
+// Does NOT support ENS.
+isAddress('vitalik.eth');
+// false
+```
+
+</details>
 
 <br/>
 
@@ -107,9 +180,43 @@ const essentialEth = new JsonRpcProvider(
 const essentialEth = new JsonRpcProvider();
 ```
 
+#### `getNetwork`
+
+Returns a [Network](src/types/Network.types.ts)
+
+```typescript
+// Same API as ethers getNetwork
+getNetwork(): Promise<Network>
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { JsonRpcProvider } from 'essential-eth';
+
+const maticProvider = new JsonRpcProvider(
+  'https://free-eth-node.com/api/matic',
+);
+maticProvider.getNetwork();
+/*
+{ chainId: 137, name: 'matic', ensAddress: null }
+*/
+
+const xdaiProvider = new JsonRpcProvider('https://free-eth-node.com/api/xdai');
+xdaiProvider.getNetwork();
+/*
+{ chainId: 100, name: 'xdai', ensAddress: null } }
+*/
+```
+
+</details>
+
+<br/>
+
 #### `getBlock`
 
-Returns a [Block](src/types/block.types.ts)
+Returns a [Block](src/types/Block.types.ts)
 
 ```typescript
 // Same API as web3.eth.getBlock

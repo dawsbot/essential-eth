@@ -1,4 +1,4 @@
-import { RPCTransaction, Transaction } from './transaction.types';
+import { RPCTransaction, Transaction } from './Transaction.types';
 
 export interface Block {
   baseFeePerGas: string;

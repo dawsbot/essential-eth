@@ -8,7 +8,7 @@ import { abi } from './crv-abi';
 // The JSONABI
 const JSONABI = abi;
 
-const rpcURL = 'https://free-eth-node.com/api/eth';
+const rpcURL = `${process.env.RPC_ORIGIN}/api/eth`;
 const ethersProvider = getDefaultProvider(rpcURL);
 const essentialEthProvider = new JsonRpcProvider(rpcURL);
 

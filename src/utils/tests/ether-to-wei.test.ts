@@ -62,7 +62,7 @@ describe('ether-to-wei', () => {
     );
   });
 
-  it('wrong types', () => {
+  it('should throw for wrong types', () => {
     expect(() => {
       // @ts-expect-error should not accept boolean
       etherToWei(false);
