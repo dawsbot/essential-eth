@@ -2,12 +2,19 @@ import Big from 'big.js';
 import { scientificStrToDecimalStr } from './helpers';
 
 /**
- * A wrapper around big.js which expands scientific notation. This is the return type of every operation on ether, wei, etc.
- * The only important things to know are the "toString" and "toNumber" functions
+ * A wrapper around big.js which expands scientific notation and creates a "toHexString" function.
+ * This is the return type of every operation on ether, wei, etc.
  */
 export class TinyBig extends Big {
-  constructor(value: number | string | TinyBig) {
+  constructor(value: string | number | TinyBig | Big) {
     super(value);
+  }
+  /**
+   * Used anytime you're passing in "value" to ethers or web3
+   * For now, TypeScript will complain that `TinyBig` is not a `BigNumberish`. You can // @ts-ignore or call this
+   */
+  toHexString(): string {
+    return `0x${BigInt(this.toString()).toString(16)}`;
   }
   toNumber(): number {
     return Number(scientificStrToDecimalStr(super.toString()));
@@ -24,6 +31,6 @@ export class TinyBig extends Big {
 /**
  * Helper factory function so that you don't have to type "new" when instantiating a new TinyBig
  */
-export function tinyBig(value: number | string | TinyBig): TinyBig {
+export function tinyBig(value: string | number | TinyBig | Big): TinyBig {
   return new TinyBig(value);
 }
