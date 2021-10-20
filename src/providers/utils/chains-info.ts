@@ -272,6 +272,9 @@ export default {
   "336": [
     "sdn"
   ],
+  "338": [
+    "tcro"
+  ],
   "361": [
     "theta-mainnet"
   ],
@@ -592,6 +595,9 @@ export default {
   ],
   "421611": [
     "arb-rinkeby"
+  ],
+  "955305": [
+    "elv"
   ],
   "1313114": [
     "etho"
