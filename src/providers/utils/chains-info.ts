@@ -225,7 +225,7 @@ export default {
     "heco"
   ],
   "137": [
-    "matic"
+    "MATIC"
   ],
   "142": [
     "dax"
@@ -247,6 +247,9 @@ export default {
   ],
   "211": [
     "EDI"
+  ],
+  "222": [
+    "ASK"
   ],
   "246": [
     "ewt"
@@ -403,6 +406,12 @@ export default {
   ],
   "2022": [
     "edgt"
+  ],
+  "2100": [
+    "eco"
+  ],
+  "2101": [
+    "esp"
   ],
   "2559": [
     "ktoc"

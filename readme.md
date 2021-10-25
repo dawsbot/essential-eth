@@ -200,7 +200,7 @@ const maticProvider = new JsonRpcProvider(
 );
 maticProvider.getNetwork();
 /*
-{ chainId: 137, name: 'matic', ensAddress: null }
+{ chainId: 137, name: 'MATIC', ensAddress: null }
 */
 
 const xdaiProvider = new JsonRpcProvider('https://free-eth-node.com/api/xdai');

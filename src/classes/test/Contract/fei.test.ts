@@ -55,12 +55,6 @@ describe('FEI contract', () => {
       essentialEthResponse[2].toString(),
     );
 
-    expect(essentialEthResponse[0].toNumber()).toStrictEqual(
-      611330334598773765981,
-    );
-    expect(essentialEthResponse[1].toNumber()).toStrictEqual(
-      46931053833712274879,
-    );
     expect(essentialEthResponse[2].toNumber()).toStrictEqual(0);
   });
   it('should fetch "uint8" data-type', async () => {

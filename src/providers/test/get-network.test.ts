@@ -1,7 +1,6 @@
 import { ethers } from 'ethers';
 import { JsonRpcProvider } from '../..';
 
-const maticRPCUrl = `${process.env.RPC_ORIGIN}/api/matic`;
 const xdaiRPCUrl = `${process.env.RPC_ORIGIN}/api/xdai`;
 const bscRPCUrl = `${process.env.RPC_ORIGIN}/api/bsc`;
 // const kovanRPCUrl = `${process.env.RPC_ORIGIN}/api/kovan`;
@@ -19,9 +18,6 @@ describe('get-network', () => {
     expect(eeNetwork.ensAddress).toBe(ethersNetwork.ensAddress);
     expect(eeNetwork.name).toBe(ethersNetwork.name);
   }
-  it('matic should match ethers', async () => {
-    await testNetwork(maticRPCUrl);
-  });
   it('xdai should match ethers', async () => {
     await testNetwork(xdaiRPCUrl);
   });
