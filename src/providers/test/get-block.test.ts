@@ -8,9 +8,9 @@ const rpcUrl = `${process.env.RPC_ORIGIN}/api/eth`;
 describe('matches web3', () => {
   function testBlockEquality(block1: Block, block2: Block) {
     // slight mis-timing in eth node responses
-    expect(omit(block1, ['totalDifficulty', 'difficulty'])).toStrictEqual(
-      omit(block2, ['totalDifficulty', 'difficulty']),
-    );
+    expect(
+      (omit as any)(block1, ['totalDifficulty', 'difficulty']),
+    ).toStrictEqual((omit as any)(block2, ['totalDifficulty', 'difficulty']));
 
     // validate that difficulty and totalDifficulty are still very close
     expect(
