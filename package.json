@@ -41,6 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
     "body-parser": "^1.19.0",
+    "dotenv": "^16.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-jest": "^24.4.2",
     "ethers": "^5.4.7",
