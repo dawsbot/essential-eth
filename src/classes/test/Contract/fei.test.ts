@@ -33,7 +33,7 @@ const essentialEthContract = new EssentialEthContract(
   JSONABI,
   essentialEthProvider,
 );
-describe('FEI contract', () => {
+describe('fEI contract', () => {
   it('should fetch unclaimed amounts "[uint256, uint256, uint256]" data-type', async () => {
     const [ethersResponse, essentialEthResponse] = await Promise.all([
       smartContractGetFeiAmountsToRedeem(
@@ -55,7 +55,7 @@ describe('FEI contract', () => {
       essentialEthResponse[2].toString(),
     );
 
-    expect(essentialEthResponse[2].toNumber()).toStrictEqual(0);
+    expect(essentialEthResponse[2].toNumber()).toBe(0);
   });
   it('should fetch "uint8" data-type', async () => {
     const [ethersResponse, essentialEthResponse] = await Promise.all([

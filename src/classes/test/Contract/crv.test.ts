@@ -25,7 +25,7 @@ const essentialEthContract = new EssentialEthContract(
   JSONABI,
   essentialEthProvider,
 );
-describe('CRV contract', () => {
+describe('cRV contract', () => {
   const address = '0xf8cd644baf494d13406187cf8628754dca0a10c2';
   it('should fetch "uint256" balanceOf', async () => {
     const [ethersBalanceOf, essentialEthBalanceOf] = await Promise.all([

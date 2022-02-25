@@ -39,7 +39,7 @@ const essentialEthContract = new EssentialEthContract(
   JSONABI,
   essentialEthProvider,
 );
-describe('UNI contract', () => {
+describe('uNI contract', () => {
   it('should fetch "address" data-type', async () => {
     const [ethersResponse, essentialEthResponse] = await Promise.all([
       smartContractGetUniTokenAddress(ethersContract),

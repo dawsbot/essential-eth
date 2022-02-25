@@ -27,7 +27,7 @@ const essentialEthContract = new EssentialEthContract(
 // hash of "daws" from "daws.eth"
 const labelHash =
   '50169637832853779738672089874069382521487784580321107885800103657377856021675';
-describe('ENS Base Registrar Expiration', () => {
+describe('eNS Base Registrar Expiration', () => {
   it('should detect expiration properly', async () => {
     const [ethersExpiration, essentialEthExpiration] = await Promise.all([
       ethersContract.nameExpires(labelHash),
