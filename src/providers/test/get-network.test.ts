@@ -16,7 +16,10 @@ describe('get-network', () => {
 
     expect(eeNetwork.chainId).toBe(ethersNetwork.chainId);
     expect(eeNetwork.ensAddress).toBe(ethersNetwork.ensAddress);
-    expect(eeNetwork.name).toBe(ethersNetwork.name);
+    expect(eeNetwork.name).toBe(
+      // xdai was renamed to gnosis but ethers is still out-of-date
+      ethersNetwork.name === 'xdai' ? 'gno' : ethersNetwork.name,
+    );
   }
   it('xdai should match ethers', async () => {
     await testNetwork(xdaiRPCUrl);

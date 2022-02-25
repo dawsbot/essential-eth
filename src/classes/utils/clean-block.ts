@@ -22,6 +22,7 @@ export function cleanBlock(
       case 'number':
       case 'size':
       case 'timestamp':
+      case 'baseFeePerGas':
         cleanedBlock[key] = Number(hexToDecimal(block[key]));
         break;
       case 'difficulty':
