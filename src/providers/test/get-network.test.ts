@@ -8,7 +8,7 @@ const bscRPCUrl = `${process.env.RPC_ORIGIN}/api/bsc`;
 describe('get-network', () => {
   async function testNetwork(rpcUrl: string) {
     const essentialEth = new JsonRpcProvider(rpcUrl);
-    const ethersProvider = new ethers.providers.JsonRpcProvider(rpcUrl);
+    const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
     const [eeNetwork, ethersNetwork] = await Promise.all([
       essentialEth.getNetwork(),
       ethersProvider.getNetwork(),

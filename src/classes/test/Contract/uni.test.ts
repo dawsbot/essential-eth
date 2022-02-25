@@ -1,5 +1,5 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
-import { getDefaultProvider } from 'ethers';
+import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
 import { Contract as EssentialEthContract } from '../../Contract';
 import { uniswapABI } from './uniswap-abi';
@@ -8,7 +8,7 @@ import { uniswapABI } from './uniswap-abi';
 const JSONABI = uniswapABI;
 
 const rpcURL = `${process.env.RPC_ORIGIN}/api/eth`;
-const ethersProvider = getDefaultProvider(rpcURL);
+const ethersProvider = new StaticJsonRpcProvider(rpcURL);
 const essentialEthProvider = new JsonRpcProvider(rpcURL);
 
 // The UNI airdrop merkle address

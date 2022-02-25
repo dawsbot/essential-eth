@@ -61,5 +61,7 @@ export type JSONABIArgument = {
   stateMutability?: 'view' | 'nonpayable' | string;
   type: 'function' | 'event' | 'constructor' | 'error';
   gas?: number;
+  constant?: boolean;
+  payable?: boolean;
 };
 export type JSONABI = JSONABIArgument[];

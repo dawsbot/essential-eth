@@ -1,5 +1,5 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
-import { getDefaultProvider } from 'ethers';
+import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { TinyBig } from '../../..';
 import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
 import { Contract as EssentialEthContract } from '../../Contract';
@@ -9,7 +9,7 @@ import { abi } from './crv-abi';
 const JSONABI = abi;
 
 const rpcURL = `${process.env.RPC_ORIGIN}/api/eth`;
-const ethersProvider = getDefaultProvider(rpcURL);
+const ethersProvider = new StaticJsonRpcProvider(rpcURL);
 const essentialEthProvider = new JsonRpcProvider(rpcURL);
 
 // https://etherscan.io/address/0x575CCD8e2D300e2377B43478339E364000318E2c

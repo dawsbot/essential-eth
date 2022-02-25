@@ -2,6 +2,7 @@ import { Keccak } from 'sha3';
 import { tinyBig, toChecksumAddress } from '../..';
 import { ContractTypes, JSONABIArgument } from '../../types/Contract.types';
 import { hexToDecimal } from './hex-to-decimal';
+
 const hexTrue =
   '0000000000000000000000000000000000000000000000000000000000000001';
 const hexFalse =
@@ -71,6 +72,10 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
             .map((character: string) => character.charCodeAt(0).toString(16))
             .join('');
           const paddedEncodedArg = argEncoded.padEnd(64, '0');
+          return paddedEncodedArg;
+        } else if (inputType === 'uint256') {
+          const argEncoded = BigInt(arg).toString(16);
+          const paddedEncodedArg = argEncoded.padStart(64, '0');
           return paddedEncodedArg;
         } else if (inputType.startsWith('uint')) {
           break;
