@@ -5,25 +5,25 @@ import { tinyBig, weiToEther } from '../../index';
 
 describe('wei-to-ether', () => {
   it('happy path', () => {
-    expect(weiToEther('100000000000000000000.0').toString()).toStrictEqual(
+    expect(weiToEther('100000000000000000000.0').toString()).toBe(
       '100',
     );
-    expect(weiToEther(100000000000000000000.0).toString()).toStrictEqual('100');
-    expect(weiToEther('1000000000000000000000.0').toNumber()).toStrictEqual(
+    expect(weiToEther(100000000000000000000.0).toString()).toBe('100');
+    expect(weiToEther('1000000000000000000000.0').toNumber()).toBe(
       1000,
     );
-    expect(weiToEther(1000000000000000000000.0).toNumber()).toStrictEqual(1000);
+    expect(weiToEther(1000000000000000000000.0).toNumber()).toBe(1000);
 
     expect(
       weiToEther(tinyBig('1000000000000000000000.0')).toNumber(),
-    ).toStrictEqual(1000);
+    ).toBe(1000);
     expect(
       weiToEther(tinyBig(1000000000000000000000.0)).toNumber(),
-    ).toStrictEqual(1000);
+    ).toBe(1000);
     expect(
       weiToEther(Big('1000000000000000000000.0')).toNumber(),
-    ).toStrictEqual(1000);
-    expect(weiToEther(Big(1000000000000000000000.0)).toNumber()).toStrictEqual(
+    ).toBe(1000);
+    expect(weiToEther(Big(1000000000000000000000.0)).toNumber()).toBe(
       1000,
     );
   });
@@ -33,7 +33,7 @@ describe('wei-to-ether', () => {
       expect(weiToEther('10').toString()).toStrictEqual(
         ethers.utils.formatEther('10'),
       );
-      expect(weiToEther('1000000000000000000000').toString()).toStrictEqual(
+      expect(weiToEther('1000000000000000000000').toString()).toBe(
         '1000',
         /* returns "1000.0" ethers.utils.formatEther("1000000000000000000000"), */
       );

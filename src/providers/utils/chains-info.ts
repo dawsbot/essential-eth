@@ -74,6 +74,24 @@ export default {
   "23": [
     "eladidt"
   ],
+  "24": [
+    "dthmainnet"
+  ],
+  "25": [
+    "cro"
+  ],
+  "26": [
+    "L1test"
+  ],
+  "27": [
+    "shib"
+  ],
+  "28": [
+    "Boba Rinkeby"
+  ],
+  "29": [
+    "L1"
+  ],
   "30": [
     "rsk"
   ],
@@ -85,6 +103,9 @@ export default {
   ],
   "33": [
     "GooD"
+  ],
+  "34": [
+    "dth"
   ],
   "35": [
     "tbwg"
@@ -102,10 +123,13 @@ export default {
     "kov"
   ],
   "43": [
-    "darwinia"
+    "pangolin"
   ],
   "44": [
     "crab"
+  ],
+  "45": [
+    "pangoro"
   ],
   "50": [
     "xdc"
@@ -119,8 +143,14 @@ export default {
   "53": [
     "tcet"
   ],
+  "55": [
+    "ZYX"
+  ],
   "56": [
     "bnb"
+  ],
+  "57": [
+    "sys"
   ],
   "58": [
     "Ontology Mainnet"
@@ -158,11 +188,17 @@ export default {
   "69": [
     "okov"
   ],
+  "71": [
+    "cfxtest"
+  ],
+  "74": [
+    "idchain"
+  ],
   "76": [
     "mix"
   ],
   "77": [
-    "poa"
+    "spoa"
   ],
   "78": [
     "primuschain"
@@ -173,26 +209,50 @@ export default {
   "82": [
     "Meter"
   ],
+  "83": [
+    "MeterTest"
+  ],
   "85": [
     "gttest"
   ],
   "86": [
     "gt"
   ],
+  "87": [
+    "nnw"
+  ],
   "88": [
     "tomo"
   ],
+  "89": [
+    "tomot"
+  ],
+  "90": [
+    "gar-s0"
+  ],
+  "91": [
+    "gar-s1"
+  ],
+  "92": [
+    "gar-s2"
+  ],
+  "93": [
+    "gar-s3"
+  ],
   "95": [
     "Kylin Testnet"
+  ],
+  "96": [
+    "nsc"
   ],
   "97": [
     "bnbt"
   ],
   "99": [
-    "skl"
+    "poa"
   ],
   "100": [
-    "xdai"
+    "gno"
   ],
   "101": [
     "eti"
@@ -202,6 +262,9 @@ export default {
   ],
   "106": [
     "vlx"
+  ],
+  "107": [
+    "ntn"
   ],
   "108": [
     "TT"
@@ -215,8 +278,17 @@ export default {
   "122": [
     "fuse"
   ],
+  "123": [
+    "spark"
+  ],
   "124": [
     "dwu"
+  ],
+  "125": [
+    "oychain testnet"
+  ],
+  "126": [
+    "oychain mainnet"
   ],
   "127": [
     "feth"
@@ -242,6 +314,18 @@ export default {
   "172": [
     "resil"
   ],
+  "186": [
+    "Seele"
+  ],
+  "188": [
+    "BMC"
+  ],
+  "189": [
+    "BMCT"
+  ],
+  "199": [
+    "BTT"
+  ],
   "200": [
     "aox"
   ],
@@ -266,11 +350,17 @@ export default {
   "269": [
     "hpb"
   ],
+  "288": [
+    "Boba"
+  ],
   "321": [
     "kcs"
   ],
   "322": [
     "kcst"
+  ],
+  "333": [
+    "w3q"
   ],
   "336": [
     "sdn"
@@ -302,14 +392,32 @@ export default {
   "499": [
     "rupx"
   ],
+  "555": [
+    "CLASS"
+  ],
   "558": [
     "tao"
+  ],
+  "588": [
+    "metis-stardust"
   ],
   "595": [
     "maca"
   ],
+  "600": [
+    "mesh-chain-testnet"
+  ],
+  "666": [
+    "pixie-chain-testnet"
+  ],
   "686": [
     "kar"
+  ],
+  "707": [
+    "bcs"
+  ],
+  "708": [
+    "tbcs"
   ],
   "721": [
     "tfeth"
@@ -329,14 +437,32 @@ export default {
   "821": [
     "tclo"
   ],
+  "880": [
+    "ambros"
+  ],
   "888": [
     "wan"
+  ],
+  "900": [
+    "gar-test-s0"
+  ],
+  "901": [
+    "gar-test-s1"
+  ],
+  "902": [
+    "gar-test-s2"
+  ],
+  "903": [
+    "gar-test-s3"
   ],
   "940": [
     "tpls"
   ],
   "977": [
     "yeti"
+  ],
+  "998": [
+    "ln"
   ],
   "999": [
     "twan"
@@ -362,11 +488,35 @@ export default {
   "1024": [
     "clv"
   ],
+  "1028": [
+    "tbtt"
+  ],
+  "1030": [
+    "cfx"
+  ],
+  "1088": [
+    "metis-andromeda"
+  ],
   "1139": [
     "MATH"
   ],
   "1140": [
     "tMATH"
+  ],
+  "1197": [
+    "iora"
+  ],
+  "1202": [
+    "wtt"
+  ],
+  "1213": [
+    "popcat"
+  ],
+  "1214": [
+    "enter"
+  ],
+  "1280": [
+    "HO"
   ],
   "1284": [
     "mbeam"
@@ -374,14 +524,11 @@ export default {
   "1285": [
     "mriver"
   ],
-  "1286": [
-    "mrock"
-  ],
   "1287": [
     "mbase"
   ],
   "1288": [
-    "mshadow"
+    "mrock"
   ],
   "1618": [
     "cate"
@@ -407,6 +554,9 @@ export default {
   "2022": [
     "edgt"
   ],
+  "2025": [
+    "rpg"
+  ],
   "2100": [
     "eco"
   ],
@@ -415,6 +565,15 @@ export default {
   ],
   "2559": [
     "ktoc"
+  ],
+  "3331": [
+    "zcrbeach"
+  ],
+  "3333": [
+    "w3q-t"
+  ],
+  "3690": [
+    "btx"
   ],
   "4002": [
     "tftm"
@@ -428,6 +587,9 @@ export default {
   "5197": [
     "es"
   ],
+  "5315": [
+    "UZMI"
+  ],
   "5700": [
     "tsys"
   ],
@@ -436,6 +598,21 @@ export default {
   ],
   "5869": [
     "rbd"
+  ],
+  "6626": [
+    "pixie-chain"
+  ],
+  "7341": [
+    "shyft"
+  ],
+  "7878": [
+    "tscas"
+  ],
+  "8000": [
+    "teleport"
+  ],
+  "8001": [
+    "teleport-testnet"
   ],
   "8029": [
     "mdgl"
@@ -455,11 +632,26 @@ export default {
   "8724": [
     "tolo"
   ],
+  "8888": [
+    "ambrostestnet"
+  ],
   "8995": [
     "berg"
   ],
   "9000": [
-    "evmos-mons"
+    "evmos-testnet"
+  ],
+  "9001": [
+    "evmos"
+  ],
+  "9100": [
+    "GENEC"
+  ],
+  "9527": [
+    "trpg"
+  ],
+  "9999": [
+    "myn"
   ],
   "10000": [
     "smartbch"
@@ -470,11 +662,29 @@ export default {
   "10101": [
     "GEN"
   ],
+  "11111": [
+    "WAGMI"
+  ],
+  "11437": [
+    "shyftt"
+  ],
+  "12051": [
+    "tZERO"
+  ],
+  "12052": [
+    "ZERO"
+  ],
+  "13381": [
+    "Phoenix"
+  ],
   "16000": [
     "mtt"
   ],
   "16001": [
     "mtttest"
+  ],
+  "19845": [
+    "btcix"
   ],
   "24484": [
     "web"
@@ -503,6 +713,12 @@ export default {
   "42220": [
     "CELO"
   ],
+  "42261": [
+    "emerald"
+  ],
+  "42262": [
+    "oasis"
+  ],
   "43110": [
     "avaeth"
   ],
@@ -515,11 +731,50 @@ export default {
   "44787": [
     "ALFA"
   ],
+  "47805": [
+    "REI"
+  ],
   "49797": [
     "tnrg"
   ],
+  "55555": [
+    "rei"
+  ],
+  "55556": [
+    "trei"
+  ],
+  "60000": [
+    "TKM-test0"
+  ],
+  "60001": [
+    "TKM-test1"
+  ],
+  "60002": [
+    "TKM-test2"
+  ],
+  "60103": [
+    "TKM-test103"
+  ],
   "62320": [
     "BKLV"
+  ],
+  "63000": [
+    "ecs"
+  ],
+  "63001": [
+    "ecs-testnet"
+  ],
+  "70000": [
+    "TKM0"
+  ],
+  "70001": [
+    "TKM1"
+  ],
+  "70002": [
+    "TKM2"
+  ],
+  "70103": [
+    "TKM103"
   ],
   "71393": [
     "ckb"
@@ -532,6 +787,12 @@ export default {
   ],
   "80001": [
     "maticmum"
+  ],
+  "99998": [
+    "usctest"
+  ],
+  "99999": [
+    "usc"
   ],
   "100000": [
     "qkc-r"
@@ -559,6 +820,9 @@ export default {
   ],
   "100008": [
     "qkc-s7"
+  ],
+  "108801": [
+    "bro"
   ],
   "110000": [
     "qkc-d-r"
@@ -590,11 +854,26 @@ export default {
   "200625": [
     "aka"
   ],
+  "201018": [
+    "alaya"
+  ],
+  "201030": [
+    "alayadev"
+  ],
+  "210309": [
+    "platondev"
+  ],
+  "210425": [
+    "platon"
+  ],
   "246529": [
     "ats"
   ],
   "246785": [
     "atstau"
+  ],
+  "281121": [
+    "SoChain"
   ],
   "333888": [
     "sparta"
@@ -605,6 +884,12 @@ export default {
   "421611": [
     "arb-rinkeby"
   ],
+  "666666": [
+    "vpioneer"
+  ],
+  "888888": [
+    "vision"
+  ],
   "955305": [
     "elv"
   ],
@@ -614,8 +899,14 @@ export default {
   "1313500": [
     "xero"
   ],
+  "1337702": [
+    "kintsugi"
+  ],
   "7762959": [
     "music"
+  ],
+  "11155111": [
+    "sep"
   ],
   "13371337": [
     "tpep"
@@ -638,6 +929,9 @@ export default {
   "99415706": [
     "TOYS"
   ],
+  "192837465": [
+    "GTH"
+  ],
   "245022926": [
     "neonevm-devnet"
   ],
@@ -649,6 +943,12 @@ export default {
   ],
   "311752642": [
     "oneledger"
+  ],
+  "356256156": [
+    "tGTH"
+  ],
+  "486217935": [
+    "dGTH"
   ],
   "1122334455": [
     "ipos"
@@ -686,6 +986,9 @@ export default {
   "1666700003": [
     "hmy-b-s3"
   ],
+  "2021121117": [
+    "hop"
+  ],
   "3125659152": [
     "pirl"
   ],
@@ -697,5 +1000,14 @@ export default {
   ],
   "11297108109": [
     "palm"
+  ],
+  "197710212030": [
+    "ntt"
+  ],
+  "197710212031": [
+    "ntt-haradev"
+  ],
+  "6022140761023": [
+    "mole"
   ]
 }
