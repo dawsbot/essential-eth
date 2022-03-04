@@ -59,7 +59,7 @@ export type JSONABIArgument = {
     type: ContractTypes;
   }[];
   stateMutability?: 'view' | 'nonpayable' | string;
-  type: 'function' | 'event' | 'constructor' | 'error';
+  type: 'function' | 'event' | 'constructor' | 'error' | 'fallback';
   gas?: number;
   constant?: boolean;
   payable?: boolean;

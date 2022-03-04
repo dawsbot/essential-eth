@@ -506,6 +506,9 @@ export default {
   "1197": [
     "iora"
   ],
+  "1201": [
+    "avis"
+  ],
   "1202": [
     "wtt"
   ],
@@ -562,6 +565,9 @@ export default {
   ],
   "2101": [
     "esp"
+  ],
+  "2213": [
+    "evanesco"
   ],
   "2559": [
     "ktoc"
