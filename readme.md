@@ -189,6 +189,15 @@ const essentialEth = new JsonRpcProvider(
 const essentialEth = new JsonRpcProvider();
 ```
 
+If you want to use a fallback provider in case your main provider fails:
+
+```typescript
+import { FallbackProvider } from 'essential-eth';
+const essentialEth = new FallbackProvider(
+  ['RPC URL HERE', 'BACKUP RPC URL HERE'] /* Try POKT or Infura */,
+);
+```
+
 #### `getNetwork`
 
 Returns a [Network](src/types/Network.types.ts)

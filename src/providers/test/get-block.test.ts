@@ -1,7 +1,7 @@
 import Big from 'big.js';
 import omit from 'just-omit';
 import Web3 from 'web3';
-import { Block, JsonRpcProvider } from '../..';
+import { Block, JsonRpcProvider, FallbackProvider } from '../..';
 
 const rpcUrl = `${process.env.RPC_ORIGIN}/api/eth`;
 
@@ -27,6 +27,18 @@ describe('matches web3', () => {
 
   it('should get latest block', async () => {
     const essentialEth = new JsonRpcProvider(rpcUrl);
+    const web3 = new Web3(rpcUrl);
+    const [eeLatestBlock, web3LatestBlock] = await Promise.all([
+      essentialEth.getBlock('latest'),
+      web3.eth.getBlock('latest'),
+    ]);
+    testBlockEquality(eeLatestBlock, web3LatestBlock as unknown as Block);
+  });
+  it('should get latest block -- backup', async () => {
+    const essentialEth = new FallbackProvider([
+      'https://free-eth-junk.com/api/eth',
+      'https://free-eth-node.com/api/eth',
+    ]);
     const web3 = new Web3(rpcUrl);
     const [eeLatestBlock, web3LatestBlock] = await Promise.all([
       essentialEth.getBlock('latest'),

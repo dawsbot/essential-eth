@@ -1,5 +1,6 @@
 import { Contract } from './classes/Contract';
 import { JsonRpcProvider, jsonRpcProvider } from './providers/JsonRpcProvider';
+import { FallbackProvider } from './providers/FallbackProvider';
 import { tinyBig, TinyBig } from './shared/tiny-big/tiny-big';
 import { Block } from './types/Block.types';
 import {
@@ -19,6 +20,7 @@ export {
   isAddress,
   jsonRpcProvider,
   JsonRpcProvider,
+  FallbackProvider,
   tinyBig,
   toChecksumAddress,
   weiToEther,
