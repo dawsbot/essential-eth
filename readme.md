@@ -35,7 +35,7 @@
 - 🧪 Tested to match both `web3` and `ethers`
 - 🌲 Tree-shaking and no side-effects
 - 🙌 Supports multiple JS versions (CommonJS and ESM)
-  - ✅ Node 16, 14, 12, & 10
+  - ✅ Node 16, 14, 12, 10, & 8
   - ✅ Web
 
 <br/>
