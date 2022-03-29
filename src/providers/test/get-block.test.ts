@@ -34,6 +34,13 @@ describe('matches web3', () => {
     ]);
     testBlockEquality(eeLatestBlock, web3LatestBlock as unknown as Block);
   });
+  it('should get latest block, uses fallback when first URL fails', async () => {
+    const essentialEth = new JsonRpcProvider([
+      'https://invalid-url.test',
+      rpcUrl,
+    ]);
+    await essentialEth.getBlock('latest');
+  });
   it('should get earliest block', async () => {
     const essentialEth = new JsonRpcProvider(rpcUrl);
     const web3 = new Web3(rpcUrl);
