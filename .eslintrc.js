@@ -28,5 +28,6 @@ module.exports = {
     'jest/no-commented-out-tests': 'warn',
     'jest/require-hook': 'warn',
     '@typescript-eslint/ban-ts-comment': 'warn',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
   },
 };

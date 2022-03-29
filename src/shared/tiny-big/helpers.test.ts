@@ -20,15 +20,11 @@ describe('scientificStrToDecimalStr', () => {
     expect(scientificStrToDecimalStr('0100e-4')).toBe('0.01');
     expect(scientificStrToDecimalStr('010.1e-3')).toBe('0.0101');
     expect(scientificStrToDecimalStr('-010.1e-3')).toBe('-0.0101');
-    expect(scientificStrToDecimalStr('09.1e-51')).toBe(
-      `0.${'0'.repeat(50)}91`,
-    );
+    expect(scientificStrToDecimalStr('09.1e-51')).toBe(`0.${'0'.repeat(50)}91`);
   });
   it('positive power', () => {
     expect(scientificStrToDecimalStr('01e2')).toBe('100');
     expect(scientificStrToDecimalStr('-01e2')).toBe('-100');
-    expect(scientificStrToDecimalStr('09.1e51')).toBe(
-      `91${'0'.repeat(50)}`,
-    );
+    expect(scientificStrToDecimalStr('09.1e51')).toBe(`91${'0'.repeat(50)}`);
   });
 });

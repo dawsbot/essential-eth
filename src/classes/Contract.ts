@@ -13,9 +13,9 @@ function estimateGas(txnData: string) {
     return previousValue + characterCost;
   }, 0);
 }
-type Options = {
+interface Options {
   gasLimit?: number;
-};
+}
 export class BaseContract {
   /**
    * The URL to your Eth node. Consider POKT or Infura

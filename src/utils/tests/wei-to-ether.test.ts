@@ -5,27 +5,17 @@ import { tinyBig, weiToEther } from '../../index';
 
 describe('wei-to-ether', () => {
   it('happy path', () => {
-    expect(weiToEther('100000000000000000000.0').toString()).toBe(
-      '100',
-    );
+    expect(weiToEther('100000000000000000000.0').toString()).toBe('100');
     expect(weiToEther(100000000000000000000.0).toString()).toBe('100');
-    expect(weiToEther('1000000000000000000000.0').toNumber()).toBe(
-      1000,
-    );
+    expect(weiToEther('1000000000000000000000.0').toNumber()).toBe(1000);
     expect(weiToEther(1000000000000000000000.0).toNumber()).toBe(1000);
 
-    expect(
-      weiToEther(tinyBig('1000000000000000000000.0')).toNumber(),
-    ).toBe(1000);
-    expect(
-      weiToEther(tinyBig(1000000000000000000000.0)).toNumber(),
-    ).toBe(1000);
-    expect(
-      weiToEther(Big('1000000000000000000000.0')).toNumber(),
-    ).toBe(1000);
-    expect(weiToEther(Big(1000000000000000000000.0)).toNumber()).toBe(
+    expect(weiToEther(tinyBig('1000000000000000000000.0')).toNumber()).toBe(
       1000,
     );
+    expect(weiToEther(tinyBig(1000000000000000000000.0)).toNumber()).toBe(1000);
+    expect(weiToEther(Big('1000000000000000000000.0')).toNumber()).toBe(1000);
+    expect(weiToEther(Big(1000000000000000000000.0)).toNumber()).toBe(1000);
   });
 
   describe('matches ethers and web3 toString', () => {
