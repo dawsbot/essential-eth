@@ -20,9 +20,8 @@ export class BaseContract {
   /**
    * The URL to your Eth node. Consider POKT or Infura
    */
-  readonly _address: string;
-  readonly _contractInterface: ContractInterface /* JSON ABI's only for stronger types */;
-  readonly _provider: JsonRpcProvider;
+  private readonly _address: string;
+  private readonly _provider: JsonRpcProvider;
 
   /**
    * @param addressOrName - The ethereum address of the smart-contract
@@ -35,7 +34,6 @@ export class BaseContract {
     signerOrProvider: JsonRpcProvider,
   ) {
     this._address = addressOrName;
-    this._contractInterface = contractInterface;
     this._provider = signerOrProvider;
     contractInterface
       .filter((jsonABIArgument) => jsonABIArgument.type === 'function')

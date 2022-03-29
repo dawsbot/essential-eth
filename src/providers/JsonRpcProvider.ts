@@ -8,7 +8,7 @@ export class JsonRpcProvider {
   /**
    * The URL to your Eth node. Consider POKT or Infura
    */
-  _rpcUrl: Array<string>;
+  readonly _rpcUrl: Array<string>;
   _rpcUrlCounter: number;
   constructor(rpcUrl?: string | Array<string>) {
     this._rpcUrl = ((): Array<string> => {
