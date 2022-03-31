@@ -8,9 +8,18 @@ export class JsonRpcProvider {
   /**
    * The URL to your Eth node. Consider POKT or Infura
    */
-  _rpcUrl: string;
-  constructor(rpcUrl?: string) {
-    this._rpcUrl = rpcUrl || 'https://free-eth-node.com/api/eth';
+  readonly _rpcUrl: Array<string>;
+  _rpcUrlCounter: number;
+  constructor(rpcUrl?: string | Array<string>) {
+    this._rpcUrl = ((): Array<string> => {
+      if (!rpcUrl) {
+        return ['https://free-eth-node.com/api/eth'];
+      } else if (!Array.isArray(rpcUrl)) {
+        return [rpcUrl];
+      }
+      return rpcUrl;
+    })();
+    this._rpcUrlCounter = 0;
   }
 
   /**
@@ -33,13 +42,21 @@ export class JsonRpcProvider {
       // "latest", "earliest", and "pending" require no manipulation
       rpcTimeFrame = timeFrame;
     }
-    const nodeResponse = (await post(
-      this._rpcUrl,
-      buildRPCPostBody('eth_getBlockByNumber', [
-        rpcTimeFrame,
-        returnTransactionObjects,
-      ]),
-    )) as RPCBlock;
+    const req = async (): Promise<RPCBlock> => {
+      return await post(
+        this._rpcUrl[this._rpcUrlCounter],
+        buildRPCPostBody('eth_getBlockByNumber', [
+          rpcTimeFrame,
+          returnTransactionObjects,
+        ]),
+      ).catch((e) => {
+        if (e.code === 'ENOTFOUND') {
+          this._rpcUrlCounter++;
+          return req();
+        }
+      });
+    };
+    const nodeResponse = (await req()) as RPCBlock;
 
     return cleanBlock(nodeResponse, returnTransactionObjects);
   }
@@ -47,10 +64,18 @@ export class JsonRpcProvider {
    * Returns the network this provider is connected to
    */
   public async getNetwork(): Promise<Network> {
-    const nodeResponse = (await post(
-      this._rpcUrl,
-      buildRPCPostBody('eth_chainId', []),
-    )) as string;
+    const req = async (): Promise<string> => {
+      return await post(
+        this._rpcUrl[this._rpcUrlCounter],
+        buildRPCPostBody('eth_chainId', []),
+      ).catch((e) => {
+        if (e.code === 'ENOTFOUND') {
+          this._rpcUrlCounter++;
+          return req();
+        }
+      });
+    };
+    const nodeResponse = (await req()) as string;
     const chainId = hexToDecimal(nodeResponse);
     const info = (chainsInfo as any)[chainId];
     return {

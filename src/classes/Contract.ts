@@ -20,9 +20,8 @@ export class BaseContract {
   /**
    * The URL to your Eth node. Consider POKT or Infura
    */
-  readonly _address: string;
-  readonly _contractInterface: ContractInterface /* JSON ABI's only for stronger types */;
-  readonly _provider: JsonRpcProvider;
+  private readonly _address: string;
+  private readonly _provider: JsonRpcProvider;
 
   /**
    * @param addressOrName - The ethereum address of the smart-contract
@@ -35,7 +34,6 @@ export class BaseContract {
     signerOrProvider: JsonRpcProvider,
   ) {
     this._address = addressOrName;
-    this._contractInterface = contractInterface;
     this._provider = signerOrProvider;
     contractInterface
       .filter((jsonABIArgument) => jsonABIArgument.type === 'function')
@@ -66,21 +64,28 @@ export class BaseContract {
                     'number' /* ABI specified "gas". */
                   ? estimateGas(data)
                   : null;
-              const nodeResponse = await post(
-                this._provider._rpcUrl,
-
-                buildRPCPostBody('eth_call', [
-                  {
-                    to: this._address.toLowerCase(),
-                    data: data,
-                    // sometimes gas is defined in the ABI
-                    ...(decimalGas
-                      ? { gas: `0x${decimalGas.toString(16)}` }
-                      : {}),
-                  },
-                  'latest',
-                ]),
-              );
+              const req = async (): Promise<string> => {
+                return await post(
+                  this._provider._rpcUrl[this._provider._rpcUrlCounter],
+                  buildRPCPostBody('eth_call', [
+                    {
+                      to: this._address.toLowerCase(),
+                      data: data,
+                      // sometimes gas is defined in the ABI
+                      ...(decimalGas
+                        ? { gas: `0x${decimalGas.toString(16)}` }
+                        : {}),
+                    },
+                    'latest',
+                  ]),
+                ).catch((e) => {
+                  if (e.code === 'ENOTFOUND') {
+                    this._provider._rpcUrlCounter++;
+                    return req();
+                  }
+                });
+              };
+              const nodeResponse = await req();
               return decodeRPCResponse(jsonABIArgument, nodeResponse);
             },
           );
