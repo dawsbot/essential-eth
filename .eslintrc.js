@@ -27,6 +27,7 @@ module.exports = {
     'jest/no-disabled-tests': 'warn',
     'jest/no-commented-out-tests': 'warn',
     'jest/require-hook': 'warn',
+    'jest/no-conditional-expect': 'error',
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
   },
