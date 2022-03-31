@@ -9,19 +9,11 @@ import {
 } from './types/Contract.types';
 import { Network } from './types/Network.types';
 import { Transaction } from './types/Transaction.types';
-import { etherToWei } from './utils/ether-to-wei';
-import { isAddress } from './utils/is-address';
-import { toChecksumAddress } from './utils/to-checksum-address';
-import { weiToEther } from './utils/wei-to-ether';
-
+export * from './utils';
 export {
-  etherToWei,
-  isAddress,
   jsonRpcProvider,
   JsonRpcProvider,
   tinyBig,
-  toChecksumAddress,
-  weiToEther,
   /* classes */
   Contract,
   TinyBig,

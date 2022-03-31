@@ -4,11 +4,26 @@
   "version": "0.4.8",
   "license": "MIT",
   "sideEffects": false,
-  "main": "./lib/cjs/index.js",
-  "module": "./lib/esm/index.js",
-  "files": [
-    "lib/"
-  ],
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./utils": {
+      "import": "./dist/esm/utils/index.js",
+      "require": "./dist/cjs/utils/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/cjs/index.d.ts"
+      ],
+      "utils": [
+        "./dist/cjs/utils/index.d.ts"
+      ]
+    }
+  },
   "bugs": {
     "url": "https://github.com/dawsbot/essential-eth/issues"
   },
@@ -16,12 +31,11 @@
   "author": "@dawsbot",
   "scripts": {
     "test": "npm-run-all --parallel jest compile lint",
-    "test:all-node-versions": "npx trevor",
     "lint": "eslint .",
     "compile": "npm-run-all --parallel tsc:esm tsc:cjs",
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
-    "build": "rm -rf lib && npm run compile",
+    "build": "rm -rf dist && npm run compile",
     "prepublishOnly": "npm run build && npm run build:website && npm run build:website:new-version",
     "jest": "jest",
     "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
