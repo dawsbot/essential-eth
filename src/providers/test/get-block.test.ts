@@ -53,7 +53,7 @@ describe('matches web3', () => {
     ]);
     testBlockEquality(eeEarliestBlock, web3EarliestBlock as unknown as Block);
   });
-  const blockNumber = Math.floor(Math.random() * 13250630);
+  const blockNumber = Math.floor(Math.random() * 4202460 /* latest block */);
   it(`should get random block as decimal integer. (block #${blockNumber})`, async () => {
     const [eeRandomBlock, web3RandomBlock] = await Promise.all([
       essentialEthProvider.getBlock(blockNumber, true),
