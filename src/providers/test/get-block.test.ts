@@ -3,7 +3,8 @@ import omit from 'just-omit';
 import Web3 from 'web3';
 import { Block, JsonRpcProvider } from '../..';
 
-const rpcUrl = `${process.env.RPC_ORIGIN}/api/eth`;
+// RSK has 30 second block times so tests pass more often
+const rpcUrl = `https://public-node.rsk.co`;
 
 describe('matches web3', () => {
   function testBlockEquality(block1: Block, block2: Block) {
