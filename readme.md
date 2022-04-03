@@ -188,6 +188,32 @@ const essentialEth = new JsonRpcProvider(
 const essentialEth = new JsonRpcProvider();
 ```
 
+#### `getGasPrice`
+
+Returns the current gas price in gwei
+
+```typescript
+// Same as ethers.provider.getGasPrice
+getGasPrice(): Promise<TinyBig>
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { JsonRpcProvider } from 'essential-eth';
+
+const provider = new JsonRpcProvider('https://free-eth-node.com/api/eth');
+provider.getGasPrice().toNumber();
+/*
+39695942769
+*/
+```
+
+</details>
+
+<br/>
+
 #### `getNetwork`
 
 Returns a [Network](src/types/Network.types.ts)
