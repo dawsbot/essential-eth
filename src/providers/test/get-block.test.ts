@@ -36,17 +36,6 @@ describe('provider.getBlock happy path', () => {
     ]);
     testBlockEquality(eeLatestBlock, web3LatestBlock as unknown as Block);
   });
-  it('should get latest block, uses fallback when first URL fails', async () => {
-    const essentialEthFallbackProvider = new JsonRpcProvider([
-      'https://invalid-url.test',
-      rpcUrl,
-    ]);
-    const [eeEarliestBlock, web3EarliestBlock] = await Promise.all([
-      essentialEthFallbackProvider.getBlock('earliest'),
-      web3Provider.eth.getBlock('earliest'),
-    ]);
-    testBlockEquality(eeEarliestBlock, web3EarliestBlock as unknown as Block);
-  });
   it('should get earliest block', async () => {
     const [eeEarliestBlock, web3EarliestBlock] = await Promise.all([
       essentialEthProvider.getBlock('earliest'),
