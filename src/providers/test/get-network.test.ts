@@ -1,11 +1,12 @@
 import { ethers } from 'ethers';
 import { JsonRpcProvider } from '../..';
+import { fakeUrls } from './rpc-urls';
 
 const xdaiRPCUrl = `${process.env.RPC_ORIGIN}/api/xdai`;
 const bscRPCUrl = `${process.env.RPC_ORIGIN}/api/bsc`;
 // const kovanRPCUrl = `${process.env.RPC_ORIGIN}/api/kovan`;
 
-describe('get-network', () => {
+describe('provider.getNetwork happy path', () => {
   async function testNetwork(rpcUrl: string) {
     const essentialEth = new JsonRpcProvider(rpcUrl);
     const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
@@ -27,8 +28,14 @@ describe('get-network', () => {
   it('bsc should match ethers', async () => {
     await testNetwork(bscRPCUrl);
   });
-  /* ethers returns "kovan", essential-eth returns "kov" */
-  // it('kovan should match ethers', async () => {
-  //   await testNetwork(kovanRPCUrl);
-  // });
+});
+
+describe('provider.getNetwork error handling', () => {
+  it('should throw on empty 200 http response', async () => {
+    expect.assertions(1);
+    const essentialEth = new JsonRpcProvider(fakeUrls.notRPCButRealHttp);
+    await essentialEth.getNetwork().catch((err) => {
+      expect(err instanceof Error).toBe(true);
+    });
+  });
 });
