@@ -2,10 +2,10 @@ import Big from 'big.js';
 import omit from 'just-omit';
 import Web3 from 'web3';
 import { Block, JsonRpcProvider } from '../..';
+import { fakeUrls } from './rpc-urls';
 
 const rpcUrl = `${process.env.RPC_ORIGIN}/api/eth`;
-
-describe('matches web3', () => {
+describe('provider.getBlock happy path', () => {
   function testBlockEquality(block1: Block, block2: Block) {
     // slight mis-timing in eth node responses
     expect(
@@ -60,4 +60,31 @@ describe('matches web3', () => {
     ]);
     testBlockEquality(eeRandomBlock, web3RandomBlock as unknown as Block);
   });
+});
+
+describe('provider.getBlock error handling', () => {
+  it('should handle empty 200 http response', async () => {
+    expect.assertions(1);
+    const essentialEth = new JsonRpcProvider(fakeUrls.notRPCButRealHttp);
+    const web3 = new Web3(fakeUrls.notRPCButRealHttp);
+    await essentialEth.getBlock('earliest').catch(async (essentialEthError) => {
+      await web3.eth.getBlock('earliest').catch((web3Error) => {
+        // error message is Invalid JSON RPC response: "200 OK"
+        expect(web3Error.message).toBe(essentialEthError.message);
+      });
+    });
+  });
+  // TODO: Make a mock http endpoint which returns an empty json object
+  // it.only('should handle json emptry object 200 http response', async () => {
+  //   expect.assertions(1);
+  //   const essentialEth = new JsonRpcProvider('http://localhost:51196/b.json');
+  //   const web3 = new Web3('http://localhost:51196/b.json');
+  //   await essentialEth.getBlock('earliest').catch(async (essentialEthError) => {
+  //     await web3.eth.getBlock('earliest').catch((web3Error) => {
+  //       console.log({ w3: web3Error.message, ee: essentialEthError.message });
+  //       // error message is Invalid JSON RPC response: "200 OK"
+  //       expect(web3Error.message).toBe(essentialEthError.message);
+  //     });
+  //   });
+  // });
 });

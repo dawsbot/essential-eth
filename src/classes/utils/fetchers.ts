@@ -7,10 +7,20 @@ export function post(url: string, body: Record<string, unknown>) {
     },
     body: JSON.stringify(body),
   })
-    .then((r) => r.json())
+    .then(async (r) => {
+      const t = await r.text();
+      try {
+        return JSON.parse(t);
+      } catch {
+        throw new Error(`Invalid JSON RPC response: "${t}"`);
+      }
+    })
     .then((response) => {
-      if (response.error) {
-        throw new Error(response.error);
+      const result = response?.result;
+      if (!result) {
+        throw new Error(
+          `Invalid JSON RPC response: ${JSON.stringify(response)}`,
+        );
       }
       return response.result;
     });
