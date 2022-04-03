@@ -1,3 +1,12 @@
+---
+id: 'index'
+title: 'essential-eth'
+slug: '/api/'
+sidebar_label: 'Readme'
+sidebar_position: 0
+custom_edit_url: null
+---
+
 <p align="center">
   <a><img src="https://blog.ethereum.org/img/2018/08/grants_eth_logo.png" title="Logo" height="400"/></a>
 </p>

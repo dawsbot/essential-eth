@@ -6,15 +6,26 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Essential Eth',
+  tagline: '🪶 Ultralight Ethereum utilities for JS and TS',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'earnifi', // Usually your GitHub org/user name.
+  projectName: 'essential-eth', // Usually your repo name.
+  plugins: [
+    [
+      'docusaurus-plugin-typedoc',
+
+      // Plugin / TypeDoc options
+      {
+        entryPoints: ['../src/index.ts'],
+        tsconfig: '../tsconfig.json',
+      },
+    ],
+  ],
 
   presets: [
     [
@@ -23,11 +34,6 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
           // Please change this to your repo.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -43,7 +49,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'Essential Eth',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -51,13 +57,12 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'api/index',
             position: 'left',
-            label: 'Tutorial',
+            label: 'API',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/earnifi/essential-eth',
             label: 'GitHub',
             position: 'right',
           },
@@ -67,11 +72,15 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Navigation',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Home',
+                href: '/',
+              },
+              {
+                label: 'API',
+                href: '/docs/api',
               },
             ],
           },
@@ -79,34 +88,17 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
+                href: 'https://twitter.com/earni_fi',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Contribute on GitHub',
+                href: 'https://github.com/earnifi',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Earnifi Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
