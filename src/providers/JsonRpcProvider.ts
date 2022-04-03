@@ -54,6 +54,7 @@ export class JsonRpcProvider {
           this._rpcUrlCounter++;
           return req();
         }
+        throw e;
       });
     };
     const nodeResponse = (await req()) as RPCBlock;
@@ -73,6 +74,7 @@ export class JsonRpcProvider {
           this._rpcUrlCounter++;
           return req();
         }
+        throw e;
       });
     };
     const nodeResponse = (await req()) as string;
