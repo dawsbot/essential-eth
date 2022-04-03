@@ -70,7 +70,7 @@ export class BaseContract {
                   buildRPCPostBody('eth_call', [
                     {
                       to: this._address.toLowerCase(),
-                      data: data,
+                      data,
                       // sometimes gas is defined in the ABI
                       ...(decimalGas
                         ? { gas: `0x${decimalGas.toString(16)}` }
