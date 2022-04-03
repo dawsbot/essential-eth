@@ -9,18 +9,9 @@ export class JsonRpcProvider {
   /**
    * The URL to your Eth node. Consider POKT or Infura
    */
-  readonly _rpcUrl: Array<string>;
-  _rpcUrlCounter: number;
-  constructor(rpcUrl?: string | Array<string>) {
-    this._rpcUrl = ((): Array<string> => {
-      if (!rpcUrl) {
-        return ['https://free-eth-node.com/api/eth'];
-      } else if (!Array.isArray(rpcUrl)) {
-        return [rpcUrl];
-      }
-      return rpcUrl;
-    })();
-    this._rpcUrlCounter = 0;
+  readonly _rpcUrl: string;
+  constructor(rpcUrl?: string) {
+    this._rpcUrl = rpcUrl || 'https://free-eth-node.com/api/eth';
   }
 
   /**
@@ -45,18 +36,12 @@ export class JsonRpcProvider {
     }
     const req = async (): Promise<RPCBlock> => {
       return await post(
-        this._rpcUrl[this._rpcUrlCounter],
+        this._rpcUrl,
         buildRPCPostBody('eth_getBlockByNumber', [
           rpcTimeFrame,
           returnTransactionObjects,
         ]),
-      ).catch((e) => {
-        if (e.code === 'ENOTFOUND') {
-          this._rpcUrlCounter++;
-          return req();
-        }
-        throw e;
-      });
+      );
     };
     const nodeResponse = (await req()) as RPCBlock;
 
@@ -67,16 +52,7 @@ export class JsonRpcProvider {
    */
   public async getNetwork(): Promise<Network> {
     const req = async (): Promise<string> => {
-      return await post(
-        this._rpcUrl[this._rpcUrlCounter],
-        buildRPCPostBody('eth_chainId', []),
-      ).catch((e) => {
-        if (e.code === 'ENOTFOUND') {
-          this._rpcUrlCounter++;
-          return req();
-        }
-        throw e;
-      });
+      return await post(this._rpcUrl, buildRPCPostBody('eth_chainId', []));
     };
     const nodeResponse = (await req()) as string;
     const chainId = hexToDecimal(nodeResponse);
@@ -93,16 +69,7 @@ export class JsonRpcProvider {
    */
   public async getGasPrice(): Promise<TinyBig> {
     const req = async (): Promise<string> => {
-      return await post(
-        this._rpcUrl[this._rpcUrlCounter],
-        buildRPCPostBody('eth_gasPrice', []),
-      ).catch((e) => {
-        if (e.code === 'ENOTFOUND') {
-          this._rpcUrlCounter++;
-          return req();
-        }
-        throw e;
-      });
+      return await post(this._rpcUrl, buildRPCPostBody('eth_gasPrice', []));
     };
     const nodeResponse = (await req()) as string; /* '0x153cfb1ad0' */
     return tinyBig(hexToDecimal(nodeResponse));

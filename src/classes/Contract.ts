@@ -66,11 +66,11 @@ export class BaseContract {
                   : null;
               const req = async (): Promise<string> => {
                 return await post(
-                  this._provider._rpcUrl[this._provider._rpcUrlCounter],
+                  this._provider._rpcUrl,
                   buildRPCPostBody('eth_call', [
                     {
                       to: this._address.toLowerCase(),
-                      data: data,
+                      data,
                       // sometimes gas is defined in the ABI
                       ...(decimalGas
                         ? { gas: `0x${decimalGas.toString(16)}` }
@@ -78,12 +78,7 @@ export class BaseContract {
                     },
                     'latest',
                   ]),
-                ).catch((e) => {
-                  if (e.code === 'ENOTFOUND') {
-                    this._provider._rpcUrlCounter++;
-                    return req();
-                  }
-                });
+                );
               };
               const nodeResponse = await req();
               return decodeRPCResponse(jsonABIArgument, nodeResponse);
