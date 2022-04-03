@@ -88,7 +88,7 @@ export class JsonRpcProvider {
     };
   }
   /**
-   * Returns the current gas price
+   * Returns the current gas price in wei as TinyBig
    * Same as `ethers.provider.getGasPrice`
    */
   public async getGasPrice(): Promise<TinyBig> {
