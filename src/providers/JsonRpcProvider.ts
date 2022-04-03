@@ -1,6 +1,7 @@
 import { cleanBlock } from '../classes/utils/clean-block';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
+import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { Block, RPCBlock } from '../types/Block.types';
 import { Network } from '../types/Network.types';
 import chainsInfo from './utils/chains-info';
@@ -85,6 +86,26 @@ export class JsonRpcProvider {
       name: info[0] || 'unknown',
       ensAddress: info[1] || null, // only send ensAddress if it exists
     };
+  }
+  /**
+   * Returns the current gas price in wei as TinyBig
+   * Same as `ethers.provider.getGasPrice`
+   */
+  public async getGasPrice(): Promise<TinyBig> {
+    const req = async (): Promise<string> => {
+      return await post(
+        this._rpcUrl[this._rpcUrlCounter],
+        buildRPCPostBody('eth_gasPrice', []),
+      ).catch((e) => {
+        if (e.code === 'ENOTFOUND') {
+          this._rpcUrlCounter++;
+          return req();
+        }
+        throw e;
+      });
+    };
+    const nodeResponse = (await req()) as string; /* '0x153cfb1ad0' */
+    return tinyBig(hexToDecimal(nodeResponse));
   }
 }
 

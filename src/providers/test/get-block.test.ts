@@ -4,13 +4,15 @@ import Web3 from 'web3';
 import { Block, JsonRpcProvider } from '../..';
 import { fakeUrls } from './rpc-urls';
 
-const rpcUrl = `${process.env.RPC_ORIGIN}/api/eth`;
+// RSK has 30 second block times so tests pass more often
+const rpcUrl = `https://public-node.rsk.co`;
+
 describe('provider.getBlock happy path', () => {
   function testBlockEquality(block1: Block, block2: Block) {
     // slight mis-timing in eth node responses
-    expect(
-      (omit as any)(block1, ['totalDifficulty', 'difficulty']),
-    ).toStrictEqual((omit as any)(block2, ['totalDifficulty', 'difficulty']));
+    expect(omit(block1, ['totalDifficulty', 'difficulty'])).toStrictEqual(
+      omit(block2, ['totalDifficulty', 'difficulty']),
+    );
 
     // validate that difficulty and totalDifficulty are still very close
     expect(
@@ -25,38 +27,38 @@ describe('provider.getBlock happy path', () => {
     ).toBeLessThan(5000000 /* 2616793 and 1187442 on recent tests */);
   }
 
+  const essentialEthProvider = new JsonRpcProvider(rpcUrl);
+  const web3Provider = new Web3(rpcUrl);
   it('should get latest block', async () => {
-    const essentialEth = new JsonRpcProvider(rpcUrl);
-    const web3 = new Web3(rpcUrl);
     const [eeLatestBlock, web3LatestBlock] = await Promise.all([
-      essentialEth.getBlock('latest'),
-      web3.eth.getBlock('latest'),
+      essentialEthProvider.getBlock('latest'),
+      web3Provider.eth.getBlock('latest'),
     ]);
     testBlockEquality(eeLatestBlock, web3LatestBlock as unknown as Block);
   });
   it('should get latest block, uses fallback when first URL fails', async () => {
-    const essentialEth = new JsonRpcProvider([
+    const essentialEthFallbackProvider = new JsonRpcProvider([
       'https://invalid-url.test',
       rpcUrl,
     ]);
-    await essentialEth.getBlock('latest');
-  });
-  it('should get earliest block', async () => {
-    const essentialEth = new JsonRpcProvider(rpcUrl);
-    const web3 = new Web3(rpcUrl);
     const [eeEarliestBlock, web3EarliestBlock] = await Promise.all([
-      essentialEth.getBlock('earliest'),
-      web3.eth.getBlock('earliest'),
+      essentialEthFallbackProvider.getBlock('earliest'),
+      web3Provider.eth.getBlock('earliest'),
     ]);
     testBlockEquality(eeEarliestBlock, web3EarliestBlock as unknown as Block);
   });
-  const blockNumber = Math.floor(Math.random() * 13250630);
+  it('should get earliest block', async () => {
+    const [eeEarliestBlock, web3EarliestBlock] = await Promise.all([
+      essentialEthProvider.getBlock('earliest'),
+      web3Provider.eth.getBlock('earliest'),
+    ]);
+    testBlockEquality(eeEarliestBlock, web3EarliestBlock as unknown as Block);
+  });
+  const blockNumber = Math.floor(Math.random() * 4202460 /* latest block */);
   it(`should get random block as decimal integer. (block #${blockNumber})`, async () => {
-    const essentialEth = new JsonRpcProvider(rpcUrl);
-    const web3 = new Web3(rpcUrl);
     const [eeRandomBlock, web3RandomBlock] = await Promise.all([
-      essentialEth.getBlock(blockNumber, true),
-      web3.eth.getBlock(blockNumber, true),
+      essentialEthProvider.getBlock(blockNumber, true),
+      web3Provider.eth.getBlock(blockNumber, true),
     ]);
     testBlockEquality(eeRandomBlock, web3RandomBlock as unknown as Block);
   });
