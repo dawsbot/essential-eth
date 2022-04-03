@@ -66,7 +66,7 @@ export class BaseContract {
                   : null;
               const req = async (): Promise<string> => {
                 return await post(
-                  this._provider._rpcUrl[this._provider._rpcUrlCounter],
+                  this._provider._rpcUrl,
                   buildRPCPostBody('eth_call', [
                     {
                       to: this._address.toLowerCase(),
@@ -78,12 +78,7 @@ export class BaseContract {
                     },
                     'latest',
                   ]),
-                ).catch((e) => {
-                  if (e.code === 'ENOTFOUND') {
-                    this._provider._rpcUrlCounter++;
-                    return req();
-                  }
-                });
+                );
               };
               const nodeResponse = await req();
               return decodeRPCResponse(jsonABIArgument, nodeResponse);
