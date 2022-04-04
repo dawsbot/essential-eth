@@ -22,10 +22,9 @@
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
     "build": "rm -rf lib && npm run compile",
-    "prepublishOnly": "npm run build && npm run build:website",
+    "prepublishOnly": "npm run build",
     "jest": "jest",
     "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
-    "build:website": "cd docusaurus && npm run build",
     "pre-commit": "sh scripts/pre-commit.sh"
   },
   "devDependencies": {
@@ -67,7 +66,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && run-p pre-commit test build:website build:chains-info"
+      "pre-commit": "lint-staged && run-p pre-commit test build:chains-info"
     }
   },
   "lint-staged": {
