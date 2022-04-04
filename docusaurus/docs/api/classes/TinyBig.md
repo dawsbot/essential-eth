@@ -1,7 +1,7 @@
 ---
-id: 'TinyBig'
-title: 'Class: TinyBig'
-sidebar_label: 'TinyBig'
+id: "TinyBig"
+title: "Class: TinyBig"
+sidebar_label: "TinyBig"
 sidebar_position: 0
 custom_edit_url: null
 ---
@@ -23,8 +23,8 @@ This is the return type of every operation on ether, wei, etc.
 
 #### Parameters
 
-| Name    | Type                                                     |
-| :------ | :------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `value` | `string` \| `number` \| [`TinyBig`](TinyBig.md) \| `Big` |
 
 #### Overrides
@@ -33,7 +33,7 @@ Big.constructor
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:9](https://github.com/Earnifi/essential-eth/blob/142e41f/src/shared/tiny-big/tiny-big.ts#L9)
+[src/shared/tiny-big/tiny-big.ts:9](https://github.com/Earnifi/essential-eth/blob/2d97564/src/shared/tiny-big/tiny-big.ts#L9)
 
 ## Properties
 
@@ -51,7 +51,7 @@ Big.c
 
 node_modules/@types/big.js/index.d.ts:371
 
----
+___
 
 ### e
 
@@ -67,7 +67,7 @@ Big.e
 
 node_modules/@types/big.js/index.d.ts:375
 
----
+___
 
 ### s
 
@@ -83,7 +83,7 @@ Big.s
 
 node_modules/@types/big.js/index.d.ts:379
 
----
+___
 
 ### DP
 
@@ -103,7 +103,7 @@ Big.DP
 
 node_modules/@types/big.js/index.d.ts:109
 
----
+___
 
 ### NE
 
@@ -122,7 +122,7 @@ Big.NE
 
 node_modules/@types/big.js/index.d.ts:121
 
----
+___
 
 ### PE
 
@@ -141,7 +141,7 @@ Big.PE
 
 node_modules/@types/big.js/index.d.ts:128
 
----
+___
 
 ### RM
 
@@ -158,11 +158,11 @@ Big.RM
 
 node_modules/@types/big.js/index.d.ts:114
 
----
+___
 
 ### roundDown
 
-▪ `Static` `Readonly` **roundDown**: `0`
+▪ `Static` `Readonly` **roundDown**: ``0``
 
 Rounds towards zero.
 I.e. truncate, no rounding.
@@ -175,11 +175,11 @@ Big.roundDown
 
 node_modules/@types/big.js/index.d.ts:136
 
----
+___
 
 ### roundHalfEven
 
-▪ `Static` `Readonly` **roundHalfEven**: `2`
+▪ `Static` `Readonly` **roundHalfEven**: ``2``
 
 Rounds towards nearest neighbour.
 If equidistant, rounds towards even neighbour.
@@ -192,11 +192,11 @@ Big.roundHalfEven
 
 node_modules/@types/big.js/index.d.ts:146
 
----
+___
 
 ### roundHalfUp
 
-▪ `Static` `Readonly` **roundHalfUp**: `1`
+▪ `Static` `Readonly` **roundHalfUp**: ``1``
 
 Rounds towards nearest neighbour.
 If equidistant, rounds away from zero.
@@ -209,11 +209,11 @@ Big.roundHalfUp
 
 node_modules/@types/big.js/index.d.ts:141
 
----
+___
 
 ### roundUp
 
-▪ `Static` `Readonly` **roundUp**: `3`
+▪ `Static` `Readonly` **roundUp**: ``3``
 
 Rounds away from zero.
 
@@ -245,7 +245,7 @@ Big.abs
 
 node_modules/@types/big.js/index.d.ts:155
 
----
+___
 
 ### add
 
@@ -257,9 +257,9 @@ Returns a Big number whose value is the value of this Big number plus n - alias 
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -273,7 +273,7 @@ Big.add
 
 node_modules/@types/big.js/index.d.ts:161
 
----
+___
 
 ### cmp
 
@@ -285,9 +285,9 @@ Compare the values.
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -301,7 +301,7 @@ Big.cmp
 
 node_modules/@types/big.js/index.d.ts:167
 
----
+___
 
 ### div
 
@@ -319,9 +319,9 @@ If the result has more fraction digits than is specified by Big.DP, it will be r
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -335,7 +335,7 @@ Big.div
 
 node_modules/@types/big.js/index.d.ts:177
 
----
+___
 
 ### eq
 
@@ -347,9 +347,9 @@ Returns true if the value of this Big equals the value of n, otherwise returns f
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -363,7 +363,7 @@ Big.eq
 
 node_modules/@types/big.js/index.d.ts:183
 
----
+___
 
 ### gt
 
@@ -375,9 +375,9 @@ Returns true if the value of this Big is greater than the value of n, otherwise 
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -391,7 +391,7 @@ Big.gt
 
 node_modules/@types/big.js/index.d.ts:189
 
----
+___
 
 ### gte
 
@@ -403,9 +403,9 @@ Returns true if the value of this Big is greater than or equal to the value of n
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -419,7 +419,7 @@ Big.gte
 
 node_modules/@types/big.js/index.d.ts:195
 
----
+___
 
 ### lt
 
@@ -431,9 +431,9 @@ Returns true if the value of this Big is less than the value of n, otherwise ret
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -447,7 +447,7 @@ Big.lt
 
 node_modules/@types/big.js/index.d.ts:201
 
----
+___
 
 ### lte
 
@@ -459,9 +459,9 @@ Returns true if the value of this Big is less than or equal to the value of n, o
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -475,7 +475,7 @@ Big.lte
 
 node_modules/@types/big.js/index.d.ts:207
 
----
+___
 
 ### minus
 
@@ -487,9 +487,9 @@ Returns a Big number whose value is the value of this Big number minus n.
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -503,7 +503,7 @@ Big.minus
 
 node_modules/@types/big.js/index.d.ts:213
 
----
+___
 
 ### mod
 
@@ -517,9 +517,9 @@ The result will have the same sign as this Big number, and it will match that of
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -533,7 +533,7 @@ Big.mod
 
 node_modules/@types/big.js/index.d.ts:221
 
----
+___
 
 ### mul
 
@@ -545,9 +545,9 @@ Returns a Big number whose value is the value of this Big number times n - alias
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -561,7 +561,7 @@ Big.mul
 
 node_modules/@types/big.js/index.d.ts:227
 
----
+___
 
 ### plus
 
@@ -573,9 +573,9 @@ Returns a Big number whose value is the value of this Big number plus n.
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -589,7 +589,7 @@ Big.plus
 
 node_modules/@types/big.js/index.d.ts:233
 
----
+___
 
 ### pow
 
@@ -605,8 +605,8 @@ Note: High value exponents may cause this method to be slow to return.
 
 #### Parameters
 
-| Name  | Type     | Description                                               |
-| :---- | :------- | :-------------------------------------------------------- |
+| Name | Type | Description |
+| :------ | :------ | :------ |
 | `exp` | `number` | The power to raise the number to, -1e+6 to 1e+6 inclusive |
 
 #### Returns
@@ -621,7 +621,7 @@ Big.pow
 
 node_modules/@types/big.js/index.d.ts:244
 
----
+___
 
 ### prec
 
@@ -636,9 +636,9 @@ significant digits using rounding mode rm, or Big.RM if rm is not specified.
 
 #### Parameters
 
-| Name  | Type           | Description                                                    |
-| :---- | :------------- | :------------------------------------------------------------- |
-| `sd`  | `number`       | Significant digits: integer, 1 to MAX_DP inclusive.            |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `sd` | `number` | Significant digits: integer, 1 to MAX_DP inclusive. |
 | `rm?` | `RoundingMode` | Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up). |
 
 #### Returns
@@ -653,7 +653,7 @@ Big.prec
 
 node_modules/@types/big.js/index.d.ts:254
 
----
+___
 
 ### round
 
@@ -667,9 +667,9 @@ Returns a Big number whose value is the value of this Big number rounded using r
 
 #### Parameters
 
-| Name  | Type           | Description                                                    |
-| :---- | :------------- | :------------------------------------------------------------- |
-| `dp?` | `number`       | Decimal places, 0 to 1e+6 inclusive                            |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `dp?` | `number` | Decimal places, 0 to 1e+6 inclusive |
 | `rm?` | `RoundingMode` | Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up). |
 
 #### Returns
@@ -684,7 +684,7 @@ Big.round
 
 node_modules/@types/big.js/index.d.ts:263
 
----
+___
 
 ### sqrt
 
@@ -708,7 +708,7 @@ Big.sqrt
 
 node_modules/@types/big.js/index.d.ts:271
 
----
+___
 
 ### sub
 
@@ -720,9 +720,9 @@ Returns a Big number whose value is the value of this Big number minus n - alias
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -736,7 +736,7 @@ Big.sub
 
 node_modules/@types/big.js/index.d.ts:277
 
----
+___
 
 ### times
 
@@ -748,9 +748,9 @@ Returns a Big number whose value is the value of this Big number times n.
 
 #### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `n`  | `BigSource` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `BigSource` |
 
 #### Returns
 
@@ -764,7 +764,7 @@ Big.times
 
 node_modules/@types/big.js/index.d.ts:283
 
----
+___
 
 ### toExponential
 
@@ -783,9 +783,9 @@ If dp is omitted, or is null or undefined, the number of digits after the decima
 
 #### Parameters
 
-| Name  | Type           | Description                                                    |
-| :---- | :------------- | :------------------------------------------------------------- |
-| `dp?` | `number`       | Decimal places, 0 to 1e+6 inclusive                            |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `dp?` | `number` | Decimal places, 0 to 1e+6 inclusive |
 | `rm?` | `RoundingMode` | Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up). |
 
 #### Returns
@@ -800,7 +800,7 @@ Big.toExponential
 
 node_modules/@types/big.js/index.d.ts:298
 
----
+___
 
 ### toFixed
 
@@ -822,9 +822,9 @@ This is also unlike Number.prototype.toFixed, which returns the value to zero de
 
 #### Parameters
 
-| Name  | Type           | Description                                                    |
-| :---- | :------------- | :------------------------------------------------------------- |
-| `dp?` | `number`       | Decimal places, 0 to 1e+6 inclusive                            |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `dp?` | `number` | Decimal places, 0 to 1e+6 inclusive |
 | `rm?` | `RoundingMode` | Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up). |
 
 #### Returns
@@ -839,7 +839,7 @@ Big.toFixed
 
 node_modules/@types/big.js/index.d.ts:316
 
----
+___
 
 ### toHexString
 
@@ -854,9 +854,9 @@ For now, TypeScript will complain that `TinyBig` is not a `BigNumberish`. You ca
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:16](https://github.com/Earnifi/essential-eth/blob/142e41f/src/shared/tiny-big/tiny-big.ts#L16)
+[src/shared/tiny-big/tiny-big.ts:16](https://github.com/Earnifi/essential-eth/blob/2d97564/src/shared/tiny-big/tiny-big.ts#L16)
 
----
+___
 
 ### toJSON
 
@@ -881,7 +881,7 @@ Big.toJSON
 
 node_modules/@types/big.js/index.d.ts:367
 
----
+___
 
 ### toNumber
 
@@ -897,9 +897,9 @@ Big.toNumber
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:19](https://github.com/Earnifi/essential-eth/blob/142e41f/src/shared/tiny-big/tiny-big.ts#L19)
+[src/shared/tiny-big/tiny-big.ts:19](https://github.com/Earnifi/essential-eth/blob/2d97564/src/shared/tiny-big/tiny-big.ts#L19)
 
----
+___
 
 ### toPrecision
 
@@ -919,9 +919,9 @@ If sd is omitted, or is null or undefined, then the return value is the same as 
 
 #### Parameters
 
-| Name  | Type           | Description                                                    |
-| :---- | :------------- | :------------------------------------------------------------- |
-| `sd?` | `number`       | Significant digits, 1 to 1e+6 inclusive                        |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `sd?` | `number` | Significant digits, 1 to 1e+6 inclusive |
 | `rm?` | `RoundingMode` | Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up). |
 
 #### Returns
@@ -936,7 +936,7 @@ Big.toPrecision
 
 node_modules/@types/big.js/index.d.ts:332
 
----
+___
 
 ### toString
 
@@ -952,9 +952,9 @@ Big.toString
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:23](https://github.com/Earnifi/essential-eth/blob/142e41f/src/shared/tiny-big/tiny-big.ts#L23)
+[src/shared/tiny-big/tiny-big.ts:23](https://github.com/Earnifi/essential-eth/blob/2d97564/src/shared/tiny-big/tiny-big.ts#L23)
 
----
+___
 
 ### valueOf
 

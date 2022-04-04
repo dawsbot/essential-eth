@@ -1,7 +1,7 @@
 ---
-id: 'JSONABIArgument'
-title: 'Interface: JSONABIArgument'
-sidebar_label: 'JSONABIArgument'
+id: "JSONABIArgument"
+title: "Interface: JSONABIArgument"
+sidebar_label: "JSONABIArgument"
 sidebar_position: 0
 custom_edit_url: null
 ---
@@ -10,13 +10,13 @@ custom_edit_url: null
 
 ### anonymous
 
-• `Optional` **anonymous**: `false`
+• `Optional` **anonymous**: ``false``
 
 #### Defined in
 
-[src/types/Contract.types.ts:48](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L48)
+[src/types/Contract.types.ts:48](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L48)
 
----
+___
 
 ### constant
 
@@ -24,9 +24,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Contract.types.ts:64](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L64)
+[src/types/Contract.types.ts:64](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L64)
 
----
+___
 
 ### gas
 
@@ -34,19 +34,19 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Contract.types.ts:63](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L63)
+[src/types/Contract.types.ts:63](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L63)
 
----
+___
 
 ### inputs
 
-• **inputs**: { `indexed?`: `boolean` ; `internalType?`: `string` ; `name`: `string` ; `type`: `string` }[]
+• **inputs**: { `indexed?`: `boolean` ; `internalType?`: `string` ; `name`: `string` ; `type`: `string`  }[]
 
 #### Defined in
 
-[src/types/Contract.types.ts:49](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L49)
+[src/types/Contract.types.ts:49](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L49)
 
----
+___
 
 ### name
 
@@ -54,19 +54,19 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Contract.types.ts:55](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L55)
+[src/types/Contract.types.ts:55](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L55)
 
----
+___
 
 ### outputs
 
-• `Optional` **outputs**: { `internalType?`: `string` ; `name`: `string` ; `type`: `string` }[]
+• `Optional` **outputs**: { `internalType?`: `string` ; `name`: `string` ; `type`: `string`  }[]
 
 #### Defined in
 
-[src/types/Contract.types.ts:56](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L56)
+[src/types/Contract.types.ts:56](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L56)
 
----
+___
 
 ### payable
 
@@ -74,9 +74,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Contract.types.ts:65](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L65)
+[src/types/Contract.types.ts:65](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L65)
 
----
+___
 
 ### stateMutability
 
@@ -84,14 +84,14 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Contract.types.ts:61](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L61)
+[src/types/Contract.types.ts:61](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L61)
 
----
+___
 
 ### type
 
-• **type**: `"function"` \| `"event"` \| `"constructor"` \| `"error"` \| `"fallback"`
+• **type**: ``"function"`` \| ``"event"`` \| ``"constructor"`` \| ``"error"`` \| ``"fallback"``
 
 #### Defined in
 
-[src/types/Contract.types.ts:62](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L62)
+[src/types/Contract.types.ts:62](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L62)

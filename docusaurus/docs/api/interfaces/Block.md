@@ -1,7 +1,7 @@
 ---
-id: 'Block'
-title: 'Interface: Block'
-sidebar_label: 'Block'
+id: "Block"
+title: "Interface: Block"
+sidebar_label: "Block"
 sidebar_position: 0
 custom_edit_url: null
 ---
@@ -14,9 +14,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:4](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L4)
+[src/types/Block.types.ts:4](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L4)
 
----
+___
 
 ### difficulty
 
@@ -24,9 +24,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:5](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L5)
+[src/types/Block.types.ts:5](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L5)
 
----
+___
 
 ### extraData
 
@@ -34,9 +34,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:6](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L6)
+[src/types/Block.types.ts:6](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L6)
 
----
+___
 
 ### gasLimit
 
@@ -44,9 +44,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:7](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L7)
+[src/types/Block.types.ts:7](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L7)
 
----
+___
 
 ### gasUsed
 
@@ -54,9 +54,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:8](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L8)
+[src/types/Block.types.ts:8](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L8)
 
----
+___
 
 ### hash
 
@@ -64,9 +64,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:9](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L9)
+[src/types/Block.types.ts:9](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L9)
 
----
+___
 
 ### logsBloom
 
@@ -74,9 +74,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:10](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L10)
+[src/types/Block.types.ts:10](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L10)
 
----
+___
 
 ### miner
 
@@ -84,9 +84,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:11](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L11)
+[src/types/Block.types.ts:11](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L11)
 
----
+___
 
 ### mixHash
 
@@ -94,9 +94,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:12](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L12)
+[src/types/Block.types.ts:12](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L12)
 
----
+___
 
 ### nonce
 
@@ -104,9 +104,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:13](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L13)
+[src/types/Block.types.ts:13](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L13)
 
----
+___
 
 ### number
 
@@ -114,9 +114,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:14](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L14)
+[src/types/Block.types.ts:14](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L14)
 
----
+___
 
 ### parentHash
 
@@ -124,9 +124,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:15](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L15)
+[src/types/Block.types.ts:15](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L15)
 
----
+___
 
 ### receiptsRoot
 
@@ -134,9 +134,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:16](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L16)
+[src/types/Block.types.ts:16](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L16)
 
----
+___
 
 ### sha3Uncles
 
@@ -144,9 +144,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:17](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L17)
+[src/types/Block.types.ts:17](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L17)
 
----
+___
 
 ### size
 
@@ -154,9 +154,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:18](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L18)
+[src/types/Block.types.ts:18](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L18)
 
----
+___
 
 ### stateRoot
 
@@ -164,9 +164,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:19](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L19)
+[src/types/Block.types.ts:19](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L19)
 
----
+___
 
 ### timestamp
 
@@ -174,9 +174,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:20](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L20)
+[src/types/Block.types.ts:20](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L20)
 
----
+___
 
 ### totalDifficulty
 
@@ -184,9 +184,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:21](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L21)
+[src/types/Block.types.ts:21](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L21)
 
----
+___
 
 ### transactions
 
@@ -194,9 +194,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:22](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L22)
+[src/types/Block.types.ts:22](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L22)
 
----
+___
 
 ### transactionsRoot
 
@@ -204,9 +204,9 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:23](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L23)
+[src/types/Block.types.ts:23](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L23)
 
----
+___
 
 ### uncles
 
@@ -214,4 +214,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Block.types.ts:24](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Block.types.ts#L24)
+[src/types/Block.types.ts:24](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Block.types.ts#L24)

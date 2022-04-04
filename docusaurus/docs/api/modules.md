@@ -1,7 +1,7 @@
 ---
-id: 'modules'
-title: 'essential-eth'
-sidebar_label: 'Exports'
+id: "modules"
+title: "essential-eth"
+sidebar_label: "Exports"
 sidebar_position: 0.5
 custom_edit_url: null
 ---
@@ -23,13 +23,13 @@ custom_edit_url: null
 
 ### ContractTypes
 
-Ƭ **ContractTypes**: `"bool"` \| `"bytes1"` \| `"bytes2"` \| `"bytes3"` \| `"bytes4"` \| `"bytes5"` \| `"bytes6"` \| `"bytes7"` \| `"bytes8"` \| `"bytes9"` \| `"bytes10"` \| `"bytes11"` \| `"bytes12"` \| `"bytes13"` \| `"bytes14"` \| `"bytes15"` \| `"bytes16"` \| `"bytes17"` \| `"bytes18"` \| `"bytes19"` \| `"bytes20"` \| `"bytes21"` \| `"bytes22"` \| `"bytes23"` \| `"bytes24"` \| `"bytes25"` \| `"bytes26"` \| `"bytes27"` \| `"bytes28"` \| `"bytes29"` \| `"bytes30"` \| `"bytes31"` \| `"bytes32"` \| `"bytes32[]"` \| `"address"` \| `"address payable"` \| `"address[4]"` \| `"address[100]"` \| `"uint256"` \| `"uint256[100]"` \| `"uint8"` \| `"uint32"` \| `string`
+Ƭ **ContractTypes**: ``"bool"`` \| ``"bytes1"`` \| ``"bytes2"`` \| ``"bytes3"`` \| ``"bytes4"`` \| ``"bytes5"`` \| ``"bytes6"`` \| ``"bytes7"`` \| ``"bytes8"`` \| ``"bytes9"`` \| ``"bytes10"`` \| ``"bytes11"`` \| ``"bytes12"`` \| ``"bytes13"`` \| ``"bytes14"`` \| ``"bytes15"`` \| ``"bytes16"`` \| ``"bytes17"`` \| ``"bytes18"`` \| ``"bytes19"`` \| ``"bytes20"`` \| ``"bytes21"`` \| ``"bytes22"`` \| ``"bytes23"`` \| ``"bytes24"`` \| ``"bytes25"`` \| ``"bytes26"`` \| ``"bytes27"`` \| ``"bytes28"`` \| ``"bytes29"`` \| ``"bytes30"`` \| ``"bytes31"`` \| ``"bytes32"`` \| ``"bytes32[]"`` \| ``"address"`` \| ``"address payable"`` \| ``"address[4]"`` \| ``"address[100]"`` \| ``"uint256"`` \| ``"uint256[100]"`` \| ``"uint8"`` \| ``"uint32"`` \| `string`
 
 #### Defined in
 
-[src/types/Contract.types.ts:1](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L1)
+[src/types/Contract.types.ts:1](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L1)
 
----
+___
 
 ### JSONABI
 
@@ -37,7 +37,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Contract.types.ts:67](https://github.com/Earnifi/essential-eth/blob/142e41f/src/types/Contract.types.ts#L67)
+[src/types/Contract.types.ts:67](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Contract.types.ts#L67)
 
 ## Functions
 
@@ -50,27 +50,25 @@ Similar to ["parseEther" in ethers.js](https://docs.ethers.io/v4/api-utils.html#
 Similar to ["toWei" in web3](https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html?highlight=towei#towei)
 
 **`example`**
-
 ```javascript
-etherToWei('1000').toString();
+etherToWei('1000').toString()
 // '1000000000000000000000'
-etherToWei(1000).toString();
+etherToWei(1000).toString()
 // '1000000000000000000000'
 ```
 
 **`example`**
-
 ```javascript
-etherToWei('1000').toNumber();
+etherToWei('1000').toNumber()
 // 1000000000000000000000
-etherToWei(1000).toNumber();
+etherToWei(1000).toNumber()
 // 1000000000000000000000
 ```
 
 #### Parameters
 
-| Name            | Type                                                             |
-| :-------------- | :--------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `etherQuantity` | `string` \| `number` \| [`TinyBig`](classes/TinyBig.md) \| `Big` |
 
 #### Returns
@@ -79,9 +77,9 @@ etherToWei(1000).toNumber();
 
 #### Defined in
 
-[src/utils/ether-to-wei.ts:26](https://github.com/Earnifi/essential-eth/blob/142e41f/src/utils/ether-to-wei.ts#L26)
+[src/utils/ether-to-wei.ts:26](https://github.com/Earnifi/essential-eth/blob/2d97564/src/utils/ether-to-wei.ts#L26)
 
----
+___
 
 ### isAddress
 
@@ -92,8 +90,8 @@ Does NOT support ICAP addresses
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `address` | `string` |
 
 #### Returns
@@ -102,9 +100,9 @@ Does NOT support ICAP addresses
 
 #### Defined in
 
-[src/utils/is-address.ts:8](https://github.com/Earnifi/essential-eth/blob/142e41f/src/utils/is-address.ts#L8)
+[src/utils/is-address.ts:8](https://github.com/Earnifi/essential-eth/blob/2d97564/src/utils/is-address.ts#L8)
 
----
+___
 
 ### jsonRpcProvider
 
@@ -114,8 +112,8 @@ Helper function to avoid "new"
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `rpcUrl?` | `string` |
 
 #### Returns
@@ -124,9 +122,9 @@ Helper function to avoid "new"
 
 #### Defined in
 
-[src/providers/JsonRpcProvider.ts:82](https://github.com/Earnifi/essential-eth/blob/142e41f/src/providers/JsonRpcProvider.ts#L82)
+[src/providers/JsonRpcProvider.ts:82](https://github.com/Earnifi/essential-eth/blob/2d97564/src/providers/JsonRpcProvider.ts#L82)
 
----
+___
 
 ### tinyBig
 
@@ -136,8 +134,8 @@ Helper factory function so that you don't have to type "new" when instantiating 
 
 #### Parameters
 
-| Name    | Type                                                             |
-| :------ | :--------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `value` | `string` \| `number` \| [`TinyBig`](classes/TinyBig.md) \| `Big` |
 
 #### Returns
@@ -146,9 +144,9 @@ Helper factory function so that you don't have to type "new" when instantiating 
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:34](https://github.com/Earnifi/essential-eth/blob/142e41f/src/shared/tiny-big/tiny-big.ts#L34)
+[src/shared/tiny-big/tiny-big.ts:34](https://github.com/Earnifi/essential-eth/blob/2d97564/src/shared/tiny-big/tiny-big.ts#L34)
 
----
+___
 
 ### toChecksumAddress
 
@@ -158,7 +156,6 @@ Returns an Ethereum address in proper mixed-case checksum.
 Does NOT support ICAP
 
 **`example`**
-
 ```javascript
 toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
 // '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
@@ -170,8 +167,8 @@ Similar to ["toChecksumAddress" in web3](https://web3js.readthedocs.io/en/v1.2.1
 
 #### Parameters
 
-| Name      | Type     | Description                                                    |
-| :-------- | :------- | :------------------------------------------------------------- |
+| Name | Type | Description |
+| :------ | :------ | :------ |
 | `address` | `string` | An Ethereum address. Mixed, lower, and uppercase are all valid |
 
 #### Returns
@@ -180,9 +177,9 @@ Similar to ["toChecksumAddress" in web3](https://web3js.readthedocs.io/en/v1.2.1
 
 #### Defined in
 
-[src/utils/to-checksum-address.ts:20](https://github.com/Earnifi/essential-eth/blob/142e41f/src/utils/to-checksum-address.ts#L20)
+[src/utils/to-checksum-address.ts:20](https://github.com/Earnifi/essential-eth/blob/2d97564/src/utils/to-checksum-address.ts#L20)
 
----
+___
 
 ### weiToEther
 
@@ -195,27 +192,25 @@ Similar to ["formatEther" in ethers.js](https://docs.ethers.io/v4/api-utils.html
 Similar to ["fromWei" in web3](https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html#fromwei)
 
 **`example`**
-
 ```javascript
-etherToWei('1000').toString();
+etherToWei('1000').toString()
 // '1000000000000000000000'
-etherToWei(1000).toString();
-('1000000000000000000000');
+etherToWei(1000).toString()
+'1000000000000000000000'
 ```
 
 **`example`**
-
 ```javascript
-etherToWei('1000').toNumber();
+etherToWei('1000').toNumber()
 // 1000000000000000000000
-etherToWei(1000).toNumber();
+etherToWei(1000).toNumber()
 // 1000000000000000000000
 ```
 
 #### Parameters
 
-| Name          | Type                                                             |
-| :------------ | :--------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `weiQuantity` | `string` \| `number` \| [`TinyBig`](classes/TinyBig.md) \| `Big` |
 
 #### Returns
@@ -224,4 +219,4 @@ etherToWei(1000).toNumber();
 
 #### Defined in
 
-[src/utils/wei-to-ether.ts:29](https://github.com/Earnifi/essential-eth/blob/142e41f/src/utils/wei-to-ether.ts#L29)
+[src/utils/wei-to-ether.ts:29](https://github.com/Earnifi/essential-eth/blob/2d97564/src/utils/wei-to-ether.ts#L29)

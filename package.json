@@ -22,11 +22,10 @@
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
     "build": "rm -rf lib && npm run compile",
-    "prepublishOnly": "npm run build && npm run build:website && npm run build:website:new-version",
+    "prepublishOnly": "npm run build && npm run build:website",
     "jest": "jest",
     "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
-    "build:website": "sh scripts/build-website.sh",
-    "build:website:new-version": "typedoc --options typedoc/options-new-version.js",
+    "build:website": "cd docusaurus && npm run build",
     "pre-commit": "sh scripts/pre-commit.sh"
   },
   "devDependencies": {

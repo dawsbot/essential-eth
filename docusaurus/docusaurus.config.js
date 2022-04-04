@@ -12,7 +12,8 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon:
+    'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/feather_1fab6.png',
   organizationName: 'earnifi', // Usually your GitHub org/user name.
   projectName: 'essential-eth', // Usually your repo name.
   plugins: [
@@ -52,7 +53,7 @@ const config = {
         title: 'Essential Eth',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/feather_1fab6.png',
         },
         items: [
           {

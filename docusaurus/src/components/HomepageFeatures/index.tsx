@@ -2,50 +2,50 @@ import clsx from 'clsx';
 import React from 'react';
 import styles from './styles.module.css';
 
-type FeatureItem = {
+interface FeatureItem {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  src: string;
   description: JSX.Element;
-};
+}
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Lite',
+    src: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/feather_1fab6.png',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Essential Eth was designed from the ground up to be minimal and fast.
+        This brings web3 to emerging markets and slow internet connections.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Easy to try',
+    src: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/high-voltage_26a1.png',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Essential Eth matches the API of ethers.js and web3.js. Upgrading is a
+        breeze.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Tested and Typed',
+    src: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/test-tube_1f9ea.png',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        With full TypeScript integration and jest tests, you can enjoy fewer
+        bugs and a more delightful coding experience.
       </>
     ),
   },
 ];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({ title, src, description }: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <img src={src} />
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
@@ -57,7 +57,7 @@ function Feature({ title, Svg, description }: FeatureItem) {
 
 export default function HomepageFeatures(): JSX.Element {
   return (
-    <section className={styles.features}>
+    <section className={styles.features} style={{ marginTop: '80px' }}>
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
