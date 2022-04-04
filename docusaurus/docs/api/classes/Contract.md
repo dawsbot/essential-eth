@@ -82,4 +82,4 @@ BaseContract.constructor
 
 #### Defined in
 
-[src/classes/Contract.ts:31](https://github.com/Earnifi/essential-eth/blob/2d97564/src/classes/Contract.ts#L31)
+[src/classes/Contract.ts:31](https://github.com/Earnifi/essential-eth/blob/af2c074/src/classes/Contract.ts#L31)

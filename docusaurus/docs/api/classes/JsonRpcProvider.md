@@ -20,7 +20,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/providers/JsonRpcProvider.ts:13](https://github.com/Earnifi/essential-eth/blob/2d97564/src/providers/JsonRpcProvider.ts#L13)
+[src/providers/JsonRpcProvider.ts:13](https://github.com/Earnifi/essential-eth/blob/af2c074/src/providers/JsonRpcProvider.ts#L13)
 
 ## Properties
 
@@ -32,7 +32,7 @@ The URL to your Eth node. Consider POKT or Infura
 
 #### Defined in
 
-[src/providers/JsonRpcProvider.ts:12](https://github.com/Earnifi/essential-eth/blob/2d97564/src/providers/JsonRpcProvider.ts#L12)
+[src/providers/JsonRpcProvider.ts:12](https://github.com/Earnifi/essential-eth/blob/af2c074/src/providers/JsonRpcProvider.ts#L12)
 
 ## Methods
 
@@ -56,7 +56,7 @@ Same as `web3.eth.getBlock`
 
 #### Defined in
 
-[src/providers/JsonRpcProvider.ts:21](https://github.com/Earnifi/essential-eth/blob/2d97564/src/providers/JsonRpcProvider.ts#L21)
+[src/providers/JsonRpcProvider.ts:21](https://github.com/Earnifi/essential-eth/blob/af2c074/src/providers/JsonRpcProvider.ts#L21)
 
 ___
 
@@ -73,7 +73,7 @@ Same as `ethers.provider.getGasPrice`
 
 #### Defined in
 
-[src/providers/JsonRpcProvider.ts:70](https://github.com/Earnifi/essential-eth/blob/2d97564/src/providers/JsonRpcProvider.ts#L70)
+[src/providers/JsonRpcProvider.ts:70](https://github.com/Earnifi/essential-eth/blob/af2c074/src/providers/JsonRpcProvider.ts#L70)
 
 ___
 
@@ -89,4 +89,4 @@ Returns the network this provider is connected to
 
 #### Defined in
 
-[src/providers/JsonRpcProvider.ts:53](https://github.com/Earnifi/essential-eth/blob/2d97564/src/providers/JsonRpcProvider.ts#L53)
+[src/providers/JsonRpcProvider.ts:53](https://github.com/Earnifi/essential-eth/blob/af2c074/src/providers/JsonRpcProvider.ts#L53)

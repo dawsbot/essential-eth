@@ -193,7 +193,7 @@ const essentialEth = new JsonRpcProvider();
 Returns the current gas price in gwei
 
 ```typescript
-// Same as ethers.provider.getGasPrice
+// Same as ethers.providers.getGasPrice
 getGasPrice(): Promise<TinyBig>
 ```
 
@@ -216,10 +216,10 @@ provider.getGasPrice().toNumber();
 
 #### `getNetwork`
 
-Returns a [Network](src/types/Network.types.ts)
+Returns a Network
 
 ```typescript
-// Same API as ethers getNetwork
+// Same API as ethers.providers.getNetwork
 getNetwork(): Promise<Network>
 ```
 
@@ -250,7 +250,7 @@ xdaiProvider.getNetwork();
 
 #### `getBlock`
 
-Returns a [Block](src/types/Block.types.ts)
+Returns a Block
 
 ```typescript
 // Same API as web3.eth.getBlock

@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Transaction.types.ts:2](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L2)
+[src/types/Transaction.types.ts:2](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L2)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:3](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L3)
+[src/types/Transaction.types.ts:3](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L3)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:4](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L4)
+[src/types/Transaction.types.ts:4](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L4)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:5](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L5)
+[src/types/Transaction.types.ts:5](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L5)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:6](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L6)
+[src/types/Transaction.types.ts:6](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L6)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:7](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L7)
+[src/types/Transaction.types.ts:7](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L7)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:8](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L8)
+[src/types/Transaction.types.ts:8](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L8)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:9](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L9)
+[src/types/Transaction.types.ts:9](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L9)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:10](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L10)
+[src/types/Transaction.types.ts:10](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L10)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:11](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L11)
+[src/types/Transaction.types.ts:11](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L11)
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:12](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L12)
+[src/types/Transaction.types.ts:12](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L12)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:13](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L13)
+[src/types/Transaction.types.ts:13](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L13)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:14](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L14)
+[src/types/Transaction.types.ts:14](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L14)
 
 ___
 
@@ -144,7 +144,7 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:15](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L15)
+[src/types/Transaction.types.ts:15](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L15)
 
 ___
 
@@ -154,4 +154,4 @@ ___
 
 #### Defined in
 
-[src/types/Transaction.types.ts:16](https://github.com/Earnifi/essential-eth/blob/2d97564/src/types/Transaction.types.ts#L16)
+[src/types/Transaction.types.ts:16](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Transaction.types.ts#L16)
