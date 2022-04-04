@@ -1,10 +1,9 @@
 import { ethers } from 'ethers';
 import { JsonRpcProvider } from '../..';
-import { fakeUrls } from './rpc-urls';
+import { fakeUrls, rpcUrls } from './rpc-urls';
 
-const xdaiRPCUrl = `${process.env.RPC_ORIGIN}/api/xdai`;
-const bscRPCUrl = `${process.env.RPC_ORIGIN}/api/bsc`;
-// const kovanRPCUrl = `${process.env.RPC_ORIGIN}/api/kovan`;
+const xdaiRPCUrl = rpcUrls.gno;
+const bscRPCUrl = rpcUrls.bnb;
 
 describe('provider.getNetwork happy path', () => {
   async function testNetwork(rpcUrl: string) {

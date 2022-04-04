@@ -2,12 +2,13 @@ import { Contract as EthersContract } from '@ethersproject/contracts';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
 import { Contract as EssentialEthContract } from '../../Contract';
+import { rpcUrls } from './../../../providers/test/rpc-urls';
 import { ensABI } from './ens-abi';
 
 // The JSONABI
 const JSONABI = ensABI;
 
-const rpcURL = `${process.env.RPC_ORIGIN}/api/eth`;
+const rpcURL = rpcUrls.mainnet;
 const ethersProvider = new StaticJsonRpcProvider(rpcURL);
 const essentialEthProvider = new JsonRpcProvider(rpcURL);
 

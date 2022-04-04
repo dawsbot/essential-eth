@@ -1,7 +1,8 @@
 import { ethers } from 'ethers';
 import { JsonRpcProvider } from '../..';
+import { rpcUrls } from './rpc-urls';
 
-const rpcUrl = `${process.env.RPC_ORIGIN}/api/eth`;
+const rpcUrl = rpcUrls.mainnet;
 
 describe('provider.getGasPrice', () => {
   it('should match ethers and essential-eth', async () => {
