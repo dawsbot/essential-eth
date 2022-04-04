@@ -1,3 +1,12 @@
+---
+id: "index"
+title: "essential-eth"
+slug: "/api/"
+sidebar_label: "Readme"
+sidebar_position: 0
+custom_edit_url: null
+---
+
 <p align="center">
   <a><img src="https://user-images.githubusercontent.com/3408480/161474132-ae95d289-2298-46f1-b48d-9c02d88f7e38.png" title="Logo" height="400" /></a>
 </p>
