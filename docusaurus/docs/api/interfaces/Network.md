@@ -16,7 +16,7 @@ A trimmed version of https://chainid.network/chains.json
 
 #### Defined in
 
-[src/types/Network.types.ts:5](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Network.types.ts#L5)
+[src/types/Network.types.ts:5](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Network.types.ts#L5)
 
 ___
 
@@ -26,7 +26,7 @@ ___
 
 #### Defined in
 
-[src/types/Network.types.ts:6](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Network.types.ts#L6)
+[src/types/Network.types.ts:6](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Network.types.ts#L6)
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 #### Defined in
 
-[src/types/Network.types.ts:7](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Network.types.ts#L7)
+[src/types/Network.types.ts:7](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Network.types.ts#L7)

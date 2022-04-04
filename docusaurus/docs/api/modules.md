@@ -27,7 +27,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Contract.types.ts:1](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L1)
+[src/types/Contract.types.ts:1](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L1)
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 #### Defined in
 
-[src/types/Contract.types.ts:67](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L67)
+[src/types/Contract.types.ts:67](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L67)
 
 ## Functions
 
@@ -77,7 +77,7 @@ etherToWei(1000).toNumber()
 
 #### Defined in
 
-[src/utils/ether-to-wei.ts:26](https://github.com/Earnifi/essential-eth/blob/af2c074/src/utils/ether-to-wei.ts#L26)
+[src/utils/ether-to-wei.ts:26](https://github.com/Earnifi/essential-eth/blob/94802f1/src/utils/ether-to-wei.ts#L26)
 
 ___
 
@@ -100,7 +100,7 @@ Does NOT support ICAP addresses
 
 #### Defined in
 
-[src/utils/is-address.ts:8](https://github.com/Earnifi/essential-eth/blob/af2c074/src/utils/is-address.ts#L8)
+[src/utils/is-address.ts:8](https://github.com/Earnifi/essential-eth/blob/94802f1/src/utils/is-address.ts#L8)
 
 ___
 
@@ -122,7 +122,7 @@ Helper function to avoid "new"
 
 #### Defined in
 
-[src/providers/JsonRpcProvider.ts:82](https://github.com/Earnifi/essential-eth/blob/af2c074/src/providers/JsonRpcProvider.ts#L82)
+[src/providers/JsonRpcProvider.ts:82](https://github.com/Earnifi/essential-eth/blob/94802f1/src/providers/JsonRpcProvider.ts#L82)
 
 ___
 
@@ -144,7 +144,7 @@ Helper factory function so that you don't have to type "new" when instantiating 
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:34](https://github.com/Earnifi/essential-eth/blob/af2c074/src/shared/tiny-big/tiny-big.ts#L34)
+[src/shared/tiny-big/tiny-big.ts:34](https://github.com/Earnifi/essential-eth/blob/94802f1/src/shared/tiny-big/tiny-big.ts#L34)
 
 ___
 
@@ -177,7 +177,7 @@ Similar to ["toChecksumAddress" in web3](https://web3js.readthedocs.io/en/v1.2.1
 
 #### Defined in
 
-[src/utils/to-checksum-address.ts:20](https://github.com/Earnifi/essential-eth/blob/af2c074/src/utils/to-checksum-address.ts#L20)
+[src/utils/to-checksum-address.ts:20](https://github.com/Earnifi/essential-eth/blob/94802f1/src/utils/to-checksum-address.ts#L20)
 
 ___
 
@@ -219,4 +219,4 @@ etherToWei(1000).toNumber()
 
 #### Defined in
 
-[src/utils/wei-to-ether.ts:29](https://github.com/Earnifi/essential-eth/blob/af2c074/src/utils/wei-to-ether.ts#L29)
+[src/utils/wei-to-ether.ts:29](https://github.com/Earnifi/essential-eth/blob/94802f1/src/utils/wei-to-ether.ts#L29)

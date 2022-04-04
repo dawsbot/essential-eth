@@ -143,6 +143,9 @@ export default {
   "53": [
     "tcet"
   ],
+  "54": [
+    "OP"
+  ],
   "55": [
     "ZYX"
   ],
@@ -302,6 +305,9 @@ export default {
   "137": [
     "MATIC"
   ],
+  "141": [
+    "OPtest"
+  ],
   "142": [
     "dax"
   ],
@@ -310,6 +316,9 @@ export default {
   ],
   "163": [
     "pht"
+  ],
+  "168": [
+    "aioz"
   ],
   "170": [
     "hoosmartchain"
@@ -335,8 +344,17 @@ export default {
   "211": [
     "EDI"
   ],
+  "218": [
+    "SO1-old"
+  ],
   "222": [
     "ASK"
+  ],
+  "225": [
+    "LA"
+  ],
+  "226": [
+    "TLA"
   ],
   "246": [
     "ewt"
@@ -443,6 +461,9 @@ export default {
   "787": [
     "aca"
   ],
+  "788": [
+    "taero"
+  ],
   "803": [
     "haic"
   ],
@@ -548,11 +569,17 @@ export default {
   "1285": [
     "mriver"
   ],
+  "1286": [
+    "mrock-old"
+  ],
   "1287": [
     "mbase"
   ],
   "1288": [
     "mrock"
+  ],
+  "1337": [
+    "cennz-a"
   ],
   "1618": [
     "cate"
@@ -563,6 +590,9 @@ export default {
   "1657": [
     "bta"
   ],
+  "1688": [
+    "LUDAN"
+  ],
   "1856": [
     "tsf"
   ],
@@ -571,6 +601,9 @@ export default {
   ],
   "1987": [
     "egem"
+  ],
+  "2001": [
+    "milkAda"
   ],
   "2020": [
     "420"
@@ -593,8 +626,17 @@ export default {
   "2213": [
     "evanesco"
   ],
+  "2221": [
+    "kava"
+  ],
   "2559": [
     "ktoc"
+  ],
+  "3000": [
+    "cennz-r"
+  ],
+  "3001": [
+    "cennz-n"
   ],
   "3331": [
     "zcrbeach"
@@ -623,6 +665,9 @@ export default {
   "4002": [
     "tftm"
   ],
+  "4102": [
+    "aioz-testnet"
+  ],
   "4689": [
     "iotex-mainnet"
   ],
@@ -640,6 +685,9 @@ export default {
   ],
   "5700": [
     "tsys"
+  ],
+  "5777": [
+    "dgcc"
   ],
   "5851": [
     "Ontology Testnet"
@@ -785,6 +833,9 @@ export default {
   "44787": [
     "ALFA"
   ],
+  "45000": [
+    "autobahn"
+  ],
   "47805": [
     "REI"
   ],
@@ -908,6 +959,9 @@ export default {
   "110008": [
     "qkc-d-s7"
   ],
+  "200101": [
+    "milkTAda"
+  ],
   "200625": [
     "aka"
   ],
@@ -916,9 +970,6 @@ export default {
   ],
   "201030": [
     "alayadev"
-  ],
-  "210309": [
-    "platondev"
   ],
   "210425": [
     "platon"
@@ -964,6 +1015,9 @@ export default {
   ],
   "1337702": [
     "kintsugi"
+  ],
+  "2203181": [
+    "platondev"
   ],
   "7762959": [
     "music"

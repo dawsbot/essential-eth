@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/Contract.types.ts:48](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L48)
+[src/types/Contract.types.ts:48](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L48)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[src/types/Contract.types.ts:64](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L64)
+[src/types/Contract.types.ts:64](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L64)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[src/types/Contract.types.ts:63](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L63)
+[src/types/Contract.types.ts:63](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L63)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[src/types/Contract.types.ts:49](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L49)
+[src/types/Contract.types.ts:49](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L49)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[src/types/Contract.types.ts:55](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L55)
+[src/types/Contract.types.ts:55](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L55)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[src/types/Contract.types.ts:56](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L56)
+[src/types/Contract.types.ts:56](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L56)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[src/types/Contract.types.ts:65](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L65)
+[src/types/Contract.types.ts:65](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L65)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[src/types/Contract.types.ts:61](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L61)
+[src/types/Contract.types.ts:61](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L61)
 
 ___
 
@@ -94,4 +94,4 @@ ___
 
 #### Defined in
 
-[src/types/Contract.types.ts:62](https://github.com/Earnifi/essential-eth/blob/af2c074/src/types/Contract.types.ts#L62)
+[src/types/Contract.types.ts:62](https://github.com/Earnifi/essential-eth/blob/94802f1/src/types/Contract.types.ts#L62)

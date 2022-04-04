@@ -33,7 +33,7 @@ Big.constructor
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:9](https://github.com/Earnifi/essential-eth/blob/af2c074/src/shared/tiny-big/tiny-big.ts#L9)
+[src/shared/tiny-big/tiny-big.ts:9](https://github.com/Earnifi/essential-eth/blob/94802f1/src/shared/tiny-big/tiny-big.ts#L9)
 
 ## Properties
 
@@ -854,7 +854,7 @@ For now, TypeScript will complain that `TinyBig` is not a `BigNumberish`. You ca
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:16](https://github.com/Earnifi/essential-eth/blob/af2c074/src/shared/tiny-big/tiny-big.ts#L16)
+[src/shared/tiny-big/tiny-big.ts:16](https://github.com/Earnifi/essential-eth/blob/94802f1/src/shared/tiny-big/tiny-big.ts#L16)
 
 ___
 
@@ -897,7 +897,7 @@ Big.toNumber
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:19](https://github.com/Earnifi/essential-eth/blob/af2c074/src/shared/tiny-big/tiny-big.ts#L19)
+[src/shared/tiny-big/tiny-big.ts:19](https://github.com/Earnifi/essential-eth/blob/94802f1/src/shared/tiny-big/tiny-big.ts#L19)
 
 ___
 
@@ -952,7 +952,7 @@ Big.toString
 
 #### Defined in
 
-[src/shared/tiny-big/tiny-big.ts:23](https://github.com/Earnifi/essential-eth/blob/af2c074/src/shared/tiny-big/tiny-big.ts#L23)
+[src/shared/tiny-big/tiny-big.ts:23](https://github.com/Earnifi/essential-eth/blob/94802f1/src/shared/tiny-big/tiny-big.ts#L23)
 
 ___
 

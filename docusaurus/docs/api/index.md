@@ -8,14 +8,14 @@ custom_edit_url: null
 ---
 
 <p align="center">
-  <a><img src="https://blog.ethereum.org/img/2018/08/grants_eth_logo.png" title="Logo" height="400"/></a>
+  <a><img src="https://user-images.githubusercontent.com/3408480/161474132-ae95d289-2298-46f1-b48d-9c02d88f7e38.png" title="Logo" height="400" /></a>
 </p>
 <p align="center">
   <b>
     Essential Eth
   </b>
   <br/>
-  <i>Ultralight Ethereum utilities for JS and TS</i>
+  <i>A replacement for ethers & web3 that's 50x smaller</i>
   <br/>
 </p>
 
