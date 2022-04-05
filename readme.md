@@ -126,6 +126,56 @@ weiToEther('1000000000000000000').toNumber();
 
 <br/>
 
+#### `gweiToEther`
+
+```typescript
+gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { gweiToEther } from 'essential-eth';
+
+gweiToEther(1000000000).toString();
+// "1"
+
+gweiToEther(1000000000).toNumber();
+// 1
+gweiToEther('1000000000').toNumber();
+// 1
+```
+
+</details>
+
+<br/>
+
+#### `etherToGwei`
+
+```typescript
+etherToGwei(weiQuantity: string | number | TinyBig | Big): TinyBig
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { etherToGwei } from 'essential-eth';
+
+etherToGwei(0.000000001).toString();
+// "1"
+
+etherToGwei(0.000000001).toNumber();
+// 1
+etherToGwei('0.000000001').toNumber();
+// 1
+```
+
+</details>
+
+<br/>
+
 #### `toChecksumAddress`
 
 ```typescript

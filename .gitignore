@@ -3,3 +3,4 @@ lib
 coverage
 .versions
 *.docker*
+docusaurus/docs/api
