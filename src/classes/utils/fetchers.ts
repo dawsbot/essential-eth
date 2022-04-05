@@ -30,7 +30,8 @@ type RPCMethodName =
   | 'eth_getBlockByNumber'
   | 'eth_call'
   | 'eth_chainId'
-  | 'eth_gasPrice';
+  | 'eth_gasPrice'
+  | 'eth_getTransactionByHash';
 export function buildRPCPostBody(method: RPCMethodName, params: any[]) {
   return {
     jsonrpc: '2.0',

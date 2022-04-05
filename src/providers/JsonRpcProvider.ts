@@ -4,6 +4,7 @@ import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { Block, RPCBlock } from '../types/Block.types';
 import { Network } from '../types/Network.types';
+import { Transaction } from '../types/Transaction.types';
 import chainsInfo from './utils/chains-info';
 export class JsonRpcProvider {
   /**
@@ -73,6 +74,21 @@ export class JsonRpcProvider {
     };
     const nodeResponse = (await req()) as string; /* '0x153cfb1ad0' */
     return tinyBig(hexToDecimal(nodeResponse));
+  }
+  /**
+   * Returns information about a specified transaction
+   * Includes additional information than what is included in the Transaction type
+   * Similar to `ethers.provider.getTransaction`, some information not included
+   */
+  public async getTransaction(hash: string): Promise<Transaction> {
+    const req = async (): Promise<Transaction> => {
+      return await post(
+        this._rpcUrl,
+        buildRPCPostBody('eth_getTransactionByHash', [hash]),
+      );
+    };
+    const nodeResponse = (await req()) as Transaction;
+    return nodeResponse;
   }
 }
 
