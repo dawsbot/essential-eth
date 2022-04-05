@@ -8,7 +8,7 @@ import { TinyBig } from './../shared/tiny-big/tiny-big';
  *
  * Similar to ["formatEther" in ethers.js](https://docs.ethers.io/v5/api/utils/display-logic/#utils-formatEther)
  *
- * Similar to ["fromWei" in web3](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#fromwei)
+ * Similar to ["fromWei" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#fromwei)
  *
  * @example
  * ```javascript

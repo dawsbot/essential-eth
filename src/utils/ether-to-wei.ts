@@ -5,7 +5,7 @@ import { validateType } from '../shared/validate-type';
 /**
  * Similar to ["parseEther" in ethers.js](https://docs.ethers.io/v5/api/utils/display-logic/#utils-parseEther)
  *
- * Similar to ["toWei" in web3](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#towei)
+ * Similar to ["toWei" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#towei)
  *
  * @example
  * ```javascript

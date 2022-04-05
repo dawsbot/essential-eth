@@ -15,7 +15,7 @@ import { validateType } from '../shared/validate-type';
  *
  * Similar to ["getAddress" in ethers.js](https://docs.ethers.io/v5/api/utils/address/#utils-getAddress)
  *
- * Similar to ["toChecksumAddress" in web3](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#tochecksumaddress)
+ * Similar to ["toChecksumAddress" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#tochecksumaddress)
  */
 export function toChecksumAddress(address: string) {
   validateType(address, ['string']);
