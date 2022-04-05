@@ -1,7 +1,7 @@
 import Big from 'big.js';
 import { gweiToEther, tinyBig } from '../../index';
 
-describe('gwei-to-ether', () => {
+describe('gweiToEther', () => {
   it('happy path', () => {
     expect(gweiToEther('100000000000.0').toString()).toBe('100');
     expect(gweiToEther(100000000000.0).toString()).toBe('100');
