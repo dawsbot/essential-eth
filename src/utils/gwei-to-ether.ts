@@ -15,7 +15,7 @@ import { TinyBig } from './../shared/tiny-big/tiny-big';
  * gweiToEther('1000000000000').toString()
  * // '1000'
  * gweiToEther(1000000000000).toString()
- * '1000'
+ * // '1000'
  * ```
  *
  * @example
@@ -27,9 +27,9 @@ import { TinyBig } from './../shared/tiny-big/tiny-big';
  * ```
  */
 export function gweiToEther(
-  weiQuantity: string | number | TinyBig | Big,
+  gweiQuantity: string | number | TinyBig | Big,
 ): TinyBig {
-  validateType(weiQuantity, ['string', 'number', 'object']);
-  const result = tinyBig(weiQuantity).div('1000000000');
+  validateType(gweiQuantity, ['string', 'number', 'object']);
+  const result = tinyBig(gweiQuantity).div('1000000000');
   return tinyBig(result);
 }

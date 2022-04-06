@@ -63,6 +63,16 @@ const config = {
             label: 'API',
           },
           {
+            href: 'pathname:///docs/api/modules#functions',
+            label: 'utils',
+            position: 'left',
+          },
+          {
+            href: 'pathname:///docs/api/classes/JsonRpcProvider',
+            label: 'providers',
+            position: 'left',
+          },
+          {
             href: 'https://github.com/earnifi/essential-eth',
             label: 'GitHub',
             position: 'right',

@@ -30,6 +30,12 @@ export class TinyBig extends Big {
 
 /**
  * Helper factory function so that you don't have to type "new" when instantiating a new TinyBig
+ *
+ * @example
+ * ```javascript
+ * tinyBig(10).times(3).toNumber()
+ * // 30
+ * ```
  */
 export function tinyBig(value: string | number | TinyBig | Big): TinyBig {
   return new TinyBig(value);

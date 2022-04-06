@@ -154,7 +154,7 @@ gweiToEther('1000000000').toNumber();
 #### `etherToGwei`
 
 ```typescript
-etherToGwei(weiQuantity: string | number | TinyBig | Big): TinyBig
+etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
 ```
 
 <details>
