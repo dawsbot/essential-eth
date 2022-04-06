@@ -78,6 +78,14 @@ export class JsonRpcProvider {
 
 /**
  * Helper function to avoid "new"
+ *
+ * @example
+ * ```javascript
+ * jsonRpcProvider().getBlock('latest').then(block => {
+ *   console.log(block.number);
+ * })
+ * // 14530496
+ * ```
  */
 export function jsonRpcProvider(rpcUrl?: string) {
   return new JsonRpcProvider(rpcUrl);
