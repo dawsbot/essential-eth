@@ -377,6 +377,9 @@ export default {
   "288": [
     "Boba"
   ],
+  "300": [
+    "ogc"
+  ],
   "321": [
     "kcs"
   ],
@@ -515,6 +518,9 @@ export default {
   "1007": [
     "tnew"
   ],
+  "1008": [
+    "eun"
+  ],
   "1010": [
     "EVC"
   ],
@@ -598,6 +604,9 @@ export default {
   ],
   "1898": [
     "boya"
+  ],
+  "1984": [
+    "euntest"
   ],
   "1987": [
     "egem"
