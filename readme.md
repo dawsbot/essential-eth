@@ -264,6 +264,33 @@ provider.getGasPrice().toNumber();
 
 <br/>
 
+#### `getBalance`
+
+Returns the balance of an address at a given block
+
+```typescript
+// Same API as ethers.providers.getBalance
+// Same API as web3.eth.getBalance
+getBalance(address: string, blockTag?: BlockTag): Promise<TinyBig>
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { JsonRpcProvider } from 'essential-eth';
+
+const provider = new JsonRpcProvider();
+await provider
+  .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
+  .then((balance) => console.log(balance.toString()));
+// "28798127851528138"
+```
+
+</details>
+
+<br/>
+
 #### `getNetwork`
 
 Returns a Network
