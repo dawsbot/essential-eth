@@ -48,3 +48,10 @@ export interface RPCBlock {
   transactionsRoot: string;
   uncles: unknown[];
 }
+
+export type BlockTag =
+  | 'latest'
+  | 'earliest'
+  | 'pending'
+  | number
+  | string; /* block number as hex string '0x0' */
