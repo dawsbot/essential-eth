@@ -1,10 +1,11 @@
 import { cleanBlock } from '../classes/utils/clean-block';
+import { cleanTransaction } from '../classes/utils/clean-transaction';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { Block, BlockTag, RPCBlock } from '../types/Block.types';
 import { Network } from '../types/Network.types';
-import { Transaction } from '../types/Transaction.types';
+import { RPCTransaction, Transaction } from '../types/Transaction.types';
 import chainsInfo from './utils/chains-info';
 export class JsonRpcProvider {
   /**
@@ -107,14 +108,14 @@ export class JsonRpcProvider {
    * Similar to `ethers.provider.getTransaction`, some information not included
    */
   public async getTransaction(hash: string): Promise<Transaction> {
-    const req = async (): Promise<Transaction> => {
+    const req = async (): Promise<RPCTransaction> => {
       return await post(
         this._rpcUrl,
         buildRPCPostBody('eth_getTransactionByHash', [hash]),
       );
     };
-    const nodeResponse = (await req()) as Transaction;
-    return nodeResponse;
+    const nodeResponse = (await req()) as RPCTransaction;
+    return cleanTransaction(nodeResponse);
   }
 }
 
