@@ -1,6 +1,7 @@
 export interface Transaction {
   blockHash: string;
   blockNumber: number;
+  chainId?: number;
   from: string;
   gas: number;
   gasPrice: string;
@@ -12,13 +13,14 @@ export interface Transaction {
   to: string;
   transactionIndex: number;
   type: number;
-  v: string;
+  v: number;
   value: string;
 }
 
 export interface RPCTransaction {
   blockHash: string;
   blockNumber: string;
+  chainId: string;
   from: string;
   gas: string;
   gasPrice: string;

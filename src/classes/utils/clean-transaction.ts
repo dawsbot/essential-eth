@@ -13,10 +13,12 @@ export function cleanTransaction(transaction: RPCTransaction): Transaction {
     if (!transaction[key]) return;
     switch (key) {
       case 'blockNumber':
+      case 'chainId':
       case 'gas':
       case 'nonce':
       case 'transactionIndex':
       case 'type':
+      case 'v':
         cleanedTransaction[key] = Number(hexToDecimal(transaction[key]));
         break;
       case 'gasPrice':
