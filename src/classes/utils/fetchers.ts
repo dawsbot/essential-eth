@@ -33,7 +33,7 @@ type RPCMethodName =
   | 'eth_gasPrice'
   | 'eth_getBalance'
   | 'eth_getTransactionByHash';
-export function buildRPCPostBody(method: RPCMethodName, params: any[]) {
+export function buildRPCPostBody(method: RPCMethodName, params: unknown[]) {
   return {
     jsonrpc: '2.0',
     id: 1,
