@@ -206,8 +206,14 @@ export default {
   "78": [
     "primuschain"
   ],
+  "79": [
+    "zenith"
+  ],
   "80": [
     "GeneChain"
+  ],
+  "81": [
+    "tzenith"
   ],
   "82": [
     "Meter"
@@ -585,7 +591,7 @@ export default {
     "mrock"
   ],
   "1337": [
-    "cennz-a"
+    "cennz-old"
   ],
   "1618": [
     "cate"
@@ -793,6 +799,9 @@ export default {
   ],
   "19845": [
     "btcix"
+  ],
+  "21337": [
+    "cennz-a"
   ],
   "21816": [
     "oml"
