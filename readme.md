@@ -317,6 +317,48 @@ essentialEth.getBlock('latest');
 
 <br/>
 
+#### `getTransaction`
+
+Returns the Transaction associated with a given hash
+
+```typescript
+// Similar to ethers.provider.getTransaction, formatting may differ
+getTransaction(hash: string): Promise<Transaction>
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { JsonRpcProvider } from 'essential-eth';
+const essentialEth = new JsonRpcProvider();
+essentialEth.getTransaction('0x6f12399cc2cb42bed5b267899b08a847552e8c42a64f5eb128c1bcbd1974fb0c');
+
+/*
+{
+blockHash: '0xf93283571ae16dcecbe1816adc126954a739350cd1523a1559eabeae155fbb63',
+blockNumber: 100004,
+from: '0xcf00A85f3826941e7A25BFcF9Aac575d40410852',
+gas: 90000,
+gasPrice: '54588778004',
+hash: '0x6f12399cc2cb42bed5b267899b08a847552e8c42a64f5eb128c1bcbd1974fb0c',
+input: '0x',
+nonce: 25,
+r: '0xb23adc880d3735e4389698dddc953fb02f1fa9b57e84d3510a2a4b3597ac2486',
+s: '0x4e856f95c4e2828933246fb4765a5bfd2ca5959840643bef0e80b4e3a243d064',
+to: '0xD9666150A9dA92d9108198a4072970805a8B3428',
+transactionIndex: 0,
+type: 0,
+v: 27,
+value: '5000000000000000000'
+}
+*/
+```
+
+</details>
+
+<br/>
+
 ## Contract
 
 ⚠️ Only read functions are currently supported. ⚠️
