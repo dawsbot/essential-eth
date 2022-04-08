@@ -21,8 +21,8 @@ describe('hex-zero-pad', () => {
       expect(hexZeroPad(value, 2)).toStrictEqual(value);
     });
   });
-  it('should match ethers.js and web3.js when padding can be applied', () => {
-    // ether.js chooses to throw an error when the string is longer than the padded string would be
+  it('should match ethers.js when padding can be applied', () => {
+    // ethers.js chooses to throw an error when the string is longer than the padded string would be
     const values = [
       '0x52908400098527886E0F7030069857D2E4169EE7',
       '0x8617E340B3D01FA5F11F306F4090FD50E238070D',
