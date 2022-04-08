@@ -126,6 +126,56 @@ weiToEther('1000000000000000000').toNumber();
 
 <br/>
 
+#### `gweiToEther`
+
+```typescript
+gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { gweiToEther } from 'essential-eth';
+
+gweiToEther(1000000000).toString();
+// "1"
+
+gweiToEther(1000000000).toNumber();
+// 1
+gweiToEther('1000000000').toNumber();
+// 1
+```
+
+</details>
+
+<br/>
+
+#### `etherToGwei`
+
+```typescript
+etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { etherToGwei } from 'essential-eth';
+
+etherToGwei(0.000000001).toString();
+// "1"
+
+etherToGwei(0.000000001).toNumber();
+// 1
+etherToGwei('0.000000001').toNumber();
+// 1
+```
+
+</details>
+
+<br/>
+
 #### `toChecksumAddress`
 
 ```typescript
@@ -208,6 +258,33 @@ provider.getGasPrice().toNumber();
 /*
 39695942769
 */
+```
+
+</details>
+
+<br/>
+
+#### `getBalance`
+
+Returns the balance of an address at a given block
+
+```typescript
+// Same API as ethers.providers.getBalance
+// Same API as web3.eth.getBalance
+getBalance(address: string, blockTag?: BlockTag): Promise<TinyBig>
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { JsonRpcProvider } from 'essential-eth';
+
+const provider = new JsonRpcProvider();
+await provider
+  .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
+  .then((balance) => console.log(balance.toString()));
+// "28798127851528138"
 ```
 
 </details>
