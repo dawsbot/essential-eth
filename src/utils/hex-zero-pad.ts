@@ -28,7 +28,7 @@
  * // '0x31323334'
  */
 
-export function hexZeroPad(value: number | string, length: number): string {
+export function hexZeroPad(value: string, length: number): string {
   value = String(value);
   if (!value.startsWith('0x'))
     throw new Error(`Value passed in is not a hex string. String: "${value}"`);
