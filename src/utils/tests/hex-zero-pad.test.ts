@@ -16,9 +16,11 @@ describe('hex-zero-pad', () => {
     });
   });
   it('should return value passed in when value is longer than that padded string would be', () => {
-    const values = ['0x5aAebAd', '0xfB691', '0xdbF036FB', '0xD1220ab'];
+    const values = [0x123, '0x5aAebAd', '0xfB691', '0xdbF036FB', '0xD1220ab'];
     values.forEach((value) => {
-      expect(hexZeroPad(value, 2)).toStrictEqual(value);
+      expect(hexZeroPad(value, 2)).toStrictEqual(
+        ethers.utils.hexZeroPad(value as any, 2),
+      );
     });
   });
   it('should match ethers.js when padding can be applied', () => {
