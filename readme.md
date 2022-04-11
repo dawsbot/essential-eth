@@ -1,9 +1,10 @@
 <p align="center">
-  <a><img src="https://user-images.githubusercontent.com/3408480/161474132-ae95d289-2298-46f1-b48d-9c02d88f7e38.png" title="Logo" height="400" /></a>
+  <a><img src="https://user-images.githubusercontent.com/3408480/162816226-3c4ee763-abf9-4c21-af4d-bf582274e17e.png" title="Logo" height="300" /></a>
 </p>
 <p align="center">
+
   <b>
-    Essential Eth
+    🪶 Essential Eth 🪶
   </b>
   <br/>
   <i>A replacement for ethers & web3 that's 50x smaller</i>
@@ -20,32 +21,19 @@
 <img src="https://user-images.githubusercontent.com/3408480/133322814-f3d18424-4ba8-4a37-8cbc-c5e6828354a3.png" title="Import size comparison" width="900"/>
 </p>
 
-![Screen Shot 2022-01-12 at 10 25 29 AM](https://user-images.githubusercontent.com/3408480/149190699-9bc15719-9382-46af-a77b-45e138f37643.png)
-
-![Screen Shot 2022-01-12 at 10 24 57 AM](https://user-images.githubusercontent.com/3408480/149190691-ed2913b9-8c14-4a8e-b5f8-0895fbac279b.png)
 
 ---
 
 <br/>
 
-- ⚡️ A replacement for `web3` and `ethers`
 - 🏎 [The TINIEST code size possible](https://bundlephobia.com/package/essential-eth)
 - ʦ Fully typed with TypeScript (also works with JavaScript)
 - 🧪 Tested to match both `web3` and `ethers`
+- - ⚡️ Near-identical API to `ethers`
 - 🌲 Tree-shaking and no side-effects
 - 🙌 Supports multiple JS versions (CommonJS and ESM)
   - ✅ Node 17, 16, 14, & 12
   - ✅ Web
-
-<br/>
-
-## More Info
-
-🧪 This repo is under active development. The API is less-fully featured than `web3` and `ethers`. More functions added often!
-
-![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth) ![](https://img.shields.io/npm/v/essential-eth) ![](https://badgen.net/bundlephobia/dependency-count/essential-eth)
-
-👨🏻‍💻 Breaking changes will exist between minor versions until `1.0.0` (Versions go `major.minor.patch`)
 
 <br/>
 
@@ -459,6 +447,20 @@ Any function on a contract. Returns are the same as `ethers.js`, except that ins
 <br/>
 <br/>
 
+![Screen Shot 2022-01-12 at 10 25 29 AM](https://user-images.githubusercontent.com/3408480/149190699-9bc15719-9382-46af-a77b-45e138f37643.png)
+
+![Screen Shot 2022-01-12 at 10 24 57 AM](https://user-images.githubusercontent.com/3408480/149190691-ed2913b9-8c14-4a8e-b5f8-0895fbac279b.png)
+
+
+## More Info
+
+🧪 This repo is under active development. The API is less-fully featured than `web3` and `ethers`. More functions added often!
+
+![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth) ![](https://img.shields.io/npm/v/essential-eth) ![](https://badgen.net/bundlephobia/dependency-count/essential-eth)
+
+👨🏻‍💻 Breaking changes will exist between minor versions until `1.0.0` (Versions go `major.minor.patch`)
+
+<br/>
+
 - [📓 View full docs](https://essential-eth.vercel.app)
 - [📓 View changelog (by looking at releases diff)](https://github.com/dawsbot/essential-eth/releases)
-- [📓 View docs for an older version](https://essential-eth.vercel.app/versions)
