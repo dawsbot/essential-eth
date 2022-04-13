@@ -18,7 +18,6 @@ export function cleanTransaction(transaction: RPCTransaction): Transaction {
       case 'nonce':
       case 'transactionIndex':
       case 'type':
-      case 'v':
         cleanedTransaction[key] = Number(hexToDecimal(transaction[key]));
         break;
       case 'gasPrice':
