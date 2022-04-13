@@ -12,32 +12,39 @@ describe('hex-zero-pad', () => {
     values.forEach((value) => {
       expect(() => {
         hexZeroPad(value, 23);
-      }).toThrow(`Value passed in is not a hex string. String: "${value}"`);
+      }).toThrow(
+        `Value passed in is not a hex string or number. Value: "${value}"`,
+      );
     });
   });
-  it('should return value passed in when value is longer than that padded string would be', () => {
-    const values = [0x123, '0x5aAebAd', '0xfB691', '0xdbF036FB', '0xD1220ab'];
+  it('should throw error when value is already longer than desired length', () => {
+    const values = [
+      0x123456,
+      '0x5aAebAd',
+      '0xfB691',
+      '0xdbF036FB',
+      '0xD1220ab',
+    ];
     values.forEach((value) => {
-      expect(hexZeroPad(value, 2)).toStrictEqual(
-        ethers.utils.hexZeroPad(value as any, 2),
+      expect(() => hexZeroPad(value, 2)).toThrow(
+        `Value passed in is already longer than the requested length.`,
       );
     });
   });
   it('should match ethers.js when padding can be applied', () => {
-    // ethers.js chooses to throw an error when the string is longer than the padded string would be
     const values = [
-      '0x52908400098527886E0F7030069857D2E4169EE7',
-      '0x8617E340B3D01FA5F11F306F4090FD50E238070D',
-      '0xde709f2102306220921060314715629080e2fb77',
-      '0x27b1fdb04752bbc536007a920d24acb045561c26',
-      '0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed',
-      '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359',
-      '0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB',
-      '0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb',
+      '0x5290',
+      '0x8617E3',
+      '0xde709f210',
+      '0x27b',
+      0x5aaeb605,
+      '0xfB6916095ca1df',
+      '0xdbF03B407c01E7cD3CBea99509d93',
+      0xd1220a0cf4,
     ];
     values.forEach((value) => {
       expect(hexZeroPad(value, 30)).toStrictEqual(
-        ethers.utils.hexZeroPad(value, 30),
+        ethers.utils.hexZeroPad(value as any, 30),
       );
     });
   });
