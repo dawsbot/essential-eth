@@ -232,7 +232,7 @@ isAddress('vitalik.eth');
 ```typescript
 // returns a hex string padded to a specified length of bytes
 // if the hex value provided is already longer than the padding value, the value itself is returned without alteration
-hexZeroPad(value: string, length: number): string
+hexZeroPad(value: string | number, length: number): string
 ```
 
 <details>
