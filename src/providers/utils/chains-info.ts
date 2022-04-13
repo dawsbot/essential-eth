@@ -213,7 +213,7 @@ export default {
     "GeneChain"
   ],
   "81": [
-    "tzenith"
+    "VIL"
   ],
   "82": [
     "Meter"
@@ -454,6 +454,9 @@ export default {
   ],
   "686": [
     "kar"
+  ],
+  "700": [
+    "SNS"
   ],
   "707": [
     "bcs"
