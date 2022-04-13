@@ -1,4 +1,5 @@
 import { validateType } from '../shared/validate-type';
+
 /**
  * Returns a hex string padded to a specified length of bytes.
  *
@@ -6,8 +7,8 @@ import { validateType } from '../shared/validate-type';
  *
  * Differs from ["padLeft" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#padleft) because web3 counts by characters, not bytes.
  *
- * @param value - A hex-formatted string, hex-formatted number, or decimal number (converted to hex) to be padded
- * @param length - The desired hex length of the value
+ * @param value - A hex-string, hex-number, or decimal number (auto-converts to base-16) to be padded
+ * @param length - The final length in bytes
  *
  * @throws - If the value is not a hex string or number
  * @throws - If the value is longer than the length
@@ -30,7 +31,6 @@ import { validateType } from '../shared/validate-type';
  * // Throws
  * ```
  */
-
 export function hexZeroPad(value: string | number, length: number): string {
   validateType(value, ['string', 'number']);
   let val: string;
