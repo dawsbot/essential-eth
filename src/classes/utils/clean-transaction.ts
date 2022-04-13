@@ -1,33 +1,45 @@
-import { toChecksumAddress } from '../..';
-import { RPCTransaction, Transaction } from '../../types/Transaction.types';
+import { tinyBig, toChecksumAddress } from '../..';
+import {
+  RPCTransaction,
+  TransactionResponse,
+} from '../../types/Transaction.types';
 import { hexToDecimal } from './hex-to-decimal';
 
 /**
- * Converts hex to decimal and checksum-addresses all addresses
+ * Converts RPC transaction response to more JS-friendly format
  */
-export function cleanTransaction(transaction: RPCTransaction): Transaction {
-  const cleanedTransaction: any = { ...transaction };
+export function cleanTransaction(
+  transaction: RPCTransaction,
+): TransactionResponse {
+  const cleanedTransaction = {
+    ...transaction,
+  } as unknown as TransactionResponse;
   (Object.keys(transaction) as Array<keyof RPCTransaction>).forEach((key) => {
     // pending blocks have null instead of a difficulty
     // pending blocks have null instead of a miner address
     if (!transaction[key]) return;
     switch (key) {
       case 'blockNumber':
-      case 'gas':
+      case 'chainId':
       case 'nonce':
       case 'transactionIndex':
       case 'type':
+      case 'v':
         cleanedTransaction[key] = Number(hexToDecimal(transaction[key]));
-        break;
-      case 'gasPrice':
-      case 'value':
-        cleanedTransaction[key] = hexToDecimal(transaction[key]);
         break;
       case 'from':
       case 'to':
         if (transaction[key]) {
           cleanedTransaction[key] = toChecksumAddress(transaction[key]);
         }
+        break;
+      case 'value':
+      case 'gas':
+      case 'gasPrice':
+      case 'maxFeePerGas':
+      case 'maxPriorityFeePerGas':
+        cleanedTransaction[key] = tinyBig(hexToDecimal(transaction[key]));
+
         break;
     }
   });

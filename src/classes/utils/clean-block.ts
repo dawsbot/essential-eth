@@ -1,17 +1,17 @@
-import { Block, toChecksumAddress } from '../..';
+import { BlockResponse, toChecksumAddress } from '../..';
 import { RPCBlock } from '../../types/Block.types';
 import { RPCTransaction } from '../../types/Transaction.types';
 import { cleanTransaction } from './clean-transaction';
 import { hexToDecimal } from './hex-to-decimal';
 
 /**
- * Converts hex to decimal and checksum-addresses all addresses
+ * Converts RPC block response to more JS-friendly format
  */
 export function cleanBlock(
   block: RPCBlock,
   returnTransactionObjects: boolean,
-): Block {
-  const cleanedBlock: any = { ...block };
+): BlockResponse {
+  const cleanedBlock = { ...block } as unknown as BlockResponse;
   (Object.keys(block) as Array<keyof RPCBlock>).forEach((key) => {
     // pending blocks have null instead of a difficulty
     // pending blocks have null instead of a miner address
@@ -38,12 +38,11 @@ export function cleanBlock(
   });
   // for all full transactions
   if (returnTransactionObjects) {
+    const txns = block.transactions as RPCTransaction[];
     // could be renamed "cleanTransaction" in the future
-    (cleanedBlock.transactions as RPCTransaction[]).forEach(
-      (transaction, index) => {
-        cleanedBlock.transactions[index] = cleanTransaction(transaction);
-      },
-    );
+    txns.forEach((transaction, index) => {
+      cleanedBlock.transactions[index] = cleanTransaction(transaction);
+    });
   }
   return cleanedBlock;
 }

@@ -31,7 +31,8 @@ type RPCMethodName =
   | 'eth_call'
   | 'eth_chainId'
   | 'eth_gasPrice'
-  | 'eth_getBalance';
+  | 'eth_getBalance'
+  | 'eth_getTransactionByHash';
 export function buildRPCPostBody(method: RPCMethodName, params: unknown[]) {
   return {
     jsonrpc: '2.0',

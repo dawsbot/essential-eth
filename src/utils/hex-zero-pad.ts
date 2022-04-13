@@ -7,7 +7,7 @@ import { validateType } from '../shared/validate-type';
  *
  * Differs from ["padLeft" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#padleft) because web3 counts by characters, not bytes.
  *
- * @param value - A hex-string, hex-number, or decimal number (auto-converts to base-16) to be padded
+ * @param hexValue - A hex-string, hex-number, or decimal number (auto-converts to base-16) to be padded
  * @param length - The final length in bytes
  *
  * @throws - If the value is not a hex string or number
@@ -31,21 +31,21 @@ import { validateType } from '../shared/validate-type';
  * // Throws
  * ```
  */
-export function hexZeroPad(value: string | number, length: number): string {
-  validateType(value, ['string', 'number']);
+export function hexZeroPad(hexValue: string | number, length: number): string {
+  validateType(hexValue, ['string', 'number']);
   let val: string;
-  if (typeof value === 'string') {
-    if (!value.startsWith('0x'))
+  if (typeof hexValue === 'string') {
+    if (!hexValue.startsWith('0x'))
       throw new Error(
-        `value is not a hex string or number. Consider prepending with "0x" (value="${value}")`,
+        `value is not a hex string or number. Consider prepending with "0x" (value="${hexValue}")`,
       );
-    val = value.substring(2);
+    val = hexValue.substring(2);
   } else {
-    val = value.toString(16);
+    val = hexValue.toString(16);
   }
   if (val.length > length * 2) {
     throw new Error(
-      `value is longer than length (value=${value}, length=${length})`,
+      `value is longer than length (hexValue=${hexValue}, length=${length})`,
     );
   }
   return `0x${val.padStart(length * 2, '0')}`;

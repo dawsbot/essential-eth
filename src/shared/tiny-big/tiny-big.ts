@@ -7,7 +7,12 @@ import { scientificStrToDecimalStr } from './helpers';
  */
 export class TinyBig extends Big {
   constructor(value: string | number | TinyBig | Big) {
-    super(value);
+    try {
+      super(value);
+    } catch (e) {
+      console.error(`TinyBig cannot parse value (value=${value})`);
+      throw e;
+    }
   }
   /**
    * Used anytime you're passing in "value" to ethers or web3
