@@ -34,4 +34,6 @@ export interface RPCTransaction {
   type: string;
   v: string;
   value: string;
+  maxFeePerGas?: any;
+  maxPriorityFeePerGas?: any;
 }
