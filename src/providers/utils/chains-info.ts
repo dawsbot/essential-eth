@@ -641,6 +641,12 @@ export default {
   "2101": [
     "esp"
   ],
+  "2152": [
+    "fra"
+  ],
+  "2153": [
+    "findora-testnet"
+  ],
   "2213": [
     "evanesco"
   ],
@@ -892,6 +898,9 @@ export default {
   ],
   "63001": [
     "ecs-testnet"
+  ],
+  "69420": [
+    "cndr"
   ],
   "70000": [
     "TKM0"
