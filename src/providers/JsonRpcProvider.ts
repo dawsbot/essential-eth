@@ -38,15 +38,14 @@ export class JsonRpcProvider {
       // "latest", "earliest", and "pending" require no manipulation
       rpcTimeFrame = timeFrame;
     }
-    const req = (): Promise<RPCBlock> => {
-      return post(
+    const req = (): Promise<RPCBlock> =>
+      post(
         this._rpcUrl,
         buildRPCPostBody('eth_getBlockByNumber', [
           rpcTimeFrame,
           returnTransactionObjects,
         ]),
       );
-    };
     const nodeResponse = await req();
 
     return cleanBlock(nodeResponse, returnTransactionObjects);
@@ -55,9 +54,8 @@ export class JsonRpcProvider {
    * Returns the network this provider is connected to
    */
   public async getNetwork(): Promise<Network> {
-    const req = (): Promise<string> => {
-      return post(this._rpcUrl, buildRPCPostBody('eth_chainId', []));
-    };
+    const req = (): Promise<string> =>
+      post(this._rpcUrl, buildRPCPostBody('eth_chainId', []));
     const nodeResponse = await req();
     const chainId = hexToDecimal(nodeResponse);
     const info = (chainsInfo as any)[chainId];
@@ -72,9 +70,8 @@ export class JsonRpcProvider {
    * Same as `ethers.provider.getGasPrice`
    */
   public async getGasPrice(): Promise<TinyBig> {
-    const req = (): Promise<string> => {
-      return post(this._rpcUrl, buildRPCPostBody('eth_gasPrice', []));
-    };
+    const req = (): Promise<string> =>
+      post(this._rpcUrl, buildRPCPostBody('eth_gasPrice', []));
     const nodeResponse = await req(); /* '0x153cfb1ad0' */
     return tinyBig(hexToDecimal(nodeResponse));
   }
@@ -96,12 +93,11 @@ export class JsonRpcProvider {
     address: string,
     blockTag: BlockTag = 'latest',
   ): Promise<TinyBig> {
-    const req = (): Promise<string> => {
-      return post(
+    const req = (): Promise<string> =>
+      post(
         this._rpcUrl,
         buildRPCPostBody('eth_getBalance', [address, blockTag]),
       );
-    };
     const nodeResponse = await req(); /* '0x153cfb1ad0' */
     return tinyBig(hexToDecimal(nodeResponse));
   }
@@ -111,14 +107,17 @@ export class JsonRpcProvider {
    * Similar to `ethers.provider.getTransaction`, some information not included
    */
   public async getTransaction(hash: string): Promise<TransactionResponse> {
-    const req = async (): Promise<RPCTransaction> => {
-      return await post(
-        this._rpcUrl,
-        buildRPCPostBody('eth_getTransactionByHash', [hash]),
-      );
-    };
-    const nodeResponse = await req();
-    return cleanTransaction(nodeResponse);
+    const fetchTransaction = async (): Promise<RPCTransaction> =>
+      post(this._rpcUrl, buildRPCPostBody('eth_getTransactionByHash', [hash]));
+    const [transaction, blockNumber] = await Promise.all([
+      fetchTransaction(),
+      this.getBlock('latest'),
+    ]);
+    const cleanedTransaction = cleanTransaction(transaction);
+    // https://ethereum.stackexchange.com/questions/2881/how-to-get-the-transaction-confirmations-using-the-json-rpc
+    cleanedTransaction.confirmations =
+      blockNumber.number - cleanedTransaction.blockNumber + 1;
+    return cleanedTransaction;
   }
 }
 

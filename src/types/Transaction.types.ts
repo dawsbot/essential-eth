@@ -24,6 +24,7 @@ export type TransactionResponse = Modify<
   } & {
     maxFeePerGas: TinyBig;
     maxPriorityFeePerGas: TinyBig;
+    confirmations: number;
   }
 >;
 export type BlockTransactionResponse = Omit<
