@@ -1,4 +1,4 @@
-import { toChecksumAddress } from '../..';
+import { tinyBig, toChecksumAddress } from '../..';
 import {
   RPCTransaction,
   TransactionResponse,
@@ -21,21 +21,25 @@ export function cleanTransaction(
     switch (key) {
       case 'blockNumber':
       case 'chainId':
-      case 'gas':
       case 'nonce':
       case 'transactionIndex':
       case 'type':
+      case 'v':
         cleanedTransaction[key] = Number(hexToDecimal(transaction[key]));
-        break;
-      case 'gasPrice':
-      case 'value':
-        cleanedTransaction[key] = hexToDecimal(transaction[key]);
         break;
       case 'from':
       case 'to':
         if (transaction[key]) {
           cleanedTransaction[key] = toChecksumAddress(transaction[key]);
         }
+        break;
+      case 'value':
+      case 'gas':
+      case 'gasPrice':
+      case 'maxFeePerGas':
+      case 'maxPriorityFeePerGas':
+        cleanedTransaction[key] = tinyBig(hexToDecimal(transaction[key]));
+
         break;
     }
   });

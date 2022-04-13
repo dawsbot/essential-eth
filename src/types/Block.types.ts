@@ -1,4 +1,4 @@
-import { RPCTransaction, TransactionResponse } from './Transaction.types';
+import { BlockTransactionResponse, RPCTransaction } from './Transaction.types';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
 export type BlockResponse = Modify<
@@ -11,7 +11,7 @@ export type BlockResponse = Modify<
     timestamp: number;
     baseFeePerGas: number;
     transactions: Array<
-      string | TransactionResponse /* if second arg is true */
+      string | BlockTransactionResponse /* if second arg is true */
     >;
   }
 >;

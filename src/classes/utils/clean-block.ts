@@ -5,7 +5,7 @@ import { cleanTransaction } from './clean-transaction';
 import { hexToDecimal } from './hex-to-decimal';
 
 /**
- * Converts hex to decimal and checksum-addresses all addresses
+ * Converts RPC block response to more JS-friendly format
  */
 export function cleanBlock(
   block: RPCBlock,

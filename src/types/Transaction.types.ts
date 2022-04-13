@@ -1,18 +1,38 @@
+import { TinyBig } from '../shared/tiny-big/tiny-big';
+
 type Modify<T, R> = Omit<T, keyof R> & R;
+export interface RPCTransaction extends RPCBlockTransaction {
+  // not in getBlock transactions, only in getTransaction response
+
+  maxFeePerGas: string /* "0xfc21e1832", */;
+  maxPriorityFeePerGas: string /* "0x59682f00" */;
+}
 // exact type returned from JSON RPC
 export type TransactionResponse = Modify<
   RPCTransaction,
   {
     blockNumber: number;
     chainId: number;
-    gas: number;
     nonce: number;
     transactionIndex: number;
     type: number;
+    v: number;
+    value: TinyBig;
+    gasPrice: TinyBig;
+    gas: TinyBig;
+    gasLimit: TinyBig;
+  } & {
+    maxFeePerGas: TinyBig;
+    maxPriorityFeePerGas: TinyBig;
   }
 >;
+export type BlockTransactionResponse = Omit<
+  TransactionResponse,
+  'maxFeePerGas' | 'maxPriorityFeePerGas'
+>;
 
-export interface RPCTransaction {
+/** What JSONRPC responds with in getBlock transaction array */
+export interface RPCBlockTransaction {
   blockHash: string;
   blockNumber: string;
   chainId: string;
@@ -28,5 +48,6 @@ export interface RPCTransaction {
   transactionIndex: string;
   type: string;
   v: string;
+
   value: string;
 }
