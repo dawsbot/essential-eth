@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="static/ee-small.png" title="Logo"/>
+  <img src="https://user-images.githubusercontent.com/3408480/163274699-ae4fb0f4-fca0-4745-bcd7-4868f80deaf6.png" title="Logo"/>
+
 </p>
 <p align="center">
 
