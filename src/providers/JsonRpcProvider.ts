@@ -47,7 +47,7 @@ export class JsonRpcProvider {
         ]),
       );
     };
-    const nodeResponse = (await req()) as RPCBlock;
+    const nodeResponse = await req();
 
     return cleanBlock(nodeResponse, returnTransactionObjects);
   }
@@ -58,7 +58,7 @@ export class JsonRpcProvider {
     const req = (): Promise<string> => {
       return post(this._rpcUrl, buildRPCPostBody('eth_chainId', []));
     };
-    const nodeResponse = (await req()) as string;
+    const nodeResponse = await req();
     const chainId = hexToDecimal(nodeResponse);
     const info = (chainsInfo as any)[chainId];
     return {
@@ -75,7 +75,7 @@ export class JsonRpcProvider {
     const req = (): Promise<string> => {
       return post(this._rpcUrl, buildRPCPostBody('eth_gasPrice', []));
     };
-    const nodeResponse = (await req()) as string; /* '0x153cfb1ad0' */
+    const nodeResponse = await req(); /* '0x153cfb1ad0' */
     return tinyBig(hexToDecimal(nodeResponse));
   }
 
@@ -102,7 +102,7 @@ export class JsonRpcProvider {
         buildRPCPostBody('eth_getBalance', [address, blockTag]),
       );
     };
-    const nodeResponse = (await req()) as string; /* '0x153cfb1ad0' */
+    const nodeResponse = await req(); /* '0x153cfb1ad0' */
     return tinyBig(hexToDecimal(nodeResponse));
   }
   /**
@@ -117,7 +117,7 @@ export class JsonRpcProvider {
         buildRPCPostBody('eth_getTransactionByHash', [hash]),
       );
     };
-    const nodeResponse = (await req()) as RPCTransaction;
+    const nodeResponse = await req();
     return cleanTransaction(nodeResponse);
   }
 }

@@ -1,11 +1,57 @@
+import omit from 'just-omit';
 import Web3 from 'web3';
-import { JsonRpcProvider } from '../..';
+import { BlockTransactionObject } from 'web3-eth/types';
+import { BlockResponse, JsonRpcProvider } from '../..';
+import { BlockTransactionResponse } from '../../types/Transaction.types';
 import { fakeUrls } from './rpc-urls';
 
 // RSK has 30 second block times so tests pass more often
 const rpcUrl = `https://public-node.rsk.co`;
 
 describe('provider.getBlock happy path', () => {
+  function testBlockEquality(
+    block1: BlockResponse,
+    block2: BlockTransactionObject,
+  ) {
+    // only full transaction objects have ignorable fields
+    if (
+      block1.transactions.some((transaction) => typeof transaction === 'string')
+    ) {
+      throw new Error('transaction is string');
+    }
+    const omittedKeys = ['gas', 'gasPrice', 'value', 'v'];
+    const filteredBlock1 = {
+      ...block1,
+      transactions: block1.transactions.map((transaction) =>
+        omit(transaction as unknown as BlockTransactionResponse, omittedKeys),
+      ),
+    };
+    const filteredBlock2 = {
+      ...block2,
+      transactions: block2.transactions.map((transaction) =>
+        omit(transaction, omittedKeys),
+      ),
+    };
+    expect(filteredBlock1).toStrictEqual(filteredBlock2);
+
+    // // slight mis-timing in eth node responses
+    // expect(omit(block1, ['totalDifficulty', 'difficulty'])).toStrictEqual(
+    //   omit(block2, ['totalDifficulty', 'difficulty']),
+    // );
+
+    // // validate that difficulty and totalDifficulty are still very close
+    // expect(
+    //   Big(block1.difficulty).minus(block2.difficulty).abs().toNumber(),
+    // ).toBeLessThan(3);
+
+    // expect(
+    //   Big(block1.totalDifficulty)
+    //     .minus(block2.totalDifficulty)
+    //     .abs()
+    //     .toNumber(),
+    // ).toBeLessThan(5000000 /* 2616793 and 1187442 on recent tests */);
+  }
+
   const essentialEthProvider = new JsonRpcProvider(rpcUrl);
   const web3Provider = new Web3(rpcUrl);
   it('should get latest block', async () => {
@@ -28,7 +74,8 @@ describe('provider.getBlock happy path', () => {
       essentialEthProvider.getBlock(blockNumber, true),
       web3Provider.eth.getBlock(blockNumber, true),
     ]);
-    expect(eeRandomBlock).toStrictEqual(web3RandomBlock);
+    testBlockEquality(eeRandomBlock, web3RandomBlock);
+    // expect(eeRandomBlock).toStrictEqual(web3RandomBlock);
   });
 });
 
