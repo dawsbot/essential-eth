@@ -1,11 +1,16 @@
 import { toChecksumAddress } from '../..';
-import { RPCTransaction, Transaction } from '../../types/Transaction.types';
+import {
+  RPCTransaction,
+  TransactionResponse,
+} from '../../types/Transaction.types';
 import { hexToDecimal } from './hex-to-decimal';
 
 /**
  * Converts hex to decimal and checksum-addresses all addresses
  */
-export function cleanTransaction(transaction: RPCTransaction): Transaction {
+export function cleanTransaction(
+  transaction: RPCTransaction,
+): TransactionResponse {
   const cleanedTransaction: any = { ...transaction };
   (Object.keys(transaction) as Array<keyof RPCTransaction>).forEach((key) => {
     // pending blocks have null instead of a difficulty

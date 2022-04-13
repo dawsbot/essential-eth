@@ -11,7 +11,7 @@ export function cleanBlock(
   block: RPCBlock,
   returnTransactionObjects: boolean,
 ): Block {
-  const cleanedBlock: any = { ...block };
+  const cleanedBlock = { ...block } as unknown as Block;
   (Object.keys(block) as Array<keyof RPCBlock>).forEach((key) => {
     // pending blocks have null instead of a difficulty
     // pending blocks have null instead of a miner address

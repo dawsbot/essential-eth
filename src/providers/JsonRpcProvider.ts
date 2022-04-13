@@ -5,7 +5,10 @@ import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { Block, BlockTag, RPCBlock } from '../types/Block.types';
 import { Network } from '../types/Network.types';
-import { RPCTransaction, Transaction } from '../types/Transaction.types';
+import {
+  RPCTransaction,
+  TransactionResponse,
+} from '../types/Transaction.types';
 import chainsInfo from './utils/chains-info';
 export class JsonRpcProvider {
   /**
@@ -107,7 +110,7 @@ export class JsonRpcProvider {
    * Includes additional information than what is included in the Transaction type
    * Similar to `ethers.provider.getTransaction`, some information not included
    */
-  public async getTransaction(hash: string): Promise<Transaction> {
+  public async getTransaction(hash: string): Promise<TransactionResponse> {
     const req = async (): Promise<RPCTransaction> => {
       return await post(
         this._rpcUrl,

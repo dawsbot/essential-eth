@@ -1,28 +1,18 @@
-import { RPCTransaction, Transaction } from './Transaction.types';
+import { RPCTransaction } from './Transaction.types';
 
-export interface Block {
-  baseFeePerGas: string;
-  difficulty: number;
-  extraData: string;
-  gasLimit: number;
-  gasUsed: number;
-  hash: string;
-  logsBloom: string;
-  miner: string;
-  mixHash: string;
-  nonce: string;
-  number: number;
-  parentHash: string;
-  receiptsRoot: string;
-  sha3Uncles: string;
-  size: number;
-  stateRoot: string;
-  timestamp: number;
-  totalDifficulty: number;
-  transactions: string[] | Transaction[];
-  transactionsRoot: string;
-  uncles: unknown[];
-}
+type Modify<T, R> = Omit<T, keyof R> & R;
+export type Block = Modify<
+  RPCBlock,
+  {
+    gasLimit: number;
+    gasUsed: number;
+    number: number;
+    size: number;
+    timestamp: number;
+    baseFeePerGas: number;
+  }
+>;
+
 export interface RPCBlock {
   baseFeePerGas: string;
   difficulty: string;
@@ -42,9 +32,7 @@ export interface RPCBlock {
   stateRoot: string;
   timestamp: string;
   totalDifficulty: string;
-  transactions:
-    | Array<string>
-    | Array<RPCTransaction> /* if second arg is true */;
+  transactions: Array<string | RPCTransaction /* if second arg is true */>;
   transactionsRoot: string;
   uncles: unknown[];
 }

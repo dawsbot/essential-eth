@@ -8,7 +8,7 @@ import {
   JSONABIArgument,
 } from './types/Contract.types';
 import { Network } from './types/Network.types';
-import { Transaction } from './types/Transaction.types';
+import { TransactionResponse } from './types/Transaction.types';
 import { etherToGwei } from './utils/ether-to-gwei';
 import { etherToWei } from './utils/ether-to-wei';
 import { gweiToEther } from './utils/gwei-to-ether';
@@ -37,5 +37,5 @@ export {
   JSONABI,
   JSONABIArgument,
   Network,
-  Transaction,
+  TransactionResponse,
 };
