@@ -3,7 +3,7 @@ import { cleanTransaction } from '../classes/utils/clean-transaction';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
-import { Block, BlockTag, RPCBlock } from '../types/Block.types';
+import { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import { Network } from '../types/Network.types';
 import {
   RPCTransaction,
@@ -29,7 +29,7 @@ export class JsonRpcProvider {
   public async getBlock(
     timeFrame: BlockTag,
     returnTransactionObjects = false,
-  ): Promise<Block> {
+  ): Promise<BlockResponse> {
     let rpcTimeFrame: string;
     if (typeof timeFrame === 'number') {
       // exact block numbers require hex string format

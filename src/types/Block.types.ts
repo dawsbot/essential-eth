@@ -1,7 +1,7 @@
-import { RPCTransaction } from './Transaction.types';
+import { RPCTransaction, TransactionResponse } from './Transaction.types';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
-export type Block = Modify<
+export type BlockResponse = Modify<
   RPCBlock,
   {
     gasLimit: number;
@@ -10,9 +10,13 @@ export type Block = Modify<
     size: number;
     timestamp: number;
     baseFeePerGas: number;
+    transactions: Array<
+      string | TransactionResponse /* if second arg is true */
+    >;
   }
 >;
 
+/** Exact response from backend */
 export interface RPCBlock {
   baseFeePerGas: string;
   difficulty: string;

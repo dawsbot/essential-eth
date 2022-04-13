@@ -6,12 +6,14 @@ import {
 import { hexToDecimal } from './hex-to-decimal';
 
 /**
- * Converts hex to decimal and checksum-addresses all addresses
+ * Converts RPC transaction response to more JS-friendly format
  */
 export function cleanTransaction(
   transaction: RPCTransaction,
 ): TransactionResponse {
-  const cleanedTransaction: any = { ...transaction };
+  const cleanedTransaction = {
+    ...transaction,
+  } as unknown as TransactionResponse;
   (Object.keys(transaction) as Array<keyof RPCTransaction>).forEach((key) => {
     // pending blocks have null instead of a difficulty
     // pending blocks have null instead of a miner address

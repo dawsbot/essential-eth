@@ -1,7 +1,7 @@
 import { Contract } from './classes/Contract';
 import { JsonRpcProvider, jsonRpcProvider } from './providers/JsonRpcProvider';
 import { tinyBig, TinyBig } from './shared/tiny-big/tiny-big';
-import { Block } from './types/Block.types';
+import { BlockResponse } from './types/Block.types';
 import {
   ContractTypes,
   JSONABI,
@@ -32,7 +32,7 @@ export {
   Contract,
   TinyBig,
   /* types */
-  Block,
+  BlockResponse,
   ContractTypes,
   JSONABI,
   JSONABIArgument,
