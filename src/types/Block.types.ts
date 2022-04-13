@@ -1,28 +1,22 @@
-import { RPCTransaction, Transaction } from './Transaction.types';
+import { BlockTransactionResponse, RPCTransaction } from './Transaction.types';
 
-export interface Block {
-  baseFeePerGas: string;
-  difficulty: number;
-  extraData: string;
-  gasLimit: number;
-  gasUsed: number;
-  hash: string;
-  logsBloom: string;
-  miner: string;
-  mixHash: string;
-  nonce: string;
-  number: number;
-  parentHash: string;
-  receiptsRoot: string;
-  sha3Uncles: string;
-  size: number;
-  stateRoot: string;
-  timestamp: number;
-  totalDifficulty: number;
-  transactions: string[] | Transaction[];
-  transactionsRoot: string;
-  uncles: unknown[];
-}
+type Modify<T, R> = Omit<T, keyof R> & R;
+export type BlockResponse = Modify<
+  RPCBlock,
+  {
+    gasLimit: number;
+    gasUsed: number;
+    number: number;
+    size: number;
+    timestamp: number;
+    baseFeePerGas: number;
+    transactions: Array<
+      string | BlockTransactionResponse /* if second arg is true */
+    >;
+  }
+>;
+
+/** Exact response from backend */
 export interface RPCBlock {
   baseFeePerGas: string;
   difficulty: string;
@@ -44,7 +38,7 @@ export interface RPCBlock {
   totalDifficulty: string;
   transactions:
     | Array<string>
-    | Array<RPCTransaction> /* if second arg is true */;
+    | Array<RPCTransaction /* if second arg is true */>;
   transactionsRoot: string;
   uncles: unknown[];
 }

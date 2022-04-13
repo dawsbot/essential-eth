@@ -1,6 +1,9 @@
+import CodeBlock from '@theme/CodeBlock';
 import clsx from 'clsx';
 import React from 'react';
 import styles from './styles.module.css';
+// organize-imports-ignore
+import * as ee from '../../../../src/index';
 
 interface FeatureItem {
   title: string;
@@ -85,14 +88,45 @@ function Feature({ title, src, description }: FeatureItem) {
 
 export default function HomepageFeatures(): JSX.Element {
   return (
-    <section className={styles.features} style={{ marginTop: '80px' }}>
-      <div className="container">
-        <div className="row" style={{ justifyContent: 'center' }}>
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
+    <>
+      <section className={styles.features}>
+        <div className="container">
+          <section className={styles.features} style={{ marginTop: '80px' }}>
+            <div className="container">
+              <div className="row" style={{ justifyContent: 'center' }}>
+                {FeatureList.map((props, idx) => (
+                  <Feature key={idx} {...props} />
+                ))}
+              </div>
+            </div>
+          </section>
+          <br />
+          <br />
+          <CodeBlock language="typescript">
+            {`import { isAddress, weiToEther } from 'essential-eth';
+
+isAddress('0x0000000000000000000000000000000000000000');
+// true
+
+weiToEther(1000000000000000000).toNumber();
+// 1
+`}
+          </CodeBlock>
+          <br />
+          <CodeBlock language="typescript">
+            {`import { JsonRpcProvider } from 'essential-eth';
+
+const provider = new JsonRpcProvider();
+await provider
+  .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
+  .then((balance) => console.log(balance.toString()));
+// "28798127851528138"
+`}
+          </CodeBlock>
+          <br />
+          <br />
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
