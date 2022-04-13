@@ -22,9 +22,48 @@ export class JsonRpcProvider {
     this._rpcUrl = rpcUrl || 'https://free-eth-node.com/api/eth';
   }
 
+  private post = (body: Record<string, unknown>) => post(this._rpcUrl, body);
+
   /**
    * Returns the block requested
    * Same as `web3.eth.getBlock`
+   * @example
+   * provider.getBlock('latest');
+   * {
+        number: 4232826,
+        hash: '0x93211a1cd17e154b183565ec685254a03f844a8e34824a46ce1bdd6753dcb669',
+        parentHash: '0x1b32bfcba1bb2a57f56e166a3bb06875a1978992999dfc8828397b4c1526f472',
+        sha3Uncles: '0x0fb399c67bb5a071ec8a22549223215ab76b7d4009941c9c37aa3c3936010463',
+        logsBloom: '0x00000000000000000000101000000000020000000000000000000000000000000000400000010000000000000000000000000000010000000008800000000800000000200000000000000000000000000000000000000000000002000000000000000000000000000040000000000040000000000000000000000000000000000000000000000001000000000004000000000010000000000000000020000000000000000200100020000000000000000080000000000080001000000000000000000001040000000000000000008000000020010100000000200000100000000000000000000000002000000080000000020400000000002000200000000000',
+        transactionsRoot: '0xc43b3f13e1fe810e34d3a26ffe465b72c7063a5c70a02de2c78e91e4d10bd9fb',
+        stateRoot: '0x04d7bc816537ea7ef3a16e76c9879d29f34f99d4154273c2e98e012a31bad745',
+        receiptsRoot: '0x89c6f781ceac0bd49c4d9aa9115df4a5d4dd0e0220ff7668012f15bc04222c6b',
+        miner: '0x31fe561eb2c628cD32Ec52573D7c4b7E4C278Bfa',
+        difficulty: '1300907486001755331049',
+        totalDifficulty: '5989929395521171616186006183',
+        extraData: '0xce018c495249532d62613031656132',
+        size: 5416,
+        gasLimit: 6800000,
+        gasUsed: 202955,
+        timestamp: 1649884910,
+        transactions: [
+          '0x6b34a59c7b9aead24fa6dad782f8a3ad84ed4a23ee09bcbf0bcf880840fbbe20',
+          '0x9a3851ca24d5336c6a0d48aba2c4b4769d7a672c9b01729c5eb9924efd1b19a7',
+          '0xc3ed3d198b62f2f3427ebfa3bbd0fcada4e3c0c189e4464e7eeceb403c75981e'
+        ],
+        uncles: [
+          '0x0c567c054e98153f10d651fbbc018891c1dd9d62a9ffd998e87678803e95b6ed',
+          '0xb7d69389dbfb057c6fcb4bc0582d46a2ba01170703f0dadf8cd1462b83e88753',
+          '0xd5f74ccd0ad4c58b3161e8c2c507c264231e5f28925061b809c02e5e4bb6db28'
+        ],
+        minimumGasPrice: '0x387ee40',
+        bitcoinMergedMiningHeader: '0x04000020e8567ed3d2480e15a1dd1b4335e4732ae343c037e4fd03000000000000000000ed10a8340d163d3e813bdd430f902f4e5a56828dc62313b2e23797c0be6b8516eb3e576297d8091735884f42',
+        bitcoinMergedMiningCoinbaseTransaction: '0x0000000000000140e910128fda7bac502dc5e0573bbaf12de8e2524f70c22f7bd160dedcb19a2521002b6a2952534b424c4f434b3ae493303f597fa368c0ccc4f8aceabf1c315bb7c9a07605c073a89f260040967aace6a7d9',
+        bitcoinMergedMiningMerkleProof: '0xdf63a3d7eb6fbcfb301311faa46e9a15b0408bb1a04e284daee86c273c1dfd65ede23f3170f806e9e0f4cef7ba6b56aa37470d9c23f96ec8e43d08b58645919c5e10bcb892897a731f8f9ce79c72dc0e390896bcd6c67bb38c0bdb72982b6cf05519968d76673572c3f3ef3a08b0ddb464863f1788f7cdbaad3fe44a8a8af576d430ac282fe28852c16df198ca96cc5f71a50695912efe1a836e8442be69e31b6d6f973da2818bce9a3a1c2d9be0671aee9a7776e398d6a03d1e178e20d84646004a3d03c0501334e629d9146aa6a01316dcbaa289df6e6c5e3090cadaddff22699cfc7ff09512fc0d65c5062f17c98561ce3c9510de210d9d654cf99f8d756ff37c9fa21e7122ee8cadb923341690845d572921425f2bd7e044558b7e07983ac4df28928028b0c13c3624dc7a965af8091b0cecc845bf7da5308c03b2c97d607f6706a599f802025894435f1d76ea4e67cc2fc4e1559f1206f559a24633de0f',
+        hashForMergedMining: '0xe493303f597fa368c0ccc4f8aceabf1c315bb7c9a07605c073a89f260040967a',
+        paidFees: '0xc0744dcb7a0',
+        cumulativeDifficulty: '0x1190930db285269e582'
+      }
    */
   public async getBlock(
     timeFrame: BlockTag,
@@ -38,26 +77,24 @@ export class JsonRpcProvider {
       // "latest", "earliest", and "pending" require no manipulation
       rpcTimeFrame = timeFrame;
     }
-    const req = (): Promise<RPCBlock> =>
-      post(
-        this._rpcUrl,
-        buildRPCPostBody('eth_getBlockByNumber', [
-          rpcTimeFrame,
-          returnTransactionObjects,
-        ]),
-      );
-    const nodeResponse = await req();
+    const rpcBlock = (await this.post(
+      buildRPCPostBody('eth_getBlockByNumber', [
+        rpcTimeFrame,
+        returnTransactionObjects,
+      ]),
+    )) as RPCBlock;
 
-    return cleanBlock(nodeResponse, returnTransactionObjects);
+    return cleanBlock(rpcBlock, returnTransactionObjects);
   }
   /**
    * Returns the network this provider is connected to
    */
   public async getNetwork(): Promise<Network> {
-    const req = (): Promise<string> =>
-      post(this._rpcUrl, buildRPCPostBody('eth_chainId', []));
-    const nodeResponse = await req();
-    const chainId = hexToDecimal(nodeResponse);
+    const hexChainId = (await this.post(
+      buildRPCPostBody('eth_chainId', []),
+    )) as string;
+
+    const chainId = hexToDecimal(hexChainId);
     const info = (chainsInfo as any)[chainId];
     return {
       chainId: Number(chainId),
@@ -70,10 +107,10 @@ export class JsonRpcProvider {
    * Same as `ethers.provider.getGasPrice`
    */
   public async getGasPrice(): Promise<TinyBig> {
-    const req = (): Promise<string> =>
-      post(this._rpcUrl, buildRPCPostBody('eth_gasPrice', []));
-    const nodeResponse = await req(); /* '0x153cfb1ad0' */
-    return tinyBig(hexToDecimal(nodeResponse));
+    const hexGasPrice = (await this.post(
+      buildRPCPostBody('eth_gasPrice', []),
+    )) as string;
+    return tinyBig(hexToDecimal(hexGasPrice));
   }
 
   /**
@@ -93,13 +130,10 @@ export class JsonRpcProvider {
     address: string,
     blockTag: BlockTag = 'latest',
   ): Promise<TinyBig> {
-    const req = (): Promise<string> =>
-      post(
-        this._rpcUrl,
-        buildRPCPostBody('eth_getBalance', [address, blockTag]),
-      );
-    const nodeResponse = await req(); /* '0x153cfb1ad0' */
-    return tinyBig(hexToDecimal(nodeResponse));
+    const hexBalance = (await this.post(
+      buildRPCPostBody('eth_getBalance', [address, blockTag]),
+    )) as string;
+    return tinyBig(hexToDecimal(hexBalance));
   }
   /**
    * Similar to `ethers.provider.getTransaction`, some information not included
@@ -227,13 +261,13 @@ export class JsonRpcProvider {
    * ```
    */
   public async getTransaction(hash: string): Promise<TransactionResponse> {
-    const fetchTransaction = async (): Promise<RPCTransaction> =>
-      post(this._rpcUrl, buildRPCPostBody('eth_getTransactionByHash', [hash]));
-    const [transaction, blockNumber] = await Promise.all([
-      fetchTransaction(),
+    const [rpcTransaction, blockNumber] = await Promise.all([
+      this.post(
+        buildRPCPostBody('eth_getTransactionByHash', [hash]),
+      ) as Promise<RPCTransaction>,
       this.getBlock('latest'),
     ]);
-    const cleanedTransaction = cleanTransaction(transaction);
+    const cleanedTransaction = cleanTransaction(rpcTransaction);
     // https://ethereum.stackexchange.com/questions/2881/how-to-get-the-transaction-confirmations-using-the-json-rpc
     cleanedTransaction.confirmations =
       blockNumber.number - cleanedTransaction.blockNumber + 1;

@@ -33,23 +33,6 @@ describe('provider.getBlock happy path', () => {
       ),
     };
     expect(filteredBlock1).toStrictEqual(filteredBlock2);
-
-    // // slight mis-timing in eth node responses
-    // expect(omit(block1, ['totalDifficulty', 'difficulty'])).toStrictEqual(
-    //   omit(block2, ['totalDifficulty', 'difficulty']),
-    // );
-
-    // // validate that difficulty and totalDifficulty are still very close
-    // expect(
-    //   Big(block1.difficulty).minus(block2.difficulty).abs().toNumber(),
-    // ).toBeLessThan(3);
-
-    // expect(
-    //   Big(block1.totalDifficulty)
-    //     .minus(block2.totalDifficulty)
-    //     .abs()
-    //     .toNumber(),
-    // ).toBeLessThan(5000000 /* 2616793 and 1187442 on recent tests */);
   }
 
   const essentialEthProvider = new JsonRpcProvider(rpcUrl);
