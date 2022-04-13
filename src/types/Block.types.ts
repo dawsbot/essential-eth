@@ -36,7 +36,9 @@ export interface RPCBlock {
   stateRoot: string;
   timestamp: string;
   totalDifficulty: string;
-  transactions: Array<string | RPCTransaction /* if second arg is true */>;
+  transactions:
+    | Array<string>
+    | Array<RPCTransaction /* if second arg is true */>;
   transactionsRoot: string;
   uncles: unknown[];
 }

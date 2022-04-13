@@ -49,6 +49,5 @@ export interface RPCBlockTransaction {
   transactionIndex: string;
   type: string;
   v: string;
-
   value: string;
 }
