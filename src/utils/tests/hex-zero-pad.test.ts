@@ -3,11 +3,11 @@ import { hexZeroPad } from '../../index';
 
 describe('hexZeroPad', () => {
   it('numbers - matches ethers', () => {
-    const values = [123, 0];
-    values.forEach((value) => {
-      expect(hexZeroPad(value, 30)).toStrictEqual(
+    const decimalValues = [123, 0];
+    decimalValues.forEach((decimalValue) => {
+      expect(hexZeroPad(decimalValue, 30)).toStrictEqual(
         // @ts-ignore
-        ethers.utils.hexZeroPad(value, 30),
+        ethers.utils.hexZeroPad(decimalValue, 30),
       );
     });
   });
@@ -20,10 +20,10 @@ describe('hexZeroPad', () => {
     );
   });
   it('should throw error when value is already longer than desired length', () => {
-    const values = [0x123456, '0x5aAebAd', '0xfB691', '0xD1220ab'];
-    values.forEach((value) => {
-      expect(() => hexZeroPad(value, 2)).toThrow(
-        `value is longer than length (value=${value}, length=${2})`,
+    const hexValues = [0x123456, '0x5aAebAd', '0xfB691', '0xD1220ab'];
+    hexValues.forEach((hexValue) => {
+      expect(() => hexZeroPad(hexValue, 2)).toThrow(
+        `value is longer than length (hexValue=${hexValue}, length=${2})`,
       );
     });
   });
