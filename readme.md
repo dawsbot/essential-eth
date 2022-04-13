@@ -26,7 +26,7 @@
 
 <br/>
 
-- 🏎 [The TINIEST code size possible](https://bundlephobia.com/package/essential-eth)
+- 🏆️ <sub><sup>[smallest code size possible](https://bundlephobia.com/package/essential-eth)</sup></sub>
 - ʦ Fully typed with TypeScript (also works with JavaScript)
 - 🧪 Tested to match both `web3` and `ethers`
 - - ⚡️ Near-identical API to `ethers`
