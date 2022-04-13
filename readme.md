@@ -215,6 +215,35 @@ isAddress('vitalik.eth');
 
 <br/>
 
+#### `hexZeroPad`
+
+```typescript
+// returns a hex string padded to a specified length of bytes
+// if the hex value provided is already longer than the padding value, the value itself is returned without alteration
+hexZeroPad(value: string | number, length: number): string
+```
+
+<details>
+  <summary>View Example</summary>
+
+```typescript
+import { hexZeroPad } from 'essential-eth';
+
+hexZeroPad('0x60', 2);
+// '0x0060'
+
+hexZeroPad('0x657373656e7469616c657468', 5);
+// '0x0000000000000000657373656e7469616c657468'
+
+// Length of string is already longer than padding value
+hexZeroPad('0x31323334', 3);
+// '0x31323334'
+```
+
+</details>
+
+<br/>
+
 ## RPC
 
 ```typescript
