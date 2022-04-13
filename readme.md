@@ -1,5 +1,5 @@
 <p align="center">
-  <a><img src="https://user-images.githubusercontent.com/3408480/162816226-3c4ee763-abf9-4c21-af4d-bf582274e17e.png" title="Logo" height="300" /></a>
+  <img src="static/ee-small.png" title="Logo"/>
 </p>
 <p align="center">
 
@@ -20,7 +20,6 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/3408480/133322814-f3d18424-4ba8-4a37-8cbc-c5e6828354a3.png" title="Import size comparison" width="900"/>
 </p>
-
 
 ---
 
@@ -232,12 +231,12 @@ import { hexZeroPad } from 'essential-eth';
 hexZeroPad('0x60', 2);
 // '0x0060'
 
-hexZeroPad('0x657373656e7469616c657468', 5);
-// '0x0000000000000000657373656e7469616c657468'
+hexZeroPad(0x60, 3);
+// '0x000060'
 
 // Length of string is already longer than padding value
 hexZeroPad('0x31323334', 3);
-// '0x31323334'
+// Throws error
 ```
 
 </details>
@@ -479,7 +478,6 @@ Any function on a contract. Returns are the same as `ethers.js`, except that ins
 ![Screen Shot 2022-01-12 at 10 25 29 AM](https://user-images.githubusercontent.com/3408480/149190699-9bc15719-9382-46af-a77b-45e138f37643.png)
 
 ![Screen Shot 2022-01-12 at 10 24 57 AM](https://user-images.githubusercontent.com/3408480/149190691-ed2913b9-8c14-4a8e-b5f8-0895fbac279b.png)
-
 
 ## More Info
 
