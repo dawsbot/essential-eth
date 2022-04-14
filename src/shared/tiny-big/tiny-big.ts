@@ -10,8 +10,7 @@ export class TinyBig extends Big {
     try {
       super(value);
     } catch (e) {
-      console.error(`TinyBig cannot parse value (value=${value})`);
-      throw e;
+      throw new Error(`TinyBig cannot parse value (value=${value})`);
     }
   }
   /**
