@@ -1,5 +1,5 @@
 import * as ethers from 'ethers';
-import { hexZeroPad } from '../../bytes2';
+import { hexZeroPad } from '../../../';
 
 describe('hexZeroPad', () => {
   it('numbers - matches ethers', () => {

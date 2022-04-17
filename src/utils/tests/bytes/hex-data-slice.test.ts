@@ -1,5 +1,5 @@
 import * as ethers from 'ethers';
-import { hexDataSlice } from '../../bytes2';
+import { hexDataSlice } from '../../../';
 
 describe('hexDataSlice', () => {
   it('numbers - matches ethers strings', () => {
