@@ -4,3 +4,4 @@ coverage
 .versions
 *.docker*
 docusaurus/docs/api
+docusaurus/build

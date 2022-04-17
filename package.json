@@ -25,7 +25,7 @@
     "prepublishOnly": "npm run build",
     "jest": "jest",
     "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
-    "pre-commit": "sh scripts/pre-commit.sh"
+    "pre-commit": "sh ./scripts/pre-commit.sh"
   },
   "devDependencies": {
     "@ethersproject/keccak256": "^5.4.0",
@@ -48,7 +48,7 @@
     "jest": "^27.5.1",
     "jest-dev-server": "^6.0.3",
     "just-omit": "^2.0.1",
-    "lint-staged": "^12.3.7",
+    "lint-staged": "^12.3.8",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.6.2",
     "prettier-plugin-organize-imports": "^2.3.4",
