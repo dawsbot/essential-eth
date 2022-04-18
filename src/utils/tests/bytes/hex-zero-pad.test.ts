@@ -1,5 +1,5 @@
 import * as ethers from 'ethers';
-import { hexZeroPad } from '../../index';
+import { hexZeroPad } from '../../../';
 
 describe('hexZeroPad', () => {
   it('numbers - matches ethers', () => {
@@ -11,24 +11,29 @@ describe('hexZeroPad', () => {
       );
     });
   });
+  it('arrays of numbers - matches ethers', () => {
+    const decimalValues = [[1, 2, 3, 4]];
+    decimalValues.forEach((decimalValue) => {
+      expect(hexZeroPad(decimalValue, 30)).toStrictEqual(
+        ethers.utils.hexZeroPad(decimalValue, 30),
+      );
+    });
+  });
   it('should reject strings passed in which are not hex strings', () => {
     const value = '52908';
     expect(() => {
       hexZeroPad(value, 23);
-    }).toThrow(
-      `value is not a hex string or number. Consider prepending with "0x" (value="${value}")`,
-    );
+    }).toThrow();
   });
   it('should throw error when value is already longer than desired length', () => {
     const hexValues = [0x123456, '0x5aAebAd', '0xfB691', '0xD1220ab'];
     hexValues.forEach((hexValue) => {
-      expect(() => hexZeroPad(hexValue, 2)).toThrow(
-        `value is longer than length (hexValue=${hexValue}, length=${2})`,
-      );
+      expect(() => hexZeroPad(hexValue, 2)).toThrow();
     });
   });
   it('should match ethers.js when padding can be applied', () => {
     const values = [
+      10,
       '0x5290',
       '0x8617E3',
       '0xde709f210',

@@ -1,3 +1,4 @@
+npx genversion --es6 src/logger/package-version.ts
 npx npm-check-updates -u  "/.*lint.*$/"
 npx npm-check-updates -u  "/.*jest.*$/"
 npx npm-check-updates -u  "/.*big.*$/"
