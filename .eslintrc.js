@@ -24,7 +24,7 @@ module.exports = {
     'jest/expect-expect': 'off',
     'jest/lowercase-name': 'off',
     'jest/no-commented-out-tests': 'off',
-    'jest/no-conditional-expect': 'warn',
+    'jest/no-conditional-expect': 'off',
     'jest/no-disabled-tests': 'warn',
     'jest/prefer-expect-assertions': 'off',
     'jest/require-hook': 'off',
