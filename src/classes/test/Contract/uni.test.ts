@@ -16,16 +16,20 @@ const essentialEthProvider = new JsonRpcProvider(rpcURL);
 // https://etherscan.io/address/0x090D4613473dEE047c3f2706764f49E0821D256e#readContract
 const contractAddress = '0x090D4613473dEE047c3f2706764f49E0821D256e';
 
-const smartContractIsUniClaimed = async (contract: any, index: number) => {
+type ContractLike = EthersContract | EssentialEthContract;
+const smartContractIsUniClaimed = async (
+  contract: ContractLike,
+  index: number,
+) => {
   const isClaimed = (await contract.isClaimed(index)) as boolean;
   return isClaimed;
 };
 
-const smartContractGetUniMerkleRoot = async (contract: any) => {
+const smartContractGetUniMerkleRoot = async (contract: ContractLike) => {
   const merkleRoot = (await contract.merkleRoot()) as string;
   return merkleRoot;
 };
-const smartContractGetUniTokenAddress = async (contract: any) => {
+const smartContractGetUniTokenAddress = async (contract: ContractLike) => {
   const merkleRoot = (await contract.token()) as string;
   return merkleRoot;
 };
