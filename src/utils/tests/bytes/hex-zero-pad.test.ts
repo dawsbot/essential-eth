@@ -6,8 +6,7 @@ describe('hexZeroPad', () => {
     const decimalValues = [123, 0];
     decimalValues.forEach((decimalValue) => {
       expect(hexZeroPad(decimalValue, 30)).toStrictEqual(
-        // @ts-ignore
-        ethers.utils.hexZeroPad(decimalValue, 30),
+        ethers.utils.hexZeroPad(decimalValue as any, 30),
       );
     });
   });
@@ -46,8 +45,7 @@ describe('hexZeroPad', () => {
     ];
     values.forEach((value) => {
       expect(hexZeroPad(value, 30)).toStrictEqual(
-        // @ts-ignore
-        ethers.utils.hexZeroPad(value, 30),
+        ethers.utils.hexZeroPad(value as any, 30),
       );
     });
   });
