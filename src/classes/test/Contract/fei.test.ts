@@ -16,8 +16,9 @@ const essentialEthProvider = new JsonRpcProvider(rpcURL);
 // https://etherscan.io/address/0xBFfB152b9392e38CdDc275D818a3Db7FE364596b
 const contractAddress = '0xBFfB152b9392e38CdDc275D818a3Db7FE364596b';
 
+type ContractLike = EthersContract | EssentialEthContract;
 const smartContractGetFeiAmountsToRedeem = async (
-  contract: any,
+  contract: ContractLike,
   address: string,
 ) => {
   const merkleRoot = (await contract.getAmountsToRedeem(address)) as TinyBig[];
