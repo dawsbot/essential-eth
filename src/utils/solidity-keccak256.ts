@@ -3,6 +3,7 @@ import { Keccak } from 'sha3';
 import { logger } from '../logger/logger';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { arrayify, concat, hexlify, zeroPad } from './bytes';
+import { isAddress } from './is-address';
 
 const regexBytes = new RegExp('^bytes([0-9]+)$');
 const regexNumber = new RegExp('^(u?int)([0-9]*)$');
@@ -103,6 +104,7 @@ export function solidityKeccak256(
   }
 
   types.forEach((type, index) => {
+    if (type == 'address' && isAddress(values[index])) return;
     if (typeof values[index] != type)
       throw new Error(`
     Specified type doesn't match actual type of value. (type=${type}, value=${
