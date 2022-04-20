@@ -7,11 +7,7 @@ import { scientificStrToDecimalStr } from './helpers';
  */
 export class TinyBig extends Big {
   constructor(value: string | number | TinyBig | Big) {
-    try {
-      super(value);
-    } catch (e) {
-      throw new Error(`TinyBig cannot parse value (value=${value})`);
-    }
+    super(value);
   }
   /**
    * Used anytime you're passing in "value" to ethers or web3
@@ -29,6 +25,37 @@ export class TinyBig extends Big {
       return '0';
     }
     return scientificStrToDecimalStr(super.toString());
+  }
+
+  /**
+   * @param {String} str
+   * @param {String} padChar
+   * @param {Number} length
+   */
+  private padAndChop = (
+    str: string,
+    padChar: string,
+    length: number,
+  ): string => {
+    return (Array(length).fill(padChar).join('') + str).slice(length * -1);
+  };
+  public toTwos(bitCount: number): Big {
+    let binaryStr;
+
+    if (this.gte(0)) {
+      const twosComp = this.toNumber().toString(2);
+      binaryStr = this.padAndChop(twosComp, '0', bitCount || twosComp.length);
+    } else {
+      binaryStr = this.plus(Math.pow(2, bitCount)).toNumber().toString(2);
+
+      if (Number(binaryStr) < 0) {
+        throw new Error('Cannot calculate twos complement');
+      }
+    }
+
+    const binary = `0b${binaryStr}`;
+    const decimal = Number(binary);
+    return tinyBig(decimal);
   }
 }
 

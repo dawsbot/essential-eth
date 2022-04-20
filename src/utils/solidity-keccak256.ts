@@ -1,7 +1,7 @@
-import { BigNumber } from '@ethersproject/bignumber';
 import { Buffer } from 'buffer';
 import { Keccak } from 'sha3';
 import { logger } from '../logger/logger';
+import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { arrayify, concat, hexlify, zeroPad } from './bytes';
 
 const regexBytes = new RegExp('^bytes([0-9]+)$');
@@ -48,9 +48,9 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
       size = 256;
     }
 
-    value = BigNumber.from(value).toTwos(size);
+    value = tinyBig(value).toTwos(size);
 
-    return zeroPad(value, size / 8);
+    return zeroPad(value.toHexString(), size / 8);
   }
 
   match = type.match(regexBytes);
@@ -89,8 +89,6 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
 
   return logger.throwArgumentError('invalid type', 'type', type);
 }
-
-// @TODO: Array Enum
 
 export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
   if (types.length != values.length) {
