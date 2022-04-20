@@ -48,9 +48,9 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
       size = 256;
     }
 
-    value = tinyBig(value).toTwos(size);
-
-    return zeroPad(value.toHexString(), size / 8);
+    value = tinyBig(value).toTwos(size).toNumber();
+    const hexValue = hexlify(value);
+    return zeroPad(hexValue, size / 8);
   }
 
   match = type.match(regexBytes);
