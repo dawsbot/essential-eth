@@ -66,7 +66,7 @@ export class BaseContract {
                   : null;
               const req = async (): Promise<string> => {
                 return await post(
-                  this._provider._rpcUrl,
+                  this._provider.selectRpcUrl(),
                   buildRPCPostBody('eth_call', [
                     {
                       to: this._address.toLowerCase(),
