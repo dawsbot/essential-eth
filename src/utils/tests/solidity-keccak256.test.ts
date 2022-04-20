@@ -43,25 +43,6 @@ describe('solidityKeccak256', () => {
   //     );
   //   });
   // });
-  it('should match ethers.js (signed and unsigned) integers', () => {
-    const inputs = [
-      { types: ['int16'], values: [-1] },
-      { types: ['uint48'], values: [12] },
-      { types: ['int16', 'uint48'], values: [-1, 12] },
-    ];
-    testSolidityKeccak256(inputs);
-  });
-  it('should match ethers.js strings', () => {
-    const inputs = [
-      { types: ['string'], values: ['essential-eth'] },
-      { types: ['string', 'string'], values: ['firstText', 'secondString'] },
-      {
-        types: ['string', 'string', 'string'],
-        values: ['example1', '2934823', 'true'],
-      },
-    ];
-    testSolidityKeccak256(inputs);
-  });
   it('should match ethers.js addresses', () => {
     const inputs = [
       {
@@ -78,10 +59,14 @@ describe('solidityKeccak256', () => {
     ];
     testSolidityKeccak256(inputs);
   });
-  it('should match ethers.js booleans (specified as type "bool" to match solidity)', () => {
+  it('should match ethers.js strings', () => {
     const inputs = [
-      { types: ['bool'], values: [true] },
-      { types: ['bool', 'bool'], values: [false, false] },
+      { types: ['string'], values: ['essential-eth'] },
+      { types: ['string', 'string'], values: ['firstText', 'secondString'] },
+      {
+        types: ['string', 'string', 'string'],
+        values: ['example1', '2934823', 'true'],
+      },
     ];
     testSolidityKeccak256(inputs);
   });
@@ -96,6 +81,21 @@ describe('solidityKeccak256', () => {
           [115, 109, 97, 108, 108, 101, 115, 116],
         ],
       },
+    ];
+    testSolidityKeccak256(inputs);
+  });
+  it('should match ethers.js booleans (specified as type "bool" to match solidity)', () => {
+    const inputs = [
+      { types: ['bool'], values: [true] },
+      { types: ['bool', 'bool'], values: [false, false] },
+    ];
+    testSolidityKeccak256(inputs);
+  });
+  it('should match ethers.js (signed and unsigned) integers', () => {
+    const inputs = [
+      { types: ['int16'], values: [-1] },
+      { types: ['uint48'], values: [12] },
+      { types: ['int16', 'uint48'], values: [-1, 12] },
     ];
     testSolidityKeccak256(inputs);
   });
