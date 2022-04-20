@@ -62,4 +62,20 @@ describe('solidityKeccak256', () => {
     ];
     testSolidityKeccak256(inputs);
   });
+  it('should match ethers.js addresses', () => {
+    const inputs = [
+      {
+        types: ['address'],
+        values: ['0x4d7F1790644Af787933c9fF0e2cff9a9B4299Abb'],
+      },
+      {
+        types: ['address', 'address'],
+        values: [
+          '0xB5503a7db1A9105cd459D99153e69a76a8EF1530',
+          '0xaa0fc255b079e775f9307e5cfec472a555cebc3a',
+        ],
+      },
+    ];
+    testSolidityKeccak256(inputs);
+  });
 });
