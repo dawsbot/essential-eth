@@ -1,6 +1,13 @@
 import { utils } from 'ethers';
 import { solidityKeccak256 } from '../../index';
 
+function testSolidityKeccak256(inputs: Array<any>) {
+  inputs.forEach((input) => {
+    expect(solidityKeccak256(input.types, input.values)).toBe(
+      utils.solidityKeccak256(input.types, input.values),
+    );
+  });
+}
 describe('solidityKeccak256', () => {
   // it('should reject when number of types does not equal number of values', () => {
   //   const inputs = [
