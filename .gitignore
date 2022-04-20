@@ -2,6 +2,7 @@ node_modules
 lib
 coverage
 .versions
+.eslintcache
 *.docker*
 docusaurus/docs/api
 docusaurus/build

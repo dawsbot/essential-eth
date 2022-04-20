@@ -17,7 +17,7 @@
   "scripts": {
     "test": "npm-run-all --parallel jest compile lint",
     "test:all-node-versions": "npx trevor",
-    "lint": "eslint .",
+    "lint": "eslint --cache --fix .",
     "compile": "npm-run-all --parallel tsc:esm tsc:cjs",
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
@@ -25,7 +25,9 @@
     "prepublishOnly": "npm run build",
     "jest": "jest",
     "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
-    "pre-commit": "sh ./scripts/pre-commit.sh"
+    "update-deps": "sh ./scripts/pre-commit.sh",
+    "pre-commit": "run-p build:chains-info update-deps",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@ethersproject/keccak256": "^5.4.0",
@@ -44,7 +46,7 @@
     "eslint-plugin-jest": "^26.1.4",
     "ethers": "^5.6.4",
     "express": "^4.17.1",
-    "husky": "^4.3.0",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
     "jest-dev-server": "^6.0.3",
     "just-omit": "^2.0.1",
@@ -64,15 +66,11 @@
     "isomorphic-unfetch": "^3.1.0",
     "sha3": "^2.1.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && run-p pre-commit test build:chains-info"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,scss,md,json,html,yml,yaml}": [
       "prettier --write"
-    ]
+    ],
+    "*.{ts,tsx}": "eslint --cache --fix"
   },
   "prettier": {
     "trailingComma": "all",
