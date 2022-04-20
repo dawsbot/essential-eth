@@ -653,6 +653,9 @@ export default {
   "2221": [
     "kava"
   ],
+  "2223": [
+    "VChain"
+  ],
   "2559": [
     "ktoc"
   ],
