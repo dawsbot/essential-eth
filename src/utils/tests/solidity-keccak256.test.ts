@@ -78,4 +78,11 @@ describe('solidityKeccak256', () => {
     ];
     testSolidityKeccak256(inputs);
   });
+  it('should match ethers.js booleans (specified as type "bool" to match solidity)', () => {
+    const inputs = [
+      { types: ['bool'], values: [true] },
+      { types: ['bool', 'bool'], values: [false, false] },
+    ];
+    testSolidityKeccak256(inputs);
+  });
 });
