@@ -210,6 +210,16 @@ export function isHexString(value: any, length?: number): boolean {
 
 const HexCharacters = '0123456789abcdef';
 
+/**
+ * @example
+ * ```js
+ * hexlify(4);
+ * // '0x04'
+ *
+ * hexlify(14);
+ * // '0x0e'
+ * ```
+ */
 export function hexlify(
   value: BytesLike | Hexable | number | bigint,
   options?: DataOptions,
