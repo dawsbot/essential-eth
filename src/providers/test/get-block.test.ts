@@ -37,6 +37,13 @@ describe('provider.getBlock happy path', () => {
 
   const essentialEthProvider = new JsonRpcProvider(rpcUrl);
   const web3Provider = new Web3(rpcUrl);
+  it('should get default latest block', async () => {
+    const [eeDefaultLatestBlock, eeLatestBlock] = await Promise.all([
+      essentialEthProvider.getBlock(),
+      essentialEthProvider.getBlock('latest'),
+    ]);
+    expect(eeDefaultLatestBlock).toStrictEqual(eeLatestBlock);
+  });
   it('should get latest block', async () => {
     const [eeLatestBlock, web3LatestBlock] = await Promise.all([
       essentialEthProvider.getBlock('latest'),

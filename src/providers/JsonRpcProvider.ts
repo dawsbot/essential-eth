@@ -71,7 +71,7 @@ export class JsonRpcProvider {
    *```
    */
   public async getBlock(
-    timeFrame: BlockTag,
+    timeFrame: BlockTag = 'latest',
     returnTransactionObjects = false,
   ): Promise<BlockResponse> {
     let rpcTimeFrame: string;
