@@ -43,16 +43,23 @@ describe('solidityKeccak256', () => {
   //     );
   //   });
   // });
-  it('should match ethers.js integers', () => {
+  it('should match ethers.js (signed and unsigned) integers', () => {
     const inputs = [
       { types: ['int16'], values: [-1] },
       { types: ['uint48'], values: [12] },
       { types: ['int16', 'uint48'], values: [-1, 12] },
     ];
-    inputs.forEach((input) => {
-      expect(solidityKeccak256(input.types, input.values)).toBe(
-        utils.solidityKeccak256(input.types, input.values),
-      );
-    });
+    testSolidityKeccak256(inputs);
+  });
+  it('should match ethers.js strings', () => {
+    const inputs = [
+      { types: ['string'], values: ['essential-eth'] },
+      { types: ['string', 'string'], values: ['firstText', 'secondString'] },
+      {
+        types: ['string', 'string', 'string'],
+        values: ['example1', '2934823', 'true'],
+      },
+    ];
+    testSolidityKeccak256(inputs);
   });
 });
