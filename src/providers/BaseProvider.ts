@@ -12,6 +12,9 @@ import {
 import chainsInfo from './utils/chains-info';
 
 export abstract class BaseProvider {
+  /**
+   * ignore
+   */
   abstract selectRpcUrl(): string;
 
   /**
