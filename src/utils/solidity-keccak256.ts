@@ -105,7 +105,7 @@ export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
   return hexlify(concat(tight));
 }
 
-const hashKeccak256 = (data: string) => {
+export const hashKeccak256 = (data: string) => {
   const keccak = new Keccak(256);
   const bufferableData = Buffer.from(data.replace(/^0x/, ''), 'hex');
 
@@ -115,27 +115,27 @@ const hashKeccak256 = (data: string) => {
 
 /**
  * Hashes data from Solidity using the Keccak256 algorithm.
- * 
+ *
  * Similar to ["solidityKeccak256" in ethers.js](https://docs.ethers.io/v5/api/utils/hashing/#utils-solidityKeccak256)
- * 
+ *
  * @param types - Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
- * 
- * @param values - Data to be concatenated (combined) and then hashed. 
- * 
+ *
+ * @param values - Data to be concatenated (combined) and then hashed.
+ *
  * @returns - A Keccak256 hash (hex string) based on the values provided
- * 
+ *
  * @example
  * ```javascript
- * let types = ['string', 'bool', 'uint32'];
- * let values = ['essential-eth is great', true, 14];
+ * const types = ['string', 'bool', 'uint32'];
+ * const values = ['essential-eth is great', true, 14];
  * solidityKeccak256(types, values);
  * // '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'
  * ```
- * 
+ *
  * @example
  * ```javascript
- * let types = ['bytes4', 'uint32[5]'];
- * let values = [[116, 101, 115, 116], [5, 3, 4, 9, 18]];
+ * const types = ['bytes4', 'uint32[5]'];
+ * const values = [[116, 101, 115, 116], [5, 3, 4, 9, 18]];
  * solidityKeccak256(types, values);
  * // '0x038707a887f09355dc545412b058e7ba8f3c74047050c7c5e5e52eec608053d9'
  * ```

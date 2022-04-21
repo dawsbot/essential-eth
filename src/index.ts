@@ -13,11 +13,11 @@ import { etherToGwei } from './utils/ether-to-gwei';
 import { etherToWei } from './utils/ether-to-wei';
 import { gweiToEther } from './utils/gwei-to-ether';
 import { isAddress } from './utils/is-address';
-import { solidityKeccak256 } from './utils/solidity-keccak256';
 import { toChecksumAddress } from './utils/to-checksum-address';
 import { weiToEther } from './utils/wei-to-ether';
 
 export * from './utils/bytes';
+export * from './utils/solidity-keccak256';
 export {
   etherToWei,
   etherToGwei,
@@ -28,7 +28,6 @@ export {
   toChecksumAddress,
   weiToEther,
   gweiToEther,
-  solidityKeccak256,
   /* classes */
   Contract,
   TinyBig,
