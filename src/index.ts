@@ -17,6 +17,7 @@ import { toChecksumAddress } from './utils/to-checksum-address';
 import { weiToEther } from './utils/wei-to-ether';
 
 export * from './utils/bytes';
+export * from './utils/solidity-keccak256';
 export {
   etherToWei,
   etherToGwei,

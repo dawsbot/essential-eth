@@ -710,6 +710,12 @@ export default {
   "5315": [
     "UZMI"
   ],
+  "5551": [
+    "Nahmii"
+  ],
+  "5553": [
+    "Nahmii testnet"
+  ],
   "5700": [
     "tsys"
   ],
@@ -1063,6 +1069,9 @@ export default {
   ],
   "18289463": [
     "ilt"
+  ],
+  "20180430": [
+    "spectrum"
   ],
   "20181205": [
     "qki"
