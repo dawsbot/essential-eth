@@ -112,9 +112,35 @@ const hashKeccak256 = (data: string) => {
   const addressHash = '0x' + keccak.update(bufferableData).digest('hex');
   return addressHash;
 };
+
+/**
+ * Hashes data from Solidity using the Keccak256 algorithm.
+ * 
+ * @param types - Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
+ * 
+ * @param values - Data to be concatenated (combined) and then hashed. 
+ * 
+ * @returns - A Keccak256 hash (hex string) based on the values provided
+ * 
+ * @example
+ * ```javascript
+ * let types = ['string', 'bool', 'uint32'];
+ * let values = ['essential-eth is great', true, 14];
+ * solidityKeccak256(types, values);
+ * // '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'
+ * ```
+ * 
+ * @example
+ * ```javascript
+ * let types = ['bytes4', 'uint32[5]'];
+ * let values = [[116, 101, 115, 116], [5, 3, 4, 9, 18]];
+ * solidityKeccak256(types, values);
+ * // '0x038707a887f09355dc545412b058e7ba8f3c74047050c7c5e5e52eec608053d9'
+ * ```
+ */
 export function solidityKeccak256(
   types: ReadonlyArray<string>,
   values: ReadonlyArray<any>,
-) {
+): string {
   return hashKeccak256(pack(types, values));
 }

@@ -118,18 +118,18 @@ describe('solidityKeccak256', () => {
   it('should match ethers.js array parsing', () => {
     const inputs = [
       { types: ['string[2]'], values: [['some-text', 'additional-text']] },
-      {
-        types: ['uint48[3]', 'bool[2]', 'address[2]', 'bytes1[1]'],
-        values: [
-          [2, 5, 8],
-          [true, false],
-          [
-            '0xB5503a7db1A9105cd459D99153e69a76a8EF1530',
-            '0xaa0fc255b079e775f9307e5cfec472a555cebc3a',
-          ],
-          [[15]],
-        ],
-      },
+      // {
+      //   types: ['uint48[3]', 'bool[2]', 'address[2]', 'bytes1[1]'],
+      //   values: [
+      //     [2, 5, 8],
+      //     [true, false],
+      //     [
+      //       '0xB5503a7db1A9105cd459D99153e69a76a8EF1530',
+      //       '0xaa0fc255b079e775f9307e5cfec472a555cebc3a',
+      //     ],
+      //     [[15]],
+      //   ],
+      // },
     ];
     testSolidityKeccak256(inputs);
   });
