@@ -118,6 +118,8 @@ describe('solidityKeccak256', () => {
   it('should match ethers.js array parsing', () => {
     const inputs = [
       { types: ['string[2]'], values: [['some-text', 'additional-text']] },
+      // Test case currently broken - see https://github.com/Earnifi/essential-eth/pull/77#pullrequestreview-948182796
+      // Will be re-enabled upon bug fix
       // {
       //   types: ['uint48[3]', 'bool[2]', 'address[2]', 'bytes1[1]'],
       //   values: [
@@ -130,6 +132,31 @@ describe('solidityKeccak256', () => {
       //     [[15]],
       //   ],
       // },
+    ];
+    testSolidityKeccak256(inputs);
+  });
+  it('should match ethers.js when passing different types into the same solidityKeccak256 function call', () => {
+    const inputs = [
+      {
+        types: ['int16', 'string', 'bool'],
+        values: [-5, 'essential-eth', true],
+      },
+      {
+        types: ['address', 'uint48', 'bytes4'],
+        values: [
+          '0xB5503a7db1A9105cd459D99153e69a76a8EF1530',
+          20,
+          [116, 101, 115, 116],
+        ],
+      },
+      {
+        types: ['string[3]', 'bytes', 'bool[2]'],
+        values: [
+          ['ethereum', 'blockchain', '204'],
+          [115, 111, 108, 105, 100, 105, 116, 121],
+          [false, true],
+        ],
+      },
     ];
     testSolidityKeccak256(inputs);
   });
