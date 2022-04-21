@@ -8,6 +8,9 @@ export class FallthroughProvider extends BaseProvider {
   selectRpcUrl(): string {
     return this._rpcUrls[0];
   }
+  post(body: Record<string, unknown>): Promise<any> {
+    return this._post(body);
+  }
 
   constructor(rpcUrls: string[]) {
     if (!Array.isArray(rpcUrls)) {

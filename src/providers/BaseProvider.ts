@@ -16,7 +16,7 @@ export abstract class BaseProvider {
    * ignore
    */
   abstract selectRpcUrl(): string;
-  // abstract post(url: string): Promise<
+  abstract post(body: Record<string, unknown>): Promise<any>;
 
   /**
    * @ignore
@@ -25,7 +25,7 @@ export abstract class BaseProvider {
   /**
    * @ignore
    */
-  private _post = (body: Record<string, unknown>) =>
+  protected _post = (body: Record<string, unknown>) =>
     post(this.selectRpcUrl(), body);
 
   /**

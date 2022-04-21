@@ -1,6 +1,6 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
+import { JsonRpcProvider } from '../../../index';
 import { Contract as EssentialEthContract } from '../../Contract';
 import { rpcUrls } from './../../../providers/test/rpc-urls';
 import { ensABI } from './ens-abi';

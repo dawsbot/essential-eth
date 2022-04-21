@@ -3,9 +3,9 @@ export class JsonRpcProvider extends BaseProvider {
   selectRpcUrl(): string {
     return this._rpcUrls[0];
   }
-  // private post(...args): {
-  //   return this._post(args);
-  // }
+  post(body: Record<string, unknown>): Promise<any> {
+    return this._post(body);
+  }
 
   /**
    * @param rpcUrl The URL to your Eth node. Consider POKT or Infura

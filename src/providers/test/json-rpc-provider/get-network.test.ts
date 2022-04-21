@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { JsonRpcProvider } from '../../JsonRpcProvider';
+import { JsonRpcProvider } from '../../../index';
 import { fakeUrls, rpcUrls } from '../rpc-urls';
 
 const xdaiRPCUrl = rpcUrls.gno;
