@@ -116,6 +116,8 @@ const hashKeccak256 = (data: string) => {
 /**
  * Hashes data from Solidity using the Keccak256 algorithm.
  * 
+ * Similar to ["solidityKeccak256" in ethers.js](https://docs.ethers.io/v5/api/utils/hashing/#utils-solidityKeccak256)
+ * 
  * @param types - Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
  * 
  * @param values - Data to be concatenated (combined) and then hashed. 
