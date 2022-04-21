@@ -70,7 +70,7 @@ describe('solidityKeccak256', () => {
     ];
     testSolidityKeccak256(inputs);
   });
-  it('should match ethers.js bytes & BytesLike', () => {
+  it('should match ethers.js bytes (dynamic size) & BytesLike', () => {
     const inputs = [
       { types: ['bytes'], values: [[115, 101, 99, 114, 101, 116]] },
       { types: ['bytes'], values: ['0x62797465734c696b65'] }, // BytesLike string
@@ -79,6 +79,22 @@ describe('solidityKeccak256', () => {
         values: [
           '0x657373656e7469616c2d657468',
           [115, 109, 97, 108, 108, 101, 115, 116],
+        ],
+      },
+    ];
+    testSolidityKeccak256(inputs);
+  });
+  it('should match ethers.js bytes (static size)', () => {
+    const inputs = [
+      { types: ['byte4'], values: [[116, 101, 115, 116]] },
+      {
+        types: ['byte13', 'byte1', 'byte2', 'byte5', 'byte1'],
+        values: [
+          [101, 115, 115, 101, 110, 116, 105, 97, 108, 45, 101, 116, 104],
+          [32],
+          [105, 115],
+          [103, 114, 101, 97, 116],
+          [33],
         ],
       },
     ];
@@ -99,4 +115,5 @@ describe('solidityKeccak256', () => {
     ];
     testSolidityKeccak256(inputs);
   });
+  it('should match ethers.js ');
 });
