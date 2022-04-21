@@ -1,7 +1,8 @@
 import { ethers } from 'ethers';
 import omit from 'just-omit';
-import { JsonRpcProvider, TransactionResponse } from '../..';
-import { rpcUrls } from './rpc-urls';
+import { TransactionResponse } from '../../../types/Transaction.types';
+import { JsonRpcProvider } from '../../JsonRpcProvider';
+import { rpcUrls } from '../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
 
