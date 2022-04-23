@@ -28,8 +28,15 @@ export class JsonRpcProvider {
   }
 
   /**
-   * Returns the block requested
-   * Same as `web3.eth.getBlock`
+   * Gets information about a certain block.
+   * Same as `web3.eth.getBlock` and `ethers.providers.getBlock`
+   *
+   * @param timeFrame The number, hash, or text-based description ('latest', 'earliest', or 'pending') of the block to collect information on.
+   *
+   * @param returnTransactionObjects Whether to also return data about the transactions on the block.
+   *
+   * @returns A BlockResponse object with information about the specified block
+   *
    * @example
    * ```js
    * await provider.getBlock('latest');
