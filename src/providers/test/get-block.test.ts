@@ -67,6 +67,15 @@ describe('provider.getBlock happy path', () => {
     testBlockEquality(eeRandomBlock, web3RandomBlock);
     // expect(eeRandomBlock).toStrictEqual(web3RandomBlock);
   });
+  const blockHash =
+    '0x1a1a7b00c9d9fa68e04153144bdad871fb30d655eeec85423d57bd8000ca6449';
+  it(`should get block by hash. (hash = ${blockHash}`, async () => {
+    const [eeBlockByHash, web3BlockByHash] = await Promise.all([
+      essentialEthProvider.getBlock(blockHash),
+      web3Provider.eth.getBlock(blockHash),
+    ]);
+    expect(eeBlockByHash).toStrictEqual(web3BlockByHash);
+  });
 });
 
 describe('provider.getBlock error handling', () => {
