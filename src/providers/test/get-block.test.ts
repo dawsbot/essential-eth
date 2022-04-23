@@ -68,8 +68,8 @@ describe('provider.getBlock happy path', () => {
     // expect(eeRandomBlock).toStrictEqual(web3RandomBlock);
   });
   const blockHash =
-    '0x1a1a7b00c9d9fa68e04153144bdad871fb30d655eeec85423d57bd8000ca6449';
-  it(`should get block by hash. (hash = ${blockHash}`, async () => {
+    '0x4cbaa942e48a91108f38e2a250f6dbaff7fffe3027f5ebf76701929eed2b2970'; // Hash corresponds to block on RSK Mainnet
+  it(`should get block by hash. (hash = ${blockHash})`, async () => {
     const [eeBlockByHash, web3BlockByHash] = await Promise.all([
       essentialEthProvider.getBlock(blockHash),
       web3Provider.eth.getBlock(blockHash),

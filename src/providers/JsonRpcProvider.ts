@@ -75,17 +75,17 @@ export class JsonRpcProvider {
     returnTransactionObjects = false,
   ): Promise<BlockResponse> {
     let rpcTimeFrame: string;
-    let type: 'Number' | 'Hash';
+    let type: 'Number' | 'Hash' = 'Number';
     if (typeof timeFrame === 'number') {
       // exact block numbers require hex string format
       rpcTimeFrame = `0x${timeFrame.toString(16)}`;
-      // use endpoint that accepts block number
-      type = 'Number';
-    } else {
-      // "latest", "earliest", "pending", or hex string require no manipulation
+    } else if (timeFrame.startsWith('0x')) {
       rpcTimeFrame = timeFrame;
       // use endpoint that accepts string
       type = 'Hash';
+    } else {
+      // "latest", "earliest", "pending", or hex string require no manipulation
+      rpcTimeFrame = timeFrame;
     }
     const rpcBlock = (await this.post(
       buildRPCPostBody(`eth_getBlockBy${type}`, [
