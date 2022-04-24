@@ -28,6 +28,7 @@ export function post(url: string, body: Record<string, unknown>) {
 
 type RPCMethodName =
   | 'eth_getBlockByNumber'
+  | 'eth_getBlockByHash'
   | 'eth_call'
   | 'eth_chainId'
   | 'eth_gasPrice'

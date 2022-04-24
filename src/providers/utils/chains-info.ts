@@ -191,6 +191,9 @@ export default {
   "69": [
     "okov"
   ],
+  "70": [
+    "hsc"
+  ],
   "71": [
     "cfxtest"
   ],
@@ -1036,6 +1039,9 @@ export default {
   ],
   "444900": [
     "wlkt"
+  ],
+  "512512": [
+    "cmp"
   ],
   "666666": [
     "vpioneer"

@@ -47,13 +47,13 @@ describe('fEI contract', () => {
         '0xf5dBA31743ea341057280bb3AdD5c2Fb505BDC4C',
       ),
     ]);
-    expect(ethersResponse[0].toString()).toStrictEqual(
+    expect(ethersResponse[0].toString()).toBe(
       essentialEthResponse[0].toString(),
     );
-    expect(ethersResponse[1].toString()).toStrictEqual(
+    expect(ethersResponse[1].toString()).toBe(
       essentialEthResponse[1].toString(),
     );
-    expect(ethersResponse[2].toString()).toStrictEqual(
+    expect(ethersResponse[2].toString()).toBe(
       essentialEthResponse[2].toString(),
     );
 

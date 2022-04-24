@@ -37,9 +37,7 @@ describe('cRV contract', () => {
         gasLimit: 40955,
       }) as TinyBig,
     ]);
-    expect(ethersBalanceOf.toString()).toStrictEqual(
-      essentialEthBalanceOf.toString(),
-    );
+    expect(ethersBalanceOf.toString()).toBe(essentialEthBalanceOf.toString());
   });
   it('should fetch "uint256" total_claimed', async () => {
     const [ethersTotalClaimed, essentialEthTotalClaimed] = await Promise.all([
@@ -47,10 +45,10 @@ describe('cRV contract', () => {
       ethersContract.total_claimed(address, {}) as TinyBig,
       essentialEthContract.total_claimed(address, {}) as TinyBig,
     ]);
-    expect(ethersTotalClaimed.toString()).toStrictEqual(
+    expect(ethersTotalClaimed.toString()).toBe(
       essentialEthTotalClaimed.toString(),
     );
-    expect(ethersTotalClaimed.toNumber()).toStrictEqual(
+    expect(ethersTotalClaimed.toNumber()).toBe(
       essentialEthTotalClaimed.toNumber(),
     );
   });
