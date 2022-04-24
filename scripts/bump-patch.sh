@@ -1,2 +1,2 @@
 npm version patch -m "📦 %s"
-git push --follow-tags
+gh release create
