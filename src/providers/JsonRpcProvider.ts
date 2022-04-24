@@ -21,7 +21,7 @@ export class JsonRpcProvider {
   private post = (body: Record<string, unknown>) => post(this._rpcUrl, body);
 
   /**
-   * @param rpcUrl The URL to your Eth node. Consider POKT or Infura
+   * @param rpcUrl - The URL to your Eth node. Consider POKT or Infura
    */
   constructor(rpcUrl?: string) {
     this._rpcUrl = rpcUrl || 'https://free-eth-node.com/api/eth';
@@ -165,7 +165,6 @@ export class JsonRpcProvider {
   /**
    * Similar to `ethers.provider.getTransaction`, some information not included
    *
-   * @params hash A transaction hash
    * @returns information about one transaction
    * @example
    * ```js
@@ -287,10 +286,12 @@ export class JsonRpcProvider {
    *    }
    * ```
    */
-  public async getTransaction(hash: string): Promise<TransactionResponse> {
+  public async getTransaction(
+    transactionHash: string,
+  ): Promise<TransactionResponse> {
     const [rpcTransaction, blockNumber] = await Promise.all([
       this.post(
-        buildRPCPostBody('eth_getTransactionByHash', [hash]),
+        buildRPCPostBody('eth_getTransactionByHash', [transactionHash]),
       ) as Promise<RPCTransaction>,
       this.getBlock('latest'),
     ]);
@@ -301,6 +302,34 @@ export class JsonRpcProvider {
     return cleanedTransaction;
   }
 
+  /**
+   * Returns the transaction count from genesis up to specified blockTag
+   *
+   * * Same as `ethers.provider.getTransactionCount`
+   * * Same as `web3.eth.getTransactionCount`
+   *
+   * @example
+   * ```js
+   * const address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';
+   *  await provider
+   *   .getTransactionCount(address, 'latest')
+   * // 1060000
+   * ```
+   *
+   * @example
+   * ```js
+   *  await provider
+   *   .getTransactionCount(address)
+   * // 1053312
+   * ```
+   *
+   * @example
+   * ```js
+   *  await provider
+   *   .getTransactionCount(address, 14649390)
+   * // 1053312
+   * ```
+   */
   public async getTransactionCount(
     address: string,
     blockTag: BlockTag = 'latest',
