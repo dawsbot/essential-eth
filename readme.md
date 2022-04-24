@@ -255,6 +255,10 @@ const essentialEth = new JsonRpcProvider(
 const essentialEth = new JsonRpcProvider();
 ```
 
+ <br/>
+
+#### [`getTransactionCount(address, blockTag?): Promise<number>`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#gettransactioncount)
+
 #### `getGasPrice`
 
 Returns the current gas price in gwei
