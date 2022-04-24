@@ -1,2 +1,3 @@
 npm version minor -m "📦 %s"
-git push --follow-tags
+gh release create
+
