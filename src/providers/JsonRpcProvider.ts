@@ -305,6 +305,9 @@ export class JsonRpcProvider {
     address: string,
     blockTag: BlockTag = 'latest',
   ): Promise<number> {
+    if (typeof blockTag === 'number') {
+      blockTag = `0x${blockTag.toString(16)}`;
+    }
     const transactionCount = (await this.post(
       buildRPCPostBody('eth_getTransactionCount', [address, blockTag]),
     )) as string;
