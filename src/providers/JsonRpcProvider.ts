@@ -28,8 +28,25 @@ export class JsonRpcProvider {
   }
 
   /**
-   * Returns the block requested
-   * Same as `web3.eth.getBlock`
+   * Gets information about a certain block.
+   * Same as `web3.eth.getBlock` and `ethers.providers.getBlock`
+   *
+   * @param timeFrame The number, hash, or text-based description ('latest', 'earliest', or 'pending') of the block to collect information on.
+   *
+   * @param returnTransactionObjects Whether to also return data about the transactions on the block.
+   *
+   * @returns A BlockResponse object with information about the specified block
+   *
+   * @example
+   * ```js
+   * await provider.getBlock(14645431);
+   * ```
+   *
+   * @example
+   * ```js
+   * await provider.getBlock('0x3e5cea9c2be7e0ab4b0aa04c24dafddc37571db2d2d345caf7f88b3366ece0cf');
+   * ```
+   *
    * @example
    * ```js
    * await provider.getBlock('latest');
@@ -75,15 +92,20 @@ export class JsonRpcProvider {
     returnTransactionObjects = false,
   ): Promise<BlockResponse> {
     let rpcTimeFrame: string;
+    let type: 'Number' | 'Hash' = 'Number';
     if (typeof timeFrame === 'number') {
       // exact block numbers require hex string format
       rpcTimeFrame = `0x${timeFrame.toString(16)}`;
+    } else if (timeFrame.startsWith('0x')) {
+      rpcTimeFrame = timeFrame;
+      // use endpoint that accepts string
+      type = 'Hash';
     } else {
-      // "latest", "earliest", and "pending" require no manipulation
+      // "latest", "earliest", "pending", or hex string require no manipulation
       rpcTimeFrame = timeFrame;
     }
     const rpcBlock = (await this.post(
-      buildRPCPostBody('eth_getBlockByNumber', [
+      buildRPCPostBody(`eth_getBlockBy${type}`, [
         rpcTimeFrame,
         returnTransactionObjects,
       ]),

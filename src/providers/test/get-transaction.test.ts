@@ -40,7 +40,7 @@ describe('provider.getTransaction', () => {
       if (key === 'gas') {
         ethersKey = 'gasLimit';
       }
-      expect((transaction1 as any)[ethersKey].toString()).toStrictEqual(
+      expect((transaction1 as any)[ethersKey].toString()).toBe(
         (transaction2 as any)[key].toString(),
       );
     });
