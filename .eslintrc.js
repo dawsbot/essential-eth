@@ -18,7 +18,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'jest'],
   rules: {
     'no-empty': 'warn',
-    'no-console': 'warn',
+    'no-console': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'jest/expect-expect': 'off',
