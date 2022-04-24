@@ -300,6 +300,16 @@ export class JsonRpcProvider {
       blockNumber.number - cleanedTransaction.blockNumber + 1;
     return cleanedTransaction;
   }
+
+  public async getTransactionCount(
+    address: string,
+    blockTag: BlockTag = 'latest',
+  ): Promise<number> {
+    const transactionCount = (await this.post(
+      buildRPCPostBody('eth_getTransactionCount', [address, blockTag]),
+    )) as string;
+    return tinyBig(hexToDecimal(transactionCount)).toNumber();
+  }
 }
 
 /**
