@@ -308,7 +308,7 @@ export class JsonRpcProvider {
     const transactionCount = (await this.post(
       buildRPCPostBody('eth_getTransactionCount', [address, blockTag]),
     )) as string;
-    return tinyBig(hexToDecimal(transactionCount)).toNumber();
+    return Number(hexToDecimal(transactionCount));
   }
 }
 

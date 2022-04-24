@@ -1,4 +1,3 @@
-import { debug } from 'console';
 import { ethers } from 'ethers';
 import Web3 from 'web3';
 import { JsonRpcProvider } from '../..';
@@ -15,7 +14,6 @@ async function testGetTC(rpcUrl: string, blockTag?: BlockTag) {
     ethersProvider.getTransactionCount(address, blockTag),
     web3Provider.eth.getTransactionCount(address, blockTag as any),
   ]);
-  debug;
   expect(eeTC).toBe(ethersTC);
   expect(eeTC).toBe(web3TC);
 }
