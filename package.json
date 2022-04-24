@@ -22,12 +22,14 @@
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
     "build": "rm -rf lib && npm run compile",
-    "prepublishOnly": "npm run build",
     "jest": "jest",
     "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
     "update-deps": "sh ./scripts/pre-commit.sh",
     "pre-commit": "run-p build:chains-info update-deps",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "version": "npx genversion --es6 src/logger/package-version.ts && git add src/logger/package-version.ts",
+    "postversion": "git push --follow-tags",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@ethersproject/keccak256": "^5.4.0",
