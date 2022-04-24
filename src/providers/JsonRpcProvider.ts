@@ -39,6 +39,16 @@ export class JsonRpcProvider {
    *
    * @example
    * ```js
+   * await provider.getBlock(14645431);
+   * ```
+   *
+   * @example
+   * ```js
+   * await provider.getBlock('0x3e5cea9c2be7e0ab4b0aa04c24dafddc37571db2d2d345caf7f88b3366ece0cf');
+   * ```
+   *
+   * @example
+   * ```js
    * await provider.getBlock('latest');
    * {
    *   number: 4232826,
