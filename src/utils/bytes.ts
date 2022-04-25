@@ -61,19 +61,19 @@ function isHexable(value: any): value is Hexable {
  *
  * @example
  * ```js
- * provider.isBytesLike([1,2,3]);
+ * isBytesLike([1,2,3]);
  * // true
  * ```
  *
  * @example
  * ```js
- * provider.isBytesLike(false);
+ * isBytesLike(false);
  * // false
  * ```
  *
  * @example
  * ```js
- * provider.isBytesLike(new Uint8Array(1));
+ * isBytesLike(new Uint8Array(1));
  * // true
  * ```
  */
@@ -91,19 +91,19 @@ function isInteger(value: number) {
  *
  * @example
  * ```js
- * provider.isBytes([1,2,3]);
+ * isBytes([1,2,3]);
  * // true
  * ```
  *
  * @example
  * ```js
- * provider.isBytes(false);
+ * isBytes(false);
  * // false
  * ```
  *
  * @example
  * ```js
- * provider.isBytes(new Uint8Array(1));
+ * isBytes(new Uint8Array(1));
  * // true
  * ```
  */
@@ -137,19 +137,19 @@ export function isBytes(value: any): value is Bytes {
  *
  * @example
  * ```js
- * provider.arrayify(1);
+ * arrayify(1);
  * // Uint8Array(1) [ 1 ]
  * ```
  *
  * @example
  * ```js
- * provider.arrayify(0x1234);
+ * arrayify(0x1234);
  * // Uint8Array(2) [ 18, 52 ]
  * ```
  *
  * @example
  * ```js
- * provider.arrayify('0x1', { hexPad: 'right' });
+ * arrayify('0x1', { hexPad: 'right' });
  * // Uint8Array(1) [ 16 ]
  * ```
  */
@@ -215,8 +215,18 @@ export function arrayify(
   return logger.throwArgumentError('invalid arrayify value', 'value', value);
 }
 
-export function concat(items: ReadonlyArray<BytesLike>): Uint8Array {
-  const objects = items.map((item) => arrayify(item));
+/**
+ * Concatenates all the BytesLike in arrayOfBytesLike into a single Uint8Array.
+ * * Same as [`ethers.utils.concat`](https://docs.ethers.io/v5/api/utils/bytes/#utils-concat)
+ *
+ * @example
+ * ```js
+ * concat([0, 1]);
+ * // Uint8Array(2) [ 0, 1 ]
+ * ```
+ */
+export function concat(arrayOfBytesLike: ReadonlyArray<BytesLike>): Uint8Array {
+  const objects = arrayOfBytesLike.map((item) => arrayify(item));
   const length = objects.reduce((accum, item) => accum + item.length, 0);
 
   const result = new Uint8Array(length);
