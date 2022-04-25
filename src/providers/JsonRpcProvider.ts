@@ -163,7 +163,7 @@ export class JsonRpcProvider {
     return tinyBig(hexToDecimal(hexBalance));
   }
   /**
-   * Similar to `ethers.provider.getTransaction`, some information not included
+   * * Similar to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included
    *
    * @returns information about one transaction
    * @example

@@ -2,8 +2,8 @@ import Big from 'big.js';
 import { scientificStrToDecimalStr } from './helpers';
 
 /**
- * A wrapper around big.js which expands scientific notation and creates a "toHexString" function.
- * This is the return type of every operation on ether, wei, etc.
+ * A wrapper around [big.js](https://github.com/MikeMcl/big.js) which expands scientific notation and creates a "toHexString" function.
+ * * This is the return type of every operation on ether, wei, etc.
  */
 export class TinyBig extends Big {
   constructor(value: string | number | TinyBig | Big) {

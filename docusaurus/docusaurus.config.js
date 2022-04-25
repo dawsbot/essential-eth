@@ -24,6 +24,7 @@ const config = {
       {
         entryPoints: ['../src/index.ts'],
         tsconfig: '../tsconfig.json',
+        watch: process.env.TYPEDOC_WATCH,
       },
     ],
   ],
