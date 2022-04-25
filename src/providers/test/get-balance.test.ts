@@ -18,15 +18,12 @@ async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
   expect(eeBalance.toString()).toBe(web3Balance);
 }
 describe('provider.getBalance gno', () => {
-  const rpcUrl = rpcUrls.gno;
+  const rpcUrl = rpcUrls.mainnet;
   it('should get latest equal to ethers', async () => {
     await testGetBalance(rpcUrl, 'latest');
   });
   it('should get earliest equal to ethers', async () => {
     await testGetBalance(rpcUrl, 'earliest');
-  });
-  it('should get pending equal to ethers', async () => {
-    await testGetBalance(rpcUrl, 'pending');
   });
   it('should get default latest equal to ethers', async () => {
     await testGetBalance(rpcUrl);
