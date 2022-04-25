@@ -19,3 +19,5 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run jest -- --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
