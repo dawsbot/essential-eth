@@ -22,8 +22,8 @@ async function testGetTC(rpcUrl: string, blockTag?: BlockTag) {
   expect(eeTC).toBe(ethersTC);
   expect(eeTC).toBe(web3TC);
 }
-describe('provider.getBalance gno', () => {
-  const rpcUrl = rpcUrls.mainnet;
+describe('provider.getBalance mainnet', () => {
+  const rpcUrl = rpcUrls.matic;
   it('should get latest equal to ethers and web3', async () => {
     await testGetTC(rpcUrl, 'latest');
   });
@@ -33,7 +33,10 @@ describe('provider.getBalance gno', () => {
   it('should get earliest equal to ethers and web3', async () => {
     await testGetTC(rpcUrl, 'earliest');
   });
-  it('should tx count up to block number equal to ethers and web3', async () => {
-    await testGetTC(rpcUrl, 14649390);
-  });
+  // re-enable when we have an archive node
+  // fast-sync nodes are cheap and cannot compute old block data like this
+  // Yields Error "missing trie node"
+  // it('should tx count up to block number equal to ethers and web3', async () => {
+  //   await testGetTC(rpcUrl, 14649390);
+  // });
 });
