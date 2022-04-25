@@ -131,6 +131,28 @@ export function isBytes(value: any): value is Bytes {
   return true;
 }
 
+/**
+ * Converts DataHexStringOrArrayish to a Uint8Array
+ * * Same as [`ethers.utils.arrayify`](https://docs.ethers.io/v5/api/utils/bytes/#utils-arrayify)
+ *
+ * @example
+ * ```js
+ * provider.arrayify(1);
+ * // Uint8Array(1) [ 1 ]
+ * ```
+ *
+ * @example
+ * ```js
+ * provider.arrayify(0x1234);
+ * // Uint8Array(2) [ 18, 52 ]
+ * ```
+ *
+ * @example
+ * ```js
+ * provider.arrayify('0x1', { hexPad: 'right' });
+ * // Uint8Array(1) [ 16 ]
+ * ```
+ */
 export function arrayify(
   value: BytesLike | Hexable | number,
   options?: DataOptions,
