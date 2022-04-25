@@ -102,7 +102,7 @@ export function defineReadOnly<T>(object: T, name: string, value: any): void {
 
 /**
  * Only accepts ABIS in JSON format. This allows for stronger typing and assurances of data-types
- *
+ * @alpha Only read-only function calls supported.
  * @example
  * ```typescript
  * import { Contract, JsonRpcProvider } from 'essential-eth';
@@ -149,7 +149,7 @@ export function defineReadOnly<T>(object: T, name: string, value: any): void {
 export class Contract extends BaseContract {
   // The dynamic function names within a given smart-contract
   /**
-   * The dynamic contract calls on any given contract. Like "isClaimed", "merkleRoot", etc.
+   * The function names on any given contract. Like "isClaimed", "merkleRoot", etc.
    */
   readonly [key: string]: any;
   // readonly [key: string]: ContractFunction | any;
