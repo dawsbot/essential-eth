@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/3408480/163274699-ae4fb0f4-fca0-4745-bcd7-4868f80deaf6.png" title="Logo"/>
+  <img src="https://user-images.githubusercontent.com/3408480/163274699-ae4fb0f4-fca0-4745-bcd7-4868f80deaf6.png" height="220" title="Logo"/>
 
 </p>
 <p align="center">
@@ -8,7 +8,7 @@
     🪶 Essential Eth 🪶
   </b>
   <br/>
-  <i>A replacement for ethers & web3 that's 50x smaller</i>
+  <i>A replacement for ethers & web3 that's 20x smaller</i>
   <br/>
 </p>
 
@@ -34,6 +34,10 @@
 - 🙌 Supports multiple JS versions (CommonJS and ESM)
   - ✅ Node 17, 16, 14, & 12
   - ✅ Web
+
+<br/>
+
+[![🧪 tests](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml/badge.svg)](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/Earnifi/essential-eth/branch/master/graph/badge.svg?token=E44EK6RWTZ)](https://codecov.io/gh/Earnifi/essential-eth) ![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth) ![](https://img.shields.io/npm/v/essential-eth)
 
 <br/>
 
@@ -620,8 +624,6 @@ Any function on a contract. Returns are the same as `ethers.js`, except that ins
 ## More Info
 
 🧪 This repo is under active development. The API is less-fully featured than `web3` and `ethers`. More functions added often!
-
-![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth) ![](https://img.shields.io/npm/v/essential-eth) ![](https://badgen.net/bundlephobia/dependency-count/essential-eth)
 
 👨🏻‍💻 Breaking changes will exist between minor versions until `1.0.0` (Versions go `major.minor.patch`)
 
