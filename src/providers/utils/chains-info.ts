@@ -191,6 +191,9 @@ export default {
   "69": [
     "okov"
   ],
+  "70": [
+    "hsc"
+  ],
   "71": [
     "cfxtest"
   ],
@@ -659,6 +662,9 @@ export default {
   "2559": [
     "ktoc"
   ],
+  "2569": [
+    "tpc"
+  ],
   "3000": [
     "cennz-r"
   ],
@@ -902,6 +908,9 @@ export default {
   "62320": [
     "BKLV"
   ],
+  "62621": [
+    "mtv"
+  ],
   "63000": [
     "ecs"
   ],
@@ -1036,6 +1045,9 @@ export default {
   ],
   "444900": [
     "wlkt"
+  ],
+  "512512": [
+    "cmp"
   ],
   "666666": [
     "vpioneer"

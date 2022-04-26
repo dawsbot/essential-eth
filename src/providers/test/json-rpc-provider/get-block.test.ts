@@ -66,7 +66,15 @@ describe('provider.getBlock happy path', () => {
       web3Provider.eth.getBlock(blockNumber, true),
     ]);
     testBlockEquality(eeRandomBlock, web3RandomBlock);
-    // expect(eeRandomBlock).toStrictEqual(web3RandomBlock);
+  });
+  const blockHash =
+    '0x4cbaa942e48a91108f38e2a250f6dbaff7fffe3027f5ebf76701929eed2b2970'; // Hash corresponds to block on RSK Mainnet
+  it(`should get block by hash. (hash = ${blockHash})`, async () => {
+    const [eeBlockByHash, web3BlockByHash] = await Promise.all([
+      essentialEthProvider.getBlock(blockHash),
+      web3Provider.eth.getBlock(blockHash),
+    ]);
+    expect(eeBlockByHash).toStrictEqual(web3BlockByHash);
   });
 });
 
