@@ -1,5 +1,6 @@
 import { Buffer } from 'buffer';
 import { Keccak } from 'sha3';
+import { hexFalse } from '../classes/utils/encode-decode-transaction';
 import { logger } from '../logger/logger';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { arrayify, concat, hexlify, zeroPad } from './bytes';
@@ -7,9 +8,6 @@ import { arrayify, concat, hexlify, zeroPad } from './bytes';
 const regexBytes = new RegExp('^bytes([0-9]+)$');
 const regexNumber = new RegExp('^(u?int)([0-9]*)$');
 const regexArray = new RegExp('^(.*)\\[([0-9]*)\\]$');
-
-const Zeros =
-  '0000000000000000000000000000000000000000000000000000000000000000';
 
 function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
   switch (type) {
@@ -64,7 +62,7 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
       logger.throwArgumentError(`invalid value for ${type}`, 'value', value);
     }
     if (isArray) {
-      return arrayify((value + Zeros).substring(0, 66));
+      return arrayify((value + hexFalse).substring(0, 66));
     }
     return value;
   }
