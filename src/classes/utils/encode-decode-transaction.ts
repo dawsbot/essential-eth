@@ -3,10 +3,8 @@ import { tinyBig, toChecksumAddress } from '../..';
 import { ContractTypes, JSONABIArgument } from '../../types/Contract.types';
 import { hexToDecimal } from './hex-to-decimal';
 
-const hexTrue =
-  '0000000000000000000000000000000000000000000000000000000000000001';
-const hexFalse =
-  '0000000000000000000000000000000000000000000000000000000000000000';
+export const hexFalse = '0'.repeat(64);
+const hexTrue = '0'.repeat(63) + '1';
 
 function expandType(type: ContractTypes) {
   // https://docs.soliditylang.org/en/v0.8.7/types.html#integers

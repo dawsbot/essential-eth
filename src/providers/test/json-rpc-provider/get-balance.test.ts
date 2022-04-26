@@ -1,8 +1,8 @@
 import { ethers } from 'ethers';
 import Web3 from 'web3';
-import { JsonRpcProvider } from '../..';
-import { BlockTag } from '../../types/Block.types';
-import { rpcUrls } from './rpc-urls';
+import { JsonRpcProvider } from '../../..';
+import { BlockTag } from '../../../types/Block.types';
+import { rpcUrls } from '../rpc-urls';
 
 const address = '0x0000000000000000000000000000000000000000';
 async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {

@@ -1,13 +1,13 @@
 import { ethers } from 'ethers';
 import Web3 from 'web3';
-import { JsonRpcProvider } from '../..';
+import { jsonRpcProvider } from '../..';
 import { BlockTag } from '../../types/Block.types';
 import { rpcUrls } from './rpc-urls';
 
 // coinbase 1 hotwallet
 const address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';
 async function testGetTC(rpcUrl: string, blockTag?: BlockTag) {
-  const eeProvider = new JsonRpcProvider(rpcUrl);
+  const eeProvider = jsonRpcProvider(rpcUrl);
   const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
   const web3Provider = new Web3(rpcUrl);
   const [eeTC, ethersTC, web3TC] = await Promise.all([

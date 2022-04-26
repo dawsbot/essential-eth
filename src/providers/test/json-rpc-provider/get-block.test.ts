@@ -1,9 +1,10 @@
 import omit from 'just-omit';
 import Web3 from 'web3';
 import { BlockTransactionObject } from 'web3-eth/types';
-import { BlockResponse, JsonRpcProvider } from '../..';
-import { BlockTransactionResponse } from '../../types/Transaction.types';
-import { fakeUrls } from './rpc-urls';
+import { JsonRpcProvider } from '../../..';
+import { BlockResponse } from '../../../types/Block.types';
+import { BlockTransactionResponse } from '../../../types/Transaction.types';
+import { fakeUrls } from '../rpc-urls';
 
 // RSK has 30 second block times so tests pass more often
 const rpcUrl = `https://public-node.rsk.co`;

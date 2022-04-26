@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
-import { JsonRpcProvider } from '../..';
-import { rpcUrls } from './rpc-urls';
+import { JsonRpcProvider } from '../../../index';
+import { rpcUrls } from '../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
 
