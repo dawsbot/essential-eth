@@ -43,10 +43,15 @@ export class FallthroughProvider extends BaseProvider {
 
     const recursivePostRetry = (): Promise<any> => {
       // Times out request
+      const genesisRpcUrl = this.selectRpcUrl();
       const res = promiseTimeout(this._post(body), this.timeoutDuration).catch(
         (e) => {
-          // add one and handle array overflow
-          this.rpcUrlCounter = (this.rpcUrlCounter + 1) % this._rpcUrls.length;
+          // A mutex: Only add if no other instance has discovered this url as failing yet
+          if (genesisRpcUrl === this.selectRpcUrl()) {
+            // add one and handle array overflow
+            this.rpcUrlCounter =
+              (this.rpcUrlCounter + 1) % this._rpcUrls.length;
+          }
           // we've already tried this rpc, throw for good
           if (this.rpcUrlCounter === genesisCount) {
             throw e;

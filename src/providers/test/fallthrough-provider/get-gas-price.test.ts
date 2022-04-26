@@ -12,16 +12,11 @@ function timePromise(fn: () => Promise<any>): Promise<number> {
 
 describe('provider.getGasPrice', () => {
   it('should fallthrough on several types of invalid urls', async () => {
-    const essentialEthProvider = new FallthroughProvider(
-      [
-        'https://bad-123123123123.com',
-        // url with request delayed by 20 seconds
-        'https://flash-sgkl.onrender.com/delay/20000',
-        'https://bad-523123123123.com',
-        rpcUrl,
-      ],
-      { timeoutDuration: 1000 },
-    );
+    const essentialEthProvider = new FallthroughProvider([
+      'https://bad-123123123123.com',
+      'https://bad-523123123123.com',
+      rpcUrl,
+    ]);
     const block = await essentialEthProvider.getBlock(14631185);
     expect(block.gasUsed).toBe(2429588);
   });
@@ -44,5 +39,22 @@ describe('provider.getGasPrice', () => {
         expect(duration).toBeLessThan(4000);
       },
     );
+  });
+
+  it('should mutex the current rpc selection properly', async () => {
+    const providers = [1, 2, 3].map(
+      () =>
+        new FallthroughProvider(
+          ['https://flash-sgkl.onrender.com/delay/10000', rpcUrl],
+          { timeoutDuration: 2000 },
+        ),
+    );
+
+    const allBlocks = await Promise.all(
+      providers.map((provider) => provider.getBlock(123456)),
+    );
+    allBlocks.forEach((blockNumber) => {
+      expect(blockNumber.difficulty).toBe('4505282870523');
+    });
   });
 });
