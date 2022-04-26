@@ -647,6 +647,10 @@ Any function on a contract. Returns are the same as `ethers.js`, except that ins
 🧪 This repo is under active development. The API is less-fully featured than `web3` and `ethers`. More functions added often!
 
 👨🏻‍💻 Breaking changes will exist between minor versions until `1.0.0` (Versions go `major.minor.patch`)
+  
+<br/>
+
+![Alt](https://repobeats.axiom.co/api/embed/e479d8f777288a94cdde2fe3cdedf38d5243793d.svg "Repobeats analytics image")
 
 <br/>
 
