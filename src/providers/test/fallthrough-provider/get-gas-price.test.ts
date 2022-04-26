@@ -1,3 +1,5 @@
+// performance polyfill required to support node <= 14
+import { performance } from 'perf_hooks';
 import { FallthroughProvider } from '../../../index';
 import { rpcUrls } from '../rpc-urls';
 
