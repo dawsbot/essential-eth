@@ -66,7 +66,7 @@ export class BaseContract {
                   : null;
               const req = async (): Promise<string> => {
                 return await post(
-                  this._provider._rpcUrl,
+                  this._provider.selectRpcUrl(),
                   buildRPCPostBody('eth_call', [
                     {
                       to: this._address.toLowerCase(),
@@ -101,8 +101,9 @@ export function defineReadOnly<T>(object: T, name: string, value: any): void {
 }
 
 /**
+ * @alpha
  * Only accepts ABIS in JSON format. This allows for stronger typing and assurances of data-types
- * @alpha Only read-only function calls supported.
+ * * Only read-only function calls currently supported.
  * @example
  * ```typescript
  * import { Contract, JsonRpcProvider } from 'essential-eth';

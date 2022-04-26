@@ -255,9 +255,30 @@ import { JsonRpcProvider } from 'essential-eth';
 const essentialEth = new JsonRpcProvider(
   'RPC URL HERE' /* Try POKT or Infura */,
 );
-// OR for very quick testing (limited to 500 requests)
+// OR for very quick testing (limited to 10,000 requests)
 const essentialEth = new JsonRpcProvider();
 ```
+
+<details>
+  <summary>Want a redundant provider that handles outages?</summary>
+
+```typescript
+import { FallthroughProvider } from 'essential-eth';
+
+// The FallthroughProvider handles falling through to the next valid URL.
+// It's dynamic to never trust one URL again when it fails * until it has tried all other provided URLs
+// The default timeout for a request is 8 seconds after which it moves to the next URL
+const provider = new FallthroughProvider([
+  'https://bad.com',
+  'https://free-eth-node.com/api/eth',
+]);
+provider.getGasPrice().toNumber();
+/*
+39695942769
+*/
+```
+
+</details>
 
  <br/>
 
