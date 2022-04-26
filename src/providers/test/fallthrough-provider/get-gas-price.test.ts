@@ -7,9 +7,8 @@ describe('provider.getGasPrice', () => {
   it('should match ethers and essential-eth', async () => {
     const essentialEthProvider = new FallthroughProvider([
       'https://bad-123123123123.com',
-      'https://bad-223123123123.com',
-      'https://bad-323123123123.com',
-      'https://bad-423123123123.com',
+      // url with request delayed by 20 seconds
+      'https://flash-sgkl.onrender.com/delay/20000',
       'https://bad-523123123123.com',
       rpcUrl,
     ]);
