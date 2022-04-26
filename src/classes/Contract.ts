@@ -101,8 +101,9 @@ export function defineReadOnly<T>(object: T, name: string, value: any): void {
 }
 
 /**
+ * @alpha
  * Only accepts ABIS in JSON format. This allows for stronger typing and assurances of data-types
- * @alpha Only read-only function calls supported.
+ * * Only read-only function calls currently supported.
  * @example
  * ```typescript
  * import { Contract, JsonRpcProvider } from 'essential-eth';

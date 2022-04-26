@@ -10,6 +10,9 @@ import {
 } from '../types/Transaction.types';
 import { BaseProvider } from './BaseProvider';
 export class JsonRpcProvider extends BaseProvider {
+  /**
+   * @ignore
+   */
   selectRpcUrl(): string {
     return this._rpcUrls[0];
   }

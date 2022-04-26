@@ -16,12 +16,19 @@ interface ConstructorOptions {
 const DEFAULT_TIMEOUT_DURATION = 8000;
 
 /**
- * Similar to ethers FallbackProvider, but with simpler fallthrough behavior
+ * @beta
+ * A JSON RPC Provider which moves to the next URL when one fails.
  */
 export class FallthroughProvider extends BaseProvider {
   // index of current trusted rpc url
+  /**
+   * @ignore
+   */
   private rpcUrlCounter = 0;
-  private timeoutDuration: number;
+  private readonly timeoutDuration: number;
+  /**
+   * @ignore
+   */
   public selectRpcUrl(): string {
     return this._rpcUrls[this.rpcUrlCounter];
   }
@@ -37,6 +44,9 @@ export class FallthroughProvider extends BaseProvider {
     this.timeoutDuration = options.timeoutDuration || DEFAULT_TIMEOUT_DURATION;
   }
 
+  /**
+   * @ignore
+   */
   public post = (body: Record<string, unknown>): Promise<any> => {
     // while failing post, add to rpcUrlCounter and post again
     const genesisCount = this.rpcUrlCounter;
