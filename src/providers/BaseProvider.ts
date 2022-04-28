@@ -1,5 +1,6 @@
 import { cleanBlock } from '../classes/utils/clean-block';
 import { cleanTransaction } from '../classes/utils/clean-transaction';
+import { cleanTransactionReceipt } from '../classes/utils/clean-transaction-receipt';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
@@ -7,6 +8,8 @@ import { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import { Network } from '../types/Network.types';
 import {
   RPCTransaction,
+  RPCTransactionReceipt,
+  TransactionReceipt,
   TransactionResponse,
 } from '../types/Transaction.types';
 import chainsInfo from './utils/chains-info';
@@ -201,17 +204,19 @@ export abstract class BaseProvider {
    *
    */
 
-  public async getTransactionReceipt(transactionHash: string): Promise<any> {
+  public async getTransactionReceipt(
+    transactionHash: string,
+  ): Promise<TransactionReceipt> {
     const [rpcTransaction, blockNumber] = await Promise.all([
       this.post(
-        buildRPCPostBody('eth_getTransactionReceipt', [transactionHash])
-      ) as Promise<RPCTransaction>,
-      this.getBlock('latest')
+        buildRPCPostBody('eth_getTransactionReceipt', [transactionHash]),
+      ) as Promise<RPCTransactionReceipt>,
+      this.getBlock('latest'),
     ]);
-    const cleanedTransaction = cleanTransaction(rpcTransaction);
-    cleanedTransaction.confirmations =
-      blockNumber.number - cleanedTransaction.blockNumber + 1;
-    return cleanedTransaction
+    const cleanedTransactionReceipt = cleanTransactionReceipt(rpcTransaction);
+    cleanedTransactionReceipt.confirmations =
+      blockNumber.number - cleanedTransactionReceipt.blockNumber + 1;
+    return cleanedTransactionReceipt;
   }
 
   /**

@@ -14,7 +14,7 @@ describe('provider.getTransactionReceipt', () => {
     // requires manually comparing values via bigNum conversion
     const bignumCheckKeys = [
       'gasUsed',
-      'cumulativeGasPrice',
+      'cumulativeGasUsed',
       'effectiveGasPrice',
     ];
     const omittedTransaction1 = omit(transaction1, [
@@ -29,6 +29,12 @@ describe('provider.getTransactionReceipt', () => {
     expect(
       Math.abs(transaction1.confirmations - transaction2.confirmations),
     ).toBeLessThan(3);
+    bignumCheckKeys.forEach((key) => {
+      const ethersKey = key as keyof ethers.providers.TransactionResponse;
+      expect((transaction1 as any)[ethersKey].toString()).toBe(
+        (transaction2 as any)[key].toString(),
+      );
+    });
   }
   // it('should match web3 and essential-eth', async () => {
   //   const transactionHash =
