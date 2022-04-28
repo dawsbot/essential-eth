@@ -47,6 +47,19 @@ export type TransactionReceipt = Modify<
   }
 >;
 
+/**
+ * Type for the logs that are included in transaction receipts
+ * * Similar to [`Type Log on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-Log)
+ */
+export type Log = Modify<
+  RPCLog,
+  {
+    blockNumber: number;
+    logNumber: number;
+    transactionIndex: number;
+  }
+>;
+
 export type BlockTransactionResponse = Omit<
   TransactionResponse,
   'maxFeePerGas' | 'maxPriorityFeePerGas'
@@ -80,7 +93,7 @@ export interface RPCTransactionReceipt {
   effectiveGasPrice: string;
   from: string;
   gasUsed: string;
-  logs: Array<Log>;
+  logs: Array<RPCLog>;
   logsBloom: string;
   status: string;
   to: string;
@@ -89,7 +102,7 @@ export interface RPCTransactionReceipt {
   type: string;
 }
 
-export interface Log {
+export interface RPCLog {
   address: string;
   blockHash: string;
   blockNumber: string;
