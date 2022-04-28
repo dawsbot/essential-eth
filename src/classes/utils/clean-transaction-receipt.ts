@@ -3,6 +3,7 @@ import {
   RPCTransactionReceipt,
   TransactionReceipt,
 } from '../../types/Transaction.types';
+import { cleanTransaction } from './clean-transaction';
 import { hexToDecimal } from './hex-to-decimal';
 
 /**
@@ -11,25 +12,21 @@ import { hexToDecimal } from './hex-to-decimal';
 export function cleanTransactionReceipt(
   transactionReceipt: RPCTransactionReceipt,
 ): TransactionReceipt {
+  const cleanedTransaction = cleanTransaction(transactionReceipt as any);
   const cleanedTransactionReceipt = {
-    ...transactionReceipt,
+    ...cleanedTransaction,
   } as unknown as TransactionReceipt;
   (
     Object.keys(transactionReceipt) as Array<keyof RPCTransactionReceipt>
   ).forEach((key) => {
     if (!transactionReceipt[key]) return;
     switch (key) {
-      case 'blockNumber':
       case 'status':
-      case 'transactionIndex':
-      case 'type':
         cleanedTransactionReceipt[key] = Number(
           hexToDecimal(transactionReceipt[key]),
         );
         break;
       case 'contractAddress':
-      case 'from':
-      case 'to':
         if (transactionReceipt[key]) {
           cleanedTransactionReceipt[key] = toChecksumAddress(
             transactionReceipt[key],
