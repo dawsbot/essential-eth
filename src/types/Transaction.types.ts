@@ -27,7 +27,7 @@ export type TransactionResponse = Modify<
   }
 >;
 
-export type TransactionReceiptResponse = Modify<
+export type TransactionReceipt = Modify<
   RPCTransactionReceipt,
   {
     blockNumber: number;
@@ -38,6 +38,7 @@ export type TransactionReceiptResponse = Modify<
     transactionIndex: number;
     type: number;
   } & {
+    byzantium: boolean;
     confirmations: number;
   }
 >;

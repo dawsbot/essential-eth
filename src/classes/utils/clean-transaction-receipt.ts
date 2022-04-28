@@ -1,7 +1,7 @@
 import { tinyBig, toChecksumAddress } from '../..';
 import {
   RPCTransactionReceipt,
-  TransactionReceiptResponse,
+  TransactionReceipt,
 } from '../../types/Transaction.types';
 import { hexToDecimal } from './hex-to-decimal';
 
@@ -10,10 +10,10 @@ import { hexToDecimal } from './hex-to-decimal';
  */
 export function cleanTransactionReceipt(
   transactionReceipt: RPCTransactionReceipt,
-): TransactionReceiptResponse {
+): TransactionReceipt {
   const cleanedTransactionReceipt = {
     ...transactionReceipt,
-  } as unknown as TransactionReceiptResponse;
+  } as unknown as TransactionReceipt;
   (
     Object.keys(transactionReceipt) as Array<keyof RPCTransactionReceipt>
   ).forEach((key) => {
@@ -44,8 +44,9 @@ export function cleanTransactionReceipt(
         );
         break;
       case 'logs':
-        
     }
   });
+  cleanedTransactionReceipt.byzantium =
+    cleanedTransactionReceipt.blockNumber >= 4370000;
   return cleanedTransactionReceipt;
 }
