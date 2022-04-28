@@ -193,6 +193,15 @@ export abstract class BaseProvider {
   }
 
   /**
+   * Gives information about a transaction that has already been mined. Includes additional information beyond what's provided by `getTransaction()`
+   *
+   * * Similar to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt), some information not included
+   *
+   * @param transactionHash the hash of the transaction to get information about
+   *
+   */
+
+  /**
    * Returns the transaction count from genesis up to specified blockTag
    *
    * * Same as `ethers.provider.getTransactionCount`
