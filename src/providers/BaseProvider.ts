@@ -201,6 +201,19 @@ export abstract class BaseProvider {
    *
    */
 
+  public async getTransactionReceipt(transactionHash: string): Promise<any> {
+    const [rpcTransaction, blockNumber] = await Promise.all([
+      this.post(
+        buildRPCPostBody('eth_getTransactionReceipt', [transactionHash])
+      ) as Promise<RPCTransaction>,
+      this.getBlock('latest')
+    ]);
+    const cleanedTransaction = cleanTransaction(rpcTransaction);
+    cleanedTransaction.confirmations =
+      blockNumber.number - cleanedTransaction.blockNumber + 1;
+    return cleanedTransaction
+  }
+
   /**
    * Returns the transaction count from genesis up to specified blockTag
    *
