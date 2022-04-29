@@ -34,6 +34,7 @@ type RPCMethodName =
   | 'eth_gasPrice'
   | 'eth_getBalance'
   | 'eth_getTransactionByHash'
+  | 'eth_getTransactionReceipt'
   | 'eth_getTransactionCount';
 export function buildRPCPostBody(method: RPCMethodName, params: unknown[]) {
   return {
