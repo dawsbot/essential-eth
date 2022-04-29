@@ -38,6 +38,7 @@ export type TransactionReceipt = Modify<
     cumulativeGasUsed: TinyBig;
     effectiveGasPrice: TinyBig;
     gasUsed: TinyBig;
+    logs: Array<Log>;
     status: number;
     transactionIndex: number;
     type: number;
@@ -52,10 +53,10 @@ export type TransactionReceipt = Modify<
  * * Similar to [`Type Log on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-Log)
  */
 export type Log = Modify<
-  RPCLog,
+  Omit<RPCLog, 'removed'>,
   {
     blockNumber: number;
-    logNumber: number;
+    logIndex: number;
     transactionIndex: number;
   }
 >;
@@ -108,7 +109,7 @@ export interface RPCLog {
   blockNumber: string;
   data: string;
   logIndex: string;
-  removed: boolean;
+  removed?: boolean;
   topics: Array<string>;
   transactionHash: string;
   transactionIndex: string;

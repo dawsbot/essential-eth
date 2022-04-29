@@ -1,5 +1,6 @@
 import { tinyBig, toChecksumAddress } from '../..';
 import {
+  RPCLog,
   RPCTransactionReceipt,
   TransactionReceipt,
 } from '../../types/Transaction.types';
@@ -41,6 +42,26 @@ export function cleanTransactionReceipt(
         );
         break;
       case 'logs':
+        transactionReceipt[key].forEach((log: RPCLog, index: number) => {
+          (Object.keys(log) as Array<keyof RPCLog>).forEach((logKey) => {
+            switch (logKey) {
+              case 'address':
+                cleanedTransactionReceipt[key][index][logKey] =
+                  toChecksumAddress(log[logKey]);
+                break;
+              case 'blockNumber':
+              case 'logIndex':
+              case 'transactionIndex':
+                cleanedTransactionReceipt[key][index][logKey] = Number(
+                  hexToDecimal(log[logKey]),
+                );
+                break;
+              case 'removed':
+                delete log[logKey];
+                break;
+            }
+          });
+        });
     }
   });
   cleanedTransactionReceipt.byzantium =

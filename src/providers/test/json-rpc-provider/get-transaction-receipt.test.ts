@@ -7,9 +7,9 @@ import { rpcUrls } from '../rpc-urls';
 const rpcUrl = rpcUrls.mainnet;
 
 describe('provider.getTransactionReceipt', () => {
-  function testTransactionEquality(
-    transaction1: ethers.providers.TransactionReceipt,
-    transaction2: TransactionReceipt,
+  function testTransactionReceiptEquality(
+    transactionReceipt1: ethers.providers.TransactionReceipt,
+    transactionReceipt2: TransactionReceipt,
   ) {
     // requires manually comparing values via bigNum conversion
     const bignumCheckKeys = [
@@ -17,37 +17,27 @@ describe('provider.getTransactionReceipt', () => {
       'cumulativeGasUsed',
       'effectiveGasPrice',
     ];
-    const omittedTransaction1 = omit(transaction1, [
-      'logs', // temporary
+    const omittedTransactionReceipt1 = omit(transactionReceipt1, [
       ...bignumCheckKeys,
     ]);
-    const omittedTransaction2 = omit(transaction2, [
-      'logs', // temporary
+    const omittedTransactionReceipt2 = omit(transactionReceipt2, [
       ...bignumCheckKeys,
     ]);
-    expect(omittedTransaction1).toStrictEqual(omittedTransaction2);
+    expect(omittedTransactionReceipt1).toStrictEqual(
+      omittedTransactionReceipt2,
+    );
     expect(
-      Math.abs(transaction1.confirmations - transaction2.confirmations),
+      Math.abs(
+        transactionReceipt1.confirmations - transactionReceipt2.confirmations,
+      ),
     ).toBeLessThan(3);
     bignumCheckKeys.forEach((key) => {
       const ethersKey = key as keyof ethers.providers.TransactionResponse;
-      expect((transaction1 as any)[ethersKey].toString()).toBe(
-        (transaction2 as any)[key].toString(),
+      expect((transactionReceipt1 as any)[ethersKey].toString()).toBe(
+        (transactionReceipt2 as any)[key].toString(),
       );
     });
   }
-  // it('should match web3 and essential-eth', async () => {
-  //   const transactionHash =
-  //     '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789';
-  //   const web3Provider = new Web3(rpcUrl);
-  //   const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-  //   const [web3Transaction, essentialEthTransaction] = await Promise.all([
-  //     web3Provider.eth.getTransaction(transactionHash),
-  //     essentialEthProvider.getTransaction(transactionHash),
-  //   ]);
-
-  //   testTransactionEquality(web3Transaction as any, essentialEthTransaction);
-  // });
   it('should match ethers and essential-eth', async () => {
     const transactionHash =
       '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789';
@@ -59,7 +49,7 @@ describe('provider.getTransactionReceipt', () => {
         essentialEthProvider.getTransactionReceipt(transactionHash),
       ]);
 
-    testTransactionEquality(
+    testTransactionReceiptEquality(
       ethersTransactionReceipt,
       essentialEthTransactionReceipt,
     );
