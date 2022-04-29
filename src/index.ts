@@ -20,6 +20,8 @@ import { toUtf8Bytes } from './utils/to-utf8-bytes';
 import { weiToEther } from './utils/wei-to-ether';
 
 export * from './utils/bytes';
+export * from './utils/hash-message';
+export * from './utils/keccak256';
 export * from './utils/solidity-keccak256';
 export {
   etherToWei,

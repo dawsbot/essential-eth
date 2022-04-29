@@ -1,13 +1,11 @@
 import { utils } from 'ethers';
 import { solidityKeccak256 } from '../../index';
-import { keccak256 } from './../keccak256';
 
 function testSolidityKeccak256(inputs: Array<any>) {
   inputs.forEach((input) => {
     expect(solidityKeccak256(input.types, input.values)).toBe(
       utils.solidityKeccak256(input.types, input.values),
     );
-    expect(keccak256(input.values)).toBe(utils.keccak256(input.values));
   });
 }
 describe('solidityKeccak256', () => {

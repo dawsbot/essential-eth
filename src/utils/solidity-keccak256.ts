@@ -1,5 +1,4 @@
 import { Buffer } from 'buffer';
-import { Keccak } from 'sha3';
 import { hexFalse } from '../classes/utils/encode-decode-transaction';
 import { logger } from '../logger/logger';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
