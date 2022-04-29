@@ -1,5 +1,6 @@
 import { cleanBlock } from '../classes/utils/clean-block';
 import { cleanTransaction } from '../classes/utils/clean-transaction';
+import { cleanTransactionReceipt } from '../classes/utils/clean-transaction-receipt';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
@@ -7,6 +8,8 @@ import { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import { Network } from '../types/Network.types';
 import {
   RPCTransaction,
+  RPCTransactionReceipt,
+  TransactionReceipt,
   TransactionResponse,
 } from '../types/Transaction.types';
 import chainsInfo from './utils/chains-info';
@@ -190,6 +193,30 @@ export abstract class BaseProvider {
     cleanedTransaction.confirmations =
       blockNumber.number - cleanedTransaction.blockNumber + 1;
     return cleanedTransaction;
+  }
+
+  /**
+   * Gives information about a transaction that has already been mined. Includes additional information beyond what's provided by `getTransaction()`
+   *
+   * * Similar to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt), some information not included
+   *
+   * @param transactionHash the hash of the transaction to get information about
+   *
+   */
+
+  public async getTransactionReceipt(
+    transactionHash: string,
+  ): Promise<TransactionReceipt> {
+    const [rpcTransaction, blockNumber] = await Promise.all([
+      this.post(
+        buildRPCPostBody('eth_getTransactionReceipt', [transactionHash]),
+      ) as Promise<RPCTransactionReceipt>,
+      this.getBlock('latest'),
+    ]);
+    const cleanedTransactionReceipt = cleanTransactionReceipt(rpcTransaction);
+    cleanedTransactionReceipt.confirmations =
+      blockNumber.number - cleanedTransactionReceipt.blockNumber + 1;
+    return cleanedTransactionReceipt;
   }
 
   /**
