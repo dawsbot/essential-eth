@@ -17,7 +17,9 @@ export type Bytes = ArrayLike<number>;
  * @example
  * '0x123'
  */
-export type BytesLike = Bytes | string | number;
+// export type BytesLike = Bytes | string | number;
+export type BytesLike = Bytes | string;
+export type BytesLikeWithNumber = BytesLike | number;
 
 export interface DataOptions {
   allowMissingPrefix?: boolean;
@@ -225,7 +227,9 @@ export function arrayify(
  * // Uint8Array(2) [ 0, 1 ]
  * ```
  */
-export function concat(arrayOfBytesLike: ReadonlyArray<BytesLike>): Uint8Array {
+export function concat(
+  arrayOfBytesLike: ReadonlyArray<BytesLikeWithNumber>,
+): Uint8Array {
   const objects = arrayOfBytesLike.map((item) => arrayify(item));
   const length = objects.reduce((accum, item) => accum + item.length, 0);
 
@@ -382,7 +386,7 @@ export function hexDataLength(data: BytesLike) {
 }
 
 export function hexDataSlice(
-  data: BytesLike,
+  data: BytesLikeWithNumber,
   offset: number,
   endOffset?: number,
 ): string {
@@ -464,7 +468,7 @@ export function hexStripZeros(value: BytesLike): string {
  * // Throws
  * ```
  */
-export function hexZeroPad(value: BytesLike, length: number): string {
+export function hexZeroPad(value: BytesLikeWithNumber, length: number): string {
   if (typeof value !== 'string') {
     value = hexlify(value);
   } else if (!isHexString(value)) {

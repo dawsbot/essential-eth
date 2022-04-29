@@ -1,9 +1,9 @@
 import { Buffer } from 'buffer';
-import { Keccak } from 'sha3';
 import { hexFalse } from '../classes/utils/encode-decode-transaction';
 import { logger } from '../logger/logger';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { arrayify, concat, hexlify, zeroPad } from './bytes';
+import { keccak256 } from './keccak256';
 
 const regexBytes = new RegExp('^bytes([0-9]+)$');
 const regexNumber = new RegExp('^(u?int)([0-9]*)$');
@@ -103,14 +103,6 @@ export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
   return hexlify(concat(tight));
 }
 
-export const hashKeccak256 = (data: string) => {
-  const keccak = new Keccak(256);
-  const bufferableData = Buffer.from(data.replace(/^0x/, ''), 'hex');
-
-  const addressHash = '0x' + keccak.update(bufferableData).digest('hex');
-  return addressHash;
-};
-
 /**
  * Hashes data from Solidity using the Keccak256 algorithm.
  *
@@ -142,5 +134,5 @@ export function solidityKeccak256(
   types: ReadonlyArray<string>,
   values: ReadonlyArray<any>,
 ): string {
-  return hashKeccak256(pack(types, values));
+  return keccak256(pack(types, values));
 }
