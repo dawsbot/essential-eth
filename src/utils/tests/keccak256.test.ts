@@ -17,12 +17,7 @@ describe('keccak256', () => {
     testKeccak256(inputs);
   });
   it('should match ethers.js bytes', () => {
-    const inputs = [
-      [2, 182, 145],
-      [0, 16, 255],
-      [0x12, 0x34],
-      [0x12]
-    ];
+    const inputs = [[2, 182, 145], [0, 16, 255], [0x12, 0x34], [0x12]];
     testKeccak256(inputs);
   });
   // it('should match ethers.js numbers', () => {
