@@ -1,12 +1,20 @@
-import { Bytes, concat } from './bytes';
-import { keccak256 } from './keccak256';
-import { toUtf8Bytes } from './to-utf8-bytes';
+import { Bytes, concat, keccak256, toUtf8Bytes } from '../index';
 
-export const messagePrefix = '\x19Ethereum Signed Message:\n';
+const messagePrefix = '\x19Ethereum Signed Message:\n';
 
-export function hashMessage(message: Bytes | string) {
+/**
+ * Computes the EIP-191 personal message digest of message.
+ * Personal messages are converted to UTF-8 bytes and prefixed with \x19Ethereum Signed Message: and the length of message.
+ *
+ * @example
+ * ```js
+ * hashMessage("Hello World");
+ * // '0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2'
+ * ```
+ */
+export function hashMessage(message: Bytes | string): string {
   if (typeof message === 'string') {
-    message = Buffer.from(message);
+    message = toUtf8Bytes(message);
   }
   return keccak256(
     concat([
