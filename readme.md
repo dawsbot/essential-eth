@@ -77,13 +77,6 @@
     - [`toUtf8Bytes`](#toutf8bytes)
     - [`weiToEther`](#weitoether)
     - [`zeroPad`](#zeropad)
-    - [`etherToWei`](#ethertowei-1)
-    - [`weiToEther`](#weitoether-1)
-    - [`gweiToEther`](#gweitoether-1)
-    - [`etherToGwei`](#ethertogwei-1)
-    - [`toChecksumAddress`](#tochecksumaddress-1)
-    - [`isAddress`](#isaddress-1)
-    - [`hexZeroPad`](#hexzeropad-1)
 - [RPC](#rpc)
     - [`getTransactionCount(address, blockTag?): Promise<number>`](#gettransactioncountaddress-blocktag-promisenumber)
     - [`getGasPrice`](#getgasprice)
@@ -125,136 +118,583 @@ const { etherToWei } = require('essential-eth');
   ```typescript
   arrayify(value: number | BytesLike | Hexable, options: DataOptions): Uint8Array
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { arrayify } from 'essential-eth';
+
+  // or in a require environment
+  const { arrayify } = require('essential-eth');
+  ```
+
+  
+```js
+arrayify(1);
+// Uint8Array(1) [ 1 ]
+```
+
+```js
+arrayify(0x1234);
+// Uint8Array(2) [ 18, 52 ]
+```
+
+```js
+arrayify('0x1', { hexPad: 'right' });
+// Uint8Array(1) [ 16 ]
+```
+
+  </details>
+
+  <br/>
 
 #### [`concat`](src/utils/bytes.ts#L230)
   ```typescript
   concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { concat } from 'essential-eth';
+
+  // or in a require environment
+  const { concat } = require('essential-eth');
+  ```
+
+  
+```js
+concat([0, 1]);
+// Uint8Array(2) [ 0, 1 ]
+```
+
+  </details>
+
+  <br/>
 
 #### [`etherToGwei`](src/utils/ether-to-gwei.ts#L28)
   ```typescript
   etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { etherToGwei } from 'essential-eth';
+
+  // or in a require environment
+  const { etherToGwei } = require('essential-eth');
+  ```
+
+  
+```javascript
+etherToGwei('1000').toString()
+// '1000000000000'
+etherToGwei(1000).toString()
+// '1000000000000'
+```
+
+```javascript
+etherToGwei('1000').toNumber()
+// 1000000000000
+etherToGwei(1000).toNumber()
+// 1000000000000
+```
+
+  </details>
+
+  <br/>
 
 #### [`etherToWei`](src/utils/ether-to-wei.ts#L28)
   ```typescript
   etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { etherToWei } from 'essential-eth';
+
+  // or in a require environment
+  const { etherToWei } = require('essential-eth');
+  ```
+
+  
+```javascript
+etherToWei('1000').toString()
+// '1000000000000000000000'
+etherToWei(1000).toString()
+// '1000000000000000000000'
+```
+
+```javascript
+etherToWei('1000').toNumber()
+// 1000000000000000000000
+etherToWei(1000).toNumber()
+// 1000000000000000000000
+```
+
+  </details>
+
+  <br/>
 
 #### [`gweiToEther`](src/utils/gwei-to-ether.ts#L29)
   ```typescript
   gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { gweiToEther } from 'essential-eth';
+
+  // or in a require environment
+  const { gweiToEther } = require('essential-eth');
+  ```
+
+  
+```javascript
+gweiToEther('1000000000000').toString()
+// '1000'
+gweiToEther(1000000000000).toString()
+// '1000'
+```
+
+```javascript
+gweiToEther('1000000000000').toNumber()
+// 1000
+gweiToEther(1000000000000).toNumber()
+// 1000
+```
+
+  </details>
+
+  <br/>
 
 #### [`hashMessage`](src/utils/hash-message.ts#L15)
   ```typescript
   hashMessage(message: string | Bytes): string
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { hashMessage } from 'essential-eth';
+
+  // or in a require environment
+  const { hashMessage } = require('essential-eth');
+  ```
+
+  
+```js
+hashMessage("Hello World");
+// '0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2'
+```
+
+  </details>
+
+  <br/>
 
 #### [`hexConcat`](src/utils/bytes.ts#L408)
   ```typescript
   hexConcat(items: Array<BytesLike>): string
   ```
+  
+  <br/>
 
 #### [`hexDataLength`](src/utils/bytes.ts#L378)
   ```typescript
   hexDataLength(data: BytesLike): null | number
   ```
+  
+  <br/>
 
 #### [`hexDataSlice`](src/utils/bytes.ts#L388)
   ```typescript
   hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
   ```
+  
+  <br/>
 
 #### [`hexStripZeros`](src/utils/bytes.ts#L424)
   ```typescript
   hexStripZeros(value: BytesLike): string
   ```
+  
+  <br/>
 
 #### [`hexValue`](src/utils/bytes.ts#L416)
   ```typescript
   hexValue(value: number | bigint | BytesLike | Hexable): string
   ```
+  
+  <br/>
 
 #### [`hexZeroPad`](src/utils/bytes.ts#L471)
   ```typescript
   hexZeroPad(value: BytesLikeWithNumber, length: number): string
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { hexZeroPad } from 'essential-eth';
+
+  // or in a require environment
+  const { hexZeroPad } = require('essential-eth');
+  ```
+
+  
+```javascript
+hexZeroPad('0x60', 2);
+// '0x0060'
+```
+
+```javascript
+hexZeroPad(0x60, 3);
+// '0x000060'
+```
+
+```javascript
+hexZeroPad('12345', 1);
+// Throws
+```
+
+  </details>
+
+  <br/>
 
 #### [`hexlify`](src/utils/bytes.ts#L306)
   ```typescript
   hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { hexlify } from 'essential-eth';
+
+  // or in a require environment
+  const { hexlify } = require('essential-eth');
+  ```
+
+  
+```js
+hexlify(4);
+// '0x04'
+
+hexlify(14);
+// '0x0e'
+```
+
+  </details>
+
+  <br/>
 
 #### [`isAddress`](src/utils/is-address.ts#L27)
   ```typescript
   isAddress(address: string): boolean
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { isAddress } from 'essential-eth';
+
+  // or in a require environment
+  const { isAddress } = require('essential-eth');
+  ```
+
+  
+```javascript
+isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
+// true
+```
+
+```javascript
+isAddress('bad');
+// false
+```
+
+```javascript
+// Does NOT support ENS.
+isAddress('vitalik.eth');
+// false
+```
+
+  </details>
+
+  <br/>
 
 #### [`isBytes`](src/utils/bytes.ts#L112)
   ```typescript
   isBytes(value: any): value
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { isBytes } from 'essential-eth';
+
+  // or in a require environment
+  const { isBytes } = require('essential-eth');
+  ```
+
+  
+```js
+isBytes([1,2,3]);
+// true
+```
+
+```js
+isBytes(false);
+// false
+```
+
+```js
+isBytes(new Uint8Array(1));
+// true
+```
+
+  </details>
+
+  <br/>
 
 #### [`isBytesLike`](src/utils/bytes.ts#L82)
   ```typescript
   isBytesLike(value: any): value
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { isBytesLike } from 'essential-eth';
+
+  // or in a require environment
+  const { isBytesLike } = require('essential-eth');
+  ```
+
+  
+```js
+isBytesLike([1,2,3]);
+// true
+```
+
+```js
+isBytesLike(false);
+// false
+```
+
+```js
+isBytesLike(new Uint8Array(1));
+// true
+```
+
+  </details>
+
+  <br/>
 
 #### [`isHexString`](src/utils/bytes.ts#L284)
   ```typescript
   isHexString(value: any, length: number): boolean
   ```
+  
+  <br/>
 
 #### [`jsonRpcProvider`](src/providers/JsonRpcProvider.ts#L36)
   ```typescript
   jsonRpcProvider(rpcUrl: string): JsonRpcProvider
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { jsonRpcProvider } from 'essential-eth';
+
+  // or in a require environment
+  const { jsonRpcProvider } = require('essential-eth');
+  ```
+
+  
+```javascript
+jsonRpcProvider().getBlock('latest').then(block => {
+  console.log(block.number);
+})
+// 14530496
+```
+
+  </details>
+
+  <br/>
 
 #### [`keccak256`](src/utils/keccak256.ts#L4)
   ```typescript
   keccak256(data: BytesLike): string
   ```
+  
+  <br/>
 
 #### [`pack`](src/utils/solidity-keccak256.ts#L91)
   ```typescript
   pack(types: Array<string>, values: Array<any>): string
   ```
+  
+  <br/>
 
 #### [`solidityKeccak256`](src/utils/solidity-keccak256.ts#L133)
   ```typescript
   solidityKeccak256(types: Array<string>, values: Array<any>): string
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { solidityKeccak256 } from 'essential-eth';
+
+  // or in a require environment
+  const { solidityKeccak256 } = require('essential-eth');
+  ```
+
+  
+```javascript
+const types = ['string', 'bool', 'uint32'];
+const values = ['essential-eth is great', true, 14];
+solidityKeccak256(types, values);
+// '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'
+```
+
+```javascript
+const types = ['bytes4', 'uint32[5]'];
+const values = [[116, 101, 115, 116], [5, 3, 4, 9, 18]];
+solidityKeccak256(types, values);
+// '0x038707a887f09355dc545412b058e7ba8f3c74047050c7c5e5e52eec608053d9'
+```
+
+  </details>
+
+  <br/>
 
 #### [`stripZeros`](src/utils/bytes.ts#L246)
   ```typescript
   stripZeros(value: BytesLike): Uint8Array
   ```
+  
+  <br/>
 
 #### [`tinyBig`](src/shared/tiny-big/tiny-big.ts#L71)
   ```typescript
   tinyBig(value: string | number | TinyBig | Big): TinyBig
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { tinyBig } from 'essential-eth';
+
+  // or in a require environment
+  const { tinyBig } = require('essential-eth');
+  ```
+
+  
+```javascript
+tinyBig(10).times(3).toNumber()
+// 30
+```
+
+  </details>
+
+  <br/>
 
 #### [`toChecksumAddress`](src/utils/to-checksum-address.ts#L20)
   ```typescript
   toChecksumAddress(address: string): string
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { toChecksumAddress } from 'essential-eth';
+
+  // or in a require environment
+  const { toChecksumAddress } = require('essential-eth');
+  ```
+
+  
+```javascript
+toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
+// '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
+```
+
+Similar to ["getAddress" in ethers.js](https://docs.ethers.io/v5/api/utils/address/#utils-getAddress)
+
+Similar to ["toChecksumAddress" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#tochecksumaddress)
+
+  </details>
+
+  <br/>
 
 #### [`toUtf8Bytes`](src/utils/to-utf8-bytes.ts#L1)
   ```typescript
   toUtf8Bytes(data: string): Uint8Array
   ```
+  
+  <br/>
 
 #### [`weiToEther`](src/utils/wei-to-ether.ts#L28)
   ```typescript
   weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
   ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { weiToEther } from 'essential-eth';
+
+  // or in a require environment
+  const { weiToEther } = require('essential-eth');
+  ```
+
+  
+```javascript
+weiToEther('1000000000000000000000').toString()
+// '1000'
+weiToEther(1000000000000000000000).toString()
+// '1000'
+```
+
+```javascript
+weiToEther('1000000000000000000000').toNumber()
+// 1000
+weiToEther(1000000000000000000000).toNumber()
+// 1000
+```
+
+  </details>
+
+  <br/>
 
 #### [`zeroPad`](src/utils/bytes.ts#L267)
   ```typescript
   zeroPad(value: BytesLike, length: number): Uint8Array
   ```
+  
+  <br/>
 
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
@@ -262,189 +702,6 @@ const { etherToWei } = require('essential-eth');
 <br/>
 
 - _The return-type `TinyBig` is just [`Big`](https://github.com/MikeMcl/big.js) but expands scientific notation on `toNumber()` and `toString()`_
-
-<br/>
-
-#### `etherToWei`
-
-```typescript
-// convert ether to wei
-etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
-```
-
-<details>
-  <summary>View Example</summary>
-
-```typescript
-import { etherToWei } from 'essential-eth';
-
-etherToWei(1).toString();
-// "1000000000000000000"
-
-etherToWei(1).toNumber();
-// 1000000000000000000
-
-etherToWei('1').toNumber();
-// 1000000000000000000
-```
-
-</details>
-
-<br/>
-
-#### `weiToEther`
-
-```typescript
-// convert wei to ether
-weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
-```
-
-<details>
-  <summary>View Example</summary>
-
-```typescript
-import { weiToEther } from 'essential-eth';
-
-weiToEther(1000000000000000000).toString();
-// "1"
-
-weiToEther(1000000000000000000).toNumber();
-// 1
-weiToEther('1000000000000000000').toNumber();
-// 1
-```
-
-</details>
-
-<br/>
-
-#### `gweiToEther`
-
-```typescript
-gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
-```
-
-<details>
-  <summary>View Example</summary>
-
-```typescript
-import { gweiToEther } from 'essential-eth';
-
-gweiToEther(1000000000).toString();
-// "1"
-
-gweiToEther(1000000000).toNumber();
-// 1
-gweiToEther('1000000000').toNumber();
-// 1
-```
-
-</details>
-
-<br/>
-
-#### `etherToGwei`
-
-```typescript
-etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
-```
-
-<details>
-  <summary>View Example</summary>
-
-```typescript
-import { etherToGwei } from 'essential-eth';
-
-etherToGwei(0.000000001).toString();
-// "1"
-
-etherToGwei(0.000000001).toNumber();
-// 1
-etherToGwei('0.000000001').toNumber();
-// 1
-```
-
-</details>
-
-<br/>
-
-#### `toChecksumAddress`
-
-```typescript
-// return proper mixed-case address
-// does not support ICAP addresses
-toChecksumAddress(address: string): string
-```
-
-<details>
-  <summary>View Example</summary>
-
-```typescript
-import { toChecksumAddress } from 'essential-eth';
-
-toChecksumAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
-// "0xc0DEAF6bD3F0c6574a6a625EF2F22f62A5150EAB"
-```
-
-</details>
-
-<br/>
-
-#### `isAddress`
-
-```typescript
-// returns boolean as to whether input is a valid address
-// does not support ENS nor ICAP
-isAddress(address: string): boolean
-```
-
-<details>
-  <summary>View Example</summary>
-
-```typescript
-import { isAddress } from 'essential-eth';
-
-isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
-// true
-
-isAddress('bad');
-// false
-
-// Does NOT support ENS.
-isAddress('vitalik.eth');
-// false
-```
-
-</details>
-
-<br/>
-
-#### `hexZeroPad`
-
-```typescript
-// returns a hex string padded to a specified length of bytes
-// if the hex value provided is already longer than the padding value, the value itself is returned without alteration
-hexZeroPad(hexValue: string | number, length: number): string
-```
-
-<details>
-  <summary>View Example</summary>
-
-```typescript
-import { hexZeroPad } from 'essential-eth';
-
-hexZeroPad('0x60', 2);
-// '0x0060'
-
-hexZeroPad(0x60, 3);
-// '0x000060'
-
-// Length of string is already longer than padding value
-hexZeroPad('0x31323334', 3);
-// Throws error
-```
-
-</details>
 
 <br/>
 

@@ -14,6 +14,12 @@ functions.map((functionNumber) => {
   const sig = child.signatures[0];
   const parameters = sig.parameters;
   let returnType = sig.type.name;
+
+  const examples = sig.comment?.tags
+    ?.filter((tag) => tag.tag === 'example')
+    .map((tag) => {
+      return tag.text;
+    });
   if (sig.type.type === 'union') {
     returnType = sig.type.types
       .map((type) => {
@@ -41,10 +47,28 @@ functions.map((functionNumber) => {
       return `${parameter.name}: ${parameterType}`;
     })
     .join(', ');
+  const examplesMarkdown = examples
+    ? `
+  <details>
+  <summary>View Example</summary>
+
+  \`\`\`js
+  import { ${name} } from 'essential-eth';
+
+  // or in a require environment
+  const { ${name} } = require('essential-eth');
+  \`\`\`
+
+  ${examples.join('')}
+  </details>\n`
+    : '';
+
   functionsMarkdown += `#### [\`${name}\`](${fileName}#L${line})
   \`\`\`typescript
   ${name}(${paramsString}): ${returnType}
   \`\`\`
+  ${examplesMarkdown}
+  <br/>
 
 `;
 });
