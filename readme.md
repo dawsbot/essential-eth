@@ -32,7 +32,7 @@
 - - ⚡️ Near-identical API to `ethers`
 - 🌲 Tree-shaking and no side-effects
 - 🙌 Supports multiple JS versions (CommonJS and ESM)
-  - ✅ Node 17, 16, 14, & 12
+  - ✅ Node 18, 16, 14, & 12
   - ✅ Web
 
 <br/>
@@ -40,6 +40,65 @@
 [![🧪 tests](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml/badge.svg)](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/Earnifi/essential-eth/branch/master/graph/badge.svg?token=E44EK6RWTZ)](https://codecov.io/gh/Earnifi/essential-eth) ![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth) ![](https://img.shields.io/npm/v/essential-eth)
 
 <br/>
+
+## Table of Contents
+
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Click to expand) -->
+<details>
+<summary>Click to expand</summary>
+
+- [Why you should replace Ethers.js and web3](#why-you-should-replace-ethersjs-and-web3)
+- [Install](#install)
+- [🛠 Utils](#-utils)
+    - [`arrayify`](#arrayify)
+    - [`concat`](#concat)
+    - [`etherToGwei`](#ethertogwei)
+    - [`etherToWei`](#ethertowei)
+    - [`gweiToEther`](#gweitoether)
+    - [`hashMessage`](#hashmessage)
+    - [`hexConcat`](#hexconcat)
+    - [`hexDataLength`](#hexdatalength)
+    - [`hexDataSlice`](#hexdataslice)
+    - [`hexStripZeros`](#hexstripzeros)
+    - [`hexValue`](#hexvalue)
+    - [`hexZeroPad`](#hexzeropad)
+    - [`hexlify`](#hexlify)
+    - [`isAddress`](#isaddress)
+    - [`isBytes`](#isbytes)
+    - [`isBytesLike`](#isbyteslike)
+    - [`isHexString`](#ishexstring)
+    - [`jsonRpcProvider`](#jsonrpcprovider)
+    - [`keccak256`](#keccak256)
+    - [`pack`](#pack)
+    - [`solidityKeccak256`](#soliditykeccak256)
+    - [`stripZeros`](#stripzeros)
+    - [`tinyBig`](#tinybig)
+    - [`toChecksumAddress`](#tochecksumaddress)
+    - [`toUtf8Bytes`](#toutf8bytes)
+    - [`weiToEther`](#weitoether)
+    - [`zeroPad`](#zeropad)
+    - [`etherToWei`](#ethertowei-1)
+    - [`weiToEther`](#weitoether-1)
+    - [`gweiToEther`](#gweitoether-1)
+    - [`etherToGwei`](#ethertogwei-1)
+    - [`toChecksumAddress`](#tochecksumaddress-1)
+    - [`isAddress`](#isaddress-1)
+    - [`hexZeroPad`](#hexzeropad-1)
+- [RPC](#rpc)
+    - [`getTransactionCount(address, blockTag?): Promise<number>`](#gettransactioncountaddress-blocktag-promisenumber)
+    - [`getGasPrice`](#getgasprice)
+    - [`getBalance`](#getbalance)
+    - [`getNetwork`](#getnetwork)
+    - [`getBlock`](#getblock)
+    - [`getTransaction`](#gettransaction)
+- [Contract](#contract)
+    - [`contractFunctionName(args)`](#contractfunctionnameargs)
+- [More Info](#more-info)
+
+</details>
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+
+  <br/>
 
 ## Install
 
@@ -52,7 +111,7 @@ yarn add essential-eth # TypeScript types load automatically
 
 <br/>
 
-## Utils (do not require connecting to an Eth node)
+## 🛠 Utils
 
 ```typescript
 import { etherToWei } from 'essential-eth';
@@ -61,7 +120,148 @@ import { etherToWei } from 'essential-eth';
 const { etherToWei } = require('essential-eth');
 ```
 
-- The return-type `TinyBig` is just [`Big`](https://github.com/MikeMcl/big.js) but expands scientific notation on `toNumber()` and `toString()`
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (FUNCTIONS) -->
+#### [`arrayify`](src/utils/bytes.ts#L158)
+  ```typescript
+  arrayify(value: number | BytesLike | Hexable, options: DataOptions): Uint8Array
+  ```
+
+#### [`concat`](src/utils/bytes.ts#L230)
+  ```typescript
+  concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
+  ```
+
+#### [`etherToGwei`](src/utils/ether-to-gwei.ts#L28)
+  ```typescript
+  etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
+  ```
+
+#### [`etherToWei`](src/utils/ether-to-wei.ts#L28)
+  ```typescript
+  etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
+  ```
+
+#### [`gweiToEther`](src/utils/gwei-to-ether.ts#L29)
+  ```typescript
+  gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
+  ```
+
+#### [`hashMessage`](src/utils/hash-message.ts#L15)
+  ```typescript
+  hashMessage(message: string | Bytes): string
+  ```
+
+#### [`hexConcat`](src/utils/bytes.ts#L408)
+  ```typescript
+  hexConcat(items: Array<BytesLike>): string
+  ```
+
+#### [`hexDataLength`](src/utils/bytes.ts#L378)
+  ```typescript
+  hexDataLength(data: BytesLike): null | number
+  ```
+
+#### [`hexDataSlice`](src/utils/bytes.ts#L388)
+  ```typescript
+  hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
+  ```
+
+#### [`hexStripZeros`](src/utils/bytes.ts#L424)
+  ```typescript
+  hexStripZeros(value: BytesLike): string
+  ```
+
+#### [`hexValue`](src/utils/bytes.ts#L416)
+  ```typescript
+  hexValue(value: number | bigint | BytesLike | Hexable): string
+  ```
+
+#### [`hexZeroPad`](src/utils/bytes.ts#L471)
+  ```typescript
+  hexZeroPad(value: BytesLikeWithNumber, length: number): string
+  ```
+
+#### [`hexlify`](src/utils/bytes.ts#L306)
+  ```typescript
+  hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
+  ```
+
+#### [`isAddress`](src/utils/is-address.ts#L27)
+  ```typescript
+  isAddress(address: string): boolean
+  ```
+
+#### [`isBytes`](src/utils/bytes.ts#L112)
+  ```typescript
+  isBytes(value: any): value
+  ```
+
+#### [`isBytesLike`](src/utils/bytes.ts#L82)
+  ```typescript
+  isBytesLike(value: any): value
+  ```
+
+#### [`isHexString`](src/utils/bytes.ts#L284)
+  ```typescript
+  isHexString(value: any, length: number): boolean
+  ```
+
+#### [`jsonRpcProvider`](src/providers/JsonRpcProvider.ts#L36)
+  ```typescript
+  jsonRpcProvider(rpcUrl: string): JsonRpcProvider
+  ```
+
+#### [`keccak256`](src/utils/keccak256.ts#L4)
+  ```typescript
+  keccak256(data: BytesLike): string
+  ```
+
+#### [`pack`](src/utils/solidity-keccak256.ts#L91)
+  ```typescript
+  pack(types: Array<string>, values: Array<any>): string
+  ```
+
+#### [`solidityKeccak256`](src/utils/solidity-keccak256.ts#L133)
+  ```typescript
+  solidityKeccak256(types: Array<string>, values: Array<any>): string
+  ```
+
+#### [`stripZeros`](src/utils/bytes.ts#L246)
+  ```typescript
+  stripZeros(value: BytesLike): Uint8Array
+  ```
+
+#### [`tinyBig`](src/shared/tiny-big/tiny-big.ts#L71)
+  ```typescript
+  tinyBig(value: string | number | TinyBig | Big): TinyBig
+  ```
+
+#### [`toChecksumAddress`](src/utils/to-checksum-address.ts#L20)
+  ```typescript
+  toChecksumAddress(address: string): string
+  ```
+
+#### [`toUtf8Bytes`](src/utils/to-utf8-bytes.ts#L1)
+  ```typescript
+  toUtf8Bytes(data: string): Uint8Array
+  ```
+
+#### [`weiToEther`](src/utils/wei-to-ether.ts#L28)
+  ```typescript
+  weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
+  ```
+
+#### [`zeroPad`](src/utils/bytes.ts#L267)
+  ```typescript
+  zeroPad(value: BytesLike, length: number): Uint8Array
+  ```
+
+
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+
+<br/>
+
+- _The return-type `TinyBig` is just [`Big`](https://github.com/MikeMcl/big.js) but expands scientific notation on `toNumber()` and `toString()`_
 
 <br/>
 
