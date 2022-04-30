@@ -1,6 +1,5 @@
-// import fs from 'fs';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const stats = require('../../out.json');
+const stats = require('./typedoc.out.json');
 
 const functions = stats.groups.find((g) => g.title === 'Functions').children;
 

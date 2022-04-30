@@ -1,4 +1,4 @@
-const { functionsMarkdown } = require('./scripts/markdown-magic/build-readme');
+const { functionsMarkdown } = require('./scripts/markdown-magic/parse-typedoc');
 module.exports = {
   transforms: {
     FUNCTIONS(content, options) {
@@ -6,6 +6,6 @@ module.exports = {
     },
   },
   callback: function () {
-    console.log('markdown processing done');
+    console.log('✨ Markdown magic done');
   },
 };
