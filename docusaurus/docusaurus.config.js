@@ -64,13 +64,13 @@ const config = {
             label: 'API',
           },
           {
-            href: 'pathname:///docs/api/modules#functions',
-            label: 'utils',
+            href: '/docs/api/modules#functions',
+            label: 'Utils',
             position: 'left',
           },
           {
-            href: 'pathname:///docs/api/classes/JsonRpcProvider',
-            label: 'providers',
+            href: '/docs/api/classes/JsonRpcProvider',
+            label: 'Providers',
             position: 'left',
           },
           {
