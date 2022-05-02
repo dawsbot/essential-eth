@@ -37,8 +37,6 @@
 
 <br/>
 
-<br/>
-
 ## Table of Contents
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Click to expand) -->
@@ -174,7 +172,7 @@ concat([0, 1]);
 
   <br/>
 
-#### [`etherToGwei`](https://essential-eth.vercel.app/docs/api/modules#etherToGwei)
+#### [`etherToGwei`](https://essential-eth.vercel.app/docs/api/modules#ethertogwei)
 
 ```typescript
 etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
@@ -208,7 +206,7 @@ etherToGwei(1000).toNumber();
 
   <br/>
 
-#### [`etherToWei`](https://essential-eth.vercel.app/docs/api/modules#etherToWei)
+#### [`etherToWei`](https://essential-eth.vercel.app/docs/api/modules#ethertowei)
 
 ```typescript
 etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
@@ -242,7 +240,7 @@ etherToWei(1000).toNumber();
 
   <br/>
 
-#### [`gweiToEther`](https://essential-eth.vercel.app/docs/api/modules#gweiToEther)
+#### [`gweiToEther`](https://essential-eth.vercel.app/docs/api/modules#gweitoether)
 
 ```typescript
 gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
@@ -276,7 +274,7 @@ gweiToEther(1000000000000).toNumber();
 
   <br/>
 
-#### [`hashMessage`](https://essential-eth.vercel.app/docs/api/modules#hashMessage)
+#### [`hashMessage`](https://essential-eth.vercel.app/docs/api/modules#hashmessage)
 
 ```typescript
 hashMessage(message: string | Bytes): string
@@ -301,7 +299,7 @@ hashMessage('Hello World');
 
   <br/>
 
-#### [`hexConcat`](https://essential-eth.vercel.app/docs/api/modules#hexConcat)
+#### [`hexConcat`](https://essential-eth.vercel.app/docs/api/modules#hexconcat)
 
 ```typescript
 hexConcat(items: Array<BytesLike>): string
@@ -309,7 +307,7 @@ hexConcat(items: Array<BytesLike>): string
 
   <br/>
 
-#### [`hexDataLength`](https://essential-eth.vercel.app/docs/api/modules#hexDataLength)
+#### [`hexDataLength`](https://essential-eth.vercel.app/docs/api/modules#hexdatalength)
 
 ```typescript
 hexDataLength(data: BytesLike): null | number
@@ -317,7 +315,7 @@ hexDataLength(data: BytesLike): null | number
 
   <br/>
 
-#### [`hexDataSlice`](https://essential-eth.vercel.app/docs/api/modules#hexDataSlice)
+#### [`hexDataSlice`](https://essential-eth.vercel.app/docs/api/modules#hexdataslice)
 
 ```typescript
 hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
@@ -325,7 +323,7 @@ hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): stri
 
   <br/>
 
-#### [`hexStripZeros`](https://essential-eth.vercel.app/docs/api/modules#hexStripZeros)
+#### [`hexStripZeros`](https://essential-eth.vercel.app/docs/api/modules#hexstripzeros)
 
 ```typescript
 hexStripZeros(value: BytesLike): string
@@ -333,7 +331,7 @@ hexStripZeros(value: BytesLike): string
 
   <br/>
 
-#### [`hexValue`](https://essential-eth.vercel.app/docs/api/modules#hexValue)
+#### [`hexValue`](https://essential-eth.vercel.app/docs/api/modules#hexvalue)
 
 ```typescript
 hexValue(value: number | bigint | BytesLike | Hexable): string
@@ -341,7 +339,7 @@ hexValue(value: number | bigint | BytesLike | Hexable): string
 
   <br/>
 
-#### [`hexZeroPad`](https://essential-eth.vercel.app/docs/api/modules#hexZeroPad)
+#### [`hexZeroPad`](https://essential-eth.vercel.app/docs/api/modules#hexzeropad)
 
 ```typescript
 hexZeroPad(value: BytesLikeWithNumber, length: number): string
@@ -404,7 +402,7 @@ hexlify(14);
 
   <br/>
 
-#### [`isAddress`](https://essential-eth.vercel.app/docs/api/modules#isAddress)
+#### [`isAddress`](https://essential-eth.vercel.app/docs/api/modules#isaddress)
 
 ```typescript
 isAddress(address: string): boolean
@@ -440,7 +438,7 @@ isAddress('vitalik.eth');
 
   <br/>
 
-#### [`isBytes`](https://essential-eth.vercel.app/docs/api/modules#isBytes)
+#### [`isBytes`](https://essential-eth.vercel.app/docs/api/modules#isbytes)
 
 ```typescript
 isBytes(value: any): value
@@ -475,7 +473,7 @@ isBytes(new Uint8Array(1));
 
   <br/>
 
-#### [`isBytesLike`](https://essential-eth.vercel.app/docs/api/modules#isBytesLike)
+#### [`isBytesLike`](https://essential-eth.vercel.app/docs/api/modules#isbyteslike)
 
 ```typescript
 isBytesLike(value: any): value
@@ -510,7 +508,7 @@ isBytesLike(new Uint8Array(1));
 
   <br/>
 
-#### [`isHexString`](https://essential-eth.vercel.app/docs/api/modules#isHexString)
+#### [`isHexString`](https://essential-eth.vercel.app/docs/api/modules#ishexstring)
 
 ```typescript
 isHexString(value: any, length: number): boolean
@@ -518,7 +516,7 @@ isHexString(value: any, length: number): boolean
 
   <br/>
 
-#### [`jsonRpcProvider`](https://essential-eth.vercel.app/docs/api/modules#jsonRpcProvider)
+#### [`jsonRpcProvider`](https://essential-eth.vercel.app/docs/api/modules#jsonrpcprovider)
 
 ```typescript
 jsonRpcProvider(rpcUrl: string): JsonRpcProvider
@@ -563,7 +561,7 @@ pack(types: Array<string>, values: Array<any>): string
 
   <br/>
 
-#### [`solidityKeccak256`](https://essential-eth.vercel.app/docs/api/modules#solidityKeccak256)
+#### [`solidityKeccak256`](https://essential-eth.vercel.app/docs/api/modules#soliditykeccak256)
 
 ```typescript
 solidityKeccak256(types: Array<string>, values: Array<any>): string
@@ -600,7 +598,7 @@ solidityKeccak256(types, values);
 
   <br/>
 
-#### [`stripZeros`](https://essential-eth.vercel.app/docs/api/modules#stripZeros)
+#### [`stripZeros`](https://essential-eth.vercel.app/docs/api/modules#stripzeros)
 
 ```typescript
 stripZeros(value: BytesLike): Uint8Array
@@ -608,7 +606,7 @@ stripZeros(value: BytesLike): Uint8Array
 
   <br/>
 
-#### [`tinyBig`](https://essential-eth.vercel.app/docs/api/modules#tinyBig)
+#### [`tinyBig`](https://essential-eth.vercel.app/docs/api/modules#tinybig)
 
 ```typescript
 tinyBig(value: string | number | TinyBig | Big): TinyBig
@@ -633,7 +631,7 @@ tinyBig(10).times(3).toNumber();
 
   <br/>
 
-#### [`toChecksumAddress`](https://essential-eth.vercel.app/docs/api/modules#toChecksumAddress)
+#### [`toChecksumAddress`](https://essential-eth.vercel.app/docs/api/modules#tochecksumaddress)
 
 ```typescript
 toChecksumAddress(address: string): string
@@ -662,7 +660,7 @@ Similar to ["toChecksumAddress" in web3.js](https://web3js.readthedocs.io/en/v1.
 
   <br/>
 
-#### [`toUtf8Bytes`](https://essential-eth.vercel.app/docs/api/modules#toUtf8Bytes)
+#### [`toUtf8Bytes`](https://essential-eth.vercel.app/docs/api/modules#toutf8bytes)
 
 ```typescript
 toUtf8Bytes(data: string): Uint8Array
@@ -670,7 +668,7 @@ toUtf8Bytes(data: string): Uint8Array
 
   <br/>
 
-#### [`weiToEther`](https://essential-eth.vercel.app/docs/api/modules#weiToEther)
+#### [`weiToEther`](https://essential-eth.vercel.app/docs/api/modules#weitoether)
 
 ```typescript
 weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
@@ -704,7 +702,7 @@ weiToEther(1000000000000000000000).toNumber();
 
   <br/>
 
-#### [`zeroPad`](https://essential-eth.vercel.app/docs/api/modules#zeroPad)
+#### [`zeroPad`](https://essential-eth.vercel.app/docs/api/modules#zeropad)
 
 ```typescript
 zeroPad(value: BytesLike, length: number): Uint8Array
