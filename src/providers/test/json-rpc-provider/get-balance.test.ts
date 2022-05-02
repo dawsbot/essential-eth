@@ -20,7 +20,10 @@ async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
 describe('provider.getBalance gno', () => {
   const rpcUrl = rpcUrls.mainnet;
   it('should get latest equal to ethers', async () => {
-    await testGetBalance(rpcUrl, 'latest');
+    await Promise.all([
+      testGetBalance(rpcUrl, 'latest'),
+      testGetBalance(rpcUrl, 'latest'),
+    ]);
   });
   it('should get earliest equal to ethers', async () => {
     await testGetBalance(rpcUrl, 'earliest');
@@ -29,28 +32,3 @@ describe('provider.getBalance gno', () => {
     await testGetBalance(rpcUrl);
   });
 });
-describe('provider.getBalance arbitrum', () => {
-  const rpcUrl = rpcUrls.gor;
-  it('should get latest equal to ethers', async () => {
-    await testGetBalance(rpcUrl, 'latest');
-  });
-  it('should get earliest equal to ethers', async () => {
-    await testGetBalance(rpcUrl, 'earliest');
-  });
-  it('should get pending equal to ethers', async () => {
-    await testGetBalance(rpcUrl, 'pending');
-  });
-  it('should get default latest equal to ethers', async () => {
-    await testGetBalance(rpcUrl);
-  });
-});
-
-// describe('provider.getNetwork error handling', () => {
-//   it('should throw on empty 200 http response', async () => {
-//     expect.assertions(1);
-//     const essentialEth = new JsonRpcProvider(fakeUrls.notRPCButRealHttp);
-//     await essentialEth.getNetwork().catch((err) => {
-//       expect(err instanceof Error).toBe(true);
-//     });
-//   });
-// });

@@ -1,6 +1,6 @@
 {
   "name": "essential-eth",
-  "description": "Ultralight JS library for Ethereum utilities",
+  "description": "Ultralight JS for Ethereum",
   "version": "0.5.4",
   "license": "MIT",
   "sideEffects": false,
@@ -22,6 +22,7 @@
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
     "build": "rm -rf lib && npm run compile",
+    "build:readme": ". ./scripts/markdown-magic/build-readme.sh",
     "jest": "jest",
     "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
     "update-deps": "sh ./scripts/pre-commit.sh",
@@ -58,7 +59,6 @@
     "prettier-plugin-organize-imports": "^2.3.4",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.2.1",
-    "typedoc": "^0.22.13",
     "typescript": "^4.6.4",
     "web3": "^1.7.3"
   },

@@ -1,0 +1,7069 @@
+{
+	"id": 0,
+	"name": "essential-eth",
+	"kind": 1,
+	"kindString": "Project",
+	"flags": {},
+	"originalName": "",
+	"children": [
+		{
+			"id": 101,
+			"name": "Contract",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {},
+			"comment": {
+				"tags": [
+					{
+						"tag": "alpha",
+						"text": "\nOnly accepts ABIS in JSON format. This allows for stronger typing and assurances of data-types\n* Only read-only function calls currently supported."
+					},
+					{
+						"tag": "example",
+						"text": "\n```typescript\nimport { Contract, JsonRpcProvider } from 'essential-eth';\n// UNI airdrop contract\nconst contractAddress = '0x090D4613473dEE047c3f2706764f49E0821D256e';\nconst provider = new JsonRpcProvider();\n\nconst JSONABI = [\n  {\n    inputs: [\n      {\n        internalType: 'uint256',\n        name: 'index',\n        type: 'uint256',\n      },\n    ],\n    name: 'isClaimed',\n    outputs: [\n      {\n        internalType: 'bool',\n        name: '',\n        type: 'bool',\n      },\n    ],\n    stateMutability: 'view',\n    type: 'function',\n  },\n]\n\nconst contract = new Contract(\n  contractAddress,\n  JSONABI,\n  provider,\n);\n\n(async () => {\n  // prints boolean as to whether index 0 has claimed airdrop or not\n  console.log(await contract.isClaimed(0));\n})()\n\n\n```\n"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 102,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 103,
+							"name": "new Contract",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"comment": {},
+							"parameters": [
+								{
+									"id": 104,
+									"name": "addressOrName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "The ethereum address of the smart-contract"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 105,
+									"name": "contractInterface",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "The JSON ABI of the smart-contract (like http://api.etherscan.io/api?module=contract&action=getabi&address=0x090d4613473dee047c3f2706764f49e0821d256e&format=raw)"
+									},
+									"type": {
+										"type": "reference",
+										"id": 221,
+										"name": "JSONABI"
+									}
+								},
+								{
+									"id": 106,
+									"name": "signerOrProvider",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "An instantiated essential-eth provider\n"
+									},
+									"type": {
+										"type": "reference",
+										"id": 13,
+										"name": "JsonRpcProvider"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"id": 101,
+								"name": "Contract"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseContract.constructor"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseContract.constructor"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						102
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/classes/Contract.ts",
+					"line": 150,
+					"character": 13
+				}
+			],
+			"indexSignature": {
+				"id": 107,
+				"name": "__index",
+				"kind": 8192,
+				"kindString": "Index signature",
+				"flags": {},
+				"comment": {
+					"shortText": "The function names on any given contract. Like \"isClaimed\", \"merkleRoot\", etc."
+				},
+				"parameters": [
+					{
+						"id": 108,
+						"name": "key",
+						"kind": 32768,
+						"flags": {},
+						"type": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				],
+				"type": {
+					"type": "intrinsic",
+					"name": "any"
+				}
+			},
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "BaseContract"
+				}
+			]
+		},
+		{
+			"id": 48,
+			"name": "FallthroughProvider",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {},
+			"comment": {
+				"tags": [
+					{
+						"tag": "beta",
+						"text": "\nA JSON RPC Provider which moves to the next URL when one fails.\n"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 49,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/providers/FallthroughProvider.ts",
+							"line": 36,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 50,
+							"name": "new FallthroughProvider",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 51,
+									"name": "rpcUrls",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								},
+								{
+									"id": 52,
+									"name": "options",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "ConstructorOptions"
+									},
+									"defaultValue": "{}"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"id": 48,
+								"name": "FallthroughProvider"
+							},
+							"overwrites": {
+								"type": "reference",
+								"name": "BaseProvider.constructor"
+							}
+						}
+					],
+					"overwrites": {
+						"type": "reference",
+						"name": "BaseProvider.constructor"
+					}
+				},
+				{
+					"id": 54,
+					"name": "timeoutDuration",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true,
+						"isReadonly": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/FallthroughProvider.ts",
+							"line": 28,
+							"character": 19
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 82,
+					"name": "getBalance",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 374,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 83,
+							"name": "getBalance",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the balance of the account in wei as TinyBig\n* Same as [`ethers.provider.getBalance`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBalance)\n* Same as `web3.eth.getBalance`",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```js\n await provider\n  .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')\n  .then((balance) => console.log(balance.toString()));\n// \"28798127851528138\"\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 84,
+									"name": "address",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 85,
+									"name": "blockTag",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "BlockTag"
+									},
+									"defaultValue": "'latest'"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 109,
+										"name": "TinyBig"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getBalance"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getBalance"
+					}
+				},
+				{
+					"id": 76,
+					"name": "getBlock",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 323,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 77,
+							"name": "getBlock",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Gets information about a certain block.\nSame as `web3.eth.getBlock` and `ethers.providers.getBlock`",
+								"returns": "A BlockResponse object with information about the specified block\n",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```js\nawait provider.getBlock(14645431);\n```\n"
+									},
+									{
+										"tag": "example",
+										"text": "\n```js\nawait provider.getBlock('0x3e5cea9c2be7e0ab4b0aa04c24dafddc37571db2d2d345caf7f88b3366ece0cf');\n```\n"
+									},
+									{
+										"tag": "example",
+										"text": "\n```js\nawait provider.getBlock('latest');\n{\n  number: 4232826,\n  hash: '0x93211a1cd17e154b183565ec685254a03f844a8e34824a46ce1bdd6753dcb669',\n  parentHash: '0x1b32bfcba1bb2a57f56e166a3bb06875a1978992999dfc8828397b4c1526f472',\n  sha3Uncles: '0x0fb399c67bb5a071ec8a22549223215ab76b7d4009941c9c37aa3c3936010463',\n  logsBloom: '0x00000000000000000000101000000000020000000000000000000000000000000000400000010000000000000000000000000000010000000008800000000800000000200000000000000000000000000000000000000000000002000000000000000000000000000040000000000040000000000000000000000000000000000000000000000001000000000004000000000010000000000000000020000000000000000200100020000000000000000080000000000080001000000000000000000001040000000000000000008000000020010100000000200000100000000000000000000000002000000080000000020400000000002000200000000000',\n  transactionsRoot: '0xc43b3f13e1fe810e34d3a26ffe465b72c7063a5c70a02de2c78e91e4d10bd9fb',\n  stateRoot: '0x04d7bc816537ea7ef3a16e76c9879d29f34f99d4154273c2e98e012a31bad745',\n  receiptsRoot: '0x89c6f781ceac0bd49c4d9aa9115df4a5d4dd0e0220ff7668012f15bc04222c6b',\n  miner: '0x31fe561eb2c628cD32Ec52573D7c4b7E4C278Bfa',\n  difficulty: '1300907486001755331049',\n  totalDifficulty: '5989929395521171616186006183',\n  extraData: '0xce018c495249532d62613031656132',\n  size: 5416,\n  gasLimit: 6800000,\n  gasUsed: 202955,\n  timestamp: 1649884910,\n  transactions: [\n    '0x6b34a59c7b9aead24fa6dad782f8a3ad84ed4a23ee09bcbf0bcf880840fbbe20',\n    '0x9a3851ca24d5336c6a0d48aba2c4b4769d7a672c9b01729c5eb9924efd1b19a7',\n    '0xc3ed3d198b62f2f3427ebfa3bbd0fcada4e3c0c189e4464e7eeceb403c75981e'\n  ],\n  uncles: [\n    '0x0c567c054e98153f10d651fbbc018891c1dd9d62a9ffd998e87678803e95b6ed',\n    '0xb7d69389dbfb057c6fcb4bc0582d46a2ba01170703f0dadf8cd1462b83e88753',\n    '0xd5f74ccd0ad4c58b3161e8c2c507c264231e5f28925061b809c02e5e4bb6db28'\n  ],\n  minimumGasPrice: '0x387ee40',\n  bitcoinMergedMiningHeader: '0x04000020e8567ed3d2480e15a1dd1b4335e4732ae343c037e4fd03000000000000000000ed10a8340d163d3e813bdd430f902f4e5a56828dc62313b2e23797c0be6b8516eb3e576297d8091735884f42',\n  bitcoinMergedMiningCoinbaseTransaction: '0x0000000000000140e910128fda7bac502dc5e0573bbaf12de8e2524f70c22f7bd160dedcb19a2521002b6a2952534b424c4f434b3ae493303f597fa368c0ccc4f8aceabf1c315bb7c9a07605c073a89f260040967aace6a7d9',\n  bitcoinMergedMiningMerkleProof: '0xdf63a3d7eb6fbcfb301311faa46e9a15b0408bb1a04e284daee86c273c1dfd65ede23f3170f806e9e0f4cef7ba6b56aa37470d9c23f96ec8e43d08b58645919c5e10bcb892897a731f8f9ce79c72dc0e390896bcd6c67bb38c0bdb72982b6cf05519968d76673572c3f3ef3a08b0ddb464863f1788f7cdbaad3fe44a8a8af576d430ac282fe28852c16df198ca96cc5f71a50695912efe1a836e8442be69e31b6d6f973da2818bce9a3a1c2d9be0671aee9a7776e398d6a03d1e178e20d84646004a3d03c0501334e629d9146aa6a01316dcbaa289df6e6c5e3090cadaddff22699cfc7ff09512fc0d65c5062f17c98561ce3c9510de210d9d654cf99f8d756ff37c9fa21e7122ee8cadb923341690845d572921425f2bd7e044558b7e07983ac4df28928028b0c13c3624dc7a965af8091b0cecc845bf7da5308c03b2c97d607f6706a599f802025894435f1d76ea4e67cc2fc4e1559f1206f559a24633de0f',\n  hashForMergedMining: '0xe493303f597fa368c0ccc4f8aceabf1c315bb7c9a07605c073a89f260040967a',\n  paidFees: '0xc0744dcb7a0',\n  cumulativeDifficulty: '0x1190930db285269e582'\n  }\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 78,
+									"name": "timeFrame",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "The number, hash, or text-based description ('latest', 'earliest', or 'pending') of the block to collect information on.\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "BlockTag"
+									},
+									"defaultValue": "'latest'"
+								},
+								{
+									"id": 79,
+									"name": "returnTransactionObjects",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "Whether to also return data about the transactions on the block.\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									},
+									"defaultValue": "false"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 211,
+										"name": "BlockResponse"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getBlock"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getBlock"
+					}
+				},
+				{
+					"id": 80,
+					"name": "getGasPrice",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 354,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 81,
+							"name": "getGasPrice",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the current gas price in wei as TinyBig\nSame as `ethers.provider.getGasPrice`"
+							},
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 109,
+										"name": "TinyBig"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getGasPrice"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getGasPrice"
+					}
+				},
+				{
+					"id": 64,
+					"name": "getNetwork",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 44,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 65,
+							"name": "getNetwork",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the network this provider is connected to"
+							},
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 241,
+										"name": "Network"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getNetwork"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getNetwork"
+					}
+				},
+				{
+					"id": 66,
+					"name": "getTransaction",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 182,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 67,
+							"name": "getTransaction",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "* Similar to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included",
+								"returns": "information about one transaction",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```js\nawait provider.getTransaction('0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789');\n {\n   accessList: [],\n   blockHash: '0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d',\n   blockNumber: 14578286,\n   chainId: 1,\n   from: '0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4',\n   gas: Big {\n   s: 1,\n   e: 5,\n   c: [ 1, 1, 2, 1, 6, 3 ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   gasPrice: Big {\n   s: 1,\n   e: 10,\n   c: [\n   4, 8, 5, 9, 2,\n   4, 2, 6, 8, 5,\n   8\n   ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   hash: '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789',\n   input: '0x83259f170000000000000000000000000000000000000000000000000000000000000080000000000000000000000000dfd9de5f6fa60bd70636c0900752e93a6144aed400000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000024000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000009e99ad11a214fd016b19dc3648678c5944859ae292b21c24ca94f857836c4596f1950c82dd0c23dd621af4763edc2f66466e63c5df9de0c1107b1cd16bf460fe93e43fd308e3444bc79c3d88a4cb961dc8367ab6ad048867afc76d193bca99cf3a068864ed4a7df1dbf1d4c52238eced3e5e05644b4040fc2b3ccb8557b0e99fff6131305a0ea2b8061b90bd418db5bbdd2e92129f52d93f90531465e309c4caec5b85285822b6196398d36f16f511811b61bbda6461e80e29210cd303118bdcee8df6fa0505ffbe8642094fd2ba4dd458496fe3b459ac880bbf71877c713e969ccf5ed7efab8a84ebc07e3939901371ca427e1192e455a8f35a6a1d7ad09e1475dd1758b36fa631dab5d70e99316b23c4c43094188d360cd9c3457355904e07c00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000162074a7047f',\n   maxFeePerGas: Big {\n   s: 1,\n   e: 10,\n   c: [\n   6, 7, 6, 8, 1,\n   2, 6, 1, 6, 1,\n   8\n   ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   maxPriorityFeePerGas: Big {\n   s: 1,\n   e: 9,\n   c: [ 1, 5 ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   nonce: 129,\n   r: '0x59a7c15b12c18cd68d6c440963d959bff3e73831ffc938e75ecad07f7ee43fbc',\n   s: '0x1ebaf05f0d9273b16c2a7748b150a79d22533a8cd74552611cbe620fee3dcf1c',\n   to: '0x39B72d136ba3e4ceF35F48CD09587ffaB754DD8B',\n   transactionIndex: 29,\n   type: 2,\n   v: 0,\n   value: Big {\n   s: 1,\n   e: 0,\n   c: [ 0 ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   confirmations: 1210\n   }\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 68,
+									"name": "transactionHash",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 245,
+										"name": "TransactionResponse"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getTransaction"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getTransaction"
+					}
+				},
+				{
+					"id": 72,
+					"name": "getTransactionCount",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 250,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 73,
+							"name": "getTransactionCount",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the transaction count from genesis up to specified blockTag",
+								"text": "* Same as `ethers.provider.getTransactionCount`\n* Same as `web3.eth.getTransactionCount`\n",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```js\nconst address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';\n await provider\n  .getTransactionCount(address, 'latest')\n// 1060000\n```\n"
+									},
+									{
+										"tag": "example",
+										"text": "\n```js\n await provider\n  .getTransactionCount(address)\n// 1053312\n```\n"
+									},
+									{
+										"tag": "example",
+										"text": "\n```js\n await provider\n  .getTransactionCount(address, 14649390)\n// 1053312\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 74,
+									"name": "address",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 75,
+									"name": "blockTag",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "BlockTag"
+									},
+									"defaultValue": "'latest'"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getTransactionCount"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getTransactionCount"
+					}
+				},
+				{
+					"id": 69,
+					"name": "getTransactionReceipt",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 207,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 70,
+							"name": "getTransactionReceipt",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Gives information about a transaction that has already been mined. Includes additional information beyond what's provided by `getTransaction()`",
+								"text": "* Similar to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt), some information not included\n"
+							},
+							"parameters": [
+								{
+									"id": 71,
+									"name": "transactionHash",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "the hash of the transaction to get information about\n\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "TransactionReceipt"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getTransactionReceipt"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getTransactionReceipt"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						49
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						54
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						82,
+						76,
+						80,
+						64,
+						66,
+						72,
+						69
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/providers/FallthroughProvider.ts",
+					"line": 22,
+					"character": 13
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "BaseProvider"
+				}
+			]
+		},
+		{
+			"id": 13,
+			"name": "JsonRpcProvider",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {},
+			"children": [
+				{
+					"id": 14,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/providers/JsonRpcProvider.ts",
+							"line": 20,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 15,
+							"name": "new JsonRpcProvider",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"comment": {},
+							"parameters": [
+								{
+									"id": 16,
+									"name": "rpcUrl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "The URL to your Eth node. Consider POKT or Infura\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"defaultValue": "'https://free-eth-node.com/api/eth'"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"id": 13,
+								"name": "JsonRpcProvider"
+							},
+							"overwrites": {
+								"type": "reference",
+								"name": "BaseProvider.constructor"
+							}
+						}
+					],
+					"overwrites": {
+						"type": "reference",
+						"name": "BaseProvider.constructor"
+					}
+				},
+				{
+					"id": 44,
+					"name": "getBalance",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 374,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 45,
+							"name": "getBalance",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the balance of the account in wei as TinyBig\n* Same as [`ethers.provider.getBalance`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBalance)\n* Same as `web3.eth.getBalance`",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```js\n await provider\n  .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')\n  .then((balance) => console.log(balance.toString()));\n// \"28798127851528138\"\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 46,
+									"name": "address",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 47,
+									"name": "blockTag",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "BlockTag"
+									},
+									"defaultValue": "'latest'"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 109,
+										"name": "TinyBig"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getBalance"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getBalance"
+					}
+				},
+				{
+					"id": 38,
+					"name": "getBlock",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 323,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 39,
+							"name": "getBlock",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Gets information about a certain block.\nSame as `web3.eth.getBlock` and `ethers.providers.getBlock`",
+								"returns": "A BlockResponse object with information about the specified block\n",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```js\nawait provider.getBlock(14645431);\n```\n"
+									},
+									{
+										"tag": "example",
+										"text": "\n```js\nawait provider.getBlock('0x3e5cea9c2be7e0ab4b0aa04c24dafddc37571db2d2d345caf7f88b3366ece0cf');\n```\n"
+									},
+									{
+										"tag": "example",
+										"text": "\n```js\nawait provider.getBlock('latest');\n{\n  number: 4232826,\n  hash: '0x93211a1cd17e154b183565ec685254a03f844a8e34824a46ce1bdd6753dcb669',\n  parentHash: '0x1b32bfcba1bb2a57f56e166a3bb06875a1978992999dfc8828397b4c1526f472',\n  sha3Uncles: '0x0fb399c67bb5a071ec8a22549223215ab76b7d4009941c9c37aa3c3936010463',\n  logsBloom: '0x00000000000000000000101000000000020000000000000000000000000000000000400000010000000000000000000000000000010000000008800000000800000000200000000000000000000000000000000000000000000002000000000000000000000000000040000000000040000000000000000000000000000000000000000000000001000000000004000000000010000000000000000020000000000000000200100020000000000000000080000000000080001000000000000000000001040000000000000000008000000020010100000000200000100000000000000000000000002000000080000000020400000000002000200000000000',\n  transactionsRoot: '0xc43b3f13e1fe810e34d3a26ffe465b72c7063a5c70a02de2c78e91e4d10bd9fb',\n  stateRoot: '0x04d7bc816537ea7ef3a16e76c9879d29f34f99d4154273c2e98e012a31bad745',\n  receiptsRoot: '0x89c6f781ceac0bd49c4d9aa9115df4a5d4dd0e0220ff7668012f15bc04222c6b',\n  miner: '0x31fe561eb2c628cD32Ec52573D7c4b7E4C278Bfa',\n  difficulty: '1300907486001755331049',\n  totalDifficulty: '5989929395521171616186006183',\n  extraData: '0xce018c495249532d62613031656132',\n  size: 5416,\n  gasLimit: 6800000,\n  gasUsed: 202955,\n  timestamp: 1649884910,\n  transactions: [\n    '0x6b34a59c7b9aead24fa6dad782f8a3ad84ed4a23ee09bcbf0bcf880840fbbe20',\n    '0x9a3851ca24d5336c6a0d48aba2c4b4769d7a672c9b01729c5eb9924efd1b19a7',\n    '0xc3ed3d198b62f2f3427ebfa3bbd0fcada4e3c0c189e4464e7eeceb403c75981e'\n  ],\n  uncles: [\n    '0x0c567c054e98153f10d651fbbc018891c1dd9d62a9ffd998e87678803e95b6ed',\n    '0xb7d69389dbfb057c6fcb4bc0582d46a2ba01170703f0dadf8cd1462b83e88753',\n    '0xd5f74ccd0ad4c58b3161e8c2c507c264231e5f28925061b809c02e5e4bb6db28'\n  ],\n  minimumGasPrice: '0x387ee40',\n  bitcoinMergedMiningHeader: '0x04000020e8567ed3d2480e15a1dd1b4335e4732ae343c037e4fd03000000000000000000ed10a8340d163d3e813bdd430f902f4e5a56828dc62313b2e23797c0be6b8516eb3e576297d8091735884f42',\n  bitcoinMergedMiningCoinbaseTransaction: '0x0000000000000140e910128fda7bac502dc5e0573bbaf12de8e2524f70c22f7bd160dedcb19a2521002b6a2952534b424c4f434b3ae493303f597fa368c0ccc4f8aceabf1c315bb7c9a07605c073a89f260040967aace6a7d9',\n  bitcoinMergedMiningMerkleProof: '0xdf63a3d7eb6fbcfb301311faa46e9a15b0408bb1a04e284daee86c273c1dfd65ede23f3170f806e9e0f4cef7ba6b56aa37470d9c23f96ec8e43d08b58645919c5e10bcb892897a731f8f9ce79c72dc0e390896bcd6c67bb38c0bdb72982b6cf05519968d76673572c3f3ef3a08b0ddb464863f1788f7cdbaad3fe44a8a8af576d430ac282fe28852c16df198ca96cc5f71a50695912efe1a836e8442be69e31b6d6f973da2818bce9a3a1c2d9be0671aee9a7776e398d6a03d1e178e20d84646004a3d03c0501334e629d9146aa6a01316dcbaa289df6e6c5e3090cadaddff22699cfc7ff09512fc0d65c5062f17c98561ce3c9510de210d9d654cf99f8d756ff37c9fa21e7122ee8cadb923341690845d572921425f2bd7e044558b7e07983ac4df28928028b0c13c3624dc7a965af8091b0cecc845bf7da5308c03b2c97d607f6706a599f802025894435f1d76ea4e67cc2fc4e1559f1206f559a24633de0f',\n  hashForMergedMining: '0xe493303f597fa368c0ccc4f8aceabf1c315bb7c9a07605c073a89f260040967a',\n  paidFees: '0xc0744dcb7a0',\n  cumulativeDifficulty: '0x1190930db285269e582'\n  }\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 40,
+									"name": "timeFrame",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "The number, hash, or text-based description ('latest', 'earliest', or 'pending') of the block to collect information on.\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "BlockTag"
+									},
+									"defaultValue": "'latest'"
+								},
+								{
+									"id": 41,
+									"name": "returnTransactionObjects",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "Whether to also return data about the transactions on the block.\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									},
+									"defaultValue": "false"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 211,
+										"name": "BlockResponse"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getBlock"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getBlock"
+					}
+				},
+				{
+					"id": 42,
+					"name": "getGasPrice",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 354,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 43,
+							"name": "getGasPrice",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the current gas price in wei as TinyBig\nSame as `ethers.provider.getGasPrice`"
+							},
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 109,
+										"name": "TinyBig"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getGasPrice"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getGasPrice"
+					}
+				},
+				{
+					"id": 26,
+					"name": "getNetwork",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 44,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 27,
+							"name": "getNetwork",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the network this provider is connected to"
+							},
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 241,
+										"name": "Network"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getNetwork"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getNetwork"
+					}
+				},
+				{
+					"id": 28,
+					"name": "getTransaction",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 182,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 29,
+							"name": "getTransaction",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "* Similar to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included",
+								"returns": "information about one transaction",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```js\nawait provider.getTransaction('0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789');\n {\n   accessList: [],\n   blockHash: '0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d',\n   blockNumber: 14578286,\n   chainId: 1,\n   from: '0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4',\n   gas: Big {\n   s: 1,\n   e: 5,\n   c: [ 1, 1, 2, 1, 6, 3 ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   gasPrice: Big {\n   s: 1,\n   e: 10,\n   c: [\n   4, 8, 5, 9, 2,\n   4, 2, 6, 8, 5,\n   8\n   ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   hash: '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789',\n   input: '0x83259f170000000000000000000000000000000000000000000000000000000000000080000000000000000000000000dfd9de5f6fa60bd70636c0900752e93a6144aed400000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000024000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000009e99ad11a214fd016b19dc3648678c5944859ae292b21c24ca94f857836c4596f1950c82dd0c23dd621af4763edc2f66466e63c5df9de0c1107b1cd16bf460fe93e43fd308e3444bc79c3d88a4cb961dc8367ab6ad048867afc76d193bca99cf3a068864ed4a7df1dbf1d4c52238eced3e5e05644b4040fc2b3ccb8557b0e99fff6131305a0ea2b8061b90bd418db5bbdd2e92129f52d93f90531465e309c4caec5b85285822b6196398d36f16f511811b61bbda6461e80e29210cd303118bdcee8df6fa0505ffbe8642094fd2ba4dd458496fe3b459ac880bbf71877c713e969ccf5ed7efab8a84ebc07e3939901371ca427e1192e455a8f35a6a1d7ad09e1475dd1758b36fa631dab5d70e99316b23c4c43094188d360cd9c3457355904e07c00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000162074a7047f',\n   maxFeePerGas: Big {\n   s: 1,\n   e: 10,\n   c: [\n   6, 7, 6, 8, 1,\n   2, 6, 1, 6, 1,\n   8\n   ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   maxPriorityFeePerGas: Big {\n   s: 1,\n   e: 9,\n   c: [ 1, 5 ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   nonce: 129,\n   r: '0x59a7c15b12c18cd68d6c440963d959bff3e73831ffc938e75ecad07f7ee43fbc',\n   s: '0x1ebaf05f0d9273b16c2a7748b150a79d22533a8cd74552611cbe620fee3dcf1c',\n   to: '0x39B72d136ba3e4ceF35F48CD09587ffaB754DD8B',\n   transactionIndex: 29,\n   type: 2,\n   v: 0,\n   value: Big {\n   s: 1,\n   e: 0,\n   c: [ 0 ],\n   constructor: <ref *1> [Function: Big] {\n   DP: 20,\n   RM: 1,\n   NE: -7,\n   PE: 21,\n   strict: false,\n   roundDown: 0,\n   roundHalfUp: 1,\n   roundHalfEven: 2,\n   roundUp: 3,\n   Big: [Circular *1],\n   default: [Circular *1]\n   }\n   },\n   confirmations: 1210\n   }\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 30,
+									"name": "transactionHash",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"id": 245,
+										"name": "TransactionResponse"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getTransaction"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getTransaction"
+					}
+				},
+				{
+					"id": 34,
+					"name": "getTransactionCount",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 250,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 35,
+							"name": "getTransactionCount",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the transaction count from genesis up to specified blockTag",
+								"text": "* Same as `ethers.provider.getTransactionCount`\n* Same as `web3.eth.getTransactionCount`\n",
+								"tags": [
+									{
+										"tag": "example",
+										"text": "\n```js\nconst address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';\n await provider\n  .getTransactionCount(address, 'latest')\n// 1060000\n```\n"
+									},
+									{
+										"tag": "example",
+										"text": "\n```js\n await provider\n  .getTransactionCount(address)\n// 1053312\n```\n"
+									},
+									{
+										"tag": "example",
+										"text": "\n```js\n await provider\n  .getTransactionCount(address, 14649390)\n// 1053312\n```\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 36,
+									"name": "address",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 37,
+									"name": "blockTag",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "BlockTag"
+									},
+									"defaultValue": "'latest'"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getTransactionCount"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getTransactionCount"
+					}
+				},
+				{
+					"id": 31,
+					"name": "getTransactionReceipt",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/providers/BaseProvider.ts",
+							"line": 207,
+							"character": 15
+						}
+					],
+					"signatures": [
+						{
+							"id": 32,
+							"name": "getTransactionReceipt",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Gives information about a transaction that has already been mined. Includes additional information beyond what's provided by `getTransaction()`",
+								"text": "* Similar to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt), some information not included\n"
+							},
+							"parameters": [
+								{
+									"id": 33,
+									"name": "transactionHash",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "the hash of the transaction to get information about\n\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "TransactionReceipt"
+									}
+								],
+								"qualifiedName": "Promise",
+								"package": "typescript",
+								"name": "Promise"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "BaseProvider.getTransactionReceipt"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "BaseProvider.getTransactionReceipt"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						14
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						44,
+						38,
+						42,
+						26,
+						28,
+						34,
+						31
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/providers/JsonRpcProvider.ts",
+					"line": 2,
+					"character": 13
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "BaseProvider"
+				}
+			]
+		},
+		{
+			"id": 109,
+			"name": "TinyBig",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {},
+			"comment": {
+				"shortText": "A wrapper around [big.js](https://github.com/MikeMcl/big.js) which expands scientific notation and creates a \"toHexString\" function.\n* This is the return type of every operation on ether, wei, etc."
+			},
+			"children": [
+				{
+					"id": 118,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/shared/tiny-big/tiny-big.ts",
+							"line": 9,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 119,
+							"name": "new TinyBig",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 120,
+									"name": "value",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											},
+											{
+												"type": "reference",
+												"id": 109,
+												"name": "TinyBig"
+											},
+											{
+												"type": "reference",
+												"qualifiedName": "Big",
+												"package": "@types/big.js",
+												"name": "Big"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"id": 109,
+								"name": "TinyBig"
+							},
+							"overwrites": {
+								"type": "reference",
+								"name": "Big.constructor"
+							}
+						}
+					],
+					"overwrites": {
+						"type": "reference",
+						"name": "Big.constructor"
+					}
+				},
+				{
+					"id": 208,
+					"name": "c",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExternal": true
+					},
+					"comment": {
+						"shortText": "Returns an array of single digits"
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 371,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "number"
+						}
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.c"
+					}
+				},
+				{
+					"id": 209,
+					"name": "e",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExternal": true
+					},
+					"comment": {
+						"shortText": "Returns the exponent, Integer, -1e+6 to 1e+6 inclusive"
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 375,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.e"
+					}
+				},
+				{
+					"id": 210,
+					"name": "s",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExternal": true
+					},
+					"comment": {
+						"shortText": "Returns the sign, -1 or 1"
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 379,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.s"
+					}
+				},
+				{
+					"id": 110,
+					"name": "DP",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true,
+						"isExternal": true
+					},
+					"comment": {
+						"shortText": "The maximum number of decimal places of the results of operations involving division.\nIt is relevant only to the div and sqrt methods, and the pow method when the exponent is negative.",
+						"text": "0 to 1e+6 inclusive\nDefault value: 20\n"
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 109,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.DP"
+					}
+				},
+				{
+					"id": 112,
+					"name": "NE",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true,
+						"isExternal": true
+					},
+					"comment": {
+						"shortText": "The negative exponent value at and below which toString returns exponential notation.",
+						"text": "-1e+6 to 0 inclusive\nDefault value: -7\n"
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 121,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.NE"
+					}
+				},
+				{
+					"id": 113,
+					"name": "PE",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true,
+						"isExternal": true
+					},
+					"comment": {
+						"shortText": "The positive exponent value at and above which toString returns exponential notation.",
+						"text": "0 to 1e+6 inclusive\nDefault value: 21\n"
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 128,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.PE"
+					}
+				},
+				{
+					"id": 111,
+					"name": "RM",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true,
+						"isExternal": true
+					},
+					"comment": {
+						"shortText": "The rounding mode used in the above operations and by round, toExponential, toFixed and toPrecision.\nDefault value: 1"
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 114,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.RM"
+					}
+				},
+				{
+					"id": 114,
+					"name": "roundDown",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true,
+						"isExternal": true,
+						"isReadonly": true
+					},
+					"comment": {
+						"shortText": "Rounds towards zero.\nI.e. truncate, no rounding."
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 136,
+							"character": 13
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 0
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.roundDown"
+					}
+				},
+				{
+					"id": 116,
+					"name": "roundHalfEven",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true,
+						"isExternal": true,
+						"isReadonly": true
+					},
+					"comment": {
+						"shortText": "Rounds towards nearest neighbour.\nIf equidistant, rounds towards even neighbour."
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 146,
+							"character": 13
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 2
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.roundHalfEven"
+					}
+				},
+				{
+					"id": 115,
+					"name": "roundHalfUp",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true,
+						"isExternal": true,
+						"isReadonly": true
+					},
+					"comment": {
+						"shortText": "Rounds towards nearest neighbour.\nIf equidistant, rounds away from zero."
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 141,
+							"character": 13
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 1
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.roundHalfUp"
+					}
+				},
+				{
+					"id": 117,
+					"name": "roundUp",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true,
+						"isExternal": true,
+						"isReadonly": true
+					},
+					"comment": {
+						"shortText": "Rounds away from zero."
+					},
+					"sources": [
+						{
+							"fileName": "node_modules/@types/big.js/index.d.ts",
+							"line": 150,
+							"character": 13
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 3
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.roundUp"
+					}
+				},
+				{
+					"id": 135,
+					"name": "abs",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 136,
+							"name": "abs",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the absolute value, i.e. the magnitude, of this Big number."
+							},
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.abs"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.abs"
+					}
+				},
+				{
+					"id": 137,
+					"name": "add",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 138,
+							"name": "add",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number plus n - alias for .plus().",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 139,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.add"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.add"
+					}
+				},
+				{
+					"id": 140,
+					"name": "cmp",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 141,
+							"name": "cmp",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Compare the values.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 142,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Comparison",
+								"package": "@types/big.js",
+								"name": "Comparison"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.cmp"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.cmp"
+					}
+				},
+				{
+					"id": 143,
+					"name": "div",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 144,
+							"name": "div",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number divided by n.",
+								"text": "If the result has more fraction digits than is specified by Big.DP, it will be rounded to Big.DP decimal places using rounding mode Big.RM.\n",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid."
+									},
+									{
+										"tag": "throws",
+										"text": "`±Infinity` on division by zero."
+									},
+									{
+										"tag": "throws",
+										"text": "`NaN` on division of zero by zero.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 145,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.div"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.div"
+					}
+				},
+				{
+					"id": 146,
+					"name": "eq",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 147,
+							"name": "eq",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns true if the value of this Big equals the value of n, otherwise returns false.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 148,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.eq"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.eq"
+					}
+				},
+				{
+					"id": 149,
+					"name": "gt",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 150,
+							"name": "gt",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns true if the value of this Big is greater than the value of n, otherwise returns false.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 151,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.gt"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.gt"
+					}
+				},
+				{
+					"id": 152,
+					"name": "gte",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 153,
+							"name": "gte",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns true if the value of this Big is greater than or equal to the value of n, otherwise returns false.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 154,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.gte"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.gte"
+					}
+				},
+				{
+					"id": 155,
+					"name": "lt",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 156,
+							"name": "lt",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns true if the value of this Big is less than the value of n, otherwise returns false.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 157,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.lt"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.lt"
+					}
+				},
+				{
+					"id": 158,
+					"name": "lte",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 159,
+							"name": "lte",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns true if the value of this Big is less than or equal to the value of n, otherwise returns false.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 160,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.lte"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.lte"
+					}
+				},
+				{
+					"id": 161,
+					"name": "minus",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 162,
+							"name": "minus",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number minus n.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 163,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.minus"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.minus"
+					}
+				},
+				{
+					"id": 164,
+					"name": "mod",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 165,
+							"name": "mod",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number modulo n, i.e. the integer remainder of dividing this Big number by n.",
+								"text": "The result will have the same sign as this Big number, and it will match that of Javascript's % operator (within the limits of its precision) and BigDecimal's remainder method.\n",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is negative or otherwise invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 166,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.mod"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.mod"
+					}
+				},
+				{
+					"id": 167,
+					"name": "mul",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 168,
+							"name": "mul",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number times n - alias for .times().",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 169,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.mul"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.mul"
+					}
+				},
+				{
+					"id": 127,
+					"name": "padAndChop",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPrivate": true
+					},
+					"sources": [
+						{
+							"fileName": "src/shared/tiny-big/tiny-big.ts",
+							"line": 35,
+							"character": 10
+						}
+					],
+					"signatures": [
+						{
+							"id": 128,
+							"name": "padAndChop",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {},
+							"parameters": [
+								{
+									"id": 129,
+									"name": "str",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 130,
+									"name": "padChar",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 131,
+									"name": "length",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"shortText": "\n"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					]
+				},
+				{
+					"id": 170,
+					"name": "plus",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 171,
+							"name": "plus",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number plus n.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 172,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.plus"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.plus"
+					}
+				},
+				{
+					"id": 173,
+					"name": "pow",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 174,
+							"name": "pow",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number raised to the power exp.",
+								"text": "If exp is negative and the result has more fraction digits than is specified by Big.DP, it will be rounded to Big.DP decimal places using rounding mode Big.RM.\n",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`!pow!` if exp is invalid.\n\nNote: High value exponents may cause this method to be slow to return.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 175,
+									"name": "exp",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"comment": {
+										"shortText": "The power to raise the number to, -1e+6 to 1e+6 inclusive"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.pow"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.pow"
+					}
+				},
+				{
+					"id": 176,
+					"name": "prec",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 177,
+							"name": "prec",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Return a new Big whose value is the value of this Big rounded to a maximum precision of sd\nsignificant digits using rounding mode rm, or Big.RM if rm is not specified.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`!prec!` if sd is invalid."
+									},
+									{
+										"tag": "throws",
+										"text": "`!Big.RM!` if rm is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 178,
+									"name": "sd",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"comment": {
+										"shortText": "Significant digits: integer, 1 to MAX_DP inclusive."
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 179,
+									"name": "rm",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up)."
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "RoundingMode",
+										"package": "@types/big.js",
+										"name": "RoundingMode"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.prec"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.prec"
+					}
+				},
+				{
+					"id": 180,
+					"name": "round",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 181,
+							"name": "round",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number rounded using rounding mode rm to a maximum of dp decimal places.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`!round!` if dp is invalid."
+									},
+									{
+										"tag": "throws",
+										"text": "`!Big.RM!` if rm is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 182,
+									"name": "dp",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Decimal places, 0 to 1e+6 inclusive"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 183,
+									"name": "rm",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up)."
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "RoundingMode",
+										"package": "@types/big.js",
+										"name": "RoundingMode"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.round"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.round"
+					}
+				},
+				{
+					"id": 184,
+					"name": "sqrt",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 185,
+							"name": "sqrt",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the square root of this Big number.",
+								"text": "If the result has more fraction digits than is specified by Big.DP, it will be rounded to Big.DP decimal places using rounding mode Big.RM.\n",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if this Big number is negative.\n"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.sqrt"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.sqrt"
+					}
+				},
+				{
+					"id": 186,
+					"name": "sub",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 187,
+							"name": "sub",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number minus n - alias for .minus().",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 188,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.sub"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.sub"
+					}
+				},
+				{
+					"id": 189,
+					"name": "times",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 190,
+							"name": "times",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number times n.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 191,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.times"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.times"
+					}
+				},
+				{
+					"id": 192,
+					"name": "toExponential",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 193,
+							"name": "toExponential",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a string representing the value of this Big number in exponential notation to a fixed number of decimal places dp.",
+								"text": "If the value of this Big number in exponential notation has more digits to the right of the decimal point than is specified by dp,\nthe return value will be rounded to dp decimal places using rounding mode Big.RM.\n\nIf the value of this Big number in exponential notation has fewer digits to the right of the decimal point than is specified by dp, the return value will be appended with zeros accordingly.\n\nIf dp is omitted, or is null or undefined, the number of digits after the decimal point defaults to the minimum number of digits necessary to represent the value exactly.\n",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`!toFix!` if dp is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 194,
+									"name": "dp",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Decimal places, 0 to 1e+6 inclusive"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 195,
+									"name": "rm",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up)."
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "RoundingMode",
+										"package": "@types/big.js",
+										"name": "RoundingMode"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.toExponential"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.toExponential"
+					}
+				},
+				{
+					"id": 196,
+					"name": "toFixed",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 197,
+							"name": "toFixed",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a string representing the value of this Big number in normal notation to a fixed number of decimal places dp.",
+								"text": "If the value of this Big number in normal notation has more digits to the right of the decimal point than is specified by dp,\nthe return value will be rounded to dp decimal places using rounding mode Big.RM.\n\nIf the value of this Big number in normal notation has fewer fraction digits then is specified by dp, the return value will be appended with zeros accordingly.\n\nUnlike Number.prototype.toFixed, which returns exponential notation if a number is greater or equal to 1021, this method will always return normal notation.\n\nIf dp is omitted, or is null or undefined, then the return value is simply the value in normal notation.\nThis is also unlike Number.prototype.toFixed, which returns the value to zero decimal places.\n",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`!toFix!` if dp is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 198,
+									"name": "dp",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Decimal places, 0 to 1e+6 inclusive"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 199,
+									"name": "rm",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up)."
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "RoundingMode",
+										"package": "@types/big.js",
+										"name": "RoundingMode"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.toFixed"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.toFixed"
+					}
+				},
+				{
+					"id": 121,
+					"name": "toHexString",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/shared/tiny-big/tiny-big.ts",
+							"line": 16,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 122,
+							"name": "toHexString",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Used anytime you're passing in \"value\" to ethers or web3\nFor now, TypeScript will complain that `TinyBig` is not a `BigNumberish`. You can // @ts-ignore or call this"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					]
+				},
+				{
+					"id": 206,
+					"name": "toJSON",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 207,
+							"name": "toJSON",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a string representing the value of this Big number.",
+								"text": "If this Big number has a positive exponent that is equal to or greater than 21, or a negative exponent equal to or less than -7, then exponential notation is returned.\n\nThe point at which toString returns exponential rather than normal notation can be adjusted by changing\nthe value of Big.E_POS and Big.E_NEG. By default, Big numbers correspond to Javascript's number type in this regard.\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.toJSON"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.toJSON"
+					}
+				},
+				{
+					"id": 123,
+					"name": "toNumber",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/shared/tiny-big/tiny-big.ts",
+							"line": 19,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 124,
+							"name": "toNumber",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"overwrites": {
+								"type": "reference",
+								"name": "Big.toNumber"
+							}
+						}
+					],
+					"overwrites": {
+						"type": "reference",
+						"name": "Big.toNumber"
+					}
+				},
+				{
+					"id": 200,
+					"name": "toPrecision",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 201,
+							"name": "toPrecision",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a string representing the value of this Big number to the specified number of significant digits sd.",
+								"text": "If the value of this Big number has more digits than is specified by sd, the return value will be rounded to sd significant digits using rounding mode Big.RM.\n\nIf the value of this Big number has fewer digits than is specified by sd, the return value will be appended with zeros accordingly.\n\nIf sd is less than the number of digits necessary to represent the integer part of the value in normal notation, then exponential notation is used.\n\nIf sd is omitted, or is null or undefined, then the return value is the same as .toString().\n",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`!toPre!` if sd is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 202,
+									"name": "sd",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Significant digits, 1 to 1e+6 inclusive"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 203,
+									"name": "rm",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up)."
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "RoundingMode",
+										"package": "@types/big.js",
+										"name": "RoundingMode"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.toPrecision"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.toPrecision"
+					}
+				},
+				{
+					"id": 125,
+					"name": "toString",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/shared/tiny-big/tiny-big.ts",
+							"line": 23,
+							"character": 2
+						}
+					],
+					"signatures": [
+						{
+							"id": 126,
+							"name": "toString",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"overwrites": {
+								"type": "reference",
+								"name": "Big.toString"
+							}
+						}
+					],
+					"overwrites": {
+						"type": "reference",
+						"name": "Big.toString"
+					}
+				},
+				{
+					"id": 132,
+					"name": "toTwos",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "src/shared/tiny-big/tiny-big.ts",
+							"line": 42,
+							"character": 9
+						}
+					],
+					"signatures": [
+						{
+							"id": 133,
+							"name": "toTwos",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 134,
+									"name": "bitCount",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							}
+						}
+					]
+				},
+				{
+					"id": 204,
+					"name": "valueOf",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 205,
+							"name": "valueOf",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a string representing the value of this Big number.",
+								"text": "If this Big number has a positive exponent that is equal to or greater than 21, or a negative exponent equal to or less than -7, then exponential notation is returned.\n\nThe point at which toString returns exponential rather than normal notation can be adjusted by changing\nthe value of Big.E_POS and Big.E_NEG. By default, Big numbers correspond to Javascript's number type in this regard.\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.valueOf"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.valueOf"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						118
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						208,
+						209,
+						210,
+						110,
+						112,
+						113,
+						111,
+						114,
+						116,
+						115,
+						117
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						135,
+						137,
+						140,
+						143,
+						146,
+						149,
+						152,
+						155,
+						158,
+						161,
+						164,
+						167,
+						127,
+						170,
+						173,
+						176,
+						180,
+						184,
+						186,
+						189,
+						192,
+						196,
+						121,
+						206,
+						123,
+						200,
+						125,
+						132,
+						204
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/shared/tiny-big/tiny-big.ts",
+					"line": 8,
+					"character": 13
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"qualifiedName": "Big",
+					"package": "@types/big.js",
+					"name": "Big"
+				}
+			]
+		},
+		{
+			"id": 313,
+			"name": "DataOptions",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 314,
+					"name": "allowMissingPrefix",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/utils/bytes.ts",
+							"line": 25,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 315,
+					"name": "hexPad",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/utils/bytes.ts",
+							"line": 26,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "literal",
+								"value": null
+							},
+							{
+								"type": "literal",
+								"value": "left"
+							},
+							{
+								"type": "literal",
+								"value": "right"
+							}
+						]
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						314,
+						315
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 24,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 316,
+			"name": "Hexable",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 317,
+					"name": "toHexString",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 318,
+							"name": "toHexString",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						317
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 29,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 222,
+			"name": "JSONABIArgument",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 223,
+					"name": "anonymous",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/types/Contract.types.ts",
+							"line": 48,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": false
+					}
+				},
+				{
+					"id": 239,
+					"name": "constant",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/types/Contract.types.ts",
+							"line": 64,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 238,
+					"name": "gas",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/types/Contract.types.ts",
+							"line": 63,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 224,
+					"name": "inputs",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/types/Contract.types.ts",
+							"line": 49,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reflection",
+							"declaration": {
+								"id": 225,
+								"name": "__type",
+								"kind": 65536,
+								"kindString": "Type literal",
+								"flags": {},
+								"children": [
+									{
+										"id": 229,
+										"name": "indexed",
+										"kind": 1024,
+										"kindString": "Property",
+										"flags": {
+											"isOptional": true
+										},
+										"sources": [
+											{
+												"fileName": "src/types/Contract.types.ts",
+												"line": 53,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "boolean"
+										}
+									},
+									{
+										"id": 226,
+										"name": "internalType",
+										"kind": 1024,
+										"kindString": "Property",
+										"flags": {
+											"isOptional": true
+										},
+										"sources": [
+											{
+												"fileName": "src/types/Contract.types.ts",
+												"line": 50,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									},
+									{
+										"id": 227,
+										"name": "name",
+										"kind": 1024,
+										"kindString": "Property",
+										"flags": {},
+										"sources": [
+											{
+												"fileName": "src/types/Contract.types.ts",
+												"line": 51,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									},
+									{
+										"id": 228,
+										"name": "type",
+										"kind": 1024,
+										"kindString": "Property",
+										"flags": {},
+										"sources": [
+											{
+												"fileName": "src/types/Contract.types.ts",
+												"line": 52,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								],
+								"groups": [
+									{
+										"title": "Properties",
+										"kind": 1024,
+										"children": [
+											229,
+											226,
+											227,
+											228
+										]
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"id": 230,
+					"name": "name",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/types/Contract.types.ts",
+							"line": 55,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 231,
+					"name": "outputs",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/types/Contract.types.ts",
+							"line": 56,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reflection",
+							"declaration": {
+								"id": 232,
+								"name": "__type",
+								"kind": 65536,
+								"kindString": "Type literal",
+								"flags": {},
+								"children": [
+									{
+										"id": 233,
+										"name": "internalType",
+										"kind": 1024,
+										"kindString": "Property",
+										"flags": {
+											"isOptional": true
+										},
+										"sources": [
+											{
+												"fileName": "src/types/Contract.types.ts",
+												"line": 57,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									},
+									{
+										"id": 234,
+										"name": "name",
+										"kind": 1024,
+										"kindString": "Property",
+										"flags": {},
+										"sources": [
+											{
+												"fileName": "src/types/Contract.types.ts",
+												"line": 58,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									},
+									{
+										"id": 235,
+										"name": "type",
+										"kind": 1024,
+										"kindString": "Property",
+										"flags": {},
+										"sources": [
+											{
+												"fileName": "src/types/Contract.types.ts",
+												"line": 59,
+												"character": 4
+											}
+										],
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								],
+								"groups": [
+									{
+										"title": "Properties",
+										"kind": 1024,
+										"children": [
+											233,
+											234,
+											235
+										]
+									}
+								]
+							}
+						}
+					}
+				},
+				{
+					"id": 240,
+					"name": "payable",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/types/Contract.types.ts",
+							"line": 65,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 236,
+					"name": "stateMutability",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/types/Contract.types.ts",
+							"line": 61,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 237,
+					"name": "type",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/types/Contract.types.ts",
+							"line": 62,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "literal",
+								"value": "function"
+							},
+							{
+								"type": "literal",
+								"value": "event"
+							},
+							{
+								"type": "literal",
+								"value": "constructor"
+							},
+							{
+								"type": "literal",
+								"value": "error"
+							},
+							{
+								"type": "literal",
+								"value": "fallback"
+							}
+						]
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						223,
+						239,
+						238,
+						224,
+						230,
+						231,
+						240,
+						236,
+						237
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/types/Contract.types.ts",
+					"line": 47,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 241,
+			"name": "Network",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"comment": {
+				"shortText": "A trimmed version of https://chainid.network/chains.json"
+			},
+			"children": [
+				{
+					"id": 242,
+					"name": "chainId",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/types/Network.types.ts",
+							"line": 5,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 243,
+					"name": "ensAddress",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/types/Network.types.ts",
+							"line": 6,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "literal",
+								"value": null
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				},
+				{
+					"id": 244,
+					"name": "name",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/types/Network.types.ts",
+							"line": 7,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						242,
+						243,
+						244
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/types/Network.types.ts",
+					"line": 4,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 326,
+			"name": "Signature",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 329,
+					"name": "_vs",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/utils/bytes.ts",
+							"line": 47,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 333,
+					"name": "compact",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/utils/bytes.ts",
+							"line": 53,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 327,
+					"name": "r",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/utils/bytes.ts",
+							"line": 44,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 330,
+					"name": "recoveryParam",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/utils/bytes.ts",
+							"line": 49,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 328,
+					"name": "s",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/utils/bytes.ts",
+							"line": 46,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 331,
+					"name": "v",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/utils/bytes.ts",
+							"line": 50,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 332,
+					"name": "yParityAndS",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/utils/bytes.ts",
+							"line": 52,
+							"character": 2
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						329,
+						333,
+						327,
+						330,
+						328,
+						331,
+						332
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 43,
+					"character": 17
+				}
+			]
+		},
+		{
+			"id": 211,
+			"name": "BlockResponse",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/types/Block.types.ts",
+					"line": 4,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "reference",
+				"typeArguments": [
+					{
+						"type": "reference",
+						"name": "RPCBlock"
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 212,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"children": [
+								{
+									"id": 218,
+									"name": "baseFeePerGas",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/types/Block.types.ts",
+											"line": 12,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 213,
+									"name": "gasLimit",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/types/Block.types.ts",
+											"line": 7,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 214,
+									"name": "gasUsed",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/types/Block.types.ts",
+											"line": 8,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 215,
+									"name": "number",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/types/Block.types.ts",
+											"line": 9,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 216,
+									"name": "size",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/types/Block.types.ts",
+											"line": 10,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 217,
+									"name": "timestamp",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/types/Block.types.ts",
+											"line": 11,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 219,
+									"name": "transactions",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/types/Block.types.ts",
+											"line": 13,
+											"character": 4
+										}
+									],
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "union",
+											"types": [
+												{
+													"type": "intrinsic",
+													"name": "string"
+												},
+												{
+													"type": "reference",
+													"name": "BlockTransactionResponse"
+												}
+											]
+										}
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"kind": 1024,
+									"children": [
+										218,
+										213,
+										214,
+										215,
+										216,
+										217,
+										219
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "src/types/Block.types.ts",
+									"line": 6,
+									"character": 2
+								}
+							]
+						}
+					}
+				],
+				"name": "Modify"
+			}
+		},
+		{
+			"id": 310,
+			"name": "Bytes",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 8,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "reference",
+				"typeArguments": [
+					{
+						"type": "intrinsic",
+						"name": "number"
+					}
+				],
+				"qualifiedName": "ArrayLike",
+				"package": "typescript",
+				"name": "ArrayLike"
+			}
+		},
+		{
+			"id": 311,
+			"name": "BytesLike",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"comment": {
+				"tags": [
+					{
+						"tag": "example",
+						"text": "\n[1,2,3]\n"
+					},
+					{
+						"tag": "example",
+						"text": "\n0x123\n"
+					},
+					{
+						"tag": "example",
+						"text": "\n'0x123'\n"
+					}
+				]
+			},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 21,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "reference",
+						"id": 310,
+						"name": "Bytes"
+					},
+					{
+						"type": "intrinsic",
+						"name": "string"
+					}
+				]
+			}
+		},
+		{
+			"id": 312,
+			"name": "BytesLikeWithNumber",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 22,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "reference",
+						"id": 311,
+						"name": "BytesLike"
+					},
+					{
+						"type": "intrinsic",
+						"name": "number"
+					}
+				]
+			}
+		},
+		{
+			"id": 220,
+			"name": "ContractTypes",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/types/Contract.types.ts",
+					"line": 1,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "literal",
+						"value": "bool"
+					},
+					{
+						"type": "literal",
+						"value": "bytes1"
+					},
+					{
+						"type": "literal",
+						"value": "bytes2"
+					},
+					{
+						"type": "literal",
+						"value": "bytes3"
+					},
+					{
+						"type": "literal",
+						"value": "bytes4"
+					},
+					{
+						"type": "literal",
+						"value": "bytes5"
+					},
+					{
+						"type": "literal",
+						"value": "bytes6"
+					},
+					{
+						"type": "literal",
+						"value": "bytes7"
+					},
+					{
+						"type": "literal",
+						"value": "bytes8"
+					},
+					{
+						"type": "literal",
+						"value": "bytes9"
+					},
+					{
+						"type": "literal",
+						"value": "bytes10"
+					},
+					{
+						"type": "literal",
+						"value": "bytes11"
+					},
+					{
+						"type": "literal",
+						"value": "bytes12"
+					},
+					{
+						"type": "literal",
+						"value": "bytes13"
+					},
+					{
+						"type": "literal",
+						"value": "bytes14"
+					},
+					{
+						"type": "literal",
+						"value": "bytes15"
+					},
+					{
+						"type": "literal",
+						"value": "bytes16"
+					},
+					{
+						"type": "literal",
+						"value": "bytes17"
+					},
+					{
+						"type": "literal",
+						"value": "bytes18"
+					},
+					{
+						"type": "literal",
+						"value": "bytes19"
+					},
+					{
+						"type": "literal",
+						"value": "bytes20"
+					},
+					{
+						"type": "literal",
+						"value": "bytes21"
+					},
+					{
+						"type": "literal",
+						"value": "bytes22"
+					},
+					{
+						"type": "literal",
+						"value": "bytes23"
+					},
+					{
+						"type": "literal",
+						"value": "bytes24"
+					},
+					{
+						"type": "literal",
+						"value": "bytes25"
+					},
+					{
+						"type": "literal",
+						"value": "bytes26"
+					},
+					{
+						"type": "literal",
+						"value": "bytes27"
+					},
+					{
+						"type": "literal",
+						"value": "bytes28"
+					},
+					{
+						"type": "literal",
+						"value": "bytes29"
+					},
+					{
+						"type": "literal",
+						"value": "bytes30"
+					},
+					{
+						"type": "literal",
+						"value": "bytes31"
+					},
+					{
+						"type": "literal",
+						"value": "bytes32"
+					},
+					{
+						"type": "literal",
+						"value": "bytes32[]"
+					},
+					{
+						"type": "literal",
+						"value": "address"
+					},
+					{
+						"type": "literal",
+						"value": "address payable"
+					},
+					{
+						"type": "literal",
+						"value": "address[4]"
+					},
+					{
+						"type": "literal",
+						"value": "address[100]"
+					},
+					{
+						"type": "literal",
+						"value": "uint256"
+					},
+					{
+						"type": "literal",
+						"value": "uint256[100]"
+					},
+					{
+						"type": "literal",
+						"value": "uint8"
+					},
+					{
+						"type": "literal",
+						"value": "uint32"
+					},
+					{
+						"type": "intrinsic",
+						"name": "string"
+					}
+				]
+			}
+		},
+		{
+			"id": 221,
+			"name": "JSONABI",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/types/Contract.types.ts",
+					"line": 67,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "array",
+				"elementType": {
+					"type": "reference",
+					"id": 222,
+					"name": "JSONABIArgument"
+				}
+			}
+		},
+		{
+			"id": 319,
+			"name": "SignatureLike",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 33,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 320,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"children": [
+								{
+									"id": 323,
+									"name": "_vs",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "src/utils/bytes.ts",
+											"line": 37,
+											"character": 6
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 321,
+									"name": "r",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/utils/bytes.ts",
+											"line": 35,
+											"character": 6
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 324,
+									"name": "recoveryParam",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "src/utils/bytes.ts",
+											"line": 38,
+											"character": 6
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 322,
+									"name": "s",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "src/utils/bytes.ts",
+											"line": 36,
+											"character": 6
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 325,
+									"name": "v",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "src/utils/bytes.ts",
+											"line": 39,
+											"character": 6
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"kind": 1024,
+									"children": [
+										323,
+										321,
+										324,
+										322,
+										325
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "src/utils/bytes.ts",
+									"line": 34,
+									"character": 4
+								}
+							]
+						}
+					},
+					{
+						"type": "reference",
+						"id": 311,
+						"name": "BytesLike"
+					}
+				]
+			}
+		},
+		{
+			"id": 245,
+			"name": "TransactionResponse",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/types/Transaction.types.ts",
+					"line": 10,
+					"character": 12
+				}
+			],
+			"type": {
+				"type": "reference",
+				"typeArguments": [
+					{
+						"type": "reference",
+						"name": "RPCTransaction"
+					},
+					{
+						"type": "intersection",
+						"types": [
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 246,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"children": [
+										{
+											"id": 247,
+											"name": "blockNumber",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 13,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 248,
+											"name": "chainId",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 14,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 255,
+											"name": "gas",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 21,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "reference",
+												"id": 109,
+												"name": "TinyBig"
+											}
+										},
+										{
+											"id": 256,
+											"name": "gasLimit",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 22,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "reference",
+												"id": 109,
+												"name": "TinyBig"
+											}
+										},
+										{
+											"id": 254,
+											"name": "gasPrice",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 20,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "reference",
+												"id": 109,
+												"name": "TinyBig"
+											}
+										},
+										{
+											"id": 249,
+											"name": "nonce",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 15,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 250,
+											"name": "transactionIndex",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 16,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 251,
+											"name": "type",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 17,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 252,
+											"name": "v",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 18,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 253,
+											"name": "value",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 19,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "reference",
+												"id": 109,
+												"name": "TinyBig"
+											}
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"kind": 1024,
+											"children": [
+												247,
+												248,
+												255,
+												256,
+												254,
+												249,
+												250,
+												251,
+												252,
+												253
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "src/types/Transaction.types.ts",
+											"line": 12,
+											"character": 2
+										}
+									]
+								}
+							},
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 257,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"children": [
+										{
+											"id": 260,
+											"name": "confirmations",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 26,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 258,
+											"name": "maxFeePerGas",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 24,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "reference",
+												"id": 109,
+												"name": "TinyBig"
+											}
+										},
+										{
+											"id": 259,
+											"name": "maxPriorityFeePerGas",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "src/types/Transaction.types.ts",
+													"line": 25,
+													"character": 4
+												}
+											],
+											"type": {
+												"type": "reference",
+												"id": 109,
+												"name": "TinyBig"
+											}
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"kind": 1024,
+											"children": [
+												260,
+												258,
+												259
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "src/types/Transaction.types.ts",
+											"line": 23,
+											"character": 6
+										}
+									]
+								}
+							}
+						]
+					}
+				],
+				"name": "Modify"
+			}
+		},
+		{
+			"id": 267,
+			"name": "arrayify",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 158,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 268,
+					"name": "arrayify",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Converts DataHexStringOrArrayish to a Uint8Array\n* Same as [`ethers.utils.arrayify`](https://docs.ethers.io/v5/api/utils/bytes/#utils-arrayify)",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```js\narrayify(1);\n// Uint8Array(1) [ 1 ]\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```js\narrayify(0x1234);\n// Uint8Array(2) [ 18, 52 ]\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```js\narrayify('0x1', { hexPad: 'right' });\n// Uint8Array(1) [ 16 ]\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 269,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "reference",
+										"id": 311,
+										"name": "BytesLike"
+									},
+									{
+										"type": "reference",
+										"id": 316,
+										"name": "Hexable"
+									}
+								]
+							}
+						},
+						{
+							"id": 270,
+							"name": "options",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {
+								"isOptional": true
+							},
+							"type": {
+								"type": "reference",
+								"id": 313,
+								"name": "DataOptions"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"qualifiedName": "Uint8Array",
+						"package": "typescript",
+						"name": "Uint8Array"
+					}
+				}
+			]
+		},
+		{
+			"id": 271,
+			"name": "concat",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 230,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 272,
+					"name": "concat",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Concatenates all the BytesLike in arrayOfBytesLike into a single Uint8Array.\n* Same as [`ethers.utils.concat`](https://docs.ethers.io/v5/api/utils/bytes/#utils-concat)",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```js\nconcat([0, 1]);\n// Uint8Array(2) [ 0, 1 ]\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 273,
+							"name": "arrayOfBytesLike",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "typeOperator",
+								"operator": "readonly",
+								"target": {
+									"type": "array",
+									"elementType": {
+										"type": "reference",
+										"id": 312,
+										"name": "BytesLikeWithNumber"
+									}
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"qualifiedName": "Uint8Array",
+						"package": "typescript",
+						"name": "Uint8Array"
+					}
+				}
+			]
+		},
+		{
+			"id": 4,
+			"name": "etherToGwei",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/ether-to-gwei.ts",
+					"line": 28,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 5,
+					"name": "etherToGwei",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Convert from Ether to Gwei",
+						"text": "No direct equivalent in ether.js; requires multiple functions to achieve.\n\nNo direct equivalent in web3; requires multiple functions to achieve.\n",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\netherToGwei('1000').toString()\n// '1000000000000'\netherToGwei(1000).toString()\n// '1000000000000'\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\netherToGwei('1000').toNumber()\n// 1000000000000\netherToGwei(1000).toNumber()\n// 1000000000000\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 6,
+							"name": "etherQuantity",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "reference",
+										"id": 109,
+										"name": "TinyBig"
+									},
+									{
+										"type": "reference",
+										"qualifiedName": "Big",
+										"package": "@types/big.js",
+										"name": "Big"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 109,
+						"name": "TinyBig"
+					}
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "etherToWei",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/ether-to-wei.ts",
+					"line": 28,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 2,
+					"name": "etherToWei",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Convert Ether to Wei",
+						"text": "Similar to [\"parseEther\" in ethers.js](https://docs.ethers.io/v5/api/utils/display-logic/#utils-parseEther)\n\nSimilar to [\"toWei\" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#towei)\n",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\netherToWei('1000').toString()\n// '1000000000000000000000'\netherToWei(1000).toString()\n// '1000000000000000000000'\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\netherToWei('1000').toNumber()\n// 1000000000000000000000\netherToWei(1000).toNumber()\n// 1000000000000000000000\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 3,
+							"name": "etherQuantity",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "reference",
+										"id": 109,
+										"name": "TinyBig"
+									},
+									{
+										"type": "reference",
+										"qualifiedName": "Big",
+										"package": "@types/big.js",
+										"name": "Big"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 109,
+						"name": "TinyBig"
+					}
+				}
+			]
+		},
+		{
+			"id": 95,
+			"name": "gweiToEther",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/gwei-to-ether.ts",
+					"line": 29,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 96,
+					"name": "gweiToEther",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Convert from Gwei to Ether",
+						"text": "No direct equivalent in ethers.js; requires multiple functions to achieve.\n\nNo direct equivalent in web3; requires multiple functions to achieve.\n",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\ngweiToEther('1000000000000').toString()\n// '1000'\ngweiToEther(1000000000000).toString()\n// '1000'\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\ngweiToEther('1000000000000').toNumber()\n// 1000\ngweiToEther(1000000000000).toNumber()\n// 1000\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 97,
+							"name": "gweiQuantity",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "reference",
+										"id": 109,
+										"name": "TinyBig"
+									},
+									{
+										"type": "reference",
+										"qualifiedName": "Big",
+										"package": "@types/big.js",
+										"name": "Big"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 109,
+						"name": "TinyBig"
+					}
+				}
+			]
+		},
+		{
+			"id": 334,
+			"name": "hashMessage",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/hash-message.ts",
+					"line": 15,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 335,
+					"name": "hashMessage",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Computes the EIP-191 personal message digest of message.\nPersonal messages are converted to UTF-8 bytes and prefixed with \\x19Ethereum Signed Message: and the length of message.",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```js\nhashMessage(\"Hello World\");\n// '0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2'\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 336,
+							"name": "message",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "reference",
+										"id": 310,
+										"name": "Bytes"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 297,
+			"name": "hexConcat",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 408,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 298,
+					"name": "hexConcat",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 299,
+							"name": "items",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "typeOperator",
+								"operator": "readonly",
+								"target": {
+									"type": "array",
+									"elementType": {
+										"type": "reference",
+										"id": 311,
+										"name": "BytesLike"
+									}
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 289,
+			"name": "hexDataLength",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 378,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 290,
+					"name": "hexDataLength",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 291,
+							"name": "data",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"id": 311,
+								"name": "BytesLike"
+							}
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "literal",
+								"value": null
+							},
+							{
+								"type": "intrinsic",
+								"name": "number"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 292,
+			"name": "hexDataSlice",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 388,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 293,
+					"name": "hexDataSlice",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 294,
+							"name": "data",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"id": 312,
+								"name": "BytesLikeWithNumber"
+							}
+						},
+						{
+							"id": 295,
+							"name": "offset",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 296,
+							"name": "endOffset",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {
+								"isOptional": true
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 303,
+			"name": "hexStripZeros",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 424,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 304,
+					"name": "hexStripZeros",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 305,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"id": 311,
+								"name": "BytesLike"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 300,
+			"name": "hexValue",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 416,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 301,
+					"name": "hexValue",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 302,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "intrinsic",
+										"name": "bigint"
+									},
+									{
+										"type": "reference",
+										"id": 311,
+										"name": "BytesLike"
+									},
+									{
+										"type": "reference",
+										"id": 316,
+										"name": "Hexable"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 306,
+			"name": "hexZeroPad",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 471,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 307,
+					"name": "hexZeroPad",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Returns a hex string padded to a specified length of bytes.",
+						"text": "Similar to [\"hexZeroPad\" in ethers.js](https://docs.ethers.io/v5/api/utils/bytes/#utils-hexZeroPad)\n\nDiffers from [\"padLeft\" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#padleft) because web3 counts by characters, not bytes.\n",
+						"tags": [
+							{
+								"tag": "throws",
+								"text": "- If the value is not a hex string or number"
+							},
+							{
+								"tag": "throws",
+								"text": "- If the value is longer than the length\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\nhexZeroPad('0x60', 2);\n// '0x0060'\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\nhexZeroPad(0x60, 3);\n// '0x000060'\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\nhexZeroPad('12345', 1);\n// Throws\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 308,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"id": 312,
+								"name": "BytesLikeWithNumber"
+							}
+						},
+						{
+							"id": 309,
+							"name": "length",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"shortText": "The final length in bytes\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 285,
+			"name": "hexlify",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 306,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 286,
+					"name": "hexlify",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```js\nhexlify(4);\n// '0x04'\n\nhexlify(14);\n// '0x0e'\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 287,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "intrinsic",
+										"name": "bigint"
+									},
+									{
+										"type": "reference",
+										"id": 311,
+										"name": "BytesLike"
+									},
+									{
+										"type": "reference",
+										"id": 316,
+										"name": "Hexable"
+									}
+								]
+							}
+						},
+						{
+							"id": 288,
+							"name": "options",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {
+								"isOptional": true
+							},
+							"type": {
+								"type": "reference",
+								"id": 313,
+								"name": "DataOptions"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 7,
+			"name": "isAddress",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/is-address.ts",
+					"line": 27,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 8,
+					"name": "isAddress",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Returns a boolean as to whether the input is a valid address.\nDoes NOT support ICAP addresses",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\nisAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');\n// true\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\nisAddress('bad');\n// false\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\n// Does NOT support ENS.\nisAddress('vitalik.eth');\n// false\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 9,
+							"name": "address",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			]
+		},
+		{
+			"id": 264,
+			"name": "isBytes",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 112,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 265,
+					"name": "isBytes",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Returns true if and only if value is a valid [Bytes](#bytes)\n* Same as [`ethers.utils.isBytes`](https://docs.ethers.io/v5/api/utils/bytes/#utils-isBytes)",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```js\nisBytes([1,2,3]);\n// true\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```js\nisBytes(false);\n// false\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```js\nisBytes(new Uint8Array(1));\n// true\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 266,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"type": {
+						"type": "predicate",
+						"name": "value",
+						"asserts": false,
+						"targetType": {
+							"type": "reference",
+							"id": 310,
+							"name": "Bytes"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 261,
+			"name": "isBytesLike",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 82,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 262,
+					"name": "isBytesLike",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Returns true if and only if value is a valid [Bytes](#bytes) or DataHexString\n* Same as [`ethers.utils.isBytesLike`](https://docs.ethers.io/v5/api/utils/bytes/#utils-isBytesLike)",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```js\nisBytesLike([1,2,3]);\n// true\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```js\nisBytesLike(false);\n// false\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```js\nisBytesLike(new Uint8Array(1));\n// true\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 263,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"type": {
+						"type": "predicate",
+						"name": "value",
+						"asserts": false,
+						"targetType": {
+							"type": "reference",
+							"id": 311,
+							"name": "BytesLike"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 281,
+			"name": "isHexString",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 284,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 282,
+					"name": "isHexString",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Returns true if and only if object is a valid hex string.\nIf length is specified and object is not a valid DataHexString of length bytes, an InvalidArgument error is thrown.\n* Same as [`ethers.utils.isHexString`](https://docs.ethers.io/v5/api/utils/bytes/#utils-isHexString)"
+					},
+					"parameters": [
+						{
+							"id": 283,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						},
+						{
+							"id": 284,
+							"name": "length",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {
+								"isOptional": true
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			]
+		},
+		{
+			"id": 10,
+			"name": "jsonRpcProvider",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/providers/JsonRpcProvider.ts",
+					"line": 36,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 11,
+					"name": "jsonRpcProvider",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Helper function to avoid \"new\"",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\njsonRpcProvider().getBlock('latest').then(block => {\n  console.log(block.number);\n})\n// 14530496\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 12,
+							"name": "rpcUrl",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {
+								"isOptional": true
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 13,
+						"name": "JsonRpcProvider"
+					}
+				}
+			]
+		},
+		{
+			"id": 337,
+			"name": "keccak256",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/keccak256.ts",
+					"line": 4,
+					"character": 13
+				}
+			],
+			"signatures": [
+				{
+					"id": 338,
+					"name": "keccak256",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 339,
+							"name": "data",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"id": 311,
+								"name": "BytesLike"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 340,
+			"name": "pack",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/solidity-keccak256.ts",
+					"line": 91,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 341,
+					"name": "pack",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 342,
+							"name": "types",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "typeOperator",
+								"operator": "readonly",
+								"target": {
+									"type": "array",
+									"elementType": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							}
+						},
+						{
+							"id": 343,
+							"name": "values",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "typeOperator",
+								"operator": "readonly",
+								"target": {
+									"type": "array",
+									"elementType": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 344,
+			"name": "solidityKeccak256",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/solidity-keccak256.ts",
+					"line": 133,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 345,
+					"name": "solidityKeccak256",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Hashes data from Solidity using the Keccak256 algorithm.",
+						"text": "Similar to [\"solidityKeccak256\" in ethers.js](https://docs.ethers.io/v5/api/utils/hashing/#utils-solidityKeccak256)\n",
+						"returns": "- A Keccak256 hash (hex string) based on the values provided\n",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\nconst types = ['string', 'bool', 'uint32'];\nconst values = ['essential-eth is great', true, 14];\nsolidityKeccak256(types, values);\n// '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\nconst types = ['bytes4', 'uint32[5]'];\nconst values = [[116, 101, 115, 116], [5, 3, 4, 9, 18]];\nsolidityKeccak256(types, values);\n// '0x038707a887f09355dc545412b058e7ba8f3c74047050c7c5e5e52eec608053d9'\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 346,
+							"name": "types",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"shortText": "Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.\n"
+							},
+							"type": {
+								"type": "typeOperator",
+								"operator": "readonly",
+								"target": {
+									"type": "array",
+									"elementType": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							}
+						},
+						{
+							"id": 347,
+							"name": "values",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"shortText": "Data to be concatenated (combined) and then hashed.\n"
+							},
+							"type": {
+								"type": "typeOperator",
+								"operator": "readonly",
+								"target": {
+									"type": "array",
+									"elementType": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 274,
+			"name": "stripZeros",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 246,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 275,
+					"name": "stripZeros",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 276,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"id": 311,
+								"name": "BytesLike"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"qualifiedName": "Uint8Array",
+						"package": "typescript",
+						"name": "Uint8Array"
+					}
+				}
+			]
+		},
+		{
+			"id": 86,
+			"name": "tinyBig",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/shared/tiny-big/tiny-big.ts",
+					"line": 71,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 87,
+					"name": "tinyBig",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Helper factory function so that you don't have to type \"new\" when instantiating a new TinyBig",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\ntinyBig(10).times(3).toNumber()\n// 30\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 88,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "reference",
+										"id": 109,
+										"name": "TinyBig"
+									},
+									{
+										"type": "reference",
+										"qualifiedName": "Big",
+										"package": "@types/big.js",
+										"name": "Big"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 109,
+						"name": "TinyBig"
+					}
+				}
+			]
+		},
+		{
+			"id": 89,
+			"name": "toChecksumAddress",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/to-checksum-address.ts",
+					"line": 20,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 90,
+					"name": "toChecksumAddress",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Returns an Ethereum address in proper mixed-case checksum.\nDoes NOT support ICAP",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\ntoChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');\n// '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'\n```\n\nSimilar to [\"getAddress\" in ethers.js](https://docs.ethers.io/v5/api/utils/address/#utils-getAddress)\n\nSimilar to [\"toChecksumAddress\" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#tochecksumaddress)\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 91,
+							"name": "address",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"shortText": "An Ethereum address. Mixed, lower, and uppercase are all valid\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 98,
+			"name": "toUtf8Bytes",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/to-utf8-bytes.ts",
+					"line": 1,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 99,
+					"name": "toUtf8Bytes",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 100,
+							"name": "data",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"qualifiedName": "Uint8Array",
+						"package": "typescript",
+						"name": "Uint8Array"
+					}
+				}
+			]
+		},
+		{
+			"id": 92,
+			"name": "weiToEther",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/wei-to-ether.ts",
+					"line": 28,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 93,
+					"name": "weiToEther",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Convert from Wei to Ether",
+						"text": "Similar to [\"formatEther\" in ethers.js](https://docs.ethers.io/v5/api/utils/display-logic/#utils-formatEther)\n\nSimilar to [\"fromWei\" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#fromwei)\n",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\nweiToEther('1000000000000000000000').toString()\n// '1000'\nweiToEther(1000000000000000000000).toString()\n// '1000'\n```\n"
+							},
+							{
+								"tag": "example",
+								"text": "\n```javascript\nweiToEther('1000000000000000000000').toNumber()\n// 1000\nweiToEther(1000000000000000000000).toNumber()\n// 1000\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 94,
+							"name": "weiQuantity",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "reference",
+										"id": 109,
+										"name": "TinyBig"
+									},
+									{
+										"type": "reference",
+										"qualifiedName": "Big",
+										"package": "@types/big.js",
+										"name": "Big"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 109,
+						"name": "TinyBig"
+					}
+				}
+			]
+		},
+		{
+			"id": 277,
+			"name": "zeroPad",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/bytes.ts",
+					"line": 267,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 278,
+					"name": "zeroPad",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 279,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"id": 311,
+								"name": "BytesLike"
+							}
+						},
+						{
+							"id": 280,
+							"name": "length",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"qualifiedName": "Uint8Array",
+						"package": "typescript",
+						"name": "Uint8Array"
+					}
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Classes",
+			"kind": 128,
+			"children": [
+				101,
+				48,
+				13,
+				109
+			]
+		},
+		{
+			"title": "Interfaces",
+			"kind": 256,
+			"children": [
+				313,
+				316,
+				222,
+				241,
+				326
+			]
+		},
+		{
+			"title": "Type aliases",
+			"kind": 4194304,
+			"children": [
+				211,
+				310,
+				311,
+				312,
+				220,
+				221,
+				319,
+				245
+			]
+		},
+		{
+			"title": "Functions",
+			"kind": 64,
+			"children": [
+				267,
+				271,
+				4,
+				1,
+				95,
+				334,
+				297,
+				289,
+				292,
+				303,
+				300,
+				306,
+				285,
+				7,
+				264,
+				261,
+				281,
+				10,
+				337,
+				340,
+				344,
+				274,
+				86,
+				89,
+				98,
+				92,
+				277
+			]
+		}
+	],
+	"sources": [
+		{
+			"fileName": "src/index.ts",
+			"line": 1,
+			"character": 0
+		}
+	]
+}

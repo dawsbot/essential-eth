@@ -19,5 +19,5 @@
   },
   "include": ["./src"],
   "types": ["node", "jest"],
-  "exclude": ["src/**/*.test.ts"]
+  "exclude": ["src/**/*.test.ts", "markdown.config.js"]
 }
