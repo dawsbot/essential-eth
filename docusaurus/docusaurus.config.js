@@ -11,7 +11,7 @@ const config = {
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon:
     'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/feather_1fab6.png',
   organizationName: 'earnifi', // Usually your GitHub org/user name.

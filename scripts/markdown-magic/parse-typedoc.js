@@ -1,3 +1,7 @@
+/**
+ * Parse a typedoc output file and generate the markdown code
+ * This markdown generated is injected into the root readme via markdown-magic
+ */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const stats = require('./typedoc.out.json');
 
@@ -62,7 +66,7 @@ functions.map((functionNumber) => {
   </details>\n`
     : '';
 
-  functionsMarkdown += `#### [\`${name}\`](${fileName}#L${line})
+  functionsMarkdown += `#### [\`${name}\`](https://essential-eth.vercel.app/docs/api/modules#${name})
   \`\`\`typescript
   ${name}(${paramsString}): ${returnType}
   \`\`\`

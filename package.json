@@ -1,6 +1,6 @@
 {
   "name": "essential-eth",
-  "description": "Ultralight JS library for Ethereum utilities",
+  "description": "Ultralight JS for Ethereum",
   "version": "0.5.4",
   "license": "MIT",
   "sideEffects": false,
