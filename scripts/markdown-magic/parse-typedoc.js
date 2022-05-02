@@ -12,7 +12,6 @@ functions.map((functionNumber) => {
   const child = stats.children.find((child) => child.id === functionNumber);
 
   const { name } = child; // zeroPad
-  const { fileName, line } = child.sources[0];
 
   const sig = child.signatures[0];
   const parameters = sig.parameters;
