@@ -437,6 +437,9 @@ export default {
   "513": [
     "aact"
   ],
+  "534": [
+    "CNDL"
+  ],
   "555": [
     "CLASS"
   ],
@@ -445,6 +448,9 @@ export default {
   ],
   "588": [
     "metis-stardust"
+  ],
+  "592": [
+    "astr"
   ],
   "595": [
     "maca"
@@ -770,6 +776,9 @@ export default {
   "8888": [
     "ambrostestnet"
   ],
+  "8898": [
+    "mmt"
+  ],
   "8995": [
     "berg"
   ],
@@ -841,6 +850,9 @@ export default {
   ],
   "31337": [
     "got"
+  ],
+  "32520": [
+    "Brise"
   ],
   "32659": [
     "fsn"
