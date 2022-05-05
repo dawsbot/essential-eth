@@ -476,6 +476,9 @@ export default {
   "721": [
     "tfeth"
   ],
+  "776": [
+    "opc"
+  ],
   "777": [
     "cth"
   ],
