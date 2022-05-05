@@ -7,7 +7,7 @@
 	"originalName": "",
 	"children": [
 		{
-			"id": 101,
+			"id": 113,
 			"name": "Contract",
 			"kind": 128,
 			"kindString": "Class",
@@ -26,14 +26,14 @@
 			},
 			"children": [
 				{
-					"id": 102,
+					"id": 114,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 103,
+							"id": 115,
 							"name": "new Contract",
 							"kind": 16384,
 							"kindString": "Constructor signature",
@@ -41,7 +41,7 @@
 							"comment": {},
 							"parameters": [
 								{
-									"id": 104,
+									"id": 116,
 									"name": "addressOrName",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -55,7 +55,7 @@
 									}
 								},
 								{
-									"id": 105,
+									"id": 117,
 									"name": "contractInterface",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -65,12 +65,12 @@
 									},
 									"type": {
 										"type": "reference",
-										"id": 221,
+										"id": 233,
 										"name": "JSONABI"
 									}
 								},
 								{
-									"id": 106,
+									"id": 118,
 									"name": "signerOrProvider",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -87,7 +87,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 101,
+								"id": 113,
 								"name": "Contract"
 							},
 							"inheritedFrom": {
@@ -107,7 +107,7 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						102
+						114
 					]
 				}
 			],
@@ -119,7 +119,7 @@
 				}
 			],
 			"indexSignature": {
-				"id": 107,
+				"id": 119,
 				"name": "__index",
 				"kind": 8192,
 				"kindString": "Index signature",
@@ -129,7 +129,7 @@
 				},
 				"parameters": [
 					{
-						"id": 108,
+						"id": 120,
 						"name": "key",
 						"kind": 32768,
 						"flags": {},
@@ -312,7 +312,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 109,
+										"id": 121,
 										"name": "TinyBig"
 									}
 								],
@@ -408,7 +408,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 211,
+										"id": 223,
 										"name": "BlockResponse"
 									}
 								],
@@ -457,7 +457,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 109,
+										"id": 121,
 										"name": "TinyBig"
 									}
 								],
@@ -506,7 +506,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 241,
+										"id": 253,
 										"name": "Network"
 									}
 								],
@@ -575,7 +575,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 245,
+										"id": 257,
 										"name": "TransactionResponse"
 									}
 								],
@@ -913,7 +913,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 109,
+										"id": 121,
 										"name": "TinyBig"
 									}
 								],
@@ -1009,7 +1009,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 211,
+										"id": 223,
 										"name": "BlockResponse"
 									}
 								],
@@ -1058,7 +1058,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 109,
+										"id": 121,
 										"name": "TinyBig"
 									}
 								],
@@ -1107,7 +1107,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 241,
+										"id": 253,
 										"name": "Network"
 									}
 								],
@@ -1176,7 +1176,7 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 245,
+										"id": 257,
 										"name": "TransactionResponse"
 									}
 								],
@@ -1386,7 +1386,7 @@
 			]
 		},
 		{
-			"id": 109,
+			"id": 121,
 			"name": "TinyBig",
 			"kind": 128,
 			"kindString": "Class",
@@ -1396,7 +1396,7 @@
 			},
 			"children": [
 				{
-					"id": 118,
+					"id": 130,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
@@ -1410,14 +1410,14 @@
 					],
 					"signatures": [
 						{
-							"id": 119,
+							"id": 131,
 							"name": "new TinyBig",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 120,
+									"id": 132,
 									"name": "value",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1435,7 +1435,7 @@
 											},
 											{
 												"type": "reference",
-												"id": 109,
+												"id": 121,
 												"name": "TinyBig"
 											},
 											{
@@ -1450,7 +1450,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 109,
+								"id": 121,
 								"name": "TinyBig"
 							},
 							"overwrites": {
@@ -1465,7 +1465,7 @@
 					}
 				},
 				{
-					"id": 208,
+					"id": 220,
 					"name": "c",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1495,7 +1495,7 @@
 					}
 				},
 				{
-					"id": 209,
+					"id": 221,
 					"name": "e",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1522,7 +1522,7 @@
 					}
 				},
 				{
-					"id": 210,
+					"id": 222,
 					"name": "s",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1549,7 +1549,7 @@
 					}
 				},
 				{
-					"id": 110,
+					"id": 122,
 					"name": "DP",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1578,7 +1578,7 @@
 					}
 				},
 				{
-					"id": 112,
+					"id": 124,
 					"name": "NE",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1607,7 +1607,7 @@
 					}
 				},
 				{
-					"id": 113,
+					"id": 125,
 					"name": "PE",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1636,7 +1636,7 @@
 					}
 				},
 				{
-					"id": 111,
+					"id": 123,
 					"name": "RM",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1664,7 +1664,7 @@
 					}
 				},
 				{
-					"id": 114,
+					"id": 126,
 					"name": "roundDown",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1693,7 +1693,7 @@
 					}
 				},
 				{
-					"id": 116,
+					"id": 128,
 					"name": "roundHalfEven",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1722,7 +1722,7 @@
 					}
 				},
 				{
-					"id": 115,
+					"id": 127,
 					"name": "roundHalfUp",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1751,7 +1751,7 @@
 					}
 				},
 				{
-					"id": 117,
+					"id": 129,
 					"name": "roundUp",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1780,7 +1780,7 @@
 					}
 				},
 				{
-					"id": 135,
+					"id": 147,
 					"name": "abs",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1789,7 +1789,7 @@
 					},
 					"signatures": [
 						{
-							"id": 136,
+							"id": 148,
 							"name": "abs",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1817,7 +1817,7 @@
 					}
 				},
 				{
-					"id": 137,
+					"id": 149,
 					"name": "add",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1826,7 +1826,7 @@
 					},
 					"signatures": [
 						{
-							"id": 138,
+							"id": 150,
 							"name": "add",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1844,7 +1844,7 @@
 							},
 							"parameters": [
 								{
-									"id": 139,
+									"id": 151,
 									"name": "n",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1877,7 +1877,7 @@
 					}
 				},
 				{
-					"id": 140,
+					"id": 152,
 					"name": "cmp",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1886,7 +1886,7 @@
 					},
 					"signatures": [
 						{
-							"id": 141,
+							"id": 153,
 							"name": "cmp",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1904,7 +1904,7 @@
 							},
 							"parameters": [
 								{
-									"id": 142,
+									"id": 154,
 									"name": "n",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1937,7 +1937,7 @@
 					}
 				},
 				{
-					"id": 143,
+					"id": 155,
 					"name": "div",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1946,7 +1946,7 @@
 					},
 					"signatures": [
 						{
-							"id": 144,
+							"id": 156,
 							"name": "div",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1973,7 +1973,7 @@
 							},
 							"parameters": [
 								{
-									"id": 145,
+									"id": 157,
 									"name": "n",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2006,7 +2006,7 @@
 					}
 				},
 				{
-					"id": 146,
+					"id": 158,
 					"name": "eq",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2015,7 +2015,7 @@
 					},
 					"signatures": [
 						{
-							"id": 147,
+							"id": 159,
 							"name": "eq",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2024,238 +2024,6 @@
 							},
 							"comment": {
 								"shortText": "Returns true if the value of this Big equals the value of n, otherwise returns false.",
-								"tags": [
-									{
-										"tag": "throws",
-										"text": "`NaN` if n is invalid.\n"
-									}
-								]
-							},
-							"parameters": [
-								{
-									"id": 148,
-									"name": "n",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isExternal": true
-									},
-									"type": {
-										"type": "reference",
-										"qualifiedName": "BigSource",
-										"package": "@types/big.js",
-										"name": "BigSource"
-									}
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "boolean"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "Big.eq"
-							}
-						}
-					],
-					"inheritedFrom": {
-						"type": "reference",
-						"name": "Big.eq"
-					}
-				},
-				{
-					"id": 149,
-					"name": "gt",
-					"kind": 2048,
-					"kindString": "Method",
-					"flags": {
-						"isExternal": true
-					},
-					"signatures": [
-						{
-							"id": 150,
-							"name": "gt",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {
-								"isExternal": true
-							},
-							"comment": {
-								"shortText": "Returns true if the value of this Big is greater than the value of n, otherwise returns false.",
-								"tags": [
-									{
-										"tag": "throws",
-										"text": "`NaN` if n is invalid.\n"
-									}
-								]
-							},
-							"parameters": [
-								{
-									"id": 151,
-									"name": "n",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isExternal": true
-									},
-									"type": {
-										"type": "reference",
-										"qualifiedName": "BigSource",
-										"package": "@types/big.js",
-										"name": "BigSource"
-									}
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "boolean"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "Big.gt"
-							}
-						}
-					],
-					"inheritedFrom": {
-						"type": "reference",
-						"name": "Big.gt"
-					}
-				},
-				{
-					"id": 152,
-					"name": "gte",
-					"kind": 2048,
-					"kindString": "Method",
-					"flags": {
-						"isExternal": true
-					},
-					"signatures": [
-						{
-							"id": 153,
-							"name": "gte",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {
-								"isExternal": true
-							},
-							"comment": {
-								"shortText": "Returns true if the value of this Big is greater than or equal to the value of n, otherwise returns false.",
-								"tags": [
-									{
-										"tag": "throws",
-										"text": "`NaN` if n is invalid.\n"
-									}
-								]
-							},
-							"parameters": [
-								{
-									"id": 154,
-									"name": "n",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isExternal": true
-									},
-									"type": {
-										"type": "reference",
-										"qualifiedName": "BigSource",
-										"package": "@types/big.js",
-										"name": "BigSource"
-									}
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "boolean"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "Big.gte"
-							}
-						}
-					],
-					"inheritedFrom": {
-						"type": "reference",
-						"name": "Big.gte"
-					}
-				},
-				{
-					"id": 155,
-					"name": "lt",
-					"kind": 2048,
-					"kindString": "Method",
-					"flags": {
-						"isExternal": true
-					},
-					"signatures": [
-						{
-							"id": 156,
-							"name": "lt",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {
-								"isExternal": true
-							},
-							"comment": {
-								"shortText": "Returns true if the value of this Big is less than the value of n, otherwise returns false.",
-								"tags": [
-									{
-										"tag": "throws",
-										"text": "`NaN` if n is invalid.\n"
-									}
-								]
-							},
-							"parameters": [
-								{
-									"id": 157,
-									"name": "n",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isExternal": true
-									},
-									"type": {
-										"type": "reference",
-										"qualifiedName": "BigSource",
-										"package": "@types/big.js",
-										"name": "BigSource"
-									}
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "boolean"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "Big.lt"
-							}
-						}
-					],
-					"inheritedFrom": {
-						"type": "reference",
-						"name": "Big.lt"
-					}
-				},
-				{
-					"id": 158,
-					"name": "lte",
-					"kind": 2048,
-					"kindString": "Method",
-					"flags": {
-						"isExternal": true
-					},
-					"signatures": [
-						{
-							"id": 159,
-							"name": "lte",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {
-								"isExternal": true
-							},
-							"comment": {
-								"shortText": "Returns true if the value of this Big is less than or equal to the value of n, otherwise returns false.",
 								"tags": [
 									{
 										"tag": "throws",
@@ -2286,6 +2054,238 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"name": "Big.eq"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.eq"
+					}
+				},
+				{
+					"id": 161,
+					"name": "gt",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 162,
+							"name": "gt",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns true if the value of this Big is greater than the value of n, otherwise returns false.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 163,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.gt"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.gt"
+					}
+				},
+				{
+					"id": 164,
+					"name": "gte",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 165,
+							"name": "gte",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns true if the value of this Big is greater than or equal to the value of n, otherwise returns false.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 166,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.gte"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.gte"
+					}
+				},
+				{
+					"id": 167,
+					"name": "lt",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 168,
+							"name": "lt",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns true if the value of this Big is less than the value of n, otherwise returns false.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 169,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.lt"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.lt"
+					}
+				},
+				{
+					"id": 170,
+					"name": "lte",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 171,
+							"name": "lte",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns true if the value of this Big is less than or equal to the value of n, otherwise returns false.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 172,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
 								"name": "Big.lte"
 							}
 						}
@@ -2296,7 +2296,7 @@
 					}
 				},
 				{
-					"id": 161,
+					"id": 173,
 					"name": "minus",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2305,7 +2305,7 @@
 					},
 					"signatures": [
 						{
-							"id": 162,
+							"id": 174,
 							"name": "minus",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2323,7 +2323,7 @@
 							},
 							"parameters": [
 								{
-									"id": 163,
+									"id": 175,
 									"name": "n",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2356,7 +2356,7 @@
 					}
 				},
 				{
-					"id": 164,
+					"id": 176,
 					"name": "mod",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2365,7 +2365,7 @@
 					},
 					"signatures": [
 						{
-							"id": 165,
+							"id": 177,
 							"name": "mod",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2384,7 +2384,7 @@
 							},
 							"parameters": [
 								{
-									"id": 166,
+									"id": 178,
 									"name": "n",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2417,7 +2417,7 @@
 					}
 				},
 				{
-					"id": 167,
+					"id": 179,
 					"name": "mul",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2426,7 +2426,7 @@
 					},
 					"signatures": [
 						{
-							"id": 168,
+							"id": 180,
 							"name": "mul",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2444,7 +2444,7 @@
 							},
 							"parameters": [
 								{
-									"id": 169,
+									"id": 181,
 									"name": "n",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2477,7 +2477,7 @@
 					}
 				},
 				{
-					"id": 127,
+					"id": 139,
 					"name": "padAndChop",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2493,7 +2493,7 @@
 					],
 					"signatures": [
 						{
-							"id": 128,
+							"id": 140,
 							"name": "padAndChop",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2501,7 +2501,7 @@
 							"comment": {},
 							"parameters": [
 								{
-									"id": 129,
+									"id": 141,
 									"name": "str",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2513,7 +2513,7 @@
 									}
 								},
 								{
-									"id": 130,
+									"id": 142,
 									"name": "padChar",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2525,7 +2525,7 @@
 									}
 								},
 								{
-									"id": 131,
+									"id": 143,
 									"name": "length",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2547,7 +2547,7 @@
 					]
 				},
 				{
-					"id": 170,
+					"id": 182,
 					"name": "plus",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2556,7 +2556,7 @@
 					},
 					"signatures": [
 						{
-							"id": 171,
+							"id": 183,
 							"name": "plus",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2574,7 +2574,7 @@
 							},
 							"parameters": [
 								{
-									"id": 172,
+									"id": 184,
 									"name": "n",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2607,7 +2607,7 @@
 					}
 				},
 				{
-					"id": 173,
+					"id": 185,
 					"name": "pow",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2616,7 +2616,7 @@
 					},
 					"signatures": [
 						{
-							"id": 174,
+							"id": 186,
 							"name": "pow",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2635,7 +2635,7 @@
 							},
 							"parameters": [
 								{
-									"id": 175,
+									"id": 187,
 									"name": "exp",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2669,7 +2669,7 @@
 					}
 				},
 				{
-					"id": 176,
+					"id": 188,
 					"name": "prec",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2678,7 +2678,7 @@
 					},
 					"signatures": [
 						{
-							"id": 177,
+							"id": 189,
 							"name": "prec",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2700,7 +2700,7 @@
 							},
 							"parameters": [
 								{
-									"id": 178,
+									"id": 190,
 									"name": "sd",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2716,7 +2716,7 @@
 									}
 								},
 								{
-									"id": 179,
+									"id": 191,
 									"name": "rm",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2753,7 +2753,7 @@
 					}
 				},
 				{
-					"id": 180,
+					"id": 192,
 					"name": "round",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2762,7 +2762,7 @@
 					},
 					"signatures": [
 						{
-							"id": 181,
+							"id": 193,
 							"name": "round",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2779,252 +2779,6 @@
 									{
 										"tag": "throws",
 										"text": "`!Big.RM!` if rm is invalid.\n"
-									}
-								]
-							},
-							"parameters": [
-								{
-									"id": 182,
-									"name": "dp",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isExternal": true,
-										"isOptional": true
-									},
-									"comment": {
-										"shortText": "Decimal places, 0 to 1e+6 inclusive"
-									},
-									"type": {
-										"type": "intrinsic",
-										"name": "number"
-									}
-								},
-								{
-									"id": 183,
-									"name": "rm",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isExternal": true,
-										"isOptional": true
-									},
-									"comment": {
-										"shortText": "Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up)."
-									},
-									"type": {
-										"type": "reference",
-										"qualifiedName": "RoundingMode",
-										"package": "@types/big.js",
-										"name": "RoundingMode"
-									}
-								}
-							],
-							"type": {
-								"type": "reference",
-								"qualifiedName": "Big",
-								"package": "@types/big.js",
-								"name": "Big"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "Big.round"
-							}
-						}
-					],
-					"inheritedFrom": {
-						"type": "reference",
-						"name": "Big.round"
-					}
-				},
-				{
-					"id": 184,
-					"name": "sqrt",
-					"kind": 2048,
-					"kindString": "Method",
-					"flags": {
-						"isExternal": true
-					},
-					"signatures": [
-						{
-							"id": 185,
-							"name": "sqrt",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {
-								"isExternal": true
-							},
-							"comment": {
-								"shortText": "Returns a Big number whose value is the square root of this Big number.",
-								"text": "If the result has more fraction digits than is specified by Big.DP, it will be rounded to Big.DP decimal places using rounding mode Big.RM.\n",
-								"tags": [
-									{
-										"tag": "throws",
-										"text": "`NaN` if this Big number is negative.\n"
-									}
-								]
-							},
-							"type": {
-								"type": "reference",
-								"qualifiedName": "Big",
-								"package": "@types/big.js",
-								"name": "Big"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "Big.sqrt"
-							}
-						}
-					],
-					"inheritedFrom": {
-						"type": "reference",
-						"name": "Big.sqrt"
-					}
-				},
-				{
-					"id": 186,
-					"name": "sub",
-					"kind": 2048,
-					"kindString": "Method",
-					"flags": {
-						"isExternal": true
-					},
-					"signatures": [
-						{
-							"id": 187,
-							"name": "sub",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {
-								"isExternal": true
-							},
-							"comment": {
-								"shortText": "Returns a Big number whose value is the value of this Big number minus n - alias for .minus().",
-								"tags": [
-									{
-										"tag": "throws",
-										"text": "`NaN` if n is invalid.\n"
-									}
-								]
-							},
-							"parameters": [
-								{
-									"id": 188,
-									"name": "n",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isExternal": true
-									},
-									"type": {
-										"type": "reference",
-										"qualifiedName": "BigSource",
-										"package": "@types/big.js",
-										"name": "BigSource"
-									}
-								}
-							],
-							"type": {
-								"type": "reference",
-								"qualifiedName": "Big",
-								"package": "@types/big.js",
-								"name": "Big"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "Big.sub"
-							}
-						}
-					],
-					"inheritedFrom": {
-						"type": "reference",
-						"name": "Big.sub"
-					}
-				},
-				{
-					"id": 189,
-					"name": "times",
-					"kind": 2048,
-					"kindString": "Method",
-					"flags": {
-						"isExternal": true
-					},
-					"signatures": [
-						{
-							"id": 190,
-							"name": "times",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {
-								"isExternal": true
-							},
-							"comment": {
-								"shortText": "Returns a Big number whose value is the value of this Big number times n.",
-								"tags": [
-									{
-										"tag": "throws",
-										"text": "`NaN` if n is invalid.\n"
-									}
-								]
-							},
-							"parameters": [
-								{
-									"id": 191,
-									"name": "n",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isExternal": true
-									},
-									"type": {
-										"type": "reference",
-										"qualifiedName": "BigSource",
-										"package": "@types/big.js",
-										"name": "BigSource"
-									}
-								}
-							],
-							"type": {
-								"type": "reference",
-								"qualifiedName": "Big",
-								"package": "@types/big.js",
-								"name": "Big"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "Big.times"
-							}
-						}
-					],
-					"inheritedFrom": {
-						"type": "reference",
-						"name": "Big.times"
-					}
-				},
-				{
-					"id": 192,
-					"name": "toExponential",
-					"kind": 2048,
-					"kindString": "Method",
-					"flags": {
-						"isExternal": true
-					},
-					"signatures": [
-						{
-							"id": 193,
-							"name": "toExponential",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {
-								"isExternal": true
-							},
-							"comment": {
-								"shortText": "Returns a string representing the value of this Big number in exponential notation to a fixed number of decimal places dp.",
-								"text": "If the value of this Big number in exponential notation has more digits to the right of the decimal point than is specified by dp,\nthe return value will be rounded to dp decimal places using rounding mode Big.RM.\n\nIf the value of this Big number in exponential notation has fewer digits to the right of the decimal point than is specified by dp, the return value will be appended with zeros accordingly.\n\nIf dp is omitted, or is null or undefined, the number of digits after the decimal point defaults to the minimum number of digits necessary to represent the value exactly.\n",
-								"tags": [
-									{
-										"tag": "throws",
-										"text": "`!toFix!` if dp is invalid.\n"
 									}
 								]
 							},
@@ -3067,6 +2821,252 @@
 								}
 							],
 							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.round"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.round"
+					}
+				},
+				{
+					"id": 196,
+					"name": "sqrt",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 197,
+							"name": "sqrt",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the square root of this Big number.",
+								"text": "If the result has more fraction digits than is specified by Big.DP, it will be rounded to Big.DP decimal places using rounding mode Big.RM.\n",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if this Big number is negative.\n"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.sqrt"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.sqrt"
+					}
+				},
+				{
+					"id": 198,
+					"name": "sub",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 199,
+							"name": "sub",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number minus n - alias for .minus().",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 200,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.sub"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.sub"
+					}
+				},
+				{
+					"id": 201,
+					"name": "times",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 202,
+							"name": "times",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a Big number whose value is the value of this Big number times n.",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`NaN` if n is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 203,
+									"name": "n",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "BigSource",
+										"package": "@types/big.js",
+										"name": "BigSource"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"qualifiedName": "Big",
+								"package": "@types/big.js",
+								"name": "Big"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Big.times"
+							}
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Big.times"
+					}
+				},
+				{
+					"id": 204,
+					"name": "toExponential",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExternal": true
+					},
+					"signatures": [
+						{
+							"id": 205,
+							"name": "toExponential",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {
+								"isExternal": true
+							},
+							"comment": {
+								"shortText": "Returns a string representing the value of this Big number in exponential notation to a fixed number of decimal places dp.",
+								"text": "If the value of this Big number in exponential notation has more digits to the right of the decimal point than is specified by dp,\nthe return value will be rounded to dp decimal places using rounding mode Big.RM.\n\nIf the value of this Big number in exponential notation has fewer digits to the right of the decimal point than is specified by dp, the return value will be appended with zeros accordingly.\n\nIf dp is omitted, or is null or undefined, the number of digits after the decimal point defaults to the minimum number of digits necessary to represent the value exactly.\n",
+								"tags": [
+									{
+										"tag": "throws",
+										"text": "`!toFix!` if dp is invalid.\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 206,
+									"name": "dp",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Decimal places, 0 to 1e+6 inclusive"
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 207,
+									"name": "rm",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isExternal": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Rounding mode: 0 (down), 1 (half-up), 2 (half-even) or 3 (up)."
+									},
+									"type": {
+										"type": "reference",
+										"qualifiedName": "RoundingMode",
+										"package": "@types/big.js",
+										"name": "RoundingMode"
+									}
+								}
+							],
+							"type": {
 								"type": "intrinsic",
 								"name": "string"
 							},
@@ -3082,7 +3082,7 @@
 					}
 				},
 				{
-					"id": 196,
+					"id": 208,
 					"name": "toFixed",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3091,7 +3091,7 @@
 					},
 					"signatures": [
 						{
-							"id": 197,
+							"id": 209,
 							"name": "toFixed",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3110,7 +3110,7 @@
 							},
 							"parameters": [
 								{
-									"id": 198,
+									"id": 210,
 									"name": "dp",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3127,7 +3127,7 @@
 									}
 								},
 								{
-									"id": 199,
+									"id": 211,
 									"name": "rm",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3162,7 +3162,7 @@
 					}
 				},
 				{
-					"id": 121,
+					"id": 133,
 					"name": "toHexString",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3176,7 +3176,7 @@
 					],
 					"signatures": [
 						{
-							"id": 122,
+							"id": 134,
 							"name": "toHexString",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3192,7 +3192,7 @@
 					]
 				},
 				{
-					"id": 206,
+					"id": 218,
 					"name": "toJSON",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3201,7 +3201,7 @@
 					},
 					"signatures": [
 						{
-							"id": 207,
+							"id": 219,
 							"name": "toJSON",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3228,7 +3228,7 @@
 					}
 				},
 				{
-					"id": 123,
+					"id": 135,
 					"name": "toNumber",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3242,7 +3242,7 @@
 					],
 					"signatures": [
 						{
-							"id": 124,
+							"id": 136,
 							"name": "toNumber",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3263,7 +3263,7 @@
 					}
 				},
 				{
-					"id": 200,
+					"id": 212,
 					"name": "toPrecision",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3272,7 +3272,7 @@
 					},
 					"signatures": [
 						{
-							"id": 201,
+							"id": 213,
 							"name": "toPrecision",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3291,7 +3291,7 @@
 							},
 							"parameters": [
 								{
-									"id": 202,
+									"id": 214,
 									"name": "sd",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3308,7 +3308,7 @@
 									}
 								},
 								{
-									"id": 203,
+									"id": 215,
 									"name": "rm",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3343,7 +3343,7 @@
 					}
 				},
 				{
-					"id": 125,
+					"id": 137,
 					"name": "toString",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3357,7 +3357,7 @@
 					],
 					"signatures": [
 						{
-							"id": 126,
+							"id": 138,
 							"name": "toString",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3378,7 +3378,7 @@
 					}
 				},
 				{
-					"id": 132,
+					"id": 144,
 					"name": "toTwos",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3394,14 +3394,14 @@
 					],
 					"signatures": [
 						{
-							"id": 133,
+							"id": 145,
 							"name": "toTwos",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 134,
+									"id": 146,
 									"name": "bitCount",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3422,7 +3422,7 @@
 					]
 				},
 				{
-					"id": 204,
+					"id": 216,
 					"name": "valueOf",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3431,7 +3431,7 @@
 					},
 					"signatures": [
 						{
-							"id": 205,
+							"id": 217,
 							"name": "valueOf",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3463,35 +3463,31 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						118
+						130
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						208,
-						209,
-						210,
-						110,
-						112,
-						113,
-						111,
-						114,
-						116,
-						115,
-						117
+						220,
+						221,
+						222,
+						122,
+						124,
+						125,
+						123,
+						126,
+						128,
+						127,
+						129
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						135,
-						137,
-						140,
-						143,
-						146,
+						147,
 						149,
 						152,
 						155,
@@ -3499,23 +3495,27 @@
 						161,
 						164,
 						167,
-						127,
 						170,
 						173,
 						176,
-						180,
-						184,
-						186,
-						189,
+						179,
+						139,
+						182,
+						185,
+						188,
 						192,
 						196,
-						121,
-						206,
-						123,
-						200,
-						125,
-						132,
-						204
+						198,
+						201,
+						204,
+						208,
+						133,
+						218,
+						135,
+						212,
+						137,
+						144,
+						216
 					]
 				}
 			],
@@ -3536,14 +3536,14 @@
 			]
 		},
 		{
-			"id": 313,
+			"id": 325,
 			"name": "DataOptions",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 314,
+					"id": 326,
 					"name": "allowMissingPrefix",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3563,7 +3563,7 @@
 					}
 				},
 				{
-					"id": 315,
+					"id": 327,
 					"name": "hexPad",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3601,8 +3601,8 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						314,
-						315
+						326,
+						327
 					]
 				}
 			],
@@ -3615,21 +3615,21 @@
 			]
 		},
 		{
-			"id": 316,
+			"id": 328,
 			"name": "Hexable",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 317,
+					"id": 329,
 					"name": "toHexString",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 318,
+							"id": 330,
 							"name": "toHexString",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3647,7 +3647,7 @@
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						317
+						329
 					]
 				}
 			],
@@ -3660,14 +3660,14 @@
 			]
 		},
 		{
-			"id": 222,
+			"id": 234,
 			"name": "JSONABIArgument",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 223,
+					"id": 235,
 					"name": "anonymous",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3687,7 +3687,7 @@
 					}
 				},
 				{
-					"id": 239,
+					"id": 251,
 					"name": "constant",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3707,7 +3707,7 @@
 					}
 				},
 				{
-					"id": 238,
+					"id": 250,
 					"name": "gas",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3727,7 +3727,7 @@
 					}
 				},
 				{
-					"id": 224,
+					"id": 236,
 					"name": "inputs",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3744,14 +3744,14 @@
 						"elementType": {
 							"type": "reflection",
 							"declaration": {
-								"id": 225,
+								"id": 237,
 								"name": "__type",
 								"kind": 65536,
 								"kindString": "Type literal",
 								"flags": {},
 								"children": [
 									{
-										"id": 229,
+										"id": 241,
 										"name": "indexed",
 										"kind": 1024,
 										"kindString": "Property",
@@ -3771,7 +3771,7 @@
 										}
 									},
 									{
-										"id": 226,
+										"id": 238,
 										"name": "internalType",
 										"kind": 1024,
 										"kindString": "Property",
@@ -3791,7 +3791,7 @@
 										}
 									},
 									{
-										"id": 227,
+										"id": 239,
 										"name": "name",
 										"kind": 1024,
 										"kindString": "Property",
@@ -3809,7 +3809,7 @@
 										}
 									},
 									{
-										"id": 228,
+										"id": 240,
 										"name": "type",
 										"kind": 1024,
 										"kindString": "Property",
@@ -3832,10 +3832,10 @@
 										"title": "Properties",
 										"kind": 1024,
 										"children": [
-											229,
-											226,
-											227,
-											228
+											241,
+											238,
+											239,
+											240
 										]
 									}
 								]
@@ -3844,7 +3844,7 @@
 					}
 				},
 				{
-					"id": 230,
+					"id": 242,
 					"name": "name",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3864,7 +3864,7 @@
 					}
 				},
 				{
-					"id": 231,
+					"id": 243,
 					"name": "outputs",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3883,14 +3883,14 @@
 						"elementType": {
 							"type": "reflection",
 							"declaration": {
-								"id": 232,
+								"id": 244,
 								"name": "__type",
 								"kind": 65536,
 								"kindString": "Type literal",
 								"flags": {},
 								"children": [
 									{
-										"id": 233,
+										"id": 245,
 										"name": "internalType",
 										"kind": 1024,
 										"kindString": "Property",
@@ -3910,7 +3910,7 @@
 										}
 									},
 									{
-										"id": 234,
+										"id": 246,
 										"name": "name",
 										"kind": 1024,
 										"kindString": "Property",
@@ -3928,7 +3928,7 @@
 										}
 									},
 									{
-										"id": 235,
+										"id": 247,
 										"name": "type",
 										"kind": 1024,
 										"kindString": "Property",
@@ -3951,9 +3951,9 @@
 										"title": "Properties",
 										"kind": 1024,
 										"children": [
-											233,
-											234,
-											235
+											245,
+											246,
+											247
 										]
 									}
 								]
@@ -3962,7 +3962,7 @@
 					}
 				},
 				{
-					"id": 240,
+					"id": 252,
 					"name": "payable",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3982,7 +3982,7 @@
 					}
 				},
 				{
-					"id": 236,
+					"id": 248,
 					"name": "stateMutability",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4002,7 +4002,7 @@
 					}
 				},
 				{
-					"id": 237,
+					"id": 249,
 					"name": "type",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4046,15 +4046,15 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						223,
-						239,
-						238,
-						224,
-						230,
-						231,
-						240,
+						235,
+						251,
+						250,
 						236,
-						237
+						242,
+						243,
+						252,
+						248,
+						249
 					]
 				}
 			],
@@ -4067,7 +4067,7 @@
 			]
 		},
 		{
-			"id": 241,
+			"id": 253,
 			"name": "Network",
 			"kind": 256,
 			"kindString": "Interface",
@@ -4077,7 +4077,7 @@
 			},
 			"children": [
 				{
-					"id": 242,
+					"id": 254,
 					"name": "chainId",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4095,7 +4095,7 @@
 					}
 				},
 				{
-					"id": 243,
+					"id": 255,
 					"name": "ensAddress",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4122,7 +4122,7 @@
 					}
 				},
 				{
-					"id": 244,
+					"id": 256,
 					"name": "name",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4145,9 +4145,9 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						242,
-						243,
-						244
+						254,
+						255,
+						256
 					]
 				}
 			],
@@ -4160,14 +4160,14 @@
 			]
 		},
 		{
-			"id": 326,
+			"id": 338,
 			"name": "Signature",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 329,
+					"id": 341,
 					"name": "_vs",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4185,7 +4185,7 @@
 					}
 				},
 				{
-					"id": 333,
+					"id": 345,
 					"name": "compact",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4203,7 +4203,7 @@
 					}
 				},
 				{
-					"id": 327,
+					"id": 339,
 					"name": "r",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4221,7 +4221,7 @@
 					}
 				},
 				{
-					"id": 330,
+					"id": 342,
 					"name": "recoveryParam",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4239,7 +4239,7 @@
 					}
 				},
 				{
-					"id": 328,
+					"id": 340,
 					"name": "s",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4257,7 +4257,7 @@
 					}
 				},
 				{
-					"id": 331,
+					"id": 343,
 					"name": "v",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4275,7 +4275,7 @@
 					}
 				},
 				{
-					"id": 332,
+					"id": 344,
 					"name": "yParityAndS",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4298,13 +4298,13 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						329,
-						333,
-						327,
-						330,
-						328,
-						331,
-						332
+						341,
+						345,
+						339,
+						342,
+						340,
+						343,
+						344
 					]
 				}
 			],
@@ -4317,7 +4317,7 @@
 			]
 		},
 		{
-			"id": 211,
+			"id": 223,
 			"name": "BlockResponse",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -4339,14 +4339,14 @@
 					{
 						"type": "reflection",
 						"declaration": {
-							"id": 212,
+							"id": 224,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 218,
+									"id": 230,
 									"name": "baseFeePerGas",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4364,7 +4364,7 @@
 									}
 								},
 								{
-									"id": 213,
+									"id": 225,
 									"name": "gasLimit",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4382,7 +4382,7 @@
 									}
 								},
 								{
-									"id": 214,
+									"id": 226,
 									"name": "gasUsed",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4400,7 +4400,7 @@
 									}
 								},
 								{
-									"id": 215,
+									"id": 227,
 									"name": "number",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4418,7 +4418,7 @@
 									}
 								},
 								{
-									"id": 216,
+									"id": 228,
 									"name": "size",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4436,7 +4436,7 @@
 									}
 								},
 								{
-									"id": 217,
+									"id": 229,
 									"name": "timestamp",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4454,7 +4454,7 @@
 									}
 								},
 								{
-									"id": 219,
+									"id": 231,
 									"name": "transactions",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4489,13 +4489,13 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										218,
-										213,
-										214,
-										215,
-										216,
-										217,
-										219
+										230,
+										225,
+										226,
+										227,
+										228,
+										229,
+										231
 									]
 								}
 							],
@@ -4513,7 +4513,7 @@
 			}
 		},
 		{
-			"id": 310,
+			"id": 322,
 			"name": "Bytes",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -4539,7 +4539,7 @@
 			}
 		},
 		{
-			"id": 311,
+			"id": 323,
 			"name": "BytesLike",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -4572,7 +4572,7 @@
 				"types": [
 					{
 						"type": "reference",
-						"id": 310,
+						"id": 322,
 						"name": "Bytes"
 					},
 					{
@@ -4583,7 +4583,7 @@
 			}
 		},
 		{
-			"id": 312,
+			"id": 324,
 			"name": "BytesLikeWithNumber",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -4600,7 +4600,7 @@
 				"types": [
 					{
 						"type": "reference",
-						"id": 311,
+						"id": 323,
 						"name": "BytesLike"
 					},
 					{
@@ -4611,7 +4611,7 @@
 			}
 		},
 		{
-			"id": 220,
+			"id": 232,
 			"name": "ContractTypes",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -4802,7 +4802,7 @@
 			}
 		},
 		{
-			"id": 221,
+			"id": 233,
 			"name": "JSONABI",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -4818,13 +4818,13 @@
 				"type": "array",
 				"elementType": {
 					"type": "reference",
-					"id": 222,
+					"id": 234,
 					"name": "JSONABIArgument"
 				}
 			}
 		},
 		{
-			"id": 319,
+			"id": 331,
 			"name": "SignatureLike",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -4842,14 +4842,14 @@
 					{
 						"type": "reflection",
 						"declaration": {
-							"id": 320,
+							"id": 332,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 323,
+									"id": 335,
 									"name": "_vs",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4869,7 +4869,7 @@
 									}
 								},
 								{
-									"id": 321,
+									"id": 333,
 									"name": "r",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4887,7 +4887,7 @@
 									}
 								},
 								{
-									"id": 324,
+									"id": 336,
 									"name": "recoveryParam",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4907,7 +4907,7 @@
 									}
 								},
 								{
-									"id": 322,
+									"id": 334,
 									"name": "s",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4927,7 +4927,7 @@
 									}
 								},
 								{
-									"id": 325,
+									"id": 337,
 									"name": "v",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4952,11 +4952,11 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										323,
-										321,
-										324,
-										322,
-										325
+										335,
+										333,
+										336,
+										334,
+										337
 									]
 								}
 							],
@@ -4971,14 +4971,14 @@
 					},
 					{
 						"type": "reference",
-						"id": 311,
+						"id": 323,
 						"name": "BytesLike"
 					}
 				]
 			}
 		},
 		{
-			"id": 245,
+			"id": 257,
 			"name": "TransactionResponse",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -5003,14 +5003,14 @@
 							{
 								"type": "reflection",
 								"declaration": {
-									"id": 246,
+									"id": 258,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 247,
+											"id": 259,
 											"name": "blockNumber",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5028,7 +5028,7 @@
 											}
 										},
 										{
-											"id": 248,
+											"id": 260,
 											"name": "chainId",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5046,7 +5046,7 @@
 											}
 										},
 										{
-											"id": 255,
+											"id": 267,
 											"name": "gas",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5060,12 +5060,12 @@
 											],
 											"type": {
 												"type": "reference",
-												"id": 109,
+												"id": 121,
 												"name": "TinyBig"
 											}
 										},
 										{
-											"id": 256,
+											"id": 268,
 											"name": "gasLimit",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5079,12 +5079,12 @@
 											],
 											"type": {
 												"type": "reference",
-												"id": 109,
+												"id": 121,
 												"name": "TinyBig"
 											}
 										},
 										{
-											"id": 254,
+											"id": 266,
 											"name": "gasPrice",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5098,12 +5098,12 @@
 											],
 											"type": {
 												"type": "reference",
-												"id": 109,
+												"id": 121,
 												"name": "TinyBig"
 											}
 										},
 										{
-											"id": 249,
+											"id": 261,
 											"name": "nonce",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5121,7 +5121,7 @@
 											}
 										},
 										{
-											"id": 250,
+											"id": 262,
 											"name": "transactionIndex",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5139,7 +5139,7 @@
 											}
 										},
 										{
-											"id": 251,
+											"id": 263,
 											"name": "type",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5157,7 +5157,7 @@
 											}
 										},
 										{
-											"id": 252,
+											"id": 264,
 											"name": "v",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5175,7 +5175,7 @@
 											}
 										},
 										{
-											"id": 253,
+											"id": 265,
 											"name": "value",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5189,7 +5189,7 @@
 											],
 											"type": {
 												"type": "reference",
-												"id": 109,
+												"id": 121,
 												"name": "TinyBig"
 											}
 										}
@@ -5199,16 +5199,16 @@
 											"title": "Properties",
 											"kind": 1024,
 											"children": [
-												247,
-												248,
-												255,
-												256,
-												254,
-												249,
-												250,
-												251,
-												252,
-												253
+												259,
+												260,
+												267,
+												268,
+												266,
+												261,
+												262,
+												263,
+												264,
+												265
 											]
 										}
 									],
@@ -5224,14 +5224,14 @@
 							{
 								"type": "reflection",
 								"declaration": {
-									"id": 257,
+									"id": 269,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 260,
+											"id": 272,
 											"name": "confirmations",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5249,7 +5249,7 @@
 											}
 										},
 										{
-											"id": 258,
+											"id": 270,
 											"name": "maxFeePerGas",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5263,12 +5263,12 @@
 											],
 											"type": {
 												"type": "reference",
-												"id": 109,
+												"id": 121,
 												"name": "TinyBig"
 											}
 										},
 										{
-											"id": 259,
+											"id": 271,
 											"name": "maxPriorityFeePerGas",
 											"kind": 1024,
 											"kindString": "Property",
@@ -5282,7 +5282,7 @@
 											],
 											"type": {
 												"type": "reference",
-												"id": 109,
+												"id": 121,
 												"name": "TinyBig"
 											}
 										}
@@ -5292,9 +5292,9 @@
 											"title": "Properties",
 											"kind": 1024,
 											"children": [
-												260,
-												258,
-												259
+												272,
+												270,
+												271
 											]
 										}
 									],
@@ -5314,7 +5314,7 @@
 			}
 		},
 		{
-			"id": 267,
+			"id": 279,
 			"name": "arrayify",
 			"kind": 64,
 			"kindString": "Function",
@@ -5328,7 +5328,7 @@
 			],
 			"signatures": [
 				{
-					"id": 268,
+					"id": 280,
 					"name": "arrayify",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -5352,7 +5352,7 @@
 					},
 					"parameters": [
 						{
-							"id": 269,
+							"id": 281,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -5366,19 +5366,19 @@
 									},
 									{
 										"type": "reference",
-										"id": 311,
+										"id": 323,
 										"name": "BytesLike"
 									},
 									{
 										"type": "reference",
-										"id": 316,
+										"id": 328,
 										"name": "Hexable"
 									}
 								]
 							}
 						},
 						{
-							"id": 270,
+							"id": 282,
 							"name": "options",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -5387,7 +5387,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 313,
+								"id": 325,
 								"name": "DataOptions"
 							}
 						}
@@ -5402,7 +5402,99 @@
 			]
 		},
 		{
-			"id": 271,
+			"id": 107,
+			"name": "computeAddress",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/compute-address.ts",
+					"line": 12,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 108,
+					"name": "computeAddress",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Computes the address that corresponds to a specified public or private key",
+						"returns": "the address that corresponds to the key specified\n"
+					},
+					"parameters": [
+						{
+							"id": 109,
+							"name": "key",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"shortText": "the public or private key to find the address related to\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 110,
+			"name": "computePublicKey",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/compute-public-key.ts",
+					"line": 11,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 111,
+					"name": "computePublicKey",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Computes the public key from a given private key",
+						"returns": "the public key\n"
+					},
+					"parameters": [
+						{
+							"id": 112,
+							"name": "privKey",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"id": 323,
+								"name": "BytesLike"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			]
+		},
+		{
+			"id": 283,
 			"name": "concat",
 			"kind": 64,
 			"kindString": "Function",
@@ -5416,7 +5508,7 @@
 			],
 			"signatures": [
 				{
-					"id": 272,
+					"id": 284,
 					"name": "concat",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -5432,7 +5524,7 @@
 					},
 					"parameters": [
 						{
-							"id": 273,
+							"id": 285,
 							"name": "arrayOfBytesLike",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -5444,7 +5536,7 @@
 									"type": "array",
 									"elementType": {
 										"type": "reference",
-										"id": 312,
+										"id": 324,
 										"name": "BytesLikeWithNumber"
 									}
 								}
@@ -5514,7 +5606,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 109,
+										"id": 121,
 										"name": "TinyBig"
 									},
 									{
@@ -5529,7 +5621,7 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 109,
+						"id": 121,
 						"name": "TinyBig"
 					}
 				}
@@ -5589,7 +5681,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 109,
+										"id": 121,
 										"name": "TinyBig"
 									},
 									{
@@ -5604,7 +5696,7 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 109,
+						"id": 121,
 						"name": "TinyBig"
 					}
 				}
@@ -5664,7 +5756,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 109,
+										"id": 121,
 										"name": "TinyBig"
 									},
 									{
@@ -5679,14 +5771,14 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 109,
+						"id": 121,
 						"name": "TinyBig"
 					}
 				}
 			]
 		},
 		{
-			"id": 334,
+			"id": 98,
 			"name": "hashMessage",
 			"kind": 64,
 			"kindString": "Function",
@@ -5700,7 +5792,7 @@
 			],
 			"signatures": [
 				{
-					"id": 335,
+					"id": 99,
 					"name": "hashMessage",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -5716,7 +5808,7 @@
 					},
 					"parameters": [
 						{
-							"id": 336,
+							"id": 100,
 							"name": "message",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -5730,7 +5822,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 310,
+										"id": 322,
 										"name": "Bytes"
 									}
 								]
@@ -5745,7 +5837,7 @@
 			]
 		},
 		{
-			"id": 297,
+			"id": 309,
 			"name": "hexConcat",
 			"kind": 64,
 			"kindString": "Function",
@@ -5759,14 +5851,14 @@
 			],
 			"signatures": [
 				{
-					"id": 298,
+					"id": 310,
 					"name": "hexConcat",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 299,
+							"id": 311,
 							"name": "items",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -5778,7 +5870,7 @@
 									"type": "array",
 									"elementType": {
 										"type": "reference",
-										"id": 311,
+										"id": 323,
 										"name": "BytesLike"
 									}
 								}
@@ -5793,7 +5885,7 @@
 			]
 		},
 		{
-			"id": 289,
+			"id": 301,
 			"name": "hexDataLength",
 			"kind": 64,
 			"kindString": "Function",
@@ -5807,21 +5899,21 @@
 			],
 			"signatures": [
 				{
-					"id": 290,
+					"id": 302,
 					"name": "hexDataLength",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 291,
+							"id": 303,
 							"name": "data",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 311,
+								"id": 323,
 								"name": "BytesLike"
 							}
 						}
@@ -5843,7 +5935,7 @@
 			]
 		},
 		{
-			"id": 292,
+			"id": 304,
 			"name": "hexDataSlice",
 			"kind": 64,
 			"kindString": "Function",
@@ -5857,26 +5949,26 @@
 			],
 			"signatures": [
 				{
-					"id": 293,
+					"id": 305,
 					"name": "hexDataSlice",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 294,
+							"id": 306,
 							"name": "data",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 312,
+								"id": 324,
 								"name": "BytesLikeWithNumber"
 							}
 						},
 						{
-							"id": 295,
+							"id": 307,
 							"name": "offset",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -5887,7 +5979,7 @@
 							}
 						},
 						{
-							"id": 296,
+							"id": 308,
 							"name": "endOffset",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -5908,7 +6000,7 @@
 			]
 		},
 		{
-			"id": 303,
+			"id": 315,
 			"name": "hexStripZeros",
 			"kind": 64,
 			"kindString": "Function",
@@ -5922,21 +6014,21 @@
 			],
 			"signatures": [
 				{
-					"id": 304,
+					"id": 316,
 					"name": "hexStripZeros",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 305,
+							"id": 317,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 311,
+								"id": 323,
 								"name": "BytesLike"
 							}
 						}
@@ -5949,7 +6041,7 @@
 			]
 		},
 		{
-			"id": 300,
+			"id": 312,
 			"name": "hexValue",
 			"kind": 64,
 			"kindString": "Function",
@@ -5963,14 +6055,14 @@
 			],
 			"signatures": [
 				{
-					"id": 301,
+					"id": 313,
 					"name": "hexValue",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 302,
+							"id": 314,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -5988,12 +6080,12 @@
 									},
 									{
 										"type": "reference",
-										"id": 311,
+										"id": 323,
 										"name": "BytesLike"
 									},
 									{
 										"type": "reference",
-										"id": 316,
+										"id": 328,
 										"name": "Hexable"
 									}
 								]
@@ -6008,7 +6100,7 @@
 			]
 		},
 		{
-			"id": 306,
+			"id": 318,
 			"name": "hexZeroPad",
 			"kind": 64,
 			"kindString": "Function",
@@ -6022,7 +6114,7 @@
 			],
 			"signatures": [
 				{
-					"id": 307,
+					"id": 319,
 					"name": "hexZeroPad",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -6055,19 +6147,19 @@
 					},
 					"parameters": [
 						{
-							"id": 308,
+							"id": 320,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 312,
+								"id": 324,
 								"name": "BytesLikeWithNumber"
 							}
 						},
 						{
-							"id": 309,
+							"id": 321,
 							"name": "length",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6089,7 +6181,7 @@
 			]
 		},
 		{
-			"id": 285,
+			"id": 297,
 			"name": "hexlify",
 			"kind": 64,
 			"kindString": "Function",
@@ -6103,7 +6195,7 @@
 			],
 			"signatures": [
 				{
-					"id": 286,
+					"id": 298,
 					"name": "hexlify",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -6118,7 +6210,7 @@
 					},
 					"parameters": [
 						{
-							"id": 287,
+							"id": 299,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6136,19 +6228,19 @@
 									},
 									{
 										"type": "reference",
-										"id": 311,
+										"id": 323,
 										"name": "BytesLike"
 									},
 									{
 										"type": "reference",
-										"id": 316,
+										"id": 328,
 										"name": "Hexable"
 									}
 								]
 							}
 						},
 						{
-							"id": 288,
+							"id": 300,
 							"name": "options",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6157,7 +6249,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 313,
+								"id": 325,
 								"name": "DataOptions"
 							}
 						}
@@ -6227,7 +6319,7 @@
 			]
 		},
 		{
-			"id": 264,
+			"id": 276,
 			"name": "isBytes",
 			"kind": 64,
 			"kindString": "Function",
@@ -6241,7 +6333,7 @@
 			],
 			"signatures": [
 				{
-					"id": 265,
+					"id": 277,
 					"name": "isBytes",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -6265,7 +6357,7 @@
 					},
 					"parameters": [
 						{
-							"id": 266,
+							"id": 278,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6282,7 +6374,7 @@
 						"asserts": false,
 						"targetType": {
 							"type": "reference",
-							"id": 310,
+							"id": 322,
 							"name": "Bytes"
 						}
 					}
@@ -6290,7 +6382,7 @@
 			]
 		},
 		{
-			"id": 261,
+			"id": 273,
 			"name": "isBytesLike",
 			"kind": 64,
 			"kindString": "Function",
@@ -6304,7 +6396,7 @@
 			],
 			"signatures": [
 				{
-					"id": 262,
+					"id": 274,
 					"name": "isBytesLike",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -6328,7 +6420,7 @@
 					},
 					"parameters": [
 						{
-							"id": 263,
+							"id": 275,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6345,7 +6437,7 @@
 						"asserts": false,
 						"targetType": {
 							"type": "reference",
-							"id": 311,
+							"id": 323,
 							"name": "BytesLike"
 						}
 					}
@@ -6353,7 +6445,7 @@
 			]
 		},
 		{
-			"id": 281,
+			"id": 293,
 			"name": "isHexString",
 			"kind": 64,
 			"kindString": "Function",
@@ -6367,7 +6459,7 @@
 			],
 			"signatures": [
 				{
-					"id": 282,
+					"id": 294,
 					"name": "isHexString",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -6377,7 +6469,7 @@
 					},
 					"parameters": [
 						{
-							"id": 283,
+							"id": 295,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6388,7 +6480,7 @@
 							}
 						},
 						{
-							"id": 284,
+							"id": 296,
 							"name": "length",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6461,7 +6553,7 @@
 			]
 		},
 		{
-			"id": 337,
+			"id": 346,
 			"name": "keccak256",
 			"kind": 64,
 			"kindString": "Function",
@@ -6475,21 +6567,21 @@
 			],
 			"signatures": [
 				{
-					"id": 338,
+					"id": 347,
 					"name": "keccak256",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 339,
+							"id": 348,
 							"name": "data",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 311,
+								"id": 323,
 								"name": "BytesLike"
 							}
 						}
@@ -6502,7 +6594,7 @@
 			]
 		},
 		{
-			"id": 340,
+			"id": 349,
 			"name": "pack",
 			"kind": 64,
 			"kindString": "Function",
@@ -6516,14 +6608,14 @@
 			],
 			"signatures": [
 				{
-					"id": 341,
+					"id": 350,
 					"name": "pack",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 342,
+							"id": 351,
 							"name": "types",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6541,7 +6633,7 @@
 							}
 						},
 						{
-							"id": 343,
+							"id": 352,
 							"name": "values",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6567,7 +6659,7 @@
 			]
 		},
 		{
-			"id": 344,
+			"id": 353,
 			"name": "solidityKeccak256",
 			"kind": 64,
 			"kindString": "Function",
@@ -6581,7 +6673,7 @@
 			],
 			"signatures": [
 				{
-					"id": 345,
+					"id": 354,
 					"name": "solidityKeccak256",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -6603,7 +6695,7 @@
 					},
 					"parameters": [
 						{
-							"id": 346,
+							"id": 355,
 							"name": "types",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6624,7 +6716,7 @@
 							}
 						},
 						{
-							"id": 347,
+							"id": 356,
 							"name": "values",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6653,7 +6745,63 @@
 			]
 		},
 		{
-			"id": 274,
+			"id": 101,
+			"name": "splitSignature",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "src/utils/split-signature.ts",
+					"line": 38,
+					"character": 16
+				}
+			],
+			"signatures": [
+				{
+					"id": 102,
+					"name": "splitSignature",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Expands a signature into the full signature object and fills in missing properties.",
+						"text": "* Same as [\"splitSignature\" in ethers.js](https://docs.ethers.io/v5/api/utils/bytes/#utils-splitSignature)\n",
+						"returns": "a full signature object with all properties filled\n",
+						"tags": [
+							{
+								"tag": "example",
+								"text": "\n```javascript\nconst signature = '0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee331b';\nsplitSignature(signature);\n {\n   r: \"0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b39716\",\n   s: \"0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33\",\n   _vs: \"0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33\",\n   recoveryParam: 0,\n   v: 27,\n   yParityAndS: \"0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33\",\n   compact: \"0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33\"\n }\n```\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 103,
+							"name": "signature",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"shortText": "the signature object to split, parse, and compute missing properties from\n"
+							},
+							"type": {
+								"type": "reference",
+								"id": 331,
+								"name": "SignatureLike"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 338,
+						"name": "Signature"
+					}
+				}
+			]
+		},
+		{
+			"id": 286,
 			"name": "stripZeros",
 			"kind": 64,
 			"kindString": "Function",
@@ -6667,21 +6815,21 @@
 			],
 			"signatures": [
 				{
-					"id": 275,
+					"id": 287,
 					"name": "stripZeros",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 276,
+							"id": 288,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 311,
+								"id": 323,
 								"name": "BytesLike"
 							}
 						}
@@ -6744,7 +6892,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 109,
+										"id": 121,
 										"name": "TinyBig"
 									},
 									{
@@ -6759,7 +6907,7 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 109,
+						"id": 121,
 						"name": "TinyBig"
 					}
 				}
@@ -6818,7 +6966,7 @@
 			]
 		},
 		{
-			"id": 98,
+			"id": 104,
 			"name": "toUtf8Bytes",
 			"kind": 64,
 			"kindString": "Function",
@@ -6832,14 +6980,14 @@
 			],
 			"signatures": [
 				{
-					"id": 99,
+					"id": 105,
 					"name": "toUtf8Bytes",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 100,
+							"id": 106,
 							"name": "data",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6913,7 +7061,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 109,
+										"id": 121,
 										"name": "TinyBig"
 									},
 									{
@@ -6928,14 +7076,14 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 109,
+						"id": 121,
 						"name": "TinyBig"
 					}
 				}
 			]
 		},
 		{
-			"id": 277,
+			"id": 289,
 			"name": "zeroPad",
 			"kind": 64,
 			"kindString": "Function",
@@ -6949,26 +7097,26 @@
 			],
 			"signatures": [
 				{
-					"id": 278,
+					"id": 290,
 					"name": "zeroPad",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 279,
+							"id": 291,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 311,
+								"id": 323,
 								"name": "BytesLike"
 							}
 						},
 						{
-							"id": 280,
+							"id": 292,
 							"name": "length",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -6994,68 +7142,71 @@
 			"title": "Classes",
 			"kind": 128,
 			"children": [
-				101,
+				113,
 				48,
 				13,
-				109
+				121
 			]
 		},
 		{
 			"title": "Interfaces",
 			"kind": 256,
 			"children": [
-				313,
-				316,
-				222,
-				241,
-				326
+				325,
+				328,
+				234,
+				253,
+				338
 			]
 		},
 		{
 			"title": "Type aliases",
 			"kind": 4194304,
 			"children": [
-				211,
-				310,
-				311,
-				312,
-				220,
-				221,
-				319,
-				245
+				223,
+				322,
+				323,
+				324,
+				232,
+				233,
+				331,
+				257
 			]
 		},
 		{
 			"title": "Functions",
 			"kind": 64,
 			"children": [
-				267,
-				271,
+				279,
+				107,
+				110,
+				283,
 				4,
 				1,
 				95,
-				334,
+				98,
+				309,
+				301,
+				304,
+				315,
+				312,
+				318,
 				297,
-				289,
-				292,
-				303,
-				300,
-				306,
-				285,
 				7,
-				264,
-				261,
-				281,
+				276,
+				273,
+				293,
 				10,
-				337,
-				340,
-				344,
-				274,
+				346,
+				349,
+				353,
+				101,
+				286,
 				86,
 				89,
-				98,
+				104,
 				92,
-				277
+				289
 			]
 		}
 	],
