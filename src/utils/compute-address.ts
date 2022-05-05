@@ -1,11 +1,10 @@
-import { utils } from 'ethers';
-import { toChecksumAddress } from '..';
+import { computePublicKey, toChecksumAddress } from '..';
 import { hexDataSlice } from './bytes';
 import { keccak256 } from './keccak256';
 
 export function computeAddress(key: string): string {
-  const publicKey = utils.computePublicKey(key);
-  return toChecksumAddress(
-    hexDataSlice(keccak256(hexDataSlice(publicKey, 1)), 12),
-  );
+  if (!key.startsWith('0x04')) {
+    key = computePublicKey(key);
+  }
+  return toChecksumAddress(hexDataSlice(keccak256(hexDataSlice(key, 1)), 12));
 }
