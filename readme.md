@@ -47,6 +47,8 @@
 - [Install](#install)
 - [🛠 Utils](#-utils)
   - [`arrayify`](#arrayify)
+  - [`computeAddress`](#computeaddress)
+  - [`computePublicKey`](#computepublickey)
   - [`concat`](#concat)
   - [`etherToGwei`](#ethertogwei)
   - [`etherToWei`](#ethertowei)
@@ -66,7 +68,9 @@
   - [`jsonRpcProvider`](#jsonrpcprovider)
   - [`keccak256`](#keccak256)
   - [`pack`](#pack)
+  - [`recoverPublicKey`](#recoverpublickey)
   - [`solidityKeccak256`](#soliditykeccak256)
+  - [`splitSignature`](#splitsignature)
   - [`stripZeros`](#stripzeros)
   - [`tinyBig`](#tinybig)
   - [`toChecksumAddress`](#tochecksumaddress)
@@ -144,6 +148,22 @@ arrayify('0x1', { hexPad: 'right' });
 ```
 
   </details>
+
+  <br/>
+
+#### [`computeAddress`](https://essential-eth.vercel.app/docs/api/modules#computeaddress)
+
+```typescript
+computeAddress(key: string): string
+```
+
+  <br/>
+
+#### [`computePublicKey`](https://essential-eth.vercel.app/docs/api/modules#computepublickey)
+
+```typescript
+computePublicKey(privKey: BytesLike): string
+```
 
   <br/>
 
@@ -561,6 +581,14 @@ pack(types: Array<string>, values: Array<any>): string
 
   <br/>
 
+#### [`recoverPublicKey`](https://essential-eth.vercel.app/docs/api/modules#recoverpublickey)
+
+```typescript
+recoverPublicKey(digest: BytesLike, signature: SignatureLike): string
+```
+
+  <br/>
+
 #### [`solidityKeccak256`](https://essential-eth.vercel.app/docs/api/modules#soliditykeccak256)
 
 ```typescript
@@ -592,6 +620,40 @@ const values = [
 ];
 solidityKeccak256(types, values);
 // '0x038707a887f09355dc545412b058e7ba8f3c74047050c7c5e5e52eec608053d9'
+```
+
+  </details>
+
+  <br/>
+
+#### [`splitSignature`](https://essential-eth.vercel.app/docs/api/modules#splitsignature)
+
+```typescript
+splitSignature(signature: SignatureLike): Signature
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { splitSignature } from 'essential-eth';
+
+// or in a require environment
+const { splitSignature } = require('essential-eth');
+```
+
+```javascript
+const signature = '0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee331b';
+splitSignature(signature);
+ {
+   r: "0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b39716",
+   s: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
+   _vs: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
+   recoveryParam: 0,
+   v: 27,
+   yParityAndS: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
+   compact: "0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33"
+ }
 ```
 
   </details>
