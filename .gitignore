@@ -1,6 +1,10 @@
 node_modules
 lib
 coverage
+
+// typedoc accidental html output
+docs
+
 .versions
 .eslintcache
 *.docker*

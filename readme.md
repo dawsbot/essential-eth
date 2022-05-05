@@ -12,8 +12,6 @@
   <br/>
 </p>
 
----
-
 <br/>
 
 ## Why you should replace Ethers.js and web3
@@ -24,6 +22,8 @@
 
 ---
 
+[![🧪 tests](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml/badge.svg)](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/Earnifi/essential-eth/branch/master/graph/badge.svg?token=E44EK6RWTZ)](https://codecov.io/gh/Earnifi/essential-eth) ![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth) ![](https://img.shields.io/npm/v/essential-eth)
+
 <br/>
 
 - 🏆️ <sub><sup>[smallest code size possible](https://bundlephobia.com/package/essential-eth)</sup></sub>
@@ -32,27 +32,76 @@
 - - ⚡️ Near-identical API to `ethers`
 - 🌲 Tree-shaking and no side-effects
 - 🙌 Supports multiple JS versions (CommonJS and ESM)
-  - ✅ Node 17, 16, 14, & 12
+  - ✅ Node 18, 16, 14, & 12
   - ✅ Web
 
 <br/>
 
-[![🧪 tests](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml/badge.svg)](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/Earnifi/essential-eth/branch/master/graph/badge.svg?token=E44EK6RWTZ)](https://codecov.io/gh/Earnifi/essential-eth) ![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth) ![](https://img.shields.io/npm/v/essential-eth)
+## Table of Contents
 
-<br/>
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Click to expand) -->
+<details>
+<summary>Click to expand</summary>
+
+- [Why you should replace Ethers.js and web3](#why-you-should-replace-ethersjs-and-web3)
+- [Install](#install)
+- [🛠 Utils](#-utils)
+  - [`arrayify`](#arrayify)
+  - [`concat`](#concat)
+  - [`etherToGwei`](#ethertogwei)
+  - [`etherToWei`](#ethertowei)
+  - [`gweiToEther`](#gweitoether)
+  - [`hashMessage`](#hashmessage)
+  - [`hexConcat`](#hexconcat)
+  - [`hexDataLength`](#hexdatalength)
+  - [`hexDataSlice`](#hexdataslice)
+  - [`hexStripZeros`](#hexstripzeros)
+  - [`hexValue`](#hexvalue)
+  - [`hexZeroPad`](#hexzeropad)
+  - [`hexlify`](#hexlify)
+  - [`isAddress`](#isaddress)
+  - [`isBytes`](#isbytes)
+  - [`isBytesLike`](#isbyteslike)
+  - [`isHexString`](#ishexstring)
+  - [`jsonRpcProvider`](#jsonrpcprovider)
+  - [`keccak256`](#keccak256)
+  - [`pack`](#pack)
+  - [`solidityKeccak256`](#soliditykeccak256)
+  - [`stripZeros`](#stripzeros)
+  - [`tinyBig`](#tinybig)
+  - [`toChecksumAddress`](#tochecksumaddress)
+  - [`toUtf8Bytes`](#toutf8bytes)
+  - [`weiToEther`](#weitoether)
+  - [`zeroPad`](#zeropad)
+- [RPC](#rpc)
+  - [`getTransactionCount(address, blockTag?): Promise<number>`](#gettransactioncountaddress-blocktag-promisenumber)
+  - [`getGasPrice`](#getgasprice)
+  - [`getBalance`](#getbalance)
+  - [`getNetwork`](#getnetwork)
+  - [`getBlock`](#getblock)
+  - [`getTransaction`](#gettransaction)
+- [Contract](#contract)
+  - [`contractFunctionName(args)`](#contractfunctionnameargs)
+- [More Info](#more-info)
+
+</details>
+
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+
+  <br/>
 
 ## Install
 
 ```sh
 npm install --save essential-eth # TypeScript types load automatically
 
-# or if you prefer yarn
+# or yarn
 yarn add essential-eth # TypeScript types load automatically
 ```
 
 <br/>
 
-## Utils (do not require connecting to an Eth node)
+## 🛠 Utils
 
 ```typescript
 import { etherToWei } from 'essential-eth';
@@ -61,191 +110,611 @@ import { etherToWei } from 'essential-eth';
 const { etherToWei } = require('essential-eth');
 ```
 
-- The return-type `TinyBig` is just [`Big`](https://github.com/MikeMcl/big.js) but expands scientific notation on `toNumber()` and `toString()`
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (FUNCTIONS) -->
 
-<br/>
-
-#### `etherToWei`
+#### [`arrayify`](https://essential-eth.vercel.app/docs/api/modules#arrayify)
 
 ```typescript
-// convert ether to wei
-etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
+arrayify(value: number | BytesLike | Hexable, options: DataOptions): Uint8Array
 ```
 
-<details>
+  <details>
   <summary>View Example</summary>
 
-```typescript
-import { etherToWei } from 'essential-eth';
+```js
+import { arrayify } from 'essential-eth';
 
-etherToWei(1).toString();
-// "1000000000000000000"
-
-etherToWei(1).toNumber();
-// 1000000000000000000
-
-etherToWei('1').toNumber();
-// 1000000000000000000
+// or in a require environment
+const { arrayify } = require('essential-eth');
 ```
 
-</details>
-
-<br/>
-
-#### `weiToEther`
-
-```typescript
-// convert wei to ether
-weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
+```js
+arrayify(1);
+// Uint8Array(1) [ 1 ]
 ```
 
-<details>
+```js
+arrayify(0x1234);
+// Uint8Array(2) [ 18, 52 ]
+```
+
+```js
+arrayify('0x1', { hexPad: 'right' });
+// Uint8Array(1) [ 16 ]
+```
+
+  </details>
+
+  <br/>
+
+#### [`concat`](https://essential-eth.vercel.app/docs/api/modules#concat)
+
+```typescript
+concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
+```
+
+  <details>
   <summary>View Example</summary>
 
-```typescript
-import { weiToEther } from 'essential-eth';
+```js
+import { concat } from 'essential-eth';
 
-weiToEther(1000000000000000000).toString();
-// "1"
-
-weiToEther(1000000000000000000).toNumber();
-// 1
-weiToEther('1000000000000000000').toNumber();
-// 1
+// or in a require environment
+const { concat } = require('essential-eth');
 ```
 
-</details>
-
-<br/>
-
-#### `gweiToEther`
-
-```typescript
-gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
+```js
+concat([0, 1]);
+// Uint8Array(2) [ 0, 1 ]
 ```
 
-<details>
-  <summary>View Example</summary>
+  </details>
 
-```typescript
-import { gweiToEther } from 'essential-eth';
+  <br/>
 
-gweiToEther(1000000000).toString();
-// "1"
-
-gweiToEther(1000000000).toNumber();
-// 1
-gweiToEther('1000000000').toNumber();
-// 1
-```
-
-</details>
-
-<br/>
-
-#### `etherToGwei`
+#### [`etherToGwei`](https://essential-eth.vercel.app/docs/api/modules#ethertogwei)
 
 ```typescript
 etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
 ```
 
-<details>
+  <details>
   <summary>View Example</summary>
 
-```typescript
+```js
 import { etherToGwei } from 'essential-eth';
 
-etherToGwei(0.000000001).toString();
-// "1"
-
-etherToGwei(0.000000001).toNumber();
-// 1
-etherToGwei('0.000000001').toNumber();
-// 1
+// or in a require environment
+const { etherToGwei } = require('essential-eth');
 ```
 
-</details>
+```javascript
+etherToGwei('1000').toString();
+// '1000000000000'
+etherToGwei(1000).toString();
+// '1000000000000'
+```
 
-<br/>
+```javascript
+etherToGwei('1000').toNumber();
+// 1000000000000
+etherToGwei(1000).toNumber();
+// 1000000000000
+```
 
-#### `toChecksumAddress`
+  </details>
+
+  <br/>
+
+#### [`etherToWei`](https://essential-eth.vercel.app/docs/api/modules#ethertowei)
 
 ```typescript
-// return proper mixed-case address
-// does not support ICAP addresses
-toChecksumAddress(address: string): string
+etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
 ```
 
-<details>
+  <details>
   <summary>View Example</summary>
 
-```typescript
-import { toChecksumAddress } from 'essential-eth';
+```js
+import { etherToWei } from 'essential-eth';
 
-toChecksumAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
-// "0xc0DEAF6bD3F0c6574a6a625EF2F22f62A5150EAB"
+// or in a require environment
+const { etherToWei } = require('essential-eth');
 ```
 
-</details>
+```javascript
+etherToWei('1000').toString();
+// '1000000000000000000000'
+etherToWei(1000).toString();
+// '1000000000000000000000'
+```
 
-<br/>
+```javascript
+etherToWei('1000').toNumber();
+// 1000000000000000000000
+etherToWei(1000).toNumber();
+// 1000000000000000000000
+```
 
-#### `isAddress`
+  </details>
+
+  <br/>
+
+#### [`gweiToEther`](https://essential-eth.vercel.app/docs/api/modules#gweitoether)
 
 ```typescript
-// returns boolean as to whether input is a valid address
-// does not support ENS nor ICAP
+gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { gweiToEther } from 'essential-eth';
+
+// or in a require environment
+const { gweiToEther } = require('essential-eth');
+```
+
+```javascript
+gweiToEther('1000000000000').toString();
+// '1000'
+gweiToEther(1000000000000).toString();
+// '1000'
+```
+
+```javascript
+gweiToEther('1000000000000').toNumber();
+// 1000
+gweiToEther(1000000000000).toNumber();
+// 1000
+```
+
+  </details>
+
+  <br/>
+
+#### [`hashMessage`](https://essential-eth.vercel.app/docs/api/modules#hashmessage)
+
+```typescript
+hashMessage(message: string | Bytes): string
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hashMessage } from 'essential-eth';
+
+// or in a require environment
+const { hashMessage } = require('essential-eth');
+```
+
+```js
+hashMessage('Hello World');
+// '0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2'
+```
+
+  </details>
+
+  <br/>
+
+#### [`hexConcat`](https://essential-eth.vercel.app/docs/api/modules#hexconcat)
+
+```typescript
+hexConcat(items: Array<BytesLike>): string
+```
+
+  <br/>
+
+#### [`hexDataLength`](https://essential-eth.vercel.app/docs/api/modules#hexdatalength)
+
+```typescript
+hexDataLength(data: BytesLike): null | number
+```
+
+  <br/>
+
+#### [`hexDataSlice`](https://essential-eth.vercel.app/docs/api/modules#hexdataslice)
+
+```typescript
+hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
+```
+
+  <br/>
+
+#### [`hexStripZeros`](https://essential-eth.vercel.app/docs/api/modules#hexstripzeros)
+
+```typescript
+hexStripZeros(value: BytesLike): string
+```
+
+  <br/>
+
+#### [`hexValue`](https://essential-eth.vercel.app/docs/api/modules#hexvalue)
+
+```typescript
+hexValue(value: number | bigint | BytesLike | Hexable): string
+```
+
+  <br/>
+
+#### [`hexZeroPad`](https://essential-eth.vercel.app/docs/api/modules#hexzeropad)
+
+```typescript
+hexZeroPad(value: BytesLikeWithNumber, length: number): string
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexZeroPad } from 'essential-eth';
+
+// or in a require environment
+const { hexZeroPad } = require('essential-eth');
+```
+
+```javascript
+hexZeroPad('0x60', 2);
+// '0x0060'
+```
+
+```javascript
+hexZeroPad(0x60, 3);
+// '0x000060'
+```
+
+```javascript
+hexZeroPad('12345', 1);
+// Throws
+```
+
+  </details>
+
+  <br/>
+
+#### [`hexlify`](https://essential-eth.vercel.app/docs/api/modules#hexlify)
+
+```typescript
+hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexlify } from 'essential-eth';
+
+// or in a require environment
+const { hexlify } = require('essential-eth');
+```
+
+```js
+hexlify(4);
+// '0x04'
+
+hexlify(14);
+// '0x0e'
+```
+
+  </details>
+
+  <br/>
+
+#### [`isAddress`](https://essential-eth.vercel.app/docs/api/modules#isaddress)
+
+```typescript
 isAddress(address: string): boolean
 ```
 
-<details>
+  <details>
   <summary>View Example</summary>
 
-```typescript
+```js
 import { isAddress } from 'essential-eth';
 
+// or in a require environment
+const { isAddress } = require('essential-eth');
+```
+
+```javascript
 isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
 // true
+```
 
+```javascript
 isAddress('bad');
 // false
+```
 
+```javascript
 // Does NOT support ENS.
 isAddress('vitalik.eth');
 // false
 ```
 
-</details>
+  </details>
 
-<br/>
+  <br/>
 
-#### `hexZeroPad`
+#### [`isBytes`](https://essential-eth.vercel.app/docs/api/modules#isbytes)
 
 ```typescript
-// returns a hex string padded to a specified length of bytes
-// if the hex value provided is already longer than the padding value, the value itself is returned without alteration
-hexZeroPad(hexValue: string | number, length: number): string
+isBytes(value: any): value
 ```
 
-<details>
+  <details>
   <summary>View Example</summary>
 
-```typescript
-import { hexZeroPad } from 'essential-eth';
+```js
+import { isBytes } from 'essential-eth';
 
-hexZeroPad('0x60', 2);
-// '0x0060'
-
-hexZeroPad(0x60, 3);
-// '0x000060'
-
-// Length of string is already longer than padding value
-hexZeroPad('0x31323334', 3);
-// Throws error
+// or in a require environment
+const { isBytes } = require('essential-eth');
 ```
 
-</details>
+```js
+isBytes([1, 2, 3]);
+// true
+```
 
+```js
+isBytes(false);
+// false
+```
+
+```js
+isBytes(new Uint8Array(1));
+// true
+```
+
+  </details>
+
+  <br/>
+
+#### [`isBytesLike`](https://essential-eth.vercel.app/docs/api/modules#isbyteslike)
+
+```typescript
+isBytesLike(value: any): value
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { isBytesLike } from 'essential-eth';
+
+// or in a require environment
+const { isBytesLike } = require('essential-eth');
+```
+
+```js
+isBytesLike([1, 2, 3]);
+// true
+```
+
+```js
+isBytesLike(false);
+// false
+```
+
+```js
+isBytesLike(new Uint8Array(1));
+// true
+```
+
+  </details>
+
+  <br/>
+
+#### [`isHexString`](https://essential-eth.vercel.app/docs/api/modules#ishexstring)
+
+```typescript
+isHexString(value: any, length: number): boolean
+```
+
+  <br/>
+
+#### [`jsonRpcProvider`](https://essential-eth.vercel.app/docs/api/modules#jsonrpcprovider)
+
+```typescript
+jsonRpcProvider(rpcUrl: string): JsonRpcProvider
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { jsonRpcProvider } from 'essential-eth';
+
+// or in a require environment
+const { jsonRpcProvider } = require('essential-eth');
+```
+
+```javascript
+jsonRpcProvider()
+  .getBlock('latest')
+  .then((block) => {
+    console.log(block.number);
+  });
+// 14530496
+```
+
+  </details>
+
+  <br/>
+
+#### [`keccak256`](https://essential-eth.vercel.app/docs/api/modules#keccak256)
+
+```typescript
+keccak256(data: BytesLike): string
+```
+
+  <br/>
+
+#### [`pack`](https://essential-eth.vercel.app/docs/api/modules#pack)
+
+```typescript
+pack(types: Array<string>, values: Array<any>): string
+```
+
+  <br/>
+
+#### [`solidityKeccak256`](https://essential-eth.vercel.app/docs/api/modules#soliditykeccak256)
+
+```typescript
+solidityKeccak256(types: Array<string>, values: Array<any>): string
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { solidityKeccak256 } from 'essential-eth';
+
+// or in a require environment
+const { solidityKeccak256 } = require('essential-eth');
+```
+
+```javascript
+const types = ['string', 'bool', 'uint32'];
+const values = ['essential-eth is great', true, 14];
+solidityKeccak256(types, values);
+// '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'
+```
+
+```javascript
+const types = ['bytes4', 'uint32[5]'];
+const values = [
+  [116, 101, 115, 116],
+  [5, 3, 4, 9, 18],
+];
+solidityKeccak256(types, values);
+// '0x038707a887f09355dc545412b058e7ba8f3c74047050c7c5e5e52eec608053d9'
+```
+
+  </details>
+
+  <br/>
+
+#### [`stripZeros`](https://essential-eth.vercel.app/docs/api/modules#stripzeros)
+
+```typescript
+stripZeros(value: BytesLike): Uint8Array
+```
+
+  <br/>
+
+#### [`tinyBig`](https://essential-eth.vercel.app/docs/api/modules#tinybig)
+
+```typescript
+tinyBig(value: string | number | TinyBig | Big): TinyBig
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { tinyBig } from 'essential-eth';
+
+// or in a require environment
+const { tinyBig } = require('essential-eth');
+```
+
+```javascript
+tinyBig(10).times(3).toNumber();
+// 30
+```
+
+  </details>
+
+  <br/>
+
+#### [`toChecksumAddress`](https://essential-eth.vercel.app/docs/api/modules#tochecksumaddress)
+
+```typescript
+toChecksumAddress(address: string): string
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { toChecksumAddress } from 'essential-eth';
+
+// or in a require environment
+const { toChecksumAddress } = require('essential-eth');
+```
+
+```javascript
+toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
+// '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
+```
+
+Similar to ["getAddress" in ethers.js](https://docs.ethers.io/v5/api/utils/address/#utils-getAddress)
+
+Similar to ["toChecksumAddress" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#tochecksumaddress)
+
+  </details>
+
+  <br/>
+
+#### [`toUtf8Bytes`](https://essential-eth.vercel.app/docs/api/modules#toutf8bytes)
+
+```typescript
+toUtf8Bytes(data: string): Uint8Array
+```
+
+  <br/>
+
+#### [`weiToEther`](https://essential-eth.vercel.app/docs/api/modules#weitoether)
+
+```typescript
+weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { weiToEther } from 'essential-eth';
+
+// or in a require environment
+const { weiToEther } = require('essential-eth');
+```
+
+```javascript
+weiToEther('1000000000000000000000').toString();
+// '1000'
+weiToEther(1000000000000000000000).toString();
+// '1000'
+```
+
+```javascript
+weiToEther('1000000000000000000000').toNumber();
+// 1000
+weiToEther(1000000000000000000000).toNumber();
+// 1000
+```
+
+  </details>
+
+  <br/>
+
+#### [`zeroPad`](https://essential-eth.vercel.app/docs/api/modules#zeropad)
+
+```typescript
+zeroPad(value: BytesLike, length: number): Uint8Array
+```
+
+  <br/>
+
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+
+- _The return-type `TinyBig` is just [`Big`](https://github.com/MikeMcl/big.js) but expands scientific notation on `toNumber()` and `toString()`_
+
+<br/>
 <br/>
 
 ## RPC
@@ -577,7 +1046,7 @@ await provider.getTransaction(
 
 ⚠️ Only read functions are currently supported. ⚠️
 
-- 🧪 This is **highly experimental**, do not use this in production yet. (even though [earni.fi](https://earni.fi) does)
+- 🧪 `Contract` support is **experimental**, do not use this in production yet. (even though [earni.fi](https://earni.fi) does)
 
 Encoding support:
 
@@ -593,7 +1062,7 @@ Decoding support:
 - `bytes32`
 - `uint8`
 
-_Assume any smart-contract method outside the above types will break_
+_Assume all types outside the above types will break for now_
 
 ```typescript
 import { Contract, jsonRpcProvider, JSONABI } from 'essential-eth';
