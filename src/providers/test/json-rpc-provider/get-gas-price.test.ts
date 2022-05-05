@@ -12,6 +12,8 @@ describe('provider.getGasPrice', () => {
       ethersProvider.getGasPrice(),
       essentialEthProvider.getGasPrice(),
     ]);
-    expect(ethersGasPrice.toNumber()).toBe(essentialEthGasPrice.toNumber());
+    expect(
+      ethersGasPrice.sub(essentialEthGasPrice.toString()).toNumber(),
+    ).toBeLessThan(100);
   });
 });
