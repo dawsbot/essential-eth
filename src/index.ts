@@ -20,7 +20,8 @@ import { toUtf8Bytes } from './utils/to-utf8-bytes';
 import { weiToEther } from './utils/wei-to-ether';
 import { hashMessage } from './utils/hash-message';
 import { splitSignature } from './utils/split-signature';
-import { computeAddress } from './utils/compute-address'
+import { computeAddress } from './utils/compute-address';
+import { computePublicKey } from './utils/compute-public-key';
 
 export * from './utils/bytes';
 export * from './utils/hash-message';
@@ -42,6 +43,7 @@ export {
   // verifyMessage,
   toUtf8Bytes,
   computeAddress,
+  computePublicKey,
   /* classes */
   Contract,
   TinyBig,
