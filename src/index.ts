@@ -18,6 +18,8 @@ import { toChecksumAddress } from './utils/to-checksum-address';
 // import { verifyMessage } from './utils/verify-message';
 import { toUtf8Bytes } from './utils/to-utf8-bytes';
 import { weiToEther } from './utils/wei-to-ether';
+import { hashMessage } from './utils/hash-message';
+import { splitSignature } from './utils/split-signature';
 
 export * from './utils/bytes';
 export * from './utils/hash-message';
@@ -34,6 +36,8 @@ export {
   toChecksumAddress,
   weiToEther,
   gweiToEther,
+  hashMessage,
+  splitSignature,
   // verifyMessage,
   toUtf8Bytes,
   /* classes */
