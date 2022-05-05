@@ -17,6 +17,7 @@ import { etherToWei } from './utils/ether-to-wei';
 import { gweiToEther } from './utils/gwei-to-ether';
 import { hashMessage } from './utils/hash-message';
 import { isAddress } from './utils/is-address';
+import { recoverAddress } from './utils/recover-address';
 import { recoverPublicKey } from './utils/recover-public-key';
 import { splitSignature } from './utils/split-signature';
 import { toChecksumAddress } from './utils/to-checksum-address';
@@ -46,6 +47,7 @@ export {
   toUtf8Bytes,
   computeAddress,
   computePublicKey,
+  recoverAddress,
   /* classes */
   Contract,
   TinyBig,
