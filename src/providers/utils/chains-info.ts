@@ -449,6 +449,9 @@ export default {
   "588": [
     "metis-stardust"
   ],
+  "592": [
+    "astr"
+  ],
   "595": [
     "maca"
   ],
