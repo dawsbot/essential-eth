@@ -66,6 +66,7 @@
   - [`jsonRpcProvider`](#jsonrpcprovider)
   - [`keccak256`](#keccak256)
   - [`pack`](#pack)
+  - [`recoverAddress`](#recoveraddress)
   - [`solidityKeccak256`](#soliditykeccak256)
   - [`stripZeros`](#stripzeros)
   - [`tinyBig`](#tinybig)
@@ -557,6 +558,14 @@ keccak256(data: BytesLike): string
 
 ```typescript
 pack(types: Array<string>, values: Array<any>): string
+```
+
+  <br/>
+
+#### [`recoverAddress`](https://essential-eth.vercel.app/docs/api/modules#recoveraddress)
+
+```typescript
+recoverAddress(digest: BytesLike, signature: SignatureLike): string
 ```
 
   <br/>
