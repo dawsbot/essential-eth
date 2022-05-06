@@ -14,8 +14,8 @@ import { etherToGwei } from './utils/ether-to-gwei';
 import { etherToWei } from './utils/ether-to-wei';
 import { gweiToEther } from './utils/gwei-to-ether';
 import { isAddress } from './utils/is-address';
+import { recoverAddress } from './utils/recover-address';
 import { toChecksumAddress } from './utils/to-checksum-address';
-// import { verifyMessage } from './utils/verify-message';
 import { toUtf8Bytes } from './utils/to-utf8-bytes';
 import { weiToEther } from './utils/wei-to-ether';
 import { hashMessage } from './utils/hash-message';
@@ -38,7 +38,6 @@ export {
   gweiToEther,
   hashMessage,
   splitSignature,
-  // verifyMessage,
   toUtf8Bytes,
   /* classes */
   Contract,
