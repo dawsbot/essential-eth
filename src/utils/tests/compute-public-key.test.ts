@@ -9,7 +9,6 @@ describe('computePublicKey', () => {
       '0xb6d36857e1f9b68e413d2496bb588f3650cdcc2398b3941963c44db8108b8671',
       '0xf237d9763445d41150f9a199ad93ad478dff29ad8fe6fa00149ed12f40f8eb6f']
     privateKeys.forEach((key) => {
-      console.log(computePublicKey(key))
       expect(computePublicKey(key)).toBe(
         utils.computePublicKey(key),
       );
