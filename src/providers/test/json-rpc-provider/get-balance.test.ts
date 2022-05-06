@@ -17,8 +17,8 @@ async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
   expect(eeBalance.toString()).toBe(ethersBalance.toString());
   expect(eeBalance.toString()).toBe(web3Balance);
 }
-describe('provider.getBalance gno', () => {
-  const rpcUrl = rpcUrls.mainnet;
+describe('provider.getBalance matic', () => {
+  const rpcUrl = rpcUrls.matic;
   it('should get latest equal to ethers', async () => {
     await Promise.all([
       testGetBalance(rpcUrl, 'latest'),

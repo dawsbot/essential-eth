@@ -18,7 +18,7 @@ import {
  * @param signature the signature object to split, parse, and compute missing properties from
  *
  * @returns a full signature object with all properties filled
- * 
+ *
  * @example
  * ```javascript
  * const signature = '0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee331b';
@@ -36,7 +36,7 @@ import {
  */
 
 export function splitSignature(signature: SignatureLike): Signature {
-  let result = {
+  const result = {
     r: '0x',
     s: '0x',
     _vs: '0x',
@@ -46,7 +46,7 @@ export function splitSignature(signature: SignatureLike): Signature {
     compact: '0x',
   };
   if (isBytesLike(signature)) {
-    let bytes = arrayify(signature);
+    const bytes = arrayify(signature);
     // Get the r, s and v
     if (bytes.length === 64) {
       // EIP-2098; pull the v from the top bit of s and clear it
@@ -93,10 +93,10 @@ export function splitSignature(signature: SignatureLike): Signature {
     // If the _vs is available, use it to populate missing s, v and recoveryParam
     // and verify non-missing s, v and recoveryParam
     if (result._vs != null) {
-      var vs_1 = zeroPad(arrayify(result._vs), 32);
+      const vs_1 = zeroPad(arrayify(result._vs), 32);
       result._vs = hexlify(vs_1);
       // Set or check the recid
-      var recoveryParam = vs_1[0] >= 128 ? 1 : 0;
+      const recoveryParam = vs_1[0] >= 128 ? 1 : 0;
       if (result.recoveryParam == null) {
         result.recoveryParam = recoveryParam;
       } else if (result.recoveryParam !== recoveryParam) {
@@ -108,7 +108,7 @@ export function splitSignature(signature: SignatureLike): Signature {
       }
       // Set or check the s
       vs_1[0] &= 0x7f;
-      var s = hexlify(vs_1);
+      const s = hexlify(vs_1);
       if (result.s == null) {
         result.s = s;
       } else if (result.s !== s) {
@@ -136,7 +136,7 @@ export function splitSignature(signature: SignatureLike): Signature {
       if (result.v == null) {
         result.v = 27 + result.recoveryParam;
       } else {
-        var recId =
+        const recId =
           result.v === 0 || result.v === 1 ? result.v : 1 - (result.v % 2);
         if (result.recoveryParam !== recId) {
           logger.throwArgumentError(
@@ -165,7 +165,7 @@ export function splitSignature(signature: SignatureLike): Signature {
     } else {
       result.s = hexZeroPad(result.s, 32);
     }
-    var vs = arrayify(result.s);
+    const vs = arrayify(result.s);
     if (vs[0] >= 128) {
       logger.throwArgumentError(
         'signature s out of range',
@@ -176,7 +176,7 @@ export function splitSignature(signature: SignatureLike): Signature {
     if (result.recoveryParam) {
       vs[0] |= 0x80;
     }
-    var _vs = hexlify(vs);
+    const _vs = hexlify(vs);
     if (result._vs) {
       if (!isHexString(result._vs)) {
         logger.throwArgumentError(
