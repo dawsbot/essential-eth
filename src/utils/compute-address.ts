@@ -10,7 +10,7 @@ import { keccak256 } from './keccak256';
  * @returns the address that corresponds to the key specified
  */
 export function computeAddress(key: string): string {
-  if (!key.startsWith('0x04')) {
+  if (!key.startsWith('0x04') && !key.startsWith('0x03') && !key.startsWith('0x02')) {
     key = computePublicKey(key);
   }
   return toChecksumAddress(hexDataSlice(keccak256(hexDataSlice(key, 1)), 12));
