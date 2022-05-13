@@ -14,4 +14,12 @@ describe('splitSignature', () => {
       );
     });
   });
+  it('should throw error on signature not of 64 or 65 bytes', () => {
+    const signature =
+      '0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33238423849234765127';
+
+    expect(() => {
+      splitSignature(signature);
+    }).toThrow('invalid signature string');
+  });
 });
