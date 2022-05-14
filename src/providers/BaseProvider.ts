@@ -58,6 +58,8 @@ export abstract class BaseProvider {
           (key) => (chainsInfo as any)[key][0] === network,
         );
         info = (chainsInfo as any)[Number(chainId)];
+      } else if (typeof network === 'object') {
+        
       }
     } else {
       const hexChainId = (await this.post(
