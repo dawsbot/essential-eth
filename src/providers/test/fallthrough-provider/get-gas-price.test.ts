@@ -48,7 +48,7 @@ describe('provider.getGasPrice', () => {
       () =>
         new FallthroughProvider(
           ['https://flash-sgkl.onrender.com/delay/10000', rpcUrl],
-          { timeoutDuration: 2000 },
+          { timeoutDuration: 2500 },
         ),
     );
 
