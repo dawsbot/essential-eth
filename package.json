@@ -30,7 +30,8 @@
     "prepare": "husky install",
     "version": "npx genversion --es6 src/logger/package-version.ts && git add src/logger/package-version.ts",
     "postversion": "git push --follow-tags",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "doc": "typedoc --json scripts/markdown-magic/typedoc.out.json --pretty src/index.ts --plugin typedoc-plugin-missing-exports"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.1",
@@ -66,7 +67,9 @@
     "@types/big.js": "^6.1.3",
     "big.js": "^6.1.1",
     "isomorphic-unfetch": "^3.1.0",
-    "sha3": "^2.1.4"
+    "sha3": "^2.1.4",
+    "typedoc": "^0.22.15",
+    "typedoc-plugin-missing-exports": "^0.22.6"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,scss,md,json,html,yml,yaml}": [
