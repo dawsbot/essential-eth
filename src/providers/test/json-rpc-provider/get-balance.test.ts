@@ -4,7 +4,7 @@ import { JsonRpcProvider } from '../../..';
 import { BlockTag } from '../../../types/Block.types';
 import { rpcUrls } from '../rpc-urls';
 
-const address = '0x0000000000000000000000000000000000000000';
+const address = '0x0000000000000000000000000000000000000001';
 async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
   const eeProvider = new JsonRpcProvider(rpcUrl);
   const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
