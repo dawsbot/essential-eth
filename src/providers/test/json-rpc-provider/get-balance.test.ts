@@ -4,7 +4,7 @@ import { JsonRpcProvider } from '../../..';
 import { BlockTag } from '../../../types/Block.types';
 import { rpcUrls } from '../rpc-urls';
 
-const address = '0x0000000000000000000000000000000000000000';
+const address = '0x0000000000000000000000000000000000000001';
 async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
   const eeProvider = new JsonRpcProvider(rpcUrl);
   const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
@@ -17,8 +17,8 @@ async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
   expect(eeBalance.toString()).toBe(ethersBalance.toString());
   expect(eeBalance.toString()).toBe(web3Balance);
 }
-describe('provider.getBalance gno', () => {
-  const rpcUrl = rpcUrls.mainnet;
+describe('provider.getBalance matic', () => {
+  const rpcUrl = rpcUrls.matic;
   it('should get latest equal to ethers', async () => {
     await Promise.all([
       testGetBalance(rpcUrl, 'latest'),

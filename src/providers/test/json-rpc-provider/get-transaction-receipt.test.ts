@@ -77,13 +77,10 @@ describe('provider.getTransactionReceipt', () => {
     const omittedTransactionReceipt2 = omit(transactionReceipt2, omittable2) as
       | TransactionReceipt
       | web3core.TransactionReceipt;
-    omittedTransactionReceipt1.logs = (() => {
-      const logs: any = [];
-      omittedTransactionReceipt1.logs.forEach((log) => {
-        logs.push(omit(log, ['id', 'removed']));
-      });
-      return logs as any;
-    })();
+
+    omittedTransactionReceipt1.logs = omittedTransactionReceipt1.logs.map(
+      (log) => omit(log, ['id', 'removed']) as any,
+    );
 
     expect(omittedTransactionReceipt1).toStrictEqual(
       omittedTransactionReceipt2,

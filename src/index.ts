@@ -10,12 +10,15 @@ import {
 } from './types/Contract.types';
 import { Network } from './types/Network.types';
 import { TransactionResponse } from './types/Transaction.types';
+import { computeAddress } from './utils/compute-address';
+import { computePublicKey } from './utils/compute-public-key';
 import { etherToGwei } from './utils/ether-to-gwei';
 import { etherToWei } from './utils/ether-to-wei';
 import { gweiToEther } from './utils/gwei-to-ether';
+import { hashMessage } from './utils/hash-message';
 import { isAddress } from './utils/is-address';
+import { splitSignature } from './utils/split-signature';
 import { toChecksumAddress } from './utils/to-checksum-address';
-// import { verifyMessage } from './utils/verify-message';
 import { toUtf8Bytes } from './utils/to-utf8-bytes';
 import { weiToEther } from './utils/wei-to-ether';
 
@@ -34,8 +37,11 @@ export {
   toChecksumAddress,
   weiToEther,
   gweiToEther,
-  // verifyMessage,
+  hashMessage,
+  splitSignature,
   toUtf8Bytes,
+  computeAddress,
+  computePublicKey,
   /* classes */
   Contract,
   TinyBig,

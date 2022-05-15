@@ -365,6 +365,9 @@ export default {
   "226": [
     "TLA"
   ],
+  "239": [
+    "AITD"
+  ],
   "246": [
     "ewt"
   ],
@@ -449,8 +452,17 @@ export default {
   "588": [
     "metis-stardust"
   ],
+  "592": [
+    "astr"
+  ],
   "595": [
     "maca"
+  ],
+  "596": [
+    "tkar"
+  ],
+  "597": [
+    "taca"
   ],
   "600": [
     "mesh-chain-testnet"
@@ -472,6 +484,9 @@ export default {
   ],
   "721": [
     "tfeth"
+  ],
+  "776": [
+    "opc"
   ],
   "777": [
     "cth"
@@ -629,6 +644,12 @@ export default {
   "2001": [
     "milkAda"
   ],
+  "2008": [
+    "cloudwalk_testnet"
+  ],
+  "2009": [
+    "cloudwalk_mainnet"
+  ],
   "2020": [
     "420"
   ],
@@ -637,6 +658,9 @@ export default {
   ],
   "2022": [
     "edgt"
+  ],
+  "2023": [
+    "taycan-testnet"
   ],
   "2025": [
     "rpg"
@@ -667,6 +691,12 @@ export default {
   ],
   "2569": [
     "tpc"
+  ],
+  "2612": [
+    "EZChain"
+  ],
+  "2613": [
+    "Fuji-EZChain"
   ],
   "3000": [
     "cennz-r"
@@ -835,6 +865,9 @@ export default {
   ],
   "21816": [
     "oml"
+  ],
+  "22023": [
+    "SFL"
   ],
   "24484": [
     "web"
