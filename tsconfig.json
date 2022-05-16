@@ -23,6 +23,9 @@
   "typedocOptions": {
     "entryPoints": ["src/index.ts"],
     "json": "scripts/markdown-magic/typedoc.out.json",
-    "plugin": ["typedoc-plugin-missing-exports"]
+    "intentionallyNotExported": [
+      "src/types/Transaction.types.ts:Modify",
+      "src/types/Block.types.ts:Modify",
+    ]
   }
 }
