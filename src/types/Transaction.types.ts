@@ -1,6 +1,7 @@
 import { TinyBig } from '../shared/tiny-big/tiny-big';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
+
 export interface RPCTransaction extends RPCBlockTransaction {
   // not in getBlock transactions, only in getTransaction response
   maxFeePerGas: string /* "0xfc21e1832", */;

@@ -10,7 +10,7 @@ const promiseTimeout = (prom: Promise<any>, time: number) =>
     ),
   ]);
 
-interface ConstructorOptions {
+export interface ConstructorOptions {
   timeoutDuration?: number;
 }
 const DEFAULT_TIMEOUT_DURATION = 8000;

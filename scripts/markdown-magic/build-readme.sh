@@ -1,4 +1,4 @@
-npx typedoc --json scripts/markdown-magic/typedoc.out.json --pretty src/index.ts
+npm run doc
 npx markdown-magic
 # add a newline above all markdown magic comments
 # This was breaking the docusaurus jsx rendering otherwise

@@ -1,15 +1,26 @@
-import { Contract } from './classes/Contract';
-import { FallthroughProvider } from './providers/FallthroughProvider';
+import { BaseContract, Contract } from './classes/Contract';
+import {
+  ConstructorOptions,
+  FallthroughProvider,
+} from './providers/FallthroughProvider';
 import { JsonRpcProvider, jsonRpcProvider } from './providers/JsonRpcProvider';
 import { tinyBig, TinyBig } from './shared/tiny-big/tiny-big';
-import { BlockResponse } from './types/Block.types';
+import { BlockResponse, BlockTag, RPCBlock } from './types/Block.types';
 import {
   ContractTypes,
   JSONABI,
   JSONABIArgument,
 } from './types/Contract.types';
 import { Network } from './types/Network.types';
-import { TransactionResponse } from './types/Transaction.types';
+import {
+  BlockTransactionResponse,
+  Log,
+  RPCLog,
+  RPCTransaction,
+  RPCTransactionReceipt,
+  TransactionReceipt,
+  TransactionResponse,
+} from './types/Transaction.types';
 import { computeAddress } from './utils/compute-address';
 import { computePublicKey } from './utils/compute-public-key';
 import { etherToGwei } from './utils/ether-to-gwei';
@@ -46,10 +57,20 @@ export {
   Contract,
   TinyBig,
   /* types */
+  BaseContract,
   BlockResponse,
   ContractTypes,
   JSONABI,
   JSONABIArgument,
   Network,
   TransactionResponse,
+  RPCBlock,
+  RPCTransaction,
+  RPCTransactionReceipt,
+  TransactionReceipt,
+  BlockTag,
+  RPCLog,
+  Log,
+  BlockTransactionResponse,
+  ConstructorOptions,
 };
