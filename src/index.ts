@@ -1,4 +1,4 @@
-import { Contract } from './classes/Contract';
+import { BaseContract, Contract } from './classes/Contract';
 import {
   ConstructorOptions,
   FallthroughProvider,
@@ -57,6 +57,7 @@ export {
   Contract,
   TinyBig,
   /* types */
+  BaseContract,
   BlockResponse,
   ContractTypes,
   JSONABI,
