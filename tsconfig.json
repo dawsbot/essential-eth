@@ -19,5 +19,13 @@
   },
   "include": ["./src"],
   "types": ["node", "jest"],
-  "exclude": ["src/**/*.test.ts", "markdown.config.js"]
+  "exclude": ["src/**/*.test.ts", "markdown.config.js"],
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "json": "scripts/markdown-magic/typedoc.out.json",
+    "intentionallyNotExported": [
+      "src/types/Transaction.types.ts:Modify",
+      "src/types/Block.types.ts:Modify",
+    ]
+  }
 }
