@@ -1,3 +1,4 @@
+import { BytesLike } from './../utils/bytes';
 import { TinyBig } from '../shared/tiny-big/tiny-big';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -50,17 +51,19 @@ export type TransactionReceipt = Modify<
   }
 >;
 
-export type TransactionRequest = Omit<
-  TransactionResponse,
-  | 'blockNumber'
-  | 'blockHash'
-  | 'r'
-  | 's'
-  | 'gas'
-  | 'transactionIndex'
-  | 'v'
-  | 'confirmations'
->;
+export interface TransactionRequest {
+  to?: string,
+  from?: string,
+  nonce?: TinyBig,
+  gasLimit?: TinyBig,
+  gasPrice?: TinyBig,
+  data?: BytesLike,
+  value?: TinyBig,
+  chainId?: number
+  type?: number;
+  maxPriorityFeePerGas?: TinyBig;
+  maxFeePerGas?: TinyBig;
+}
 
 /**
  * Type for the logs that are included in transaction receipts
