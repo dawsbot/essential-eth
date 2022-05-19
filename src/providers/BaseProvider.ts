@@ -56,6 +56,16 @@ export abstract class BaseProvider {
   }
 
   /**
+   *
+   */
+  public async getBlockNumber(): Promise<Number> {
+    const currentBlockNumber = (await this.post(
+      buildRPCPostBody('eth_blockNumber', []),
+    )) as string;
+    return Number(hexToDecimal(currentBlockNumber));
+  }
+
+  /**
    * * Similar to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included
    *
    * @returns information about one transaction
