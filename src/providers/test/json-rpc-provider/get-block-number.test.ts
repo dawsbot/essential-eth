@@ -1,6 +1,6 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import Web3 from 'web3';
-import { JsonRpcProvider } from './../../JsonRpcProvider';
+import { JsonRpcProvider } from '../../../index';
 
 // RSK has 30 second block times so tests pass more often
 const rpcUrl = `https://public-node.rsk.co`;
