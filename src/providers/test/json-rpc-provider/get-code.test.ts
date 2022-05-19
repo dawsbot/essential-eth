@@ -51,8 +51,8 @@ describe('provider.getCode', () => {
   });
   it('should return `0x` when a contract does not exist', async () => {
     const invalidInput = {
-      address: '0xeb4ba2e98b89b3ad5156058e57a94a2883cccf63',
-      blockTag: 'latest',
+      address: '0xd31a02A126Bb7ACD359BD61E9a8276959408855E',
+      blockTag: 28314328,
     };
     const essentialEthProvider = new JsonRpcProvider(rpcUrl);
     const essentialEthCode = await essentialEthProvider.getCode(
