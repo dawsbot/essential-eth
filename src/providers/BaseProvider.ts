@@ -385,12 +385,21 @@ export abstract class BaseProvider {
   }
 
   /**
+   * Gets the code of a contract on a specified block
    *
+   * * Identical to [`ethers.provider.getCode`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getCode)
+   * * Similar to [`web3.eth.getCode`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getcode); does not accept TinyBig/BN/BigNumber
+   *
+   * @param address the contract address to get the contract code from
+   *
+   * @param blockTag the block height to search for the contract code from. Contract code can change, so this allows for checking a specific block
+   *
+   * @returns the contract creation code for the specified address at the specified block height
    */
   public async getCode(
     address: string,
     blockTag: BlockTag = 'latest',
-  ): Promise<any> {
+  ): Promise<string> {
     if (typeof blockTag === 'number') {
       blockTag = `0x${blockTag.toString(16)}`;
     }
