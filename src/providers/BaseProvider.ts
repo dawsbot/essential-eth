@@ -56,6 +56,26 @@ export abstract class BaseProvider {
   }
 
   /**
+   * Gets the number of the most recently mined block on the network the provider is connected to
+   *
+   * * Identical to [`ethers.provider.getBlockNumber`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBlockNumber)
+   * * Identical to [`web3.eth.getBlockNumber`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getblocknumber)
+   *
+   * @returns the number of the most recently mined block
+   * @example
+   * ```js
+   * await provider.getBlockNumber();
+   * // 1053312
+   * ```
+   */
+  public async getBlockNumber(): Promise<number> {
+    const currentBlockNumber = (await this.post(
+      buildRPCPostBody('eth_blockNumber', []),
+    )) as string;
+    return Number(hexToDecimal(currentBlockNumber));
+  }
+
+  /**
    * * Similar to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included
    *
    * @returns information about one transaction
