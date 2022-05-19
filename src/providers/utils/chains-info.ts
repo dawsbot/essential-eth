@@ -629,6 +629,9 @@ export default {
   "1688": [
     "LUDAN"
   ],
+  "1819": [
+    "cubet"
+  ],
   "1856": [
     "tsf"
   ],
@@ -864,7 +867,7 @@ export default {
     "cennz-a"
   ],
   "21816": [
-    "oml"
+    "omc"
   ],
   "22023": [
     "SFL"
@@ -874,6 +877,9 @@ export default {
   ],
   "24734": [
     "mintme"
+  ],
+  "30067": [
+    "Piece"
   ],
   "31102": [
     "esn"
@@ -918,7 +924,7 @@ export default {
     "ALFA"
   ],
   "45000": [
-    "autobahn"
+    "Autobahn Network"
   ],
   "47805": [
     "REI"
