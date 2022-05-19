@@ -62,6 +62,11 @@ export abstract class BaseProvider {
    * * Identical to [`web3.eth.getBlockNumber`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getblocknumber)
    *
    * @returns the number of the most recently mined block
+   * @example
+   * ```js
+   * await provider.getBlockNumber();
+   * // 1053312
+   * ```
    */
   public async getBlockNumber(): Promise<number> {
     const currentBlockNumber = (await this.post(
