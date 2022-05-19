@@ -36,7 +36,9 @@ type RPCMethodName =
   | 'eth_getTransactionByHash'
   | 'eth_getTransactionReceipt'
   | 'eth_getTransactionCount'
-  | 'eth_getCode';
+  | 'eth_getCode'
+  | 'eth_blockNumber';
+
 export function buildRPCPostBody(method: RPCMethodName, params: unknown[]) {
   return {
     jsonrpc: '2.0',

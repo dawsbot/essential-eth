@@ -8,7 +8,7 @@
     🪶 Essential Eth 🪶
   </b>
   <br/>
-  <i>A replacement for ethers & web3 that's 20x smaller</i>
+  <i>An alternative for ethers & web3 that's 20x smaller</i>
   <br/>
 </p>
 
