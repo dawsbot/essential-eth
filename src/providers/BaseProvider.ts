@@ -375,9 +375,28 @@ export abstract class BaseProvider {
     address: string,
     blockTag: BlockTag = 'latest',
   ): Promise<TinyBig> {
+    if (typeof blockTag === 'number') {
+      blockTag = `0x${blockTag.toString(16)}`;
+    }
     const hexBalance = (await this.post(
       buildRPCPostBody('eth_getBalance', [address, blockTag]),
     )) as string;
     return tinyBig(hexToDecimal(hexBalance));
+  }
+
+  /**
+   *
+   */
+  public async getCode(
+    address: string,
+    blockTag: BlockTag = 'latest',
+  ): Promise<any> {
+    if (typeof blockTag === 'number') {
+      blockTag = `0x${blockTag.toString(16)}`;
+    }
+    const contractCode = (await this.post(
+      buildRPCPostBody('eth_getCode', [address, blockTag]),
+    )) as string;
+    return contractCode;
   }
 }
