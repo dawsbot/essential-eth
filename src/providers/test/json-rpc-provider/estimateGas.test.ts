@@ -4,7 +4,7 @@ import { TransactionRequest } from '../../types';
 import { rpcUrls } from '../rpc-urls';
 
 async function testEstimateGas(transaction: TransactionRequest) {
-  const rpcUrl = rpcUrls.matic;
+  const rpcUrl = rpcUrls.mainnet;
   const eeProvider = new JsonRpcProvider(rpcUrl);
   const ethersProvider = new StaticJsonRpcProvider(rpcUrl);
   const [eeGasUsed, ethersGasUsed] = await Promise.all([
@@ -31,7 +31,7 @@ describe('provider.estimateGas', () => {
       data: '0xd0e30db0',
 
       // 1 ether
-      value: etherToWei('1.0'),
+      value: etherToWei('1.0').toHexString(),
     });
   });
 });

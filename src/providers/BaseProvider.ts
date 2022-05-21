@@ -414,7 +414,7 @@ export abstract class BaseProvider {
    *   // Wrapped ETH address
    *   to: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
    *   data: "0xd0e30db0",
-   *   value: parseEther("1.0")
+   *   value: etherToWei('1.0').toHexString(),
    * });
    * // { TinyBig: "27938" }
    *
