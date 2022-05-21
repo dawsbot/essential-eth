@@ -25,8 +25,7 @@ export class JsonRpcProvider extends BaseProvider {
   }
 
   async estimateGas(transaction: Record<string, unknown>): Promise<TinyBig> {
-    const params = [transaction];
-    const body = buildRPCPostBody('eth_estimateGas', params);
+    const body = buildRPCPostBody('eth_estimateGas', [transaction]);
     const gasUsed = (await this.post(body)) as string;
     return tinyBig(hexToDecimal(gasUsed));
   }
