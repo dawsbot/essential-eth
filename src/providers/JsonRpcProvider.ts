@@ -1,6 +1,3 @@
-import { buildRPCPostBody } from '../classes/utils/fetchers';
-import { hexToDecimal } from '../classes/utils/hex-to-decimal';
-import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { BaseProvider } from './BaseProvider';
 export class JsonRpcProvider extends BaseProvider {
   /**
@@ -22,12 +19,6 @@ export class JsonRpcProvider extends BaseProvider {
    */
   constructor(rpcUrl = 'https://free-eth-node.com/api/eth') {
     super([rpcUrl]);
-  }
-
-  async estimateGas(transaction: Record<string, unknown>): Promise<TinyBig> {
-    const body = buildRPCPostBody('eth_estimateGas', [transaction]);
-    const gasUsed = (await this.post(body)) as string;
-    return tinyBig(hexToDecimal(gasUsed));
   }
 }
 

@@ -63,6 +63,9 @@ describe('wei-to-ether', () => {
     expect(weiToEther('0x14').toString()).toStrictEqual(
       ethers.utils.formatEther('20'),
     );
+    expect(weiToEther(0x14).toString()).toStrictEqual(
+      ethers.utils.formatEther('20'),
+    );
   });
 
   it('wrong types', () => {
