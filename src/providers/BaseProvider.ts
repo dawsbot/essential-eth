@@ -12,6 +12,7 @@ import {
   TransactionReceipt,
   TransactionResponse,
 } from '../types/Transaction.types';
+import { TransactionRequest } from './types';
 import chainsInfo from './utils/chains-info';
 
 function prepBlockTag(blockTag: BlockTag): string {
@@ -420,5 +421,29 @@ export abstract class BaseProvider {
       buildRPCPostBody('eth_getCode', [address, blockTag]),
     )) as string;
     return contractCode;
+    }
+
+   /**
+   * Returns an estimate of the amount of gas that would be required to submit transaction to the network.
+   * An estimate may not be accurate since there could be another transaction on the network that was not accounted for, but after being mined affected relevant state.
+   *
+   * * Same as ["estimateGas" in ethers.js](https://docs.ethers.io/v5/api/providers/provider/#Provider-estimateGas)
+   *
+   * @example
+   * ```js
+   * await provider.estimateGas({
+   *   // Wrapped ETH address
+   *   to: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+   *   data: "0xd0e30db0",
+   *   value: etherToWei('1.0').toHexString(),
+   * });
+   * // { TinyBig: "27938" }
+   *
+   * ```
+   * */
+  async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
+    const body = buildRPCPostBody('eth_estimateGas', [transaction]);
+    const gasUsed = (await this.post(body)) as string;
+    return tinyBig(hexToDecimal(gasUsed));
   }
 }
