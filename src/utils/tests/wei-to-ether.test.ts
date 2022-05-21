@@ -59,6 +59,12 @@ describe('wei-to-ether', () => {
     });
   });
 
+  it('support hex', () => {
+    expect(weiToEther('0x14').toString()).toStrictEqual(
+      ethers.utils.formatEther('20'),
+    );
+  });
+
   it('wrong types', () => {
     expect(() => {
       // @ts-expect-error should not accept boolean
