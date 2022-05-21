@@ -14,6 +14,12 @@ import {
 } from '../types/Transaction.types';
 import chainsInfo from './utils/chains-info';
 
+function prepBlockTag(blockTag: BlockTag): string {
+  return typeof blockTag === 'number'
+    ? tinyBig(blockTag).toHexString()
+    : blockTag;
+}
+
 export abstract class BaseProvider {
   /**
    * ignore
@@ -271,9 +277,7 @@ export abstract class BaseProvider {
     address: string,
     blockTag: BlockTag = 'latest',
   ): Promise<number> {
-    if (typeof blockTag === 'number') {
-      blockTag = `0x${blockTag.toString(16)}`;
-    }
+    blockTag = prepBlockTag(blockTag);
     const transactionCount = (await this.post(
       buildRPCPostBody('eth_getTransactionCount', [address, blockTag]),
     )) as string;
@@ -344,22 +348,15 @@ export abstract class BaseProvider {
     timeFrame: BlockTag = 'latest',
     returnTransactionObjects = false,
   ): Promise<BlockResponse> {
-    let rpcTimeFrame: string;
     let type: 'Number' | 'Hash' = 'Number';
-    if (typeof timeFrame === 'number') {
-      // exact block numbers require hex string format
-      rpcTimeFrame = `0x${timeFrame.toString(16)}`;
-    } else if (timeFrame.startsWith('0x')) {
-      rpcTimeFrame = timeFrame;
+    timeFrame = prepBlockTag(timeFrame);
+    if (timeFrame.startsWith('0x')) {
       // use endpoint that accepts string
       type = 'Hash';
-    } else {
-      // "latest", "earliest", "pending", or hex string require no manipulation
-      rpcTimeFrame = timeFrame;
     }
     const rpcBlock = (await this.post(
       buildRPCPostBody(`eth_getBlockBy${type}`, [
-        rpcTimeFrame,
+        timeFrame,
         returnTransactionObjects,
       ]),
     )) as RPCBlock;
@@ -395,9 +392,7 @@ export abstract class BaseProvider {
     address: string,
     blockTag: BlockTag = 'latest',
   ): Promise<TinyBig> {
-    if (typeof blockTag === 'number') {
-      blockTag = `0x${blockTag.toString(16)}`;
-    }
+    blockTag = prepBlockTag(blockTag);
     const hexBalance = (await this.post(
       buildRPCPostBody('eth_getBalance', [address, blockTag]),
     )) as string;
@@ -420,9 +415,7 @@ export abstract class BaseProvider {
     address: string,
     blockTag: BlockTag = 'latest',
   ): Promise<string> {
-    if (typeof blockTag === 'number') {
-      blockTag = `0x${blockTag.toString(16)}`;
-    }
+    blockTag = prepBlockTag(blockTag);
     const contractCode = (await this.post(
       buildRPCPostBody('eth_getCode', [address, blockTag]),
     )) as string;
