@@ -350,11 +350,13 @@ export abstract class BaseProvider {
     returnTransactionObjects = false,
   ): Promise<BlockResponse> {
     let type: 'Number' | 'Hash' = 'Number';
-    timeFrame = prepBlockTag(timeFrame);
-    if (timeFrame.startsWith('0x')) {
+    if (typeof timeFrame === 'string' && timeFrame.length === 66) {
       // use endpoint that accepts string
       type = 'Hash';
+    } else {
+      timeFrame = prepBlockTag(timeFrame);
     }
+
     const rpcBlock = (await this.post(
       buildRPCPostBody(`eth_getBlockBy${type}`, [
         timeFrame,
@@ -421,9 +423,9 @@ export abstract class BaseProvider {
       buildRPCPostBody('eth_getCode', [address, blockTag]),
     )) as string;
     return contractCode;
-    }
+  }
 
-   /**
+  /**
    * Returns an estimate of the amount of gas that would be required to submit transaction to the network.
    * An estimate may not be accurate since there could be another transaction on the network that was not accounted for, but after being mined affected relevant state.
    *
