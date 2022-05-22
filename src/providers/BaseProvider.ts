@@ -1,4 +1,5 @@
 import { cleanBlock } from '../classes/utils/clean-block';
+import { cleanLog } from '../classes/utils/clean-log';
 import { cleanTransaction } from '../classes/utils/clean-transaction';
 import { cleanTransactionReceipt } from '../classes/utils/clean-transaction-receipt';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
@@ -9,6 +10,7 @@ import { Filter, FilterByBlockHash } from '../types/Filter.types';
 import { Network } from '../types/Network.types';
 import {
   Log,
+  RPCLog,
   RPCTransaction,
   RPCTransactionReceipt,
   TransactionReceipt,
@@ -448,7 +450,7 @@ export abstract class BaseProvider {
   public async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
     const body = buildRPCPostBody('eth_estimateGas', [transaction]);
     const gasUsed = (await this.post(body)) as string;
-    return tinyBig(hexToDecimal(gasUsed));\
+    return tinyBig(hexToDecimal(gasUsed));
   }
 
   /**
@@ -459,18 +461,16 @@ export abstract class BaseProvider {
   public async getLogs(
     filter: Filter | FilterByBlockHash,
   ): Promise<Array<Log>> {
+    let filterByRange = filter as Filter;
+    if (filterByRange.fromBlock)
+      filterByRange.fromBlock = prepBlockTag(filterByRange.fromBlock);
+    if (filterByRange.toBlock)
+      filterByRange.toBlock = prepBlockTag(filterByRange.toBlock);
 
-
-
-    const logs = (await this.post(
+    const rpcLogs = (await this.post(
       buildRPCPostBody('eth_getLogs', [filter]),
-    )) as Array<Log>;
-    filter = filter.map(element);
-    logs.forEach((log) => {
-      if (log.removed == null) {
-        log.removed = false;
-      }
-    });
+    )) as Array<RPCLog>;
+    const logs = rpcLogs.map((log) => cleanLog(log, false));
     return logs;
   }
 }
