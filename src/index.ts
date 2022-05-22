@@ -11,6 +11,7 @@ import {
   JSONABI,
   JSONABIArgument,
 } from './types/Contract.types';
+import { Filter, FilterByBlockHash } from './types/Filter.types';
 import { Network } from './types/Network.types';
 import {
   BlockTransactionResponse,
@@ -61,6 +62,8 @@ export {
   BaseContract,
   BlockResponse,
   ContractTypes,
+  Filter,
+  FilterByBlockHash,
   JSONABI,
   JSONABIArgument,
   Network,
