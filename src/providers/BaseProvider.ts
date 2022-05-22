@@ -5,8 +5,10 @@ import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
+import { Filter, FilterByBlockHash } from '../types/Filter.types';
 import { Network } from '../types/Network.types';
 import {
+  Log,
   RPCTransaction,
   RPCTransactionReceipt,
   TransactionReceipt,
@@ -443,9 +445,32 @@ export abstract class BaseProvider {
    *
    * ```
    * */
-  async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
+  public async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
     const body = buildRPCPostBody('eth_estimateGas', [transaction]);
     const gasUsed = (await this.post(body)) as string;
-    return tinyBig(hexToDecimal(gasUsed));
+    return tinyBig(hexToDecimal(gasUsed));\
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  public async getLogs(
+    filter: Filter | FilterByBlockHash,
+  ): Promise<Array<Log>> {
+
+
+
+    const logs = (await this.post(
+      buildRPCPostBody('eth_getLogs', [filter]),
+    )) as Array<Log>;
+    filter = filter.map(element);
+    logs.forEach((log) => {
+      if (log.removed == null) {
+        log.removed = false;
+      }
+    });
+    return logs;
   }
 }

@@ -38,7 +38,8 @@ type RPCMethodName =
   | 'eth_getTransactionCount'
   | 'eth_getCode'
   | 'eth_blockNumber'
-  | 'eth_estimateGas';
+  | 'eth_estimateGas'
+  | 'eth_getLogs';
 
 export function buildRPCPostBody(method: RPCMethodName, params: unknown[]) {
   return {
