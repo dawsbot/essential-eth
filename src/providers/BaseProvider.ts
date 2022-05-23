@@ -15,6 +15,12 @@ import {
 import { TransactionRequest } from './types';
 import chainsInfo from './utils/chains-info';
 
+function prepBlockTag(blockTag: BlockTag): string {
+  return typeof blockTag === 'number'
+    ? tinyBig(blockTag).toHexString()
+    : blockTag;
+}
+
 export abstract class BaseProvider {
   /**
    * ignore
@@ -272,9 +278,7 @@ export abstract class BaseProvider {
     address: string,
     blockTag: BlockTag = 'latest',
   ): Promise<number> {
-    if (typeof blockTag === 'number') {
-      blockTag = `0x${blockTag.toString(16)}`;
-    }
+    blockTag = prepBlockTag(blockTag);
     const transactionCount = (await this.post(
       buildRPCPostBody('eth_getTransactionCount', [address, blockTag]),
     )) as string;
@@ -345,22 +349,17 @@ export abstract class BaseProvider {
     timeFrame: BlockTag = 'latest',
     returnTransactionObjects = false,
   ): Promise<BlockResponse> {
-    let rpcTimeFrame: string;
     let type: 'Number' | 'Hash' = 'Number';
-    if (typeof timeFrame === 'number') {
-      // exact block numbers require hex string format
-      rpcTimeFrame = `0x${timeFrame.toString(16)}`;
-    } else if (timeFrame.startsWith('0x')) {
-      rpcTimeFrame = timeFrame;
+    if (typeof timeFrame === 'string' && timeFrame.length === 66) {
       // use endpoint that accepts string
       type = 'Hash';
     } else {
-      // "latest", "earliest", "pending", or hex string require no manipulation
-      rpcTimeFrame = timeFrame;
+      timeFrame = prepBlockTag(timeFrame);
     }
+
     const rpcBlock = (await this.post(
       buildRPCPostBody(`eth_getBlockBy${type}`, [
-        rpcTimeFrame,
+        timeFrame,
         returnTransactionObjects,
       ]),
     )) as RPCBlock;
@@ -396,10 +395,34 @@ export abstract class BaseProvider {
     address: string,
     blockTag: BlockTag = 'latest',
   ): Promise<TinyBig> {
+    blockTag = prepBlockTag(blockTag);
     const hexBalance = (await this.post(
       buildRPCPostBody('eth_getBalance', [address, blockTag]),
     )) as string;
     return tinyBig(hexToDecimal(hexBalance));
+  }
+
+  /**
+   * Gets the code of a contract on a specified block
+   *
+   * * Identical to [`ethers.provider.getCode`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getCode)
+   * * Similar to [`web3.eth.getCode`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getcode); does not accept TinyBig/BN/BigNumber
+   *
+   * @param address the contract address to get the contract code from
+   *
+   * @param blockTag the block height to search for the contract code from. Contract code can change, so this allows for checking a specific block
+   *
+   * @returns the contract creation code for the specified address at the specified block height
+   */
+  public async getCode(
+    address: string,
+    blockTag: BlockTag = 'latest',
+  ): Promise<string> {
+    blockTag = prepBlockTag(blockTag);
+    const contractCode = (await this.post(
+      buildRPCPostBody('eth_getCode', [address, blockTag]),
+    )) as string;
+    return contractCode;
   }
 
   /**

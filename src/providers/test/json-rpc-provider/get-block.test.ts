@@ -1,7 +1,9 @@
+import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import omit from 'just-omit';
 import Web3 from 'web3';
 import { BlockTransactionObject } from 'web3-eth/types';
 import { JsonRpcProvider } from '../../..';
+import { tinyBig } from '../../../shared/tiny-big/tiny-big';
 import { BlockResponse } from '../../../types/Block.types';
 import { BlockTransactionResponse } from '../../../types/Transaction.types';
 import { fakeUrls } from '../rpc-urls';
@@ -38,6 +40,7 @@ describe('provider.getBlock happy path', () => {
 
   const essentialEthProvider = new JsonRpcProvider(rpcUrl);
   const web3Provider = new Web3(rpcUrl);
+  const ethersProvider = new StaticJsonRpcProvider(rpcUrl);
   it('should get default latest block', async () => {
     const [eeDefaultLatestBlock, eeLatestBlock] = await Promise.all([
       essentialEthProvider.getBlock(),
@@ -66,6 +69,14 @@ describe('provider.getBlock happy path', () => {
       web3Provider.eth.getBlock(blockNumber, true),
     ]);
     testBlockEquality(eeRandomBlock, web3RandomBlock);
+  });
+  it(`should get random block as string. (block #${blockNumber})`, async () => {
+    const blockNumberAsString = tinyBig(blockNumber).toHexString();
+    const [eeRandomBlock, ethersRandomBlock] = await Promise.all([
+      essentialEthProvider.getBlock(blockNumberAsString, false),
+      ethersProvider.getBlock(blockNumberAsString), // needs to be tested against ethers because web3 doesn't allow block number as a string
+    ]);
+    expect(eeRandomBlock.hash).toBe(ethersRandomBlock.hash); // checking for strict equal would require another function similar to `testBlockEquality` to normalize differences between essential-eth response and ethers response
   });
   const blockHash =
     '0x4cbaa942e48a91108f38e2a250f6dbaff7fffe3027f5ebf76701929eed2b2970'; // Hash corresponds to block on RSK Mainnet
