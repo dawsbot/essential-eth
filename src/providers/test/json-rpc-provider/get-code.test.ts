@@ -1,10 +1,11 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import Web3 from 'web3';
 import { JsonRpcProvider } from '../../../index';
+import { rpcUrls } from './../rpc-urls';
 
 // Using Polygon to be able to access archive blocks
 // Choosing to use Ethereum mainnet means that as new blocks are generated, block numbers used in testing may be inaccessible and cause tests to fail
-const rpcUrl = `https://free-eth-node.com/api/MATIC`;
+const rpcUrl = rpcUrls.matic;
 
 // can't test for earliest block (at least for Ethereum) as it's very unlikely there was a smart contract on the first block
 const inputs = [
@@ -27,9 +28,10 @@ const inputs = [
 ];
 
 describe('provider.getCode', () => {
+  const essentialEthProvider = new JsonRpcProvider(rpcUrl);
+  const ethersProvider = new StaticJsonRpcProvider(rpcUrl);
+  const web3Provider = new Web3(rpcUrl);
   it('should match ethers.js', async () => {
-    const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-    const ethersProvider = new StaticJsonRpcProvider(rpcUrl);
     await inputs.forEach(async (input) => {
       const [essentialEthCode, ethersCode] = await Promise.all([
         essentialEthProvider.getCode(input.address, input.blockTag),
@@ -39,8 +41,6 @@ describe('provider.getCode', () => {
     });
   });
   it('should match web3.js', async () => {
-    const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-    const web3Provider = new Web3(rpcUrl);
     await inputs.forEach(async (input) => {
       const [essentialEthCode, web3Code] = await Promise.all([
         essentialEthProvider.getCode(input.address, input.blockTag),
@@ -54,11 +54,10 @@ describe('provider.getCode', () => {
       address: '0xd31a02A126Bb7ACD359BD61E9a8276959408855E',
       blockTag: 28314328,
     };
-    const essentialEthProvider = new JsonRpcProvider(rpcUrl);
     const essentialEthCode = await essentialEthProvider.getCode(
       invalidInput.address,
       invalidInput.blockTag,
     );
-    expect(essentialEthCode).toStrictEqual('0x');
+    expect(essentialEthCode).toBe('0x');
   });
 });
