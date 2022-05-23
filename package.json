@@ -22,7 +22,7 @@
     "tsc:esm": "tsc -p tsconfig.json",
     "tsc:cjs": "tsc -p tsconfig-cjs.json",
     "build": "rm -rf lib && npm run compile",
-    "build:readme": ". ./scripts/markdown-magic/build-readme.sh",
+    "build:readme": "bash ./scripts/markdown-magic/build-readme.sh",
     "jest": "jest",
     "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
     "update-deps": "sh ./scripts/pre-commit.sh",
