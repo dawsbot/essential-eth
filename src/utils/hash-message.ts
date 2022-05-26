@@ -9,7 +9,7 @@ const messagePrefix = '\x19Ethereum Signed Message:\n';
  * @param message the message to hash
  * @returns a message hashed using Keccak256 that matches the EIP-191 standard
  * @example
- * ```js
+ * ```javascript
  * hashMessage("Hello World");
  * // '0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2'
  * ```

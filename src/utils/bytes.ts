@@ -66,17 +66,17 @@ function isHexable(value: any): value is Hexable {
  *
  * @param value
  * @example
- * ```js
+ * ```javascript
  * isBytesLike([1,2,3]);
  * // true
  * ```
  * @example
- * ```js
+ * ```javascript
  * isBytesLike(false);
  * // false
  * ```
  * @example
- * ```js
+ * ```javascript
  * isBytesLike(new Uint8Array(1));
  * // true
  * ```
@@ -100,17 +100,17 @@ function isInteger(value: number) {
  *
  * @param value
  * @example
- * ```js
+ * ```javascript
  * isBytes([1,2,3]);
  * // true
  * ```
  * @example
- * ```js
+ * ```javascript
  * isBytes(false);
  * // false
  * ```
  * @example
- * ```js
+ * ```javascript
  * isBytes(new Uint8Array(1));
  * // true
  * ```
@@ -146,17 +146,17 @@ export function isBytes(value: any): value is Bytes {
  * @param value
  * @param options
  * @example
- * ```js
+ * ```javascript
  * arrayify(1);
  * // Uint8Array(1) [ 1 ]
  * ```
  * @example
- * ```js
+ * ```javascript
  * arrayify(0x1234);
  * // Uint8Array(2) [ 18, 52 ]
  * ```
  * @example
- * ```js
+ * ```javascript
  * arrayify('0x1', { hexPad: 'right' });
  * // Uint8Array(1) [ 16 ]
  * ```
@@ -229,7 +229,7 @@ export function arrayify(
  *
  * @param arrayOfBytesLike
  * @example
- * ```js
+ * ```javascript
  * concat([0, 1]);
  * // Uint8Array(2) [ 0, 1 ]
  * ```
@@ -319,7 +319,7 @@ const HexCharacters = '0123456789abcdef';
  * @param value
  * @param options
  * @example
- * ```js
+ * ```javascript
  * hexlify(4);
  * // '0x04'
  *

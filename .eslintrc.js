@@ -49,6 +49,11 @@ module.exports = {
         'jsdoc/require-asterisk-prefix': 'warn', // Require that all documentation is prefixed with an asterisk, makes it easier to differentiate what's documentation and what isn't
         'jsdoc/require-example': 'warn', // Ensures that all documentated functions have examples
         'jsdoc/require-hyphen-before-param-description': ['warn', 'never'], // Prevent hyphens before description of a parameter
+        'jsdoc/require-returns': [
+          'warn',
+          { checkGetters: true, forceReturnsWithAsync: true },
+        ],
+        'jsdoc/no-multi-asterisks': ['warn', { allowWhitespace: true }],
       },
     },
   ],
