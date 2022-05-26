@@ -18,4 +18,10 @@ describe('utils.hexStripZeros', () => {
       expect(hexStripZeros(value)).toBe(ethers.hexStripZeros(value));
     });
   });
+  it('should throw error - invalid hex string', () => {
+    const values = ['non-hex string'];
+    values.forEach((value) => {
+      expect(() => hexStripZeros(value)).toThrow('invalid hex string');
+    });
+  });
 });

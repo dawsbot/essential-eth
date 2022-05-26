@@ -18,4 +18,10 @@ describe('utils.hexDataLength', () => {
       expect(hexDataLength(value)).toBe(ethers.hexDataLength(value));
     });
   });
+  it('should return null - not hex value or not divisible by 2', () => {
+    const values = ['0x383', 'non-hex string'];
+    values.forEach((value) => {
+      expect(hexDataLength(value)).toBe(null);
+    });
+  });
 });

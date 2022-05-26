@@ -37,4 +37,10 @@ describe('utils.hexValue', () => {
       expect(hexValue(value)).toBe(ethers.hexValue(value));
     });
   });
+  it('should return 0x0 - only zero data given', () => {
+    const values = [BigInt(0), 0, '0x0000', [0, 0, 0]];
+    values.forEach((value) => {
+      expect(hexValue(value)).toBe('0x0');
+    });
+  });
 });
