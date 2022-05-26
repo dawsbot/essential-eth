@@ -9,7 +9,8 @@ import { validateType } from '../shared/validate-type';
  *
  * No direct equivalent in web3; requires multiple functions to achieve.
  *
- * @param etherQuantity
+ * @param etherQuantity the amount of ether to convert to gwei
+ * @returns a number of gwei equivalent to the specified ether
  * @example
  * ```javascript
  * etherToGwei('1000').toString()

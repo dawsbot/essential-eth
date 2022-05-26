@@ -8,6 +8,15 @@ import { keccak256 } from './keccak256';
  * @param key the public or private key to find the address related to
  * @returns the address that corresponds to the key specified
  * @example
+ * ```javascript
+ * computeAddress('0x0458eb591f407aef12936bd2989ca699cf5061de9c4964dd6eb6005fd8f580c407434447e813969a1be6e9954b002cad84dfc67a69e032b273e4695e7d0db2d952'); // public key
+ * // '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
+ * ```
+ * @example
+ * ```javascript
+ * computeAddress('0x2f2c419acf4a1da8c1ebea75bb3fcfbd3ec2aa3bf0162901ccdc2f38b8f92427'); // private key
+ * // '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
+ * ```
  */
 export function computeAddress(key: string): string {
   // compressed public keys start with 0x04

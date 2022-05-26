@@ -9,7 +9,8 @@ import { validateType } from '../shared/validate-type';
  *
  * Similar to ["toWei" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#towei)
  *
- * @param etherQuantity
+ * @param etherQuantity the amount of ether to convert to wei
+ * @returns a number of wei equivalent to the specified ether
  * @example
  * ```javascript
  * etherToWei('1000').toString()

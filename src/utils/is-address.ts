@@ -5,7 +5,8 @@ import { validateType } from '../shared/validate-type';
  * Returns a boolean as to whether the input is a valid address.
  * Does NOT support ICAP addresses
  *
- * @param address
+ * @param address the address to check the validity of
+ * @returns a boolean for whether the input is a valid address
  * @example
  * ```javascript
  * isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
@@ -23,7 +24,7 @@ import { validateType } from '../shared/validate-type';
  * // false
  * ```
  */
-export function isAddress(address: string) {
+export function isAddress(address: string): boolean {
   validateType(address, ['string']);
   try {
     toChecksumAddress(address);
