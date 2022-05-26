@@ -18,4 +18,10 @@ describe('utils.stripZeros', () => {
       expect(stripZeros(value)).toStrictEqual(ethers.stripZeros(value));
     });
   });
+  it('should match ethers.js - empty array', () => {
+    const values = [[], '0x'];
+    values.forEach((value) => {
+      expect(stripZeros(value)).toStrictEqual(ethers.stripZeros(value));
+    });
+  });
 });

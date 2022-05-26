@@ -27,4 +27,15 @@ describe('utils.zeroPad', () => {
       );
     });
   });
+  it('should throw error - value out of range', () => {
+    const values = [
+      [[9, 58, 29, 24], 3],
+      ['0x185754', 1],
+    ];
+    values.forEach((value) => {
+      expect(() => zeroPad(value[0] as BytesLike, value[1] as number)).toThrow(
+        'value out of range',
+      );
+    });
+  });
 });
