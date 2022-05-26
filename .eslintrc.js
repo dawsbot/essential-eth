@@ -39,6 +39,7 @@ module.exports = {
       plugins: ['jsdoc'],
       extends: ['plugin:jsdoc/recommended'],
       rules: {
+        'jsdoc/check-tag-names': ['warn', { definedTags: ['alpha', 'beta'] }], // Should check that tag names are valid; include 'alpha' and 'beta' as acceptable tag names
         'jsdoc/require-param-type': 'off', // TypeDoc automatically reads types from TypeScript types, hence param types should rarely be defined explictly -- https://typedoc.org/guides/doccomments/#%40param-%3Cparam-name%3E
         'jsdoc/require-returns-type': 'off', // Read above note for `jsdoc/require-param-type`
         // 'jsdoc/check-examples': 'warn', // Ensures examples match a certain format -- currently not supported for ESLint, waiting for this issue -- https://github.com/eslint/eslint/issues/14745

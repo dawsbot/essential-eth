@@ -10,7 +10,9 @@ const regexNumber = new RegExp('^(u?int)([0-9]*)$');
 const regexArray = new RegExp('^(.*)\\[([0-9]*)\\]$');
 
 /**
- *
+ * @internal
+ * 
+ * Packs a type and value together into a UTF-8 Byte Array, 
  * @param type
  * @param value
  * @param isArray
