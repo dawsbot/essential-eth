@@ -1,8 +1,13 @@
-// strips both leading and trailing zeroes
 /**
- *
- * @param numberString
+ * Strips both leading and trailing zeroes from a number string
+ * 
+ * @param numberString the string of numbers to strip zeros from
+ * @returns a string of numbers without leading or trailing zeros
  * @example
+ * ```javascript
+ * stripTrailingZeros('0005280');
+ * // '5280'
+ * ```
  */
 function stripTrailingZeroes(numberString: string) {
   const isNegative = numberString.startsWith('-');
@@ -25,9 +30,20 @@ function stripTrailingZeroes(numberString: string) {
 }
 
 /**
- *
- * @param scientificString
+ * Converts a string in scientific notation formatting to string in decimal format
+ * 
+ * @param scientificString a string in scientific format to convert to decimal
+ * @returns a string of a decimal number equivalent to the specified scientificString
  * @example
+ * ```javascript
+ * scientificStrToDecimalStr('2.3e-5');
+ * // '0.000023'
+ * ```
+ * @example
+ * ```javascript
+ * scientificStrToDecimalStr('2.3e+5');
+ * // '230000'
+ * ```
  */
 export function scientificStrToDecimalStr(scientificString: string): string {
   // Does not contain "e" nor "E"

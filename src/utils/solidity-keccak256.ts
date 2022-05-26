@@ -10,13 +10,14 @@ const regexNumber = new RegExp('^(u?int)([0-9]*)$');
 const regexArray = new RegExp('^(.*)\\[([0-9]*)\\]$');
 
 /**
- * @internal
+ * Packs a type and value together into a UTF-8 Byte Array
  * 
- * Packs a type and value together into a UTF-8 Byte Array, 
- * @param type
- * @param value
- * @param isArray
- * @example
+ * @internal
+ * @param type the Solidity type used for the value given
+ * @param value the value to pack with its type
+ * @param isArray whether the specified data is in an array
+ * @returns packed data consisting of the type and value
+ * @example N/A - internal function
  */
 function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
   switch (type) {
@@ -98,10 +99,18 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
 }
 
 /**
- *
- * @param types
- * @param values
+ * Converts arrays with types and values into a hex string that can be hashed
+ * 
+ * @param types array of Solidity types, where `type[0]` is the type for `value[0]`
+ * @param values array of values, where `value[0]` is of type `type[0]`
+ * @returns a hex string with the data given, packed to include its types
  * @example
+ * ```javascript
+ * const types = ['bool', 'string', 'uint64'];
+ * const values = [true, 'text', 30];
+ * pack(types, values);
+ * // '0x0174657874000000000000001e'
+ * ```
  */
 export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
   if (types.length != values.length) {
@@ -125,7 +134,7 @@ export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
  *
  * @param types Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
  * @param values Data to be concatenated (combined) and then hashed.
- * @returns - A Keccak256 hash (hex string) based on the values provided
+ * @returns A Keccak256 hash (hex string) based on the values provided
  * @example
  * ```javascript
  * const types = ['string', 'bool', 'uint32'];

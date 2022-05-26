@@ -13,7 +13,16 @@ export class TinyBig extends Big {
    * Used anytime you're passing in "value" to ethers or web3
    * For now, TypeScript will complain that `TinyBig` is not a `BigNumberish`. You can // @ts-ignore or call this
    *
+   * @returns the TinyBig represented as a hex string
    * @example
+   * ```javascript
+   * tinyBig(293).toHexString();
+   * // '0x125'
+   * ```
+   * @example
+   * ```javascript
+   * tinyBig(681365874).toHexString();
+   * // '0x289cd172'
    */
   toHexString(): string {
     return `0x${BigInt(this.toString()).toString(16)}`;
@@ -30,10 +39,22 @@ export class TinyBig extends Big {
   }
 
   /**
-   * @param {string} str
-   * @param {string} padChar
-   * @param {number} length
+   * Eithers pads or shortens a string to a specified length
+   *
+   * @param str the string to pad or chop
+   * @param padChar the character to pad the string with
+   * @param length the desired length of the given string
+   * @returns a string of the desired length, either padded with the specified padChar or with the beginning of the string chopped off
    * @example
+   * ```javascript
+   * padAndChop('essential-eth', 'a', 8);
+   * // 'tial-eth'
+   * ```
+   * @example
+   * ```javascript
+   * padAndChop('essential-eth', 'A', 20);
+   * // 'AAAAAAAessential-eth'
+   * ```
    */
   private padAndChop = (
     str: string,
@@ -42,6 +63,7 @@ export class TinyBig extends Big {
   ): string => {
     return (Array(length).fill(padChar).join('') + str).slice(length * -1);
   };
+
   public toTwos(bitCount: number): Big {
     let binaryStr;
 
@@ -65,7 +87,8 @@ export class TinyBig extends Big {
 /**
  * Helper factory function so that you don't have to type "new" when instantiating a new TinyBig
  *
- * @param value
+ * @param value the value to initiate the TinyBig with
+ * @returns an initiated {@link TinyBig}
  * @example
  * ```javascript
  * tinyBig(10).times(3).toNumber()
