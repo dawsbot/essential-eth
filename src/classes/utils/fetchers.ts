@@ -1,4 +1,9 @@
 import unfetch from 'isomorphic-unfetch';
+/**
+ *
+ * @param url
+ * @param body
+ */
 export function post(url: string, body: Record<string, unknown>) {
   return unfetch(url, {
     method: 'POST',
@@ -40,6 +45,11 @@ type RPCMethodName =
   | 'eth_blockNumber'
   | 'eth_estimateGas';
 
+/**
+ *
+ * @param method
+ * @param params
+ */
 export function buildRPCPostBody(method: RPCMethodName, params: unknown[]) {
   return {
     jsonrpc: '2.0',

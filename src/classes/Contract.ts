@@ -5,6 +5,10 @@ import {
   encodeData,
 } from './utils/encode-decode-transaction';
 import { buildRPCPostBody, post } from './utils/fetchers';
+/**
+ *
+ * @param txnData
+ */
 function estimateGas(txnData: string) {
   // https://ethereum.stackexchange.com/questions/1570/what-does-intrinsic-gas-too-low-mean/1694
   txnData.split('').reduce((previousValue, currentValue) => {
@@ -91,6 +95,10 @@ export class BaseContract {
 
 /**
  * Applies the unique contract's methods to the instantiated Contract in the constructor based-upon the provided ABI
+ *
+ * @param object
+ * @param name
+ * @param value
  */
 export function defineReadOnly<T>(object: T, name: string, value: any): void {
   Object.defineProperty(object, name, {
@@ -103,7 +111,7 @@ export function defineReadOnly<T>(object: T, name: string, value: any): void {
 /**
  * @alpha
  * Only accepts ABIS in JSON format. This allows for stronger typing and assurances of data-types
- * * Only read-only function calls currently supported.
+ * Only read-only function calls currently supported.
  * @example
  * ```typescript
  * import { Contract, JsonRpcProvider } from 'essential-eth';

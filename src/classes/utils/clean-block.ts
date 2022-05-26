@@ -6,6 +6,9 @@ import { hexToDecimal } from './hex-to-decimal';
 
 /**
  * Converts RPC block response to more JS-friendly format
+ *
+ * @param block
+ * @param returnTransactionObjects
  */
 export function cleanBlock(
   block: RPCBlock,

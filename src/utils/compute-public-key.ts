@@ -5,7 +5,7 @@ import { BytesLike, hexlify } from './bytes';
  * Computes the public key from a given private key
  *
  * @param key the private key to find a public key from
- *
+ * @param privKey
  * @returns the public key
  */
 export function computePublicKey(privKey: BytesLike): string {

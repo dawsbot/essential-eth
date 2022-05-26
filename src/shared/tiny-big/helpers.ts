@@ -1,4 +1,8 @@
 // strips both leading and trailing zeroes
+/**
+ *
+ * @param numberString
+ */
 function stripTrailingZeroes(numberString: string) {
   const isNegative = numberString.startsWith('-');
   numberString = numberString.replace('-', '');
@@ -19,6 +23,10 @@ function stripTrailingZeroes(numberString: string) {
   return `${isNegative ? '-' : ''}${numberString}`;
 }
 
+/**
+ *
+ * @param scientificString
+ */
 export function scientificStrToDecimalStr(scientificString: string): string {
   // Does not contain "e" nor "E"
   if (!scientificString.match(/e/i /* lowercase and uppercase E */)) {

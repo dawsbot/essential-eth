@@ -9,6 +9,12 @@ const regexBytes = new RegExp('^bytes([0-9]+)$');
 const regexNumber = new RegExp('^(u?int)([0-9]*)$');
 const regexArray = new RegExp('^(.*)\\[([0-9]*)\\]$');
 
+/**
+ *
+ * @param type
+ * @param value
+ * @param isArray
+ */
 function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
   switch (type) {
     case 'address':
@@ -88,6 +94,11 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
   return logger.throwArgumentError('invalid type', 'type', type);
 }
 
+/**
+ *
+ * @param types
+ * @param values
+ */
 export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
   if (types.length != values.length) {
     logger.throwArgumentError(
@@ -109,11 +120,8 @@ export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
  * Similar to ["solidityKeccak256" in ethers.js](https://docs.ethers.io/v5/api/utils/hashing/#utils-solidityKeccak256)
  *
  * @param types - Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
- *
  * @param values - Data to be concatenated (combined) and then hashed.
- *
  * @returns - A Keccak256 hash (hex string) based on the values provided
- *
  * @example
  * ```javascript
  * const types = ['string', 'bool', 'uint32'];
@@ -121,7 +129,6 @@ export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
  * solidityKeccak256(types, values);
  * // '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'
  * ```
- *
  * @example
  * ```javascript
  * const types = ['bytes4', 'uint32[5]'];

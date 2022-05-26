@@ -25,6 +25,7 @@ export class JsonRpcProvider extends BaseProvider {
 /**
  * Helper function to avoid "new"
  *
+ * @param rpcUrl
  * @example
  * ```javascript
  * jsonRpcProvider().getBlock('latest').then(block => {

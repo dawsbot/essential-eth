@@ -6,6 +6,7 @@ const messagePrefix = '\x19Ethereum Signed Message:\n';
  * Computes the EIP-191 personal message digest of message.
  * Personal messages are converted to UTF-8 bytes and prefixed with \x19Ethereum Signed Message: and the length of message.
  *
+ * @param message
  * @example
  * ```js
  * hashMessage("Hello World");

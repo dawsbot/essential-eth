@@ -10,6 +10,7 @@ import { TinyBig } from './../shared/tiny-big/tiny-big';
  *
  * No direct equivalent in web3; requires multiple functions to achieve.
  *
+ * @param gweiQuantity
  * @example
  * ```javascript
  * gweiToEther('1000000000000').toString()
@@ -17,7 +18,6 @@ import { TinyBig } from './../shared/tiny-big/tiny-big';
  * gweiToEther(1000000000000).toString()
  * // '1000'
  * ```
- *
  * @example
  * ```javascript
  * gweiToEther('1000000000000').toNumber()

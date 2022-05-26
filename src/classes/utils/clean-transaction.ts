@@ -7,6 +7,8 @@ import { hexToDecimal } from './hex-to-decimal';
 
 /**
  * Converts RPC transaction response to more JS-friendly format
+ *
+ * @param transaction
  */
 export function cleanTransaction(
   transaction: RPCTransaction,

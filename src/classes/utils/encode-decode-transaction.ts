@@ -6,6 +6,10 @@ import { hexToDecimal } from './hex-to-decimal';
 export const hexFalse = '0'.repeat(64);
 const hexTrue = '0'.repeat(63) + '1';
 
+/**
+ *
+ * @param type
+ */
 function expandType(type: ContractTypes) {
   // https://docs.soliditylang.org/en/v0.8.7/types.html#integers
   if (type === 'uint[]') {
@@ -15,6 +19,11 @@ function expandType(type: ContractTypes) {
   }
   return type;
 }
+/**
+ *
+ * @param jsonABIArgument
+ * @param args
+ */
 export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
   const hash = new Keccak(256);
   /* first 4 bytes will create the data parameter */
@@ -92,6 +101,11 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
   return data;
 }
 
+/**
+ *
+ * @param jsonABIArgument
+ * @param nodeResponse
+ */
 export function decodeRPCResponse(
   jsonABIArgument: JSONABIArgument,
   nodeResponse: string,

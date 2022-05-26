@@ -9,6 +9,7 @@ import { validateType } from '../shared/validate-type';
  *
  * Similar to ["toWei" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#towei)
  *
+ * @param etherQuantity
  * @example
  * ```javascript
  * etherToWei('1000').toString()
@@ -16,7 +17,6 @@ import { validateType } from '../shared/validate-type';
  * etherToWei(1000).toString()
  * // '1000000000000000000000'
  * ```
- *
  * @example
  * ```javascript
  * etherToWei('1000').toNumber()

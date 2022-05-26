@@ -10,10 +10,8 @@ export type Bytes = ArrayLike<number>;
 /**
  * @example
  * [1,2,3]
- *
  * @example
  * 0x123
- *
  * @example
  * '0x123'
  */
@@ -53,26 +51,29 @@ export interface Signature {
   compact: string;
 }
 
+/**
+ *
+ * @param value
+ */
 function isHexable(value: any): value is Hexable {
   return !!value.toHexString;
 }
 
 /**
  * Returns true if and only if value is a valid [Bytes](#bytes) or DataHexString
- * * Same as [`ethers.utils.isBytesLike`](https://docs.ethers.io/v5/api/utils/bytes/#utils-isBytesLike)
+ * Same as [`ethers.utils.isBytesLike`](https://docs.ethers.io/v5/api/utils/bytes/#utils-isBytesLike)
  *
+ * @param value
  * @example
  * ```js
  * isBytesLike([1,2,3]);
  * // true
  * ```
- *
  * @example
  * ```js
  * isBytesLike(false);
  * // false
  * ```
- *
  * @example
  * ```js
  * isBytesLike(new Uint8Array(1));
@@ -83,26 +84,29 @@ export function isBytesLike(value: any): value is BytesLike {
   return (isHexString(value) && !(value.length % 2)) || isBytes(value);
 }
 
+/**
+ *
+ * @param value
+ */
 function isInteger(value: number) {
   return typeof value === 'number' && value == value && value % 1 === 0;
 }
 
 /**
  * Returns true if and only if value is a valid [Bytes](#bytes)
- * * Same as [`ethers.utils.isBytes`](https://docs.ethers.io/v5/api/utils/bytes/#utils-isBytes)
+ * Same as [`ethers.utils.isBytes`](https://docs.ethers.io/v5/api/utils/bytes/#utils-isBytes)
  *
+ * @param value
  * @example
  * ```js
  * isBytes([1,2,3]);
  * // true
  * ```
- *
  * @example
  * ```js
  * isBytes(false);
  * // false
  * ```
- *
  * @example
  * ```js
  * isBytes(new Uint8Array(1));
@@ -135,20 +139,20 @@ export function isBytes(value: any): value is Bytes {
 
 /**
  * Converts DataHexStringOrArrayish to a Uint8Array
- * * Same as [`ethers.utils.arrayify`](https://docs.ethers.io/v5/api/utils/bytes/#utils-arrayify)
+ * Same as [`ethers.utils.arrayify`](https://docs.ethers.io/v5/api/utils/bytes/#utils-arrayify)
  *
+ * @param value
+ * @param options
  * @example
  * ```js
  * arrayify(1);
  * // Uint8Array(1) [ 1 ]
  * ```
- *
  * @example
  * ```js
  * arrayify(0x1234);
  * // Uint8Array(2) [ 18, 52 ]
  * ```
- *
  * @example
  * ```js
  * arrayify('0x1', { hexPad: 'right' });
@@ -219,8 +223,9 @@ export function arrayify(
 
 /**
  * Concatenates all the BytesLike in arrayOfBytesLike into a single Uint8Array.
- * * Same as [`ethers.utils.concat`](https://docs.ethers.io/v5/api/utils/bytes/#utils-concat)
+ * Same as [`ethers.utils.concat`](https://docs.ethers.io/v5/api/utils/bytes/#utils-concat)
  *
+ * @param arrayOfBytesLike
  * @example
  * ```js
  * concat([0, 1]);
@@ -243,6 +248,10 @@ export function concat(
   return result;
 }
 
+/**
+ *
+ * @param value
+ */
 export function stripZeros(value: BytesLike): Uint8Array {
   let result: Uint8Array = arrayify(value);
 
@@ -264,6 +273,11 @@ export function stripZeros(value: BytesLike): Uint8Array {
   return result;
 }
 
+/**
+ *
+ * @param value
+ * @param length
+ */
 export function zeroPad(value: BytesLike, length: number): Uint8Array {
   value = arrayify(value);
 
@@ -279,7 +293,10 @@ export function zeroPad(value: BytesLike, length: number): Uint8Array {
 /**
  * Returns true if and only if object is a valid hex string.
  * If length is specified and object is not a valid DataHexString of length bytes, an InvalidArgument error is thrown.
- * * Same as [`ethers.utils.isHexString`](https://docs.ethers.io/v5/api/utils/bytes/#utils-isHexString)
+ * Same as [`ethers.utils.isHexString`](https://docs.ethers.io/v5/api/utils/bytes/#utils-isHexString)
+ *
+ * @param value
+ * @param length
  */
 export function isHexString(value: any, length?: number): boolean {
   if (typeof value !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
@@ -294,6 +311,8 @@ export function isHexString(value: any, length?: number): boolean {
 const HexCharacters = '0123456789abcdef';
 
 /**
+ * @param value
+ * @param options
  * @example
  * ```js
  * hexlify(4);
@@ -375,6 +394,10 @@ export function hexlify(
   return logger.throwArgumentError('invalid hexlify value', 'value', value);
 }
 
+/**
+ *
+ * @param data
+ */
 export function hexDataLength(data: BytesLike) {
   if (typeof data !== 'string') {
     data = hexlify(data);
@@ -385,6 +408,12 @@ export function hexDataLength(data: BytesLike) {
   return (data.length - 2) / 2;
 }
 
+/**
+ *
+ * @param data
+ * @param offset
+ * @param endOffset
+ */
 export function hexDataSlice(
   data: BytesLikeWithNumber,
   offset: number,
@@ -405,6 +434,10 @@ export function hexDataSlice(
   return '0x' + data.substring(offset);
 }
 
+/**
+ *
+ * @param items
+ */
 export function hexConcat(items: ReadonlyArray<BytesLike>): string {
   let result = '0x';
   items.forEach((item) => {
@@ -413,6 +446,10 @@ export function hexConcat(items: ReadonlyArray<BytesLike>): string {
   return result;
 }
 
+/**
+ *
+ * @param value
+ */
 export function hexValue(value: BytesLike | Hexable | number | bigint): string {
   const trimmed = hexStripZeros(hexlify(value, { hexPad: 'left' }));
   if (trimmed === '0x') {
@@ -421,6 +458,10 @@ export function hexValue(value: BytesLike | Hexable | number | bigint): string {
   return trimmed;
 }
 
+/**
+ *
+ * @param value
+ */
 export function hexStripZeros(value: BytesLike): string {
   if (typeof value !== 'string') {
     value = hexlify(value);
@@ -445,23 +486,20 @@ export function hexStripZeros(value: BytesLike): string {
  * Differs from ["padLeft" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#padleft) because web3 counts by characters, not bytes.
  *
  * @param hexValue - A hex-string, hex-number, or decimal number (auto-converts to base-16) to be padded
+ * @param value
  * @param length - The final length in bytes
- *
  * @throws - If the value is not a hex string or number
  * @throws - If the value is longer than the length
- *
  * @example
  * ```javascript
  * hexZeroPad('0x60', 2);
  * // '0x0060'
  * ```
- *
  * @example
  * ```javascript
  * hexZeroPad(0x60, 3);
  * // '0x000060'
  * ```
- *
  * @example
  * ```javascript
  * hexZeroPad('12345', 1);

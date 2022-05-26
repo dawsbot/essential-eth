@@ -3,7 +3,7 @@ import { scientificStrToDecimalStr } from './helpers';
 
 /**
  * A wrapper around [big.js](https://github.com/MikeMcl/big.js) which expands scientific notation and creates a "toHexString" function.
- * * This is the return type of every operation on ether, wei, etc.
+ * This is the return type of every operation on ether, wei, etc.
  */
 export class TinyBig extends Big {
   constructor(value: string | number | TinyBig | Big) {
@@ -28,9 +28,9 @@ export class TinyBig extends Big {
   }
 
   /**
-   * @param {String} str
-   * @param {String} padChar
-   * @param {Number} length
+   * @param {string} str
+   * @param {string} padChar
+   * @param {number} length
    */
   private padAndChop = (
     str: string,
@@ -62,6 +62,7 @@ export class TinyBig extends Big {
 /**
  * Helper factory function so that you don't have to type "new" when instantiating a new TinyBig
  *
+ * @param value
  * @example
  * ```javascript
  * tinyBig(10).times(3).toNumber()

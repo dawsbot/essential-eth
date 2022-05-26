@@ -15,6 +15,10 @@ import {
 import { TransactionRequest } from './types';
 import chainsInfo from './utils/chains-info';
 
+/**
+ *
+ * @param blockTag
+ */
 function prepBlockTag(blockTag: BlockTag): string {
   return typeof blockTag === 'number'
     ? tinyBig(blockTag).toHexString()
@@ -40,6 +44,7 @@ export abstract class BaseProvider {
 
   /**
    * @param rpcUrl The URL to your Eth node. Consider POKT or Infura
+   * @param rpcUrls
    */
   constructor(rpcUrls: string[]) {
     this._rpcUrls = rpcUrls;
@@ -65,8 +70,8 @@ export abstract class BaseProvider {
   /**
    * Gets the number of the most recently mined block on the network the provider is connected to
    *
-   * * Identical to [`ethers.provider.getBlockNumber`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBlockNumber)
-   * * Identical to [`web3.eth.getBlockNumber`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getblocknumber)
+   * Identical to [`ethers.provider.getBlockNumber`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBlockNumber)
+   * Identical to [`web3.eth.getBlockNumber`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getblocknumber)
    *
    * @returns the number of the most recently mined block
    * @example
@@ -83,8 +88,9 @@ export abstract class BaseProvider {
   }
 
   /**
-   * * Similar to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included
+   * Similar to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included
    *
+   * @param transactionHash
    * @returns information about one transaction
    * @example
    * ```js
@@ -225,10 +231,9 @@ export abstract class BaseProvider {
   /**
    * Gives information about a transaction that has already been mined. Includes additional information beyond what's provided by `getTransaction()`
    *
-   * * Similar to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt), some information not included
+   * Similar to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt), some information not included
    *
    * @param transactionHash the hash of the transaction to get information about
-   *
    */
 
   public async getTransactionReceipt(
@@ -249,9 +254,11 @@ export abstract class BaseProvider {
   /**
    * Returns the transaction count from genesis up to specified blockTag
    *
-   * * Same as `ethers.provider.getTransactionCount`
-   * * Same as `web3.eth.getTransactionCount`
+   * Same as `ethers.provider.getTransactionCount`
+   * Same as `web3.eth.getTransactionCount`
    *
+   * @param address
+   * @param blockTag
    * @example
    * ```js
    * const address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';
@@ -259,14 +266,12 @@ export abstract class BaseProvider {
    *   .getTransactionCount(address, 'latest')
    * // 1060000
    * ```
-   *
    * @example
    * ```js
    *  await provider
    *   .getTransactionCount(address)
    * // 1053312
    * ```
-   *
    * @example
    * ```js
    *  await provider
@@ -290,21 +295,16 @@ export abstract class BaseProvider {
    * Same as `web3.eth.getBlock` and `ethers.providers.getBlock`
    *
    * @param timeFrame The number, hash, or text-based description ('latest', 'earliest', or 'pending') of the block to collect information on.
-   *
    * @param returnTransactionObjects Whether to also return data about the transactions on the block.
-   *
    * @returns A BlockResponse object with information about the specified block
-   *
    * @example
    * ```js
    * await provider.getBlock(14645431);
    * ```
-   *
    * @example
    * ```js
    * await provider.getBlock('0x3e5cea9c2be7e0ab4b0aa04c24dafddc37571db2d2d345caf7f88b3366ece0cf');
    * ```
-   *
    * @example
    * ```js
    * await provider.getBlock('latest');
@@ -380,9 +380,11 @@ export abstract class BaseProvider {
 
   /**
    * Returns the balance of the account in wei as TinyBig
-   * * Same as [`ethers.provider.getBalance`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBalance)
-   * * Same as `web3.eth.getBalance`
+   * Same as [`ethers.provider.getBalance`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBalance)
+   * Same as `web3.eth.getBalance`
    *
+   * @param address
+   * @param blockTag
    * @example
    * ```js
    *  await provider
@@ -405,13 +407,11 @@ export abstract class BaseProvider {
   /**
    * Gets the code of a contract on a specified block
    *
-   * * Identical to [`ethers.provider.getCode`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getCode)
-   * * Similar to [`web3.eth.getCode`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getcode); does not accept TinyBig/BN/BigNumber
+   * Identical to [`ethers.provider.getCode`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getCode)
+   * Similar to [`web3.eth.getCode`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getcode); does not accept TinyBig/BN/BigNumber
    *
    * @param address the contract address to get the contract code from
-   *
    * @param blockTag the block height to search for the contract code from. Contract code can change, so this allows for checking a specific block
-   *
    * @returns the contract creation code for the specified address at the specified block height
    */
   public async getCode(
@@ -429,8 +429,9 @@ export abstract class BaseProvider {
    * Returns an estimate of the amount of gas that would be required to submit transaction to the network.
    * An estimate may not be accurate since there could be another transaction on the network that was not accounted for, but after being mined affected relevant state.
    *
-   * * Same as ["estimateGas" in ethers.js](https://docs.ethers.io/v5/api/providers/provider/#Provider-estimateGas)
+   * Same as ["estimateGas" in ethers.js](https://docs.ethers.io/v5/api/providers/provider/#Provider-estimateGas)
    *
+   * @param transaction
    * @example
    * ```js
    * await provider.estimateGas({
@@ -442,7 +443,7 @@ export abstract class BaseProvider {
    * // { TinyBig: "27938" }
    *
    * ```
-   * */
+   */
   async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
     const body = buildRPCPostBody('eth_estimateGas', [transaction]);
     const gasUsed = (await this.post(body)) as string;
