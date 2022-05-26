@@ -12,12 +12,19 @@ describe('provider.getLogs', () => {
   const ethersProvider = new StaticJsonRpcProvider(rpcUrl);
   const web3Provider = new Web3(rpcUrl);
 
+  // Example logs that should be returned
+  // https://etherscan.io/address/0xfbddadd80fe7bda00b901fbaf73803f2238ae655#events
+  // Address is for StrongBlock: Service
+  // Block(s) are 14809329
   const filterAddressFromTo: Filter = {
     address: '0xfbddadd80fe7bda00b901fbaf73803f2238ae655',
     fromBlock: '0xE1F8F1',
     toBlock: '0xE1F8F1',
   };
 
+  // Example logs that should be returned
+  // https://etherscan.io/address/0x596a0f276ee432d8a28441e55737ff55cf30d0f7#events
+  // Address is for Rareland
   const filterAddressTopics: Filter = {
     address: '0x596a0f276ee432d8a28441e55737ff55cf30d0f7',
     topics: [
@@ -25,6 +32,8 @@ describe('provider.getLogs', () => {
     ],
   };
 
+  // https://etherscan.io/address/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#events
+  // Address is for Wrapped Ether Contract
   const filterAll: Filter = {
     address: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
     topics: [
