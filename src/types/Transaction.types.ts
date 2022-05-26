@@ -54,7 +54,8 @@ export type TransactionReceipt = Modify<
  * * Similar to [`Type Log on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-Log)
  */
 export type Log = Modify<
-  Omit<RPCLog, 'removed'>,
+  RPCLog,
+  // Omit<RPCLog, 'removed'>,
   {
     blockNumber: number;
     logIndex: number;
