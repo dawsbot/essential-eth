@@ -14,19 +14,19 @@ describe('provider.getLogs', () => {
 
   // Example logs that should be returned
   // https://etherscan.io/address/0xfbddadd80fe7bda00b901fbaf73803f2238ae655#events
-  // Address is for StrongBlock: Service
   // Block(s) are 14809329
+  const STRONGBLOCK_ADDRESS = '0xfbddadd80fe7bda00b901fbaf73803f2238ae655';
   const filterAddressFromTo: Filter = {
-    address: '0xfbddadd80fe7bda00b901fbaf73803f2238ae655',
+    address: STRONGBLOCK_ADDRESS,
     fromBlock: '0xE1F8F1',
     toBlock: '0xE1F8F1',
   };
 
   // Example logs that should be returned
   // https://etherscan.io/address/0x596a0f276ee432d8a28441e55737ff55cf30d0f7#events
-  // Address is for Rareland
+  const RARELAND_ADDRESS = '0x596a0f276ee432d8a28441e55737ff55cf30d0f7';
   const filterAddressTopics: Filter = {
-    address: '0x596a0f276ee432d8a28441e55737ff55cf30d0f7',
+    address: RARELAND_ADDRESS,
     topics: [
       '0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925',
     ],
@@ -34,8 +34,9 @@ describe('provider.getLogs', () => {
 
   // https://etherscan.io/address/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#events
   // Address is for Wrapped Ether Contract
+  const WETH_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
   const filterAll: Filter = {
-    address: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
+    address: WETH_ADDRESS,
     topics: [
       '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
       '0x00000000000000000000000021b8065d10f73ee2e260e5b47d3344d3ced7596e',
