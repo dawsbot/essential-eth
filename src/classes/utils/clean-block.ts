@@ -9,6 +9,7 @@ import { hexToDecimal } from './hex-to-decimal';
  *
  * @param block
  * @param returnTransactionObjects
+ * @example
  */
 export function cleanBlock(
   block: RPCBlock,

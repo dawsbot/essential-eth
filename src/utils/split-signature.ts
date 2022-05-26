@@ -36,6 +36,7 @@ import {
 /**
  *
  * @param signature
+ * @example
  */
 export function splitSignature(signature: SignatureLike): Signature {
   const result = {

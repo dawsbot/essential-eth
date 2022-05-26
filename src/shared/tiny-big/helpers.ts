@@ -2,6 +2,7 @@
 /**
  *
  * @param numberString
+ * @example
  */
 function stripTrailingZeroes(numberString: string) {
   const isNegative = numberString.startsWith('-');
@@ -26,6 +27,7 @@ function stripTrailingZeroes(numberString: string) {
 /**
  *
  * @param scientificString
+ * @example
  */
 export function scientificStrToDecimalStr(scientificString: string): string {
   // Does not contain "e" nor "E"

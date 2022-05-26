@@ -7,6 +7,7 @@ import { keccak256 } from './keccak256';
  *
  * @param key the public or private key to find the address related to
  * @returns the address that corresponds to the key specified
+ * @example
  */
 export function computeAddress(key: string): string {
   // compressed public keys start with 0x04

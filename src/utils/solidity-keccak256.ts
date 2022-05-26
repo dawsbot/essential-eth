@@ -14,6 +14,7 @@ const regexArray = new RegExp('^(.*)\\[([0-9]*)\\]$');
  * @param type
  * @param value
  * @param isArray
+ * @example
  */
 function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
   switch (type) {
@@ -98,6 +99,7 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
  *
  * @param types
  * @param values
+ * @example
  */
 export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
   if (types.length != values.length) {
@@ -119,8 +121,8 @@ export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
  *
  * Similar to ["solidityKeccak256" in ethers.js](https://docs.ethers.io/v5/api/utils/hashing/#utils-solidityKeccak256)
  *
- * @param types - Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
- * @param values - Data to be concatenated (combined) and then hashed.
+ * @param types Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
+ * @param values Data to be concatenated (combined) and then hashed.
  * @returns - A Keccak256 hash (hex string) based on the values provided
  * @example
  * ```javascript

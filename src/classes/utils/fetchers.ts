@@ -3,6 +3,7 @@ import unfetch from 'isomorphic-unfetch';
  *
  * @param url
  * @param body
+ * @example
  */
 export function post(url: string, body: Record<string, unknown>) {
   return unfetch(url, {
@@ -49,6 +50,7 @@ type RPCMethodName =
  *
  * @param method
  * @param params
+ * @example
  */
 export function buildRPCPostBody(method: RPCMethodName, params: unknown[]) {
   return {

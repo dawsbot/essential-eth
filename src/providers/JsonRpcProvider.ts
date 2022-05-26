@@ -16,6 +16,7 @@ export class JsonRpcProvider extends BaseProvider {
 
   /**
    * @param rpcUrl The URL to your Eth node. Consider POKT or Infura
+   * @example
    */
   constructor(rpcUrl = 'https://free-eth-node.com/api/eth') {
     super([rpcUrl]);

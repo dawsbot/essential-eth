@@ -9,6 +9,7 @@ const hexTrue = '0'.repeat(63) + '1';
 /**
  *
  * @param type
+ * @example
  */
 function expandType(type: ContractTypes) {
   // https://docs.soliditylang.org/en/v0.8.7/types.html#integers
@@ -23,6 +24,7 @@ function expandType(type: ContractTypes) {
  *
  * @param jsonABIArgument
  * @param args
+ * @example
  */
 export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
   const hash = new Keccak(256);
@@ -105,6 +107,7 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
  *
  * @param jsonABIArgument
  * @param nodeResponse
+ * @example
  */
 export function decodeRPCResponse(
   jsonABIArgument: JSONABIArgument,

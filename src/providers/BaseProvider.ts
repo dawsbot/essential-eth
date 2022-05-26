@@ -18,6 +18,7 @@ import chainsInfo from './utils/chains-info';
 /**
  *
  * @param blockTag
+ * @example
  */
 function prepBlockTag(blockTag: BlockTag): string {
   return typeof blockTag === 'number'
@@ -45,6 +46,7 @@ export abstract class BaseProvider {
   /**
    * @param rpcUrl The URL to your Eth node. Consider POKT or Infura
    * @param rpcUrls
+   * @example
    */
   constructor(rpcUrls: string[]) {
     this._rpcUrls = rpcUrls;
@@ -52,6 +54,8 @@ export abstract class BaseProvider {
 
   /**
    * Returns the network this provider is connected to
+   *
+   * @example
    */
   public async getNetwork(): Promise<Network> {
     const hexChainId = (await this.post(
@@ -370,6 +374,8 @@ export abstract class BaseProvider {
   /**
    * Returns the current gas price in wei as TinyBig
    * Same as `ethers.provider.getGasPrice`
+   *
+   * @example
    */
   public async getGasPrice(): Promise<TinyBig> {
     const hexGasPrice = (await this.post(
@@ -413,6 +419,7 @@ export abstract class BaseProvider {
    * @param address the contract address to get the contract code from
    * @param blockTag the block height to search for the contract code from. Contract code can change, so this allows for checking a specific block
    * @returns the contract creation code for the specified address at the specified block height
+   * @example
    */
   public async getCode(
     address: string,

@@ -12,6 +12,8 @@ export class TinyBig extends Big {
   /**
    * Used anytime you're passing in "value" to ethers or web3
    * For now, TypeScript will complain that `TinyBig` is not a `BigNumberish`. You can // @ts-ignore or call this
+   *
+   * @example
    */
   toHexString(): string {
     return `0x${BigInt(this.toString()).toString(16)}`;
@@ -31,6 +33,7 @@ export class TinyBig extends Big {
    * @param {string} str
    * @param {string} padChar
    * @param {number} length
+   * @example
    */
   private padAndChop = (
     str: string,

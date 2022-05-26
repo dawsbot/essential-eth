@@ -54,6 +54,7 @@ export interface Signature {
 /**
  *
  * @param value
+ * @example
  */
 function isHexable(value: any): value is Hexable {
   return !!value.toHexString;
@@ -87,6 +88,7 @@ export function isBytesLike(value: any): value is BytesLike {
 /**
  *
  * @param value
+ * @example
  */
 function isInteger(value: number) {
   return typeof value === 'number' && value == value && value % 1 === 0;
@@ -251,6 +253,7 @@ export function concat(
 /**
  *
  * @param value
+ * @example
  */
 export function stripZeros(value: BytesLike): Uint8Array {
   let result: Uint8Array = arrayify(value);
@@ -277,6 +280,7 @@ export function stripZeros(value: BytesLike): Uint8Array {
  *
  * @param value
  * @param length
+ * @example
  */
 export function zeroPad(value: BytesLike, length: number): Uint8Array {
   value = arrayify(value);
@@ -297,6 +301,7 @@ export function zeroPad(value: BytesLike, length: number): Uint8Array {
  *
  * @param value
  * @param length
+ * @example
  */
 export function isHexString(value: any, length?: number): boolean {
   if (typeof value !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
@@ -397,6 +402,7 @@ export function hexlify(
 /**
  *
  * @param data
+ * @example
  */
 export function hexDataLength(data: BytesLike) {
   if (typeof data !== 'string') {
@@ -413,6 +419,7 @@ export function hexDataLength(data: BytesLike) {
  * @param data
  * @param offset
  * @param endOffset
+ * @example
  */
 export function hexDataSlice(
   data: BytesLikeWithNumber,
@@ -437,6 +444,7 @@ export function hexDataSlice(
 /**
  *
  * @param items
+ * @example
  */
 export function hexConcat(items: ReadonlyArray<BytesLike>): string {
   let result = '0x';
@@ -449,6 +457,7 @@ export function hexConcat(items: ReadonlyArray<BytesLike>): string {
 /**
  *
  * @param value
+ * @example
  */
 export function hexValue(value: BytesLike | Hexable | number | bigint): string {
   const trimmed = hexStripZeros(hexlify(value, { hexPad: 'left' }));
@@ -461,6 +470,7 @@ export function hexValue(value: BytesLike | Hexable | number | bigint): string {
 /**
  *
  * @param value
+ * @example
  */
 export function hexStripZeros(value: BytesLike): string {
   if (typeof value !== 'string') {
@@ -485,9 +495,9 @@ export function hexStripZeros(value: BytesLike): string {
  *
  * Differs from ["padLeft" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#padleft) because web3 counts by characters, not bytes.
  *
- * @param hexValue - A hex-string, hex-number, or decimal number (auto-converts to base-16) to be padded
+ * @param hexValue A hex-string, hex-number, or decimal number (auto-converts to base-16) to be padded
  * @param value
- * @param length - The final length in bytes
+ * @param length The final length in bytes
  * @throws - If the value is not a hex string or number
  * @throws - If the value is longer than the length
  * @example

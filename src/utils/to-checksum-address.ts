@@ -5,7 +5,7 @@ import { validateType } from '../shared/validate-type';
  * Returns an Ethereum address in proper mixed-case checksum.
  * Does NOT support ICAP
  *
- * @param address - An Ethereum address. Mixed, lower, and uppercase are all valid
+ * @param address An Ethereum address. Mixed, lower, and uppercase are all valid
  * @example
  * ```javascript
  * toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
