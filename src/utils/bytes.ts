@@ -17,7 +17,7 @@ export type Bytes = ArrayLike<number>;
  * @example
  * '0x123'
  */
-// export type BytesLike = Bytes | string | number;
+
 export type BytesLike = Bytes | string;
 export type BytesLikeWithNumber = BytesLike | number;
 
