@@ -1,6 +1,5 @@
 // primarily duplicate code from https://github.com/ethers-io/ethers.js/blob/f599d6f23dad0d0acaa3828d6b7acaab2d5e455b/packages/bytes/src.ts/index.ts
 import { logger } from '../logger/logger';
-import { BytesLike } from './bytes';
 
 ///////////////////////////////
 // Exported Types
@@ -164,7 +163,7 @@ export function isBytes(value: any): value is Bytes {
  * Same as [`ethers.utils.arrayify`](https://docs.ethers.io/v5/api/utils/bytes/#utils-arrayify)
  *
  * @param value the value to convert to a Uint8Array
- * @param options
+ * @param options options to use when converting the value to a Uint8Array
  * @returns the value represented as a Uint8Array
  * @example
  * ```javascript
@@ -480,12 +479,17 @@ export function hexDataLength(data: BytesLike) {
 }
 
 /**
+ * Slices a {@link BytesLike} to extract a certain part of the input
  *
- *
- * @param data
- * @param offset
- * @param endOffset
+ * @param data the data to slice from
+ * @param offset the index to start extraction at
+ * @param endOffset the index to end extraction at
+ * @returns the extracted data as a hex string
  * @example
+ * ```javascript
+ * hexDataSlice([20, 6, 48], 0, 2); 
+ * // '0x1406'
+ * ```
  */
 export function hexDataSlice(
   data: BytesLikeWithNumber,
@@ -527,9 +531,20 @@ export function hexConcat(items: ReadonlyArray<BytesLike>): string {
 }
 
 /**
- *
- * @param value
+ * Converts a number of different types into a hex string
+ * 
+ * @param value the value to convert into a hex string
+ * @returns the value represented as a hex string
  * @example
+ * ```javascript
+ * hexValue(39);
+ * // '0x27'
+ * ```
+ * @example
+ * ```javascript
+ * hexValue([9, 4, 19, 4]);
+ * // '0x9041304'
+ * ```
  */
 export function hexValue(value: BytesLike | Hexable | number | bigint): string {
   const trimmed = hexStripZeros(hexlify(value, { hexPad: 'left' }));
