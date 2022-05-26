@@ -425,7 +425,7 @@ export abstract class BaseProvider {
    *
    * @param address the address to check the balance of
    * @param blockTag the block to check the specified address' balance on
-   * @returns the balance of the network's native token for the specified address on the specified block 
+   * @returns the balance of the network's native token for the specified address on the specified block
    * @example
    * ```javascript
    *  await provider
@@ -455,6 +455,10 @@ export abstract class BaseProvider {
    * @param blockTag the block height to search for the contract code from. Contract code can change, so this allows for checking a specific block
    * @returns the contract creation code for the specified address at the specified block height
    * @example
+   * ```javascript
+   * await jsonRpcProvider().getCode('0xaC6095720221C79C6E7C638d260A2eFBC5D8d880', 'latest');
+   * // '0x608060405234801561001057600080fd5b506004361061...'
+   * ```
    */
   public async getCode(
     address: string,
@@ -487,9 +491,10 @@ export abstract class BaseProvider {
    *
    * ```
    */
-  async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
-    const body = buildRPCPostBody('eth_estimateGas', [transaction]);
-    const gasUsed = (await this.post(body)) as string;
+  public async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
+    const gasUsed = (await this.post(
+      buildRPCPostBody('eth_estimateGas', [transaction]),
+    )) as string;
     return tinyBig(hexToDecimal(gasUsed));
   }
 }
