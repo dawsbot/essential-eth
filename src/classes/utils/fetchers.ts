@@ -1,4 +1,19 @@
 import unfetch from 'isomorphic-unfetch';
+/**
+ * Makes a post request with the specified JSON data, normally to the a Ethereum JSON RPC API endpoint
+ *
+ * @param url the URL to send the request to
+ * @param body the body data (JSON) to send with the request
+ * @returns the JSON response from the server
+ * @example
+ * ```javascript
+ * post('https://free-eth-node.com/api/eth', { jsonrpc: '2.0', id: 1, method: 'eth_gasPrice', params: [] });
+ * // '0x66fa8dbfd'
+ *
+ * post('https://free-eth-node.com/api/eth', { jsonrpc: '2.0', id: 1, method: 'eth_getBalance', params: [ '0x4a986a6dCA6dbf99bC3d17F8D71aFb0d60e740f8', 'latest' ] });
+ * // '0x312faeb995df61d4'
+ * ```
+ */
 export function post(url: string, body: Record<string, unknown>) {
   return unfetch(url, {
     method: 'POST',
@@ -38,8 +53,24 @@ type RPCMethodName =
   | 'eth_getTransactionCount'
   | 'eth_getCode'
   | 'eth_blockNumber'
-  | 'eth_estimateGas';
+  | 'eth_estimateGas'
+  | 'eth_getLogs';
 
+/**
+ * Prepares data to be sent using the {@link post} function. Data is prepared per the {@link https://en.wikipedia.org/wiki/JSON-RPC#Examples JSON RPC v2 spec}
+ *
+ * @param method the RPC method to be invoked
+ * @param params the parameters to be passed to the defined method
+ * @returns a POST method body matching the {@link https://en.wikipedia.org/wiki/JSON-RPC#Examples JSON RPC v2 spec}
+ * @example
+ * ```javascript
+ * buildRPCPostBody('eth_gasPrice', []);
+ * // { jsonrpc: '2.0', id: 1, method: 'eth_gasPrice', params: [] }
+ *
+ * buildRPCPostBody('eth_getBalance', ['0x407d73d8a49eeb85d32cf465507dd71d507100c1', 'latest']);
+ * // { jsonrpc: '2.0', id: 1, method: 'eth_getBalance', params: [ '0x4a986a6dCA6dbf99bC3d17F8D71aFb0d60e740f8', 'latest' ] }
+ * ```
+ */
 export function buildRPCPostBody(method: RPCMethodName, params: unknown[]) {
   return {
     jsonrpc: '2.0',

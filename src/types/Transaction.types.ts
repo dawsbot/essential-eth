@@ -30,7 +30,7 @@ export type TransactionResponse = Modify<
 
 /**
  * Type that contains information from the receipt of a transaction
- * * Similar to [`Type TransactionReceipt on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt)
+ * Similar to [`Type TransactionReceipt on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt)
  */
 export type TransactionReceipt = Modify<
   RPCTransactionReceipt,
@@ -51,10 +51,11 @@ export type TransactionReceipt = Modify<
 
 /**
  * Type for the logs that are included in transaction receipts
- * * Similar to [`Type Log on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-Log)
+ * Similar to [`Type Log on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-Log)
  */
 export type Log = Modify<
-  Omit<RPCLog, 'removed'>,
+  RPCLog,
+  // Omit<RPCLog, 'removed'>,
   {
     blockNumber: number;
     logIndex: number;

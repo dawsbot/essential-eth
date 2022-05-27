@@ -9,6 +9,16 @@ const regexBytes = new RegExp('^bytes([0-9]+)$');
 const regexNumber = new RegExp('^(u?int)([0-9]*)$');
 const regexArray = new RegExp('^(.*)\\[([0-9]*)\\]$');
 
+/**
+ * Packs a type and value together into a UTF-8 Byte Array
+ *
+ * @internal
+ * @param type the Solidity type used for the value given
+ * @param value the value to pack with its type
+ * @param isArray whether the specified data is in an array
+ * @returns packed data consisting of the type and value
+ * @example N/A - internal function
+ */
 function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
   switch (type) {
     case 'address':
@@ -88,6 +98,20 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
   return logger.throwArgumentError('invalid type', 'type', type);
 }
 
+/**
+ * Converts arrays with types and values into a hex string that can be hashed
+ *
+ * @param types array of Solidity types, where `type[0]` is the type for `value[0]`
+ * @param values array of values, where `value[0]` is of type `type[0]`
+ * @returns a hex string with the data given, packed to include its types
+ * @example
+ * ```javascript
+ * const types = ['bool', 'string', 'uint64'];
+ * const values = [true, 'text', 30];
+ * pack(types, values);
+ * // '0x0174657874000000000000001e'
+ * ```
+ */
 export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
   if (types.length != values.length) {
     logger.throwArgumentError(
@@ -108,12 +132,9 @@ export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
  *
  * Similar to ["solidityKeccak256" in ethers.js](https://docs.ethers.io/v5/api/utils/hashing/#utils-solidityKeccak256)
  *
- * @param types - Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
- *
- * @param values - Data to be concatenated (combined) and then hashed.
- *
- * @returns - A Keccak256 hash (hex string) based on the values provided
- *
+ * @param types Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
+ * @param values Data to be concatenated (combined) and then hashed.
+ * @returns A Keccak256 hash (hex string) based on the values provided
  * @example
  * ```javascript
  * const types = ['string', 'bool', 'uint32'];
@@ -121,7 +142,6 @@ export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
  * solidityKeccak256(types, values);
  * // '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'
  * ```
- *
  * @example
  * ```javascript
  * const types = ['bytes4', 'uint32[5]'];

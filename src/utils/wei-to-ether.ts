@@ -9,6 +9,8 @@ import { validateType } from '../shared/validate-type';
  *
  * Similar to ["fromWei" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#fromwei)
  *
+ * @param weiQuantity the amount of wei to convert to ether
+ * @returns a number of ether equivalent to the specified wei
  * @example
  * ```javascript
  * weiToEther('1000000000000000000000').toString()
@@ -16,7 +18,6 @@ import { validateType } from '../shared/validate-type';
  * weiToEther(1000000000000000000000).toString()
  * // '1000'
  * ```
- *
  * @example
  * ```javascript
  * weiToEther('1000000000000000000000').toNumber()

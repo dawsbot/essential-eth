@@ -12,6 +12,11 @@ import { fakeUrls } from '../rpc-urls';
 const rpcUrl = `https://public-node.rsk.co`;
 
 describe('provider.getBlock happy path', () => {
+  /**
+   *
+   * @param block1
+   * @param block2
+   */
   function testBlockEquality(
     block1: BlockResponse,
     block2: BlockTransactionObject,

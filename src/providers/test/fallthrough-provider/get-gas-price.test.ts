@@ -5,6 +5,10 @@ import { rpcUrls } from '../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
 
+/**
+ *
+ * @param fn
+ */
 function timePromise(fn: () => Promise<any>): Promise<number> {
   const onPromiseDone = () => performance.now() - start;
 

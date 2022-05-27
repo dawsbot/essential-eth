@@ -25,7 +25,7 @@
     "json": "scripts/markdown-magic/typedoc.out.json",
     "intentionallyNotExported": [
       "src/types/Transaction.types.ts:Modify",
-      "src/types/Block.types.ts:Modify",
+      "src/types/Block.types.ts:Modify"
     ]
   }
 }

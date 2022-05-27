@@ -16,6 +16,10 @@ export class JsonRpcProvider extends BaseProvider {
 
   /**
    * @param rpcUrl The URL to your Eth node. Consider POKT or Infura
+   * @example
+   * `https://free-eth-node.com/api/eth`
+   * @example
+   * `https://mainnet.infura.io/v3/YOUR-PROJECT-ID`
    */
   constructor(rpcUrl = 'https://free-eth-node.com/api/eth') {
     super([rpcUrl]);
@@ -25,6 +29,8 @@ export class JsonRpcProvider extends BaseProvider {
 /**
  * Helper function to avoid "new"
  *
+ * @param rpcUrl the RPC URL to post requests to
+ * @returns an initiated {@link JsonRpcProvider}
  * @example
  * ```javascript
  * jsonRpcProvider().getBlock('latest').then(block => {
