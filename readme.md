@@ -76,7 +76,7 @@
   - [`toUtf8Bytes`](#toutf8bytes)
   - [`weiToEther`](#weitoether)
   - [`zeroPad`](#zeropad)
-- [RPC](#rpc)
+- [Providers](#providers)
   - [`estimateGas`](#estimategas)
   - [`getBalance`](#getbalance)
   - [`getBlock`](#getblock)
@@ -724,15 +724,13 @@ zeroPad(value: BytesLike, length: number): Uint8Array
 <br/>
 <br/>
 
-## RPC
+## Providers
 
 ```typescript
 import { JsonRpcProvider } from 'essential-eth';
-const essentialEth = new JsonRpcProvider(
-  'RPC URL HERE' /* Try POKT or Infura */,
-);
+const provider = new JsonRpcProvider('RPC URL HERE' /* Try POKT or Infura */);
 // OR for very quick testing (limited to 10,000 requests)
-const essentialEth = new JsonRpcProvider();
+const provider = new JsonRpcProvider();
 ```
 
 <details>
@@ -763,7 +761,7 @@ provider.getGasPrice().toNumber();
 #### [`estimateGas`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#estimategas)
 
 ```typescript
-estimateGas(transaction: TransactionRequest): Promise<TinyBig>
+provider.estimateGas(transaction: TransactionRequest): Promise<TinyBig>
 ```
 
   <details>
@@ -791,7 +789,7 @@ await provider.estimateGas({
 #### [`getBalance`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getbalance)
 
 ```typescript
-getBalance(address: string, blockTag?: BlockTag): Promise<TinyBig>
+provider.getBalance(address: string, blockTag?: BlockTag): Promise<TinyBig>
 ```
 
   <details>
@@ -816,7 +814,7 @@ await provider
 #### [`getBlock`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getblock)
 
 ```typescript
-getBlock(timeFrame?: BlockTag, returnTransactionObjects?: boolean): Promise<BlockResponse>
+provider.getBlock(timeFrame?: BlockTag, returnTransactionObjects?: boolean): Promise<BlockResponse>
 ```
 
   <details>
@@ -883,7 +881,7 @@ await provider.getBlock('latest');
 #### [`getBlockNumber`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getblocknumber)
 
 ```typescript
-getBlockNumber(): Promise<number>
+provider.getBlockNumber(): Promise<number>
 ```
 
   <details>
@@ -906,7 +904,7 @@ await provider.getBlockNumber();
 #### [`getCode`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getcode)
 
 ```typescript
-getCode(address: string, blockTag?: BlockTag): Promise<string>
+provider.getCode(address: string, blockTag?: BlockTag): Promise<string>
 ```
 
   <br/>
@@ -914,7 +912,7 @@ getCode(address: string, blockTag?: BlockTag): Promise<string>
 #### [`getGasPrice`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getgasprice)
 
 ```typescript
-getGasPrice(): Promise<TinyBig>
+provider.getGasPrice(): Promise<TinyBig>
 ```
 
   <br/>
@@ -922,7 +920,7 @@ getGasPrice(): Promise<TinyBig>
 #### [`getLogs`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getlogs)
 
 ```typescript
-getLogs(filter: Filter | FilterByBlockHash): Promise<Array<Log>>
+provider.getLogs(filter: Filter | FilterByBlockHash): Promise<Array<Log>>
 ```
 
   <details>
@@ -972,7 +970,7 @@ provider.getLogs({
 #### [`getNetwork`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getnetwork)
 
 ```typescript
-getNetwork(): Promise<Network>
+provider.getNetwork(): Promise<Network>
 ```
 
   <br/>
@@ -980,7 +978,7 @@ getNetwork(): Promise<Network>
 #### [`getTransaction`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#gettransaction)
 
 ```typescript
-getTransaction(transactionHash: string): Promise<TransactionResponse>
+provider.getTransaction(transactionHash: string): Promise<TransactionResponse>
 ```
 
   <details>
@@ -1117,7 +1115,7 @@ await provider.getTransaction('0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b
 #### [`getTransactionCount`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#gettransactioncount)
 
 ```typescript
-getTransactionCount(address: string, blockTag?: BlockTag): Promise<number>
+provider.getTransactionCount(address: string, blockTag?: BlockTag): Promise<number>
 ```
 
   <details>
@@ -1151,7 +1149,7 @@ await provider.getTransactionCount(address, 14649390);
 #### [`getTransactionReceipt`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#gettransactionreceipt)
 
 ```typescript
-getTransactionReceipt(transactionHash: string): Promise<TransactionReceipt>
+provider.getTransactionReceipt(transactionHash: string): Promise<TransactionReceipt>
 ```
 
   <br/>
