@@ -793,7 +793,7 @@ await provider.estimateGas({
 #### [`getBalance`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getbalance)
 
 ```typescript
-getBalance(address: string, blockTag: BlockTag): Promise
+getBalance(address: string, blockTag?: BlockTag): Promise
 ```
 
   <details>
@@ -820,7 +820,7 @@ await provider
 #### [`getBlock`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getblock)
 
 ```typescript
-getBlock(timeFrame: BlockTag, returnTransactionObjects: boolean): Promise
+getBlock(timeFrame?: BlockTag, returnTransactionObjects?: boolean): Promise
 ```
 
   <details>
@@ -914,7 +914,7 @@ await provider.getBlockNumber();
 #### [`getCode`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getcode)
 
 ```typescript
-getCode(address: string, blockTag: BlockTag): Promise
+getCode(address: string, blockTag?: BlockTag): Promise
 ```
 
   <br/>
@@ -1129,7 +1129,7 @@ await provider.getTransaction('0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b
 #### [`getTransactionCount`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#gettransactioncount)
 
 ```typescript
-getTransactionCount(address: string, blockTag: BlockTag): Promise
+getTransactionCount(address: string, blockTag?: BlockTag): Promise
 ```
 
   <details>

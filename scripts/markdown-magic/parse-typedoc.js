@@ -64,7 +64,8 @@ functions.map((functionNumber) => {
           .map((type) => type.name)
           .join(' | ');
       }
-      return `${parameter.name}: ${parameterType}`;
+      const separator = parameter.defaultValue ? '?:' : ':';
+      return `${parameter.name}${separator} ${parameterType}`;
     })
     .join(', ');
   const examplesMarkdown = examples
@@ -82,7 +83,7 @@ functions.map((functionNumber) => {
 
   functionsMarkdown += `#### [\`${name}\`](https://essential-eth.vercel.app/docs/api/modules#${name.toLowerCase()})
   \`\`\`typescript
-  ${name}(${paramsString}): ${returnType}
+  ${name}(${paramsString || ''}): ${returnType}
   \`\`\`
   ${examplesMarkdown}
   <br/>
@@ -150,7 +151,8 @@ jsonRpcProvider.children
             .map((type) => type.name)
             .join(' | ');
         }
-        return `${parameter.name}: ${parameterType}`;
+        const separator = parameter.defaultValue ? '?:' : ':';
+        return `${parameter.name}${separator} ${parameterType}`;
       })
       .join(', ');
     const examplesMarkdown = examples
