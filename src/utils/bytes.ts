@@ -303,7 +303,7 @@ export function stripZeros(value: BytesLike): Uint8Array {
 
 /**
  * Pads the beginning of a {@link BytesLike} with zeros so it's the specified length as a Uint8Array
- * 
+ *
  * @param value the value to pad
  * @param length the desired length of the value
  * @returns the value padded with zeros to the specified length
@@ -487,7 +487,7 @@ export function hexDataLength(data: BytesLike) {
  * @returns the extracted data as a hex string
  * @example
  * ```javascript
- * hexDataSlice([20, 6, 48], 0, 2); 
+ * hexDataSlice([20, 6, 48], 0, 2);
  * // '0x1406'
  * ```
  */
@@ -532,7 +532,7 @@ export function hexConcat(items: ReadonlyArray<BytesLike>): string {
 
 /**
  * Converts a number of different types into a hex string
- * 
+ *
  * @param value the value to convert into a hex string
  * @returns the value represented as a hex string
  * @example
@@ -556,7 +556,7 @@ export function hexValue(value: BytesLike | Hexable | number | bigint): string {
 
 /**
  * Strips the leading zeros from a value and returns it as a hex string
- * 
+ *
  * @param value the value to strip zeros from
  * @returns a hex string representation of the value, without leading zeros
  * @example

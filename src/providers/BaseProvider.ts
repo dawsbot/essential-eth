@@ -510,9 +510,7 @@ export abstract class BaseProvider {
    * * Identical to ["web3.eth.getPastLogs" in web3.js](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs)
    *
    * @param filter parameters to filter the logs by
-   *
    * @returns an array of logs matching the specified filter
-   *
    * @example
    * ```javascript
    * provider.getLogs({

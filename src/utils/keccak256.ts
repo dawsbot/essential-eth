@@ -10,7 +10,7 @@ import { BytesLike } from './bytes';
  * ```javascript
  * keccak256('essential-eth');
  * // '0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'
- * 
+ *
  * keccak256('0x123');
  * // '0x5fa2358263196dbbf23d1ca7a509451f7a2f64c15837bfbb81298b1e3e24e4fa'
  * ```

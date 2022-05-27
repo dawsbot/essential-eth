@@ -7,7 +7,6 @@ export interface EventFilter {
 
 /**
  * @param fromBlock block as starting point for range, inclusive
- *
  * @param toBlock block as ending point for range, inclusive
  */
 export interface Filter extends EventFilter {

@@ -11,7 +11,7 @@ const regexArray = new RegExp('^(.*)\\[([0-9]*)\\]$');
 
 /**
  * Packs a type and value together into a UTF-8 Byte Array
- * 
+ *
  * @internal
  * @param type the Solidity type used for the value given
  * @param value the value to pack with its type
@@ -100,7 +100,7 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
 
 /**
  * Converts arrays with types and values into a hex string that can be hashed
- * 
+ *
  * @param types array of Solidity types, where `type[0]` is the type for `value[0]`
  * @param values array of values, where `value[0]` is of type `type[0]`
  * @returns a hex string with the data given, packed to include its types
