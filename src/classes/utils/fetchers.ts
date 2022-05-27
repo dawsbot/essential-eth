@@ -53,7 +53,8 @@ type RPCMethodName =
   | 'eth_getTransactionCount'
   | 'eth_getCode'
   | 'eth_blockNumber'
-  | 'eth_estimateGas';
+  | 'eth_estimateGas'
+  | 'eth_getLogs';
 
 /**
  * Prepares data to be sent using the {@link post} function. Data is prepared per the {@link https://en.wikipedia.org/wiki/JSON-RPC#Examples JSON RPC v2 spec}

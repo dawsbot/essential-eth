@@ -1,12 +1,16 @@
 import { cleanBlock } from '../classes/utils/clean-block';
+import { cleanLog } from '../classes/utils/clean-log';
 import { cleanTransaction } from '../classes/utils/clean-transaction';
 import { cleanTransactionReceipt } from '../classes/utils/clean-transaction-receipt';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
+import { Filter, FilterByBlockHash } from '../types/Filter.types';
 import { Network } from '../types/Network.types';
 import {
+  Log,
+  RPCLog,
   RPCTransaction,
   RPCTransactionReceipt,
   TransactionReceipt,
@@ -496,5 +500,63 @@ export abstract class BaseProvider {
       buildRPCPostBody('eth_estimateGas', [transaction]),
     )) as string;
     return tinyBig(hexToDecimal(gasUsed));
+  }
+
+  /**
+   * Returns transaction receipt event logs that match a specified filter
+   * May return [] if parameters are too broad, even if logs exist
+   *
+   * * Identical to ["ethers.provider.getLogs" in ethers.js](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs)
+   * * Identical to ["web3.eth.getPastLogs" in web3.js](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs)
+   *
+   * @param filter parameters to filter the logs by
+   *
+   * @returns an array of logs matching the specified filter
+   *
+   * @example
+   * ```javascript
+   * provider.getLogs({
+   *   address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+   *   topics: [
+   *     "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+   *     "0x00000000000000000000000021b8065d10f73ee2e260e5b47d3344d3ced7596e",
+   *   ],
+   *   fromBlock: 14825027,
+   *   toBlock: 14825039,
+   * });
+   *
+   * [        
+   *   {      
+   *     address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+   *     blockHash: '0x8e0dfac2f704851960f866c8708b3bef2f66c0fee0329cf25ff0261b264ca6bc',
+   *     blockNumber: 14825029,
+   *     data: '0x000000000000000000000000000000000000000000000000005f862ee352a38a',
+   *     logIndex: 384,
+   *     removed: false,
+   *     topics: [
+   *       '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+   *       '0x00000000000000000000000021b8065d10f73ee2e260e5b47d3344d3ced7596e',
+   *       '0x00000000000000000000000068b3465833fb72a70ecdf485e0e4c7bd8665fc45'
+   *     ],
+   *     transactionHash: '0xbd49031be16f8fd1775f4e0fe79b408ffd8ae9c65b2827ee47e3238e3f51f4c0',
+   *     transactionIndex: 226
+   *   }
+   * ]
+   * ```
+   */
+  public async getLogs(
+    filter: Filter | FilterByBlockHash,
+  ): Promise<Array<Log>> {
+    const filterByRange = filter as Filter;
+    if (filterByRange.fromBlock)
+      filterByRange.fromBlock = prepBlockTag(filterByRange.fromBlock);
+    if (filterByRange.toBlock)
+      filterByRange.toBlock = prepBlockTag(filterByRange.toBlock);
+
+    const rpcLogs = (await this.post(
+      buildRPCPostBody('eth_getLogs', [filter]),
+    )) as Array<RPCLog>;
+    const logs = rpcLogs.map((log) => cleanLog(log, false));
+    return logs;
   }
 }
