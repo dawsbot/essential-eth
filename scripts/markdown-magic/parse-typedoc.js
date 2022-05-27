@@ -171,7 +171,7 @@ jsonRpcProvider.children
 
     providerMarkdown += `#### [\`${name}\`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#${name.toLowerCase()})
   \`\`\`typescript
-  ${name}(${paramsString}): ${returnType}
+  ${name}(${paramsString || ''}): ${returnType}
   \`\`\`
   ${examplesMarkdown}
   <br/>

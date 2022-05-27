@@ -889,7 +889,7 @@ await provider.getBlock('latest');
 #### [`getBlockNumber`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getblocknumber)
 
 ```typescript
-getBlockNumber(undefined): Promise
+getBlockNumber(): Promise
 ```
 
   <details>
@@ -922,7 +922,7 @@ getCode(address: string, blockTag: BlockTag): Promise
 #### [`getGasPrice`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getgasprice)
 
 ```typescript
-getGasPrice(undefined): Promise
+getGasPrice(): Promise
 ```
 
   <br/>
@@ -982,7 +982,7 @@ provider.getLogs({
 #### [`getNetwork`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getnetwork)
 
 ```typescript
-getNetwork(undefined): Promise
+getNetwork(): Promise
 ```
 
   <br/>
