@@ -476,8 +476,8 @@ export abstract class BaseProvider {
    *   toBlock: 14825039,
    * });
    *
-   * [        
-   *   {      
+   * [
+   *   {
    *     address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
    *     blockHash: '0x8e0dfac2f704851960f866c8708b3bef2f66c0fee0329cf25ff0261b264ca6bc',
    *     blockNumber: 14825029,
