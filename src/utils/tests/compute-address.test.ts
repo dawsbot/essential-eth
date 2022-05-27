@@ -1,6 +1,10 @@
 import { utils } from 'ethers';
 import { computeAddress } from '../../index';
 
+/**
+ *
+ * @param keys
+ */
 function testComputeAddress(keys: Array<string>) {
   keys.forEach((key) => {
     expect(computeAddress(key)).toBe(utils.computeAddress(key));

@@ -133,17 +133,17 @@ arrayify(value: number | BytesLike | Hexable, options: DataOptions): Uint8Array
 import { arrayify } from 'essential-eth';
 ```
 
-```js
+```javascript
 arrayify(1);
 // Uint8Array(1) [ 1 ]
 ```
 
-```js
+```javascript
 arrayify(0x1234);
 // Uint8Array(2) [ 18, 52 ]
 ```
 
-```js
+```javascript
 arrayify('0x1', { hexPad: 'right' });
 // Uint8Array(1) [ 16 ]
 ```
@@ -158,6 +158,29 @@ arrayify('0x1', { hexPad: 'right' });
 computeAddress(key: string): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { computeAddress } from 'essential-eth';
+```
+
+```javascript
+computeAddress(
+  '0x0458eb591f407aef12936bd2989ca699cf5061de9c4964dd6eb6005fd8f580c407434447e813969a1be6e9954b002cad84dfc67a69e032b273e4695e7d0db2d952',
+); // public key
+// '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
+```
+
+```javascript
+computeAddress(
+  '0x2f2c419acf4a1da8c1ebea75bb3fcfbd3ec2aa3bf0162901ccdc2f38b8f92427',
+); // private key
+// '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
+```
+
+  </details>
+
   <br/>
 
 #### [`computePublicKey`](https://essential-eth.vercel.app/docs/api/modules#computepublickey)
@@ -165,6 +188,30 @@ computeAddress(key: string): string
 ```typescript
 computePublicKey(privKey: BytesLike): string
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { computePublicKey } from 'essential-eth';
+```
+
+```javascript
+computePublicKey(
+  '0xb27cc8dea0177d910110e8d3ec5480d56c723abf433529f4063f261ffdb9297c',
+);
+// '0x045cd0032015eecfde49f82f4e149d804e8ac6e3a0bface32e37c72a71ceac864fe84da7e8df84342f7b11dfb753c4d158f636142b46b29cf7f0f171ae0aa4fb87'
+```
+
+```javascript
+computePublicKey([
+  50, 102, 50, 99, 52, 49, 57, 97, 99, 102, 52, 97, 49, 100, 97, 56, 99, 49,
+  101, 98, 101, 97, 55, 53, 98, 98, 51, 102, 99, 102, 98, 100,
+]);
+// '0x04a9cea77eca949df84f661cee153426fb51f2294b9364b4fac240df57360b9b0ac9c99e4d7966491ab4c81f8c82e0cd24ec5759832ad4ab736d22c7d90b806ee8'
+```
+
+  </details>
 
   <br/>
 
@@ -181,7 +228,7 @@ concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
 import { concat } from 'essential-eth';
 ```
 
-```js
+```javascript
 concat([0, 1]);
 // Uint8Array(2) [ 0, 1 ]
 ```
@@ -296,7 +343,7 @@ hashMessage(message: string | Bytes): string
 import { hashMessage } from 'essential-eth';
 ```
 
-```js
+```javascript
 hashMessage('Hello World');
 // '0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2'
 ```
@@ -311,6 +358,20 @@ hashMessage('Hello World');
 hexConcat(items: Array<BytesLike>): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexConcat } from 'essential-eth';
+```
+
+```javascript
+hexConcat([[2, 4, 0, 1], 9, '0x2934', '0x3947']);
+// '0x020400010929343947'
+```
+
+  </details>
+
   <br/>
 
 #### [`hexDataLength`](https://essential-eth.vercel.app/docs/api/modules#hexdatalength)
@@ -318,6 +379,25 @@ hexConcat(items: Array<BytesLike>): string
 ```typescript
 hexDataLength(data: BytesLike): undefined
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexDataLength } from 'essential-eth';
+```
+
+```javascript
+hexDataLength([2, 4, 0, 1]);
+// 4
+```
+
+```javascript
+hexDataLength('0x3925');
+// 2
+```
+
+  </details>
 
   <br/>
 
@@ -327,6 +407,20 @@ hexDataLength(data: BytesLike): undefined
 hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexDataSlice } from 'essential-eth';
+```
+
+```javascript
+hexDataSlice([20, 6, 48], 0, 2);
+// '0x1406'
+```
+
+  </details>
+
   <br/>
 
 #### [`hexStripZeros`](https://essential-eth.vercel.app/docs/api/modules#hexstripzeros)
@@ -335,6 +429,20 @@ hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): stri
 hexStripZeros(value: BytesLike): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexStripZeros } from 'essential-eth';
+```
+
+```javascript
+hexStripZeros([0, 0, 0, 48]);
+// '0x30'
+```
+
+  </details>
+
   <br/>
 
 #### [`hexValue`](https://essential-eth.vercel.app/docs/api/modules#hexvalue)
@@ -342,6 +450,25 @@ hexStripZeros(value: BytesLike): string
 ```typescript
 hexValue(value: number | bigint | BytesLike | Hexable): string
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexValue } from 'essential-eth';
+```
+
+```javascript
+hexValue(39);
+// '0x27'
+```
+
+```javascript
+hexValue([9, 4, 19, 4]);
+// '0x9041304'
+```
+
+  </details>
 
   <br/>
 
@@ -390,10 +517,12 @@ hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): str
 import { hexlify } from 'essential-eth';
 ```
 
-```js
+```javascript
 hexlify(4);
 // '0x04'
+```
 
+```javascript
 hexlify(14);
 // '0x0e'
 ```
@@ -448,17 +577,17 @@ isBytes(value: any): value
 import { isBytes } from 'essential-eth';
 ```
 
-```js
+```javascript
 isBytes([1, 2, 3]);
 // true
 ```
 
-```js
+```javascript
 isBytes(false);
 // false
 ```
 
-```js
+```javascript
 isBytes(new Uint8Array(1));
 // true
 ```
@@ -480,17 +609,17 @@ isBytesLike(value: any): value
 import { isBytesLike } from 'essential-eth';
 ```
 
-```js
+```javascript
 isBytesLike([1, 2, 3]);
 // true
 ```
 
-```js
+```javascript
 isBytesLike(false);
 // false
 ```
 
-```js
+```javascript
 isBytesLike(new Uint8Array(1));
 // true
 ```
@@ -504,6 +633,26 @@ isBytesLike(new Uint8Array(1));
 ```typescript
 isHexString(value: any, length: number): boolean
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { isHexString } from 'essential-eth';
+```
+
+```javascript
+isHexString('0x4924');
+// true
+```
+
+```javascript
+isHexString('0x4924', 4);
+// false
+// length of 4 in bytes would mean a hex string with 8 characters
+```
+
+  </details>
 
   <br/>
 
@@ -539,6 +688,23 @@ jsonRpcProvider()
 keccak256(data: BytesLike): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { keccak256 } from 'essential-eth';
+```
+
+```javascript
+keccak256('essential-eth');
+// '0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'
+
+keccak256('0x123');
+// '0x5fa2358263196dbbf23d1ca7a509451f7a2f64c15837bfbb81298b1e3e24e4fa'
+```
+
+  </details>
+
   <br/>
 
 #### [`pack`](https://essential-eth.vercel.app/docs/api/modules#pack)
@@ -546,6 +712,22 @@ keccak256(data: BytesLike): string
 ```typescript
 pack(types: Array<string>, values: Array<any>): string
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { pack } from 'essential-eth';
+```
+
+```javascript
+const types = ['bool', 'string', 'uint64'];
+const values = [true, 'text', 30];
+pack(types, values);
+// '0x0174657874000000000000001e'
+```
+
+  </details>
 
   <br/>
 
@@ -620,6 +802,21 @@ splitSignature(signature);
 stripZeros(value: BytesLike): Uint8Array
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { stripZeros } from 'essential-eth';
+```
+
+```javascript
+stripZeros('0x00002834');
+// Uint8Array { [Iterator]  0: 40, 1: 52 }
+// Equivalent to '0x2834'
+```
+
+  </details>
+
   <br/>
 
 #### [`tinyBig`](https://essential-eth.vercel.app/docs/api/modules#tinybig)
@@ -676,6 +873,23 @@ Similar to ["toChecksumAddress" in web3.js](https://web3js.readthedocs.io/en/v1.
 toUtf8Bytes(data: string): Uint8Array
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { toUtf8Bytes } from 'essential-eth';
+```
+
+```javascript
+toUtf8Bytes('essential-eth');
+// Uint8Array { [Iterator] 0: 101, 1: 115, 2: 115, 3: 101, 4: 110, 5: 116, 6: 105, 7: 97, 8: 108, 9: 45, 10: 101, 11: 116, 12: 104 }
+
+toUtf8Bytes('ethereum');
+// Uint8Array { [Iterator]  0: 101, 1: 116, 2: 104, 3: 101, 4: 114, 5: 101, 6: 117, 7: 109 }
+```
+
+  </details>
+
   <br/>
 
 #### [`weiToEther`](https://essential-eth.vercel.app/docs/api/modules#weitoether)
@@ -714,6 +928,26 @@ weiToEther(1000000000000000000000).toNumber();
 ```typescript
 zeroPad(value: BytesLike, length: number): Uint8Array
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { zeroPad } from 'essential-eth';
+```
+
+```javascript
+zeroPad('0x039284');
+// Uint8Array { [Iterator]  0: 0, 1: 0, 2: 0, 3: 3, 4: 146, 5: 132 }
+// Equivalent to 0x000000039284
+```
+
+```javascript
+zeroPad([39, 25, 103, 45], 5);
+// Uint8Array { [Iterator]  0: 0, 1: 39, 2: 25, 3: 103, 4: 45 }
+```
+
+  </details>
 
   <br/>
 
@@ -772,7 +1006,7 @@ import { JsonRpcProvider } from 'essential-eth';
 const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
 ```
 
-```js
+```javascript
 await provider.estimateGas({
   // Wrapped ETH address
   to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
@@ -800,7 +1034,7 @@ import { JsonRpcProvider } from 'essential-eth';
 const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
 ```
 
-```js
+```javascript
 await provider
   .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
   .then((balance) => console.log(balance.toString()));
@@ -825,17 +1059,17 @@ import { JsonRpcProvider } from 'essential-eth';
 const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
 ```
 
-```js
+```javascript
 await provider.getBlock(14645431);
 ```
 
-```js
+```javascript
 await provider.getBlock(
   '0x3e5cea9c2be7e0ab4b0aa04c24dafddc37571db2d2d345caf7f88b3366ece0cf',
 );
 ```
 
-```js
+```javascript
 await provider.getBlock('latest');
 {
   number: 4232826,
@@ -892,7 +1126,7 @@ import { JsonRpcProvider } from 'essential-eth';
 const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
 ```
 
-```js
+```javascript
 await provider.getBlockNumber();
 // 1053312
 ```
@@ -907,6 +1141,24 @@ await provider.getBlockNumber();
 provider.getCode(address: string, blockTag?: BlockTag): Promise<string>
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { JsonRpcProvider } from 'essential-eth';
+const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
+```
+
+```javascript
+await jsonRpcProvider().getCode(
+  '0xaC6095720221C79C6E7C638d260A2eFBC5D8d880',
+  'latest',
+);
+// '0x608060405234801561001057600080fd5b506004361061...'
+```
+
+  </details>
+
   <br/>
 
 #### [`getGasPrice`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getgasprice)
@@ -914,6 +1166,21 @@ provider.getCode(address: string, blockTag?: BlockTag): Promise<string>
 ```typescript
 provider.getGasPrice(): Promise<TinyBig>
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { JsonRpcProvider } from 'essential-eth';
+const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
+```
+
+```javascript
+await provider.getGasPrice().then((price) => console.log(price.toString()));
+// '52493941856'
+```
+
+  </details>
 
   <br/>
 
@@ -973,6 +1240,26 @@ provider.getLogs({
 provider.getNetwork(): Promise<Network>
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { JsonRpcProvider } from 'essential-eth';
+const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
+```
+
+```javascript
+jsonRpcProvider('https://free-eth-node.com/api/eth').getNetwork();
+// { chainId: 1, name: 'eth', ensAddress: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e' }
+```
+
+```javascript
+jsonRpcProvider('https://free-eth-node.com/api/MATIC').getNetwork();
+// { chainId: 137, name: 'MATIC', ensAddress: null }
+```
+
+  </details>
+
   <br/>
 
 #### [`getTransaction`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#gettransaction)
@@ -989,7 +1276,7 @@ import { JsonRpcProvider } from 'essential-eth';
 const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
 ```
 
-```js
+```javascript
 await provider.getTransaction('0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789');
  {
    accessList: [],
@@ -1126,18 +1413,18 @@ import { JsonRpcProvider } from 'essential-eth';
 const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
 ```
 
-```js
+```javascript
 const address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';
 await provider.getTransactionCount(address, 'latest');
 // 1060000
 ```
 
-```js
+```javascript
 await provider.getTransactionCount(address);
 // 1053312
 ```
 
-```js
+```javascript
 await provider.getTransactionCount(address, 14649390);
 // 1053312
 ```
@@ -1151,6 +1438,20 @@ await provider.getTransactionCount(address, 14649390);
 ```typescript
 provider.getTransactionReceipt(transactionHash: string): Promise<TransactionReceipt>
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { JsonRpcProvider } from 'essential-eth';
+const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
+```
+
+```javascript
+
+```
+
+  </details>
 
   <br/>
 

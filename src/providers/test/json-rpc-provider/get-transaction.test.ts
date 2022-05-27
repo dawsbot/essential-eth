@@ -10,6 +10,11 @@ import { rpcUrls } from '../rpc-urls';
 const rpcUrl = rpcUrls.mainnet;
 
 describe('provider.getTransaction', () => {
+  /**
+   *
+   * @param transaction1
+   * @param transaction2
+   */
   function testTransactionEquality(
     transaction1: ethers.providers.TransactionResponse | web3core.Transaction,
     transaction2: TransactionResponse,

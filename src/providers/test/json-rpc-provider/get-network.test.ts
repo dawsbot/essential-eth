@@ -6,6 +6,10 @@ const xdaiRPCUrl = rpcUrls.gno;
 const bscRPCUrl = rpcUrls.bnb;
 
 describe('provider.getNetwork happy path', () => {
+  /**
+   *
+   * @param rpcUrl
+   */
   async function testNetwork(rpcUrl: string) {
     const essentialEth = new JsonRpcProvider(rpcUrl);
     const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);

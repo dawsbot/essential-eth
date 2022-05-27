@@ -6,6 +6,11 @@ import { rpcUrls } from './rpc-urls';
 
 // coinbase 1 hotwallet
 const address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';
+/**
+ *
+ * @param rpcUrl
+ * @param blockTag
+ */
 async function testGetTC(rpcUrl: string, blockTag?: BlockTag) {
   const eeProvider = jsonRpcProvider(rpcUrl);
   const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);

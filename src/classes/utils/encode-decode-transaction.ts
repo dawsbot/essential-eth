@@ -6,6 +6,18 @@ import { hexToDecimal } from './hex-to-decimal';
 export const hexFalse = '0'.repeat(64);
 const hexTrue = '0'.repeat(63) + '1';
 
+/**
+ * Expands an integer type to use a default of 256 bits. Used for consistency; not required in Solidity
+ *
+ * @see https://ethereum.stackexchange.com/questions/43241/why-write-uint256-instead-of-uint-if-theyre-the-same-thing
+ * @param type the type to explicitly define as 256 bits
+ * @returns the integer type expanded to explicitly be 256 bits when possible
+ * @example
+ * ```javascript
+ * expandType('uint[]');
+ * // 'uint256[]'
+ * ```
+ */
 function expandType(type: ContractTypes) {
   // https://docs.soliditylang.org/en/v0.8.7/types.html#integers
   if (type === 'uint[]') {
@@ -15,6 +27,12 @@ function expandType(type: ContractTypes) {
   }
   return type;
 }
+/**
+ *
+ * @param jsonABIArgument
+ * @param args
+ * @example
+ */
 export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
   const hash = new Keccak(256);
   /* first 4 bytes will create the data parameter */
@@ -92,6 +110,12 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
   return data;
 }
 
+/**
+ *
+ * @param jsonABIArgument
+ * @param nodeResponse
+ * @example
+ */
 export function decodeRPCResponse(
   jsonABIArgument: JSONABIArgument,
   nodeResponse: string,

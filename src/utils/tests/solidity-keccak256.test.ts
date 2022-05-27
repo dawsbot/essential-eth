@@ -1,6 +1,10 @@
 import { utils } from 'ethers';
 import { solidityKeccak256 } from '../../index';
 
+/**
+ *
+ * @param inputs
+ */
 function testSolidityKeccak256(inputs: Array<any>) {
   inputs.forEach((input) => {
     expect(solidityKeccak256(input.types, input.values)).toBe(

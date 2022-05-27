@@ -32,4 +32,29 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
   },
+  overrides: [
+    {
+      files: 'src/**/*.ts',
+      excludedFiles: '*.test.ts',
+      plugins: ['jsdoc'],
+      extends: ['plugin:jsdoc/recommended'],
+      rules: {
+        'jsdoc/check-tag-names': ['warn', { definedTags: ['alpha', 'beta'] }], // Should check that tag names are valid; include 'alpha' and 'beta' as acceptable tag names
+        'jsdoc/require-param-type': 'off', // TypeDoc automatically reads types from TypeScript types, hence param types should rarely be defined explictly -- https://typedoc.org/guides/doccomments/#%40param-%3Cparam-name%3E
+        'jsdoc/require-returns-type': 'off', // Read above note for `jsdoc/require-param-type`
+        // 'jsdoc/check-examples': 'warn', // Ensures examples match a certain format -- currently not supported for ESLint, waiting for this issue -- https://github.com/eslint/eslint/issues/14745
+        'jsdoc/check-indentation': 'warn', // Ensures proper indentation of items inside TypeDoc comments
+        'jsdoc/check-line-alignment': 'warn', // Ensures TypeDoc comments are aligned to match what it's documenting
+        'jsdoc/check-syntax': 'warn', // Ensures that documentation syntax is appropriate for Google Closure Compiler
+        'jsdoc/require-asterisk-prefix': 'warn', // Require that all documentation is prefixed with an asterisk, makes it easier to differentiate what's documentation and what isn't
+        'jsdoc/require-example': 'warn', // Ensures that all documentated functions have examples
+        'jsdoc/require-hyphen-before-param-description': ['warn', 'never'], // Prevent hyphens before description of a parameter
+        'jsdoc/require-returns': [
+          'warn',
+          { checkGetters: true, forceReturnsWithAsync: true },
+        ],
+        'jsdoc/no-multi-asterisks': ['warn', { allowWhitespace: true }],
+      },
+    },
+  ],
 };

@@ -5,6 +5,11 @@ import {
   encodeData,
 } from './utils/encode-decode-transaction';
 import { buildRPCPostBody, post } from './utils/fetchers';
+/**
+ *
+ * @param txnData
+ * @example
+ */
 function estimateGas(txnData: string) {
   // https://ethereum.stackexchange.com/questions/1570/what-does-intrinsic-gas-too-low-mean/1694
   txnData.split('').reduce((previousValue, currentValue) => {
@@ -24,9 +29,10 @@ export class BaseContract {
   private readonly _provider: JsonRpcProvider;
 
   /**
-   * @param addressOrName - The ethereum address of the smart-contract
-   * @param contractInterface - The JSON ABI of the smart-contract (like http://api.etherscan.io/api?module=contract&action=getabi&address=0x090d4613473dee047c3f2706764f49e0821d256e&format=raw)
-   * @param signerOrProvider - An instantiated essential-eth provider
+   * @param addressOrName The ethereum address of the smart-contract
+   * @param contractInterface The JSON ABI of the smart-contract (like http://api.etherscan.io/api?module=contract&action=getabi&address=0x090d4613473dee047c3f2706764f49e0821d256e&format=raw)
+   * @param signerOrProvider An instantiated essential-eth provider
+   * @example
    */
   constructor(
     addressOrName: string,
@@ -91,6 +97,11 @@ export class BaseContract {
 
 /**
  * Applies the unique contract's methods to the instantiated Contract in the constructor based-upon the provided ABI
+ *
+ * @param object
+ * @param name
+ * @param value
+ * @example
  */
 export function defineReadOnly<T>(object: T, name: string, value: any): void {
   Object.defineProperty(object, name, {
@@ -103,7 +114,7 @@ export function defineReadOnly<T>(object: T, name: string, value: any): void {
 /**
  * @alpha
  * Only accepts ABIS in JSON format. This allows for stronger typing and assurances of data-types
- * * Only read-only function calls currently supported.
+ * Only read-only function calls currently supported.
  * @example
  * ```typescript
  * import { Contract, JsonRpcProvider } from 'essential-eth';

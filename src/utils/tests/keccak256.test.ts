@@ -2,6 +2,10 @@ import { utils } from 'ethers';
 import { BytesLike } from './../bytes';
 import { keccak256 } from './../keccak256';
 
+/**
+ *
+ * @param inputs
+ */
 function testKeccak256(inputs: Array<BytesLike>) {
   inputs.forEach((input) => {
     expect(keccak256(input)).toBe(utils.keccak256(input));

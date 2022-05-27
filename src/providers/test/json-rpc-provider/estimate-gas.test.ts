@@ -3,6 +3,10 @@ import { etherToWei, JsonRpcProvider } from '../../..';
 import { TransactionRequest } from '../../types';
 import { rpcUrls } from '../rpc-urls';
 
+/**
+ *
+ * @param transaction
+ */
 async function testEstimateGas(transaction: TransactionRequest) {
   const rpcUrl = rpcUrls.mainnet;
   const eeProvider = new JsonRpcProvider(rpcUrl);
