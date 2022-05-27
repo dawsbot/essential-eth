@@ -91,6 +91,8 @@ functions.map((functionNumber) => {
 `;
 });
 
+// end functions, start of rpc
+
 const jsonRpcProvider = stats.children.find(
   (child) => child.name === 'JsonRpcProvider',
 );
@@ -117,6 +119,7 @@ requireSameClassChildren(jsonRpcProvider, fallthroughProvider);
 
 jsonRpcProvider.children
   .filter((child) => {
+    // filters out the constructor
     return child.kindString === 'Method';
   })
   .map((childSignature) => {
@@ -127,7 +130,14 @@ jsonRpcProvider.children
     let parameters = signature.selectParameters();
 
     const examples = signature.selectExamples();
-    if (signatureType === 'union') {
+    if (returnType === 'Promise') {
+      const typeArgument = signatureType.typeArguments[0];
+      returnType = typeArgument.name;
+      if (typeArgument.type === 'array') {
+        returnType = `Array<${typeArgument.elementType.name}>`;
+      }
+      returnType = `Promise<${returnType}>`;
+    } else if (signatureType === 'union') {
       returnType = signatureType?.types
         ?.map((type) => {
           const typeName = type.value === null ? 'null' : type.name;
@@ -162,7 +172,7 @@ jsonRpcProvider.children
 
   \`\`\`js
   import { JsonRpcProvider } from 'essential-eth';
-  const essentialEth = new JsonRpcProvider(
+  const provider = new JsonRpcProvider(
     'RPC URL HERE' /* Try Infura or POKT */,
   );
   \`\`\`
@@ -185,4 +195,3 @@ module.exports = {
   functionsMarkdown,
   providerMarkdown,
 };
-// fs.writeFileSync('/tmp/out.md', toReturn);
