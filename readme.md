@@ -1540,7 +1540,7 @@ Any function on a contract. Returns are the same as `ethers.js`, except that ins
 
 <br/>
 
-### Identical vs Similar vs Dissimliar
+### Identical vs Similar vs Dissimliar {#isd}
 Throughout the documentation for `essential-eth`, you may notice that some functions are compared to `ethers.js` and `web3.js`. The keywords `identical`, `similar`, and `dissimilar` are used to help you migrate to `essential-eth`. Here's a guide on what these keywords mean:
 - Identical -- should behave exactly like the library you're already using, except the types might be different (`TinyBig` vs [`Bn.js`](https://github.com/indutny/bn.js)).
 - Similar -- can probably be used as a replacement to the library you're currently using, except there are some differences. Read the notes next to this keyword to see why these aren't considered `identical`.

@@ -503,11 +503,12 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Returns transaction receipt event logs that match a specified filter
-   * May return [] if parameters are too broad, even if logs exist
+   * Returns transaction receipt event logs that match a specified filter.
+   * 
+   * May return `[]` if parameters are too broad, even if logs exist.
    *
-   * * Identical to ["ethers.provider.getLogs" in ethers.js](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs)
-   * * Identical to ["web3.eth.getPastLogs" in web3.js](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs)
+   * * [Identical](/docs/api#isd) to [ethers.provider.getLogs](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs) in ethers.js
+   * * [Identical](/docs/api#isd) to [web3.eth.getPastLogs](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs) in web3.js
    *
    * @param filter parameters to filter the logs by
    * @returns an array of logs matching the specified filter
