@@ -1,3 +1,4 @@
+import { TinyBig } from './../shared/tiny-big/tiny-big';
 import { BlockTransactionResponse, RPCTransaction } from './Transaction.types';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -5,12 +6,13 @@ type Modify<T, R> = Omit<T, keyof R> & R;
 export type BlockResponse = Modify<
   RPCBlock,
   {
-    gasLimit: number;
-    gasUsed: number;
+    baseFeePerGas: TinyBig;
+    difficulty: TinyBig,
+    gasLimit: TinyBig;
+    gasUsed: TinyBig;
     number: number;
     size: number;
-    timestamp: number;
-    baseFeePerGas: number;
+    timestamp: TinyBig;
     transactions: Array<
       string | BlockTransactionResponse /* if second arg is true */
     >;

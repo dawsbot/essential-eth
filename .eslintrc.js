@@ -66,19 +66,19 @@ module.exports = {
         'jsdoc/match-description': [
           'warn',
           {
-            message: `Description formatting error. The description should match this formatting:
-            /**
-             * Returns transaction receipt event logs that match a specified filter.
-             *
-             * * [Identical](/docs/api#isd) to [ethers.provider.getLogs](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs) in ethers.js
-             * * [Identical](/docs/api#isd) to [web3.eth.getPastLogs](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs) in web3.js
-             
-            In other words...
-            * needs text description line explaining what function does. Starts with capital letter, ends with period
-            * line break
-            * needs two lines comparing to ethers and web3. Lines need to start with links that have the text Identical, Similar, or Dissimilar that link to /docs/api#isd
-            * Comparing lines need to have links to ethers or web3, and end with either "in ethers.js" or "in web3.js"
-            `,
+            message: `Description formatting error`,
+            // The description should match this formatting:
+            // /**
+            //  * Returns transaction receipt event logs that match a specified filter.
+            //  *
+            //  * * [Identical](/docs/api#isd) to [ethers.provider.getLogs](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs) in ethers.js
+            //  * * [Identical](/docs/api#isd) to [web3.eth.getPastLogs](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs) in web3.js
+
+            // In other words...
+            // * needs text description line explaining what function does. Starts with capital letter, ends with period
+            // * line break
+            // * needs two lines comparing to ethers and web3. Lines need to start with links that have the text Identical, Similar, or Dissimilar that link to /docs/api#isd
+            // * Comparing lines need to have links to ethers or web3, and end with either "in ethers.js" or "in web3.js"
             matchDescription:
               '(?:[A-Z].*\\.\\n{0,2}?)+\\n\\n(?:\\* (?:(?:\\[(?:Identical|Similar|Dissimilar)\\]\\(\\/docs\\/api#isd\\) to \\[`.*`\\]\\(.*\\))|(?:No equivalent)) in (?:ethers|web3).js,?(?:.*)\\n{0,1}){2}', //  https://regex101.com/r/1dvZxX/
           },

@@ -13,7 +13,7 @@ export type TransactionResponse = Modify<
   {
     blockNumber: number;
     chainId: number;
-    nonce: number;
+    nonce: TinyBig;
     transactionIndex: number;
     type: number;
     v: number;

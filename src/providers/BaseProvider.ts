@@ -108,8 +108,8 @@ export abstract class BaseProvider {
   /**
    * Gets the number of the most recently mined block on the network the provider is connected to.
    *
-   * * [Identical](/docs/api#isd) to [`ethers.provider.getBlockNumber`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBlockNumber)
-   * * [Identical](/docs/api#isd) to [`web3.eth.getBlockNumber`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getblocknumber)
+   * * [Identical](/docs/api#isd) to [`ethers.provider.getBlockNumber`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBlockNumber) in ethers.js
+   * * [Identical](/docs/api#isd) to [`web3.eth.getBlockNumber`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getblocknumber) in web3.js
    *
    * @returns the number of the most recently mined block
    * @example
@@ -128,129 +128,36 @@ export abstract class BaseProvider {
   /**
    * Gets information about a specified transaction, even if it hasn't been mined yet.
    *
-   * * [Similar](/docs/api#isd) to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included
-   * *
+   * * [Similar](/docs/api#isd) to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction) in ethers.js, does not have `wait` method that waits until the transaction has been mined
+   * * [Similar](/docs/api#isd) to [`web3.eth.getTransaction`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#gettransaction) in web3.js, some information returned using different types
    *
    * @param transactionHash the hash of the transaction to get information about
    * @returns information about the specified transaction
    * @example
    * ```javascript
    * await provider.getTransaction('0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789');
-   *  {
-   *    accessList: [],
-   *    blockHash: '0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d',
-   *    blockNumber: 14578286,
-   *    chainId: 1,
-   *    from: '0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4',
-   *    gas: Big {
-   *    s: 1,
-   *    e: 5,
-   *    c: [ 1, 1, 2, 1, 6, 3 ],
-   *    constructor: <ref *1> [Function: Big] {
-   *    DP: 20,
-   *    RM: 1,
-   *    NE: -7,
-   *    PE: 21,
-   *    strict: false,
-   *    roundDown: 0,
-   *    roundHalfUp: 1,
-   *    roundHalfEven: 2,
-   *    roundUp: 3,
-   *    Big: [Circular *1],
-   *    default: [Circular *1]
-   *    }
-   *    },
-   *    gasPrice: Big {
-   *    s: 1,
-   *    e: 10,
-   *    c: [
-   *    4, 8, 5, 9, 2,
-   *    4, 2, 6, 8, 5,
-   *    8
-   *    ],
-   *    constructor: <ref *1> [Function: Big] {
-   *    DP: 20,
-   *    RM: 1,
-   *    NE: -7,
-   *    PE: 21,
-   *    strict: false,
-   *    roundDown: 0,
-   *    roundHalfUp: 1,
-   *    roundHalfEven: 2,
-   *    roundUp: 3,
-   *    Big: [Circular *1],
-   *    default: [Circular *1]
-   *    }
-   *    },
-   *    hash: '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789',
-   *    input: '0x83259f170000000000000000000000000000000000000000000000000000000000000080000000000000000000000000dfd9de5f6fa60bd70636c0900752e93a6144aed400000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000024000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000009e99ad11a214fd016b19dc3648678c5944859ae292b21c24ca94f857836c4596f1950c82dd0c23dd621af4763edc2f66466e63c5df9de0c1107b1cd16bf460fe93e43fd308e3444bc79c3d88a4cb961dc8367ab6ad048867afc76d193bca99cf3a068864ed4a7df1dbf1d4c52238eced3e5e05644b4040fc2b3ccb8557b0e99fff6131305a0ea2b8061b90bd418db5bbdd2e92129f52d93f90531465e309c4caec5b85285822b6196398d36f16f511811b61bbda6461e80e29210cd303118bdcee8df6fa0505ffbe8642094fd2ba4dd458496fe3b459ac880bbf71877c713e969ccf5ed7efab8a84ebc07e3939901371ca427e1192e455a8f35a6a1d7ad09e1475dd1758b36fa631dab5d70e99316b23c4c43094188d360cd9c3457355904e07c00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000162074a7047f',
-   *    maxFeePerGas: Big {
-   *    s: 1,
-   *    e: 10,
-   *    c: [
-   *    6, 7, 6, 8, 1,
-   *    2, 6, 1, 6, 1,
-   *    8
-   *    ],
-   *    constructor: <ref *1> [Function: Big] {
-   *    DP: 20,
-   *    RM: 1,
-   *    NE: -7,
-   *    PE: 21,
-   *    strict: false,
-   *    roundDown: 0,
-   *    roundHalfUp: 1,
-   *    roundHalfEven: 2,
-   *    roundUp: 3,
-   *    Big: [Circular *1],
-   *    default: [Circular *1]
-   *    }
-   *    },
-   *    maxPriorityFeePerGas: Big {
-   *    s: 1,
-   *    e: 9,
-   *    c: [ 1, 5 ],
-   *    constructor: <ref *1> [Function: Big] {
-   *    DP: 20,
-   *    RM: 1,
-   *    NE: -7,
-   *    PE: 21,
-   *    strict: false,
-   *    roundDown: 0,
-   *    roundHalfUp: 1,
-   *    roundHalfEven: 2,
-   *    roundUp: 3,
-   *    Big: [Circular *1],
-   *    default: [Circular *1]
-   *    }
-   *    },
-   *    nonce: 129,
-   *    r: '0x59a7c15b12c18cd68d6c440963d959bff3e73831ffc938e75ecad07f7ee43fbc',
-   *    s: '0x1ebaf05f0d9273b16c2a7748b150a79d22533a8cd74552611cbe620fee3dcf1c',
-   *    to: '0x39B72d136ba3e4ceF35F48CD09587ffaB754DD8B',
-   *    transactionIndex: 29,
-   *    type: 2,
-   *    v: 0,
-   *    value: Big {
-   *    s: 1,
-   *    e: 0,
-   *    c: [ 0 ],
-   *    constructor: <ref *1> [Function: Big] {
-   *    DP: 20,
-   *    RM: 1,
-   *    NE: -7,
-   *    PE: 21,
-   *    strict: false,
-   *    roundDown: 0,
-   *    roundHalfUp: 1,
-   *    roundHalfEven: 2,
-   *    roundUp: 3,
-   *    Big: [Circular *1],
-   *    default: [Circular *1]
-   *    }
-   *    },
-   *    confirmations: 1210
-   *    }
+   * // {
+   * //   accessList: [],
+   * //   blockHash: "0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d",
+   * //   blockNumber: 14578286,
+   * //   chainId: 1,
+   * //   from: "0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4",
+   * //   gas: { TinyBig: 112163 },
+   * //   gasPrice: { TinyBig: 48592426858 },
+   * //   hash: "0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789",
+   * //   input: "0x83259f17000000000000000000000000000000000000000000...",
+   * //   maxFeePerGas: { TinyBig: 67681261618 },
+   * //   maxPriorityFeePerGas: { TinyBig: 1500000000 },
+   * //   nonce: { TinyBig: 129 },
+   * //   r: "0x59a7c15b12c18cd68d6c440963d959bff3e73831ffc938e75ecad07f7ee43fbc",
+   * //   s: "0x1ebaf05f0d9273b16c2a7748b150a79d22533a8cd74552611cbe620fee3dcf1c",
+   * //   to: "0x39B72d136ba3e4ceF35F48CD09587ffaB754DD8B",
+   * //   transactionIndex: 29,
+   * //   type: 2,
+   * //   v: 0,
+   * //   value: { TinyBig: 0 },
+   * //   confirmations: 298140,
+   * // }
    * ```
    */
   public async getTransaction(
@@ -270,16 +177,63 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Gives information about a transaction that has already been mined. Includes additional information beyond what's provided by {@link getTransaction}.
+   * Gives information about a transaction that has already been mined. Includes additional information beyond what's provided by [`getTransaction`](/docs/api/modules#gettransaction).
    *
-   * * [Similar](/docs/api#isd) to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt), some information not included
-   * *
+   * * [Identical](/docs/api#isd) to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt) in ethers.js
+   * * [Similar](/docs/api#isd) to [`web3.eth.getTransactionReceipt`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#gettransactionreceipt) in web3.js, some information returned using different types
    *
    * @param transactionHash the hash of the transaction to get information about
    * @returns information about the specified transaction that has already been mined
    * @example
    * ```javascript
-   *
+   * await provider.getTransactionReceipt('0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789');
+   * // {
+   * //   blockHash: "0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d",
+   * //   blockNumber: 14578286,
+   * //   contractAddress: null,
+   * //   cumulativeGasUsed: { TinyBig: 3067973 },
+   * //   effectiveGasPrice: { TinyBig: 48592426858 },
+   * //   from: "0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4",
+   * //   gasUsed: { TinyBig: 112163 },
+   * //   logs: [
+   * //     {
+   * //       address: "0x0eDF9bc41Bbc1354c70e2107F80C42caE7FBBcA8",
+   * //       blockHash: "0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d",
+   * //       blockNumber: 14578286,
+   * //       data: "0x0000000000000000000000000000000000000000000003a12ec797b5484968c1",
+   * //       logIndex: 42,
+   * //       topics: [
+   * //         "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+   * //         "0x00000000000000000000000039b72d136ba3e4cef35f48cd09587ffab754dd8b",
+   * //         "0x000000000000000000000000dfd9de5f6fa60bd70636c0900752e93a6144aed4",
+   * //       ],
+   * //       transactionHash: "0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789",
+   * //       transactionIndex: 29,
+   * //     },
+   * //     {
+   * //       address: "0x39B72d136ba3e4ceF35F48CD09587ffaB754DD8B",
+   * //       blockHash: "0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d",
+   * //       blockNumber: 14578286,
+   * //       data: "0x0000000000000000000000000000000000000000000003a12ec797b5484968c1",
+   * //       logIndex: 43,
+   * //       topics: [
+   * //         "0x34fcbac0073d7c3d388e51312faf357774904998eeb8fca628b9e6f65ee1cbf7",
+   * //         "0x000000000000000000000000dfd9de5f6fa60bd70636c0900752e93a6144aed4",
+   * //         "0x0000000000000000000000000000000000000000000000000000000000000003",
+   * //       ],
+   * //       transactionHash: "0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789",
+   * //       transactionIndex: 29,
+   * //     },
+   * //   ],
+   * //   logsBloom: "0x00000000000000000000000000000...",
+   * //   status: 1,
+   * //   to: "0x39B72d136ba3e4ceF35F48CD09587ffaB754DD8B",
+   * //   transactionHash: "0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789",
+   * //   transactionIndex: 29,
+   * //   type: 2,
+   * //   byzantium: true,
+   * //   confirmations: 298171,
+   * // }
    * ```
    */
   public async getTransactionReceipt(
@@ -298,7 +252,7 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Returns the number of sent transactions by an address, from genesis (or as far back as a provider looks) up to specified blockTag
+   * Returns the number of sent transactions by an address, from genesis (or as far back as a provider looks) up to specified block.
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getTransactionCount`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionCount) in ethers.js
    * * [Identical](/docs/api#isd) to [`web3.eth.getTransactionCount`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#gettransactioncount) in web3.js
@@ -308,21 +262,17 @@ export abstract class BaseProvider {
    * @returns the number of transactions sent by the specified address
    * @example
    * ```javascript
-   * const address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';
-   *  await provider
-   *   .getTransactionCount(address, 'latest')
+   * await provider.getTransactionCount('0x71660c4005ba85c37ccec55d0c4493e66fe775d3');
    * // 1060000
    * ```
    * @example
    * ```javascript
-   *  await provider
-   *   .getTransactionCount(address)
-   * // 1053312
+   * await provider.getTransactionCount('0x71660c4005ba85c37ccec55d0c4493e66fe775d3', 'latest');
+   * // 1060000
    * ```
    * @example
    * ```javascript
-   *  await provider
-   *   .getTransactionCount(address, 14649390)
+   * await provider.getTransactionCount('0x71660c4005ba85c37ccec55d0c4493e66fe775d3', 14649390);
    * // 1053312
    * ```
    */
@@ -516,11 +466,10 @@ export abstract class BaseProvider {
 
   /**
    * Returns transaction receipt event logs that match a specified filter.
-   *
    * May return `[]` if parameters are too broad, even if logs exist.
    *
-   * * [Identical](/docs/api#isd) to [ethers.provider.getLogs](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs) in ethers.js
-   * * [Identical](/docs/api#isd) to [web3.eth.getPastLogs](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs) in web3.js
+   * * [Identical](/docs/api#isd) to [`ethers.provider.getLogs`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs) in ethers.js
+   * * [Identical](/docs/api#isd) to [`web3.eth.getPastLogs`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs) in web3.js
    *
    * @param filter parameters to filter the logs by
    * @returns an array of logs matching the specified filter
