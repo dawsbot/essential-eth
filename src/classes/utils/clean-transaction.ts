@@ -30,7 +30,6 @@ export function cleanTransaction(
     switch (key) {
       case 'blockNumber':
       case 'chainId':
-      case 'nonce':
       case 'transactionIndex':
       case 'type':
       case 'v':
@@ -47,8 +46,8 @@ export function cleanTransaction(
       case 'gasPrice':
       case 'maxFeePerGas':
       case 'maxPriorityFeePerGas':
+      case 'nonce':
         cleanedTransaction[key] = tinyBig(hexToDecimal(transaction[key]));
-
         break;
     }
   });

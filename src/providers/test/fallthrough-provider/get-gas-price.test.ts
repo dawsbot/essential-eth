@@ -5,10 +5,6 @@ import { rpcUrls } from '../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
 
-/**
- *
- * @param fn
- */
 function timePromise(fn: () => Promise<any>): Promise<number> {
   const onPromiseDone = () => performance.now() - start;
 
@@ -24,7 +20,7 @@ describe('provider.getGasPrice', () => {
       rpcUrl,
     ]);
     const block = await essentialEthProvider.getBlock(14631185);
-    expect(block.gasUsed).toBe(2429588);
+    expect(block.gasUsed.toString()).toBe('2429588');
   });
   it('should fallthrough after timeout linearly', async () => {
     const essentialEthProvider = new FallthroughProvider(
@@ -60,7 +56,7 @@ describe('provider.getGasPrice', () => {
       providers.map((provider) => provider.getBlock(123456)),
     );
     allBlocks.forEach((blockNumber) => {
-      expect(blockNumber.difficulty).toBe('4505282870523');
+      expect(blockNumber.difficulty.toString()).toBe('4505282870523');
     });
   });
 });

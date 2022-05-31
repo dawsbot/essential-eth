@@ -9,11 +9,6 @@ import { rpcUrls } from '../rpc-urls';
 const rpcUrl = rpcUrls.mainnet;
 
 describe('provider.getTransactionReceipt', () => {
-  /**
-   *
-   * @param transactionReceipt1
-   * @param transactionReceipt2
-   */
   function testTransactionReceiptEquality(
     transactionReceipt1:
       | ethers.providers.TransactionReceipt
