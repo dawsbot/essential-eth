@@ -13,14 +13,14 @@ export type TransactionResponse = Modify<
   {
     blockNumber: number;
     chainId: number;
+    gas: TinyBig;
+    gasLimit: TinyBig;
+    gasPrice: TinyBig;
     nonce: TinyBig;
     transactionIndex: number;
     type: number;
     v: number;
     value: TinyBig;
-    gasPrice: TinyBig;
-    gas: TinyBig;
-    gasLimit: TinyBig;
   } & {
     maxFeePerGas: TinyBig;
     maxPriorityFeePerGas: TinyBig;
@@ -55,7 +55,6 @@ export type TransactionReceipt = Modify<
  */
 export type Log = Modify<
   RPCLog,
-  // Omit<RPCLog, 'removed'>,
   {
     blockNumber: number;
     logIndex: number;
