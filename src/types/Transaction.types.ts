@@ -65,8 +65,8 @@ export interface TransactionRequest {
   to?: string;
   from?: string;
   nonce?: TinyBig;
-  gas?: TinyBig;
-  gasPrice?: TinyBig;
+  gas?: TinyBig | number;
+  gasPrice?: TinyBig | number;
   data?: BytesLike;
   value?: TinyBig | number;
   chainId?: number;
