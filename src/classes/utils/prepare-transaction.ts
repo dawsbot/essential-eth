@@ -11,13 +11,13 @@ export function prepareTransaction(
   } as unknown as RPCTransactionRequest;
   (Object.keys(transaction) as Array<keyof TransactionRequest>).forEach(
     (key) => {
-      if (!transaction[key]) return;
+      if (!transaction.hasOwnProperty(key)) return;
       switch (key) {
         case 'gas':
         case 'gasPrice':
         case 'value':
           if (typeof transaction[key] === 'number')
-            preparedTransaction[key] = transaction[key].toString(16);
+            preparedTransaction[key] = '0x' + transaction[key].toString(16);
           else preparedTransaction[key] = transaction[key].toString();
           break;
         case 'data':

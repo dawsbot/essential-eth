@@ -26,7 +26,7 @@ export function cleanTransaction(
   (Object.keys(transaction) as Array<keyof RPCTransaction>).forEach((key) => {
     // pending blocks have null instead of a difficulty
     // pending blocks have null instead of a miner address
-    if (!transaction[key]) return;
+    if (!transaction.hasOwnProperty(key)) return;
     switch (key) {
       case 'blockNumber':
       case 'chainId':
