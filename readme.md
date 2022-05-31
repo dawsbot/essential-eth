@@ -1546,6 +1546,8 @@ Throughout the documentation for `essential-eth`, you may notice that some funct
 - Similar -- can probably be used as a replacement to the library you're currently using, except there are some differences. Read the notes next to this keyword to see why these aren't considered `identical`.
 - Dissimilar -- *should not* be used in place of the function you're currently using. Read the notes next to this keyword to see why these functions aren't considered `similar`, and potentially learn how to alter your implementation to make `essential-eth` work for you.
 
+Note: In `web3.js`, almost every method or function can be passed a callback. `essential-eth`, like `ethers.js`, does not include this functionality and trusts that users will rely on the much more modern [promise](https://javascript.info/promise-basics) and [async/await](https://javascript.info/async-await) patterns.
+
 ### Miscellaneous 
 - [📓 View full docs](https://essential-eth.vercel.app)
 - [📓 View changelog (by looking at releases diff)](https://github.com/dawsbot/essential-eth/releases)

@@ -20,8 +20,12 @@ import { TransactionRequest } from './types';
 import chainsInfo from './utils/chains-info';
 
 /**
- * Converts a block tag into the right format when needed
+ * Converts a block tag into the right format when needed.
  *
+ * * No equivalent in ethers.js
+ * * No equivalent in web3.js
+ *
+ * @internal
  * @param blockTag the block tag to convert/return as a hex string
  * @returns the specified block tag formatted as a hex string
  * @example
@@ -70,7 +74,10 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Gets information (name, chainId, and ensAddress when applicable) about the network the provider is connected to
+   * Gets information (name, chainId, and ensAddress when applicable) about the network the provider is connected to.
+   *
+   * * [Identical](/docs/api#isd) to [`ethers.provider.getNetwork`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getNetwork) in ethers.js
+   * * [Similar](/docs/api#isd) to [`web3.eth.getChainId`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getchainid) in web3.js, returns more than just the `chainId`
    *
    * @returns information about the network this provider is currently connected to
    * @example
@@ -99,10 +106,10 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Gets the number of the most recently mined block on the network the provider is connected to
+   * Gets the number of the most recently mined block on the network the provider is connected to.
    *
-   * Identical to [`ethers.provider.getBlockNumber`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBlockNumber)
-   * Identical to [`web3.eth.getBlockNumber`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getblocknumber)
+   * * [Identical](/docs/api#isd) to [`ethers.provider.getBlockNumber`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBlockNumber)
+   * * [Identical](/docs/api#isd) to [`web3.eth.getBlockNumber`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getblocknumber)
    *
    * @returns the number of the most recently mined block
    * @example
@@ -119,7 +126,10 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Similar to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included
+   * Gets information about a specified transaction, even if it hasn't been mined yet.
+   *
+   * * [Similar](/docs/api#isd) to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction), some information not included
+   * *
    *
    * @param transactionHash the hash of the transaction to get information about
    * @returns information about the specified transaction
@@ -260,9 +270,10 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Gives information about a transaction that has already been mined. Includes additional information beyond what's provided by {@link getTransaction}
+   * Gives information about a transaction that has already been mined. Includes additional information beyond what's provided by {@link getTransaction}.
    *
-   * Similar to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt), some information not included
+   * * [Similar](/docs/api#isd) to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt), some information not included
+   * *
    *
    * @param transactionHash the hash of the transaction to get information about
    * @returns information about the specified transaction that has already been mined
@@ -289,8 +300,8 @@ export abstract class BaseProvider {
   /**
    * Returns the number of sent transactions by an address, from genesis (or as far back as a provider looks) up to specified blockTag
    *
-   * Same as `ethers.provider.getTransactionCount`
-   * Same as `web3.eth.getTransactionCount`
+   * * [Identical](/docs/api#isd) to [`ethers.provider.getTransactionCount`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionCount) in ethers.js
+   * * [Identical](/docs/api#isd) to [`web3.eth.getTransactionCount`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#gettransactioncount) in web3.js
    *
    * @param address the address to count number of sent transactions
    * @param blockTag the block to count transactions up to, inclusive
@@ -404,15 +415,16 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Returns the current gas price in wei as TinyBig
+   * Gives an estimate of the current gas price in wei.
    *
-   * * Same as {@link https://docs.ethers.io/v5/api/providers/provider/#Provider-getGasPrice | `ethers.provider.getGasPrice`}
+   * * [Similar](/docs/api#isd) to [`ethers.provider.getGasPrice`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getGasPrice) in ethers.js, does not have a parameter specifying what unit you'd like to return. See also [`weiToEther`](/docs/api/modules#weitoether) and [`etherToGwei`](/docs/api/modules#ethertogwei)
+   * * [Identical](/docs/api#isd) to [`web3.eth.getGasPrice`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getgasprice) in web3.js, returns a number (TinyBig) instead of a string
    *
-   * @returns the current gas price in wei
+   * @returns an estimate of the current gas price in wei
    * @example
    * ```javascript
-   * await provider.getGasPrice().then((price) => console.log(price.toString()));
-   * // '52493941856'
+   * await provider.getGasPrice();
+   * // 52493941856
    * ```
    */
   public async getGasPrice(): Promise<TinyBig> {
@@ -423,19 +435,18 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Returns the balance of the account in wei as TinyBig
-   * Same as [`ethers.provider.getBalance`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBalance)
-   * Same as `web3.eth.getBalance`
+   * Returns the balance of the account in wei.
+   *
+   * * [Identical](/docs/api#isd) to [`ethers.provider.getBalance`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBalance) in ethers.js
+   * * [Identical](/docs/api#isd) to [`web3.eth.getBalance`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getbalance) in web3.js, returns a number (TinyBig) instead of a string
    *
    * @param address the address to check the balance of
    * @param blockTag the block to check the specified address' balance on
    * @returns the balance of the network's native token for the specified address on the specified block
    * @example
    * ```javascript
-   *  await provider
-   *   .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
-   *   .then((balance) => console.log(balance.toString()));
-   * // "28798127851528138"
+   *  await provider.getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8');
+   * // 28798127851528138
    * ```
    */
   public async getBalance(
@@ -450,10 +461,10 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Gets the code of a contract on a specified block
+   * Gets the code of a contract on a specified block.
    *
-   * Identical to [`ethers.provider.getCode`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getCode)
-   * Similar to [`web3.eth.getCode`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getcode); does not accept TinyBig/BN/BigNumber
+   * * [Identical](/docs/api#isd) to [`ethers.provider.getCode`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getCode) in ethers.js
+   * * [Identical](/docs/api#isd) to [`web3.eth.getCode`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getcode) in web3.js
    *
    * @param address the contract address to get the contract code from
    * @param blockTag the block height to search for the contract code from. Contract code can change, so this allows for checking a specific block
@@ -477,12 +488,13 @@ export abstract class BaseProvider {
 
   /**
    * Returns an estimate of the amount of gas that would be required to submit transaction to the network.
-   * An estimate may not be accurate since there could be another transaction on the network that was not accounted for, but after being mined affected relevant state.
+   * An estimate may not be accurate since there could be another transaction on the network that was not accounted for.
    *
-   * Same as ["estimateGas" in ethers.js](https://docs.ethers.io/v5/api/providers/provider/#Provider-estimateGas)
+   * * [Identical](/docs/api#isd) to [`ethers.provider.estimateGas`](https://docs.ethers.io/v5/api/providers/provider/#Provider-estimateGas) in ethers.js
+   * * [Identical](/docs/api#isd) to [`web3.eth.estimateGas`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#estimateGas) in web3.js
    *
-   * @param transaction the transaction to check the gas cost for
-   * @returns the estimated amount of cost charged for submitting the specified transaction to the blockchain
+   * @param transaction the transaction to check the estimated gas cost for
+   * @returns the estimated amount of gas charged for submitting the specified transaction to the blockchain
    * @example
    * ```javascript
    * await provider.estimateGas({
@@ -504,7 +516,7 @@ export abstract class BaseProvider {
 
   /**
    * Returns transaction receipt event logs that match a specified filter.
-   * 
+   *
    * May return `[]` if parameters are too broad, even if logs exist.
    *
    * * [Identical](/docs/api#isd) to [ethers.provider.getLogs](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs) in ethers.js
