@@ -1,5 +1,5 @@
 import { TinyBig } from './../shared/tiny-big/tiny-big';
-import { BlockTransactionResponse } from './Transaction.types';
+import { BlockTransactionResponse, RPCTransaction } from './Transaction.types';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
 
@@ -15,7 +15,7 @@ export type BlockResponse = Modify<
     size: TinyBig;
     timestamp: TinyBig;
     totalDifficulty: TinyBig;
-    transactions: Array<BlockTransactionResponse>;
+    transactions: Array<string | BlockTransactionResponse>;
   }
 >;
 
@@ -39,7 +39,7 @@ export interface RPCBlock {
   stateRoot: string;
   timestamp: string;
   totalDifficulty: string;
-  transactions: Array<string>;
+  transactions: Array<string | RPCTransaction>;
   transactionsRoot: string;
   uncles: Array<string>;
 }

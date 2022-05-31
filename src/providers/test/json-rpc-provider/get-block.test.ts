@@ -1,96 +1,163 @@
-import { StaticJsonRpcProvider } from '@ethersproject/providers';
+import { ethers } from 'ethers';
 import omit from 'just-omit';
 import Web3 from 'web3';
-import { BlockTransactionObject } from 'web3-eth/types';
+import web3 from 'web3-eth';
 import { JsonRpcProvider } from '../../..';
 import { tinyBig } from '../../../shared/tiny-big/tiny-big';
 import { BlockResponse } from '../../../types/Block.types';
-import { BlockTransactionResponse } from '../../../types/Transaction.types';
-import { fakeUrls } from '../rpc-urls';
+import { fakeUrls } from './../rpc-urls';
 
 // RSK has 30 second block times so tests pass more often
 const rpcUrl = `https://public-node.rsk.co`;
 
-describe('provider.getBlock happy path', () => {
-  /**
-   *
-   * @param block1
-   * @param block2
-   */
-  function testBlockEquality(
-    block1: BlockResponse,
-    block2: BlockTransactionObject,
-  ) {
-    // only full transaction objects have ignorable fields
-    if (
-      block1.transactions.some((transaction) => typeof transaction === 'string')
-    ) {
-      throw new Error('transaction is string');
+function testBlockEquality(
+  eeBlock: BlockResponse,
+  otherBlock:
+    | ethers.providers.Block
+    | web3.BlockTransactionString
+    | web3.BlockTransactionObject,
+) {
+  let typeCheckKeys: Array<string> = [
+    'difficulty',
+    'gasLimit',
+    'gasUsed',
+    'number',
+    'timestamp',
+  ];
+  let omittableEE: Array<string> = [];
+  let omittableOther: Array<string> = [];
+  if (typeof otherBlock.gasLimit === 'number') {
+    // web3.js returns gasLimit as number, ethers returns as BigNum
+    if (eeBlock.transactions && typeof eeBlock.transactions[0] !== 'string') {
+      eeBlock.transactions.forEach((transaction: any) => {
+        if (transaction.gas) transaction.gas = transaction.gas.toString();
+        if (transaction.value) transaction.value = transaction.value.toString();
+        if (transaction.gasPrice)
+          transaction.gasPrice = transaction.gasPrice.toString();
+        if (transaction.nonce) transaction.nonce = transaction.nonce.toString();
+        if (transaction.v) transaction.v = `0x${transaction.v.toString(16)}`;
+      });
+      otherBlock.transactions.forEach((transaction: any) => {
+        if (transaction.gas) transaction.gas = transaction.gas.toString();
+        else if (transaction.gas == 0) transaction.gas = '0'; // won't go to string when zero??
+        if (transaction.nonce) transaction.nonce = transaction.nonce.toString();
+      });
     }
-    const omittedKeys = ['gas', 'gasPrice', 'value', 'v'];
-    const filteredBlock1 = {
-      ...block1,
-      transactions: block1.transactions.map((transaction) =>
-        omit(transaction as unknown as BlockTransactionResponse, omittedKeys),
-      ),
-    };
-    const filteredBlock2 = {
-      ...block2,
-      transactions: block2.transactions.map((transaction) =>
-        omit(transaction, omittedKeys),
-      ),
-    };
-    expect(filteredBlock1).toStrictEqual(filteredBlock2);
+    typeCheckKeys.push('totalDifficulty', 'size');
+    omittableEE = typeCheckKeys;
+    omittableOther = typeCheckKeys;
+
+    typeCheckKeys.forEach((key) => {
+      expect((eeBlock as any)[key].toString()).toBe(
+        (otherBlock as any)[key].toString(),
+      );
+    });
+  } else {
+    // rename _difficulty to difficulty
+    delete (otherBlock as any).difficulty;
+    (otherBlock as any).difficulty = (otherBlock as any)._difficulty;
+    delete (otherBlock as any)._difficulty;
+
+    omittableEE = [
+      // ethers.js doesn't return all these values that essential-eth does, some specific to RSK node
+      ...typeCheckKeys,
+      'bitcoinMergedMiningCoinbaseTransaction',
+      'bitcoinMergedMiningCoinbaseTransaction',
+      'bitcoinMergedMiningHeader',
+      'bitcoinMergedMiningHeader',
+      'bitcoinMergedMiningMerkleProof',
+      'cumulativeDifficulty',
+      'hashForMergedMining',
+      'logsBloom',
+      'minimumGasPrice',
+      'paidFees',
+      'receiptsRoot',
+      'sha3Uncles',
+      'size',
+      'stateRoot',
+      'totalDifficulty',
+      'transactionsRoot',
+      'uncles',
+    ];
+    omittableOther = [...typeCheckKeys];
   }
 
+  typeCheckKeys.forEach((key) => {
+    expect((eeBlock as any)[key].toString()).toBe(
+      (otherBlock as any)[key].toString(),
+    );
+  });
+
+  const omittedEEBlock = omit(eeBlock, omittableEE);
+  const omittedOtherBlock = omit(otherBlock, omittableOther);
+  expect(omittedEEBlock).toStrictEqual(omittedOtherBlock);
+}
+
+describe('provider.getBlock', () => {
   const essentialEthProvider = new JsonRpcProvider(rpcUrl);
   const web3Provider = new Web3(rpcUrl);
-  const ethersProvider = new StaticJsonRpcProvider(rpcUrl);
-  it('should get default latest block', async () => {
-    const [eeDefaultLatestBlock, eeLatestBlock] = await Promise.all([
-      essentialEthProvider.getBlock(),
+  const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
+
+  it('should match ethers.js -- latest', async () => {
+    const [eeLatestBlock, ethersLatestBlock] = await Promise.all([
       essentialEthProvider.getBlock('latest'),
+      ethersProvider.getBlock('latest'),
     ]);
-    expect(eeDefaultLatestBlock).toStrictEqual(eeLatestBlock);
+    testBlockEquality(eeLatestBlock, ethersLatestBlock);
   });
-  it('should get latest block', async () => {
+  it('should match web3.js -- latest', async () => {
     const [eeLatestBlock, web3LatestBlock] = await Promise.all([
       essentialEthProvider.getBlock('latest'),
       web3Provider.eth.getBlock('latest'),
     ]);
-    expect(eeLatestBlock).toStrictEqual(web3LatestBlock);
+    testBlockEquality(eeLatestBlock, web3LatestBlock);
   });
-  it('should get earliest block', async () => {
+  it('should match ethers.js -- earliest', async () => {
+    const [eeEarliestBlock, ethersEarliestBlock] = await Promise.all([
+      essentialEthProvider.getBlock('earliest'),
+      ethersProvider.getBlock('earliest'),
+    ]);
+    testBlockEquality(eeEarliestBlock, ethersEarliestBlock);
+  });
+  it('should match web3.js -- earliest', async () => {
     const [eeEarliestBlock, web3EarliestBlock] = await Promise.all([
       essentialEthProvider.getBlock('earliest'),
       web3Provider.eth.getBlock('earliest'),
     ]);
-    expect(eeEarliestBlock).toStrictEqual(web3EarliestBlock);
+    testBlockEquality(eeEarliestBlock, web3EarliestBlock);
   });
+
   const blockNumber = Math.floor(Math.random() * 4202460 /* latest block */);
-  it(`should get random block as decimal integer. (block #${blockNumber})`, async () => {
+  it(`should match ethers.js -- random block as decimal integer. (block #${blockNumber})`, async () => {
+    const [eeRandomBlock, ethersRandomBlock] = await Promise.all([
+      essentialEthProvider.getBlock(blockNumber),
+      ethersProvider.getBlock(blockNumber),
+    ]);
+    testBlockEquality(eeRandomBlock, ethersRandomBlock);
+  });
+  it(`should match web3.js -- random block as decimal integer & transactions. (block #${blockNumber})`, async () => {
     const [eeRandomBlock, web3RandomBlock] = await Promise.all([
       essentialEthProvider.getBlock(blockNumber, true),
       web3Provider.eth.getBlock(blockNumber, true),
     ]);
     testBlockEquality(eeRandomBlock, web3RandomBlock);
   });
-  it(`should get random block as string. (block #${blockNumber})`, async () => {
-    const blockNumberAsString = tinyBig(blockNumber).toHexString();
-    const [eeRandomBlock, ethersRandomBlock] = await Promise.all([
-      essentialEthProvider.getBlock(blockNumberAsString, false),
-      ethersProvider.getBlock(blockNumberAsString), // needs to be tested against ethers because web3 doesn't allow block number as a string
-    ]);
-    expect(eeRandomBlock.hash).toBe(ethersRandomBlock.hash); // checking for strict equal would require another function similar to `testBlockEquality` to normalize differences between essential-eth response and ethers response
-  });
+
   const blockHash =
     '0x4cbaa942e48a91108f38e2a250f6dbaff7fffe3027f5ebf76701929eed2b2970'; // Hash corresponds to block on RSK Mainnet
-  it(`should get block by hash. (hash = ${blockHash})`, async () => {
+  it(`should match ethers.js -- block by hash. (hash = ${blockHash})`, async () => {
+    const [eeBlockByHash, ethersBlockByHash] = await Promise.all([
+      essentialEthProvider.getBlock(blockHash),
+      ethersProvider.getBlock(blockHash),
+    ]);
+    testBlockEquality(eeBlockByHash, ethersBlockByHash);
+  });
+  it(`should match web3.js -- block by hash. (hash = ${blockHash})`, async () => {
     const [eeBlockByHash, web3BlockByHash] = await Promise.all([
       essentialEthProvider.getBlock(blockHash),
       web3Provider.eth.getBlock(blockHash),
     ]);
-    expect(eeBlockByHash).toStrictEqual(web3BlockByHash);
+    testBlockEquality(eeBlockByHash, web3BlockByHash);
   });
 });
 
