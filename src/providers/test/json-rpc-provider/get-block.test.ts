@@ -3,7 +3,6 @@ import omit from 'just-omit';
 import Web3 from 'web3';
 import web3 from 'web3-eth';
 import { JsonRpcProvider } from '../../..';
-import { tinyBig } from '../../../shared/tiny-big/tiny-big';
 import { BlockResponse } from '../../../types/Block.types';
 import { fakeUrls } from './../rpc-urls';
 
@@ -17,7 +16,7 @@ function testBlockEquality(
     | web3.BlockTransactionString
     | web3.BlockTransactionObject,
 ) {
-  let typeCheckKeys: Array<string> = [
+  const typeCheckKeys: Array<string> = [
     'difficulty',
     'gasLimit',
     'gasUsed',

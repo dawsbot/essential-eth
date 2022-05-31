@@ -288,12 +288,47 @@ export abstract class BaseProvider {
   }
 
   /**
-   * Gets information about a certain block.
-   * Same as `web3.eth.getBlock` and `ethers.providers.getBlock`
+   * Gets information about a certain block, optionally with full transaction objects.
+   *
+   * * [Similar](/docs/api#isd) to [`ethers.provider.getBlock`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs) in ethers.js, includes some additional information. Can also return block with full transaction objects, similar to [`ethers.providers.getBlockWithTransactions`]
+   * * [Identical](/docs/api#isd) to [`web3.eth.getBlock`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs) in web3.js
    *
    * @param timeFrame The number, hash, or text-based description ('latest', 'earliest', or 'pending') of the block to collect information on.
    * @param returnTransactionObjects Whether to also return data about the transactions on the block.
    * @returns A BlockResponse object with information about the specified block
+   * @example
+   * ```javascript
+   * await provider.getBlock(14879862);
+   * // {
+   * //   baseFeePerGas: { TinyBig: 39095728776 },
+   * //   difficulty: { TinyBig: 14321294455359973 },
+   * //   extraData: "0x486976656f6e2073672d6865617679",
+   * //   gasLimit: { TinyBig: 29970620 },
+   * //   gasUsed: { TinyBig: 20951384 },
+   * //   hash: "0x563b458ec3c4f87393b53f70bdddc0058497109b784d8cacd9247ddf267049ab",
+   * //   logsBloom:
+   * //     "0x9f38794fe80b521794df6efad8b0d2e9582f9ec3959a3f9384bda0fa371cfa5fac5af9d515c6bdf1ec325f5b5f7ebdd6a3a9fae17b38a86d4dc4b0971afc68d8086640550f4c156e6f923f4a1bb94fb0bed6cdcc474c5c64bfeff7a4a906f72b9a7b94004ee58efc53d63ac66961acd3a431b2d896cc9fd75f6072960bced45f770587caf130f57504decfcb63c6ca8fbc5bdbd749edd5a99a7375d2b81872289adb775fb3c928259f4be39c6d3f4d5b6217822979bb88c1f1fb62429b1b6d41cf4e3f77f9e1db3f5723108f1e5b1255dd734ad8cdb11e7ea22487c788e67c83777b6f395e504ca59c64f52245ee6de3804cf809e5caa4f0ea6a9aa9eb6ed801",
+   * //   miner: "0x1aD91ee08f21bE3dE0BA2ba6918E714dA6B45836",
+   * //   mixHash: "0x73cc9419bfb89c9d41c3a8c34ce56b5ebe468bdcf870258d2e77262275d580ec",
+   * //   nonce: "0x976f3f5d596ffb08",
+   * //   number: 14879862,
+   * //   parentHash: "0x95986ae14a71face8d9a6a379edd875b2e8bc73e4de0d9d460e7752bddb0f579",
+   * //   receiptsRoot: "0x8e6ba2fd9bee602b653dae6e3132f16538c2c5df24f1df8c000392053f73defa",
+   * //   sha3Uncles: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+   * //   size: { TinyBig: 134483 },
+   * //   stateRoot: "0xbf2bb67bd1c741f3d00904b8451d7c2cf4e3a2726f5a5884792ede2074747b85",
+   * //   timestamp: { TinyBig: 1654016186 },
+   * //   totalDifficulty: { TinyBig: 50478104614257705213748 },
+   * //   transactions: [
+   * //     "0xb3326a9149809603a2c28545e50e4f7d16e194bf5ee9764e0544603854c4a8d2",
+   * //     "0x8b42095f8d335404a4896b2817b8e5e3d86a5a87cb434a8eec295d5280a7f48e",
+   * //     "0x882f78fcb73f0f7ad0700bb0424a8b4beb366aaa93b88a3562c49a8d0ce4dcff",
+   * //     ...
+   * //   ],
+   * //   transactionsRoot: "0x5934902f3dcc263ec34f24318179bf6301f53f4834685792066026f3a4849d72",
+   * //   uncles: [],
+   * // }
+   * ```
    */
   public async getBlock(
     timeFrame: BlockTag = 'latest',
@@ -407,7 +442,6 @@ export abstract class BaseProvider {
    *   value: etherToWei('1.0').toHexString(),
    * });
    * // { TinyBig: "27938" }
-   *
    * ```
    */
   public async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
