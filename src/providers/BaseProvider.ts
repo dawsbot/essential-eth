@@ -4,6 +4,7 @@ import { cleanTransaction } from '../classes/utils/clean-transaction';
 import { cleanTransactionReceipt } from '../classes/utils/clean-transaction-receipt';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
+import { prepareTransaction } from '../classes/utils/prepare-transaction';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import { Filter, FilterByBlockHash } from '../types/Filter.types';
@@ -14,9 +15,9 @@ import {
   RPCTransaction,
   RPCTransactionReceipt,
   TransactionReceipt,
+  TransactionRequest,
   TransactionResponse,
 } from '../types/Transaction.types';
-import { TransactionRequest } from './types';
 import chainsInfo from './utils/chains-info';
 
 /**
@@ -505,5 +506,20 @@ export abstract class BaseProvider {
     )) as Array<RPCLog>;
     const logs = rpcLogs.map((log) => cleanLog(log, false));
     return logs;
+  }
+
+  /**
+   *
+   */
+  public async call(
+    transaction: TransactionRequest,
+    blockTag: BlockTag = 'latest',
+  ): Promise<string> {
+    blockTag = prepBlockTag(blockTag);
+    const rpcTransaction = prepareTransaction(transaction);
+    const transactionRes = await this.post(
+      buildRPCPostBody('eth_call', [rpcTransaction, blockTag]),
+    );
+    return transactionRes;
   }
 }

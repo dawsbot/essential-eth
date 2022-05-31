@@ -1,5 +1,5 @@
-import { BytesLike } from './../utils/bytes';
 import { TinyBig } from '../shared/tiny-big/tiny-big';
+import { BytesLike } from './../utils/bytes';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
 
@@ -51,15 +51,25 @@ export type TransactionReceipt = Modify<
   }
 >;
 
+// What the RPC is expecting
+export interface RPCTransactionRequest {
+  from?: string;
+  to: string;
+  gas?: string;
+  gasPrice?: string;
+  value?: string;
+  data?: BytesLike;
+}
+
 export interface TransactionRequest {
-  to?: string,
-  from?: string,
-  nonce?: TinyBig,
-  gasLimit?: TinyBig,
-  gasPrice?: TinyBig,
-  data?: BytesLike,
-  value?: TinyBig,
-  chainId?: number
+  to?: string;
+  from?: string;
+  nonce?: TinyBig;
+  gas?: TinyBig;
+  gasPrice?: TinyBig;
+  data?: BytesLike;
+  value?: TinyBig | number;
+  chainId?: number;
   type?: number;
   maxPriorityFeePerGas?: TinyBig;
   maxFeePerGas?: TinyBig;
