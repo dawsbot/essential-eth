@@ -10,11 +10,6 @@ import { rpcUrls } from '../rpc-urls';
 const rpcUrl = rpcUrls.mainnet;
 
 describe('provider.getTransaction', () => {
-  /**
-   *
-   * @param transaction1
-   * @param transaction2
-   */
   function testTransactionEquality(
     transaction1: ethers.providers.TransactionResponse | web3core.Transaction,
     transaction2: TransactionResponse,
@@ -26,6 +21,7 @@ describe('provider.getTransaction', () => {
       // only the ethers response has confirmations
       // requires manually comparing values via bigNum conversion
       numCheckKeys = [
+        'nonce',
         'value',
         'gas',
         'gasPrice',
@@ -72,6 +68,7 @@ describe('provider.getTransaction', () => {
         'gasPrice',
         'maxFeePerGas',
         'maxPriorityFeePerGas',
+        'nonce',
         'v',
         'value',
       ];

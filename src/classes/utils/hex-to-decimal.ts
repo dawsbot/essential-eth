@@ -8,7 +8,9 @@
  * ```javascript
  * hexToDecimal('0x34');
  * // 52
- *
+ * ```
+ * @example
+ * ```javascript
  * hexToDecimal('0x628608');
  * // 6456840
  * ```
