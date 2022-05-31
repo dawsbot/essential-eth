@@ -14,14 +14,14 @@ export type TransactionResponse = Modify<
   {
     blockNumber: number;
     chainId: number;
-    nonce: number;
+    gas: TinyBig;
+    gasLimit: TinyBig;
+    gasPrice: TinyBig;
+    nonce: TinyBig;
     transactionIndex: number;
     type: number;
     v: number;
     value: TinyBig;
-    gasPrice: TinyBig;
-    gas: TinyBig;
-    gasLimit: TinyBig;
   } & {
     maxFeePerGas: TinyBig;
     maxPriorityFeePerGas: TinyBig;
@@ -67,10 +67,10 @@ export interface TransactionRequest {
 
 /**
  * Type for the logs that are included in transaction receipts
- * * Similar to [`Type Log on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-Log)
+ * Similar to [`Type Log on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-Log)
  */
 export type Log = Modify<
-  Omit<RPCLog, 'removed'>,
+  RPCLog,
   {
     blockNumber: number;
     logIndex: number;

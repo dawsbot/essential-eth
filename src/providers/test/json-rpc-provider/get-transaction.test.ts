@@ -21,6 +21,7 @@ describe('provider.getTransaction', () => {
       // only the ethers response has confirmations
       // requires manually comparing values via bigNum conversion
       numCheckKeys = [
+        'nonce',
         'value',
         'gas',
         'gasPrice',
@@ -67,6 +68,7 @@ describe('provider.getTransaction', () => {
         'gasPrice',
         'maxFeePerGas',
         'maxPriorityFeePerGas',
+        'nonce',
         'v',
         'value',
       ];

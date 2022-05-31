@@ -11,6 +11,7 @@ import {
   JSONABI,
   JSONABIArgument,
 } from './types/Contract.types';
+import { Filter, FilterByBlockHash } from './types/Filter.types';
 import { Network } from './types/Network.types';
 import {
   BlockTransactionResponse,
@@ -33,6 +34,7 @@ import { toChecksumAddress } from './utils/to-checksum-address';
 import { toUtf8Bytes } from './utils/to-utf8-bytes';
 import { weiToEther } from './utils/wei-to-ether';
 
+export * from './providers/types';
 export * from './utils/bytes';
 export * from './utils/hash-message';
 export * from './utils/keccak256';
@@ -60,6 +62,8 @@ export {
   BaseContract,
   BlockResponse,
   ContractTypes,
+  Filter,
+  FilterByBlockHash,
   JSONABI,
   JSONABIArgument,
   Network,

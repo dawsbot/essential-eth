@@ -617,6 +617,12 @@ export default {
   "1337": [
     "cennz-old"
   ],
+  "1506": [
+    "Sherpax"
+  ],
+  "1507": [
+    "Sherpax Testnet"
+  ],
   "1618": [
     "cate"
   ],
@@ -628,6 +634,9 @@ export default {
   ],
   "1688": [
     "LUDAN"
+  ],
+  "1819": [
+    "cubet"
   ],
   "1856": [
     "tsf"
@@ -699,7 +708,7 @@ export default {
     "Fuji-EZChain"
   ],
   "3000": [
-    "cennz-r"
+    "echelon"
   ],
   "3001": [
     "cennz-n"
@@ -733,6 +742,9 @@ export default {
   ],
   "4102": [
     "aioz-testnet"
+  ],
+  "4181": [
+    "PHI"
   ],
   "4689": [
     "iotex-mainnet"
@@ -864,7 +876,7 @@ export default {
     "cennz-a"
   ],
   "21816": [
-    "oml"
+    "omc"
   ],
   "22023": [
     "SFL"
@@ -874,6 +886,9 @@ export default {
   ],
   "24734": [
     "mintme"
+  ],
+  "30067": [
+    "Piece"
   ],
   "31102": [
     "esn"
@@ -918,7 +933,7 @@ export default {
     "ALFA"
   ],
   "45000": [
-    "autobahn"
+    "Autobahn Network"
   ],
   "47805": [
     "REI"
