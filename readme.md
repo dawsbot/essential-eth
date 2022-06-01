@@ -77,6 +77,7 @@
   - [`weiToEther`](#weitoether)
   - [`zeroPad`](#zeropad)
 - [Providers](#providers)
+  - [`call`](#call)
   - [`estimateGas`](#estimategas)
   - [`getBalance`](#getbalance)
   - [`getBlock`](#getblock)
@@ -993,6 +994,32 @@ provider.getGasPrice().toNumber();
  <br/>
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (PROVIDER) -->
+
+#### [`call`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#call)
+
+```typescript
+provider.call(transaction: TransactionRequest, blockTag?: BlockTag): Promise<string>
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { JsonRpcProvider } from 'essential-eth';
+const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
+```
+
+```javascript
+await provider.call({
+  to: '0x6b175474e89094c44da98b954eedeac495271d0f',
+  data: '0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE',
+});
+// '0x0000000000000000000000000000000000000000000000000858898f93629000'
+```
+
+  </details>
+
+  <br/>
 
 #### [`estimateGas`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#estimategas)
 
