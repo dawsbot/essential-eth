@@ -506,4 +506,20 @@ export abstract class BaseProvider {
     const logs = rpcLogs.map((log) => cleanLog(log, false));
     return logs;
   }
+
+  /**
+   * Resolves an ENS name to a full Ethereum address.
+   *
+   * * [Identical](/docs/api#isd) to [`ethers.provider.resolveName`](https://docs.ethers.io/v5/api/providers/provider/#Provider-ResolveName) in ethers.js
+   * * [Identical](/docs/api#isd) to [`web3.eth.ens.getAddress`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth-ens.html#getaddress) in web3.js
+   *
+   * @param name the ENS name to resolve to an Ethereum address
+   * @returns the full Ethereum address matching the ENS name specified
+   * @example
+   * ```javascript
+   * await provider.resolveName('daws.eth');
+   * // '0xc0DEAF6bD3F0c6574a6a625EF2F22f62A5150EAB'
+   * ```
+   */
+  public async resolveName(name: string): Promise<string> {}
 }
