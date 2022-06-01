@@ -521,5 +521,7 @@ export abstract class BaseProvider {
    * // '0xc0DEAF6bD3F0c6574a6a625EF2F22f62A5150EAB'
    * ```
    */
-  public async resolveName(name: string): Promise<string> {}
+  public async resolveName(name: string) // : Promise<string>
+  {
+  }
 }
