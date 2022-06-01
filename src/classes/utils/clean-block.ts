@@ -21,7 +21,11 @@ export function cleanBlock(
   (Object.keys(block) as Array<keyof RPCBlock>).forEach((key) => {
     // pending blocks have null instead of a difficulty
     // pending blocks have null instead of a miner address
-    if (!Object.prototype.hasOwnProperty.call(block, key)) return;
+    if (
+      !Object.prototype.hasOwnProperty.call(block, key) &&
+      block[key] !== null
+    )
+      return;
     switch (key) {
       case 'difficulty':
       case 'totalDifficulty':

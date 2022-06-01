@@ -31,7 +31,11 @@ export function cleanTransactionReceipt(
   (
     Object.keys(transactionReceipt) as Array<keyof RPCTransactionReceipt>
   ).forEach((key) => {
-    if (!Object.prototype.hasOwnProperty.call(transactionReceipt, key)) return;
+    if (
+      !Object.prototype.hasOwnProperty.call(transactionReceipt, key) &&
+      transactionReceipt[key] !== null
+    )
+      return;
     switch (key) {
       case 'status':
         cleanedTransactionReceipt[key] = Number(

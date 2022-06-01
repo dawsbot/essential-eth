@@ -6,9 +6,8 @@ import { rpcUrls } from './../rpc-urls';
 const rpcUrl = rpcUrls.mainnet;
 
 // Based on https://etherscan.io/tx/0x277c40de5bf1d4fa06e37dce8e1370dac7273a4b2a883515176f51abaa50d512
-const dataFromTo = {
+const dataTo = {
   data: '0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE',
-  from: null,
   to: '0x6b175474e89094c44da98b954eedeac495271d0f',
 };
 
@@ -27,16 +26,16 @@ describe('provider.call', () => {
 
   it('should match ethers.js -- data, from, to', async () => {
     const [eeCall, ethersCall] = await Promise.all([
-      essentialEthProvider.call(dataFromTo),
-      ethersProvider.call(dataFromTo),
+      essentialEthProvider.call(dataTo),
+      ethersProvider.call(dataTo),
     ]);
     expect(eeCall).not.toBe('0x');
     expect(eeCall).toBe(ethersCall);
   });
   it('should match web3.js -- data, from, to', async () => {
     const [eeCall, web3Call] = await Promise.all([
-      essentialEthProvider.call(dataFromTo),
-      web3Provider.eth.call(dataFromTo),
+      essentialEthProvider.call(dataTo),
+      web3Provider.eth.call(dataTo),
     ]);
     expect(eeCall).not.toBe('0x');
     expect(eeCall).toBe(web3Call);
@@ -46,7 +45,6 @@ describe('provider.call', () => {
       essentialEthProvider.call(dataFromGasTo),
       ethersProvider.call(dataFromGasTo),
     ]);
-    expect(eeCall).not.toBe('0x');
     expect(eeCall).toBe(ethersCall);
   });
   it('should match web3.js -- data, from, gas, to', async () => {
@@ -54,7 +52,6 @@ describe('provider.call', () => {
       essentialEthProvider.call(dataFromGasTo),
       web3Provider.eth.call(dataFromGasTo),
     ]);
-    expect(eeCall).not.toBe('0x');
     expect(eeCall).toBe(web3Call);
   });
 });

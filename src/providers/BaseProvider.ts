@@ -446,8 +446,9 @@ export abstract class BaseProvider {
    * ```
    */
   public async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
+    const rpcTransaction = prepareTransaction(transaction);
     const gasUsed = (await this.post(
-      buildRPCPostBody('eth_estimateGas', [transaction]),
+      buildRPCPostBody('eth_estimateGas', [rpcTransaction]),
     )) as string;
     return tinyBig(hexToDecimal(gasUsed));
   }
@@ -530,9 +531,9 @@ export abstract class BaseProvider {
   ): Promise<string> {
     blockTag = prepBlockTag(blockTag);
     const rpcTransaction = prepareTransaction(transaction);
-    const transactionRes = await this.post(
+    const transactionRes = (await this.post(
       buildRPCPostBody('eth_call', [rpcTransaction, blockTag]),
-    );
+    )) as string;
     return transactionRes;
   }
 }

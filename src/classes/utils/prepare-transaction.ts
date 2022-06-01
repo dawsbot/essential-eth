@@ -17,7 +17,11 @@ export function prepareTransaction(
   } as unknown as RPCTransactionRequest;
   (Object.keys(transaction) as Array<keyof TransactionRequest>).forEach(
     (key) => {
-      if (!Object.prototype.hasOwnProperty.call(transaction, key)) return;
+      if (
+        !Object.prototype.hasOwnProperty.call(transaction, key) &&
+        transaction[key] !== null
+      )
+        return;
       switch (key) {
         case 'gas':
         case 'gasPrice':

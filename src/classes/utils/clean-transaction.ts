@@ -26,14 +26,19 @@ export function cleanTransaction(
   (Object.keys(transaction) as Array<keyof RPCTransaction>).forEach((key) => {
     // pending blocks have null instead of a difficulty
     // pending blocks have null instead of a miner address
-    if (!Object.prototype.hasOwnProperty.call(transaction, key)) return;
+    if (
+      !Object.prototype.hasOwnProperty.call(transaction, key) &&
+      transaction[key] !== null
+    )
+      return;
     switch (key) {
       case 'blockNumber':
       case 'chainId':
       case 'transactionIndex':
       case 'type':
       case 'v':
-        cleanedTransaction[key] = Number(hexToDecimal(transaction[key]));
+        if (transaction[key])
+          cleanedTransaction[key] = Number(hexToDecimal(transaction[key]));
         break;
       case 'from':
       case 'to':
