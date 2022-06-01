@@ -7,9 +7,9 @@ const rpcUrl = rpcUrls.mainnet;
 
 // Based on https://etherscan.io/tx/0x277c40de5bf1d4fa06e37dce8e1370dac7273a4b2a883515176f51abaa50d512
 const dataFromTo = {
-  data: '0x',
-  from: '0xcbd6832ebc203e49e2b771897067fce3c58575ac',
-  to: '0x7515439f67b7cb656803eb8f9066adac02631d97',
+  data: '0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE',
+  from: null,
+  to: '0x6b175474e89094c44da98b954eedeac495271d0f',
 };
 
 // Based on https://etherscan.io/tx/0xfc4a0544289c9eae2f94a9091208e3793ef8e9e93ea4dbaa80f70115be5e9813
@@ -30,6 +30,7 @@ describe('provider.call', () => {
       essentialEthProvider.call(dataFromTo),
       ethersProvider.call(dataFromTo),
     ]);
+    expect(eeCall).not.toBe('0x');
     expect(eeCall).toBe(ethersCall);
   });
   it('should match web3.js -- data, from, to', async () => {
@@ -37,6 +38,7 @@ describe('provider.call', () => {
       essentialEthProvider.call(dataFromTo),
       web3Provider.eth.call(dataFromTo),
     ]);
+    expect(eeCall).not.toBe('0x');
     expect(eeCall).toBe(web3Call);
   });
   it('should match ethers.js -- data, from, gas, to', async () => {
@@ -44,6 +46,7 @@ describe('provider.call', () => {
       essentialEthProvider.call(dataFromGasTo),
       ethersProvider.call(dataFromGasTo),
     ]);
+    expect(eeCall).not.toBe('0x');
     expect(eeCall).toBe(ethersCall);
   });
   it('should match web3.js -- data, from, gas, to', async () => {
@@ -51,6 +54,7 @@ describe('provider.call', () => {
       essentialEthProvider.call(dataFromGasTo),
       web3Provider.eth.call(dataFromGasTo),
     ]);
+    expect(eeCall).not.toBe('0x');
     expect(eeCall).toBe(web3Call);
   });
 });

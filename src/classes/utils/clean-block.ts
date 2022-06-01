@@ -11,6 +11,7 @@ import { hexToDecimal } from './hex-to-decimal';
  * @param block the RPCBlock to clean
  * @param returnTransactionObjects whether or not to return the transactions specified in this block
  * @returns a cleaned block
+ * @example
  */
 export function cleanBlock(
   block: RPCBlock,
@@ -20,7 +21,7 @@ export function cleanBlock(
   (Object.keys(block) as Array<keyof RPCBlock>).forEach((key) => {
     // pending blocks have null instead of a difficulty
     // pending blocks have null instead of a miner address
-    if (!block.hasOwnProperty(key)) return;
+    if (!Object.prototype.hasOwnProperty.call(block, key)) return;
     switch (key) {
       case 'difficulty':
       case 'totalDifficulty':

@@ -509,7 +509,20 @@ export abstract class BaseProvider {
   }
 
   /**
+   * Returns the result of adding a transaction to the blockchain without actually adding that transaction to the blockchain.
+   * Does not require any ether as gas.
    *
+   * * [Identical](/docs/api#isd) to [`ethers.provider.call`](https://docs.ethers.io/v5/api/providers/provider/#Provider-call) in ethers.js
+   * * [Identical](/docs/api#isd) to [`web3.eth.call`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#call) in web3.js
+   *
+   * @param transaction the transaction object to, in theory, execute. Doesn't actually get added to the blockchain.
+   * @param blockTag the block to execute this transaction on
+   * @returns the result of executing the transaction on the specified block
+   * @example
+   * ```javascript
+   * await provider.call({ to: "0x6b175474e89094c44da98b954eedeac495271d0f", data: "0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE" });
+   * // '0x0000000000000000000000000000000000000000000000000858898f93629000'
+   * ```
    */
   public async call(
     transaction: TransactionRequest,

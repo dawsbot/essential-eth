@@ -1,4 +1,3 @@
-import { TransactionRequest } from './../lib/cjs/providers/types.d';
 import { BaseContract, Contract } from './classes/Contract';
 import {
   ConstructorOptions,
@@ -22,6 +21,7 @@ import {
   RPCTransactionReceipt,
   RPCTransactionRequest,
   TransactionReceipt,
+  TransactionRequest,
   TransactionResponse,
 } from './types/Transaction.types';
 import { computeAddress } from './utils/compute-address';
