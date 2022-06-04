@@ -14,7 +14,28 @@
   },
   "repository": "https://github.com/dawsbot/essential-eth.git",
   "author": "@dawsbot",
+  "size-limit": [
+    {
+      "name": "etherToWei",
+      "path": "src/index.ts",
+      "import": "{ etherToWei }",
+      "limit": "3.9kb"
+    },
+    {
+      "name": "JsonRpcProvider",
+      "path": "src/index.ts",
+      "import": "{ JsonRpcProvider }",
+      "limit": "22kb"
+    },
+    {
+      "name": "Contract",
+      "path": "src/index.ts",
+      "import": "{ Contract }",
+      "limit": "18kb"
+    }
+  ],
   "scripts": {
+    "size": "size-limit",
     "test": "npm-run-all --parallel jest compile lint",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix .",
@@ -34,6 +55,7 @@
     "doc": "typedoc"
   },
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.8",
     "@types/body-parser": "^1.19.1",
     "@types/eslint": "^8.4.2",
     "@types/express": "^4.17.13",
@@ -59,6 +81,7 @@
     "perf_hooks": "^0.0.1",
     "prettier": "^2.6.2",
     "prettier-plugin-organize-imports": "^2.3.4",
+    "size-limit": "^7.0.8",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.2.1",
     "typedoc": "^0.22.15",
