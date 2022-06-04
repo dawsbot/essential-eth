@@ -4,3 +4,4 @@
 npm run build:readme
 npx lint-staged
 npm run pre-commit
+npm run size
