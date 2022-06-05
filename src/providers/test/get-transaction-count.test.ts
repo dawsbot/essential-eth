@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import Web3 from 'web3';
 import { jsonRpcProvider } from '../..';
-import { BlockTag } from '../../types/Block.types';
+import type { BlockTag } from '../../types/Block.types';
 import { rpcUrls } from './rpc-urls';
 
 // coinbase 1 hotwallet

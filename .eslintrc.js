@@ -31,6 +31,7 @@ module.exports = {
     'jest/require-to-throw-message': 'off',
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+    '@typescript-eslint/consistent-type-imports': 'error',
   },
   overrides: [
     {

@@ -1,7 +1,7 @@
-import Big from 'big.js';
+import type Big from 'big.js';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { validateType } from '../shared/validate-type';
-import { TinyBig } from './../shared/tiny-big/tiny-big';
+import type { TinyBig } from './../shared/tiny-big/tiny-big';
 
 /**
  * Convert from Gwei to Ether

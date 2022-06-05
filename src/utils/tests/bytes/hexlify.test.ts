@@ -1,6 +1,6 @@
 import { utils as ethers } from 'ethers';
 import { hexlify } from '../../bytes';
-import { BytesLike } from './../../bytes';
+import type { BytesLike } from './../../bytes';
 
 describe('utils.hexlify', () => {
   it('numbers - matches ethers strings', () => {

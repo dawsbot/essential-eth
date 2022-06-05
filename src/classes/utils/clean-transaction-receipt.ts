@@ -1,5 +1,5 @@
 import { tinyBig, toChecksumAddress } from '../..';
-import {
+import type {
   Log,
   RPCLog,
   RPCTransactionReceipt,

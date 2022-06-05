@@ -1,7 +1,8 @@
-import { BlockResponse, toChecksumAddress } from '../..';
+import type { BlockResponse} from '../..';
+import { toChecksumAddress } from '../..';
 import { tinyBig } from '../../shared/tiny-big/tiny-big';
-import { RPCBlock } from '../../types/Block.types';
-import { RPCTransaction } from '../../types/Transaction.types';
+import type { RPCBlock } from '../../types/Block.types';
+import type { RPCTransaction } from '../../types/Transaction.types';
 import { cleanTransaction } from './clean-transaction';
 import { hexToDecimal } from './hex-to-decimal';
 

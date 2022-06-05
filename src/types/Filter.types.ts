@@ -1,4 +1,4 @@
-import { BlockTag } from './Block.types';
+import type { BlockTag } from './Block.types';
 
 export interface EventFilter {
   address?: string;

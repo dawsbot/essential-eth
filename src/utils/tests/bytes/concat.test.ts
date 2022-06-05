@@ -1,5 +1,6 @@
 import * as ethers from 'ethers';
-import { BytesLikeWithNumber, concat } from '../../..';
+import type { BytesLikeWithNumber} from '../../..';
+import { concat } from '../../..';
 
 describe('concat', () => {
   it('matches ethers', () => {

@@ -1,8 +1,8 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import Web3 from 'web3';
 import { JsonRpcProvider } from '../../../index';
-import { Log } from '../../../types/Transaction.types';
-import { Filter } from './../../../types/Filter.types';
+import type { Log } from '../../../types/Transaction.types';
+import type { Filter } from './../../../types/Filter.types';
 import { rpcUrls } from './../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;

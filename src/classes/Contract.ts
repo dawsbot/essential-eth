@@ -1,5 +1,5 @@
-import { JsonRpcProvider } from '../providers/JsonRpcProvider';
-import { ContractInterface } from '../types/Contract.types';
+import type { JsonRpcProvider } from '../providers/JsonRpcProvider';
+import type { ContractInterface } from '../types/Contract.types';
 import {
   decodeRPCResponse,
   encodeData,

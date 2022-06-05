@@ -1,6 +1,6 @@
 import type Big from 'big.js';
-import { TinyBig } from '../shared/tiny-big/tiny-big';
-import { BytesLike } from './../utils/bytes';
+import type { TinyBig } from '../shared/tiny-big/tiny-big';
+import type { BytesLike } from './../utils/bytes';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
 

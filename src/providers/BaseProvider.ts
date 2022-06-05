@@ -6,11 +6,12 @@ import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { prepareTransaction } from '../classes/utils/prepare-transaction';
 import { logger } from '../logger/logger';
-import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
-import { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
-import { Filter, FilterByBlockHash } from '../types/Filter.types';
-import { Network } from '../types/Network.types';
-import {
+import type { TinyBig} from '../shared/tiny-big/tiny-big';
+import { tinyBig } from '../shared/tiny-big/tiny-big';
+import type { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
+import type { Filter, FilterByBlockHash } from '../types/Filter.types';
+import type { Network } from '../types/Network.types';
+import type {
   Log,
   RPCLog,
   RPCTransaction,

@@ -1,5 +1,5 @@
 import { tinyBig, toChecksumAddress } from '../..';
-import {
+import type {
   RPCTransaction,
   TransactionResponse,
 } from '../../types/Transaction.types';

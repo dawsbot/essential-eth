@@ -1,6 +1,6 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { TinyBig } from '../../..';
+import type { TinyBig } from '../../..';
 import { JsonRpcProvider } from '../../../index';
 import { rpcUrls } from '../../../providers/test/rpc-urls';
 import { Contract as EssentialEthContract } from '../../Contract';

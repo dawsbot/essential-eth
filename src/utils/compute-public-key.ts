@@ -1,5 +1,6 @@
 import { Point } from '@noble/secp256k1';
-import { BytesLike, hexlify } from './bytes';
+import type { BytesLike} from './bytes';
+import { hexlify } from './bytes';
 
 /**
  * Computes the public key from a given private key

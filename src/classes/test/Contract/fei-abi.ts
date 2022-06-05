@@ -1,4 +1,4 @@
-import { JSONABI } from '../../../types/Contract.types';
+import type { JSONABI } from '../../../types/Contract.types';
 
 export const feiABI: JSONABI =
   // http://api.etherscan.io/api?module=contract&action=getabi&address=0x090d4613473dee047c3f2706764f49e0821d256e&format=raw
