@@ -1,6 +1,6 @@
 import { utils as ethers } from 'ethers';
 import { zeroPad } from '../../bytes';
-import { BytesLike } from './../../bytes';
+import type { BytesLike } from './../../bytes';
 
 describe('utils.zeroPad', () => {
   it('should match ethers.js - hex string', () => {

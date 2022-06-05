@@ -1,5 +1,5 @@
 import { utils } from 'ethers';
-import { BytesLike } from './../bytes';
+import type { BytesLike } from './../bytes';
 import { keccak256 } from './../keccak256';
 
 /**

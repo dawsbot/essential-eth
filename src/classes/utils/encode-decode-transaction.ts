@@ -1,6 +1,6 @@
 import { Keccak } from 'sha3';
 import { tinyBig, toChecksumAddress } from '../..';
-import { ContractTypes, JSONABIArgument } from '../../types/Contract.types';
+import type { ContractTypes, JSONABIArgument } from '../../types/Contract.types';
 import { hexToDecimal } from './hex-to-decimal';
 
 export const hexFalse = '0'.repeat(64);

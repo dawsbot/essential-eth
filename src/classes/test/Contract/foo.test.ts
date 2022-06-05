@@ -1,5 +1,5 @@
 import { encodeData } from '../../utils/encode-decode-transaction';
-import { JSONABIArgument } from './../../../types/Contract.types';
+import type { JSONABIArgument } from './../../../types/Contract.types';
 import { fooABI } from './foo-abi';
 
 describe('foo encode', () => {

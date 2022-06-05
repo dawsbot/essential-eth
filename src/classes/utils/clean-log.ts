@@ -1,5 +1,5 @@
 import { toChecksumAddress } from '../../utils/to-checksum-address';
-import { Log, RPCLog } from './../../types/Transaction.types';
+import type { Log, RPCLog } from './../../types/Transaction.types';
 import { hexToDecimal } from './hex-to-decimal';
 
 /**

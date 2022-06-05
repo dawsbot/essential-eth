@@ -1,4 +1,4 @@
-import { JSONABI } from '../../..';
+import type { JSONABI } from '../../..';
 
 export const ensABI: JSONABI = [
   {

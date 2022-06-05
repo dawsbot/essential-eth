@@ -1,12 +1,13 @@
 import { logger } from './../logger/logger';
+import type {
+  Signature,
+  SignatureLike} from './bytes';
 import {
   arrayify,
   hexlify,
   hexZeroPad,
   isBytesLike,
   isHexString,
-  Signature,
-  SignatureLike,
   zeroPad,
 } from './bytes';
 

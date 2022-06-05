@@ -1,5 +1,6 @@
-import Big from 'big.js';
-import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
+import type Big from 'big.js';
+import type { TinyBig} from '../shared/tiny-big/tiny-big';
+import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { validateType } from '../shared/validate-type';
 
 /**

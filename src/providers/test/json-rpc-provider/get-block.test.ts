@@ -1,9 +1,9 @@
 import { ethers } from 'ethers';
 import omit from 'just-omit';
 import Web3 from 'web3';
-import web3 from 'web3-eth';
+import type web3 from 'web3-eth';
 import { JsonRpcProvider } from '../../..';
-import { BlockResponse } from '../../../types/Block.types';
+import type { BlockResponse } from '../../../types/Block.types';
 import { fakeUrls } from './../rpc-urls';
 
 // RSK has 30 second block times so tests pass more often

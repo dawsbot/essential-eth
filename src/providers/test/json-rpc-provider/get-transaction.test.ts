@@ -1,10 +1,10 @@
 import { ethers } from 'ethers';
 import omit from 'just-omit';
 import Web3 from 'web3';
-import web3core from 'web3-core';
+import type web3core from 'web3-core';
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
 import { JsonRpcProvider, tinyBig } from '../../../index';
-import { TransactionResponse } from '../../../types/Transaction.types';
+import type { TransactionResponse } from '../../../types/Transaction.types';
 import { rpcUrls } from '../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;

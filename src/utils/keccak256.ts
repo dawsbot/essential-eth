@@ -1,5 +1,5 @@
 import { Keccak } from 'sha3';
-import { BytesLike } from './bytes';
+import type { BytesLike } from './bytes';
 
 /**
  * Hashes data into a Keccak256 hex string

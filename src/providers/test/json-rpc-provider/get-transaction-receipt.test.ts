@@ -1,9 +1,9 @@
 import { ethers } from 'ethers';
 import omit from 'just-omit';
 import Web3 from 'web3';
-import web3core from 'web3-core';
+import type web3core from 'web3-core';
 import { JsonRpcProvider } from '../../../index';
-import { TransactionReceipt } from '../../../types/Transaction.types';
+import type { TransactionReceipt } from '../../../types/Transaction.types';
 import { rpcUrls } from '../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;

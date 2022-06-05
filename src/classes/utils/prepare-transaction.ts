@@ -1,11 +1,11 @@
 import Big from 'big.js';
 import { TinyBig } from '../../shared/tiny-big/tiny-big';
 import { hexlify } from '../../utils/bytes';
-import {
+import type {
   RPCTransactionRequest,
   TransactionRequest,
 } from './../../types/Transaction.types';
-import { BytesLike } from './../../utils/bytes';
+import type { BytesLike } from './../../utils/bytes';
 
 /**
  * @param transaction
