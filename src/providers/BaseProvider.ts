@@ -5,6 +5,7 @@ import { cleanTransactionReceipt } from '../classes/utils/clean-transaction-rece
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { prepareTransaction } from '../classes/utils/prepare-transaction';
+import { logger } from '../logger/logger';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import { Filter, FilterByBlockHash } from '../types/Filter.types';
@@ -529,6 +530,28 @@ export abstract class BaseProvider {
     transaction: TransactionRequest,
     blockTag: BlockTag = 'latest',
   ): Promise<string> {
+    if (
+      transaction.gasPrice &&
+      (transaction.maxPriorityFeePerGas || transaction.maxFeePerGas)
+    ) {
+      logger.throwError(
+        'Cannot specify both "gasPrice" and ("maxPriorityFeePerGas" or "maxFeePerGas")',
+        {
+          gasPrice: transaction.gasPrice,
+          maxFeePerGas: transaction.maxFeePerGas,
+          maxPriorityFeePerGas: transaction.maxPriorityFeePerGas,
+        },
+      );
+    }
+    if (transaction.maxFeePerGas && transaction.maxPriorityFeePerGas) {
+      logger.throwError(
+        'Cannot specify both "maxFeePerGas" and "maxPriorityFeePerGas"',
+        {
+          maxFeePerGas: transaction.maxFeePerGas,
+          maxPriorityFeePerGas: transaction.maxPriorityFeePerGas,
+        },
+      );
+    }
     blockTag = prepBlockTag(blockTag);
     const rpcTransaction = prepareTransaction(transaction);
     const transactionRes = (await this.post(

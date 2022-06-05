@@ -1,6 +1,8 @@
+import Big from 'big.js';
 import { ethers } from 'ethers';
 import Web3 from 'web3';
-import { JsonRpcProvider } from '../../..';
+import { JsonRpcProvider, tinyBig } from '../../..';
+import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
 import { rpcUrls } from './../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
@@ -13,10 +15,16 @@ const dataTo = {
 
 // Based on https://etherscan.io/tx/0xfc4a0544289c9eae2f94a9091208e3793ef8e9e93ea4dbaa80f70115be5e9813
 const dataFromGasTo = {
-  from: '0x3d13c2224a1cdd661e4cc91091f83047750270c5',
-  data: '0x',
-  gas: 102850283925,
-  to: '0x08daeb76f90d9192ba03154b7046f2865736a2b5',
+  to: '0x3d13c2224a1cdd661e4cc91091f83047750270c5',
+  from: '0x0000000000000000000000000000000000000000',
+  nonce: '0x1',
+  gas: 999999,
+  data: '0x1234',
+  value: '0x123',
+  // not sure how to get "chainId" into proper format
+  // chainId: 1,
+  type: 1,
+  maxFeePerGas: '0xffffffffff',
 };
 
 describe('provider.call', () => {
@@ -24,34 +32,73 @@ describe('provider.call', () => {
   const web3Provider = new Web3(rpcUrl);
   const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
 
-  it('should match ethers.js -- data, from, to', async () => {
-    const [eeCall, ethersCall] = await Promise.all([
+  it('throws', async () => {
+    await expect(
+      essentialEthProvider.call({
+        ...dataTo,
+        maxFeePerGas: '0x12',
+        maxPriorityFeePerGas: '0x123',
+      }),
+    ).rejects.toThrow();
+  });
+
+  it('should match ethers.js -- data, to', async () => {
+    const [eeCall, ethersCall, web3Call] = await Promise.all([
       essentialEthProvider.call(dataTo),
       ethersProvider.call(dataTo),
-    ]);
-    expect(eeCall).not.toBe('0x');
-    expect(eeCall).toBe(ethersCall);
-  });
-  it('should match web3.js -- data, from, to', async () => {
-    const [eeCall, web3Call] = await Promise.all([
-      essentialEthProvider.call(dataTo),
       web3Provider.eth.call(dataTo),
     ]);
     expect(eeCall).not.toBe('0x');
+    expect(eeCall).toBe(ethersCall);
     expect(eeCall).toBe(web3Call);
   });
-  it('should match ethers.js -- data, from, gas, to', async () => {
-    const [eeCall, ethersCall] = await Promise.all([
+
+  it('should match ethers.js -- all mixed data as strings', async () => {
+    const [eeCall, ethersCall, web3Call] = await Promise.all([
       essentialEthProvider.call(dataFromGasTo),
       ethersProvider.call(dataFromGasTo),
+      web3Provider.eth.call({
+        ...dataFromGasTo,
+        nonce: Number(hexToDecimal(dataFromGasTo.nonce)),
+      }),
     ]);
     expect(eeCall).toBe(ethersCall);
+    expect(eeCall).toBe(web3Call);
   });
-  it('should match web3.js -- data, from, gas, to', async () => {
-    const [eeCall, web3Call] = await Promise.all([
-      essentialEthProvider.call(dataFromGasTo),
-      web3Provider.eth.call(dataFromGasTo),
+
+  it('should match ethers.js -- all mixed data as TinyBig', async () => {
+    const [eeCall, ethersCall, web3Call] = await Promise.all([
+      essentialEthProvider.call({
+        ...dataFromGasTo,
+        nonce: tinyBig(dataFromGasTo.nonce),
+        gas: tinyBig(dataFromGasTo.gas),
+        value: tinyBig(dataFromGasTo.value),
+      }),
+      ethersProvider.call(dataFromGasTo),
+      web3Provider.eth.call({
+        ...dataFromGasTo,
+        nonce: Number(hexToDecimal(dataFromGasTo.nonce)),
+      }),
     ]);
+    expect(eeCall).toBe(ethersCall);
+    expect(eeCall).toBe(web3Call);
+  });
+
+  it('should match ethers.js -- all mixeddata as Big', async () => {
+    const [eeCall, ethersCall, web3Call] = await Promise.all([
+      essentialEthProvider.call({
+        ...dataFromGasTo,
+        nonce: new Big(hexToDecimal(dataFromGasTo.nonce)),
+        gas: new Big(dataFromGasTo.gas),
+        value: new Big(hexToDecimal(dataFromGasTo.value)),
+      }),
+      ethersProvider.call(dataFromGasTo),
+      web3Provider.eth.call({
+        ...dataFromGasTo,
+        nonce: Number(hexToDecimal(dataFromGasTo.nonce)),
+      }),
+    ]);
+    expect(eeCall).toBe(ethersCall);
     expect(eeCall).toBe(web3Call);
   });
 });

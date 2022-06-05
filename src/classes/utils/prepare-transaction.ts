@@ -1,3 +1,5 @@
+import Big from 'big.js';
+import { TinyBig } from '../../shared/tiny-big/tiny-big';
 import { hexlify } from '../../utils/bytes';
 import {
   RPCTransactionRequest,
@@ -25,12 +27,23 @@ export function prepareTransaction(
       switch (key) {
         case 'gas':
         case 'gasPrice':
-        case 'value':
-          if (typeof transaction[key] === 'number')
+        case 'nonce':
+        case 'maxFeePerGas':
+        case 'maxPriorityFeePerGas':
+        case 'value': {
+          const value = transaction[key];
+          if (value instanceof TinyBig) {
+            preparedTransaction[key] = value.toHexString();
+          } else if (value instanceof Big) {
+            preparedTransaction[key] = `0x${BigInt(value.toString()).toString(
+              16,
+            )}`;
+          } else if (typeof transaction[key] === 'number')
             preparedTransaction[key] =
               '0x' + (transaction[key] as any).toString(16);
           else preparedTransaction[key] = (transaction[key] as any).toString();
           break;
+        }
         case 'data':
           preparedTransaction[key] = hexlify(transaction[key] as BytesLike);
           break;

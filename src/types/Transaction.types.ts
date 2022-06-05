@@ -1,3 +1,4 @@
+import type Big from 'big.js';
 import { TinyBig } from '../shared/tiny-big/tiny-big';
 import { BytesLike } from './../utils/bytes';
 
@@ -59,20 +60,23 @@ export interface RPCTransactionRequest {
   gasPrice?: string;
   value?: string;
   data?: BytesLike;
+  nonce?: string /* hex number as string */;
+  maxPriorityFeePerGas?: string /* hex number as string */;
+  maxFeePerGas?: string /* hex number as string */;
 }
 
 export interface TransactionRequest {
   to?: string;
   from?: string;
-  nonce?: TinyBig;
-  gas?: TinyBig | number;
-  gasPrice?: TinyBig | number;
+  nonce?: TinyBig | string | Big;
+  gas?: TinyBig | number | Big;
+  gasPrice?: TinyBig | number | Big;
   data?: BytesLike;
-  value?: TinyBig | number;
+  value?: TinyBig | string | Big | number;
   chainId?: number;
   type?: number;
-  maxPriorityFeePerGas?: TinyBig;
-  maxFeePerGas?: TinyBig;
+  maxPriorityFeePerGas?: TinyBig | string | Big;
+  maxFeePerGas?: TinyBig | string | Big;
 }
 
 /**
