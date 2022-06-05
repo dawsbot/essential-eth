@@ -19,7 +19,9 @@ import {
   RPCLog,
   RPCTransaction,
   RPCTransactionReceipt,
+  RPCTransactionRequest,
   TransactionReceipt,
+  TransactionRequest,
   TransactionResponse,
 } from './types/Transaction.types';
 import { computeAddress } from './utils/compute-address';
@@ -34,7 +36,6 @@ import { toChecksumAddress } from './utils/to-checksum-address';
 import { toUtf8Bytes } from './utils/to-utf8-bytes';
 import { weiToEther } from './utils/wei-to-ether';
 
-export * from './providers/types';
 export * from './utils/bytes';
 export * from './utils/hash-message';
 export * from './utils/keccak256';
@@ -71,6 +72,8 @@ export {
   RPCBlock,
   RPCTransaction,
   RPCTransactionReceipt,
+  TransactionRequest,
+  RPCTransactionRequest,
   TransactionReceipt,
   BlockTag,
   RPCLog,

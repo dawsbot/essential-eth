@@ -1,4 +1,6 @@
+import type Big from 'big.js';
 import { TinyBig } from '../shared/tiny-big/tiny-big';
+import { BytesLike } from './../utils/bytes';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
 
@@ -30,7 +32,8 @@ export type TransactionResponse = Modify<
 
 /**
  * Type that contains information from the receipt of a transaction
- * Similar to [`Type TransactionReceipt on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt)
+ *
+ * * Similar to [`Type TransactionReceipt on ethers.providers`](https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt)
  */
 export type TransactionReceipt = Modify<
   RPCTransactionReceipt,
@@ -48,6 +51,33 @@ export type TransactionReceipt = Modify<
     confirmations: number;
   }
 >;
+
+// What the RPC is expecting
+export interface RPCTransactionRequest {
+  from?: string;
+  to: string;
+  gas?: string;
+  gasPrice?: string;
+  value?: string;
+  data?: BytesLike;
+  nonce?: string /* hex number as string */;
+  maxPriorityFeePerGas?: string /* hex number as string */;
+  maxFeePerGas?: string /* hex number as string */;
+}
+
+export interface TransactionRequest {
+  to?: string;
+  from?: string;
+  nonce?: TinyBig | string | Big | number;
+  gas?: TinyBig | number | Big | string;
+  gasPrice?: TinyBig | Big | string | number;
+  data?: BytesLike;
+  value?: TinyBig | string | Big | number;
+  chainId?: number;
+  type?: number;
+  maxPriorityFeePerGas?: TinyBig | string | Big | number;
+  maxFeePerGas?: TinyBig | string | Big | number;
+}
 
 /**
  * Type for the logs that are included in transaction receipts

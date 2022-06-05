@@ -708,7 +708,7 @@ export default {
     "Fuji-EZChain"
   ],
   "3000": [
-    "echelon"
+    "cennz-r"
   ],
   "3001": [
     "cennz-n"
@@ -848,6 +848,12 @@ export default {
   "10823": [
     "CCP"
   ],
+  "10946": [
+    "quadrans"
+  ],
+  "10947": [
+    "quadranstestnet"
+  ],
   "11111": [
     "WAGMI"
   ],
@@ -886,6 +892,9 @@ export default {
   ],
   "24734": [
     "mintme"
+  ],
+  "26863": [
+    "OAC"
   ],
   "30067": [
     "Piece"
@@ -991,6 +1000,12 @@ export default {
   ],
   "71393": [
     "ckb"
+  ],
+  "71401": [
+    "gw-testnet-v1"
+  ],
+  "71402": [
+    "gw-mainnet-v1"
   ],
   "73799": [
     "vt"
@@ -1100,8 +1115,14 @@ export default {
   "421611": [
     "arb-rinkeby"
   ],
+  "432201": [
+    "Dexalot"
+  ],
   "444900": [
     "wlkt"
+  ],
+  "474142": [
+    "oc"
   ],
   "512512": [
     "cmp"
@@ -1123,6 +1144,9 @@ export default {
   ],
   "1337702": [
     "kintsugi"
+  ],
+  "1337802": [
+    "kiln"
   ],
   "2203181": [
     "platondev"
@@ -1239,6 +1263,6 @@ export default {
     "mole"
   ],
   "868455272153094": [
-    "gw-testnet-v1"
+    "gw-testnet-v1-deprecated"
   ]
 }

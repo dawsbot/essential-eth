@@ -1,4 +1,5 @@
 import Big from 'big.js';
+import { hexToDecimal } from '../../classes/utils/hex-to-decimal';
 import { scientificStrToDecimalStr } from './helpers';
 
 /**
@@ -7,6 +8,9 @@ import { scientificStrToDecimalStr } from './helpers';
  */
 export class TinyBig extends Big {
   constructor(value: string | number | TinyBig | Big) {
+    if (typeof value === 'string' && value.startsWith('0x')) {
+      value = hexToDecimal(value);
+    }
     super(value);
   }
   /**
