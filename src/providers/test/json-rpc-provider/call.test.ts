@@ -40,6 +40,20 @@ describe('provider.call', () => {
         maxPriorityFeePerGas: '0x123',
       }),
     ).rejects.toThrow();
+    await expect(
+      essentialEthProvider.call({
+        ...dataTo,
+        gasPrice: '0xfffffff',
+        maxFeePerGas: '0x12',
+      }),
+    ).rejects.toThrow();
+    await expect(
+      essentialEthProvider.call({
+        ...dataTo,
+        gasPrice: '0xfffffff',
+        maxPriorityFeePerGas: '0x123',
+      }),
+    ).rejects.toThrow();
   });
 
   it('should match ethers.js -- data, to', async () => {
@@ -48,7 +62,17 @@ describe('provider.call', () => {
       ethersProvider.call(dataTo),
       web3Provider.eth.call(dataTo),
     ]);
-    expect(eeCall).not.toBe('0x');
+    expect(eeCall).toBe(ethersCall);
+    expect(eeCall).toBe(web3Call);
+  });
+
+  it('should match ethers.js -- data, to, gasPrice', async () => {
+    const data = { ...dataTo, gasPrice: 99999999999 };
+    const [eeCall, ethersCall, web3Call] = await Promise.all([
+      essentialEthProvider.call(data),
+      ethersProvider.call(data),
+      web3Provider.eth.call(data),
+    ]);
     expect(eeCall).toBe(ethersCall);
     expect(eeCall).toBe(web3Call);
   });

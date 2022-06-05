@@ -68,15 +68,15 @@ export interface RPCTransactionRequest {
 export interface TransactionRequest {
   to?: string;
   from?: string;
-  nonce?: TinyBig | string | Big;
-  gas?: TinyBig | number | Big;
-  gasPrice?: TinyBig | number | Big;
+  nonce?: TinyBig | string | Big | number;
+  gas?: TinyBig | number | Big | string;
+  gasPrice?: TinyBig | Big | string | number;
   data?: BytesLike;
   value?: TinyBig | string | Big | number;
   chainId?: number;
   type?: number;
-  maxPriorityFeePerGas?: TinyBig | string | Big;
-  maxFeePerGas?: TinyBig | string | Big;
+  maxPriorityFeePerGas?: TinyBig | string | Big | number;
+  maxFeePerGas?: TinyBig | string | Big | number;
 }
 
 /**
