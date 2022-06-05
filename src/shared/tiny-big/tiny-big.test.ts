@@ -2,6 +2,10 @@ import { BigNumber } from 'ethers';
 import { tinyBig } from './tiny-big';
 
 describe('tiny-big', () => {
+  it('allows hex string input', () => {
+    expect(tinyBig('0xa').toString()).toBe('10');
+    expect(tinyBig('10').toString()).toBe('10');
+  });
   it('performs toHexString properly', () => {
     expect(tinyBig(0).toHexString()).toBe('0x0');
     expect(tinyBig(1).toHexString()).toBe('0x1');

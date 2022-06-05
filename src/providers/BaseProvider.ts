@@ -4,6 +4,8 @@ import { cleanTransaction } from '../classes/utils/clean-transaction';
 import { cleanTransactionReceipt } from '../classes/utils/clean-transaction-receipt';
 import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
+import { prepareTransaction } from '../classes/utils/prepare-transaction';
+import { logger } from '../logger/logger';
 import { TinyBig, tinyBig } from '../shared/tiny-big/tiny-big';
 import { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import { Filter, FilterByBlockHash } from '../types/Filter.types';
@@ -14,9 +16,9 @@ import {
   RPCTransaction,
   RPCTransactionReceipt,
   TransactionReceipt,
+  TransactionRequest,
   TransactionResponse,
 } from '../types/Transaction.types';
-import { TransactionRequest } from './types';
 import chainsInfo from './utils/chains-info';
 
 /**
@@ -445,8 +447,9 @@ export abstract class BaseProvider {
    * ```
    */
   public async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
+    const rpcTransaction = prepareTransaction(transaction);
     const gasUsed = (await this.post(
-      buildRPCPostBody('eth_estimateGas', [transaction]),
+      buildRPCPostBody('eth_estimateGas', [rpcTransaction]),
     )) as string;
     return tinyBig(hexToDecimal(gasUsed));
   }
@@ -505,5 +508,55 @@ export abstract class BaseProvider {
     )) as Array<RPCLog>;
     const logs = rpcLogs.map((log) => cleanLog(log, false));
     return logs;
+  }
+
+  /**
+   * Returns the result of adding a transaction to the blockchain without actually adding that transaction to the blockchain.
+   * Does not require any ether as gas.
+   *
+   * * [Identical](/docs/api#isd) to [`ethers.provider.call`](https://docs.ethers.io/v5/api/providers/provider/#Provider-call) in ethers.js
+   * * [Identical](/docs/api#isd) to [`web3.eth.call`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#call) in web3.js
+   *
+   * @param transaction the transaction object to, in theory, execute. Doesn't actually get added to the blockchain.
+   * @param blockTag the block to execute this transaction on
+   * @returns the result of executing the transaction on the specified block
+   * @example
+   * ```javascript
+   * await provider.call({ to: "0x6b175474e89094c44da98b954eedeac495271d0f", data: "0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE" });
+   * // '0x0000000000000000000000000000000000000000000000000858898f93629000'
+   * ```
+   */
+  public async call(
+    transaction: TransactionRequest,
+    blockTag: BlockTag = 'latest',
+  ): Promise<string> {
+    if (
+      transaction.gasPrice &&
+      (transaction.maxPriorityFeePerGas || transaction.maxFeePerGas)
+    ) {
+      logger.throwError(
+        'Cannot specify both "gasPrice" and ("maxPriorityFeePerGas" or "maxFeePerGas")',
+        {
+          gasPrice: transaction.gasPrice,
+          maxFeePerGas: transaction.maxFeePerGas,
+          maxPriorityFeePerGas: transaction.maxPriorityFeePerGas,
+        },
+      );
+    }
+    if (transaction.maxFeePerGas && transaction.maxPriorityFeePerGas) {
+      logger.throwError(
+        'Cannot specify both "maxFeePerGas" and "maxPriorityFeePerGas"',
+        {
+          maxFeePerGas: transaction.maxFeePerGas,
+          maxPriorityFeePerGas: transaction.maxPriorityFeePerGas,
+        },
+      );
+    }
+    blockTag = prepBlockTag(blockTag);
+    const rpcTransaction = prepareTransaction(transaction);
+    const transactionRes = (await this.post(
+      buildRPCPostBody('eth_call', [rpcTransaction, blockTag]),
+    )) as string;
+    return transactionRes;
   }
 }
