@@ -10,10 +10,6 @@ jobs:
       CI_JOB_NUMBER: 1
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: andresz1/size-limit-action@v1
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run size
+          github_token: ${{ secrets.GITHUB_TOKEN }}
