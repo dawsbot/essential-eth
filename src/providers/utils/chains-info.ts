@@ -335,6 +335,9 @@ export default {
   "172": [
     "resil"
   ],
+  "180": [
+    "ame"
+  ],
   "186": [
     "Seele"
   ],
@@ -343,6 +346,9 @@ export default {
   ],
   "189": [
     "BMCT"
+  ],
+  "193": [
+    "cem"
   ],
   "199": [
     "BTT"
@@ -428,6 +434,9 @@ export default {
   "385": [
     "lisinski"
   ],
+  "416": [
+    "SX"
+  ],
   "420": [
     "ogor"
   ],
@@ -439,6 +448,9 @@ export default {
   ],
   "513": [
     "aact"
+  ],
+  "520": [
+    "xt"
   ],
   "534": [
     "CNDL"
@@ -466,6 +478,9 @@ export default {
   ],
   "600": [
     "mesh-chain-testnet"
+  ],
+  "647": [
+    "SX-Testnet"
   ],
   "666": [
     "pixie-chain-testnet"
@@ -535,6 +550,12 @@ export default {
   ],
   "977": [
     "yeti"
+  ],
+  "980": [
+    "top_evm"
+  ],
+  "989": [
+    "top"
   ],
   "998": [
     "ln"
@@ -635,6 +656,9 @@ export default {
   "1688": [
     "LUDAN"
   ],
+  "1818": [
+    "cube"
+  ],
   "1819": [
     "cubet"
   ],
@@ -690,6 +714,9 @@ export default {
     "evanesco"
   ],
   "2221": [
+    "tkava"
+  ],
+  "2222": [
     "kava"
   ],
   "2223": [
@@ -731,11 +758,17 @@ export default {
   "3690": [
     "btx"
   ],
+  "3737": [
+    "csb"
+  ],
   "3966": [
     "dyno"
   ],
   "3967": [
     "tdyno"
+  ],
+  "3999": [
+    "ycc"
   ],
   "4002": [
     "tftm"
@@ -753,7 +786,13 @@ export default {
     "iotex-testnet"
   ],
   "4918": [
+    "txvm"
+  ],
+  "4919": [
     "xvm"
+  ],
+  "5177": [
+    "tlc"
   ],
   "5197": [
     "es"
@@ -782,8 +821,14 @@ export default {
   "6626": [
     "pixie-chain"
   ],
+  "7027": [
+    "ELLA"
+  ],
   "7341": [
     "shyft"
+  ],
+  "7777": [
+    "Rise of the Warbots Testnet"
   ],
   "7878": [
     "tscas"
@@ -874,6 +919,9 @@ export default {
   ],
   "16001": [
     "mtttest"
+  ],
+  "16888": [
+    "tivar"
   ],
   "19845": [
     "btcix"
@@ -1016,6 +1064,9 @@ export default {
   "80001": [
     "maticmum"
   ],
+  "88888": [
+    "ivar"
+  ],
   "99998": [
     "usctest"
   ],
@@ -1048,6 +1099,9 @@ export default {
   ],
   "100008": [
     "qkc-s7"
+  ],
+  "103090": [
+    "CRFI"
   ],
   "108801": [
     "bro"
@@ -1150,6 +1204,9 @@ export default {
   ],
   "2203181": [
     "platondev"
+  ],
+  "2206132": [
+    "platondev2"
   ],
   "7762959": [
     "music"

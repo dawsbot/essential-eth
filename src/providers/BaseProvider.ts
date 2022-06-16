@@ -6,7 +6,7 @@ import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { prepareTransaction } from '../classes/utils/prepare-transaction';
 import { logger } from '../logger/logger';
-import type { TinyBig} from '../shared/tiny-big/tiny-big';
+import type { TinyBig } from '../shared/tiny-big/tiny-big';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
 import type { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import type { Filter, FilterByBlockHash } from '../types/Filter.types';
