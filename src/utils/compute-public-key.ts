@@ -1,5 +1,5 @@
 import { Point } from '@noble/secp256k1';
-import type { BytesLike} from './bytes';
+import type { BytesLike } from './bytes';
 import { hexlify } from './bytes';
 
 /**
