@@ -1,4 +1,4 @@
-import type { BlockResponse} from '../..';
+import type { BlockResponse } from '../..';
 import { toChecksumAddress } from '../..';
 import { tinyBig } from '../../shared/tiny-big/tiny-big';
 import type { RPCBlock } from '../../types/Block.types';

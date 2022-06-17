@@ -1,7 +1,5 @@
 import { logger } from './../logger/logger';
-import type {
-  Signature,
-  SignatureLike} from './bytes';
+import type { Signature, SignatureLike } from './bytes';
 import {
   arrayify,
   hexlify,
