@@ -4,6 +4,7 @@ import React from 'react';
 import styles from './styles.module.css';
 // organize-imports-ignore
 import * as ee from '../../../../src/index';
+import Link from '@docusaurus/Link';
 
 interface FeatureItem {
   title: string;
@@ -102,17 +103,47 @@ export default function HomepageFeatures(): JSX.Element {
           </section>
           <br />
           <br />
+          <h2>Utils</h2>
           <CodeBlock language="typescript">
-            {`import { isAddress, weiToEther } from 'essential-eth';
-
-isAddress('0x0000000000000000000000000000000000000000');
-// true
+            {`import { etherToWei, weiToEther } from 'essential-eth';
 
 weiToEther(1000000000000000000).toNumber();
 // 1
+
+etherToWei('1000').toString();
+// '1000000000000000000000'
 `}
           </CodeBlock>
           <br />
+          <CodeBlock language="typescript">
+            {`import { isAddress } from 'essential-eth';
+
+isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
+// true
+
+isAddress('bad');
+// false
+`}
+          </CodeBlock>
+          <br />
+          <CodeBlock language="typescript">
+            {`import { toChecksumAddress } from 'essential-eth';
+
+toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
+// '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
+`}
+          </CodeBlock>
+          <div className={styles.buttons}>
+            <Link
+              className="button button--secondary button--lg"
+              to="/docs/api/modules#functions"
+            >
+              View All Utils
+            </Link>
+          </div>
+          <br />
+          <br />
+          <h2 style={{ marginTop: '160px' }}>JsonRpcProvider</h2>
           <CodeBlock language="typescript">
             {`import { JsonRpcProvider } from 'essential-eth';
 
@@ -123,6 +154,33 @@ await provider
 // "28798127851528138"
 `}
           </CodeBlock>
+          <br />
+          <h2 style={{ marginTop: '100px' }}>FallthroughProvider</h2>
+          <CodeBlock language="typescript">
+            {`import { FallthroughProvider } from 'essential-eth';
+
+// The FallthroughProvider handles falling through to the next valid URL.
+// It's dynamic to never trust one URL again when it fails * until it has tried all other provided URLs
+// The default timeout for a request is 8 seconds after which it moves to the next URL
+const provider = new FallthroughProvider([
+  'https://bad.com',
+  'https://free-eth-node.com/api/eth',
+]);
+provider.getGasPrice().toNumber();
+/*
+39695942769
+*/
+`}
+          </CodeBlock>
+          <br />
+          <div className={styles.buttons}>
+            <Link
+              className="button button--secondary button--lg"
+              to="/docs/api"
+            >
+              View Full API
+            </Link>
+          </div>
           <br />
           <br />
         </div>
