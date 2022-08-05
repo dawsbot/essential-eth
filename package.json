@@ -25,19 +25,19 @@
       "name": "etherToWei",
       "path": "src/index.ts",
       "import": "{ etherToWei }",
-      "limit": "3.58kb"
+      "limit": "3.9kb"
     },
     {
       "name": "JsonRpcProvider",
       "path": "src/index.ts",
       "import": "{ JsonRpcProvider }",
-      "limit": "20.23kb"
+      "limit": "22kb"
     },
     {
       "name": "Contract",
       "path": "src/index.ts",
       "import": "{ Contract }",
-      "limit": "15.86kb"
+      "limit": "18kb"
     }
   ],
   "scripts": {
@@ -63,26 +63,26 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.8",
     "@types/body-parser": "^1.19.1",
-    "@types/eslint": "^8.4.5",
+    "@types/eslint": "^8.4.2",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
     "@types/jest-dev-server": "^5.0.0",
     "@types/node": "^16.10.1",
     "@types/prettier": "^2.4.4",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "body-parser": "^1.19.0",
     "dotenv": "^16.0.0",
-    "eslint": "^8.21.0",
-    "eslint-plugin-jest": "^26.7.0",
-    "eslint-plugin-jsdoc": "39.3.4",
+    "eslint": "^8.16.0",
+    "eslint-plugin-jest": "^26.2.2",
+    "eslint-plugin-jsdoc": "38.0.2",
     "ethers": "^5.6.9",
     "express": "^4.17.1",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "jest-dev-server": "^6.0.3",
     "just-omit": "^2.0.1",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^12.4.1",
     "microbundle": "^0.15.0",
     "npm-run-all": "^4.1.5",
     "perf_hooks": "^0.0.1",
@@ -93,12 +93,12 @@
     "ts-node": "^10.2.1",
     "typedoc": "^0.22.15",
     "typescript": "^4.6.4",
-    "web3": "^1.7.5"
+    "web3": "^1.7.4"
   },
   "dependencies": {
     "@noble/secp256k1": "^1.5.5",
-    "@types/big.js": "^6.1.5",
-    "big.js": "^6.2.1",
+    "@types/big.js": "^6.1.4",
+    "big.js": "^6.2.0",
     "isomorphic-unfetch": "^3.1.0",
     "sha3": "^2.1.4"
   },
