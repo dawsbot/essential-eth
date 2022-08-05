@@ -29,6 +29,7 @@ module.exports = {
     'jest/prefer-expect-assertions': 'off',
     'jest/require-hook': 'off',
     'jest/require-to-throw-message': 'off',
+    'jest/max-expects': 'off',
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     '@typescript-eslint/consistent-type-imports': 'error',
