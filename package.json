@@ -25,19 +25,19 @@
       "name": "etherToWei",
       "path": "src/index.ts",
       "import": "{ etherToWei }",
-      "limit": "3.9kb"
+      "limit": "3.58kb"
     },
     {
       "name": "JsonRpcProvider",
       "path": "src/index.ts",
       "import": "{ JsonRpcProvider }",
-      "limit": "22kb"
+      "limit": "20.23kb"
     },
     {
       "name": "Contract",
       "path": "src/index.ts",
       "import": "{ Contract }",
-      "limit": "18kb"
+      "limit": "15.86kb"
     }
   ],
   "scripts": {
