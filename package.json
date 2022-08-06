@@ -6,25 +6,15 @@
   "sideEffects": false,
   "private": false,
   "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.mjs"
+  },
   "amdName": "essentialEth",
   "main": "./dist/index.js",
-  "browser": "./dist/index.umd.js",
-  "umd:main": "./dist/index.umd.js",
-  "jsnext:main": "./dist/index.modern.js",
   "module": "./dist/index.module.js",
-  "syntax": {
-    "esmodules": "./dist/index.modern.js"
-  },
+  "umd:main": "./dist/index.umd.js",
   "types": "./dist/index.d.ts",
-  "typings": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "browser": "./dist/index.module.js",
-      "umd": "./dist/index.umd.js",
-      "import": "./dist/index.module.js",
-      "require": "./dist/index.js"
-    }
-  },
   "files": [
     "dist/"
   ],
