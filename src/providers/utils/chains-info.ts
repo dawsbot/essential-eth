@@ -110,6 +110,9 @@ export default {
   "35": [
     "tbwg"
   ],
+  "36": [
+    "dx"
+  ],
   "38": [
     "val"
   ],
@@ -130,6 +133,9 @@ export default {
   ],
   "45": [
     "pangoro"
+  ],
+  "46": [
+    "darwinia"
   ],
   "50": [
     "xdc"
@@ -174,7 +180,7 @@ export default {
     "metc"
   ],
   "64": [
-    "ella"
+    "ellaism"
   ],
   "65": [
     "tokt"
@@ -196,6 +202,9 @@ export default {
   ],
   "71": [
     "cfxtest"
+  ],
+  "72": [
+    "dxc"
   ],
   "74": [
     "idchain"
@@ -271,6 +280,9 @@ export default {
   ],
   "102": [
     "tw3g"
+  ],
+  "104": [
+    "tklc"
   ],
   "105": [
     "dw3g"
@@ -371,9 +383,6 @@ export default {
   "226": [
     "TLA"
   ],
-  "239": [
-    "AITD"
-  ],
   "246": [
     "ewt"
   ],
@@ -391,6 +400,9 @@ export default {
   ],
   "269": [
     "hpb"
+  ],
+  "280": [
+    "zksync-goerli"
   ],
   "288": [
     "Boba"
@@ -451,6 +463,9 @@ export default {
   ],
   "520": [
     "xt"
+  ],
+  "530": [
+    "f(x)Core"
   ],
   "534": [
     "CNDL"
@@ -515,6 +530,9 @@ export default {
   "803": [
     "haic"
   ],
+  "808": [
+    "PFTEST"
+  ],
   "820": [
     "clo"
   ],
@@ -539,6 +557,9 @@ export default {
   "903": [
     "gar-test-s3"
   ],
+  "909": [
+    "PF"
+  ],
   "940": [
     "tpls"
   ],
@@ -562,6 +583,9 @@ export default {
   ],
   "999": [
     "twan"
+  ],
+  "1000": [
+    "gton"
   ],
   "1001": [
     "Baobab"
@@ -617,6 +641,9 @@ export default {
   "1214": [
     "enter"
   ],
+  "1246": [
+    "om"
+  ],
   "1280": [
     "HO"
   ],
@@ -634,6 +661,15 @@ export default {
   ],
   "1288": [
     "mrock"
+  ],
+  "1297": [
+    "Bobabase"
+  ],
+  "1319": [
+    "aitd"
+  ],
+  "1320": [
+    "aitdtestnet"
   ],
   "1337": [
     "cennz-old"
@@ -755,6 +791,9 @@ export default {
   "3500": [
     "prbtestnet"
   ],
+  "3501": [
+    "jfin"
+  ],
   "3690": [
     "btx"
   ],
@@ -772,6 +811,9 @@ export default {
   ],
   "4002": [
     "tftm"
+  ],
+  "4051": [
+    "Bobaopera Testnet"
   ],
   "4102": [
     "aioz-testnet"
@@ -820,6 +862,9 @@ export default {
   ],
   "6626": [
     "pixie-chain"
+  ],
+  "6969": [
+    "tombchain"
   ],
   "7027": [
     "ELLA"
@@ -871,6 +916,9 @@ export default {
   ],
   "9001": [
     "evmos"
+  ],
+  "9012": [
+    "brb"
   ],
   "9100": [
     "GENEC"
@@ -959,6 +1007,12 @@ export default {
   "32659": [
     "fsn"
   ],
+  "35441": [
+    "q"
+  ],
+  "35443": [
+    "q-testnet"
+  ],
   "39797": [
     "nrg"
   ],
@@ -967,6 +1021,9 @@ export default {
   ],
   "42161": [
     "arb1"
+  ],
+  "42170": [
+    "arb-nova"
   ],
   "42220": [
     "CELO"
@@ -984,7 +1041,7 @@ export default {
     "Fuji"
   ],
   "43114": [
-    "Avalanche"
+    "avax"
   ],
   "44787": [
     "ALFA"
@@ -998,11 +1055,14 @@ export default {
   "49797": [
     "tnrg"
   ],
+  "50021": [
+    "tgton"
+  ],
   "53935": [
     "DFK"
   ],
   "55555": [
-    "rei"
+    "reichain"
   ],
   "55556": [
     "trei"
@@ -1060,6 +1120,9 @@ export default {
   ],
   "73927": [
     "mvm"
+  ],
+  "75000": [
+    "resin"
   ],
   "78110": [
     "firenze"
@@ -1136,6 +1199,9 @@ export default {
   "110008": [
     "qkc-d-s7"
   ],
+  "131419": [
+    "ETND"
+  ],
   "200101": [
     "milkTAda"
   ],
@@ -1172,6 +1238,9 @@ export default {
   "421611": [
     "arb-rinkeby"
   ],
+  "421613": [
+    "arb-goerli"
+  ],
   "432201": [
     "Dexalot"
   ],
@@ -1186,6 +1255,9 @@ export default {
   ],
   "666666": [
     "vpioneer"
+  ],
+  "846000": [
+    "bloqs4good"
   ],
   "888888": [
     "vision"
