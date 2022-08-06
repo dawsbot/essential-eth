@@ -92,13 +92,13 @@
     "ts-jest": "^27.1.4",
     "ts-node": "^10.2.1",
     "typedoc": "^0.22.15",
-    "typescript": "^4.6.4",
-    "web3": "^1.7.4"
+    "typescript": "^4.7.4",
+    "web3": "^1.7.5"
   },
   "dependencies": {
     "@noble/secp256k1": "^1.5.5",
-    "@types/big.js": "^6.1.4",
-    "big.js": "^6.2.0",
+    "@types/big.js": "^6.1.5",
+    "big.js": "^6.2.1",
     "isomorphic-unfetch": "^3.1.0",
     "sha3": "^2.1.4"
   },
