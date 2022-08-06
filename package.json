@@ -6,10 +6,6 @@
   "sideEffects": false,
   "private": false,
   "source": "src/index.ts",
-  "exports": {
-    "require": "./dist/index.js",
-    "default": "./dist/index.modern.mjs"
-  },
   "amdName": "essentialEth",
   "main": "./dist/index.js",
   "module": "./dist/index.module.js",
@@ -49,7 +45,7 @@
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix .",
     "build": "rm -rf dist && run-p build:most build:umd",
-    "build:most": "microbundle --format modern,esm,cjs",
+    "build:most": "microbundle --target node --format esm,cjs",
     "build:umd": "microbundle --external none --format umd",
     "build:readme": "bash ./scripts/markdown-magic/build-readme.sh",
     "jest": "jest",
