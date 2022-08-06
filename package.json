@@ -4,14 +4,26 @@
   "version": "0.5.10-next.0",
   "license": "MIT",
   "sideEffects": false,
+  "private": false,
   "source": "src/index.ts",
-  "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.modern.js"
-  },
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
+  "browser": "./dist/index.umd.js",
+  "umd:main": "./dist/index.umd.js",
+  "jsnext:main": "./dist/index.modern.js",
   "module": "./dist/index.module.js",
-  "unpkg": "./dist/index.umd.js",
+  "syntax": {
+    "esmodules": "./dist/index.modern.js"
+  },
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "browser": "./dist/index.module.js",
+      "umd": "./dist/index.umd.js",
+      "import": "./dist/index.module.js",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist/"
   ],
@@ -42,12 +54,9 @@
   ],
   "scripts": {
     "size": "size-limit",
-    "test": "npm-run-all --parallel jest compile lint",
+    "test": "npm-run-all --parallel jest build lint",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix .",
-    "compile": "npm-run-all --parallel tsc:esm tsc:cjs",
-    "tsc:esm": "tsc -p tsconfig.json",
-    "tsc:cjs": "tsc -p tsconfig-cjs.json",
     "build": "rm -rf lib && microbundle",
     "build:readme": "bash ./scripts/markdown-magic/build-readme.sh",
     "jest": "jest",
@@ -112,5 +121,12 @@
     "trailingComma": "all",
     "tabWidth": 2,
     "singleQuote": true
-  }
+  },
+  "keywords": [
+    "ethereum",
+    "polygon",
+    "evm",
+    "web-performance",
+    "tiny"
+  ]
 }
