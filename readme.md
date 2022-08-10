@@ -120,10 +120,14 @@ yarn add essential-eth # TypeScript included
 
 Browsers:
 
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (UNPKG_SCRIPT_TAG) -->
+
 ```html
 <!-- index.html -->
-<script src="https://unpkg.com/essential-eth@0.5.10"></script>
+<script src="https://unpkg.com/essential-eth@0.5.12"></script>
 ```
+
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END (UNPKG_SCRIPT_TAG) -->
 
 <br/>
 
