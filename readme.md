@@ -26,12 +26,20 @@
 
 <br/>
 
-- 🏆️ <sub><sup>[smallest code size possible](https://bundlephobia.com/package/essential-eth)</sup></sub>
-- ʦ Fully typed with TypeScript (also works with JavaScript)
-- 🧪 Tested to match both `web3` and `ethers`
-- - ⚡️ Near-identical API to `ethers`
+- 🐜️ [tiny](https://bundlephobia.com/package/essential-eth)
+- 🔐 Strongly written TypeScript
+- 🧪 Matches both `ethers` and `web3`
+  - ⚡️ Near-identical API to `ethers`
+  - ⚡️ Similar but improved API to `web3`
+- 🙌 Works for all EVM chains
+  - 💎 Ethereum
+  - 🟣 Polygon
+  - 🔴 Optimism
+  - 🔵 Arbitrum
+  - [Many more](src/providers/utils/chains-info.ts)
+- 🧪 Strongly tested
 - 🌲 Tree-shaking and no side-effects
-- 🙌 Supports multiple JS versions (CommonJS and ESM)
+- 🙌 All common JS versions (CommonJS, ESM, UMD, modern)
   - ✅ Node 18, 16, 14, & 12
   - ✅ Web
 
@@ -104,10 +112,17 @@
 ## Install
 
 ```sh
-npm install --save essential-eth # TypeScript types load automatically
+npm install --save essential-eth # TypeScript included
 
 # or yarn
-yarn add essential-eth # TypeScript types load automatically
+yarn add essential-eth # TypeScript included
+```
+
+Browsers:
+
+```html
+<!-- index.html -->
+<script src="https://unpkg.com/essential-eth@0.5.10"></script>
 ```
 
 <br/>
@@ -123,7 +138,7 @@ const { etherToWei } = require('essential-eth');
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (FUNCTIONS) -->
 
-#### [`arrayify`](https://essential-eth.vercel.app/docs/api/modules#arrayify)
+#### [`arrayify`](https://eeth.dev/docs/api/modules#arrayify)
 
 ```typescript
 arrayify(value: number | BytesLike | Hexable, options: DataOptions): Uint8Array
@@ -155,7 +170,7 @@ arrayify('0x1', { hexPad: 'right' });
 
   <br/>
 
-#### [`computeAddress`](https://essential-eth.vercel.app/docs/api/modules#computeaddress)
+#### [`computeAddress`](https://eeth.dev/docs/api/modules#computeaddress)
 
 ```typescript
 computeAddress(key: string): string
@@ -186,7 +201,7 @@ computeAddress(
 
   <br/>
 
-#### [`computePublicKey`](https://essential-eth.vercel.app/docs/api/modules#computepublickey)
+#### [`computePublicKey`](https://eeth.dev/docs/api/modules#computepublickey)
 
 ```typescript
 computePublicKey(privKey: BytesLike): string
@@ -218,7 +233,7 @@ computePublicKey([
 
   <br/>
 
-#### [`concat`](https://essential-eth.vercel.app/docs/api/modules#concat)
+#### [`concat`](https://eeth.dev/docs/api/modules#concat)
 
 ```typescript
 concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
@@ -240,7 +255,7 @@ concat([0, 1]);
 
   <br/>
 
-#### [`etherToGwei`](https://essential-eth.vercel.app/docs/api/modules#ethertogwei)
+#### [`etherToGwei`](https://eeth.dev/docs/api/modules#ethertogwei)
 
 ```typescript
 etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
@@ -271,7 +286,7 @@ etherToGwei(1000).toNumber();
 
   <br/>
 
-#### [`etherToWei`](https://essential-eth.vercel.app/docs/api/modules#ethertowei)
+#### [`etherToWei`](https://eeth.dev/docs/api/modules#ethertowei)
 
 ```typescript
 etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
@@ -302,7 +317,7 @@ etherToWei(1000).toNumber();
 
   <br/>
 
-#### [`gweiToEther`](https://essential-eth.vercel.app/docs/api/modules#gweitoether)
+#### [`gweiToEther`](https://eeth.dev/docs/api/modules#gweitoether)
 
 ```typescript
 gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
@@ -333,7 +348,7 @@ gweiToEther(1000000000000).toNumber();
 
   <br/>
 
-#### [`hashMessage`](https://essential-eth.vercel.app/docs/api/modules#hashmessage)
+#### [`hashMessage`](https://eeth.dev/docs/api/modules#hashmessage)
 
 ```typescript
 hashMessage(message: string | Bytes): string
@@ -355,7 +370,7 @@ hashMessage('Hello World');
 
   <br/>
 
-#### [`hexConcat`](https://essential-eth.vercel.app/docs/api/modules#hexconcat)
+#### [`hexConcat`](https://eeth.dev/docs/api/modules#hexconcat)
 
 ```typescript
 hexConcat(items: Array<BytesLike>): string
@@ -377,7 +392,7 @@ hexConcat([[2, 4, 0, 1], 9, '0x2934', '0x3947']);
 
   <br/>
 
-#### [`hexDataLength`](https://essential-eth.vercel.app/docs/api/modules#hexdatalength)
+#### [`hexDataLength`](https://eeth.dev/docs/api/modules#hexdatalength)
 
 ```typescript
 hexDataLength(data: BytesLike): undefined
@@ -404,7 +419,7 @@ hexDataLength('0x3925');
 
   <br/>
 
-#### [`hexDataSlice`](https://essential-eth.vercel.app/docs/api/modules#hexdataslice)
+#### [`hexDataSlice`](https://eeth.dev/docs/api/modules#hexdataslice)
 
 ```typescript
 hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
@@ -426,7 +441,7 @@ hexDataSlice([20, 6, 48], 0, 2);
 
   <br/>
 
-#### [`hexStripZeros`](https://essential-eth.vercel.app/docs/api/modules#hexstripzeros)
+#### [`hexStripZeros`](https://eeth.dev/docs/api/modules#hexstripzeros)
 
 ```typescript
 hexStripZeros(value: BytesLike): string
@@ -448,7 +463,7 @@ hexStripZeros([0, 0, 0, 48]);
 
   <br/>
 
-#### [`hexValue`](https://essential-eth.vercel.app/docs/api/modules#hexvalue)
+#### [`hexValue`](https://eeth.dev/docs/api/modules#hexvalue)
 
 ```typescript
 hexValue(value: number | bigint | BytesLike | Hexable): string
@@ -475,7 +490,7 @@ hexValue([9, 4, 19, 4]);
 
   <br/>
 
-#### [`hexZeroPad`](https://essential-eth.vercel.app/docs/api/modules#hexzeropad)
+#### [`hexZeroPad`](https://eeth.dev/docs/api/modules#hexzeropad)
 
 ```typescript
 hexZeroPad(value: BytesLikeWithNumber, length: number): string
@@ -507,7 +522,7 @@ hexZeroPad('12345', 1);
 
   <br/>
 
-#### [`hexlify`](https://essential-eth.vercel.app/docs/api/modules#hexlify)
+#### [`hexlify`](https://eeth.dev/docs/api/modules#hexlify)
 
 ```typescript
 hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
@@ -534,7 +549,7 @@ hexlify(14);
 
   <br/>
 
-#### [`isAddress`](https://essential-eth.vercel.app/docs/api/modules#isaddress)
+#### [`isAddress`](https://eeth.dev/docs/api/modules#isaddress)
 
 ```typescript
 isAddress(address: string): boolean
@@ -567,7 +582,7 @@ isAddress('vitalik.eth');
 
   <br/>
 
-#### [`isBytes`](https://essential-eth.vercel.app/docs/api/modules#isbytes)
+#### [`isBytes`](https://eeth.dev/docs/api/modules#isbytes)
 
 ```typescript
 isBytes(value: any): value
@@ -599,7 +614,7 @@ isBytes(new Uint8Array(1));
 
   <br/>
 
-#### [`isBytesLike`](https://essential-eth.vercel.app/docs/api/modules#isbyteslike)
+#### [`isBytesLike`](https://eeth.dev/docs/api/modules#isbyteslike)
 
 ```typescript
 isBytesLike(value: any): value
@@ -631,7 +646,7 @@ isBytesLike(new Uint8Array(1));
 
   <br/>
 
-#### [`isHexString`](https://essential-eth.vercel.app/docs/api/modules#ishexstring)
+#### [`isHexString`](https://eeth.dev/docs/api/modules#ishexstring)
 
 ```typescript
 isHexString(value: any, length: number): boolean
@@ -659,7 +674,7 @@ isHexString('0x4924', 4);
 
   <br/>
 
-#### [`jsonRpcProvider`](https://essential-eth.vercel.app/docs/api/modules#jsonrpcprovider)
+#### [`jsonRpcProvider`](https://eeth.dev/docs/api/modules#jsonrpcprovider)
 
 ```typescript
 jsonRpcProvider(rpcUrl: string): JsonRpcProvider
@@ -685,7 +700,7 @@ jsonRpcProvider()
 
   <br/>
 
-#### [`keccak256`](https://essential-eth.vercel.app/docs/api/modules#keccak256)
+#### [`keccak256`](https://eeth.dev/docs/api/modules#keccak256)
 
 ```typescript
 keccak256(data: BytesLike): string
@@ -710,7 +725,7 @@ keccak256('0x123');
 
   <br/>
 
-#### [`pack`](https://essential-eth.vercel.app/docs/api/modules#pack)
+#### [`pack`](https://eeth.dev/docs/api/modules#pack)
 
 ```typescript
 pack(types: Array<string>, values: Array<any>): string
@@ -734,7 +749,7 @@ pack(types, values);
 
   <br/>
 
-#### [`solidityKeccak256`](https://essential-eth.vercel.app/docs/api/modules#soliditykeccak256)
+#### [`solidityKeccak256`](https://eeth.dev/docs/api/modules#soliditykeccak256)
 
 ```typescript
 solidityKeccak256(types: Array<string>, values: Array<any>): string
@@ -768,7 +783,7 @@ solidityKeccak256(types, values);
 
   <br/>
 
-#### [`splitSignature`](https://essential-eth.vercel.app/docs/api/modules#splitsignature)
+#### [`splitSignature`](https://eeth.dev/docs/api/modules#splitsignature)
 
 ```typescript
 splitSignature(signature: SignatureLike): Signature
@@ -799,7 +814,7 @@ splitSignature(signature);
 
   <br/>
 
-#### [`stripZeros`](https://essential-eth.vercel.app/docs/api/modules#stripzeros)
+#### [`stripZeros`](https://eeth.dev/docs/api/modules#stripzeros)
 
 ```typescript
 stripZeros(value: BytesLike): Uint8Array
@@ -822,7 +837,7 @@ stripZeros('0x00002834');
 
   <br/>
 
-#### [`tinyBig`](https://essential-eth.vercel.app/docs/api/modules#tinybig)
+#### [`tinyBig`](https://eeth.dev/docs/api/modules#tinybig)
 
 ```typescript
 tinyBig(value: string | number | TinyBig | Big): TinyBig
@@ -844,7 +859,7 @@ tinyBig(10).times(3).toNumber();
 
   <br/>
 
-#### [`toChecksumAddress`](https://essential-eth.vercel.app/docs/api/modules#tochecksumaddress)
+#### [`toChecksumAddress`](https://eeth.dev/docs/api/modules#tochecksumaddress)
 
 ```typescript
 toChecksumAddress(address: string): string
@@ -870,7 +885,7 @@ Similar to ["toChecksumAddress" in web3.js](https://web3js.readthedocs.io/en/v1.
 
   <br/>
 
-#### [`toUtf8Bytes`](https://essential-eth.vercel.app/docs/api/modules#toutf8bytes)
+#### [`toUtf8Bytes`](https://eeth.dev/docs/api/modules#toutf8bytes)
 
 ```typescript
 toUtf8Bytes(data: string): Uint8Array
@@ -895,7 +910,7 @@ toUtf8Bytes('ethereum');
 
   <br/>
 
-#### [`weiToEther`](https://essential-eth.vercel.app/docs/api/modules#weitoether)
+#### [`weiToEther`](https://eeth.dev/docs/api/modules#weitoether)
 
 ```typescript
 weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
@@ -926,7 +941,7 @@ weiToEther(1000000000000000000000).toNumber();
 
   <br/>
 
-#### [`zeroPad`](https://essential-eth.vercel.app/docs/api/modules#zeropad)
+#### [`zeroPad`](https://eeth.dev/docs/api/modules#zeropad)
 
 ```typescript
 zeroPad(value: BytesLike, length: number): Uint8Array
@@ -995,7 +1010,7 @@ provider.getGasPrice().toNumber();
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (PROVIDER) -->
 
-#### [`call`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#call)
+#### [`call`](https://eeth.dev/docs/api/classes/JsonRpcProvider#call)
 
 ```typescript
 provider.call(transaction: TransactionRequest, blockTag?: BlockTag): Promise<string>
@@ -1021,7 +1036,7 @@ await provider.call({
 
   <br/>
 
-#### [`estimateGas`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#estimategas)
+#### [`estimateGas`](https://eeth.dev/docs/api/classes/JsonRpcProvider#estimategas)
 
 ```typescript
 provider.estimateGas(transaction: TransactionRequest): Promise<TinyBig>
@@ -1049,7 +1064,7 @@ await provider.estimateGas({
 
   <br/>
 
-#### [`getBalance`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getbalance)
+#### [`getBalance`](https://eeth.dev/docs/api/classes/JsonRpcProvider#getbalance)
 
 ```typescript
 provider.getBalance(address: string, blockTag?: BlockTag): Promise<TinyBig>
@@ -1072,7 +1087,7 @@ await provider.getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8');
 
   <br/>
 
-#### [`getBlock`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getblock)
+#### [`getBlock`](https://eeth.dev/docs/api/classes/JsonRpcProvider#getblock)
 
 ```typescript
 provider.getBlock(timeFrame?: BlockTag, returnTransactionObjects?: boolean): Promise<BlockResponse>
@@ -1123,7 +1138,7 @@ await provider.getBlock(14879862);
 
   <br/>
 
-#### [`getBlockNumber`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getblocknumber)
+#### [`getBlockNumber`](https://eeth.dev/docs/api/classes/JsonRpcProvider#getblocknumber)
 
 ```typescript
 provider.getBlockNumber(): Promise<number>
@@ -1146,7 +1161,7 @@ await provider.getBlockNumber();
 
   <br/>
 
-#### [`getCode`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getcode)
+#### [`getCode`](https://eeth.dev/docs/api/classes/JsonRpcProvider#getcode)
 
 ```typescript
 provider.getCode(address: string, blockTag?: BlockTag): Promise<string>
@@ -1172,7 +1187,7 @@ await jsonRpcProvider().getCode(
 
   <br/>
 
-#### [`getGasPrice`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getgasprice)
+#### [`getGasPrice`](https://eeth.dev/docs/api/classes/JsonRpcProvider#getgasprice)
 
 ```typescript
 provider.getGasPrice(): Promise<TinyBig>
@@ -1195,7 +1210,7 @@ await provider.getGasPrice();
 
   <br/>
 
-#### [`getLogs`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getlogs)
+#### [`getLogs`](https://eeth.dev/docs/api/classes/JsonRpcProvider#getlogs)
 
 ```typescript
 provider.getLogs(filter: Filter | FilterByBlockHash): Promise<Array<Log>>
@@ -1245,7 +1260,7 @@ provider.getLogs({
 
   <br/>
 
-#### [`getNetwork`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#getnetwork)
+#### [`getNetwork`](https://eeth.dev/docs/api/classes/JsonRpcProvider#getnetwork)
 
 ```typescript
 provider.getNetwork(): Promise<Network>
@@ -1273,7 +1288,7 @@ jsonRpcProvider('https://free-eth-node.com/api/MATIC').getNetwork();
 
   <br/>
 
-#### [`getTransaction`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#gettransaction)
+#### [`getTransaction`](https://eeth.dev/docs/api/classes/JsonRpcProvider#gettransaction)
 
 ```typescript
 provider.getTransaction(transactionHash: string): Promise<TransactionResponse>
@@ -1319,7 +1334,7 @@ await provider.getTransaction(
 
   <br/>
 
-#### [`getTransactionCount`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#gettransactioncount)
+#### [`getTransactionCount`](https://eeth.dev/docs/api/classes/JsonRpcProvider#gettransactioncount)
 
 ```typescript
 provider.getTransactionCount(address: string, blockTag?: BlockTag): Promise<number>
@@ -1360,7 +1375,7 @@ await provider.getTransactionCount(
 
   <br/>
 
-#### [`getTransactionReceipt`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#gettransactionreceipt)
+#### [`getTransactionReceipt`](https://eeth.dev/docs/api/classes/JsonRpcProvider#gettransactionreceipt)
 
 ```typescript
 provider.getTransactionReceipt(transactionHash: string): Promise<TransactionReceipt>
@@ -1495,7 +1510,7 @@ const contract = new Contract(contractAddress, abi, provider);
 
 #### `contractFunctionName(args)`
 
-Any function on a contract. Returns are the same as `ethers.js`, except that instead of BigNumber, `essential-eth` always returns a [`TinyBig`](https://essential-eth.vercel.app/classes/TinyBig.html)
+Any function on a contract. Returns are the same as `ethers.js`, except that instead of BigNumber, `essential-eth` always returns a [`TinyBig`](https://eeth.dev/classes/TinyBig.html)
 
 <br/>
 <br/>
@@ -1528,5 +1543,5 @@ Note: In `web3.js`, almost every method or function can be passed a callback. `e
 
 ### Miscellaneous
 
-- [📓 View full docs](https://essential-eth.vercel.app)
+- [📓 View full docs](https://eeth.dev)
 - [📓 View changelog (by looking at releases diff)](https://github.com/dawsbot/essential-eth/releases)
