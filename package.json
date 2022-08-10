@@ -1,13 +1,18 @@
 {
   "name": "essential-eth",
   "description": "Ultralight JS for Ethereum",
-  "version": "0.5.12",
+  "version": "0.5.13-next.5",
   "license": "MIT",
   "sideEffects": false,
-  "main": "./lib/cjs/index.js",
-  "module": "./lib/esm/index.js",
+  "private": false,
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/cjs/index.umd.js",
+  "unpkg": "./dist/cjs/index.umd.js",
+  "umd:main": "./dist/cjs/index.umd.js",
+  "main": "./dist/cjs/index.js",
+  "source": "src/index.ts",
   "files": [
-    "lib/"
+    "dist/"
   ],
   "bugs": {
     "url": "https://github.com/dawsbot/essential-eth/issues"
@@ -19,19 +24,19 @@
       "name": "etherToWei",
       "path": "src/index.ts",
       "import": "{ etherToWei }",
-      "limit": "3.9kb"
+      "limit": "3.58kb"
     },
     {
       "name": "JsonRpcProvider",
       "path": "src/index.ts",
       "import": "{ JsonRpcProvider }",
-      "limit": "22kb"
+      "limit": "20.24kb"
     },
     {
       "name": "Contract",
       "path": "src/index.ts",
       "import": "{ Contract }",
-      "limit": "18kb"
+      "limit": "15.86kb"
     }
   ],
   "scripts": {
@@ -39,10 +44,11 @@
     "test": "npm-run-all --parallel jest compile lint",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix .",
-    "compile": "npm-run-all --parallel tsc:esm tsc:cjs",
-    "tsc:esm": "tsc -p tsconfig.json",
-    "tsc:cjs": "tsc -p tsconfig-cjs.json",
-    "build": "rm -rf lib && npm run compile",
+    "compile": "npm-run-all --parallel build:esm build:cjs build:umd",
+    "build": "rm -rf dist && npm run compile",
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig-cjs.json",
+    "build:umd": "microbundle --external none --format umd",
     "build:readme": "bash ./scripts/markdown-magic/build-readme.sh",
     "jest": "jest",
     "build:chains-info": "npx ts-node scripts/fetch-chains-info.ts # used in getNetwork()",
@@ -77,6 +83,7 @@
     "jest-dev-server": "^6.0.3",
     "just-omit": "^2.0.1",
     "lint-staged": "^12.4.1",
+    "microbundle": "^0.15.0",
     "npm-run-all": "^4.1.5",
     "perf_hooks": "^0.0.1",
     "prettier": "^2.7.1",
@@ -105,5 +112,12 @@
     "trailingComma": "all",
     "tabWidth": 2,
     "singleQuote": true
-  }
+  },
+  "keywords": [
+    "ethereum",
+    "polygon",
+    "evm",
+    "web-performance",
+    "tiny"
+  ]
 }
