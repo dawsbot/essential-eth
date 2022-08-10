@@ -1,4 +1,5 @@
 lib
+dist
 coverage
 docusaurus/build
 .docusaurus
