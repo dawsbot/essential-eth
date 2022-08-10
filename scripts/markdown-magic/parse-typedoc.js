@@ -81,7 +81,7 @@ functions.map((functionNumber) => {
   </details>\n`
     : '';
 
-  functionsMarkdown += `#### [\`${name}\`](https://essential-eth.vercel.app/docs/api/modules#${name.toLowerCase()})
+  functionsMarkdown += `#### [\`${name}\`](https://essential-eeth.dev/docs/api/modules#${name.toLowerCase()})
   \`\`\`typescript
   ${name}(${paramsString || ''}): ${returnType}
   \`\`\`
@@ -181,7 +181,7 @@ jsonRpcProvider.children
   </details>\n`
       : '';
 
-    providerMarkdown += `#### [\`${name}\`](https://essential-eth.vercel.app/docs/api/classes/JsonRpcProvider#${name.toLowerCase()})
+    providerMarkdown += `#### [\`${name}\`](https://essential-eeth.dev/docs/api/classes/JsonRpcProvider#${name.toLowerCase()})
   \`\`\`typescript
   provider.${name}(${paramsString || ''}): ${returnType}
   \`\`\`
