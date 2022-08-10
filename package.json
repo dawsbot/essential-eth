@@ -5,10 +5,10 @@
   "license": "MIT",
   "sideEffects": false,
   "private": false,
-  "source": "src/index.ts",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "umd:main": "./dist/cjs/index.umd.js",
+  "browser": "./dist/cjs/index.umd.js",
+  "source": "src/index.ts",
   "files": [
     "dist/"
   ],

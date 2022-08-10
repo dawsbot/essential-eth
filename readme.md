@@ -39,7 +39,7 @@
   - [Many more](src/providers/utils/chains-info.ts)
 - 🧪 Strongly tested
 - 🌲 Tree-shaking and no side-effects
-- 🙌 All common JS versions (CommonJS, ESM, UMD, modern)
+- 🙌 All common JS versions (CommonJS, ESM, & UMD)
   - ✅ Node 18, 16, 14, & 12
   - ✅ Web
 
@@ -124,7 +124,7 @@ Browsers:
 
 ```html
 <!-- index.html -->
-<script src="https://unpkg.com/essential-eth@0.5.13-next.0"></script>
+<script src="https://unpkg.com/essential-eth@0.5.13-next.1"></script>
 ```
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END (UNPKG_SCRIPT_TAG) -->
