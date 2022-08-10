@@ -124,7 +124,7 @@ Browsers:
 
 ```html
 <!-- index.html -->
-<script src="https://unpkg.com/essential-eth@0.5.12"></script>
+<script src="https://unpkg.com/essential-eth@0.5.13-next.0"></script>
 ```
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END (UNPKG_SCRIPT_TAG) -->
