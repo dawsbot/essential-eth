@@ -164,12 +164,11 @@ describe('provider.getBlock error handling', () => {
   it('should handle empty 200 http response', async () => {
     expect.assertions(1);
     const essentialEth = new JsonRpcProvider(fakeUrls.notRPCButRealHttp);
-    const web3 = new Web3(fakeUrls.notRPCButRealHttp);
     await essentialEth.getBlock('earliest').catch(async (essentialEthError) => {
-      await web3.eth.getBlock('earliest').catch((web3Error) => {
-        // error message is Invalid JSON RPC response: "200 OK"
-        expect(web3Error.message).toBe(essentialEthError.message);
-      });
+      // error message is Invalid JSON RPC response: "200 OK"
+      expect('Invalid JSON RPC response: "200 OK"').toBe(
+        essentialEthError.message,
+      );
     });
   });
   // TODO: Make a mock http endpoint which returns an empty json object
