@@ -25,9 +25,9 @@ describe('provider.getGasPrice', () => {
   it('should fallthrough after timeout linearly', async () => {
     const essentialEthProvider = new FallthroughProvider(
       [
-        'https://flash-sgkl.onrender.com/delay/10000',
+        'https://flash-the-slow-api.herokuapp.com/delay/10000',
         // url with request delayed by 20 seconds
-        'https://flash-sgkl.onrender.com/delay/10000',
+        'https://flash-the-slow-api.herokuapp.com/delay/10000',
         'https://bad-523123123123.com',
         rpcUrl,
       ],

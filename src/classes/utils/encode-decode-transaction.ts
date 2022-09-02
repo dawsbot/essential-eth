@@ -115,9 +115,10 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
 
 /**
  *
- * @param jsonABIArgument
- * @param nodeResponse
+ * @param jsonABIArgument The leaf of the JSON ABI for this function
+ * @param nodeResponse The raw node output
  * @example
+ * @returns Decoded output data
  */
 export function decodeRPCResponse(
   jsonABIArgument: JSONABIArgument,
@@ -135,6 +136,7 @@ export function decodeRPCResponse(
         /* address types have 26 leading zeroes to remove */
         return toChecksumAddress(`0x${output.slice(24)}`);
       case 'uint256':
+      case 'uint120':
         return tinyBig(hexToDecimal(`0x${output}`));
       case 'bytes32':
         return `0x${output}`;
