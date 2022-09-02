@@ -114,11 +114,10 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
 }
 
 /**
- *
- * @param jsonABIArgument The leaf of the JSON ABI for this function
- * @param nodeResponse The raw node output
+ * @internal
+ * @param jsonABIArgument
+ * @param nodeResponse
  * @example
- * @returns Decoded output data
  */
 export function decodeRPCResponse(
   jsonABIArgument: JSONABIArgument,

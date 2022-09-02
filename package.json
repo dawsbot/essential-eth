@@ -36,7 +36,7 @@
       "name": "Contract",
       "path": "src/index.ts",
       "import": "{ Contract }",
-      "limit": "15.86kb"
+      "limit": "15.87kb"
     }
   ],
   "scripts": {
