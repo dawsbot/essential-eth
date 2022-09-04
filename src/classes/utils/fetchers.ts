@@ -2,8 +2,9 @@ import unfetch from 'isomorphic-unfetch';
 /**
  * Makes a post request with the specified JSON data, normally to the a Ethereum JSON RPC API endpoint
  *
+ * @internal
  * @param url the URL to send the request to
- * @param body the body data (JSON) to send with the request
+ * @param body JSON POST body
  * @returns the JSON response from the server
  * @example
  * ```javascript
@@ -59,6 +60,7 @@ type RPCMethodName =
 /**
  * Prepares data to be sent using the {@link post} function. Data is prepared per the {@link https://en.wikipedia.org/wiki/JSON-RPC#Examples JSON RPC v2 spec}
  *
+ * @internal
  * @param method the RPC method to be invoked
  * @param params the parameters to be passed to the defined method
  * @returns a POST method body matching the {@link https://en.wikipedia.org/wiki/JSON-RPC#Examples JSON RPC v2 spec}
@@ -74,6 +76,7 @@ type RPCMethodName =
 export function buildRPCPostBody(method: RPCMethodName, params: unknown[]) {
   return {
     jsonrpc: '2.0',
+    // TODO: Increment ID will be needed when websocket support is added
     id: 1,
     method,
     params,
