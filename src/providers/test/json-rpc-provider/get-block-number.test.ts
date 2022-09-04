@@ -13,7 +13,10 @@ describe('provider.getBlockNumber', () => {
       essentialEthProvider.getBlockNumber(),
       ethersProvider.getBlockNumber(),
     ]);
-    expect(essentialEthBlockNumber).toStrictEqual(ethersBlockNumber);
+    // allow one-block flexibility because of timing of requests
+    expect(Math.abs(essentialEthBlockNumber - ethersBlockNumber)).toBeLessThan(
+      2,
+    );
   });
   it('should match web3.js', async () => {
     const essentialEthProvider = new JsonRpcProvider(rpcUrl);
