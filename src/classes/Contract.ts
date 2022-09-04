@@ -93,7 +93,11 @@ export class BaseContract {
 /**
  * Applies the unique contract's methods to the instantiated Contract in the constructor based-upon the provided ABI
  *
+ * @param object
+ * @param name
+ * @param value
  * @internal
+ * @example
  */
 export function defineReadOnly<T>(object: T, name: string, value: any): void {
   Object.defineProperty(object, name, {
