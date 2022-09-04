@@ -1,6 +1,6 @@
 import { Contract as EthersContract } from '@ethersproject/contracts';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { JsonRpcProvider } from '../../../index';
+import { FallthroughProvider } from '../../../index';
 import { Contract as EssentialEthContract } from '../../Contract';
 import { rpcUrls } from './../../../providers/test/rpc-urls';
 import { ensABI } from './ens-abi';
@@ -10,7 +10,11 @@ const JSONABI = ensABI;
 
 const rpcURL = rpcUrls.mainnet;
 const ethersProvider = new StaticJsonRpcProvider(rpcURL);
-const essentialEthProvider = new JsonRpcProvider(rpcURL);
+const essentialEthProvider = new FallthroughProvider([
+  'nope',
+  'https://flash-the-slow-api.herokuapp.com/delay/1',
+  rpcURL,
+]);
 
 const contractAddress = '0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85';
 

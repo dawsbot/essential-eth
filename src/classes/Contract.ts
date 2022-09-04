@@ -4,9 +4,7 @@ import {
   decodeRPCResponse,
   encodeData,
 } from './utils/encode-decode-transaction';
-import { buildRPCPostBody, post } from './utils/fetchers';
 /**
- *
  * @param txnData
  * @example
  */
@@ -71,19 +69,16 @@ export class BaseContract {
                   ? estimateGas(data)
                   : null;
               const req = async (): Promise<string> => {
-                return await post(
-                  this._provider.selectRpcUrl(),
-                  buildRPCPostBody('eth_call', [
-                    {
-                      to: this._address.toLowerCase(),
-                      data,
-                      // sometimes gas is defined in the ABI
-                      ...(decimalGas
-                        ? { gas: `0x${decimalGas.toString(16)}` }
-                        : {}),
-                    },
-                    'latest',
-                  ]),
+                return await this._provider.call(
+                  {
+                    to: this._address.toLowerCase(),
+                    data,
+                    // sometimes gas is defined in the ABI
+                    ...(decimalGas
+                      ? { gas: `0x${decimalGas.toString(16)}` }
+                      : {}),
+                  },
+                  'latest',
                 );
               };
               const nodeResponse = await req();
@@ -98,10 +93,7 @@ export class BaseContract {
 /**
  * Applies the unique contract's methods to the instantiated Contract in the constructor based-upon the provided ABI
  *
- * @param object
- * @param name
- * @param value
- * @example
+ * @internal
  */
 export function defineReadOnly<T>(object: T, name: string, value: any): void {
   Object.defineProperty(object, name, {
@@ -121,6 +113,8 @@ export function defineReadOnly<T>(object: T, name: string, value: any): void {
  * // UNI airdrop contract
  * const contractAddress = '0x090D4613473dEE047c3f2706764f49E0821D256e';
  * const provider = new JsonRpcProvider();
+ * // for more robust contract calls, provide a fallback:
+ * // const provider = new FallthroughProvider(['bad', 'https://free-eth-node.com/api/eth']);
  *
  * const JSONABI = [
  *   {
