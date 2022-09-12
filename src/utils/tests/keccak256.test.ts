@@ -1,6 +1,7 @@
 import { utils } from 'ethers';
 import type { BytesLike } from './../bytes';
 import { keccak256 } from './../keccak256';
+import { toUtf8Bytes } from './../to-utf8-bytes';
 
 /**
  *
@@ -11,6 +12,7 @@ function testKeccak256(inputs: Array<BytesLike>) {
     expect(keccak256(input)).toBe(utils.keccak256(input));
   });
 }
+
 describe('keccak256', () => {
   it('should match ethers.js hex strings', () => {
     const inputs = [
@@ -24,21 +26,25 @@ describe('keccak256', () => {
     const inputs = [[2, 182, 145], [0, 16, 255], [0x12, 0x34], [0x12]];
     testKeccak256(inputs);
   });
-  // it('should match ethers.js numbers', () => {
-  //   const inputs = [23874234, 123346, 12395712];
-  //   testKeccak256(inputs);
-  // });
-  // it('should match ethers.js strings', () => {
-  //   const inputs = [
-  //     'essential-eth',
-  //     'firstText',
-  //     'secondString',
-  //     'example1',
-  //     '2934823',
-  //     'true',
-  //   ];
-  //   testKeccak256(inputs);
-  // });
+
+  it('should match ethers.js numbers', () => {
+    const inputs = [23874234, 123346, 12395712].map((n) =>
+      toUtf8Bytes(n.toString()),
+    );
+    testKeccak256(inputs);
+  });
+
+  it('should match ethers.js strings', () => {
+    const inputs = [
+      'essential-eth',
+      'firstText',
+      'secondString',
+      'example1',
+      '2934823',
+      'true',
+    ].map(toUtf8Bytes);
+    testKeccak256(inputs);
+  });
   // it('should match ethers.js bytes (dynamic size) & BytesLike', () => {
   //   const inputs = [
   //     [115, 101, 99, 114, 101, 116],
