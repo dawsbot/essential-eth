@@ -65,4 +65,17 @@ describe('cRV contract', () => {
       essentialVestedSupply.toString(),
     );
   });
+  it('should fetch "uint256" locked supply', async () => {
+    const [ethersLockedSupply, essentialLockedSupply] = await Promise.all([
+      ethersContract.lockedSupply({
+        gasLimit: 40955,
+      }) as TinyBig,
+      essentialEthContract.lockedSupply({
+        gasLimit: 40955,
+      }) as TinyBig,
+    ]);
+    expect(ethersLockedSupply.toString()).toBe(
+      essentialLockedSupply.toString(),
+    );
+  });
 });
