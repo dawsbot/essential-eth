@@ -87,9 +87,9 @@ function testBlockEquality(
     );
   });
 
-  const omittedEEBlock = omit(eeBlock, omittableEE);
-  const omittedOtherBlock = omit(otherBlock, omittableOther);
-  expect(omittedEEBlock).toStrictEqual(omittedOtherBlock);
+  const omittedEEBlock = omit(eeBlock, omittableEE as any);
+  const omittedOtherBlock = omit(otherBlock, omittableOther as any);
+  expect(omittedEEBlock).toMatchObject(omittedOtherBlock);
 }
 
 describe('provider.getBlock', () => {

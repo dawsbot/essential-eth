@@ -94,9 +94,9 @@ describe('provider.getTransaction', () => {
       });
     }
 
-    const omittedTransaction1 = omit(transaction1, omittable1);
-    const omittedTransaction2 = omit(transaction2, omittable2);
-    expect(omittedTransaction1).toStrictEqual(omittedTransaction2);
+    const omittedTransaction1 = omit(transaction1, omittable1 as any);
+    const omittedTransaction2 = omit(transaction2, omittable2 as any);
+    expect(omittedTransaction1).toMatchObject(omittedTransaction2);
   }
   it('should match web3.js', async () => {
     const transactionHash =

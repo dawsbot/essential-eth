@@ -50,7 +50,7 @@ describe('provider.getLogs', () => {
     other.forEach((log: any) => {
       if (log.id) delete log.id;
     });
-    expect(ee).toStrictEqual(other);
+    expect(ee).toMatchObject(other);
   }
 
   it('should match ethers.js -- address, from, to', async () => {
