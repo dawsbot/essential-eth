@@ -52,4 +52,17 @@ describe('cRV contract', () => {
       essentialEthTotalClaimed.toNumber(),
     );
   });
+  it('should fetch "uint256" vested supply', async () => {
+    const [ethersVestedSupply, essentialVestedSupply] = await Promise.all([
+      ethersContract.vestedSupply({
+        gasLimit: 40955,
+      }) as TinyBig,
+      essentialEthContract.vestedSupply({
+        gasLimit: 40955,
+      }) as TinyBig,
+    ]);
+    expect(ethersVestedSupply.toString()).toBe(
+      essentialVestedSupply.toString(),
+    );
+  });
 });
