@@ -71,18 +71,20 @@ describe('provider.getTransactionReceipt', () => {
       });
     }
 
-    const omittedTransactionReceipt1 = omit(transactionReceipt1, omittable1) as
-      | TransactionReceipt
-      | web3core.TransactionReceipt;
-    const omittedTransactionReceipt2 = omit(transactionReceipt2, omittable2) as
-      | TransactionReceipt
-      | web3core.TransactionReceipt;
+    const omittedTransactionReceipt1 = omit(
+      transactionReceipt1,
+      omittable1 as any,
+    ) as TransactionReceipt | web3core.TransactionReceipt;
+    const omittedTransactionReceipt2 = omit(
+      transactionReceipt2,
+      omittable2 as any,
+    ) as TransactionReceipt | web3core.TransactionReceipt;
 
     omittedTransactionReceipt1.logs = omittedTransactionReceipt1.logs.map(
-      (log) => omit(log, ['id', 'removed']) as any,
+      (log) => omit(log, ['id', 'removed'] as any) as any,
     );
 
-    expect(omittedTransactionReceipt1).toStrictEqual(
+    expect(omittedTransactionReceipt1).toMatchObject(
       omittedTransactionReceipt2,
     );
   }
