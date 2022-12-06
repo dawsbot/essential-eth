@@ -135,7 +135,9 @@ export function decodeRPCResponse(
         /* address types have 26 leading zeroes to remove */
         return toChecksumAddress(`0x${output.slice(24)}`);
       case 'uint256':
+      case 'uint128':
       case 'uint120':
+      case 'uint64':
         return tinyBig(hexToDecimal(`0x${output}`));
       case 'bytes32':
         return `0x${output}`;
