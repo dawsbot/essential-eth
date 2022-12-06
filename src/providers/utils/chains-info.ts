@@ -63,10 +63,10 @@ export default {
     "sgb"
   ],
   "20": [
-    "elaeth"
+    "esc"
   ],
   "21": [
-    "elaetht"
+    "esct"
   ],
   "22": [
     "eladid"
@@ -75,7 +75,7 @@ export default {
     "eladidt"
   ],
   "24": [
-    "dthmainnet"
+    "kardiachain"
   ],
   "25": [
     "cro"
@@ -87,7 +87,7 @@ export default {
     "shib"
   ],
   "28": [
-    "Boba Rinkeby"
+    "BobaRinkeby"
   ],
   "29": [
     "L1"
@@ -113,14 +113,17 @@ export default {
   "36": [
     "dx"
   ],
+  "37": [
+    "SEED"
+  ],
   "38": [
     "val"
   ],
   "40": [
-    "Telos EVM"
+    "TelosEVM"
   ],
   "41": [
-    "Telos EVM Testnet"
+    "TelosEVMTestnet"
   ],
   "42": [
     "kov"
@@ -137,11 +140,17 @@ export default {
   "46": [
     "darwinia"
   ],
+  "48": [
+    "etmp"
+  ],
+  "49": [
+    "etmpTest"
+  ],
   "50": [
     "xdc"
   ],
   "51": [
-    "TXDC"
+    "txdc"
   ],
   "52": [
     "cet"
@@ -162,10 +171,10 @@ export default {
     "sys"
   ],
   "58": [
-    "Ontology Mainnet"
+    "OntologyMainnet"
   ],
   "59": [
-    "EOS Mainnet"
+    "EOSMainnet"
   ],
   "60": [
     "go"
@@ -205,6 +214,9 @@ export default {
   ],
   "72": [
     "dxc"
+  ],
+  "73": [
+    "FNCY"
   ],
   "74": [
     "idchain"
@@ -261,7 +273,7 @@ export default {
     "gar-s3"
   ],
   "95": [
-    "Kylin Testnet"
+    "KylinTestnet"
   ],
   "96": [
     "nsc"
@@ -302,6 +314,15 @@ export default {
   "111": [
     "ETL"
   ],
+  "113": [
+    "deh"
+  ],
+  "115": [
+    "debank-testnet"
+  ],
+  "116": [
+    "debank-mainnet"
+  ],
   "122": [
     "fuse"
   ],
@@ -312,10 +333,10 @@ export default {
     "dwu"
   ],
   "125": [
-    "oychain testnet"
+    "OYchainTestnet"
   ],
   "126": [
-    "oychain mainnet"
+    "OYchainMainnet"
   ],
   "127": [
     "feth"
@@ -323,14 +344,20 @@ export default {
   "128": [
     "heco"
   ],
+  "135": [
+    "AlyxTestnet"
+  ],
   "137": [
-    "MATIC"
+    "matic"
   ],
   "141": [
     "OPtest"
   ],
   "142": [
     "dax"
+  ],
+  "144": [
+    "PHI"
   ],
   "162": [
     "tpht"
@@ -368,8 +395,17 @@ export default {
   "200": [
     "aox"
   ],
+  "201": [
+    "moactest"
+  ],
   "211": [
     "EDI"
+  ],
+  "212": [
+    "makalu"
+  ],
+  "217": [
+    "SIN2"
   ],
   "218": [
     "SO1-old"
@@ -385,6 +421,9 @@ export default {
   ],
   "246": [
     "ewt"
+  ],
+  "248": [
+    "OAS"
   ],
   "250": [
     "ftm"
@@ -409,6 +448,9 @@ export default {
   ],
   "300": [
     "ogc"
+  ],
+  "314": [
+    "filecoin"
   ],
   "321": [
     "kcs"
@@ -446,6 +488,9 @@ export default {
   "385": [
     "lisinski"
   ],
+  "400": [
+    "hpn"
+  ],
   "416": [
     "SX"
   ],
@@ -461,11 +506,14 @@ export default {
   "513": [
     "aact"
   ],
+  "516": [
+    "gz-mainnet"
+  ],
   "520": [
     "xt"
   ],
   "530": [
-    "f(x)Core"
+    "FxCore"
   ],
   "534": [
     "CNDL"
@@ -475,6 +523,9 @@ export default {
   ],
   "558": [
     "tao"
+  ],
+  "568": [
+    "dct"
   ],
   "588": [
     "metis-stardust"
@@ -490,6 +541,9 @@ export default {
   ],
   "597": [
     "taca"
+  ],
+  "599": [
+    "metis-goerli"
   ],
   "600": [
     "mesh-chain-testnet"
@@ -513,7 +567,10 @@ export default {
     "tbcs"
   ],
   "721": [
-    "tfeth"
+    "LYC"
+  ],
+  "766": [
+    "qom"
   ],
   "776": [
     "opc"
@@ -532,6 +589,9 @@ export default {
   ],
   "808": [
     "PFTEST"
+  ],
+  "813": [
+    "meer"
   ],
   "820": [
     "clo"
@@ -569,11 +629,23 @@ export default {
   "942": [
     "t3pls"
   ],
+  "956": [
+    "munode"
+  ],
+  "970": [
+    "ccn"
+  ],
+  "971": [
+    "ccnbeta"
+  ],
   "977": [
     "yeti"
   ],
   "980": [
     "top_evm"
+  ],
+  "985": [
+    "memochain"
   ],
   "989": [
     "top"
@@ -617,8 +689,29 @@ export default {
   "1030": [
     "cfx"
   ],
+  "1038": [
+    "bronos-testnet"
+  ],
+  "1039": [
+    "bronos-mainnet"
+  ],
   "1088": [
     "metis-andromeda"
+  ],
+  "1099": [
+    "moac"
+  ],
+  "1111": [
+    "wemix"
+  ],
+  "1112": [
+    "twemix"
+  ],
+  "1130": [
+    "DFI"
+  ],
+  "1131": [
+    "DFI-T"
   ],
   "1139": [
     "MATH"
@@ -641,8 +734,20 @@ export default {
   "1214": [
     "enter"
   ],
+  "1230": [
+    "UltronTestnet"
+  ],
+  "1231": [
+    "UtronMainnet"
+  ],
+  "1234": [
+    "step"
+  ],
   "1246": [
     "om"
+  ],
+  "1252": [
+    "CICT"
   ],
   "1280": [
     "HO"
@@ -662,8 +767,17 @@ export default {
   "1288": [
     "mrock"
   ],
+  "1294": [
+    "Bobabeam"
+  ],
   "1297": [
     "Bobabase"
+  ],
+  "1311": [
+    "DOS"
+  ],
+  "1314": [
+    "alyx"
   ],
   "1319": [
     "aitd"
@@ -672,13 +786,22 @@ export default {
     "aitdtestnet"
   ],
   "1337": [
-    "cennz-old"
+    "geth"
+  ],
+  "1353": [
+    "CIC"
+  ],
+  "1402": [
+    "zkevmtest"
   ],
   "1506": [
     "Sherpax"
   ],
   "1507": [
-    "Sherpax Testnet"
+    "SherpaxTestnet"
+  ],
+  "1515": [
+    "beagle"
   ],
   "1618": [
     "cate"
@@ -692,6 +815,18 @@ export default {
   "1688": [
     "LUDAN"
   ],
+  "1701": [
+    "AnytypeChain"
+  ],
+  "1707": [
+    "TBSI"
+  ],
+  "1708": [
+    "tTBSI"
+  ],
+  "1807": [
+    "rAna"
+  ],
   "1818": [
     "cube"
   ],
@@ -704,14 +839,26 @@ export default {
   "1898": [
     "boya"
   ],
+  "1945": [
+    "onus-testnet"
+  ],
+  "1975": [
+    "onus-mainnet"
+  ],
   "1984": [
     "euntest"
   ],
   "1987": [
     "egem"
   ],
+  "2000": [
+    "dc"
+  ],
   "2001": [
     "milkAda"
+  ],
+  "2002": [
+    "milkALGO"
   ],
   "2008": [
     "cloudwalk_testnet"
@@ -719,8 +866,14 @@ export default {
   "2009": [
     "cloudwalk_mainnet"
   ],
+  "2018": [
+    "pmint_dev"
+  ],
+  "2019": [
+    "pmint_test"
+  ],
   "2020": [
-    "420"
+    "pmint"
   ],
   "2021": [
     "edg"
@@ -734,17 +887,32 @@ export default {
   "2025": [
     "rpg"
   ],
+  "2077": [
+    "QKA"
+  ],
   "2100": [
     "eco"
   ],
   "2101": [
     "esp"
   ],
+  "2109": [
+    "exn"
+  ],
+  "2151": [
+    "boa"
+  ],
   "2152": [
     "fra"
   ],
   "2153": [
     "findora-testnet"
+  ],
+  "2154": [
+    "findora-forge"
+  ],
+  "2203": [
+    "eBTC"
   ],
   "2213": [
     "evanesco"
@@ -758,11 +926,17 @@ export default {
   "2223": [
     "VChain"
   ],
+  "2330": [
+    "alt"
+  ],
   "2559": [
     "ktoc"
   ],
   "2569": [
     "tpc"
+  ],
+  "2611": [
+    "REDLC"
   ],
   "2612": [
     "EZChain"
@@ -770,11 +944,23 @@ export default {
   "2613": [
     "Fuji-EZChain"
   ],
+  "2999": [
+    "bty"
+  ],
   "3000": [
     "cennz-r"
   ],
   "3001": [
     "cennz-n"
+  ],
+  "3031": [
+    "ORL"
+  ],
+  "3141": [
+    "filecoin-buildernet"
+  ],
+  "3306": [
+    "debounce-devnet"
   ],
   "3331": [
     "zcrbeach"
@@ -793,6 +979,15 @@ export default {
   ],
   "3501": [
     "jfin"
+  ],
+  "3601": [
+    "pando-mainnet"
+  ],
+  "3602": [
+    "pando-testnet"
+  ],
+  "3666": [
+    "metacode"
   ],
   "3690": [
     "btx"
@@ -813,13 +1008,16 @@ export default {
     "tftm"
   ],
   "4051": [
-    "Bobaopera Testnet"
+    "BobaoperaTestnet"
   ],
   "4102": [
     "aioz-testnet"
   ],
   "4181": [
-    "PHI"
+    "PHIv1"
+  ],
+  "4328": [
+    "BobafujiTestnet"
   ],
   "4689": [
     "iotex-mainnet"
@@ -839,6 +1037,12 @@ export default {
   "5197": [
     "es"
   ],
+  "5234": [
+    "hmnd"
+  ],
+  "5290": [
+    "fire"
+  ],
   "5315": [
     "UZMI"
   ],
@@ -846,19 +1050,25 @@ export default {
     "Nahmii"
   ],
   "5553": [
-    "Nahmii testnet"
+    "NahmiiTestnet"
   ],
   "5700": [
     "tsys"
   ],
   "5777": [
-    "dgcc"
+    "ggui"
   ],
   "5851": [
-    "Ontology Testnet"
+    "OntologyTestnet"
   ],
   "5869": [
     "rbd"
+  ],
+  "6065": [
+    "TRESTEST"
+  ],
+  "6066": [
+    "TRESMAIN"
   ],
   "6626": [
     "pixie-chain"
@@ -866,14 +1076,29 @@ export default {
   "6969": [
     "tombchain"
   ],
+  "6999": [
+    "psc"
+  ],
+  "7000": [
+    "zetachain-mainnet"
+  ],
+  "7001": [
+    "zetachain-athens"
+  ],
   "7027": [
     "ELLA"
+  ],
+  "7070": [
+    "planq"
   ],
   "7341": [
     "shyft"
   ],
+  "7700": [
+    "canto"
+  ],
   "7777": [
-    "Rise of the Warbots Testnet"
+    "RiseOfTheWarbotsTestnet"
   ],
   "7878": [
     "tscas"
@@ -888,7 +1113,13 @@ export default {
     "mdgl"
   ],
   "8080": [
-    "GeneChainAdn"
+    "Liberty10"
+  ],
+  "8081": [
+    "Liberty20"
+  ],
+  "8131": [
+    "meertest"
   ],
   "8217": [
     "Cypress"
@@ -896,14 +1127,26 @@ export default {
   "8285": [
     "Kortho"
   ],
+  "8654": [
+    "toki"
+  ],
+  "8655": [
+    "toki-testnet"
+  ],
   "8723": [
     "olo"
   ],
   "8724": [
     "tolo"
   ],
+  "8738": [
+    "alph"
+  ],
   "8888": [
     "ambrostestnet"
+  ],
+  "8889": [
+    "vsc"
   ],
   "8898": [
     "mmt"
@@ -923,8 +1166,17 @@ export default {
   "9100": [
     "GENEC"
   ],
+  "9170": [
+    "tfire"
+  ],
   "9527": [
     "trpg"
+  ],
+  "9528": [
+    "QETTest"
+  ],
+  "9728": [
+    "BobaBNBTestnet"
   ],
   "9999": [
     "myn"
@@ -935,8 +1187,26 @@ export default {
   "10001": [
     "smartbchtest"
   ],
+  "10024": [
+    "gon"
+  ],
+  "10086": [
+    "SJ"
+  ],
   "10101": [
     "GEN"
+  ],
+  "10200": [
+    "chi"
+  ],
+  "10248": [
+    "0xt"
+  ],
+  "10507": [
+    "Jade"
+  ],
+  "10508": [
+    "Snow"
   ],
   "10823": [
     "CCP"
@@ -947,11 +1217,20 @@ export default {
   "10947": [
     "quadranstestnet"
   ],
+  "11110": [
+    "astra"
+  ],
   "11111": [
     "WAGMI"
   ],
+  "11115": [
+    "astra-testnet"
+  ],
   "11437": [
     "shyftt"
+  ],
+  "11888": [
+    "SAN"
   ],
   "12051": [
     "tZERO"
@@ -959,8 +1238,20 @@ export default {
   "12052": [
     "ZERO"
   ],
+  "12345": [
+    "steptest"
+  ],
+  "13000": [
+    "SPS"
+  ],
   "13381": [
     "Phoenix"
+  ],
+  "14000": [
+    "SPS-Test"
+  ],
+  "15555": [
+    "TrustTestnet"
   ],
   "16000": [
     "mtt"
@@ -971,8 +1262,17 @@ export default {
   "16888": [
     "tivar"
   ],
+  "18000": [
+    "ZKST"
+  ],
+  "18159": [
+    "pom"
+  ],
   "19845": [
     "btcix"
+  ],
+  "20729": [
+    "CLOTestnet"
   ],
   "21337": [
     "cennz-a"
@@ -983,6 +1283,18 @@ export default {
   "22023": [
     "SFL"
   ],
+  "22776": [
+    "map"
+  ],
+  "23118": [
+    "opside"
+  ],
+  "23294": [
+    "sapphire"
+  ],
+  "23295": [
+    "sapphire-testnet"
+  ],
   "24484": [
     "web"
   ],
@@ -992,20 +1304,35 @@ export default {
   "26863": [
     "OAC"
   ],
+  "28528": [
+    "obgor"
+  ],
   "30067": [
     "Piece"
   ],
   "31102": [
     "esn"
   ],
+  "31223": [
+    "CLDTX"
+  ],
+  "31224": [
+    "CLD"
+  ],
   "31337": [
     "got"
+  ],
+  "31415": [
+    "filecoin-wallaby"
   ],
   "32520": [
     "Brise"
   ],
   "32659": [
     "fsn"
+  ],
+  "33333": [
+    "avs"
   ],
   "35441": [
     "q"
@@ -1015,6 +1342,9 @@ export default {
   ],
   "39797": [
     "nrg"
+  ],
+  "41500": [
+    "ox-beta"
   ],
   "42069": [
     "PC"
@@ -1026,13 +1356,13 @@ export default {
     "arb-nova"
   ],
   "42220": [
-    "CELO"
+    "celo"
   ],
   "42261": [
-    "emerald"
+    "emerald-testnet"
   ],
   "42262": [
-    "oasis"
+    "emerald"
   ],
   "43110": [
     "avaeth"
@@ -1043,14 +1373,20 @@ export default {
   "43114": [
     "avax"
   ],
+  "43288": [
+    "bobaavax"
+  ],
   "44787": [
     "ALFA"
   ],
   "45000": [
-    "Autobahn Network"
+    "AutobahnNetwork"
   ],
   "47805": [
     "REI"
+  ],
+  "49088": [
+    "BIT"
   ],
   "49797": [
     "tnrg"
@@ -1079,6 +1415,9 @@ export default {
   "60103": [
     "TKM-test103"
   ],
+  "61916": [
+    "DoKEN"
+  ],
   "62320": [
     "BKLV"
   ],
@@ -1090,6 +1429,9 @@ export default {
   ],
   "63001": [
     "ecs-testnet"
+  ],
+  "67390": [
+    "mcl"
   ],
   "69420": [
     "cndr"
@@ -1133,6 +1475,12 @@ export default {
   "88888": [
     "ivar"
   ],
+  "90210": [
+    "bvhl"
+  ],
+  "92001": [
+    "lambda-testnet"
+  ],
   "99998": [
     "usctest"
   ],
@@ -1165,6 +1513,9 @@ export default {
   ],
   "100008": [
     "qkc-s7"
+  ],
+  "100100": [
+    "chi1"
   ],
   "103090": [
     "CRFI"
@@ -1202,8 +1553,14 @@ export default {
   "131419": [
     "ETND"
   ],
+  "188881": [
+    "condor"
+  ],
   "200101": [
     "milkTAda"
+  ],
+  "200202": [
+    "milkTAlgo"
   ],
   "200625": [
     "aka"
@@ -1213,6 +1570,9 @@ export default {
   ],
   "201030": [
     "alayadev"
+  ],
+  "202624": [
+    "twl-jellie"
   ],
   "210425": [
     "platon"
@@ -1226,14 +1586,35 @@ export default {
   "246785": [
     "atstau"
   ],
+  "256256": [
+    "cmp-mainnet"
+  ],
+  "266256": [
+    "gz-testnet"
+  ],
   "281121": [
     "SoChain"
+  ],
+  "314159": [
+    "filecoin-calibration"
   ],
   "333888": [
     "sparta"
   ],
   "333999": [
     "olympus"
+  ],
+  "381931": [
+    "metal"
+  ],
+  "381932": [
+    "Tahoe"
+  ],
+  "420420": [
+    "KEK"
+  ],
+  "420666": [
+    "tKEK"
   ],
   "421611": [
     "arb-rinkeby"
@@ -1242,7 +1623,10 @@ export default {
     "arb-goerli"
   ],
   "432201": [
-    "Dexalot"
+    "dexalot-testnet"
+  ],
+  "432204": [
+    "dexalot"
   ],
   "444900": [
     "wlkt"
@@ -1253,14 +1637,44 @@ export default {
   "512512": [
     "cmp"
   ],
+  "513100": [
+    "etf"
+  ],
+  "534352": [
+    "scr"
+  ],
+  "534353": [
+    "scr-goerli"
+  ],
+  "534354": [
+    "scr-prealpha"
+  ],
   "666666": [
     "vpioneer"
+  ],
+  "800001": [
+    "octa"
   ],
   "846000": [
     "bloqs4good"
   ],
   "888888": [
     "vision"
+  ],
+  "900000": [
+    "psc-s0"
+  ],
+  "910000": [
+    "psc-t-s0"
+  ],
+  "920000": [
+    "psc-d-s0"
+  ],
+  "920001": [
+    "psc-d-s1"
+  ],
+  "923018": [
+    "tFNCY"
   ],
   "955305": [
     "elv"
@@ -1277,20 +1691,44 @@ export default {
   "1337802": [
     "kiln"
   ],
+  "2099156": [
+    "plian-mainnet"
+  ],
   "2203181": [
     "platondev"
   ],
   "2206132": [
     "platondev2"
   ],
+  "3141592": [
+    "filecoin-butterfly"
+  ],
+  "5555555": [
+    "imversed"
+  ],
+  "5555558": [
+    "imversed-testnet"
+  ],
+  "7668378": [
+    "tqom"
+  ],
   "7762959": [
     "music"
+  ],
+  "8007736": [
+    "plian-mainnet-l2"
+  ],
+  "10067275": [
+    "plian-testnet-l2"
   ],
   "11155111": [
     "sep"
   ],
   "13371337": [
     "tpep"
+  ],
+  "16658437": [
+    "plian-testnet"
   ],
   "18289463": [
     "ilt"
@@ -1301,8 +1739,20 @@ export default {
   "20181205": [
     "qki"
   ],
+  "22052002": [
+    "xlon"
+  ],
+  "27082017": [
+    "exlvolta"
+  ],
+  "27082022": [
+    "exl"
+  ],
   "28945486": [
     "auxi"
+  ],
+  "31415926": [
+    "filecoin-local"
   ],
   "35855456": [
     "JOYS"
@@ -1328,11 +1778,17 @@ export default {
   "311752642": [
     "oneledger"
   ],
+  "344106930": [
+    "calypso-testnet"
+  ],
   "356256156": [
     "tGTH"
   ],
   "486217935": [
     "dGTH"
+  ],
+  "503129905": [
+    "nebula-staging"
   ],
   "1122334455": [
     "ipos"
@@ -1345,6 +1801,12 @@ export default {
   ],
   "1313161556": [
     "aurora-betanet"
+  ],
+  "1482601649": [
+    "nebula-mainnet"
+  ],
+  "1564830818": [
+    "calypso-mainnet"
   ],
   "1666600000": [
     "hmy-s0"
@@ -1369,6 +1831,9 @@ export default {
   ],
   "1666700003": [
     "hmy-b-s3"
+  ],
+  "1666900000": [
+    "hmy-ps-s0"
   ],
   "2021121117": [
     "hop"
