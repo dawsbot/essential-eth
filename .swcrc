@@ -1,8 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/swcrc",
   "module": {
-    "type": "es6",
-    // These are defaults.
+    "type": "commonjs",
     "strict": false,
     "strictMode": true,
     "lazy": false,
@@ -18,8 +17,6 @@
     "target": "es5",
     "loose": false,
     "externalHelpers": false
-    // Requires v1.2.50 or upper and requires target to be es2016 or upper.
   },
   "minify": false
-  
 }
