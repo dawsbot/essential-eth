@@ -1,5 +1,5 @@
 {
-  "swc": {
+  "ts-node": {
     "compilerOptions": {
       "module": "commonjs"
     }
