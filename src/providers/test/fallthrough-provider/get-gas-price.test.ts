@@ -35,8 +35,8 @@ describe('provider.getGasPrice', () => {
     );
     await timePromise(() => essentialEthProvider.getBlock(14631000)).then(
       (duration) => {
-        // times out the first two requests in 2000 ms each
-        expect(duration).toBeGreaterThan(2000);
+        // times out the first two requests in 1200 ms each
+        expect(duration).toBeGreaterThan(1200);
         // finished the last valid request within two seconds
         expect(duration).toBeLessThan(4000);
       },
