@@ -1,7 +1,7 @@
 import CodeBlock from '@theme/CodeBlock';
 import clsx from 'clsx';
 import React from 'react';
-import styles from './styles.module.css';
+// import styles from './styles.module.css';
 // organize-imports-ignore
 import * as ee from '../../../../src/index';
 import Link from '@docusaurus/Link';
@@ -63,9 +63,9 @@ function Contribute({ title, src, description }: ContributeItem) {
 export default function HomepageContributions(): JSX.Element {
   return (
     <>
-      <section className={styles.features}>
+      <section>
         <div className="container">
-          <section style={{ marginTop: '80px' }}>
+          <section style={{ marginTop: '120px', marginBottom: '100px' }}>
             <div>
               <div className="row" style={{ justifyContent: 'center' }}>
                 {ContributeList.map((props, idx) => (

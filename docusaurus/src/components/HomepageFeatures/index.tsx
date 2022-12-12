@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 // organize-imports-ignore
 import * as ee from '../../../../src/index';
 import Link from '@docusaurus/Link';
+import HomepageContributions from '../Contributions';
 
 interface FeatureItem {
   title: string;
@@ -101,6 +102,7 @@ export default function HomepageFeatures(): JSX.Element {
               </div>
             </div>
           </section>
+          <HomepageContributions />
           <br />
           <br />
           <h2>Utils</h2>
