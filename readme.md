@@ -102,6 +102,9 @@
 - [More Info](#more-info)
   - [Identical vs Similar vs Dissimliar {&#035;isd}](#identical-vs-similar-vs-dissimliar-isd)
   - [Miscellaneous](#miscellaneous)
+  - [GitPOAP](#gitpoap)
+    - [What is a GitPOAP?](#what-is-a-gitpoap)
+    - [How can I claim?](#how-can-i-claim)
 
 </details>
 
@@ -1549,3 +1552,25 @@ Note: In `web3.js`, almost every method or function can be passed a callback. `e
 
 - [📓 View full docs](https://eeth.dev)
 - [📓 View changelog (by looking at releases diff)](https://github.com/dawsbot/essential-eth/releases)
+
+### GitPOAP
+
+In partnership with GitPOAP, Essential ETH wants to recognize **all** contributors for their contributions toward the growth of this library. Developers can validate their contributions on Github and showcase their GitPOAP as proof-of-work toward their Web3 identity.
+
+<br/>
+
+![Alt](https://www.gitpoap.io/_next/image?url=https%3A%2F%2Fassets.poap.xyz%2Fgitpoap3a-2022-essential-eth-contributor-2022-logo-1667245904706.png&w=2048&q=75 'Essential ETH Contributor - GitPOAP')
+
+<br/>
+
+#### What is a GitPOAP?
+
+GitPOAP is a contributor recognition platform built on top of the POAP Protcol (Proof of Attendence Protocol). Similar to a POAP, each GitPOAP represents a digital collectible. It serves as a badge of validation for the action taken by the individual. By serving as a bridge between Github and Web3, it allows repo maintainers to recognize contributors for their meaningful contributions. Learn more about GitPOAP, [here](https://www.gitpoap.io/).
+
+#### How can I claim?
+
+Here are two steps that you can take to quailify for a GitPOAP:
+
+1. Contribute to [any open issue](https://github.com/dawsbot/essential-eth/issues) and submit a PR. Upon approval of PR merge, the GitPOAP will automatically be issued to the Github account.
+
+2. Head to gitpoap.io and connect your GitHub account to mint!
