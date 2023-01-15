@@ -1565,11 +1565,11 @@ In partnership with GitPOAP, Essential ETH wants to recognize **all** contributo
 
 #### What is a GitPOAP?
 
-GitPOAP is a contributor recognition platform built on top of the POAP Protcol (Proof of Attendence Protocol). Similar to a POAP, each GitPOAP represents a digital collectible. It serves as a badge of validation for the action taken by the individual. By serving as a bridge between Github and Web3, it allows repo maintainers to recognize contributors for their meaningful contributions. Learn more about GitPOAP, [here](https://www.gitpoap.io/).
+GitPOAP is a contributor recognition platform built on top of the POAP Protocol (Proof of Attendance Protocol). Similar to a POAP, each GitPOAP represents a digital collectible. It serves as a badge of validation for the action taken by the individual. By serving as a bridge between Github and Web3, it allows repo maintainers to recognize contributors for their meaningful contributions. Learn more about GitPOAP, [here](https://www.gitpoap.io/).
 
 #### How can I claim?
 
-Here are two steps that you can take to quailify for a GitPOAP:
+Here are two steps that you can take to qualify for a GitPOAP:
 
 1. Contribute to [any open issue](https://github.com/dawsbot/essential-eth/issues) and submit a PR. Upon approval of PR merge, the GitPOAP will automatically be issued to the Github account.
 
