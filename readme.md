@@ -100,7 +100,7 @@
 - [Contract](#contract)
   - [`contractFunctionName(args)`](#contractfunctionnameargs)
 - [More Info](#more-info)
-  - [Identical vs Similar vs Dissimliar {&#035;isd}](#identical-vs-similar-vs-dissimliar-isd)
+  - [Identical vs Similar vs Dissimilar {&#035;isd}](#identical-vs-similar-vs-dissimilar-isd)
   - [Miscellaneous](#miscellaneous)
   - [GitPOAP](#gitpoap)
     - [What is a GitPOAP?](#what-is-a-gitpoap)
@@ -1538,7 +1538,7 @@ Any function on a contract. Returns are the same as `ethers.js`, except that ins
 
 <br/>
 
-### Identical vs Similar vs Dissimliar {#isd}
+### Identical vs Similar vs Dissimilar {#isd}
 
 Throughout the documentation for `essential-eth`, you may notice that some functions are compared to `ethers.js` and `web3.js`. The keywords `identical`, `similar`, and `dissimilar` are used to help you migrate to `essential-eth`. Here's a guide on what these keywords mean:
 
