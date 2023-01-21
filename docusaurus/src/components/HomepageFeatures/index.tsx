@@ -55,7 +55,7 @@ const FeatureList: FeatureItem[] = [
     src: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/sparkles_2728.png',
     description: (
       <>
-        Essential Eth matches the API of ethers.js as-closely as possible. This
+        Essential Eth matches the API of ethers.js as closely as possible. This
         is also similar to web3.js, so upgrading is a breeze.
       </>
     ),
