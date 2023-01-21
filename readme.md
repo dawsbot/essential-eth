@@ -100,7 +100,7 @@
 - [Contract](#contract)
   - [`contractFunctionName(args)`](#contractfunctionnameargs)
 - [More Info](#more-info)
-  - [Identical vs Similar vs Dissimliar {&#035;isd}](#identical-vs-similar-vs-dissimliar-isd)
+  - [Identical vs Similar vs Dissimilar {&#035;isd}](#identical-vs-similar-vs-dissimilar-isd)
   - [Miscellaneous](#miscellaneous)
   - [GitPOAP](#gitpoap)
     - [What is a GitPOAP?](#what-is-a-gitpoap)
@@ -1538,7 +1538,7 @@ Any function on a contract. Returns are the same as `ethers.js`, except that ins
 
 <br/>
 
-### Identical vs Similar vs Dissimliar {#isd}
+### Identical vs Similar vs Dissimilar {#isd}
 
 Throughout the documentation for `essential-eth`, you may notice that some functions are compared to `ethers.js` and `web3.js`. The keywords `identical`, `similar`, and `dissimilar` are used to help you migrate to `essential-eth`. Here's a guide on what these keywords mean:
 
@@ -1565,11 +1565,11 @@ In partnership with GitPOAP, Essential ETH wants to recognize **all** contributo
 
 #### What is a GitPOAP?
 
-GitPOAP is a contributor recognition platform built on top of the POAP Protcol (Proof of Attendence Protocol). Similar to a POAP, each GitPOAP represents a digital collectible. It serves as a badge of validation for the action taken by the individual. By serving as a bridge between Github and Web3, it allows repo maintainers to recognize contributors for their meaningful contributions. Learn more about GitPOAP, [here](https://www.gitpoap.io/).
+GitPOAP is a contributor recognition platform built on top of the POAP Protocol (Proof of Attendance Protocol). Similar to a POAP, each GitPOAP represents a digital collectible. It serves as a badge of validation for the action taken by the individual. By serving as a bridge between Github and Web3, it allows repo maintainers to recognize contributors for their meaningful contributions. Learn more about GitPOAP, [here](https://www.gitpoap.io/).
 
 #### How can I claim?
 
-Here are two steps that you can take to quailify for a GitPOAP:
+Here are two steps that you can take to qualify for a GitPOAP:
 
 1. Contribute to [any open issue](https://github.com/dawsbot/essential-eth/issues) and submit a PR. Upon approval of PR merge, the GitPOAP will automatically be issued to the Github account.
 
