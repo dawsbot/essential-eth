@@ -1,5 +1,4 @@
-import { Contract as EthersContract } from '@ethersproject/contracts';
-import { StaticJsonRpcProvider } from '@ethersproject/providers';
+import { ethers } from 'ethers';
 import type { TinyBig } from '../../..';
 import { JsonRpcProvider } from '../../../index';
 import { rpcUrls } from '../../../providers/test/rpc-urls';
@@ -10,13 +9,13 @@ import { abi } from './crv-abi';
 const JSONABI = abi;
 
 const rpcURL = rpcUrls.mainnet;
-const ethersProvider = new StaticJsonRpcProvider(rpcURL);
+const ethersProvider = new ethers.JsonRpcProvider(rpcURL);
 const essentialEthProvider = new JsonRpcProvider(rpcURL);
 
 // https://etherscan.io/address/0x575CCD8e2D300e2377B43478339E364000318E2c
 const contractAddress = '0x575CCD8e2D300e2377B43478339E364000318E2c';
 
-const ethersContract = new EthersContract(
+const ethersContract = new ethers.Contract(
   contractAddress,
   JSONABI as any,
   ethersProvider,
@@ -32,7 +31,7 @@ describe('cRV contract', () => {
     const [ethersBalanceOf, essentialEthBalanceOf] = await Promise.all([
       ethersContract.balanceOf(address, {
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.balanceOf(address, {
         gasLimit: 40955,
       }) as TinyBig,
@@ -42,13 +41,13 @@ describe('cRV contract', () => {
   it('should fetch "uint256" total_claimed', async () => {
     const [ethersTotalClaimed, essentialEthTotalClaimed] = await Promise.all([
       // ensure library also handles empty options
-      ethersContract.total_claimed(address, {}) as TinyBig,
+      ethersContract.total_claimed(address, {}) as unknown as bigint,
       essentialEthContract.total_claimed(address, {}) as TinyBig,
     ]);
     expect(ethersTotalClaimed.toString()).toBe(
       essentialEthTotalClaimed.toString(),
     );
-    expect(ethersTotalClaimed.toNumber()).toBe(
+    expect(Number(ethersTotalClaimed)).toBe(
       essentialEthTotalClaimed.toNumber(),
     );
   });
@@ -56,7 +55,7 @@ describe('cRV contract', () => {
     const [ethersVestedSupply, essentialVestedSupply] = await Promise.all([
       ethersContract.vestedSupply({
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.vestedSupply({
         gasLimit: 40955,
       }) as TinyBig,
@@ -69,7 +68,7 @@ describe('cRV contract', () => {
     const [ethersLockedSupply, essentialLockedSupply] = await Promise.all([
       ethersContract.lockedSupply({
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.lockedSupply({
         gasLimit: 40955,
       }) as TinyBig,
@@ -82,7 +81,7 @@ describe('cRV contract', () => {
     const [ethersVestedOf, essentialVestedOf] = await Promise.all([
       ethersContract.vestedOf(address, {
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.vestedOf(address, {
         gasLimit: 40955,
       }) as TinyBig,
@@ -93,7 +92,7 @@ describe('cRV contract', () => {
     const [ethersLockedOf, essentialLockedOf] = await Promise.all([
       ethersContract.lockedOf(address, {
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.lockedOf(address, {
         gasLimit: 40955,
       }) as TinyBig,
@@ -115,7 +114,7 @@ describe('cRV contract', () => {
     const [ethersStartTime, essentialStartTime] = await Promise.all([
       ethersContract.start_time({
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.start_time({
         gasLimit: 40955,
       }) as TinyBig,
@@ -126,7 +125,7 @@ describe('cRV contract', () => {
     const [ethersEndTime, essentialEndTime] = await Promise.all([
       ethersContract.end_time({
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.end_time({
         gasLimit: 40955,
       }) as TinyBig,
@@ -137,7 +136,7 @@ describe('cRV contract', () => {
     const [ethersInitialLocked, essentialInitialLocked] = await Promise.all([
       ethersContract.initial_locked(address, {
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.initial_locked(address, {
         gasLimit: 40955,
       }) as TinyBig,
@@ -151,7 +150,7 @@ describe('cRV contract', () => {
       await Promise.all([
         ethersContract.initial_locked_supply({
           gasLimit: 40955,
-        }) as TinyBig,
+        }) as unknown as bigint,
         essentialEthContract.initial_locked_supply({
           gasLimit: 40955,
         }) as TinyBig,
@@ -164,7 +163,7 @@ describe('cRV contract', () => {
     const [ethersUnAllSupply, essentialUnAllSupply] = await Promise.all([
       ethersContract.unallocated_supply({
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.unallocated_supply({
         gasLimit: 40955,
       }) as TinyBig,
@@ -186,7 +185,7 @@ describe('cRV contract', () => {
     const [ethersDisabledAt, essentialDisabledAt] = await Promise.all([
       ethersContract.disabled_at(address, {
         gasLimit: 40955,
-      }) as TinyBig,
+      }) as unknown as bigint,
       essentialEthContract.disabled_at(address, {
         gasLimit: 40955,
       }) as TinyBig,
