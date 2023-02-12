@@ -20,10 +20,7 @@ async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
 describe('provider.getBalance matic', () => {
   const rpcUrl = rpcUrls.matic;
   it('should get latest equal to ethers', async () => {
-    await Promise.all([
-      testGetBalance(rpcUrl, 'latest'),
-      testGetBalance(rpcUrl, 'latest'),
-    ]);
+    await testGetBalance(rpcUrl, 'latest');
   });
   it('should get earliest equal to ethers', async () => {
     await testGetBalance(rpcUrl, 'earliest');
