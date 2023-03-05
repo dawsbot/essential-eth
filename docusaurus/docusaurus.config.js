@@ -7,13 +7,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Essential Eth',
-  tagline: "🪶 A replacement for ethers & web3 that's 20x smaller",
-  url: 'https://your-docusaurus-test-site.com',
+  tagline: "A replacement for ethers & web3 that's 20x smaller",
+  url: 'https://eeth.dev/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
-  favicon:
-    'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/feather_1fab6.png',
+  favicon: '/img/logo.png',
   organizationName: 'earnifi', // Usually your GitHub org/user name.
   projectName: 'essential-eth', // Usually your repo name.
   plugins: [
@@ -53,8 +52,8 @@ const config = {
       navbar: {
         title: 'Essential Eth',
         logo: {
-          alt: 'My Site Logo',
-          src: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/feather_1fab6.png',
+          alt: 'Logo',
+          src: '/img/logo.png',
         },
         items: [
           {
