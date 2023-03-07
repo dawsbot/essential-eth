@@ -15,3 +15,8 @@ docusaurus/build
 # build artifact from typedoc
 scripts/markdown-magic/typedoc.out.json
 .gitsigners
+
+
+#lock
+yarn.lock
+package-json.lock
