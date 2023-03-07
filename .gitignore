@@ -18,5 +18,4 @@ scripts/markdown-magic/typedoc.out.json
 
 
 #lock
-yarn.lock
 package-json.lock
