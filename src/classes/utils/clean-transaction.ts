@@ -1,8 +1,9 @@
-import { tinyBig, toChecksumAddress } from '../..';
+import { tinyBig } from '../../shared/tiny-big/tiny-big';
 import type {
   RPCTransaction,
   TransactionResponse,
 } from '../../types/Transaction.types';
+import { toChecksumAddress } from '../../utils/to-checksum-address';
 import { hexToDecimal } from './hex-to-decimal';
 
 /**

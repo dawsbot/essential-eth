@@ -1,6 +1,7 @@
-import { computePublicKey, toChecksumAddress } from '..';
 import { hexDataSlice } from './bytes';
+import { computePublicKey } from './compute-public-key';
 import { keccak256 } from './keccak256';
+import { toChecksumAddress } from './to-checksum-address';
 
 /**
  * Computes the address that corresponds to a specified public or private key

@@ -1,5 +1,7 @@
-import type { Bytes } from '../index';
-import { concat, keccak256, toUtf8Bytes } from '../index';
+import type { Bytes } from './bytes';
+import { concat } from './bytes';
+import { keccak256 } from './keccak256';
+import { toUtf8Bytes } from './to-utf8-bytes';
 
 const messagePrefix = '\x19Ethereum Signed Message:\n';
 

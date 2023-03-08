@@ -1,10 +1,11 @@
-import { tinyBig, toChecksumAddress } from '../..';
+import { tinyBig } from '../../shared/tiny-big/tiny-big';
 import type {
   Log,
   RPCLog,
   RPCTransactionReceipt,
   TransactionReceipt,
 } from '../../types/Transaction.types';
+import { toChecksumAddress } from '../../utils/to-checksum-address';
 import { cleanLog } from './clean-log';
 import { cleanTransaction } from './clean-transaction';
 import { hexToDecimal } from './hex-to-decimal';

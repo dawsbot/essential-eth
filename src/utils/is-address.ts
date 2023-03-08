@@ -1,5 +1,5 @@
-import { toChecksumAddress } from '..';
 import { validateType } from '../shared/validate-type';
+import { toChecksumAddress } from './to-checksum-address';
 
 /**
  * Returns a boolean as to whether the input is a valid address.
