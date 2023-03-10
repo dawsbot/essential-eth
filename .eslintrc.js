@@ -52,12 +52,12 @@ module.exports = {
         ], // Should check that tag names are valid; include 'alpha' and 'beta' as acceptable tag names
         'jsdoc/no-multi-asterisks': ['warn', { allowWhitespace: true }],
         'jsdoc/require-asterisk-prefix': 'warn', // Require that all documentation is prefixed with an asterisk, makes it easier to differentiate what's documentation and what isn't
-        // 'jsdoc/require-description': ['warn'],
-        'jsdoc/require-example': 'warn', // Ensures that all documentated functions have examples
+        'jsdoc/require-param-description': ['off'],
+        'jsdoc/require-example': 'off', // Ensures that all documentated functions have examples
         'jsdoc/require-hyphen-before-param-description': ['warn', 'never'], // Prevent hyphens before description of a parameter
         'jsdoc/require-param-type': 'off', // TypeDoc automatically reads types from TypeScript types, hence param types should rarely be defined explictly -- https://typedoc.org/guides/doccomments/#%40param-%3Cparam-name%3E
         'jsdoc/require-returns': [
-          'warn',
+          'off',
           { checkGetters: true, forceReturnsWithAsync: true },
         ],
         'jsdoc/require-returns-type': 'off', // Read above note for `jsdoc/require-param-type`
@@ -67,7 +67,7 @@ module.exports = {
       files: 'src/providers/BaseProvider.ts',
       rules: {
         'jsdoc/match-description': [
-          'warn',
+          'off',
           {
             message: `Description formatting error`,
             // The description should match this formatting:

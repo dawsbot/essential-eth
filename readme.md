@@ -105,6 +105,7 @@
   - [GitPOAP](#gitpoap)
     - [What is a GitPOAP?](#what-is-a-gitpoap)
     - [How can I claim?](#how-can-i-claim)
+    - [What issues should I start on first?](#what-issues-should-i-start-on-first)
 
 </details>
 
@@ -1576,4 +1577,5 @@ Here are two steps that you can take to qualify for a GitPOAP:
 2. Head to gitpoap.io and connect your GitHub account to mint!
 
 #### What issues should I start on first?
+
 We have set up a GitHub project [here](https://github.com/dawsbot/essential-eth/projects/1) for you to see all the issues by priority.
