@@ -10,6 +10,29 @@ export const hexFalse = '0'.repeat(64);
 const hexTrue = '0'.repeat(63) + '1';
 
 /**
+ * @param hex
+ * @example
+ */
+function hexToUtf8(hex: any) {
+  let str = '';
+  let i = 0;
+  const l = hex.length;
+  if (hex.substring(0, 2) === '0x') {
+    i = 2;
+  }
+  for (; i < l; i += 2) {
+    const code = parseInt(hex.substr(i, 2), 16);
+    if (code === 0) continue; // Skip null bytes
+    str += String.fromCharCode(code);
+  }
+  try {
+    return decodeURIComponent(escape(str)); // Convert UTF-8 to Unicode
+  } catch (e) {
+    return str; // Return original string if conversion fails
+  }
+}
+
+/**
  * Expands an integer type to use a default of 256 bits. Used for consistency; not required in Solidity
  *
  * @see https://ethereum.stackexchange.com/questions/43241/why-write-uint256-instead-of-uint-if-theyre-the-same-thing
@@ -124,15 +147,34 @@ export function decodeRPCResponse(
   nodeResponse: string,
 ) {
   const rawOutputs = jsonABIArgument.outputs;
+  const slicedResponse = nodeResponse.slice(2);
+
+  if (
+    jsonABIArgument?.outputs?.length === 1 &&
+    jsonABIArgument.outputs[0].type === 'string'
+  ) {
+    const [hexOffset, responseData] = [
+      slicedResponse.slice(0, 64),
+      slicedResponse.slice(64),
+    ];
+    const decimalOffset = Number(hexToDecimal(`0x${hexOffset}`));
+    const hexLength = responseData.slice(0, decimalOffset * 2);
+    const decimalLength = Number(hexToDecimal(`0x${hexLength}`));
+    const hexToDecode = responseData.slice(
+      decimalOffset * 2,
+      decimalOffset * 2 + decimalLength * 2,
+    );
+    return hexToUtf8(hexToDecode);
+  }
   // chunk response every 64 characters
-  const encodedOutputs = nodeResponse.slice(2).match(/.{1,64}/g);
+  const encodedOutputs = slicedResponse.match(/.{1,64}/g);
   const outputs = (encodedOutputs || []).map((output: string, i: number) => {
     const outputType = (rawOutputs || [])[i].type;
     switch (outputType) {
       case 'bool':
         return output === hexTrue;
       case 'address':
-        /* address types have 26 leading zeroes to remove */
+        /* address types have 24 leading zeroes to remove */
         return toChecksumAddress(`0x${output.slice(24)}`);
       case 'uint256':
       case 'uint120':
