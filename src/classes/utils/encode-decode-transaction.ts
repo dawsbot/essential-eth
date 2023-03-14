@@ -1,9 +1,10 @@
 import { Keccak } from 'sha3';
-import { tinyBig, toChecksumAddress } from '../..';
+import { tinyBig } from '../../shared/tiny-big/tiny-big';
 import type {
   ContractTypes,
   JSONABIArgument,
 } from '../../types/Contract.types';
+import { toChecksumAddress } from '../../utils/to-checksum-address';
 import { hexToDecimal } from './hex-to-decimal';
 
 export const hexFalse = '0'.repeat(64);

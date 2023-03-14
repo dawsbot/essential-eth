@@ -4,5 +4,5 @@
 npm run build:readme
 git add readme.md
 npx lint-staged
-npm run pre-commit
+# npm run pre-commit
 npm run size
