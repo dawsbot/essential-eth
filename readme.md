@@ -91,6 +91,7 @@
   - [`getBlock`](#getblock)
   - [`getBlockNumber`](#getblocknumber)
   - [`getCode`](#getcode)
+  - [`getFeeData`](#getfeedata)
   - [`getGasPrice`](#getgasprice)
   - [`getLogs`](#getlogs)
   - [`getNetwork`](#getnetwork)
@@ -1189,6 +1190,35 @@ await jsonRpcProvider().getCode(
   'latest',
 );
 // '0x608060405234801561001057600080fd5b506004361061...'
+```
+
+  </details>
+
+  <br/>
+
+#### [`getFeeData`](https://eeth.dev/docs/api/classes/JsonRpcProvider#getfeedata)
+
+```typescript
+provider.getFeeData(): Promise<FeeData>
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { JsonRpcProvider } from 'essential-eth';
+const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
+```
+
+```javascript
+await provider.getFeeData();
+// { TinyBig: "27938" }
+{
+  gasPrice: { TinyBig: "14184772639" },
+  lastBaseFeePerGas: { TinyBig: "14038523098" },
+  maxFeePerGas: { TinyBig: "29577046196" },
+  maxPriorityFeePerGas: { TinyBig: "1500000000" }
+}
 ```
 
   </details>

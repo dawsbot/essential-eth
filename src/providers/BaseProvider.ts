@@ -9,6 +9,7 @@ import { logger } from '../logger/logger';
 import type { TinyBig } from '../shared/tiny-big/tiny-big';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
 import type { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
+import type { FeeData } from '../types/FeeData.types';
 import type { Filter, FilterByBlockHash } from '../types/Filter.types';
 import type { Network } from '../types/Network.types';
 import type {
@@ -453,6 +454,50 @@ export abstract class BaseProvider {
       buildRPCPostBody('eth_estimateGas', [rpcTransaction]),
     )) as string;
     return tinyBig(hexToDecimal(gasUsed));
+  }
+
+  /**
+   * Returns the current recommended FeeData to use in a transaction.
+   * For an EIP-1559 transaction, the maxFeePerGas and maxPriorityFeePerGas should be used.
+   * For legacy transactions and networks which do not support EIP-1559, the gasPrice should be used.Returns an estimate of the amount of gas that would be required to submit transaction to the network.
+   *
+   * * [Identical](/docs/api#isd) to [`ethers.provider.getFeeData`](https://docs.ethers.org/v5/api/providers/provider/#Provider-getFeeData) in ethers.js
+   *
+   * @returns an object with gas estimates for the network currently
+   * @example
+   * ```javascript
+   * await provider.getFeeData();
+   * // { TinyBig: "27938" }
+   * {
+   *   gasPrice: { TinyBig: "14184772639" },
+   *   lastBaseFeePerGas: { TinyBig: "14038523098" },
+   *   maxFeePerGas: { TinyBig: "29577046196" },
+   *   maxPriorityFeePerGas: { TinyBig: "1500000000" }
+   * }
+   * ```
+   */
+  public async getFeeData(): Promise<FeeData> {
+    const [block, gasPrice] = await Promise.all([
+      this.getBlock('latest'),
+      this.getGasPrice(),
+    ]);
+
+    let lastBaseFeePerGas = null,
+      maxFeePerGas = null,
+      maxPriorityFeePerGas = null;
+
+    if (block && block.baseFeePerGas) {
+      // We may want to compute this more accurately in the future,
+      // using the formula "check if the base fee is correct".
+      // See: https://eips.ethereum.org/EIPS/eip-1559
+      lastBaseFeePerGas = block.baseFeePerGas;
+      maxPriorityFeePerGas = tinyBig('1500000000');
+      maxFeePerGas = tinyBig(
+        block.baseFeePerGas.mul(2).add(maxPriorityFeePerGas),
+      );
+    }
+
+    return { lastBaseFeePerGas, maxFeePerGas, maxPriorityFeePerGas, gasPrice };
   }
 
   /**
