@@ -1212,13 +1212,12 @@ const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
 
 ```javascript
 await provider.getFeeData();
-// { TinyBig: "27938" }
-{
-  gasPrice: { TinyBig: "14184772639" },
-  lastBaseFeePerGas: { TinyBig: "14038523098" },
-  maxFeePerGas: { TinyBig: "29577046196" },
-  maxPriorityFeePerGas: { TinyBig: "1500000000" }
-}
+// {
+//   gasPrice: { TinyBig: "14184772639" },
+//   lastBaseFeePerGas: { TinyBig: "14038523098" },
+//   maxFeePerGas: { TinyBig: "29577046196" },
+//   maxPriorityFeePerGas: { TinyBig: "1500000000" }
+// }
 ```
 
   </details>
