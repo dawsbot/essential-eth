@@ -1477,6 +1477,7 @@ Decoding support:
 - `uint256`
 - `bytes32`
 - `uint8`
+- `string` (only if there is one string output, not multiple yet)
 
 _Assume all types outside the above types will break for now_
 
@@ -1560,7 +1561,7 @@ In partnership with GitPOAP, Essential ETH wants to recognize **all** contributo
 
 <br/>
 
-![Alt](https://www.gitpoap.io/_next/image?url=https%3A%2F%2Fassets.poap.xyz%2Fgitpoap3a-2022-essential-eth-contributor-2022-logo-1667245904706.png&w=2048&q=75 'Essential ETH Contributor - GitPOAP')
+![Alt](https://www.gitpoap.io/_next/image?url=https%3A%2F%2Fassets.poap.xyz%2Fgitpoap3a-2023-essential-eth-contributor-2022-logo-1670961141021.png&w=750&q=75)
 
 <br/>
 
