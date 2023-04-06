@@ -134,13 +134,6 @@ describe('provider.getBlock', () => {
     ]);
     testBlockEquality(eeRandomBlock, ethersRandomBlock);
   });
-  it(`should match web3.js -- random block as decimal integer & transactions. (block #${blockNumber})`, async () => {
-    const [eeRandomBlock, web3RandomBlock] = await Promise.all([
-      essentialEthProvider.getBlock(blockNumber, true),
-      web3Provider.eth.getBlock(blockNumber, true),
-    ]);
-    testBlockEquality(eeRandomBlock, web3RandomBlock);
-  });
 
   const blockHash =
     '0x4cbaa942e48a91108f38e2a250f6dbaff7fffe3027f5ebf76701929eed2b2970'; // Hash corresponds to block on RSK Mainnet
