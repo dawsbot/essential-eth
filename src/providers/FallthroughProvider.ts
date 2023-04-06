@@ -2,13 +2,23 @@ import { logger } from '../logger/logger';
 import { BaseProvider } from './BaseProvider';
 
 // https://advancedweb.hu/how-to-add-timeout-to-a-promise-in-javascript/
-const promiseTimeout = (prom: Promise<any>, time: number) =>
-  Promise.race([
-    prom,
-    new Promise((_r, reject) =>
-      setTimeout(() => reject('Promise timed out'), time),
-    ),
-  ]);
+const promiseTimeout = <T>(prom: Promise<T>, time: number): Promise<T> =>
+  new Promise<T>((resolve, reject) => {
+    const timeout = setTimeout(
+      () => reject(new Error('Promise timed out')),
+      time,
+    );
+
+    prom
+      .then((result) => {
+        clearTimeout(timeout);
+        resolve(result);
+      })
+      .catch((error) => {
+        clearTimeout(timeout);
+        reject(error);
+      });
+  });
 
 export interface ConstructorOptions {
   timeoutDuration?: number;
