@@ -1583,6 +1583,7 @@ Note: In `web3.js`, almost every method or function can be passed a callback. `e
 
 - [📓 View full docs](https://eeth.dev)
 - [📓 View changelog (by looking at releases diff)](https://github.com/dawsbot/essential-eth/releases)
+- [📋 View our project board](https://github.com/dawsbot/essential-eth/projects/1)
 
 ### GitPOAP
 
