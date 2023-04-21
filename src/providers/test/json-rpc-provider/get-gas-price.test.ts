@@ -6,7 +6,7 @@ import { rpcUrls } from '../rpc-urls';
 import { TinyBig } from './../../../shared/tiny-big/tiny-big';
 
 jest.mock('isomorphic-unfetch');
-const postResponse = JSON.stringify({
+const mockPostResponse = JSON.stringify({
   jsonrpc: '2.0',
   id: 1,
   result: '0xa',
@@ -15,19 +15,16 @@ const postResponse = JSON.stringify({
 const rpcUrl = rpcUrls.mainnet;
 
 describe('provider.getGasPrice', () => {
-  it('should get integer of gas price', async () => {
+  it('should get TinyBig integer', async () => {
     const provider = new JsonRpcProvider(rpcUrl);
     mockOf(unfetch).mockReturnValueOnce(
       Promise.resolve({
-        text: () => postResponse,
+        text: () => mockPostResponse,
       } as unknown as Response),
     );
 
     const gasPrice = await provider.getGasPrice();
     expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBe(true);
-    expect(
-      z.number().int().positive().safeParse(gasPrice.toNumber()).success,
-    ).toBe(true);
     expect(gasPrice.toString()).toBe('10');
   });
 });
