@@ -17,11 +17,9 @@ const rpcUrl = rpcUrls.mainnet;
 describe('provider.getGasPrice', () => {
   it('should get TinyBig integer', async () => {
     const provider = new JsonRpcProvider(rpcUrl);
-    mockOf(unfetch).mockReturnValueOnce(
-      Promise.resolve({
-        text: () => mockPostResponse,
-      } as unknown as Response),
-    );
+    mockOf(unfetch).mockResolvedValueOnce({
+      text: () => mockPostResponse,
+    } as unknown as Response);
 
     const gasPrice = await provider.getGasPrice();
     expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBe(true);
