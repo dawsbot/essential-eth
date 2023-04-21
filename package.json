@@ -94,7 +94,8 @@
     "ts-node": "^10.2.1",
     "typedoc": "^0.22.15",
     "typescript": "^4.6.4",
-    "web3": "^1.8.1"
+    "web3": "^1.8.1",
+    "zod": "^3.21.4"
   },
   "dependencies": {
     "@noble/secp256k1": "^1.5.5",
