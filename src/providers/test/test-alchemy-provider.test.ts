@@ -1,17 +1,15 @@
-import dotenv from 'dotenv';
 import { z } from 'zod';
 import { AlchemyProvider, TinyBig } from '../../index';
-dotenv.config();
 
-const apiKey = process.env.ALCHEMY_API_KEY;
+const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
 
-if (!apiKey) {
+if (!ALCHEMY_API_KEY) {
   throw new Error(
     'ALCHEMY_API_KEY is not defined in the environment variables.',
   );
 }
 
-const provider = new AlchemyProvider(apiKey);
+const provider = new AlchemyProvider(ALCHEMY_API_KEY);
 
 describe('alchemyProvider.getGasPrice', () => {
   it('should return the current gas price', async () => {
