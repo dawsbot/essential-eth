@@ -1,4 +1,5 @@
 import { BaseContract, Contract } from './classes/Contract';
+import { AlchemyProvider } from './providers/AlchemyProvider';
 import {
   ConstructorOptions,
   FallthroughProvider,
@@ -47,6 +48,7 @@ export {
   jsonRpcProvider,
   JsonRpcProvider,
   FallthroughProvider,
+  AlchemyProvider,
   tinyBig,
   toChecksumAddress,
   weiToEther,
