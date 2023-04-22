@@ -12,8 +12,8 @@ describe('provider.getBlockNumber', () => {
   it('should get number integer', async () => {
     const essentialEthProvider = new JsonRpcProvider();
     mockOf(unfetch).mockResolvedValueOnce({
-      text: () => mockPostResponse,
-    } as unknown as Response);
+      text: () => Promise.resolve(mockPostResponse),
+    } as Response);
     const essentialEthBlockNumber = await essentialEthProvider.getBlockNumber();
     expect(essentialEthBlockNumber).toBe(10);
   });

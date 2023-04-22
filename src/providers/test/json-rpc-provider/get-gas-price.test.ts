@@ -18,8 +18,8 @@ describe('provider.getGasPrice', () => {
   it('should get TinyBig integer', async () => {
     const provider = new JsonRpcProvider(rpcUrl);
     mockOf(unfetch).mockResolvedValueOnce({
-      text: () => mockPostResponse,
-    } as unknown as Response);
+      text: () => Promise.resolve(mockPostResponse),
+    } as Response);
 
     const gasPrice = await provider.getGasPrice();
     expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBe(true);

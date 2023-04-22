@@ -1,5 +1,6 @@
-import { AlchemyProvider } from '../../index';
 import dotenv from 'dotenv';
+import { z } from 'zod';
+import { AlchemyProvider, TinyBig } from '../../index';
 dotenv.config();
 
 const apiKey = process.env.ALCHEMY_API_KEY;
@@ -15,6 +16,6 @@ const provider = new AlchemyProvider(apiKey);
 describe('alchemyProvider.getGasPrice', () => {
   it('should return the current gas price', async () => {
     const gasPrice = await provider.getGasPrice();
-    expect(gasPrice).toBeDefined();
+    expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBe(true);
   });
 });
