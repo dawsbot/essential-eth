@@ -12,6 +12,7 @@ z.string({
 
 export const rpcUrls = {
   mainnet: `${RPC_ORIGIN}/api/eth`,
+  oeth: `${RPC_ORIGIN}/api/oeth`,
   matic: `${RPC_ORIGIN}/api/MATIC`,
   gno: `${RPC_ORIGIN}/api/gno`,
   bnb: `${RPC_ORIGIN}/api/bnb`,

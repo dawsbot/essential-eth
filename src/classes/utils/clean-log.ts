@@ -4,7 +4,6 @@ import { hexToDecimal } from './hex-to-decimal';
 
 /**
  * Converts RPC log receipt response to more JS-friendly format
- *
  * @param log the log to clean
  * @param receiptLog if the log is part of a transaction receipt. Used to remove certain keys from log
  * @example
