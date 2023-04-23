@@ -78,7 +78,7 @@
     "dotenv": "^16.0.0",
     "eslint": "^8.16.0",
     "eslint-plugin-jest": "^26.2.2",
-    "eslint-plugin-jsdoc": "38.0.2",
+    "eslint-plugin-jsdoc": "^43.0.7",
     "ethers": "^5.7.2",
     "express": "^4.17.1",
     "husky": "^7.0.4",
