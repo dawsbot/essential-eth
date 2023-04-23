@@ -1,6 +1,7 @@
 import * as chains from '@wagmi/core/chains';
 import fs from 'fs';
 import path from 'path';
+import z from 'zod';
 const importantChainIds = Object.values(chains).map(({ id }) => id);
 
 const outputFilePath = path.join(
@@ -11,17 +12,34 @@ const outputFilePath = path.join(
   'utils',
   'chains-info.ts',
 );
+const chainsSchema = z.array(
+  z.object({
+    shortName: z.string().min(1),
+    chainId: z.number().int().min(1),
+    ens: z.union([
+      z.object({
+        registry: z
+          .string({
+            invalid_type_error: 'Should have type string for ENS "registry"',
+          })
+          .startsWith('0x'),
+      }),
+      z.undefined(),
+    ]),
+  }),
+);
 (async () => {
   const toReturn: Record<string, ReadonlyArray<string>> = {};
   await fetch('https://chainid.network/chains.json')
     .then((res) => res.json())
-    .then((data: ChainsData) => {
+    .then(chainsSchema.parse)
+    .then((data) => {
       data.forEach((networkInfo) => {
         const { shortName, chainId } = networkInfo;
         if (!importantChainIds.includes(chainId)) return;
         const writeableInfo = [shortName];
 
-        const registry = networkInfo?.ens?.registry;
+        const registry = networkInfo.ens?.registry;
         if (registry) {
           writeableInfo.push(registry);
         }
@@ -37,37 +55,3 @@ const outputFilePath = path.join(
     )}`,
   );
 })();
-
-type ChainsData = {
-  name: 'Ethereum Mainnet';
-  chain: 'ETH';
-  network: string; // 'mainnet';
-  icon: 'ethereum';
-  rpc: [
-    'https://mainnet.infura.io/v3/${INFURA_API_KEY}',
-    'wss://mainnet.infura.io/ws/v3/${INFURA_API_KEY}',
-    'https://api.mycryptoapi.com/eth',
-    'https://cloudflare-eth.com',
-  ];
-  faucets: [];
-  nativeCurrency: {
-    name: 'Ether';
-    symbol: 'ETH';
-    decimals: 18;
-  };
-  infoURL: 'https://ethereum.org';
-  shortName: string; //'eth';
-  chainId: number;
-  networkId: 1;
-  slip44: 60;
-  ens: {
-    registry: string; //'0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
-  };
-  explorers: [
-    {
-      name: 'etherscan';
-      url: 'https://etherscan.io';
-      standard: 'EIP3091';
-    },
-  ];
-}[];

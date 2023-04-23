@@ -30,7 +30,7 @@
       "name": "JsonRpcProvider",
       "path": "src/index.ts",
       "import": "{ JsonRpcProvider }",
-      "limit": "20.32kb"
+      "limit": "17.62kb"
     },
     {
       "name": "Contract",
