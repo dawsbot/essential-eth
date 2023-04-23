@@ -1,4 +1,8 @@
 import * as unfetch from 'isomorphic-unfetch';
+import {
+  buildFetchInit,
+  buildRPCPostBody,
+} from '../../../classes/utils/fetchers';
 import { JsonRpcProvider } from '../../../index';
 import { mockOf } from '../mock-of';
 
@@ -18,17 +22,9 @@ describe('provider.getBlockNumber', () => {
     const spy = jest.spyOn(unfetch, 'default');
     const essentialEthBlockNumber = await essentialEthProvider.getBlockNumber();
     expect(essentialEthBlockNumber).toBe(10);
-    expect(spy).toHaveBeenCalledWith(TEST_URL, {
-      method: 'POST',
-      body: JSON.stringify({
-        jsonrpc: '2.0',
-        id: 1,
-        method: 'eth_blockNumber',
-        params: [],
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    expect(spy).toHaveBeenCalledWith(
+      TEST_URL,
+      buildFetchInit(buildRPCPostBody('eth_blockNumber', [])),
+    );
   });
 });

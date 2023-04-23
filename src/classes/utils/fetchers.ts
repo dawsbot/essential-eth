@@ -1,5 +1,18 @@
 import unfetch from 'isomorphic-unfetch';
 /**
+ * Forms the init field for http fetching
+ * @internal
+ */
+export function buildFetchInit<T>(body: T) {
+  return {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  };
+}
+/**
  * Makes a post request with the specified JSON data, normally to the a Ethereum JSON RPC API endpoint
  *
  * @internal
@@ -16,13 +29,7 @@ import unfetch from 'isomorphic-unfetch';
  * ```
  */
 export function post(url: string, body: Record<string, unknown>) {
-  return unfetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+  return unfetch(url, buildFetchInit(body))
     .then(async (r) => {
       const t = await r.text();
       try {
