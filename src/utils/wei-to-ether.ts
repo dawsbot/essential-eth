@@ -9,7 +9,6 @@ import { validateType } from '../shared/validate-type';
  * Similar to ["formatEther" in ethers.js](https://docs.ethers.io/v5/api/utils/display-logic/#utils-formatEther)
  *
  * Similar to ["fromWei" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#fromwei)
- *
  * @param weiQuantity the amount of wei to convert to ether
  * @returns a number of ether equivalent to the specified wei
  * @example

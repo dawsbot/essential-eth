@@ -1,6 +1,5 @@
 /**
  * Strips both leading and trailing zeroes from a number string
- *
  * @param numberString the string of numbers to strip zeros from
  * @returns a string of numbers without leading or trailing zeros
  * @example
@@ -31,7 +30,6 @@ function stripTrailingZeroes(numberString: string) {
 
 /**
  * Converts a string in scientific notation formatting to string in decimal format
- *
  * @param scientificString a string in scientific format to convert to decimal
  * @returns a string of a decimal number equivalent to the specified scientificString
  * @example
