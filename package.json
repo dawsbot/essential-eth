@@ -30,17 +30,17 @@
       "name": "JsonRpcProvider",
       "path": "src/index.ts",
       "import": "{ JsonRpcProvider }",
-      "limit": "17.62kb"
+      "limit": "17.66kb"
     },
     {
       "name": "Contract",
       "path": "src/index.ts",
       "import": "{ Contract }",
-      "limit": "15.38kb"
+      "limit": "15.44kb"
     }
   ],
   "scripts": {
-    "size": "npx size-limit",
+    "size": "size-limit",
     "test": "npm-run-all --parallel jest compile lint",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix .",
@@ -61,15 +61,15 @@
     "doc": "typedoc"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
+    "@size-limit/preset-small-lib": "^8.2.4",
     "@swc/cli": "^0.1.62",
     "@swc/core": "^1.3.53",
     "@types/eslint": "^8.37.0",
     "@types/jest": "^29.5.1",
     "@types/node": "^18.16.0",
     "@types/prettier": "^2.7.2",
-    "@typescript-eslint/eslint-plugin": "^5.26.0",
-    "@typescript-eslint/parser": "^5.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
     "@wagmi/core": "^0.10.10",
     "dotenv": "^16.0.0",
     "eslint": "^8.39.0",
@@ -85,6 +85,7 @@
     "perf_hooks": "^0.0.1",
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.2",
+    "size-limit": "^7.0.8",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "typedoc": "^0.24.5",
