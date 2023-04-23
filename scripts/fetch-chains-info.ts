@@ -1,5 +1,4 @@
 import fs from 'fs';
-import unfetch from 'isomorphic-unfetch';
 import path from 'path';
 
 const outputFilePath = path.join(
@@ -11,8 +10,8 @@ const outputFilePath = path.join(
   'chains-info.ts',
 );
 (async () => {
-  const toReturn: any = {};
-  await unfetch('https://chainid.network/chains.json')
+  const toReturn: Record<string, ReadonlyArray<string>> = {};
+  await fetch('https://chainid.network/chains.json')
     .then((res) => res.json())
     .then((data: ChainsData) => {
       data.forEach((networkInfo) => {
