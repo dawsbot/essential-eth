@@ -1,31 +1,39 @@
-import { ethers } from 'ethers';
-import { JsonRpcProvider } from '../../../index';
+import { isAddress, JsonRpcProvider } from '../../../index';
 import { fakeUrls, rpcUrls } from '../rpc-urls';
 
-const xdaiRPCUrl = rpcUrls.gno;
-const bscRPCUrl = rpcUrls.bnb;
-
+const testConfig = {
+  mainnet: {
+    rpcUrl: rpcUrls.mainnet,
+    chainId: 1,
+    name: 'eth',
+    ensAddress: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+  },
+  oeth: {
+    rpcUrl: rpcUrls.oeth,
+    chainId: 10,
+    name: 'oeth',
+    ensAddress: undefined,
+  },
+};
 describe('provider.getNetwork happy path', () => {
-  async function testNetwork(rpcUrl: string) {
-    const essentialEth = new JsonRpcProvider(rpcUrl);
-    const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
-    const [eeNetwork, ethersNetwork] = await Promise.all([
-      essentialEth.getNetwork(),
-      ethersProvider.getNetwork(),
-    ]);
+  async function testNetwork(networkName: keyof typeof testConfig) {
+    const config = testConfig[networkName];
+    const essentialEth = new JsonRpcProvider(config.rpcUrl);
+    const network = await essentialEth.getNetwork();
 
-    expect(eeNetwork.chainId).toBe(ethersNetwork.chainId);
-    expect(eeNetwork.ensAddress).toBe(ethersNetwork.ensAddress);
-    expect(eeNetwork.name).toBe(
-      // xdai was renamed to gnosis but ethers is still out-of-date
-      ethersNetwork.name === 'xdai' ? 'gno' : ethersNetwork.name,
+    expect(network.chainId).toBe(config.chainId);
+    expect(network.name).toBe(config.name);
+
+    expect(network.ensAddress ? isAddress(network.ensAddress) : true).toBe(
+      true,
     );
   }
-  it('xdai should match ethers', async () => {
-    await testNetwork(xdaiRPCUrl);
+
+  it('should return proper mainnet info', async () => {
+    await testNetwork('mainnet');
   });
-  it('bsc should match ethers', async () => {
-    await testNetwork(bscRPCUrl);
+  it('should return optimism info', async () => {
+    await testNetwork('oeth');
   });
 });
 

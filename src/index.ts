@@ -5,7 +5,7 @@ import {
   FallthroughProvider,
 } from './providers/FallthroughProvider';
 import { JsonRpcProvider, jsonRpcProvider } from './providers/JsonRpcProvider';
-import { tinyBig, TinyBig } from './shared/tiny-big/tiny-big';
+import { TinyBig, tinyBig } from './shared/tiny-big/tiny-big';
 import { BlockResponse, BlockTag, RPCBlock } from './types/Block.types';
 import {
   ContractTypes,

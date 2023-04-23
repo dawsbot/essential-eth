@@ -5,7 +5,6 @@ import { toChecksumAddress } from './to-checksum-address';
 
 /**
  * Computes the address that corresponds to a specified public or private key
- *
  * @param key the public or private key to find the address related to
  * @returns the address that corresponds to the key specified
  * @example

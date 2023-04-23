@@ -28,7 +28,6 @@ export class JsonRpcProvider extends BaseProvider {
 
 /**
  * Helper function to avoid "new"
- *
  * @param rpcUrl the RPC URL to post requests to
  * @returns an initiated {@link JsonRpcProvider}
  * @example

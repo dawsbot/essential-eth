@@ -2,8 +2,8 @@ import { logger } from './../logger/logger';
 import type { Signature, SignatureLike } from './bytes';
 import {
   arrayify,
-  hexlify,
   hexZeroPad,
+  hexlify,
   isBytesLike,
   isHexString,
   zeroPad,
@@ -13,7 +13,6 @@ import {
  * Expands a signature into the full signature object and fills in missing properties.
  *
  * Same as ["splitSignature" in ethers.js](https://docs.ethers.io/v5/api/utils/bytes/#utils-splitSignature)
- *
  * @param signature the signature object to split, parse, and compute missing properties from
  * @returns a full signature object with all properties filled
  * @example

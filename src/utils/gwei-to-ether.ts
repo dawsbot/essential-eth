@@ -9,7 +9,6 @@ import type { TinyBig } from './../shared/tiny-big/tiny-big';
  * No direct equivalent in ethers.js; requires multiple functions to achieve.
  *
  * No direct equivalent in web3; requires multiple functions to achieve.
- *
  * @param gweiQuantity the amount of gwei to convert to ether
  * @returns a number of ether equivalent to the specified gwei
  * @example

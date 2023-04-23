@@ -4,7 +4,6 @@ import { hexlify } from './bytes';
 
 /**
  * Computes the public key from a given private key
- *
  * @param privKey the private key to find a public key from
  * @returns the public key related to the specified private key
  * @example
