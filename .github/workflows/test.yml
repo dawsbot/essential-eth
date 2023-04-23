@@ -26,6 +26,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci --ignore-scripts
-      - run: npm test
-        with:
+      - name: 🧪 Test
+        run: npm test
+        env:
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
