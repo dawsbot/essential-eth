@@ -40,7 +40,7 @@
     }
   ],
   "scripts": {
-    "size": "size-limit",
+    "size": "npx size-limit",
     "test": "npm-run-all --parallel jest compile lint",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix .",
@@ -85,7 +85,6 @@
     "perf_hooks": "^0.0.1",
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.2",
-    "size-limit": "^7.0.8",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "typedoc": "^0.24.5",
