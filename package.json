@@ -77,7 +77,7 @@
     "eslint-plugin-jsdoc": "^43.0.7",
     "ethers": "^5.7.2",
     "husky": "^7.0.4",
-    "jest": "^29.5.0",
+    "jest": "^27.5.1",
     "just-omit": "^2.0.1",
     "lint-staged": "^13.2.1",
     "microbundle": "^0.15.1",
