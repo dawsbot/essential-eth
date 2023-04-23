@@ -1,5 +1,7 @@
+import * as chains from '@wagmi/core/chains';
 import fs from 'fs';
 import path from 'path';
+const importantChainIds = Object.values(chains).map(({ id }) => id);
 
 const outputFilePath = path.join(
   __dirname,
@@ -15,13 +17,15 @@ const outputFilePath = path.join(
     .then((res) => res.json())
     .then((data: ChainsData) => {
       data.forEach((networkInfo) => {
-        const writeableInfo = [networkInfo.shortName];
+        const { shortName, chainId } = networkInfo;
+        if (!importantChainIds.includes(chainId)) return;
+        const writeableInfo = [shortName];
 
         const registry = networkInfo?.ens?.registry;
         if (registry) {
           writeableInfo.push(registry);
         }
-        toReturn[networkInfo.chainId] = writeableInfo;
+        toReturn[chainId] = writeableInfo;
       });
     });
   fs.writeFileSync(
@@ -53,7 +57,7 @@ type ChainsData = {
   };
   infoURL: 'https://ethereum.org';
   shortName: string; //'eth';
-  chainId: 1;
+  chainId: number;
   networkId: 1;
   slip44: 60;
   ens: {

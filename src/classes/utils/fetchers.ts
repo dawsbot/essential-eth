@@ -1,6 +1,8 @@
 import unfetch from 'isomorphic-unfetch';
 /**
  * Forms the init field for http fetching
+ *
+ * @param body
  * @internal
  */
 export function buildFetchInit<T>(body: T) {
