@@ -3,11 +3,11 @@ export const fakeUrls = {
   notRPCButRealHttp: 'https://httpstat.us/200',
 } as const;
 
-const RPC_ORIGIN = process.env.RPC_ORIGIN;
+const RPC_ORIGIN = 'https://free-eth-node.com';
 z.string({
   required_error: '"RPC_ORIGIN" required but not found',
 })
-  .url('Expected url for "RPC_URIGIN"')
+  .url('Expected url for "RPC_ORIGIN"')
   .parse(RPC_ORIGIN);
 
 export const rpcUrls = {
