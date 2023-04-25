@@ -103,10 +103,8 @@
 - [More Info](#more-info)
   - [Identical vs Similar vs Dissimilar {&#035;isd}](#identical-vs-similar-vs-dissimilar-isd)
   - [Miscellaneous](#miscellaneous)
-  - [GitPOAP](#gitpoap)
-    - [What is a GitPOAP?](#what-is-a-gitpoap)
-    - [How can I claim?](#how-can-i-claim)
-    - [What issues should I start on first?](#what-issues-should-i-start-on-first)
+- [Contributing](#Contributing-and-GitPOAP)
+  - [Contributing Guidelines Doc](CONTRIBUTING.md)
 
 </details>
 
@@ -1585,6 +1583,8 @@ Note: In `web3.js`, almost every method or function can be passed a callback. `e
 - [📓 View changelog (by looking at releases diff)](https://github.com/dawsbot/essential-eth/releases)
 - [📋 View our project board](https://github.com/dawsbot/essential-eth/projects/1)
 
-### Contributing
+## Contributing and GitPOAP
 
 We welcome and appreciate all contributions to Essential Eth! If you're interested in helping us improve this library, please read our [Contributing guidelines](CONTRIBUTING.md) to understand the types of contributions we're looking for and the process of making them.
+
+In partnership with GitPOAP, Essential ETH wants to recognize **all** contributors for their contributions toward the growth of this library. More information about GitPOAP can be found on the Contributing Docs.
