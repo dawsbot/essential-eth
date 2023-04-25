@@ -3,6 +3,7 @@ import {
   buildFetchInit,
   buildRPCPostBody,
 } from '../../../classes/utils/fetchers';
+import type { TinyBig } from '../../../shared/tiny-big/tiny-big';
 import { JsonRpcProvider } from '../../JsonRpcProvider';
 import { mockOf } from '../mock-of';
 import { rpcUrls } from './../rpc-urls';
@@ -37,15 +38,17 @@ describe('provider.getFeeData', () => {
     } as Response);
     const spy = jest.spyOn(unfetch, 'default');
 
-    const feeData = await essentialEthProvider.getFeeData();
+    const feeData = (await essentialEthProvider.getFeeData()) as {
+      gasPrice: TinyBig;
+      lastBaseFeePerGas: TinyBig;
+      maxFeePerGas: TinyBig;
+      maxPriorityFeePerGas: TinyBig;
+    };
     expect(feeData.gasPrice.toString()).toBe('10');
-    // @ts-ignore
     // lastBaseFeePerGas should be equal to the mocked baseFeePerGas value
     expect(feeData.lastBaseFeePerGas.toString()).toBe('10');
-    // @ts-ignore
     // maxFeePerGas is calculated as (baseFeePerGas * 2) + maxPriorityFeePerGas, (10 * 2) + 1500000000 = 1500000020
     expect(feeData.maxFeePerGas.toString()).toBe('1500000020');
-    // @ts-ignore
     // maxPriorityFeePerGas is a constant value (1500000000) in the getFeeData function
     expect(feeData.maxPriorityFeePerGas.toString()).toBe('1500000000');
     expect(spy).toHaveBeenCalledWith(
