@@ -1585,6 +1585,6 @@ Note: In `web3.js`, almost every method or function can be passed a callback. `e
 
 ## Contributing and GitPOAP
 
-We welcome and appreciate all contributions to Essential Eth! If you're interested in helping us improve this library, please read our [Contributing guidelines](CONTRIBUTING.md) to understand the types of contributions we're looking for and the process of making them.
+We welcome and appreciate all contributions to Essential Eth! If you're interested in helping us improve this library, please read our [Contributing Guidelines](CONTRIBUTING.md) to understand the types of contributions we're looking for and the process of making them.
 
-In partnership with GitPOAP, Essential ETH wants to recognize **all** contributors for their contributions toward the growth of this library. More information about GitPOAP can be found on the Contributing Docs.
+In partnership with GitPOAP, Essential ETH wants to recognize **all** contributors for their contributions toward the growth of this library. More information about GitPOAP can be found on the [Contributing Guidelines](CONTRIBUTING.md#GitPOAP)
