@@ -36,25 +36,25 @@ const dataFromGasTo = {
 };
 
 describe('provider.call', () => {
-  const essentialEthProvider = new JsonRpcProvider(rpcUrl);
+  const provider = new JsonRpcProvider(rpcUrl);
 
   it('throws', async () => {
     await expect(
-      essentialEthProvider.call({
+      provider.call({
         ...dataTo,
         maxFeePerGas: '0x12',
         maxPriorityFeePerGas: '0x123',
       }),
     ).rejects.toThrow();
     await expect(
-      essentialEthProvider.call({
+      provider.call({
         ...dataTo,
         gasPrice: '0xfffffff',
         maxFeePerGas: '0x12',
       }),
     ).rejects.toThrow();
     await expect(
-      essentialEthProvider.call({
+      provider.call({
         ...dataTo,
         gasPrice: '0xfffffff',
         maxPriorityFeePerGas: '0x123',
@@ -63,7 +63,7 @@ describe('provider.call', () => {
   });
 
   async function testWithMockedResponse(data: TransactionRequest) {
-    // a sample Ethereum node response (hex string) expected from call() as a result of "executing" the transaction
+    // a sample Ethereum node response (hex string) expected from call() as a result of "executing" a transaction
     const expectedResult =
       '0x0000000000000000000000000000000000000000000000000858898f93629000';
     mockOf(unfetch.default).mockResolvedValueOnce({
@@ -75,8 +75,8 @@ describe('provider.call', () => {
 
     const spy = jest.spyOn(unfetch, 'default');
 
-    const eeCall = await essentialEthProvider.call(data);
-    expect(eeCall).toBe(expectedResult);
+    const callProvider = await provider.call(data);
+    expect(callProvider).toBe(expectedResult);
 
     expect(spy).toHaveBeenCalledWith(
       rpcUrl,
@@ -86,20 +86,20 @@ describe('provider.call', () => {
     );
   }
 
-  it('should return a valid response -- data, to', async () => {
+  it('should return a valid response for given input -- data, to', async () => {
     await testWithMockedResponse(dataTo);
   });
 
-  it('should return a valid response -- data, to, gasPrice', async () => {
+  it('should return a valid response for given input -- data, to, gasPrice', async () => {
     const data = { ...dataTo, gasPrice: 99999999999 };
     await testWithMockedResponse(data);
   });
 
-  it('should return a valid response -- all mixed data as strings', async () => {
+  it('should return a valid response for given input -- all mixed data as strings', async () => {
     await testWithMockedResponse(dataFromGasTo);
   });
 
-  it('should return a valid response -- all mixed data as TinyBig', async () => {
+  it('should return a valid response for given input -- all mixed data as TinyBig', async () => {
     await testWithMockedResponse({
       ...dataFromGasTo,
       nonce: tinyBig(dataFromGasTo.nonce),
@@ -108,7 +108,7 @@ describe('provider.call', () => {
     });
   });
 
-  it('should return a valid response -- all mixeddata as Big', async () => {
+  it('should return a valid response for given input -- all mixeddata as Big', async () => {
     await testWithMockedResponse({
       ...dataFromGasTo,
       nonce: new Big(hexToDecimal(dataFromGasTo.nonce)),
