@@ -108,7 +108,7 @@ describe('provider.call', () => {
     });
   });
 
-  it('should return a valid response for given input -- all mixeddata as Big', async () => {
+  it('should return a valid response for given input -- all mixed data as Big', async () => {
     await testWithMockedResponse({
       ...dataFromGasTo,
       nonce: new Big(hexToDecimal(dataFromGasTo.nonce)),
