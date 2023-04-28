@@ -1,125 +1,118 @@
-import { ethers } from 'ethers';
-import omit from 'just-omit';
-import Web3 from 'web3';
-import type web3core from 'web3-core';
+import Big from 'big.js';
+import * as unfetch from 'isomorphic-unfetch';
+import type { TransactionRequest } from '../../..';
+import { JsonRpcProvider, tinyBig } from '../../..';
+import {
+  buildFetchInit,
+  buildRPCPostBody,
+} from '../../../classes/utils/fetchers';
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
-import { JsonRpcProvider, tinyBig } from '../../../index';
-import type { TransactionResponse } from '../../../types/Transaction.types';
-import { rpcUrls } from '../rpc-urls';
+import { prepareTransaction } from '../../../classes/utils/prepare-transaction';
+import { mockOf } from '../mock-of';
+import { rpcUrls } from './../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
 
-describe('provider.getTransaction', () => {
-  function testTransactionEquality(
-    transaction1: ethers.providers.TransactionResponse | web3core.Transaction,
-    transaction2: TransactionResponse,
-  ) {
-    let numCheckKeys: Array<string> = [];
-    let omittable1: Array<string> = [];
-    let omittable2: Array<string> = [];
-    if ((transaction1 as ethers.providers.TransactionResponse).confirmations) {
-      // only the ethers response has confirmations
-      // requires manually comparing values via bigNum conversion
-      numCheckKeys = [
-        'nonce',
-        'value',
-        'gas',
-        'gasPrice',
-        'maxFeePerGas',
-        'maxPriorityFeePerGas',
-        'confirmations',
-      ];
+jest.mock('isomorphic-unfetch');
 
-      omittable1 = [
-        'wait', // ethers injects this to allow you to wait on a certain confirmation count
-        'creates', // ethers injects this custom https://github.com/ethers-io/ethers.js/blob/948f77050dae884fe88932fd88af75560aac9d78/packages/providers/src.ts/formatter.ts#L336
-        'data', // ethers renames input to data https://github.com/ethers-io/ethers.js/blob/948f77050dae884fe88932fd88af75560aac9d78/packages/providers/src.ts/formatter.ts#L331
-        'gasLimit', // ethers renames gas to gasLimit https://github.com/ethers-io/ethers.js/blob/948f77050dae884fe88932fd88af75560aac9d78/packages/providers/src.ts/formatter.ts#L320
-        'input',
-        ...numCheckKeys,
-      ];
+// Based on https://etherscan.io/tx/0x277c40de5bf1d4fa06e37dce8e1370dac7273a4b2a883515176f51abaa50d512
+const dataTo = {
+  data: '0x70a082310000000000000000000000006E0d01A76C3Cf4288372a29124A26D4353EE51BE',
+  to: '0x6b175474e89094c44da98b954eedeac495271d0f',
+};
 
-      omittable2 = ['input', ...numCheckKeys];
+// Based on https://etherscan.io/tx/0xfc4a0544289c9eae2f94a9091208e3793ef8e9e93ea4dbaa80f70115be5e9813
+const dataFromGasTo = {
+  to: '0x3d13c2224a1cdd661e4cc91091f83047750270c5',
+  from: '0x0000000000000000000000000000000000000000',
+  nonce: '0x1',
+  gas: 999999,
+  data: '0x1234',
+  value: '0x123',
+  // not sure how to get "chainId" into proper format
+  // chainId: 1,
+  type: 1,
+  maxFeePerGas: '0xffffffffff',
+};
 
-      numCheckKeys.forEach((key) => {
-        let ethersKey = key as keyof ethers.providers.TransactionResponse;
-        if (key === 'gas') {
-          ethersKey = 'gasLimit';
-        }
-        // give small room for error in tests
-        expect(
-          tinyBig((transaction1 as any)[ethersKey])
-            .minus(tinyBig((transaction2 as any)[key]))
-            .abs()
-            .lt(2),
-        ).toBe(true);
-      });
+describe('provider.call', () => {
+  const essentialEthProvider = new JsonRpcProvider(rpcUrl);
 
-      expect(
-        Math.abs(
-          (transaction1 as ethers.providers.TransactionResponse).confirmations -
-            transaction2.confirmations,
-        ),
-      ).toBeLessThan(3);
-    } else {
-      numCheckKeys = [
-        'chainId',
-        'gas',
-        'gasPrice',
-        'maxFeePerGas',
-        'maxPriorityFeePerGas',
-        'nonce',
-        'v',
-        'value',
-      ];
-      omittable1 = [...numCheckKeys];
-      omittable2 = ['confirmations', ...numCheckKeys];
-
-      numCheckKeys.forEach((key) => {
-        if (
-          typeof (transaction1 as any)[key] === 'string' &&
-          (transaction1 as any)[key].startsWith('0x')
-        ) {
-          (transaction1 as any)[key] = Number(
-            hexToDecimal((transaction1 as any)[key]),
-          );
-        }
-        // give room for error in tests
-        expect(
-          tinyBig((transaction1 as any)[key])
-            .minus(tinyBig((transaction2 as any)[key]))
-            .abs()
-            .lt(2),
-        ).toBe(true);
-      });
-    }
-
-    const omittedTransaction1 = omit(transaction1, omittable1 as any);
-    const omittedTransaction2 = omit(transaction2, omittable2 as any);
-    expect(omittedTransaction1).toMatchObject(omittedTransaction2);
-  }
-  it('should match web3.js', async () => {
-    const transactionHash =
-      '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789';
-    const web3Provider = new Web3(rpcUrl);
-    const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-    const [web3Transaction, essentialEthTransaction] = await Promise.all([
-      web3Provider.eth.getTransaction(transactionHash),
-      essentialEthProvider.getTransaction(transactionHash),
-    ]);
-
-    testTransactionEquality(web3Transaction, essentialEthTransaction);
+  it('throws', async () => {
+    await expect(
+      essentialEthProvider.call({
+        ...dataTo,
+        maxFeePerGas: '0x12',
+        maxPriorityFeePerGas: '0x123',
+      }),
+    ).rejects.toThrow();
+    await expect(
+      essentialEthProvider.call({
+        ...dataTo,
+        gasPrice: '0xfffffff',
+        maxFeePerGas: '0x12',
+      }),
+    ).rejects.toThrow();
+    await expect(
+      essentialEthProvider.call({
+        ...dataTo,
+        gasPrice: '0xfffffff',
+        maxPriorityFeePerGas: '0x123',
+      }),
+    ).rejects.toThrow();
   });
-  it('should match ethers.js', async () => {
-    const transactionHash =
-      '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789';
-    const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
-    const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-    const [ethersTransaction, essentialEthTransaction] = await Promise.all([
-      ethersProvider.getTransaction(transactionHash),
-      essentialEthProvider.getTransaction(transactionHash),
-    ]);
 
-    testTransactionEquality(ethersTransaction, essentialEthTransaction);
+  async function testWithMockedResponse(data: TransactionRequest) {
+    // a sample Ethereum node response (hex string) expected from call() as a result of "executing" the transaction
+    const expectedResult = '0x0000000000000000000000000000000000000000000000000858898f93629000';
+    mockOf(unfetch.default).mockResolvedValueOnce({
+      text: () =>
+        Promise.resolve(
+          JSON.stringify({ jsonrpc: '2.0', id: 1, result: expectedResult }),
+        ),
+    } as Response);
+
+    const spy = jest.spyOn(unfetch, 'default');
+
+    const eeCall = await essentialEthProvider.call(data);
+    expect(eeCall).toBe(expectedResult);
+
+    expect(spy).toHaveBeenCalledWith(
+      rpcUrl,
+      buildFetchInit(
+        buildRPCPostBody('eth_call', [prepareTransaction(data), 'latest']),
+      ),
+    );
+  }
+
+  it('should return a valid response -- data, to', async () => {
+    await testWithMockedResponse(dataTo);
+  });
+
+  it('should return a valid response -- data, to, gasPrice', async () => {
+    const data = { ...dataTo, gasPrice: 99999999999 };
+    await testWithMockedResponse(data);
+  });
+
+  it('should return a valid response -- all mixed data as strings', async () => {
+    await testWithMockedResponse(dataFromGasTo);
+  });
+
+  it('should return a valid response -- all mixed data as TinyBig', async () => {
+    await testWithMockedResponse({
+      ...dataFromGasTo,
+      nonce: tinyBig(dataFromGasTo.nonce),
+      gas: tinyBig(dataFromGasTo.gas),
+      value: tinyBig(dataFromGasTo.value),
+    });
+  });
+
+  it('should return a valid response -- all mixeddata as Big', async () => {
+    await testWithMockedResponse({
+      ...dataFromGasTo,
+      nonce: new Big(hexToDecimal(dataFromGasTo.nonce)),
+      gas: new Big(dataFromGasTo.gas),
+      value: new Big(hexToDecimal(dataFromGasTo.value)),
+    });
   });
 });
