@@ -63,7 +63,7 @@ describe('provider.call', () => {
   });
 
   async function testWithMockedResponse(data: TransactionRequest) {
-    // a sample Ethereum node response (hex string) expected from call() as a result of "executing" a transaction
+    // a sample Ethereum node response expected from call() as a result of "executing" a transaction
     const expectedResult =
       '0x0000000000000000000000000000000000000000000000000858898f93629000';
     mockOf(unfetch.default).mockResolvedValueOnce({
