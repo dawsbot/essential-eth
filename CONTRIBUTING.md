@@ -1,6 +1,6 @@
 # Essential Eth Contributing Guide
 
-Thank you for your interest in contributing to Essential Eth! We appreciate your effort to help us create smaller bundle sizes for emerging markets.🙌🌍 This guide will help you understand the types of contributions and the process of making them.
+Thank you for your interest in contributing to Essential Eth! We appreciate your effort to help us create smaller bundle sizes for emerging markets. 🙌🌍 This guide will help you understand the types of contributions and the process of making them.
 
 ## Types of contributions
 
