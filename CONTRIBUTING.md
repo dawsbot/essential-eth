@@ -9,6 +9,7 @@ Thank you for your interest in contributing to Essential Eth! We appreciate your
 - 🧼 Cleanup: Improving code quality, removing unused code or files, and optimizing the codebase.
 - 🤓 Internal refactors: Refactoring the codebase to improve its structure and maintainability without changing its functionality.
 - 📓 Docs: Creating, updating, or improving documentation to help users understand and use Essential Eth more effectively.
+- 🧪 Tests: Writing, updating, and maintaining tests to ensure the reliability and stability of the Essential Eth codebase.
 
 ## What issues should I start on first?
 
