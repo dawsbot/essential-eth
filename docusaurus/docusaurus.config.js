@@ -3,6 +3,8 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const githubLinks = require("./remark-github-links");
+
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -38,6 +40,7 @@ const config = {
           // Please change this to your repo.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          remarkPlugins: [githubLinks],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
