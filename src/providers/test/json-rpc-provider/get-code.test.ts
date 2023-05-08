@@ -1,7 +1,8 @@
-import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import Web3 from 'web3';
-import { JsonRpcProvider } from '../../../index';
+import * as unfetch from 'isomorphic-unfetch';
+import { JsonRpcProvider, tinyBig } from '../../../index';
 import { rpcUrls } from './../rpc-urls';
+import { mockOf } from '../mock-of';
+import { buildFetchInit, buildRPCPostBody } from '../../../classes/utils/fetchers';
 
 // Using Polygon to be able to access archive blocks
 // Choosing to use Ethereum mainnet means that as new blocks are generated, block numbers used in testing may be inaccessible and cause tests to fail
@@ -27,37 +28,53 @@ const inputs = [
   },
 ];
 
+const mockCodeResult = '0x06060060600606006060060600606006060'
+
 describe('provider.getCode', () => {
-  const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-  const ethersProvider = new StaticJsonRpcProvider(rpcUrl);
-  const web3Provider = new Web3(rpcUrl);
-  it('should match ethers.js', async () => {
-    await inputs.forEach(async (input) => {
-      const [essentialEthCode, ethersCode] = await Promise.all([
-        essentialEthProvider.getCode(input.address, input.blockTag),
-        ethersProvider.getCode(input.address, input.blockTag),
-      ]);
-      expect(essentialEthCode).toStrictEqual(ethersCode);
-    });
-  });
-  it('should match web3.js', async () => {
-    await inputs.forEach(async (input) => {
-      const [essentialEthCode, web3Code] = await Promise.all([
-        essentialEthProvider.getCode(input.address, input.blockTag),
-        web3Provider.eth.getCode(input.address, input.blockTag as any),
-      ]);
-      expect(essentialEthCode).toStrictEqual(web3Code);
-    });
-  });
+  const provider = new JsonRpcProvider(rpcUrl);
+
   it('should return `0x` when a contract does not exist', async () => {
+    jest.unmock('isomorphic-unfetch');
     const invalidInput = {
       address: '0xd31a02A126Bb7ACD359BD61E9a8276959408855E',
       blockTag: 28314328,
     };
-    const essentialEthCode = await essentialEthProvider.getCode(
+    const code = await provider.getCode(
       invalidInput.address,
       invalidInput.blockTag,
     );
-    expect(essentialEthCode).toBe('0x');
+    expect(code).toBe('0x');
   });
+
+  it('should return the correct code for the given input', async () => {
+    const spy = jest.spyOn(unfetch, 'default');
+    spy.mockImplementation((url) => {
+      const mockResponse = new Response(
+        JSON.stringify({ jsonrpc: '2.0', id: 1, result: mockCodeResult })
+      );
+      return Promise.resolve(mockResponse);
+    });
+    for (const input of inputs) {
+      jest.spyOn(unfetch, 'default').mockImplementation(() =>
+      Promise.resolve({
+      json: () => Promise.resolve({result: mockCodeResult}),
+        })
+      );
+      
+      const code = await provider.getCode(input.address, input.blockTag);
+
+      expect(code).toBe(mockCodeResult);
+
+      const expectedBlockTag = typeof input.blockTag === 'number'
+        ? tinyBig(input.blockTag).toHexString()
+        : input.blockTag ?? 'latest';
+      expect(spy).toHaveBeenCalledWith(
+        rpcUrl,
+        buildFetchInit(buildRPCPostBody('eth_getCode', [input.address, expectedBlockTag])),
+      );
+    }
+  });
+
+
+
 });
