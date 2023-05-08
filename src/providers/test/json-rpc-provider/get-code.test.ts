@@ -75,6 +75,4 @@ describe('provider.getCode', () => {
     }
   });
 
-
-
 });
