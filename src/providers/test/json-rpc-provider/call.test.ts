@@ -1,11 +1,19 @@
 import Big from 'big.js';
-import { ethers } from 'ethers';
-import Web3 from 'web3';
+import * as unfetch from 'isomorphic-unfetch';
+import type { TransactionRequest } from '../../..';
 import { JsonRpcProvider, tinyBig } from '../../..';
+import {
+  buildFetchInit,
+  buildRPCPostBody,
+} from '../../../classes/utils/fetchers';
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
+import { prepareTransaction } from '../../../classes/utils/prepare-transaction';
+import { mockOf } from '../mock-of';
 import { rpcUrls } from './../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
+
+jest.mock('isomorphic-unfetch');
 
 // Based on https://etherscan.io/tx/0x277c40de5bf1d4fa06e37dce8e1370dac7273a4b2a883515176f51abaa50d512
 const dataTo = {
@@ -28,27 +36,25 @@ const dataFromGasTo = {
 };
 
 describe('provider.call', () => {
-  const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-  const web3Provider = new Web3(rpcUrl);
-  const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
+  const provider = new JsonRpcProvider(rpcUrl);
 
   it('throws', async () => {
     await expect(
-      essentialEthProvider.call({
+      provider.call({
         ...dataTo,
         maxFeePerGas: '0x12',
         maxPriorityFeePerGas: '0x123',
       }),
     ).rejects.toThrow();
     await expect(
-      essentialEthProvider.call({
+      provider.call({
         ...dataTo,
         gasPrice: '0xfffffff',
         maxFeePerGas: '0x12',
       }),
     ).rejects.toThrow();
     await expect(
-      essentialEthProvider.call({
+      provider.call({
         ...dataTo,
         gasPrice: '0xfffffff',
         maxPriorityFeePerGas: '0x123',
@@ -56,73 +62,58 @@ describe('provider.call', () => {
     ).rejects.toThrow();
   });
 
-  it('should match ethers.js -- data, to', async () => {
-    const [eeCall, ethersCall, web3Call] = await Promise.all([
-      essentialEthProvider.call(dataTo),
-      ethersProvider.call(dataTo),
-      web3Provider.eth.call(dataTo),
-    ]);
-    expect(eeCall).toBe(ethersCall);
-    expect(eeCall).toBe(web3Call);
+  async function testWithMockedResponse(data: TransactionRequest) {
+    // a sample Ethereum node response expected from call() as a result of "executing" a transaction
+    const expectedResult =
+      '0x0000000000000000000000000000000000000000000000000858898f93629000';
+    mockOf(unfetch.default).mockResolvedValueOnce({
+      text: () =>
+        Promise.resolve(
+          JSON.stringify({ jsonrpc: '2.0', id: 1, result: expectedResult }),
+        ),
+    } as Response);
+
+    const spy = jest.spyOn(unfetch, 'default');
+
+    const callProvider = await provider.call(data);
+    expect(callProvider).toBe(expectedResult);
+
+    expect(spy).toHaveBeenCalledWith(
+      rpcUrl,
+      buildFetchInit(
+        buildRPCPostBody('eth_call', [prepareTransaction(data), 'latest']),
+      ),
+    );
+  }
+
+  it('should return a valid response for given input -- data, to', async () => {
+    await testWithMockedResponse(dataTo);
   });
 
-  it('should match ethers.js -- data, to, gasPrice', async () => {
+  it('should return a valid response for given input -- data, to, gasPrice', async () => {
     const data = { ...dataTo, gasPrice: 99999999999 };
-    const [eeCall, ethersCall, web3Call] = await Promise.all([
-      essentialEthProvider.call(data),
-      ethersProvider.call(data),
-      web3Provider.eth.call(data),
-    ]);
-    expect(eeCall).toBe(ethersCall);
-    expect(eeCall).toBe(web3Call);
+    await testWithMockedResponse(data);
   });
 
-  it('should match ethers.js -- all mixed data as strings', async () => {
-    const [eeCall, ethersCall, web3Call] = await Promise.all([
-      essentialEthProvider.call(dataFromGasTo),
-      ethersProvider.call(dataFromGasTo),
-      web3Provider.eth.call({
-        ...dataFromGasTo,
-        nonce: Number(hexToDecimal(dataFromGasTo.nonce)),
-      }),
-    ]);
-    expect(eeCall).toBe(ethersCall);
-    expect(eeCall).toBe(web3Call);
+  it('should return a valid response for given input -- all mixed data as strings', async () => {
+    await testWithMockedResponse(dataFromGasTo);
   });
 
-  it('should match ethers.js -- all mixed data as TinyBig', async () => {
-    const [eeCall, ethersCall, web3Call] = await Promise.all([
-      essentialEthProvider.call({
-        ...dataFromGasTo,
-        nonce: tinyBig(dataFromGasTo.nonce),
-        gas: tinyBig(dataFromGasTo.gas),
-        value: tinyBig(dataFromGasTo.value),
-      }),
-      ethersProvider.call(dataFromGasTo),
-      web3Provider.eth.call({
-        ...dataFromGasTo,
-        nonce: Number(hexToDecimal(dataFromGasTo.nonce)),
-      }),
-    ]);
-    expect(eeCall).toBe(ethersCall);
-    expect(eeCall).toBe(web3Call);
+  it('should return a valid response for given input -- all mixed data as TinyBig', async () => {
+    await testWithMockedResponse({
+      ...dataFromGasTo,
+      nonce: tinyBig(dataFromGasTo.nonce),
+      gas: tinyBig(dataFromGasTo.gas),
+      value: tinyBig(dataFromGasTo.value),
+    });
   });
 
-  it('should match ethers.js -- all mixeddata as Big', async () => {
-    const [eeCall, ethersCall, web3Call] = await Promise.all([
-      essentialEthProvider.call({
-        ...dataFromGasTo,
-        nonce: new Big(hexToDecimal(dataFromGasTo.nonce)),
-        gas: new Big(dataFromGasTo.gas),
-        value: new Big(hexToDecimal(dataFromGasTo.value)),
-      }),
-      ethersProvider.call(dataFromGasTo),
-      web3Provider.eth.call({
-        ...dataFromGasTo,
-        nonce: Number(hexToDecimal(dataFromGasTo.nonce)),
-      }),
-    ]);
-    expect(eeCall).toBe(ethersCall);
-    expect(eeCall).toBe(web3Call);
+  it('should return a valid response for given input -- all mixed data as Big', async () => {
+    await testWithMockedResponse({
+      ...dataFromGasTo,
+      nonce: new Big(hexToDecimal(dataFromGasTo.nonce)),
+      gas: new Big(dataFromGasTo.gas),
+      value: new Big(hexToDecimal(dataFromGasTo.value)),
+    });
   });
 });
