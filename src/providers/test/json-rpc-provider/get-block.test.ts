@@ -51,74 +51,46 @@ const mockBlock = {
   timestamp: tinyBig(mockBlockResponse.timestamp),
 };
 
+async function runTest(method: any, params: any[], responseIdentifier: string | number): Promise<void> {
+  jest.clearAllMocks();
+  mockOf(unfetch.default).mockResolvedValueOnce({
+    text: () => Promise.resolve(mockRpcBlockResponse),
+  } as Response);
+  const spy = jest.spyOn(unfetch, 'default');
+
+  const result = await provider.getBlock(responseIdentifier);
+  expect(spy).toHaveBeenCalledWith(
+    rpcUrl,
+    buildFetchInit(buildRPCPostBody(method, params)),
+  );
+
+  expect(JSON.stringify(result)).toBe(JSON.stringify(mockBlock));
+}
+
 describe('provider.getBlock', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockOf(unfetch.default).mockResolvedValueOnce({
-      text: () => Promise.resolve(mockRpcBlockResponse),
-    } as Response);
-  });
-
   it('should match mocked -- latest', async () => {
-    const spy = jest.spyOn(unfetch, 'default');
-    const latestBlock = await provider.getBlock('latest');
-    expect(spy).toHaveBeenCalledWith(
-      rpcUrl,
-      buildFetchInit(
-        buildRPCPostBody('eth_getBlockByNumber', ['latest', false]),
-      ),
-    );
-    
-    expect(JSON.stringify(latestBlock)).toBe(JSON.stringify(mockBlock));
+    await runTest('eth_getBlockByNumber', ['latest', false], 'latest');
   });
 
-  it('should match mocked -- earliest', async () => {
-    const spy = jest.spyOn(unfetch, 'default');
-    const earliestBlock = await provider.getBlock('earliest');
-    expect(spy).toHaveBeenCalledWith(
-      rpcUrl,
-      buildFetchInit(
-        buildRPCPostBody('eth_getBlockByNumber', ['earliest', false]),
-      ),
-    );
-    
-    expect(JSON.stringify(earliestBlock)).toBe(JSON.stringify(mockBlock));
+  it('should match mocked block -- earliest', async () => {
+    await runTest('eth_getBlockByNumber', ['earliest', false], 'earliest');
   });
 
-  const blockNumber = Math.floor(Math.random() * 4202460 /* latest block */);
-  it(`should match mocked -- random block as decimal integer. (block #${blockNumber})`, async () => {
-    const spy = jest.spyOn(unfetch, 'default');
-    const randomBlock = await provider.getBlock(blockNumber);
-    expect(spy).toHaveBeenCalledWith(
-      rpcUrl,
-      buildFetchInit(
-        buildRPCPostBody('eth_getBlockByNumber', [tinyBig(blockNumber).toHexString(), false]),
-      ),
-    );
-
-    expect(JSON.stringify(randomBlock)).toBe(JSON.stringify(mockBlock));
+  const blockNumber = 1000000; // a certain block number for testing
+  it(`should match mocked block -- specific block number as decimal integer. (block #${blockNumber})`, async () => {
+    await runTest('eth_getBlockByNumber', [tinyBig(blockNumber).toHexString(), false], blockNumber);
   });
 
   const blockHash =
     '0x4cbaa942e48a91108f38e2a250f6dbaff7fffe3027f5ebf76701929eed2b2970'; // Hash corresponds to block on RSK Mainnet
-  it(`should match mocked -- block by hash. (hash = ${blockHash})`, async () => {
-    const spy = jest.spyOn(unfetch, 'default');
-    const blockByHash = await provider.getBlock(blockHash);
-    expect(spy).toHaveBeenCalledWith(
-      rpcUrl,
-      buildFetchInit(
-        buildRPCPostBody('eth_getBlockByHash', [blockHash, false]),
-      ),
-    );
-
-    expect(JSON.stringify(blockByHash)).toBe(JSON.stringify(mockBlock));
+  it(`should match mocked block -- block by hash. (hash = ${blockHash})`, async () => {
+    await runTest('eth_getBlockByHash', [blockHash, false], blockHash);
   });
 });
 
 describe('provider.getBlock error handling', () => {
   it('should handle empty 200 http response', async () => {
     mockOf(unfetch.default).mockResolvedValueOnce({
-      status: 200,
       text: () => Promise.resolve("200 OK"),
     } as Response);
 
@@ -140,7 +112,6 @@ describe('provider.getBlock error handling', () => {
 
   it('should handle empty JSON object', async () => {
     mockOf(unfetch.default).mockResolvedValueOnce({
-      status: 200,
       text: () => Promise.resolve("{}"),
     } as Response);
   
