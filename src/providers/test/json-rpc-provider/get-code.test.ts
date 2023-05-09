@@ -30,37 +30,21 @@ const inputs = [
 
 const mockCodeResult = '0x06060060600606006060060600606006060'
 
-describe('provider.getCode', () => {
-  const provider = new JsonRpcProvider(rpcUrl);
 
-  it('should return `0x` when a contract does not exist', async () => {
-    jest.unmock('isomorphic-unfetch');
-    const invalidInput = {
-      address: '0xd31a02A126Bb7ACD359BD61E9a8276959408855E',
-      blockTag: 28314328,
-    };
-    const code = await provider.getCode(
-      invalidInput.address,
-      invalidInput.blockTag,
-    );
-    expect(code).toBe('0x');
-  });
+
+describe('provider.getCode with Mock', () => {
+  const provider = new JsonRpcProvider(rpcUrl);
 
   it('should return the correct code for the given input', async () => {
     const spy = jest.spyOn(unfetch, 'default');
-    spy.mockImplementation((url) => {
-      const mockResponse = new Response(
-        JSON.stringify({ jsonrpc: '2.0', id: 1, result: mockCodeResult })
-      );
-      return Promise.resolve(mockResponse);
-    });
+    const mockResponse = new Response( JSON.stringify({ jsonrpc: '2.0', id: 1, result: mockCodeResult }));
+    mockOf(unfetch.default).mockResolvedValueOnce({
+      text: () => Promise.resolve(mockResponse),
+    } as Response);
     for (const input of inputs) {
-      jest.spyOn(unfetch, 'default').mockImplementation(() =>
-      Promise.resolve({
-      json: () => Promise.resolve({result: mockCodeResult}),
-        })
-      );
       
+      // Mock the fetch response
+
       const code = await provider.getCode(input.address, input.blockTag);
 
       expect(code).toBe(mockCodeResult);
@@ -75,4 +59,15 @@ describe('provider.getCode', () => {
     }
   });
 
+  it('should return `0x` when a contract does not exist', async () => {
+    const invalidInput = {
+      address: '0xd31a02A126Bb7ACD359BD61E9a8276959408855E',
+      blockTag: 28314328,
+    };
+    const code = await provider.getCode(
+      invalidInput.address,
+      invalidInput.blockTag,
+    );
+    expect(code).toBe('0x');
+  });
 });
