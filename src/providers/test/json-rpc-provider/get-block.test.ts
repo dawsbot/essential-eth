@@ -1,16 +1,17 @@
 import * as unfetch from 'isomorphic-unfetch';
 import {
+  RPCMethodName,
   buildFetchInit,
   buildRPCPostBody,
 } from '../../../classes/utils/fetchers';
 import { JsonRpcProvider, tinyBig, toChecksumAddress } from '../../..';
 import { mockOf } from '../mock-of';
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
+import { rpcUrls } from '../rpc-urls';
 
 jest.mock('isomorphic-unfetch');
 
-// RSK has 30 second block times so tests pass more often
-const rpcUrl = `https://public-node.rsk.co`;
+const rpcUrl = rpcUrls.mainnet;
 
 const provider = new JsonRpcProvider(rpcUrl);
 
@@ -51,7 +52,7 @@ const mockBlock = {
   timestamp: tinyBig(mockBlockResponse.timestamp),
 };
 
-async function runTest(method: any, params: any[], responseIdentifier: string | number): Promise<void> {
+async function runTest(method: RPCMethodName, params: (string | number | boolean)[], responseIdentifier: string | number): Promise<void> {
   jest.clearAllMocks();
   mockOf(unfetch.default).mockResolvedValueOnce({
     text: () => Promise.resolve(mockRpcBlockResponse),
