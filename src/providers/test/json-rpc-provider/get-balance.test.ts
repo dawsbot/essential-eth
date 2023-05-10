@@ -1,31 +1,48 @@
-import { ethers } from 'ethers';
-import Web3 from 'web3';
+import * as unfetch from 'isomorphic-unfetch';
+import { buildFetchInit, buildRPCPostBody } from '../../../classes/utils/fetchers';
 import { JsonRpcProvider } from '../../..';
 import type { BlockTag } from '../../../types/Block.types';
 import { rpcUrls } from '../rpc-urls';
+import { mockOf } from '../mock-of';
+
+jest.mock('isomorphic-unfetch');
 
 const address = '0x0000000000000000000000000000000000000001';
+
 async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
-  const eeProvider = new JsonRpcProvider(rpcUrl);
-  const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
-  const web3Provider = new Web3(rpcUrl);
-  const [eeBalance, ethersBalance, web3Balance] = await Promise.all([
-    eeProvider.getBalance(address, blockTag),
-    ethersProvider.getBalance(address, blockTag),
-    web3Provider.eth.getBalance(address, blockTag as any),
-  ]);
-  expect(eeBalance.toString()).toBe(ethersBalance.toString());
-  expect(eeBalance.toString()).toBe(web3Balance);
+  const provider = new JsonRpcProvider(rpcUrl);
+  const mockPostResponse = JSON.stringify({
+    jsonrpc: '2.0',
+    id: 1,
+    result: '0xa',
+  });
+
+  mockOf(unfetch.default).mockResolvedValueOnce({
+    text: () => Promise.resolve(mockPostResponse),
+  } as Response);
+
+  const spy = jest.spyOn(unfetch, 'default');
+
+  const balance = await provider.getBalance(address, blockTag);
+
+  expect(balance.toString()).toBe('10');
+
+  const expectedBlockTag = blockTag ?? 'latest';
+  expect(spy).toHaveBeenCalledWith(
+    rpcUrl,
+    buildFetchInit(buildRPCPostBody('eth_getBalance', [address, expectedBlockTag])),
+  );
 }
+
 describe('provider.getBalance matic', () => {
   const rpcUrl = rpcUrls.matic;
-  it('should get latest equal to ethers', async () => {
+  it('should get the latest balance', async () => {
     await testGetBalance(rpcUrl, 'latest');
   });
-  it('should get earliest equal to ethers', async () => {
+  it('should get the earliest balance', async () => {
     await testGetBalance(rpcUrl, 'earliest');
   });
-  it('should get default latest equal to ethers', async () => {
+  it('should get the default latest balance', async () => {
     await testGetBalance(rpcUrl);
   });
 });
