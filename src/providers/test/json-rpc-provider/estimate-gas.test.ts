@@ -1,10 +1,14 @@
 import * as unfetch from 'isomorphic-unfetch';
-import { buildFetchInit, buildRPCPostBody } from '../../../classes/utils/fetchers';
-import { JsonRpcProvider, TransactionRequest } from '../../..';
-import { etherToWei } from '../../../utils/ether-to-wei';
-import { rpcUrls } from '../rpc-urls';
-import { mockOf } from '../mock-of';
+import type { TransactionRequest } from '../../..';
+import { JsonRpcProvider } from '../../..';
+import {
+  buildFetchInit,
+  buildRPCPostBody,
+} from '../../../classes/utils/fetchers';
 import { prepareTransaction } from '../../../classes/utils/prepare-transaction';
+import { etherToWei } from '../../../utils/ether-to-wei';
+import { mockOf } from '../mock-of';
+import { rpcUrls } from '../rpc-urls';
 
 jest.mock('isomorphic-unfetch');
 
@@ -42,7 +46,9 @@ async function testEstimateGas(transaction: TransactionRequest) {
   expect(estimatedGas.toString()).toBe('10');
   expect(spy).toHaveBeenCalledWith(
     rpcUrl,
-    buildFetchInit(buildRPCPostBody('eth_estimateGas', [prepareTransaction(transaction)]))
+    buildFetchInit(
+      buildRPCPostBody('eth_estimateGas', [prepareTransaction(transaction)]),
+    ),
   );
 }
 
