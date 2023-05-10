@@ -12,6 +12,7 @@ import { hexToDecimal } from './hex-to-decimal';
 
 /**
  * Converts RPC transaction receipt response to more JS-friendly format
+ *
  * @param transactionReceipt the transaction receipt to clean
  * @returns a cleaned transaction receipt
  * @example

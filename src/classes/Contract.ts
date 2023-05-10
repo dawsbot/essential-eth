@@ -92,6 +92,7 @@ export class BaseContract {
 
 /**
  * Applies the unique contract's methods to the instantiated Contract in the constructor based-upon the provided ABI
+ *
  * @param object
  * @param name
  * @param value

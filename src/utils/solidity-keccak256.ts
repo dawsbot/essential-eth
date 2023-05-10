@@ -11,6 +11,7 @@ const regexArray = new RegExp('^(.*)\\[([0-9]*)\\]$');
 
 /**
  * Packs a type and value together into a UTF-8 Byte Array
+ *
  * @internal
  * @param type the Solidity type used for the value given
  * @param value the value to pack with its type
@@ -99,6 +100,7 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
 
 /**
  * Converts arrays with types and values into a hex string that can be hashed
+ *
  * @param types array of Solidity types, where `type[0]` is the type for `value[0]`
  * @param values array of values, where `value[0]` is of type `type[0]`
  * @returns a hex string with the data given, packed to include its types
@@ -129,6 +131,7 @@ export function pack(types: ReadonlyArray<string>, values: ReadonlyArray<any>) {
  * Hashes data from Solidity using the Keccak256 algorithm.
  *
  * Similar to ["solidityKeccak256" in ethers.js](https://docs.ethers.io/v5/api/utils/hashing/#utils-solidityKeccak256)
+ *
  * @param types Each [Solidity type](https://docs.soliditylang.org/en/v0.8.13/types.html) corresponding to the values passed in. Helps the function parse and pack data properly.
  * @param values Data to be concatenated (combined) and then hashed.
  * @returns A Keccak256 hash (hex string) based on the values provided

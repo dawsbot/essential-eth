@@ -1,9 +1,12 @@
 import * as unfetch from 'isomorphic-unfetch';
-import { buildFetchInit, buildRPCPostBody } from '../../../classes/utils/fetchers';
 import { JsonRpcProvider } from '../../..';
+import {
+  buildFetchInit,
+  buildRPCPostBody,
+} from '../../../classes/utils/fetchers';
 import type { BlockTag } from '../../../types/Block.types';
-import { rpcUrls } from '../rpc-urls';
 import { mockOf } from '../mock-of';
+import { rpcUrls } from '../rpc-urls';
 
 jest.mock('isomorphic-unfetch');
 
@@ -30,7 +33,9 @@ async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
   const expectedBlockTag = blockTag ?? 'latest';
   expect(spy).toHaveBeenCalledWith(
     rpcUrl,
-    buildFetchInit(buildRPCPostBody('eth_getBalance', [address, expectedBlockTag])),
+    buildFetchInit(
+      buildRPCPostBody('eth_getBalance', [address, expectedBlockTag]),
+    ),
   );
 }
 

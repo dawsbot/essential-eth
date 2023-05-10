@@ -16,6 +16,7 @@ export class TinyBig extends Big {
   /**
    * Used anytime you're passing in "value" to ethers or web3
    * For now, TypeScript will complain that `TinyBig` is not a `BigNumberish`. You can // @ts-ignore or call this
+   *
    * @returns the TinyBig represented as a hex string
    * @example
    * ```javascript
@@ -43,6 +44,7 @@ export class TinyBig extends Big {
 
   /**
    * Eithers pads or shortens a string to a specified length
+   *
    * @param str the string to pad or chop
    * @param padChar the character to pad the string with
    * @param length the desired length of the given string
@@ -88,6 +90,7 @@ export class TinyBig extends Big {
 
 /**
  * Helper factory function so that you don't have to type "new" when instantiating a new TinyBig
+ *
  * @param value the value to initiate the TinyBig with
  * @returns an initiated {@link TinyBig}
  * @example

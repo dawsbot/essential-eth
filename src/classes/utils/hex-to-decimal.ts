@@ -1,6 +1,7 @@
 /**
  * Converts a hexadecimal string it's decimal equivalent.
  * This is needed instead of parseInt because parseInt loses precision.
+ *
  * @param hex the hex string to be converted to decimal
  * @returns a decimal value equivalent to the hex string given
  * @example
