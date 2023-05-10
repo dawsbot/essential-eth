@@ -35,6 +35,7 @@ function hexToUtf8(hex: any) {
 
 /**
  * Expands an integer type to use a default of 256 bits. Used for consistency; not required in Solidity
+ *
  * @see https://ethereum.stackexchange.com/questions/43241/why-write-uint256-instead-of-uint-if-theyre-the-same-thing
  * @param type the type to explicitly define as 256 bits
  * @returns the integer type expanded to explicitly be 256 bits when possible

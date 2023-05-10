@@ -4,6 +4,7 @@ import { toChecksumAddress } from './to-checksum-address';
 /**
  * Returns a boolean as to whether the input is a valid address.
  * Does NOT support ICAP addresses
+ *
  * @param address the address to check the validity of
  * @returns a boolean for whether the input is a valid address
  * @example

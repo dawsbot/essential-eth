@@ -1,8 +1,16 @@
-import { ethers } from 'ethers';
-import Web3 from 'web3';
+import * as unfetch from 'isomorphic-unfetch';
+import type { TransactionRequest } from '../../..';
 import { JsonRpcProvider } from '../../..';
+import {
+  buildFetchInit,
+  buildRPCPostBody,
+} from '../../../classes/utils/fetchers';
+import { prepareTransaction } from '../../../classes/utils/prepare-transaction';
 import { etherToWei } from '../../../utils/ether-to-wei';
+import { mockOf } from '../mock-of';
 import { rpcUrls } from '../rpc-urls';
+
+jest.mock('isomorphic-unfetch');
 
 const rpcUrl = rpcUrls.mainnet;
 
@@ -19,37 +27,37 @@ const dataToValue = {
   value: etherToWei(0.001).toNumber(),
 };
 
-describe('provider.estimateGas', () => {
-  const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-  const web3Provider = new Web3(rpcUrl);
-  const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
+async function testEstimateGas(transaction: TransactionRequest) {
+  const provider = new JsonRpcProvider(rpcUrl);
+  const mockPostResponse = JSON.stringify({
+    jsonrpc: '2.0',
+    id: 1,
+    result: '0xa',
+  });
 
-  it('should match ethers.js -- data, to', async () => {
-    const [eeEstimateGas, ethersEstimateGas] = await Promise.all([
-      essentialEthProvider.estimateGas(dataTo),
-      ethersProvider.estimateGas(dataTo),
-    ]);
-    expect(eeEstimateGas.toString()).toBe(ethersEstimateGas.toString());
+  mockOf(unfetch.default).mockResolvedValueOnce({
+    text: () => Promise.resolve(mockPostResponse),
+  } as Response);
+
+  const spy = jest.spyOn(unfetch, 'default');
+
+  const estimatedGas = await provider.estimateGas(transaction);
+
+  expect(estimatedGas.toString()).toBe('10');
+  expect(spy).toHaveBeenCalledWith(
+    rpcUrl,
+    buildFetchInit(
+      buildRPCPostBody('eth_estimateGas', [prepareTransaction(transaction)]),
+    ),
+  );
+}
+
+describe('provider.estimateGas', () => {
+  it('should estimate gas with data and to', async () => {
+    await testEstimateGas(dataTo);
   });
-  it('should match web3.js -- data, to', async () => {
-    const [eeEstimateGas, web3EstimateGas] = await Promise.all([
-      essentialEthProvider.estimateGas(dataTo),
-      web3Provider.eth.estimateGas(dataTo),
-    ]);
-    expect(eeEstimateGas.toString()).toBe(web3EstimateGas.toString());
-  });
-  it('should match ethers.js -- data, to, value', async () => {
-    const [eeEstimateGas, ethersEstimateGas] = await Promise.all([
-      essentialEthProvider.estimateGas(dataToValue),
-      ethersProvider.estimateGas(dataToValue),
-    ]);
-    expect(eeEstimateGas.toString()).toBe(ethersEstimateGas.toString());
-  });
-  it('should match web3.js -- data, to, value', async () => {
-    const [eeEstimateGas, web3EstimateGas] = await Promise.all([
-      essentialEthProvider.estimateGas(dataToValue),
-      web3Provider.eth.estimateGas(dataToValue),
-    ]);
-    expect(eeEstimateGas.toString()).toBe(web3EstimateGas.toString());
+
+  it('should estimate gas with data, to, and value', async () => {
+    await testEstimateGas(dataToValue);
   });
 });
