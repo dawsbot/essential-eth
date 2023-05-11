@@ -1,6 +1,6 @@
 import * as unfetch from 'isomorphic-unfetch';
 import { JsonRpcProvider } from '../../../index';
-import type { Log, RPCLog } from '../../../types/Transaction.types';
+import type { RPCLog } from '../../../types/Transaction.types';
 import type { Filter } from './../../../types/Filter.types';
 import { rpcUrls } from './../rpc-urls';
 import { mockOf } from '../mock-of';
