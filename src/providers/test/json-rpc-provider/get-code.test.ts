@@ -1,15 +1,16 @@
 import * as unfetch from 'isomorphic-unfetch';
 import { JsonRpcProvider, tinyBig } from '../../../index';
 import { rpcUrls } from './../rpc-urls';
-import { mockOf } from '../mock-of';
 import { buildFetchInit, buildRPCPostBody } from '../../../classes/utils/fetchers';
 
 // Using Polygon to be able to access archive blocks
 // Choosing to use Ethereum mainnet means that as new blocks are generated, block numbers used in testing may be inaccessible and cause tests to fail
 const rpcUrl = rpcUrls.matic;
+jest.mock('isomorphic-unfetch');
 
 // can't test for earliest block (at least for Ethereum) as it's very unlikely there was a smart contract on the first block
-const inputs = [
+type InputType = { address: string; blockTag: number | string | undefined };
+const validInputs: InputType[]  = [
   {
     address: '0x00153ab45951268d8813BCAb403152A059B99CB1',
     blockTag: undefined,
@@ -27,47 +28,43 @@ const inputs = [
     blockTag: 28114328,
   },
 ];
+const invalidInput: InputType = {
+  address: '0xd31a02A126Bb7ACD359BD61E9a8276959408855E',
+  blockTag: 28314328,
+};
 
-const mockCodeResult = '0x06060060600606006060060600606006060'
+const mockCodeResult = '0x06060060600606006060060600606006060';
+const mockInvalidResult = '0x';
 
+const provider = new JsonRpcProvider(rpcUrl);
 
+async function testGetCode(input: InputType, mockResult: string) {
+  const spy = jest.spyOn(unfetch, 'default');
+  spy.mockImplementationOnce(() => Promise.resolve({
+    text: () => Promise.resolve(JSON.stringify({ jsonrpc: '2.0', id: 1, result: mockResult })),
+  } as Response));
+
+  const code = await provider.getCode(input.address, input.blockTag);
+
+  expect(code).toBe(mockResult);
+
+  const expectedBlockTag = typeof input.blockTag === 'number'
+    ? tinyBig(input.blockTag).toHexString()
+    : input.blockTag ?? 'latest';
+  expect(spy).toHaveBeenCalledWith(
+    rpcUrl,
+    buildFetchInit(buildRPCPostBody('eth_getCode', [input.address, expectedBlockTag])),
+  );
+}
 
 describe('provider.getCode with Mock', () => {
-  const provider = new JsonRpcProvider(rpcUrl);
-
   it('should return the correct code for the given input', async () => {
-    const spy = jest.spyOn(unfetch, 'default');
-    const mockResponse = new Response( JSON.stringify({ jsonrpc: '2.0', id: 1, result: mockCodeResult }));
-    mockOf(unfetch.default).mockResolvedValueOnce({
-      text: () => Promise.resolve(mockResponse),
-    } as Response);
-    for (const input of inputs) {
-      
-      // Mock the fetch response
-
-      const code = await provider.getCode(input.address, input.blockTag);
-
-      expect(code).toBe(mockCodeResult);
-
-      const expectedBlockTag = typeof input.blockTag === 'number'
-        ? tinyBig(input.blockTag).toHexString()
-        : input.blockTag ?? 'latest';
-      expect(spy).toHaveBeenCalledWith(
-        rpcUrl,
-        buildFetchInit(buildRPCPostBody('eth_getCode', [input.address, expectedBlockTag])),
-      );
+    for (const input of validInputs) {
+      await testGetCode(input, mockCodeResult);
     }
   });
 
   it('should return `0x` when a contract does not exist', async () => {
-    const invalidInput = {
-      address: '0xd31a02A126Bb7ACD359BD61E9a8276959408855E',
-      blockTag: 28314328,
-    };
-    const code = await provider.getCode(
-      invalidInput.address,
-      invalidInput.blockTag,
-    );
-    expect(code).toBe('0x');
+    await testGetCode(invalidInput, mockInvalidResult);
   });
 });
