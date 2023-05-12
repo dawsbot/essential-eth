@@ -3,6 +3,7 @@ import type { BytesLike } from './bytes';
 
 /**
  * Hashes data into a Keccak256 hex string
+ *
  * @param data the data to be hashed using Keccak256
  * @returns a hex string with data hashed using Keccak256
  * @example

@@ -1,6 +1,7 @@
 import unfetch from 'isomorphic-unfetch';
 /**
  * Forms the init field for http fetching
+ *
  * @param body
  * @internal
  */
@@ -15,6 +16,7 @@ export function buildFetchInit<T>(body: T) {
 }
 /**
  * Makes a post request with the specified JSON data, normally to the a Ethereum JSON RPC API endpoint
+ *
  * @internal
  * @param url the URL to send the request to
  * @param body JSON POST body
@@ -49,7 +51,7 @@ export function post(url: string, body: Record<string, unknown>) {
     });
 }
 
-type RPCMethodName =
+export type RPCMethodName =
   | 'eth_getBlockByNumber'
   | 'eth_getBlockByHash'
   | 'eth_call'
@@ -66,6 +68,7 @@ type RPCMethodName =
 
 /**
  * Prepares data to be sent using the {@link post} function. Data is prepared per the {@link https://en.wikipedia.org/wiki/JSON-RPC#Examples JSON RPC v2 spec}
+ *
  * @internal
  * @param method the RPC method to be invoked
  * @param params the parameters to be passed to the defined method

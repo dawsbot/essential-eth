@@ -1,5 +1,6 @@
 /**
  * Converts a string into a UTF-8 Byte Array
+ *
  * @param data the input to be converted to a UTF-8 Byte Array
  * @returns the specified data as a UTF-8 Byte Array
  * @example
