@@ -51,7 +51,7 @@ export function post(url: string, body: Record<string, unknown>) {
     });
 }
 
-type RPCMethodName =
+export type RPCMethodName =
   | 'eth_getBlockByNumber'
   | 'eth_getBlockByHash'
   | 'eth_call'
