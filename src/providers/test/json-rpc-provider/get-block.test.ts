@@ -1,180 +1,141 @@
-import { ethers } from 'ethers';
-import omit from 'just-omit';
-import Web3 from 'web3';
-import type web3 from 'web3-eth';
-import { JsonRpcProvider } from '../../..';
-import type { BlockResponse } from '../../../types/Block.types';
-import { fakeUrls } from './../rpc-urls';
+import * as unfetch from 'isomorphic-unfetch';
+import { JsonRpcProvider, tinyBig, toChecksumAddress } from '../../..';
+import type {
+  RPCMethodName} from '../../../classes/utils/fetchers';
+import {
+  buildFetchInit,
+  buildRPCPostBody
+} from '../../../classes/utils/fetchers';
+import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
+import { mockOf } from '../mock-of';
+import { rpcUrls } from '../rpc-urls';
 
-// RSK has 30 second block times so tests pass more often
-const rpcUrl = `https://public-node.rsk.co`;
+jest.mock('isomorphic-unfetch');
 
-function testBlockEquality(
-  eeBlock: BlockResponse,
-  otherBlock:
-    | ethers.providers.Block
-    | web3.BlockTransactionString
-    | web3.BlockTransactionObject,
-) {
-  const typeCheckKeys: Array<string> = [
-    'difficulty',
-    'gasLimit',
-    'gasUsed',
-    'number',
-    'timestamp',
-  ];
-  let omittableEE: Array<string> = [];
-  let omittableOther: Array<string> = [];
-  if (typeof otherBlock.gasLimit === 'number') {
-    // web3.js returns gasLimit as number, ethers returns as BigNum
-    if (eeBlock.transactions && typeof eeBlock.transactions[0] !== 'string') {
-      eeBlock.transactions.forEach((transaction: any) => {
-        if (transaction.gas) transaction.gas = transaction.gas.toString();
-        if (transaction.value) transaction.value = transaction.value.toString();
-        if (transaction.gasPrice)
-          transaction.gasPrice = transaction.gasPrice.toString();
-        if (transaction.nonce) transaction.nonce = transaction.nonce.toString();
-        if (transaction.v) transaction.v = `0x${transaction.v.toString(16)}`;
-      });
-      otherBlock.transactions.forEach((transaction: any) => {
-        if (transaction.gas) transaction.gas = transaction.gas.toString();
-        else if (transaction.gas == 0) transaction.gas = '0'; // won't go to string when zero??
-        if (transaction.nonce) transaction.nonce = transaction.nonce.toString();
-      });
-    }
-    typeCheckKeys.push('totalDifficulty', 'size');
-    omittableEE = typeCheckKeys;
-    omittableOther = typeCheckKeys;
+const rpcUrl = rpcUrls.mainnet;
 
-    typeCheckKeys.forEach((key) => {
-      expect((eeBlock as any)[key].toString()).toBe(
-        (otherBlock as any)[key].toString(),
-      );
-    });
-  } else {
-    // rename _difficulty to difficulty
-    delete (otherBlock as any).difficulty;
-    (otherBlock as any).difficulty = (otherBlock as any)._difficulty;
-    delete (otherBlock as any)._difficulty;
+const provider = new JsonRpcProvider(rpcUrl);
 
-    omittableEE = [
-      // ethers.js doesn't return all these values that essential-eth does, some specific to RSK node
-      ...typeCheckKeys,
-      'bitcoinMergedMiningCoinbaseTransaction',
-      'bitcoinMergedMiningCoinbaseTransaction',
-      'bitcoinMergedMiningHeader',
-      'bitcoinMergedMiningHeader',
-      'bitcoinMergedMiningMerkleProof',
-      'cumulativeDifficulty',
-      'hashForMergedMining',
-      'logsBloom',
-      'minimumGasPrice',
-      'paidFees',
-      'receiptsRoot',
-      'sha3Uncles',
-      'size',
-      'stateRoot',
-      'totalDifficulty',
-      'transactionsRoot',
-      'uncles',
-    ];
-    omittableOther = [...typeCheckKeys];
-  }
+const mockBlockResponse = {
+  number: '0x1b4',
+  hash: '0x5f6fb043528e9892679bce31e9e4a9c5773b3b1ebad1dc4c533ed6fe75ebe13d',
+  parentHash:
+    '0x4e61f7d8fc6253a08d0762dbb2d3d5f4a7e0a2394a2d29c4bbe7056aa13d48e8',
+  nonce: '0xe04d296d2460cfb8472af2c5fd05b5a214109c25688d3704aed5484f9a7792f2',
+  sha3Uncles:
+    '0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347',
+  logsBloom: '0x056e68544253...',
+  transactionsRoot: '0x9156485c5d...',
+  stateRoot: '0x2f8bde4d1b...',
+  miner: '0x4e65fda2159562a496f9f3522f89122a3088497a',
+  difficulty: '0x027f07',
+  totalDifficulty: '0x027f07',
+  extraData: '0x000000000000...',
+  size: '0x027f07',
+  gasLimit: '0x9f759',
+  gasUsed: '0x9f759',
+  timestamp: '0x54e34e8e',
+  transactions: [],
+  uncles: [],
+};
+const mockRpcBlockResponse = JSON.stringify({
+  jsonrpc: '2.0',
+  id: 1,
+  result: mockBlockResponse,
+});
+const mockBlock = {
+  ...mockBlockResponse,
+  number: Number(hexToDecimal(mockBlockResponse.number)),
+  miner: toChecksumAddress(mockBlockResponse.miner),
+  totalDifficulty: tinyBig(mockBlockResponse.totalDifficulty),
+  difficulty: tinyBig(mockBlockResponse.difficulty),
+  gasLimit: tinyBig(mockBlockResponse.gasLimit),
+  gasUsed: tinyBig(mockBlockResponse.gasUsed),
+  size: tinyBig(mockBlockResponse.size),
+  timestamp: tinyBig(mockBlockResponse.timestamp),
+};
 
-  typeCheckKeys.forEach((key) => {
-    expect((eeBlock as any)[key].toString()).toBe(
-      (otherBlock as any)[key].toString(),
-    );
-  });
+async function runTest(
+  method: RPCMethodName,
+  params: (string | number | boolean)[],
+  responseIdentifier: string | number,
+): Promise<void> {
+  jest.clearAllMocks();
+  mockOf(unfetch.default).mockResolvedValueOnce({
+    text: () => Promise.resolve(mockRpcBlockResponse),
+  } as Response);
+  const spy = jest.spyOn(unfetch, 'default');
 
-  const omittedEEBlock = omit(eeBlock, omittableEE as any);
-  const omittedOtherBlock = omit(otherBlock, omittableOther as any);
-  expect(omittedEEBlock).toMatchObject(omittedOtherBlock);
+  const result = await provider.getBlock(responseIdentifier);
+  expect(spy).toHaveBeenCalledWith(
+    rpcUrl,
+    buildFetchInit(buildRPCPostBody(method, params)),
+  );
+
+  expect(JSON.stringify(result)).toBe(JSON.stringify(mockBlock));
 }
 
 describe('provider.getBlock', () => {
-  const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-  const web3Provider = new Web3(rpcUrl);
-  const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
-
-  it('should match ethers.js -- latest', async () => {
-    const [eeLatestBlock, ethersLatestBlock] = await Promise.all([
-      essentialEthProvider.getBlock('latest'),
-      ethersProvider.getBlock('latest'),
-    ]);
-    testBlockEquality(eeLatestBlock, ethersLatestBlock);
-  });
-  it('should match web3.js -- latest', async () => {
-    const [eeLatestBlock, web3LatestBlock] = await Promise.all([
-      essentialEthProvider.getBlock('latest'),
-      web3Provider.eth.getBlock('latest'),
-    ]);
-    testBlockEquality(eeLatestBlock, web3LatestBlock);
-  });
-  it('should match ethers.js -- earliest', async () => {
-    const [eeEarliestBlock, ethersEarliestBlock] = await Promise.all([
-      essentialEthProvider.getBlock('earliest'),
-      ethersProvider.getBlock('earliest'),
-    ]);
-    testBlockEquality(eeEarliestBlock, ethersEarliestBlock);
-  });
-  it('should match web3.js -- earliest', async () => {
-    const [eeEarliestBlock, web3EarliestBlock] = await Promise.all([
-      essentialEthProvider.getBlock('earliest'),
-      web3Provider.eth.getBlock('earliest'),
-    ]);
-    testBlockEquality(eeEarliestBlock, web3EarliestBlock);
+  it('should match mocked -- latest', async () => {
+    await runTest('eth_getBlockByNumber', ['latest', false], 'latest');
   });
 
-  const blockNumber = Math.floor(Math.random() * 4202460 /* latest block */);
-  it(`should match ethers.js -- random block as decimal integer. (block #${blockNumber})`, async () => {
-    const [eeRandomBlock, ethersRandomBlock] = await Promise.all([
-      essentialEthProvider.getBlock(blockNumber),
-      ethersProvider.getBlock(blockNumber),
-    ]);
-    testBlockEquality(eeRandomBlock, ethersRandomBlock);
+  it('should match mocked block -- earliest', async () => {
+    await runTest('eth_getBlockByNumber', ['earliest', false], 'earliest');
+  });
+
+  const blockNumber = 1000000; // a certain block number for testing
+  it(`should match mocked block -- specific block number as decimal integer. (block #${blockNumber})`, async () => {
+    await runTest(
+      'eth_getBlockByNumber',
+      [tinyBig(blockNumber).toHexString(), false],
+      blockNumber,
+    );
   });
 
   const blockHash =
     '0x4cbaa942e48a91108f38e2a250f6dbaff7fffe3027f5ebf76701929eed2b2970'; // Hash corresponds to block on RSK Mainnet
-  it(`should match ethers.js -- block by hash. (hash = ${blockHash})`, async () => {
-    const [eeBlockByHash, ethersBlockByHash] = await Promise.all([
-      essentialEthProvider.getBlock(blockHash),
-      ethersProvider.getBlock(blockHash),
-    ]);
-    testBlockEquality(eeBlockByHash, ethersBlockByHash);
-  });
-  it(`should match web3.js -- block by hash. (hash = ${blockHash})`, async () => {
-    const [eeBlockByHash, web3BlockByHash] = await Promise.all([
-      essentialEthProvider.getBlock(blockHash),
-      web3Provider.eth.getBlock(blockHash),
-    ]);
-    testBlockEquality(eeBlockByHash, web3BlockByHash);
+  it(`should match mocked block -- block by hash. (hash = ${blockHash})`, async () => {
+    await runTest('eth_getBlockByHash', [blockHash, false], blockHash);
   });
 });
 
 describe('provider.getBlock error handling', () => {
   it('should handle empty 200 http response', async () => {
-    expect.assertions(1);
-    const essentialEth = new JsonRpcProvider(fakeUrls.notRPCButRealHttp);
-    await essentialEth.getBlock('earliest').catch(async (essentialEthError) => {
+    mockOf(unfetch.default).mockResolvedValueOnce({
+      text: () => Promise.resolve('200 OK'),
+    } as Response);
+
+    const spy = jest.spyOn(unfetch, 'default');
+    await provider.getBlock('earliest').catch(async (error) => {
       // error message is Invalid JSON RPC response: "200 OK"
-      expect('Invalid JSON RPC response: "200 OK"').toBe(
-        essentialEthError.message,
-      );
+      expect('Invalid JSON RPC response: "200 OK"').toBe(error.message);
     });
+
+    expect(spy).toHaveBeenCalledWith(
+      rpcUrl,
+      buildFetchInit(
+        buildRPCPostBody('eth_getBlockByNumber', ['earliest', false]),
+      ),
+    );
   });
-  // TODO: Make a mock http endpoint which returns an empty json object
-  // it.only('should handle json emptry object 200 http response', async () => {
-  //   expect.assertions(1);
-  //   const essentialEth = new JsonRpcProvider('http://localhost:51196/b.json');
-  //   const web3 = new Web3('http://localhost:51196/b.json');
-  //   await essentialEth.getBlock('earliest').catch(async (essentialEthError) => {
-  //     await web3.eth.getBlock('earliest').catch((web3Error) => {
-  //       console.log({ w3: web3Error.message, ee: essentialEthError.message });
-  //       // error message is Invalid JSON RPC response: "200 OK"
-  //       expect(web3Error.message).toBe(essentialEthError.message);
-  //     });
-  //   });
-  // });
+
+  it('should handle empty JSON object', async () => {
+    mockOf(unfetch.default).mockResolvedValueOnce({
+      text: () => Promise.resolve('{}'),
+    } as Response);
+
+    const spy = jest.spyOn(unfetch, 'default');
+    await provider.getBlock('earliest').catch(async (error) => {
+      // error message is Invalid JSON RPC response: {}
+      expect(error.message).toBe('Invalid JSON RPC response: {}');
+    });
+
+    expect(spy).toHaveBeenCalledWith(
+      rpcUrl,
+      buildFetchInit(
+        buildRPCPostBody('eth_getBlockByNumber', ['earliest', false]),
+      ),
+    );
+  });
 });

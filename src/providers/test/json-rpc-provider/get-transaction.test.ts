@@ -7,8 +7,9 @@ import { JsonRpcProvider, tinyBig } from '../../../index';
 import { mockOf } from '../mock-of';
 import { rpcUrls } from '../rpc-urls';
 
-const rpcUrl = rpcUrls.mainnet;
 jest.mock('isomorphic-unfetch');
+
+const rpcUrl = rpcUrls.mainnet;
 
 const mockBlocksBetween = 10;
 const mockTransactionResponse = {
@@ -57,6 +58,7 @@ const mockTransaction = {
   maxFeePerGas: tinyBig(mockTransactionResponse.maxFeePerGas),
   gas: tinyBig(mockTransactionResponse.gas),
 };
+
 describe('provider.getTransaction', () => {
   it('should fetch transaction and add confirmations properly', async () => {
     const transactionHash =
