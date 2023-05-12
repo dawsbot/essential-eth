@@ -1,14 +1,22 @@
-import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import Web3 from 'web3';
-import { JsonRpcProvider } from '../../../index';
+import * as unfetch from 'isomorphic-unfetch';
+import {
+  buildFetchInit,
+  buildRPCPostBody,
+} from '../../../classes/utils/fetchers';
+import { JsonRpcProvider, tinyBig } from '../../../index';
 import { rpcUrls } from './../rpc-urls';
 
 // Using Polygon to be able to access archive blocks
 // Choosing to use Ethereum mainnet means that as new blocks are generated, block numbers used in testing may be inaccessible and cause tests to fail
 const rpcUrl = rpcUrls.matic;
+jest.mock('isomorphic-unfetch');
 
 // can't test for earliest block (at least for Ethereum) as it's very unlikely there was a smart contract on the first block
-const inputs = [
+interface InputType {
+  address: string;
+  blockTag: number | string | undefined;
+}
+const validInputs: InputType[] = [
   {
     address: '0x00153ab45951268d8813BCAb403152A059B99CB1',
     blockTag: undefined,
@@ -26,38 +34,51 @@ const inputs = [
     blockTag: 28114328,
   },
 ];
+const invalidInput: InputType = {
+  address: '0xd31a02A126Bb7ACD359BD61E9a8276959408855E',
+  blockTag: 28314328,
+};
 
-describe('provider.getCode', () => {
-  const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-  const ethersProvider = new StaticJsonRpcProvider(rpcUrl);
-  const web3Provider = new Web3(rpcUrl);
-  it('should match ethers.js', async () => {
-    await inputs.forEach(async (input) => {
-      const [essentialEthCode, ethersCode] = await Promise.all([
-        essentialEthProvider.getCode(input.address, input.blockTag),
-        ethersProvider.getCode(input.address, input.blockTag),
-      ]);
-      expect(essentialEthCode).toStrictEqual(ethersCode);
-    });
+const mockCodeResult = '0x06060060600606006060060600606006060';
+const mockInvalidResult = '0x';
+
+const provider = new JsonRpcProvider(rpcUrl);
+
+async function testGetCode(input: InputType, mockResult: string) {
+  const spy = jest.spyOn(unfetch, 'default');
+  spy.mockImplementationOnce(() =>
+    Promise.resolve({
+      text: () =>
+        Promise.resolve(
+          JSON.stringify({ jsonrpc: '2.0', id: 1, result: mockResult }),
+        ),
+    } as Response),
+  );
+
+  const code = await provider.getCode(input.address, input.blockTag);
+
+  expect(code).toBe(mockResult);
+
+  const expectedBlockTag =
+    typeof input.blockTag === 'number'
+      ? tinyBig(input.blockTag).toHexString()
+      : input.blockTag ?? 'latest';
+  expect(spy).toHaveBeenCalledWith(
+    rpcUrl,
+    buildFetchInit(
+      buildRPCPostBody('eth_getCode', [input.address, expectedBlockTag]),
+    ),
+  );
+}
+
+describe('provider.getCode with Mock', () => {
+  it('should return the correct code for the given input', async () => {
+    for (const input of validInputs) {
+      await testGetCode(input, mockCodeResult);
+    }
   });
-  it('should match web3.js', async () => {
-    await inputs.forEach(async (input) => {
-      const [essentialEthCode, web3Code] = await Promise.all([
-        essentialEthProvider.getCode(input.address, input.blockTag),
-        web3Provider.eth.getCode(input.address, input.blockTag as any),
-      ]);
-      expect(essentialEthCode).toStrictEqual(web3Code);
-    });
-  });
+
   it('should return `0x` when a contract does not exist', async () => {
-    const invalidInput = {
-      address: '0xd31a02A126Bb7ACD359BD61E9a8276959408855E',
-      blockTag: 28314328,
-    };
-    const essentialEthCode = await essentialEthProvider.getCode(
-      invalidInput.address,
-      invalidInput.blockTag,
-    );
-    expect(essentialEthCode).toBe('0x');
+    await testGetCode(invalidInput, mockInvalidResult);
   });
 });
