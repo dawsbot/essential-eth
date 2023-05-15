@@ -4,6 +4,7 @@ import { rpcUrls } from '../rpc-urls';
 import { buildFetchInit, buildRPCPostBody } from '../../../classes/utils/fetchers';
 import { mockOf } from '../mock-of';
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
+import { cleanLog } from '../../../classes/utils/clean-log';
 
 jest.mock('isomorphic-unfetch');
 const rpcUrl = rpcUrls.mainnet;
@@ -22,7 +23,7 @@ const mockReceiptResponse = {
     {
       address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
       blockHash: "0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d",
-      blockNumber: 14578286,
+      blockNumber: '0xdeadc2',
       data: "0x0000000000000000000000000000000000000000000000000000000000000000",
       logIndex: "0x1d",
       removed: false,
@@ -61,11 +62,7 @@ const mockReceipt = {
   effectiveGasPrice: tinyBig(mockReceiptResponse.effectiveGasPrice),
   gasUsed: tinyBig(mockReceiptResponse.gasUsed),
   status: Number(hexToDecimal(mockReceiptResponse.status)),
-  logs: mockReceiptResponse.logs.map(({ removed, ...log }) => ({
-    ...log,
-    logIndex: Number(hexToDecimal(log.logIndex)),
-    transactionIndex: Number(hexToDecimal(log.transactionIndex)),
-  })),
+  logs: mockReceiptResponse.logs.map(log => cleanLog(log, true)),
   byzantium: true,
 };
 
