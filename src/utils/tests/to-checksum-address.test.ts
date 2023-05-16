@@ -1,5 +1,3 @@
-import { utils } from 'ethers';
-import web3 from 'web3';
 import { toChecksumAddress } from '../../index';
 
 describe('ether-to-wei', () => {
@@ -15,12 +13,7 @@ describe('ether-to-wei', () => {
       '0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb',
     ];
     addresses.forEach((address) => {
-      expect(toChecksumAddress(address)).toStrictEqual(
-        utils.getAddress(address),
-      );
-      expect(toChecksumAddress(address)).toStrictEqual(
-        web3.utils.toChecksumAddress(address),
-      );
+      expect(toChecksumAddress(address)).toStrictEqual(address);
     });
   });
   it('invalid inputs', () => {
