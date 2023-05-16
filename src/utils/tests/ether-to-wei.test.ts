@@ -15,7 +15,7 @@ describe('ether-to-wei', () => {
   });
 
   it('matches expected toString', () => {
-    expect(etherToWei('-09999.0').toString()).toStrictEqual("-9999000000000000000000");
+    expect(etherToWei('-09999.0').toString()).toStrictEqual('-9999000000000000000000');
   });
 
   it('matches expected toNumber', () => {

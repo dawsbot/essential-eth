@@ -14,7 +14,7 @@ describe('wei-to-ether', () => {
   });
 
   it('matches expected value toString', () => {
-    expect(weiToEther('10').toString()).toStrictEqual("0.00000000000000001");
+    expect(weiToEther('10').toString()).toStrictEqual('0.00000000000000001');
     expect(weiToEther('1000000000000000000000').toString()).toBe('1000');
   });
 
@@ -28,8 +28,8 @@ describe('wei-to-ether', () => {
   });
 
   it('support hex', () => {
-    expect(weiToEther('0x14').toString()).toStrictEqual("0.00000000000000002");
-    expect(weiToEther(0x14).toString()).toStrictEqual("0.00000000000000002");
+    expect(weiToEther('0x14').toString()).toStrictEqual('0.00000000000000002');
+    expect(weiToEther(0x14).toString()).toStrictEqual('0.00000000000000002');
   });
 
   it('wrong types', () => {
