@@ -39,7 +39,7 @@ async function testGetTC(rpcUrl: string, blockTag?: BlockTag) {
   );
 }
 
-describe('provider.getTransactionCount mainnet', () => {
+describe('provider.getTransactionCount matic', () => {
   const rpcUrl = rpcUrls.matic;
   it('should get the latest by the latest block', async () => {
     await testGetTC(rpcUrl, 'latest');
