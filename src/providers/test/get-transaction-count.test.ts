@@ -7,7 +7,6 @@ import { buildFetchInit, buildRPCPostBody } from '../../classes/utils/fetchers';
 
 jest.mock('isomorphic-unfetch');
 
-// coinbase 1 hotwallet
 const address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';
 
 async function testGetTC(rpcUrl: string, blockTag?: BlockTag) {
