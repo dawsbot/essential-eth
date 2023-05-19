@@ -1,10 +1,13 @@
 import * as unfetch from 'isomorphic-unfetch';
-import { JsonRpcProvider, tinyBig } from '../../../index';
-import { rpcUrls } from '../rpc-urls';
-import { buildFetchInit, buildRPCPostBody } from '../../../classes/utils/fetchers';
-import { mockOf } from '../mock-of';
-import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
 import { cleanLog } from '../../../classes/utils/clean-log';
+import {
+  buildFetchInit,
+  buildRPCPostBody,
+} from '../../../classes/utils/fetchers';
+import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
+import { JsonRpcProvider, tinyBig } from '../../../index';
+import { mockOf } from '../mock-of';
+import { rpcUrls } from '../rpc-urls';
 
 jest.mock('isomorphic-unfetch');
 const rpcUrl = rpcUrls.mainnet;
@@ -21,25 +24,27 @@ const mockReceiptResponse = {
   gasUsed: '0x7f110',
   logs: [
     {
-      address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-      blockHash: "0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d",
+      address: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+      blockHash:
+        '0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d',
       blockNumber: '0xdeadc2',
-      data: "0x0000000000000000000000000000000000000000000000000000000000000000",
-      logIndex: "0x1d",
+      data: '0x0000000000000000000000000000000000000000000000000000000000000000',
+      logIndex: '0x1d',
       removed: false,
       topics: [
-        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-        "0x0000000000000000000000000000000000000000000000000000000000000000"
+        '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+        '0x0000000000000000000000000000000000000000000000000000000000000000',
       ],
-      transactionHash: "0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789",
-      transactionIndex: "0x1d"
+      transactionHash:
+        '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789',
+      transactionIndex: '0x1d',
     },
   ],
   logsBloom: '0x0000000000000',
-  status: "0x1",
+  status: '0x1',
   to: '0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4',
-  transactionHash: 
-    "0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789",
+  transactionHash:
+    '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789',
   transactionIndex: 29,
   type: 2,
   confirmations: mockBlocksBetween,
@@ -62,7 +67,7 @@ const mockReceipt = {
   effectiveGasPrice: tinyBig(mockReceiptResponse.effectiveGasPrice),
   gasUsed: tinyBig(mockReceiptResponse.gasUsed),
   status: Number(hexToDecimal(mockReceiptResponse.status)),
-  logs: mockReceiptResponse.logs.map(log => cleanLog(log, true)),
+  logs: mockReceiptResponse.logs.map((log) => cleanLog(log, true)),
   byzantium: true,
 };
 
@@ -80,7 +85,9 @@ describe('provider.getTransactionReceipt', () => {
     } as Response);
 
     const spy = jest.spyOn(unfetch, 'default');
-    const transactionReceipt = await provider.getTransactionReceipt(transactionHash);
+    const transactionReceipt = await provider.getTransactionReceipt(
+      transactionHash,
+    );
     expect(spy).toHaveBeenCalledWith(
       rpcUrl,
       buildFetchInit(
@@ -93,7 +100,9 @@ describe('provider.getTransactionReceipt', () => {
         buildRPCPostBody('eth_getBlockByNumber', ['latest', false]),
       ),
     );
-    
-    expect(JSON.stringify(transactionReceipt)).toBe(JSON.stringify(mockReceipt));
+
+    expect(JSON.stringify(transactionReceipt)).toBe(
+      JSON.stringify(mockReceipt),
+    );
   });
 });
