@@ -1,8 +1,5 @@
 import Big from 'big.js';
-import * as ethers from 'ethers';
-import web3 from 'web3';
 import { etherToWei, tinyBig } from '../../index';
-import { scientificStrToDecimalStr } from '../../shared/tiny-big/helpers';
 
 describe('ether-to-wei', () => {
   it('happy path', () => {
@@ -12,44 +9,21 @@ describe('ether-to-wei', () => {
     expect(etherToWei(1000).toString()).toBe('1000000000000000000000');
     expect(etherToWei('1000.0').toNumber()).toBe(1000000000000000000000);
     expect(etherToWei(tinyBig(1000)).toString()).toBe('1000000000000000000000');
-    expect(etherToWei(tinyBig('1000.0')).toNumber()).toBe(
-      1000000000000000000000,
-    );
+    expect(etherToWei(tinyBig('1000.0')).toNumber()).toBe(1000000000000000000000);
     expect(etherToWei(Big(1000)).toString()).toBe('1000000000000000000000');
     expect(etherToWei(Big('1000.0')).toNumber()).toBe(1000000000000000000000);
   });
 
-  it('matches ethers and web3 toString', () => {
-    expect(etherToWei('-09999.0').toString()).toStrictEqual(
-      ethers.utils.parseEther('-09999.0').toString(),
-    );
-    expect(etherToWei('-09999.0').toString()).toStrictEqual(
-      web3.utils.toWei('-09999.0', 'ether'),
-    );
+  it('matches expected toString', () => {
+    expect(etherToWei('-09999.0').toString()).toStrictEqual('-9999000000000000000000');
   });
 
-  it('matches ethers and web3 toNumber', () => {
+  it('matches expected toNumber', () => {
     /* easy */
-    expect(etherToWei('9').toNumber()).toStrictEqual(
-      Number(ethers.utils.parseEther('9')),
-    );
-    // web3 responds with scientific notation
-    expect(etherToWei('9').toNumber()).toStrictEqual(
-      Number(web3.utils.toWei('9', 'ether')),
-    );
+    expect(etherToWei('9').toNumber()).toStrictEqual(9000000000000000000);
 
     /* harder */
-    expect(etherToWei('-0999999.90').toNumber()).toStrictEqual(
-      Number(
-        ethers.utils.parseEther('-0999999.90'),
-      ) /* overflow error if you use the ".toNumber()", */,
-    );
-    // web3 responds with scientific notation
-    expect(etherToWei('-0999999.9').toNumber()).toStrictEqual(
-      Number(
-        scientificStrToDecimalStr(web3.utils.toWei('-0999999.9', 'ether')),
-      ),
-    );
+    expect(etherToWei('-0999999.90').toNumber()).toStrictEqual(-9.999999e+23);
   });
 
   it('should throw for wrong types', () => {
