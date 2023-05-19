@@ -1,9 +1,9 @@
 import * as unfetch from 'isomorphic-unfetch';
 import { jsonRpcProvider, tinyBig } from '../..';
+import { buildFetchInit, buildRPCPostBody } from '../../classes/utils/fetchers';
 import type { BlockTag } from '../../types/Block.types';
 import { mockOf } from './mock-of';
 import { rpcUrls } from './rpc-urls';
-import { buildFetchInit, buildRPCPostBody } from '../../classes/utils/fetchers';
 
 jest.mock('isomorphic-unfetch');
 
@@ -23,13 +23,17 @@ async function testGetTC(rpcUrl: string, blockTag?: BlockTag) {
 
   const spy = jest.spyOn(unfetch, 'default');
 
-  const transactionCount = await provider.getTransactionCount(address, blockTag);
+  const transactionCount = await provider.getTransactionCount(
+    address,
+    blockTag,
+  );
 
   expect(transactionCount.toString()).toBe('10');
-  
-  const expectedBlockTag = typeof blockTag === 'number'
-  ? tinyBig(blockTag).toHexString()
-  : (blockTag ?? 'latest');
+
+  const expectedBlockTag =
+    typeof blockTag === 'number'
+      ? tinyBig(blockTag).toHexString()
+      : blockTag ?? 'latest';
   expect(spy).toHaveBeenCalledWith(
     rpcUrl,
     buildFetchInit(

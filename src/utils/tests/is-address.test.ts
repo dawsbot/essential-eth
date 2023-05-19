@@ -14,7 +14,7 @@ describe('is-address', () => {
       '27b1fdb04752bbc536007a920d24acb045561c26' /* leading "0x" is not required */,
     ];
     addresses.forEach((address) => {
-      expect(isAddress(address)).toStrictEqual(true);
+      expect(isAddress(address)).toBe(true);
     });
   });
   it('should return false on invalid addresses', () => {
@@ -29,7 +29,7 @@ describe('is-address', () => {
       '0x123',
     ];
     addresses.forEach((address) => {
-      expect(isAddress(address)).toStrictEqual(false);
+      expect(isAddress(address)).toBe(false);
     });
   });
   it('invalid type inputs', () => {
