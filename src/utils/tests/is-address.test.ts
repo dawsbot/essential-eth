@@ -1,5 +1,3 @@
-import { utils } from 'ethers';
-import web3 from 'web3';
 import { isAddress } from '../../index';
 
 describe('is-address', () => {
@@ -16,8 +14,7 @@ describe('is-address', () => {
       '27b1fdb04752bbc536007a920d24acb045561c26' /* leading "0x" is not required */,
     ];
     addresses.forEach((address) => {
-      expect(isAddress(address)).toStrictEqual(utils.isAddress(address));
-      expect(isAddress(address)).toStrictEqual(web3.utils.isAddress(address));
+      expect(isAddress(address)).toBe(true);
     });
   });
   it('should return false on invalid addresses', () => {
@@ -32,11 +29,7 @@ describe('is-address', () => {
       '0x123',
     ];
     addresses.forEach((address) => {
-      const essentialEthIsAddress = isAddress(address);
-      const ethersIsAddress = utils.isAddress(address);
-      const web3IsAddress = web3.utils.isAddress(address);
-      expect(essentialEthIsAddress).toStrictEqual(ethersIsAddress);
-      expect(essentialEthIsAddress).toStrictEqual(web3IsAddress);
+      expect(isAddress(address)).toBe(false);
     });
   });
   it('invalid type inputs', () => {

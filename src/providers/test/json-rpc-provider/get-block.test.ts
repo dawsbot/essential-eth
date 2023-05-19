@@ -1,10 +1,9 @@
 import * as unfetch from 'isomorphic-unfetch';
 import { JsonRpcProvider, tinyBig, toChecksumAddress } from '../../..';
-import type {
-  RPCMethodName} from '../../../classes/utils/fetchers';
+import type { RPCMethodName } from '../../../classes/utils/fetchers';
 import {
   buildFetchInit,
-  buildRPCPostBody
+  buildRPCPostBody,
 } from '../../../classes/utils/fetchers';
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
 import { mockOf } from '../mock-of';
