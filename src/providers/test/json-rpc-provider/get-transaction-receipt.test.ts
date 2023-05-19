@@ -1,123 +1,99 @@
-import { ethers } from 'ethers';
-import omit from 'just-omit';
-import Web3 from 'web3';
-import type web3core from 'web3-core';
-import { JsonRpcProvider } from '../../../index';
-import type { TransactionReceipt } from '../../../types/Transaction.types';
+import * as unfetch from 'isomorphic-unfetch';
+import { JsonRpcProvider, tinyBig } from '../../../index';
 import { rpcUrls } from '../rpc-urls';
+import { buildFetchInit, buildRPCPostBody } from '../../../classes/utils/fetchers';
+import { mockOf } from '../mock-of';
+import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
+import { cleanLog } from '../../../classes/utils/clean-log';
 
+jest.mock('isomorphic-unfetch');
 const rpcUrl = rpcUrls.mainnet;
 
+const mockBlocksBetween = 10;
+const mockReceiptResponse = {
+  blockHash:
+    '0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d',
+  blockNumber: 14578286,
+  contractAddress: '0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4',
+  cumulativeGasUsed: '0x7f110',
+  effectiveGasPrice: '0x7f110',
+  from: '0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf',
+  gasUsed: '0x7f110',
+  logs: [
+    {
+      address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      blockHash: "0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d",
+      blockNumber: '0xdeadc2',
+      data: "0x0000000000000000000000000000000000000000000000000000000000000000",
+      logIndex: "0x1d",
+      removed: false,
+      topics: [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      transactionHash: "0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789",
+      transactionIndex: "0x1d"
+    },
+  ],
+  logsBloom: '0x0000000000000',
+  status: "0x1",
+  to: '0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4',
+  transactionHash: 
+    "0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789",
+  transactionIndex: 29,
+  type: 2,
+  confirmations: mockBlocksBetween,
+};
+const mockRpcReceiptResponse = JSON.stringify({
+  jsonrpc: '2.0',
+  id: 1,
+  result: mockReceiptResponse,
+});
+const mockRpcBlockResponse = JSON.stringify({
+  jsonrpc: '2.0',
+  id: 1,
+  result: {
+    number: mockReceiptResponse.blockNumber + mockBlocksBetween - 1,
+  },
+});
+const mockReceipt = {
+  ...mockReceiptResponse,
+  cumulativeGasUsed: tinyBig(mockReceiptResponse.cumulativeGasUsed),
+  effectiveGasPrice: tinyBig(mockReceiptResponse.effectiveGasPrice),
+  gasUsed: tinyBig(mockReceiptResponse.gasUsed),
+  status: Number(hexToDecimal(mockReceiptResponse.status)),
+  logs: mockReceiptResponse.logs.map(log => cleanLog(log, true)),
+  byzantium: true,
+};
+
 describe('provider.getTransactionReceipt', () => {
-  function testTransactionReceiptEquality(
-    transactionReceipt1:
-      | ethers.providers.TransactionReceipt
-      | web3core.Transaction,
-    transactionReceipt2: TransactionReceipt,
-  ) {
-    let typeCheckKeys: Array<string> = [];
-    let omittable1: Array<string> = [];
-    let omittable2: Array<string> = [];
-    if (
-      (transactionReceipt1 as ethers.providers.TransactionReceipt).confirmations
-    ) {
-      // only ethers response has confirmations
-      // requires manually comparing values via bigNum conversion
-      typeCheckKeys = ['gasUsed', 'cumulativeGasUsed', 'effectiveGasPrice'];
-      omittable1 = typeCheckKeys;
-      omittable2 = typeCheckKeys;
-
-      typeCheckKeys.forEach((key) => {
-        expect((transactionReceipt1 as any)[key].toString()).toBe(
-          (transactionReceipt2 as any)[key].toString(),
-        );
-      });
-
-      expect(
-        Math.abs(
-          (transactionReceipt1 as ethers.providers.TransactionReceipt)
-            .confirmations - transactionReceipt2.confirmations,
-        ),
-      ).toBeLessThan(3);
-    } else {
-      typeCheckKeys = [
-        'cumulativeGasUsed',
-        'effectiveGasPrice',
-        'from',
-        'gasUsed',
-        'status',
-        'to',
-        'type',
-      ];
-      omittable1 = typeCheckKeys;
-      omittable2 = ['byzantium', 'confirmations', ...typeCheckKeys];
-
-      typeCheckKeys.forEach((key) => {
-        switch (key) {
-          case 'cumulativeGasUsed':
-          case 'effectiveGasPrice':
-          case 'gasUsed':
-            expect((transactionReceipt1 as any)[key].toString()).toBe(
-              (transactionReceipt2 as any)[key].toString(),
-            );
-            break;
-          case 'from':
-          case 'to':
-            expect((transactionReceipt1 as any)[key]).toBe(
-              (transactionReceipt2 as any)[key].toLowerCase(),
-            );
-            break;
-        }
-      });
-    }
-
-    const omittedTransactionReceipt1 = omit(
-      transactionReceipt1,
-      omittable1 as any,
-    ) as TransactionReceipt | web3core.TransactionReceipt;
-    const omittedTransactionReceipt2 = omit(
-      transactionReceipt2,
-      omittable2 as any,
-    ) as TransactionReceipt | web3core.TransactionReceipt;
-
-    omittedTransactionReceipt1.logs = omittedTransactionReceipt1.logs.map(
-      (log) => omit(log, ['id', 'removed'] as any) as any,
-    );
-
-    expect(omittedTransactionReceipt1).toMatchObject(
-      omittedTransactionReceipt2,
-    );
-  }
-  it('should match web3.js', async () => {
+  it('should match mocked transaction receipt', async () => {
     const transactionHash =
       '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789';
-    const web3Provider = new Web3(rpcUrl);
-    const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-    const [web3TransactionReceipt, essentialEthTransactionReceipt] =
-      await Promise.all([
-        web3Provider.eth.getTransactionReceipt(transactionHash),
-        essentialEthProvider.getTransactionReceipt(transactionHash),
-      ]);
+    const provider = new JsonRpcProvider(rpcUrl);
 
-    testTransactionReceiptEquality(
-      web3TransactionReceipt as any,
-      essentialEthTransactionReceipt,
-    );
-  });
-  it('should match ethers', async () => {
-    const transactionHash =
-      '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789';
-    const ethersProvider = new ethers.providers.StaticJsonRpcProvider(rpcUrl);
-    const essentialEthProvider = new JsonRpcProvider(rpcUrl);
-    const [ethersTransactionReceipt, essentialEthTransactionReceipt] =
-      await Promise.all([
-        ethersProvider.getTransactionReceipt(transactionHash),
-        essentialEthProvider.getTransactionReceipt(transactionHash),
-      ]);
+    mockOf(unfetch.default).mockResolvedValueOnce({
+      text: () => Promise.resolve(mockRpcReceiptResponse),
+    } as Response);
+    mockOf(unfetch.default).mockResolvedValueOnce({
+      text: () => Promise.resolve(mockRpcBlockResponse),
+    } as Response);
 
-    testTransactionReceiptEquality(
-      ethersTransactionReceipt,
-      essentialEthTransactionReceipt,
+    const spy = jest.spyOn(unfetch, 'default');
+    const transactionReceipt = await provider.getTransactionReceipt(transactionHash);
+    expect(spy).toHaveBeenCalledWith(
+      rpcUrl,
+      buildFetchInit(
+        buildRPCPostBody('eth_getTransactionReceipt', [transactionHash]),
+      ),
     );
+    expect(spy).toHaveBeenCalledWith(
+      rpcUrl,
+      buildFetchInit(
+        buildRPCPostBody('eth_getBlockByNumber', ['latest', false]),
+      ),
+    );
+    
+    expect(JSON.stringify(transactionReceipt)).toBe(JSON.stringify(mockReceipt));
   });
 });
