@@ -1,25 +1,24 @@
-import * as ethers from 'ethers';
 import { isBytes, isBytesLike } from '../../..';
 
 describe('isBytesLike', () => {
-  it('matches ethers', () => {
-    const inputs = [
-      ['1', '2', '3'],
-      [1, 2, 3],
-      '0x123',
-      123,
-      0x123,
-      'bad',
-      false,
-      { test: 'bad' },
-      null,
-      new Uint8Array(),
-      new Uint8Array(1),
+  it('matches expected', () => {
+    const testCases = [
+      { value: ['1', '2', '3'], isBytesLike: false, isBytes: false },
+      { value: [1, 2, 3], isBytesLike: true, isBytes: true },
+      { value: '0x123', isBytesLike: false, isBytes: false },
+      { value: 123, isBytesLike: false, isBytes: false },
+      { value: 0x123, isBytesLike: false, isBytes: false },
+      { value: 'bad', isBytesLike: false, isBytes: false },
+      { value: false, isBytesLike: false, isBytes: false },
+      { value: { test: 'bad' }, isBytesLike: false, isBytes: false },
+      { value: null, isBytesLike: false, isBytes: false },
+      { value: new Uint8Array(), isBytesLike: true, isBytes: true },
+      { value: new Uint8Array(1), isBytesLike: true, isBytes: true },
     ];
 
-    inputs.forEach((input) => {
-      expect(isBytesLike(input)).toBe(ethers.utils.isBytesLike(input));
-      expect(isBytes(input)).toBe(ethers.utils.isBytes(input));
+    testCases.forEach((testCase) => {
+      expect(isBytesLike(testCase.value)).toBe(testCase.isBytesLike);
+      expect(isBytes(testCase.value)).toBe(testCase.isBytes);
     });
   });
 });
