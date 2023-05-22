@@ -65,6 +65,7 @@
     "@size-limit/preset-small-lib": "^8.2.4",
     "@swc/cli": "^0.1.62",
     "@swc/core": "^1.3.53",
+    "@types/bn.js": "^5.1.1",
     "@types/eslint": "^8.37.0",
     "@types/jest": "^27.4.1",
     "@types/node": "^18.16.0",
@@ -76,7 +77,6 @@
     "eslint": "^8.16.0",
     "eslint-plugin-jest": "^26.2.2",
     "eslint-plugin-jsdoc": "^38.0.2",
-    "ethers": "^5.7.2",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^13.2.1",
@@ -89,7 +89,6 @@
     "ts-node": "^10.2.1",
     "typedoc": "^0.24.5",
     "typescript": "^4.9.4",
-    "web3": "^1.8.1",
     "zod": "^3.21.4"
   },
   "dependencies": {
