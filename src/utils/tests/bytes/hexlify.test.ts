@@ -1,3 +1,4 @@
+import type { DataOptions } from '../../bytes';
 import { hexlify } from '../../bytes';
 import type { BytesLike } from './../../bytes';
 
@@ -17,12 +18,24 @@ describe('utils.hexlify', () => {
     });
   });
   it('should hexlify with options - hexPad', () => {
-    const testCases = [
-      { value: '0x3342e95', options: { hexPad: 'left' }, expected: '0x03342e95' },
-      { value: '0x41c942c42', options: { hexPad: 'right' }, expected: '0x41c942c420' },
+    const testCases: Array<{
+      value: string;
+      options: DataOptions;
+      expected: string;
+    }> = [
+      {
+        value: '0x3342e95',
+        options: { hexPad: 'left' },
+        expected: '0x03342e95',
+      },
+      {
+        value: '0x41c942c42',
+        options: { hexPad: 'right' },
+        expected: '0x41c942c420',
+      },
     ];
     testCases.forEach((testCase) => {
-      expect(hexlify(testCase.value, testCase.options as any)).toBe(testCase.expected);
+      expect(hexlify(testCase.value, testCase.options)).toBe(testCase.expected);
     });
   });
   it('should throw error - hex data is odd-length', () => {
@@ -32,9 +45,10 @@ describe('utils.hexlify', () => {
     });
   });
   it('should throw error - invalid hexlify value', () => {
-    const values = ['non-hex string', false];
+    // @ts-expect-error
+    const values: Array<BytesLike> = ['non-hex string', false];
     values.forEach((value) => {
-      expect(() => hexlify(value as BytesLike)).toThrow('invalid hexlify value');
+      expect(() => hexlify(value)).toThrow('invalid hexlify value');
     });
   });
 });

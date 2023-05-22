@@ -13,9 +13,11 @@ describe('utils.isHexString', () => {
       // False because '0x185754' is 3 bytes long, not 5.
       { value: ['0x185754', 5], expected: false },
       { value: ['0x00005823', 4], expected: true },
-    ];
+    ] as const;
     testCases.forEach((testCase) => {
-      expect(isHexString(testCase.value[0], testCase.value[1] as number)).toBe(testCase.expected);
+      expect(isHexString(testCase.value[0], testCase.value[1])).toBe(
+        testCase.expected,
+      );
     });
   });
   it('should return false - UInt8Array', () => {
