@@ -1,4 +1,4 @@
-import { BigNumber } from 'ethers';
+import BN from 'bn.js';
 import { tinyBig } from './tiny-big';
 
 describe('tiny-big', () => {
@@ -20,7 +20,7 @@ describe('tiny-big', () => {
     ];
     inputs.forEach(({ num, bitCount }) => {
       expect(tinyBig(num).toTwos(bitCount).toString()).toBe(
-        BigNumber.from(num).toTwos(bitCount).toString(),
+        new BN(num).toTwos(bitCount).toString(),
       );
     });
   });

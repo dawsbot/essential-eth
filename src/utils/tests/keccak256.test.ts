@@ -1,4 +1,3 @@
-import { utils } from 'ethers';
 import type { BytesLike } from './../bytes';
 import { keccak256 } from './../keccak256';
 import { toUtf8Bytes } from './../to-utf8-bytes';
@@ -6,35 +5,52 @@ import { toUtf8Bytes } from './../to-utf8-bytes';
 /**
  *
  * @param inputs
+ * @param expected
  */
-function testKeccak256(inputs: Array<BytesLike>) {
-  inputs.forEach((input) => {
-    expect(keccak256(input)).toBe(utils.keccak256(input));
+function testKeccak256(inputs: Array<BytesLike>, expected: Array<string>) {
+  inputs.forEach((input, index) => {
+    expect(keccak256(input)).toBe(expected[index]);
   });
 }
 
 describe('keccak256', () => {
-  it('should match ethers.js hex strings', () => {
+  it('should match expected - hex strings', () => {
     const inputs = [
       '0x4d7F1790644Af787933c9fF0e2cff9a9B4299Abb',
       '0xB5503a7db1A9105cd459D99153e69a76a8EF1530',
       '0xaa0fc255b079e775f9307e5cfec472a555cebc3a',
     ];
-    testKeccak256(inputs);
+    const expected = [
+      '0x72fe4a1287bb827ec8d04e045f7559955a8e694063af513008f111670674178a',
+      '0x012d02a94561e140985a0382377e7676eec97a73007e188ffd1d0a0c01b1eb4d',
+      '0xfe9ee1df3c10848ed968a46ced4a0bb9674195ece0cfc63959d8058d77700d84',
+    ];
+    testKeccak256(inputs, expected);
   });
-  it('should match ethers.js bytes', () => {
+  it('should match expected - bytes', () => {
     const inputs = [[2, 182, 145], [0, 16, 255], [0x12, 0x34], [0x12]];
-    testKeccak256(inputs);
+    const expected = [
+      '0x324544acf03f9c2ac85ab3a820ab3371bf7965a342bcdd5f74e28eb6d1f60050',
+      '0xfe10bfcde301e8b760615ba65ba2a0c7fb72f9bcdea7c45841ef7b355a443e51',
+      '0x56570de287d73cd1cb6092bb8fdee6173974955fdef345ae579ee9f475ea7432',
+      '0x5fa2358263196dbbf23d1ca7a509451f7a2f64c15837bfbb81298b1e3e24e4fa',
+    ];
+    testKeccak256(inputs, expected);
   });
 
-  it('should match ethers.js numbers', () => {
+  it('should match expected - numbers', () => {
     const inputs = [23874234, 123346, 12395712].map((n) =>
       toUtf8Bytes(n.toString()),
     );
-    testKeccak256(inputs);
+    const expected = [
+      '0x6cc5c464579b7e93f9e3192ecad21e933e5497d24a067546a264874a1cdbe48d',
+      '0xf54c8ff9e4afcd296f686a15dda3b8f9f2da621866842b2427ab578e0aaa7344',
+      '0xd9ba3a9f9b521946abbae91c3799ac03a3ec95d2a69a5ab5974242d36e3c6f32',
+    ];
+    testKeccak256(inputs, expected);
   });
 
-  it('should match ethers.js strings', () => {
+  it('should match expected  - strings', () => {
     const inputs = [
       'essential-eth',
       'firstText',
@@ -43,7 +59,15 @@ describe('keccak256', () => {
       '2934823',
       'true',
     ].map(toUtf8Bytes);
-    testKeccak256(inputs);
+    const expected = [
+      '0xd5b027dc2bddae7475604f19ca210363f0a3c63a32d79c2fff540b9c21249f2c',
+      '0x3b0c4ce69832f4f4036e87bf56b9062018040b5b0f031062bd9667fb579c844f',
+      '0x2f33a7c2165d73854f66613815214ba5812046579723927d001cabe696078ae7',
+      '0xf5590342e9e60df9335478edb075a7c323b2e11d690d18d35eaa32f13e48788d',
+      '0x0517ce0ae90a6a7f7f4770d867e1fc57e38e7f1d133942fdbcbabe53c98d3761',
+      '0x6273151f959616268004b58dbb21e5c851b7b8d04498b4aabee12291d22fc034',
+    ];
+    testKeccak256(inputs, expected);
   });
   // it('should match ethers.js bytes (dynamic size) & BytesLike', () => {
   //   const inputs = [
