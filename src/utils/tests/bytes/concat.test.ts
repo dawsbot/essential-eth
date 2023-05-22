@@ -1,13 +1,12 @@
-import * as ethers from 'ethers';
 import type { BytesLikeWithNumber } from '../../..';
 import { concat } from '../../..';
 
 describe('concat', () => {
-  it('matches ethers', () => {
+  it('matches expected result', () => {
     const inputs: ReadonlyArray<BytesLikeWithNumber[]> = [[0, 1]];
 
     inputs.forEach((input) => {
-      expect(concat(input)).toStrictEqual(ethers.utils.concat(input as any));
+      expect(concat(input)).toStrictEqual(new Uint8Array([0, 1]));
     });
   });
 });
