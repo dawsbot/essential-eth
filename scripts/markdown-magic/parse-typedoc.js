@@ -21,7 +21,7 @@ class FunctionSignature {
     return this.signature.type;
   }
   selectExamples() {
-    return this.signature.comment?.tags
+    return this.signature.comment?.blockTags
       ?.filter((tag) => tag.tag === 'example')
       .map((tag) => {
         return tag.text;
@@ -35,11 +35,15 @@ functions.map((functionNumber) => {
 
   // const sig = child.signatures[0];
   const signature = new FunctionSignature(child.signatures[0]);
+  // eslint-disable-next-line no-console
+  console.log(signature);
   const signatureType = signature.selectSignatureType();
   let returnType = signatureType.name;
   let parameters = signature.selectParameters();
 
   const examples = signature.selectExamples();
+  // eslint-disable-next-line no-console
+  console.log(examples);
   if (signatureType === 'union') {
     returnType = signatureType?.types
       ?.map((type) => {
