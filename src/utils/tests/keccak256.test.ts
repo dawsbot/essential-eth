@@ -16,12 +16,12 @@ function testKeccak256(inputs: Array<BytesLike>, expected: Array<string>) {
 describe('keccak256', () => {
   it('should match expected - hex strings', () => {
     const inputs = [
-      '0x72fe4a1287bb827ec8d04e045f7559955a8e694063af513008f111670674178a',
+      '0x4d7F1790644Af787933c9fF0e2cff9a9B4299Abb',
       '0xB5503a7db1A9105cd459D99153e69a76a8EF1530',
       '0xaa0fc255b079e775f9307e5cfec472a555cebc3a',
     ];
     const expected = [
-      '0xdfd0cc524dd738b88971b1317b30e6a13c9295469197dee0663ebc4b05e5221e',
+      '0x72fe4a1287bb827ec8d04e045f7559955a8e694063af513008f111670674178a',
       '0x012d02a94561e140985a0382377e7676eec97a73007e188ffd1d0a0c01b1eb4d',
       '0xfe9ee1df3c10848ed968a46ced4a0bb9674195ece0cfc63959d8058d77700d84',
     ];
