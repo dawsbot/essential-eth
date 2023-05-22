@@ -7,12 +7,12 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  codecov:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: ['16']
+        node-version: ['18']
 
     steps:
       - uses: actions/checkout@v3
@@ -22,6 +22,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci --ignore-scripts
-      - run: npm run jest -- --coverage
+      - name: 🧪 Codecov test
+        run: npm run jest -- --coverage
+        env:
+          ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2

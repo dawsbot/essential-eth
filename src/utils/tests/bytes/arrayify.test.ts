@@ -1,28 +1,28 @@
-import * as ethers from 'ethers';
 import { arrayify, tinyBig } from '../../..';
 
 describe('arrayify', () => {
-  it('matches ethers', () => {
-    const inputs = [0, 1, '0x1234', new Uint8Array(2), tinyBig(17)];
+  it('should correctly arrayify - values', () => {
+    const testCases = [
+      { input: 0, expected: new Uint8Array([0]) },
+      { input: 1, expected: new Uint8Array([1]) },
+      { input: '0x1234', expected: new Uint8Array([18, 52]) },
+      { input: new Uint8Array(2), expected: new Uint8Array(2) },
+      { input: tinyBig(17), expected: new Uint8Array([17]) }
+    ];
 
-    inputs.forEach((input) => {
-      //       console.log({ input, arr: arrayify(input as any) });
-      expect(arrayify(input)).toStrictEqual(ethers.utils.arrayify(input));
+    testCases.forEach((testCase) => {
+      expect(arrayify(testCase.input)).toStrictEqual(testCase.expected);
     });
-    expect(arrayify('12', { allowMissingPrefix: true })).toStrictEqual(
-      ethers.utils.arrayify('12', { allowMissingPrefix: true }),
-    );
+  });
 
-    expect(arrayify('0x1', { hexPad: 'left' })).toStrictEqual(
-      ethers.utils.arrayify('0x1', { hexPad: 'left' }),
-    );
-    expect(arrayify('0x1', { hexPad: 'right' })).toStrictEqual(
-      ethers.utils.arrayify('0x1', { hexPad: 'right' }),
-    );
+  it('should correctly arrayify - values with options', () => {
+    expect(arrayify('12', { allowMissingPrefix: true })).toStrictEqual(new Uint8Array([18]));
+    expect(arrayify('0x1', { hexPad: 'left' })).toStrictEqual(new Uint8Array([1]));
+    expect(arrayify('0x1', { hexPad: 'right' })).toStrictEqual(new Uint8Array([16]));
+  });
 
-    // hex data is odd length
-    expect(() => arrayify(tinyBig(15))).toThrow();
-    // invalid arrayify value
-    expect(() => arrayify(false as any)).toThrow();
+  it('should throw for invalid values', () => {
+    expect(() => arrayify(tinyBig(15))).toThrow(); // hex data is odd-length
+    expect(() => arrayify(false as any)).toThrow(); // invalid arrayify value
   });
 });
