@@ -4,7 +4,7 @@ describe('utils.hexDataSlice', () => {
   it('should match expected slice - hexadecimal strings', () => {
     const hexValues = ['0x123456'];
     hexValues.forEach((hexValue) => {
-      expect(hexDataSlice(hexValue, 0, 2)).toStrictEqual('0x1234');
+      expect(hexDataSlice(hexValue, 0, 2)).toBe('0x1234');
     });
   });
 
@@ -13,14 +13,14 @@ describe('utils.hexDataSlice', () => {
     hexValues.forEach((hexValue) => {
       expect(hexDataSlice(hexValue, 3)).toBe('0x67891011');
       expect(hexDataSlice(hexValue, 2, 4)).toBe('0x4567');
-      expect(hexDataSlice(hexValue, 100)).toStrictEqual('0x');
+      expect(hexDataSlice(hexValue, 100)).toBe('0x');
     });
   });
 
   it('should match expected slice - arrays of decimal numbers', () => {
     const decimalArrays = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]];
     decimalArrays.forEach((decimalArray) => {
-      expect(hexDataSlice(decimalArray, 1, 2)).toStrictEqual('0x01');
+      expect(hexDataSlice(decimalArray, 1, 2)).toBe('0x01');
     });
   });
 
