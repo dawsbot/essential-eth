@@ -157,16 +157,20 @@ arrayify(value: number | BytesLike | Hexable, options: DataOptions): Uint8Array
 import { arrayify } from 'essential-eth';
 ```
 
-```````javascript
+```javascript
 arrayify(1);
 // Uint8Array(1) [ 1 ]
-``````javascript
+```
+
+```javascript
 arrayify(0x1234);
 // Uint8Array(2) [ 18, 52 ]
-``````javascript
+```
+
+```javascript
 arrayify('0x1', { hexPad: 'right' });
 // Uint8Array(1) [ 16 ]
-```````
+```
 
   </details>
 
@@ -185,13 +189,19 @@ computeAddress(key: string): string
 import { computeAddress } from 'essential-eth';
 ```
 
-```````javascript
-computeAddress('0x0458eb591f407aef12936bd2989ca699cf5061de9c4964dd6eb6005fd8f580c407434447e813969a1be6e9954b002cad84dfc67a69e032b273e4695e7d0db2d952'); // public key
+```javascript
+computeAddress(
+  '0x0458eb591f407aef12936bd2989ca699cf5061de9c4964dd6eb6005fd8f580c407434447e813969a1be6e9954b002cad84dfc67a69e032b273e4695e7d0db2d952',
+); // public key
 // '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
-``````javascript
-computeAddress('0x2f2c419acf4a1da8c1ebea75bb3fcfbd3ec2aa3bf0162901ccdc2f38b8f92427'); // private key
+```
+
+```javascript
+computeAddress(
+  '0x2f2c419acf4a1da8c1ebea75bb3fcfbd3ec2aa3bf0162901ccdc2f38b8f92427',
+); // private key
 // '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
-```````
+```
 
   </details>
 
@@ -210,13 +220,20 @@ computePublicKey(privKey: BytesLike): string
 import { computePublicKey } from 'essential-eth';
 ```
 
-```````javascript
-computePublicKey('0xb27cc8dea0177d910110e8d3ec5480d56c723abf433529f4063f261ffdb9297c');
+```javascript
+computePublicKey(
+  '0xb27cc8dea0177d910110e8d3ec5480d56c723abf433529f4063f261ffdb9297c',
+);
 // '0x045cd0032015eecfde49f82f4e149d804e8ac6e3a0bface32e37c72a71ceac864fe84da7e8df84342f7b11dfb753c4d158f636142b46b29cf7f0f171ae0aa4fb87'
-``````javascript
-computePublicKey([50,102,50,99,52,49,57,97,99,102,52,97,49,100,97,56,99,49,101,98,101,97,55,53,98,98,51,102,99,102,98,100]);
+```
+
+```javascript
+computePublicKey([
+  50, 102, 50, 99, 52, 49, 57, 97, 99, 102, 52, 97, 49, 100, 97, 56, 99, 49,
+  101, 98, 101, 97, 55, 53, 98, 98, 51, 102, 99, 102, 98, 100,
+]);
 // '0x04a9cea77eca949df84f661cee153426fb51f2294b9364b4fac240df57360b9b0ac9c99e4d7966491ab4c81f8c82e0cd24ec5759832ad4ab736d22c7d90b806ee8'
-```````
+```
 
   </details>
 
@@ -257,17 +274,19 @@ etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
 import { etherToGwei } from 'essential-eth';
 ```
 
-```````javascript
-etherToGwei('1000').toString()
+```javascript
+etherToGwei('1000').toString();
 // '1000000000000'
-etherToGwei(1000).toString()
+etherToGwei(1000).toString();
 // '1000000000000'
-``````javascript
-etherToGwei('1000').toNumber()
+```
+
+```javascript
+etherToGwei('1000').toNumber();
 // 1000000000000
-etherToGwei(1000).toNumber()
+etherToGwei(1000).toNumber();
 // 1000000000000
-```````
+```
 
   </details>
 
@@ -286,17 +305,19 @@ etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
 import { etherToWei } from 'essential-eth';
 ```
 
-```````javascript
-etherToWei('1000').toString()
+```javascript
+etherToWei('1000').toString();
 // '1000000000000000000000'
-etherToWei(1000).toString()
+etherToWei(1000).toString();
 // '1000000000000000000000'
-``````javascript
-etherToWei('1000').toNumber()
+```
+
+```javascript
+etherToWei('1000').toNumber();
 // 1000000000000000000000
-etherToWei(1000).toNumber()
+etherToWei(1000).toNumber();
 // 1000000000000000000000
-```````
+```
 
   </details>
 
@@ -315,17 +336,19 @@ gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
 import { gweiToEther } from 'essential-eth';
 ```
 
-```````javascript
-gweiToEther('1000000000000').toString()
+```javascript
+gweiToEther('1000000000000').toString();
 // '1000'
-gweiToEther(1000000000000).toString()
+gweiToEther(1000000000000).toString();
 // '1000'
-``````javascript
-gweiToEther('1000000000000').toNumber()
+```
+
+```javascript
+gweiToEther('1000000000000').toNumber();
 // 1000
-gweiToEther(1000000000000).toNumber()
+gweiToEther(1000000000000).toNumber();
 // 1000
-```````
+```
 
   </details>
 
@@ -388,13 +411,15 @@ hexDataLength(data: BytesLike): undefined
 import { hexDataLength } from 'essential-eth';
 ```
 
-```````javascript
+```javascript
 hexDataLength([2, 4, 0, 1]);
 // 4
-``````javascript
+```
+
+```javascript
 hexDataLength('0x3925');
 // 2
-```````
+```
 
   </details>
 
@@ -457,13 +482,15 @@ hexValue(value: number | bigint | BytesLike | Hexable): string
 import { hexValue } from 'essential-eth';
 ```
 
-```````javascript
+```javascript
 hexValue(39);
 // '0x27'
-``````javascript
+```
+
+```javascript
 hexValue([9, 4, 19, 4]);
 // '0x9041304'
-```````
+```
 
   </details>
 
@@ -482,16 +509,20 @@ hexZeroPad(value: BytesLikeWithNumber, length: number): string
 import { hexZeroPad } from 'essential-eth';
 ```
 
-```````javascript
+```javascript
 hexZeroPad('0x60', 2);
 // '0x0060'
-``````javascript
+```
+
+```javascript
 hexZeroPad(0x60, 3);
 // '0x000060'
-``````javascript
+```
+
+```javascript
 hexZeroPad('12345', 1);
 // Throws
-```````
+```
 
   </details>
 
@@ -510,13 +541,15 @@ hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): str
 import { hexlify } from 'essential-eth';
 ```
 
-```````javascript
+```javascript
 hexlify(4);
 // '0x04'
-``````javascript
+```
+
+```javascript
 hexlify(14);
 // '0x0e'
-```````
+```
 
   </details>
 
@@ -535,17 +568,21 @@ isAddress(address: string): boolean
 import { isAddress } from 'essential-eth';
 ```
 
-```````javascript
+```javascript
 isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
 // true
-``````javascript
+```
+
+```javascript
 isAddress('bad');
 // false
-``````javascript
+```
+
+```javascript
 // Does NOT support ENS.
 isAddress('vitalik.eth');
 // false
-```````
+```
 
   </details>
 
@@ -564,16 +601,20 @@ isBytes(value: any): value
 import { isBytes } from 'essential-eth';
 ```
 
-```````javascript
-isBytes([1,2,3]);
+```javascript
+isBytes([1, 2, 3]);
 // true
-``````javascript
+```
+
+```javascript
 isBytes(false);
 // false
-``````javascript
+```
+
+```javascript
 isBytes(new Uint8Array(1));
 // true
-```````
+```
 
   </details>
 
@@ -592,16 +633,20 @@ isBytesLike(value: any): value
 import { isBytesLike } from 'essential-eth';
 ```
 
-```````javascript
-isBytesLike([1,2,3]);
+```javascript
+isBytesLike([1, 2, 3]);
 // true
-``````javascript
+```
+
+```javascript
 isBytesLike(false);
 // false
-``````javascript
+```
+
+```javascript
 isBytesLike(new Uint8Array(1));
 // true
-```````
+```
 
   </details>
 
@@ -620,14 +665,16 @@ isHexString(value: any, length: number): boolean
 import { isHexString } from 'essential-eth';
 ```
 
-```````javascript
+```javascript
 isHexString('0x4924');
 // true
-``````javascript
+```
+
+```javascript
 isHexString('0x4924', 4);
 // false
 // length of 4 in bytes would mean a hex string with 8 characters
-```````
+```
 
   </details>
 
@@ -721,17 +768,22 @@ solidityKeccak256(types: Array<string>, values: Array<any>): string
 import { solidityKeccak256 } from 'essential-eth';
 ```
 
-```````javascript
+```javascript
 const types = ['string', 'bool', 'uint32'];
 const values = ['essential-eth is great', true, 14];
 solidityKeccak256(types, values);
 // '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'
-``````javascript
+```
+
+```javascript
 const types = ['bytes4', 'uint32[5]'];
-const values = [[116, 101, 115, 116], [5, 3, 4, 9, 18]];
+const values = [
+  [116, 101, 115, 116],
+  [5, 3, 4, 9, 18],
+];
 solidityKeccak256(types, values);
 // '0x038707a887f09355dc545412b058e7ba8f3c74047050c7c5e5e52eec608053d9'
-```````
+```
 
   </details>
 
@@ -877,17 +929,19 @@ weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
 import { weiToEther } from 'essential-eth';
 ```
 
-```````javascript
-weiToEther('1000000000000000000000').toString()
+```javascript
+weiToEther('1000000000000000000000').toString();
 // '1000'
-weiToEther(1000000000000000000000).toString()
+weiToEther(1000000000000000000000).toString();
 // '1000'
-``````javascript
-weiToEther('1000000000000000000000').toNumber()
+```
+
+```javascript
+weiToEther('1000000000000000000000').toNumber();
 // 1000
-weiToEther(1000000000000000000000).toNumber()
+weiToEther(1000000000000000000000).toNumber();
 // 1000
-```````
+```
 
   </details>
 
@@ -906,14 +960,16 @@ zeroPad(value: BytesLike, length: number): Uint8Array
 import { zeroPad } from 'essential-eth';
 ```
 
-```````javascript
+```javascript
 zeroPad('0x039284');
 // Uint8Array { [Iterator]  0: 0, 1: 0, 2: 0, 3: 3, 4: 146, 5: 132 }
 // Equivalent to 0x000000039284
-``````javascript
+```
+
+```javascript
 zeroPad([39, 25, 103, 45], 5);
 // Uint8Array { [Iterator]  0: 0, 1: 39, 2: 25, 3: 103, 4: 45 }
-```````
+```
 
   </details>
 

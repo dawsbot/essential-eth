@@ -25,7 +25,7 @@ class FunctionSignature {
     this.signature.comment.blockTags.forEach((item) => {
       item.content.forEach((obj) => {
         if (item.tag === '@example') {
-          examples.push(obj.text);
+          examples.push(obj.text + '\n');
         }
       });
     });
