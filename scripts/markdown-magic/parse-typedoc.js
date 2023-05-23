@@ -21,15 +21,9 @@ class FunctionSignature {
     return this.signature.type;
   }
   selectExamples() {
-    const examples = [];
-    this.signature.comment.blockTags.forEach((item) => {
-      item.content.forEach((obj) => {
-        if (item.tag === '@example') {
-          examples.push(obj.text + '\n');
-        }
-      });
-    });
-    return examples;
+    return this.signature.comment.blockTags
+      ?.filter((item) => item.tag === '@example')
+      ?.flatMap((item) => item.content.map((obj) => `${obj.text}\n`));
   }
 }
 functions.map((functionNumber) => {
