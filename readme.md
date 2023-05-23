@@ -150,6 +150,30 @@ const { etherToWei } = require('essential-eth');
 arrayify(value: number | BytesLike | Hexable, options: DataOptions): Uint8Array
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { arrayify } from 'essential-eth';
+```
+
+```javascript
+arrayify(1);
+// Uint8Array(1) [ 1 ]
+```
+
+```javascript
+arrayify(0x1234);
+// Uint8Array(2) [ 18, 52 ]
+```
+
+```javascript
+arrayify('0x1', { hexPad: 'right' });
+// Uint8Array(1) [ 16 ]
+```
+
+  </details>
+
   <br/>
 
 #### [`computeAddress`](https://eeth.dev/docs/api/modules#computeaddress)
@@ -157,6 +181,29 @@ arrayify(value: number | BytesLike | Hexable, options: DataOptions): Uint8Array
 ```typescript
 computeAddress(key: string): string
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { computeAddress } from 'essential-eth';
+```
+
+```javascript
+computeAddress(
+  '0x0458eb591f407aef12936bd2989ca699cf5061de9c4964dd6eb6005fd8f580c407434447e813969a1be6e9954b002cad84dfc67a69e032b273e4695e7d0db2d952',
+); // public key
+// '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
+```
+
+```javascript
+computeAddress(
+  '0x2f2c419acf4a1da8c1ebea75bb3fcfbd3ec2aa3bf0162901ccdc2f38b8f92427',
+); // private key
+// '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
+```
+
+  </details>
 
   <br/>
 
@@ -166,6 +213,30 @@ computeAddress(key: string): string
 computePublicKey(privKey: BytesLike): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { computePublicKey } from 'essential-eth';
+```
+
+```javascript
+computePublicKey(
+  '0xb27cc8dea0177d910110e8d3ec5480d56c723abf433529f4063f261ffdb9297c',
+);
+// '0x045cd0032015eecfde49f82f4e149d804e8ac6e3a0bface32e37c72a71ceac864fe84da7e8df84342f7b11dfb753c4d158f636142b46b29cf7f0f171ae0aa4fb87'
+```
+
+```javascript
+computePublicKey([
+  50, 102, 50, 99, 52, 49, 57, 97, 99, 102, 52, 97, 49, 100, 97, 56, 99, 49,
+  101, 98, 101, 97, 55, 53, 98, 98, 51, 102, 99, 102, 98, 100,
+]);
+// '0x04a9cea77eca949df84f661cee153426fb51f2294b9364b4fac240df57360b9b0ac9c99e4d7966491ab4c81f8c82e0cd24ec5759832ad4ab736d22c7d90b806ee8'
+```
+
+  </details>
+
   <br/>
 
 #### [`concat`](https://eeth.dev/docs/api/modules#concat)
@@ -173,6 +244,20 @@ computePublicKey(privKey: BytesLike): string
 ```typescript
 concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { concat } from 'essential-eth';
+```
+
+```javascript
+concat([0, 1]);
+// Uint8Array(2) [ 0, 1 ]
+```
+
+  </details>
 
   <br/>
 
@@ -182,6 +267,29 @@ concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
 etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { etherToGwei } from 'essential-eth';
+```
+
+```javascript
+etherToGwei('1000').toString();
+// '1000000000000'
+etherToGwei(1000).toString();
+// '1000000000000'
+```
+
+```javascript
+etherToGwei('1000').toNumber();
+// 1000000000000
+etherToGwei(1000).toNumber();
+// 1000000000000
+```
+
+  </details>
+
   <br/>
 
 #### [`etherToWei`](https://eeth.dev/docs/api/modules#ethertowei)
@@ -189,6 +297,29 @@ etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
 ```typescript
 etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { etherToWei } from 'essential-eth';
+```
+
+```javascript
+etherToWei('1000').toString();
+// '1000000000000000000000'
+etherToWei(1000).toString();
+// '1000000000000000000000'
+```
+
+```javascript
+etherToWei('1000').toNumber();
+// 1000000000000000000000
+etherToWei(1000).toNumber();
+// 1000000000000000000000
+```
+
+  </details>
 
   <br/>
 
@@ -198,6 +329,29 @@ etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
 gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { gweiToEther } from 'essential-eth';
+```
+
+```javascript
+gweiToEther('1000000000000').toString();
+// '1000'
+gweiToEther(1000000000000).toString();
+// '1000'
+```
+
+```javascript
+gweiToEther('1000000000000').toNumber();
+// 1000
+gweiToEther(1000000000000).toNumber();
+// 1000
+```
+
+  </details>
+
   <br/>
 
 #### [`hashMessage`](https://eeth.dev/docs/api/modules#hashmessage)
@@ -205,6 +359,20 @@ gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
 ```typescript
 hashMessage(message: string | Bytes): string
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hashMessage } from 'essential-eth';
+```
+
+```javascript
+hashMessage('Hello World');
+// '0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2'
+```
+
+  </details>
 
   <br/>
 
@@ -214,6 +382,20 @@ hashMessage(message: string | Bytes): string
 hexConcat(items: Array<BytesLike>): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexConcat } from 'essential-eth';
+```
+
+```javascript
+hexConcat([[2, 4, 0, 1], 9, '0x2934', '0x3947']);
+// '0x020400010929343947'
+```
+
+  </details>
+
   <br/>
 
 #### [`hexDataLength`](https://eeth.dev/docs/api/modules#hexdatalength)
@@ -221,6 +403,25 @@ hexConcat(items: Array<BytesLike>): string
 ```typescript
 hexDataLength(data: BytesLike): undefined
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexDataLength } from 'essential-eth';
+```
+
+```javascript
+hexDataLength([2, 4, 0, 1]);
+// 4
+```
+
+```javascript
+hexDataLength('0x3925');
+// 2
+```
+
+  </details>
 
   <br/>
 
@@ -230,6 +431,20 @@ hexDataLength(data: BytesLike): undefined
 hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexDataSlice } from 'essential-eth';
+```
+
+```javascript
+hexDataSlice([20, 6, 48], 0, 2);
+// '0x1406'
+```
+
+  </details>
+
   <br/>
 
 #### [`hexStripZeros`](https://eeth.dev/docs/api/modules#hexstripzeros)
@@ -237,6 +452,20 @@ hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): stri
 ```typescript
 hexStripZeros(value: BytesLike): string
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexStripZeros } from 'essential-eth';
+```
+
+```javascript
+hexStripZeros([0, 0, 0, 48]);
+// '0x30'
+```
+
+  </details>
 
   <br/>
 
@@ -246,6 +475,25 @@ hexStripZeros(value: BytesLike): string
 hexValue(value: number | bigint | BytesLike | Hexable): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexValue } from 'essential-eth';
+```
+
+```javascript
+hexValue(39);
+// '0x27'
+```
+
+```javascript
+hexValue([9, 4, 19, 4]);
+// '0x9041304'
+```
+
+  </details>
+
   <br/>
 
 #### [`hexZeroPad`](https://eeth.dev/docs/api/modules#hexzeropad)
@@ -253,6 +501,30 @@ hexValue(value: number | bigint | BytesLike | Hexable): string
 ```typescript
 hexZeroPad(value: BytesLikeWithNumber, length: number): string
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexZeroPad } from 'essential-eth';
+```
+
+```javascript
+hexZeroPad('0x60', 2);
+// '0x0060'
+```
+
+```javascript
+hexZeroPad(0x60, 3);
+// '0x000060'
+```
+
+```javascript
+hexZeroPad('12345', 1);
+// Throws
+```
+
+  </details>
 
   <br/>
 
@@ -262,6 +534,25 @@ hexZeroPad(value: BytesLikeWithNumber, length: number): string
 hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { hexlify } from 'essential-eth';
+```
+
+```javascript
+hexlify(4);
+// '0x04'
+```
+
+```javascript
+hexlify(14);
+// '0x0e'
+```
+
+  </details>
+
   <br/>
 
 #### [`isAddress`](https://eeth.dev/docs/api/modules#isaddress)
@@ -269,6 +560,31 @@ hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): str
 ```typescript
 isAddress(address: string): boolean
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { isAddress } from 'essential-eth';
+```
+
+```javascript
+isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
+// true
+```
+
+```javascript
+isAddress('bad');
+// false
+```
+
+```javascript
+// Does NOT support ENS.
+isAddress('vitalik.eth');
+// false
+```
+
+  </details>
 
   <br/>
 
@@ -278,6 +594,30 @@ isAddress(address: string): boolean
 isBytes(value: any): value
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { isBytes } from 'essential-eth';
+```
+
+```javascript
+isBytes([1, 2, 3]);
+// true
+```
+
+```javascript
+isBytes(false);
+// false
+```
+
+```javascript
+isBytes(new Uint8Array(1));
+// true
+```
+
+  </details>
+
   <br/>
 
 #### [`isBytesLike`](https://eeth.dev/docs/api/modules#isbyteslike)
@@ -285,6 +625,30 @@ isBytes(value: any): value
 ```typescript
 isBytesLike(value: any): value
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { isBytesLike } from 'essential-eth';
+```
+
+```javascript
+isBytesLike([1, 2, 3]);
+// true
+```
+
+```javascript
+isBytesLike(false);
+// false
+```
+
+```javascript
+isBytesLike(new Uint8Array(1));
+// true
+```
+
+  </details>
 
   <br/>
 
@@ -294,6 +658,26 @@ isBytesLike(value: any): value
 isHexString(value: any, length: number): boolean
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { isHexString } from 'essential-eth';
+```
+
+```javascript
+isHexString('0x4924');
+// true
+```
+
+```javascript
+isHexString('0x4924', 4);
+// false
+// length of 4 in bytes would mean a hex string with 8 characters
+```
+
+  </details>
+
   <br/>
 
 #### [`jsonRpcProvider`](https://eeth.dev/docs/api/modules#jsonrpcprovider)
@@ -301,6 +685,24 @@ isHexString(value: any, length: number): boolean
 ```typescript
 jsonRpcProvider(rpcUrl: string): JsonRpcProvider
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { jsonRpcProvider } from 'essential-eth';
+```
+
+```javascript
+jsonRpcProvider()
+  .getBlock('latest')
+  .then((block) => {
+    console.log(block.number);
+  });
+// 14530496
+```
+
+  </details>
 
   <br/>
 
@@ -310,6 +712,23 @@ jsonRpcProvider(rpcUrl: string): JsonRpcProvider
 keccak256(data: BytesLike): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { keccak256 } from 'essential-eth';
+```
+
+```javascript
+keccak256('essential-eth');
+// '0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'
+
+keccak256('0x123');
+// '0x5fa2358263196dbbf23d1ca7a509451f7a2f64c15837bfbb81298b1e3e24e4fa'
+```
+
+  </details>
+
   <br/>
 
 #### [`pack`](https://eeth.dev/docs/api/modules#pack)
@@ -317,6 +736,22 @@ keccak256(data: BytesLike): string
 ```typescript
 pack(types: Array<string>, values: Array<any>): string
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { pack } from 'essential-eth';
+```
+
+```javascript
+const types = ['bool', 'string', 'uint64'];
+const values = [true, 'text', 30];
+pack(types, values);
+// '0x0174657874000000000000001e'
+```
+
+  </details>
 
   <br/>
 
@@ -326,6 +761,32 @@ pack(types: Array<string>, values: Array<any>): string
 solidityKeccak256(types: Array<string>, values: Array<any>): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { solidityKeccak256 } from 'essential-eth';
+```
+
+```javascript
+const types = ['string', 'bool', 'uint32'];
+const values = ['essential-eth is great', true, 14];
+solidityKeccak256(types, values);
+// '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'
+```
+
+```javascript
+const types = ['bytes4', 'uint32[5]'];
+const values = [
+  [116, 101, 115, 116],
+  [5, 3, 4, 9, 18],
+];
+solidityKeccak256(types, values);
+// '0x038707a887f09355dc545412b058e7ba8f3c74047050c7c5e5e52eec608053d9'
+```
+
+  </details>
+
   <br/>
 
 #### [`splitSignature`](https://eeth.dev/docs/api/modules#splitsignature)
@@ -333,6 +794,29 @@ solidityKeccak256(types: Array<string>, values: Array<any>): string
 ```typescript
 splitSignature(signature: SignatureLike): Signature
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { splitSignature } from 'essential-eth';
+```
+
+```javascript
+const signature = '0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee331b';
+splitSignature(signature);
+{
+ r: "0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b39716",
+ s: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
+ _vs: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
+ recoveryParam: 0,
+ v: 27,
+ yParityAndS: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
+ compact: "0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33"
+}
+```
+
+  </details>
 
   <br/>
 
@@ -342,6 +826,21 @@ splitSignature(signature: SignatureLike): Signature
 stripZeros(value: BytesLike): Uint8Array
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { stripZeros } from 'essential-eth';
+```
+
+```javascript
+stripZeros('0x00002834');
+// Uint8Array { [Iterator]  0: 40, 1: 52 }
+// Equivalent to '0x2834'
+```
+
+  </details>
+
   <br/>
 
 #### [`tinyBig`](https://eeth.dev/docs/api/modules#tinybig)
@@ -349,6 +848,20 @@ stripZeros(value: BytesLike): Uint8Array
 ```typescript
 tinyBig(value: string | number | TinyBig | Big): TinyBig
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { tinyBig } from 'essential-eth';
+```
+
+```javascript
+tinyBig(10).times(3).toNumber();
+// 30
+```
+
+  </details>
 
   <br/>
 
@@ -358,6 +871,24 @@ tinyBig(value: string | number | TinyBig | Big): TinyBig
 toChecksumAddress(address: string): string
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { toChecksumAddress } from 'essential-eth';
+```
+
+```javascript
+toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
+// '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
+```
+
+Similar to ["getAddress" in ethers.js](https://docs.ethers.io/v5/api/utils/address/#utils-getAddress)
+
+Similar to ["toChecksumAddress" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#tochecksumaddress)
+
+  </details>
+
   <br/>
 
 #### [`toUtf8Bytes`](https://eeth.dev/docs/api/modules#toutf8bytes)
@@ -365,6 +896,23 @@ toChecksumAddress(address: string): string
 ```typescript
 toUtf8Bytes(data: string): Uint8Array
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { toUtf8Bytes } from 'essential-eth';
+```
+
+```javascript
+toUtf8Bytes('essential-eth');
+// Uint8Array { [Iterator] 0: 101, 1: 115, 2: 115, 3: 101, 4: 110, 5: 116, 6: 105, 7: 97, 8: 108, 9: 45, 10: 101, 11: 116, 12: 104 }
+
+toUtf8Bytes('ethereum');
+// Uint8Array { [Iterator]  0: 101, 1: 116, 2: 104, 3: 101, 4: 114, 5: 101, 6: 117, 7: 109 }
+```
+
+  </details>
 
   <br/>
 
@@ -374,6 +922,29 @@ toUtf8Bytes(data: string): Uint8Array
 weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
 ```
 
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { weiToEther } from 'essential-eth';
+```
+
+```javascript
+weiToEther('1000000000000000000000').toString();
+// '1000'
+weiToEther(1000000000000000000000).toString();
+// '1000'
+```
+
+```javascript
+weiToEther('1000000000000000000000').toNumber();
+// 1000
+weiToEther(1000000000000000000000).toNumber();
+// 1000
+```
+
+  </details>
+
   <br/>
 
 #### [`zeroPad`](https://eeth.dev/docs/api/modules#zeropad)
@@ -381,6 +952,26 @@ weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
 ```typescript
 zeroPad(value: BytesLike, length: number): Uint8Array
 ```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { zeroPad } from 'essential-eth';
+```
+
+```javascript
+zeroPad('0x039284');
+// Uint8Array { [Iterator]  0: 0, 1: 0, 2: 0, 3: 3, 4: 146, 5: 132 }
+// Equivalent to 0x000000039284
+```
+
+```javascript
+zeroPad([39, 25, 103, 45], 5);
+// Uint8Array { [Iterator]  0: 0, 1: 39, 2: 25, 3: 103, 4: 45 }
+```
+
+  </details>
 
   <br/>
 

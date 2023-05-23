@@ -21,11 +21,9 @@ class FunctionSignature {
     return this.signature.type;
   }
   selectExamples() {
-    return this.signature.comment?.tags
-      ?.filter((tag) => tag.tag === 'example')
-      .map((tag) => {
-        return tag.text;
-      });
+    return this.signature.comment.blockTags
+      ?.filter((item) => item.tag === '@example')
+      ?.flatMap((item) => item.content.map((obj) => `${obj.text}\n`));
   }
 }
 functions.map((functionNumber) => {
