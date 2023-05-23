@@ -21,11 +21,15 @@ class FunctionSignature {
     return this.signature.type;
   }
   selectExamples() {
-    return this.signature.comment?.tags
-      ?.filter((tag) => tag.tag === 'example')
-      .map((tag) => {
-        return tag.text;
+    const examples = [];
+    this.signature.comment.blockTags.forEach((item) => {
+      item.content.forEach((obj) => {
+        if (item.tag === '@example') {
+          examples.push(obj.text + '\n');
+        }
       });
+    });
+    return examples;
   }
 }
 functions.map((functionNumber) => {
