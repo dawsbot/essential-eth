@@ -22,11 +22,11 @@ We have set up a GitHub project [here](https://github.com/dawsbot/essential-eth/
 nvm use 16
 
 # Install and build
-npm install
-npm build
+npm run install
+npm run build
 
 # Run jest test suite
-npm test
+npm run test
 ```
 
 ## GitPOAP
