@@ -22,7 +22,7 @@ We have set up a GitHub project [here](https://github.com/dawsbot/essential-eth/
 nvm use 16
 
 # Install and build
-npm run install
+npm install
 npm run build
 
 # Run jest test suite
