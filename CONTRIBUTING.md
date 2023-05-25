@@ -15,6 +15,22 @@ Thank you for your interest in contributing to Essential Eth! We appreciate your
 
 We have set up a GitHub project [here](https://github.com/dawsbot/essential-eth/projects/1) for you to see all the issues by priority.🚀
 
+## Development
+
+### Quick bootstrap
+
+```bash
+# Ensure you are on node 16
+nvm use 16
+
+# Install and build
+npm install
+npm build
+
+# Run jest test suite
+npm test
+```
+
 ## GitPOAP
 
 In partnership with GitPOAP, Essential ETH wants to recognize **all** contributors for their contributions toward the growth of this library. Developers can validate their contributions on Github and showcase their GitPOAP as proof-of-work toward their Web3 identity. 🔍💻
