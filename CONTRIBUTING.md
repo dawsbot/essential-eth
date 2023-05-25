@@ -15,7 +15,7 @@ Thank you for your interest in contributing to Essential Eth! We appreciate your
 
 We have set up a GitHub project [here](https://github.com/dawsbot/essential-eth/projects/1) for you to see all the issues by priority.🚀
 
-### Quick bootstrap
+## Quick bootstrap
 
 ```bash
 # Ensure you are on node 16
