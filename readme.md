@@ -36,7 +36,7 @@
   - 🟣 Polygon
   - 🔴 Optimism
   - 🔵 Arbitrum
-  - [Many more](src/providers/utils/chains-info.ts)
+  - [Many more](https://github.com/dawsbot/essential-eth/tree/master/src/providers/utils/chains-info.ts)
 - 🧪 Strongly tested
 - 🌲 Tree-shaking and no side-effects
 - 🙌 All common JS versions (CommonJS, ESM, & UMD)
@@ -1584,6 +1584,6 @@ Note: In `web3.js`, almost every method or function can be passed a callback. `e
 
 ## Contributing and GitPOAP
 
-We welcome and appreciate all contributions to Essential Eth! If you're interested in helping us improve this library, please read our [Contributing Guidelines](CONTRIBUTING.md) to understand the types of contributions we're looking for and the process of making them.
+We welcome and appreciate all contributions to Essential Eth! If you're interested in helping us improve this library, please read our [Contributing Guidelines](https://github.com/dawsbot/essential-eth/blob/master/CONTRIBUTING.md) to understand the types of contributions we're looking for and the process of making them.
 
-In partnership with GitPOAP, Essential ETH wants to recognize **all** contributors for their contributions toward the growth of this library. More information about GitPOAP can be found on the [Contributing Guidelines](CONTRIBUTING.md#GitPOAP).
+In partnership with GitPOAP, Essential ETH wants to recognize **all** contributors for their contributions toward the growth of this library. More information about GitPOAP can be found on the [Contributing Guidelines](https://github.com/dawsbot/essential-eth/blob/master/CONTRIBUTING.md#GitPOAP).
