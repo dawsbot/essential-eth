@@ -17,13 +17,11 @@ We have set up a GitHub project [here](https://github.com/dawsbot/essential-eth/
 
 ## Quick bootstrap
 
-```bash
-# Ensure you are on node 16
-nvm use 16
+* All versions of node 12 and higher are supported
 
+```bash
 # Install and build
 npm install
-npm run build
 
 # Run jest test suite
 npm run test
