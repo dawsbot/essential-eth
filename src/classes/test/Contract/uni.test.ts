@@ -53,22 +53,21 @@ describe('uNI contract', () => {
     );
   });
 
-  it('should fetch isClaimed "boolean" for random airdrop indexes', async () => {
-    /* indexes of addresses in the merkle tree */
-    const testCases = [
-      { index: 0, expected: false },
-      { index: 4, expected: true },
-      { index: 102, expected: true },
-      { index: 999, expected: true },
-      { index: 999999, expected: false },
-    ];
-
-    for (const testCase of testCases) {
+  const testCases = [
+    { index: 0, expected: false },
+    { index: 4, expected: true },
+    { index: 102, expected: true },
+    { index: 999, expected: true },
+    { index: 999999, expected: false },
+  ];
+  it.each(testCases)(
+    'should fetch isClaimed "boolean" for airdrop index %i',
+    async ({ index, expected }) => {
       const claimed = await smartContractIsUniClaimed(
         essentialEthContract,
-        testCase.index,
+        index,
       );
-      expect(claimed).toBe(testCase.expected);
-    }
-  });
+      expect(claimed).toBe(expected);
+    },
+  );
 });

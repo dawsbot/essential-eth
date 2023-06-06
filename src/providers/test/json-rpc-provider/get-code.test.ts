@@ -46,14 +46,12 @@ const provider = new JsonRpcProvider(rpcUrl);
 
 async function testGetCode(input: InputType, mockResult: string) {
   const spy = jest.spyOn(unfetch, 'default');
-  spy.mockImplementationOnce(() =>
-    Promise.resolve({
-      text: () =>
-        Promise.resolve(
-          JSON.stringify({ jsonrpc: '2.0', id: 1, result: mockResult }),
-        ),
-    } as Response),
-  );
+  spy.mockResolvedValueOnce({
+    text: () =>
+      Promise.resolve(
+        JSON.stringify({ jsonrpc: '2.0', id: 1, result: mockResult }),
+      ),
+  } as Response);
 
   const code = await provider.getCode(input.address, input.blockTag);
 
