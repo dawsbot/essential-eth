@@ -30,7 +30,7 @@
       "name": "JsonRpcProvider",
       "path": "src/index.ts",
       "import": "{ JsonRpcProvider }",
-      "limit": "17.66kb"
+      "limit": "17.19kb"
     },
     {
       "name": "Contract",
@@ -51,11 +51,10 @@
     "build:umd": "microbundle --external none --format umd",
     "build:readme": "bash ./scripts/markdown-magic/build-readme.sh",
     "jest": "jest",
-    "build:chains-info": "npx tsx scripts/fetch-chains-info.ts # used in getNetwork()",
+    "build:chains-info": "npx tsx scripts/update-chains-info/index.ts # used in getNetwork()",
     "update-deps": "sh ./scripts/pre-commit.sh",
     "pre-commit": "npm run update-deps",
-    "install:local-dev": "npm install --no-save @wagmi/core",
-    "prepare": "husky install && npm run install:local-dev",
+    "prepare": "husky install",
     "version": "npx genversion --es6 src/logger/package-version.ts && git add src/logger/package-version.ts",
     "postversion": "git push --follow-tags",
     "prepublishOnly": "npm run build",

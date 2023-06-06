@@ -1,4 +1,3 @@
-import { Buffer } from 'buffer';
 import { hexFalse } from '../classes/utils/encode-decode-transaction';
 import { logger } from '../logger/logger';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
