@@ -44,7 +44,7 @@
 }
 
 /* Desktop styles */
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
   .row.footer__links .col.footer__col {
     text-align: left;
     &:last-of-type {
