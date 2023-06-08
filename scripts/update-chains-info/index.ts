@@ -1,11 +1,11 @@
-import * as chains from '@wagmi/core/chains';
 import fs from 'fs';
 import path from 'path';
 import z from 'zod';
-const importantChainIds = Object.values(chains).map(({ id }) => id);
+import importantChainIds from './important-chain-ids.json';
 
 const outputFilePath = path.join(
   __dirname,
+  '..',
   '..',
   'src',
   'providers',
@@ -47,7 +47,7 @@ const chainsSchema = z.array(
       });
     });
 
-  const MATCHING_CHAINS_MIN_LENGTH = 74;
+  const MATCHING_CHAINS_MIN_LENGTH = 17;
   const matchingChainsLength = Object.keys(toReturn).length;
   z.number()
     .min(
