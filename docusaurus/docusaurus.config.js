@@ -13,7 +13,7 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
   favicon: '/img/logo.png',
-  organizationName: 'earnifi', // Usually your GitHub org/user name.
+  organizationName: 'dawsbot', // Usually your GitHub org/user name.
   projectName: 'essential-eth', // Usually your repo name.
   plugins: [
     [
@@ -104,12 +104,12 @@ const config = {
               },
               {
                 label: 'Contribute on GitHub',
-                href: 'https://github.com/earnifi',
+                href: 'https://github.com/dawsbot/essential-eth/blob/master/CONTRIBUTING.md',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Earnifi Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Dawson Botsford. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
