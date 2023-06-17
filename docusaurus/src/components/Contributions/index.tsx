@@ -29,7 +29,7 @@ const ContributeList: ContributeItem[] = [
 
 function Contribute({ title, src, description }: ContributeItem) {
   return (
-    <div className={clsx('col col--9')}>
+    <div className={clsx('col col--9 glossy-border')}>
       <div className="text--center" style={{ marginRight: '2rem' }}>
         <img
           src={src}

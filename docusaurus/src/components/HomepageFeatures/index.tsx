@@ -67,7 +67,7 @@ const FeatureList: FeatureItem[] = [
       <>
         Used in production by over 100,000 visitors per month on{' '}
         <a href="https://earni.fi" target="_blank">
-          Earnifi
+          Earnifi 🚁
         </a>
       </>
     ),
@@ -76,7 +76,7 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({ title, src, description }: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--4 glossy-border')}>
       <div className="text--center">
         <img src={src} style={{ height: '120px', paddingBottom: '20px' }} />
       </div>

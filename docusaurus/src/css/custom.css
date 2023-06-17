@@ -6,25 +6,43 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #05c46b;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
+
+  /* Button colors */
+  --secondary: #FFC312;
+  --secondaryShadow: #c2a200;
+  --textInSecondary: #ffffff;
+
+  /* Glossy Border colors */
+  --glossy-border-color: #999;
+  --glossy-border-background-color1: #fff;
+  --glossy-border-background-color2: #eee;
+  --glossy-border-shadow-color: rgba(0, 0, 0, 0.1);
+  --glossy-border-inset-shadow-color1: rgba(0, 0, 0, 0.2);
+  --glossy-border-inset-shadow-color2: rgba(255, 255, 255, 0.3);
+
+  /* Gradient colors */
+  --gradient-color1: #ff0062;
+  --gradient-color2: #ff00d2;
+  --gradient-color3: #8c00ff;
+  --gradient-color4: #0062ff;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  /* Glossy Border colors */
+  --glossy-border-color: #666;
+  --glossy-border-background-color1: #333;
+  --glossy-border-background-color2: #444;
+  --glossy-border-shadow-color: rgba(255, 255, 255, 0.1);
+  --glossy-border-inset-shadow-color1: rgba(255, 255, 255, 0.2);
+  --glossy-border-inset-shadow-color2: rgba(0, 0, 0, 0.3);
+
+  /* Gradient colors */
+  --gradient-color1: #cc0062;
+  --gradient-color2: #cc00d2;
+  --gradient-color3: #4c00ff;
+  --gradient-color4: #0062cc;
 }
 
 .docusaurus-highlight-code-line {
@@ -51,4 +69,55 @@
       text-align: right;
     }
   }
+}
+
+.glossy-border {
+  border: 3px solid var(--glossy-border-color);
+  padding: 20px;
+  background: linear-gradient(to bottom right, var(--glossy-border-background-color1), var(--glossy-border-background-color2));
+  box-shadow: 
+      0px 10px 15px var(--glossy-border-shadow-color),
+      5px 5px 15px var(--glossy-border-shadow-color),
+      inset 0px -3px 10px var(--glossy-border-inset-shadow-color1),
+      inset 0px 3px 10px var(--glossy-border-inset-shadow-color2);
+  border-radius: 15px; 
+  margin: 50px;
+}
+
+.button {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  margin: 0.25em 0;
+  padding: 0.75em 1em;
+  position: relative;
+  transition: none;
+  background-color: var(--secondary);
+  color: var(--textInSecondary);
+  box-shadow: 0 4px var(--secondaryShadow);
+}
+
+.button:hover {
+  top: 2px;
+  box-shadow: 0 2px var(--secondaryShadow);
+  animation: none;
+}
+
+.button:active {
+  box-shadow: 0 0 var(--secondary);
+  top: 4px;
+}
+
+.gradient-bg {
+  background: linear-gradient(45deg, var(--gradient-color1), var(--gradient-color2), var(--gradient-color3), var(--gradient-color4));
+  background-size: 200% 200%;
+  animation: Gradient 10s ease infinite;
+}
+
+@keyframes Gradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
