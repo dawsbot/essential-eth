@@ -20,7 +20,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Essential Eth was designed from the ground up to be 20x smaller than
-        ethers.js and web3.js.
+        ethers.js and web3.js. This compact form facilitates quicker setups and optimizes storage.
       </>
     ),
   },
@@ -30,7 +30,8 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         The bundle size of essential-eth is <strong>less than 5kb</strong> for
-        most functions.{' '}
+        most functions. Smaller bundles mean faster load times, 
+        leading to a more responsive and efficient user experience.{' '}
         <a
           href="https://bundlephobia.com/package/essential-eth"
           target="_blank"
@@ -45,8 +46,7 @@ const FeatureList: FeatureItem[] = [
     src: '/img/test-tube.png',
     description: (
       <>
-        With full TypeScript integration and jest tests, you can enjoy fewer
-        bugs and a more delightful coding experience.
+        Thanks to Essential Eth's slim codebase, fortified by full TypeScript integration and Jest testing, bugs have nowhere to hide – ensuring a delightful coding experience.
       </>
     ),
   },
@@ -65,7 +65,8 @@ const FeatureList: FeatureItem[] = [
     src: '/img/crossed-swords.png',
     description: (
       <>
-        Used in production by over 100,000 visitors per month on{' '}
+The reliability and stability of Essential Eth are clearly demonstrated by its extensive real-world usage. 
+It is used in production by over 100,000 visitors per month on{' '}
         <a href="https://earni.fi" target="_blank">
           Earnifi 🚁
         </a>
@@ -76,7 +77,7 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({ title, src, description }: FeatureItem) {
   return (
-    <div className={clsx('col col--4 glossy-border')}>
+    <div className={clsx('col col--4 myClass')}>
       <div className="text--center">
         <img src={src} style={{ height: '120px', paddingBottom: '20px' }} />
       </div>
