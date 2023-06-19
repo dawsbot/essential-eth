@@ -75,11 +75,6 @@
   border: 3px solid var(--glossy-border-color);
   padding: 20px;
   background: linear-gradient(to bottom right, var(--glossy-border-background-color1), var(--glossy-border-background-color2));
-  /* box-shadow: 
-      0px 10px 15px var(--glossy-border-shadow-color),
-      5px 5px 15px var(--glossy-border-shadow-color),
-      inset 0px -3px 10px var(--glossy-border-inset-shadow-color1),
-      inset 0px 3px 10px var(--glossy-border-inset-shadow-color2); */
   border-radius: 15px; 
   margin: 50px;
 }
@@ -122,6 +117,6 @@
   100% {background-position: 0% 50%;}
 }
 
-.myClass {
-  margin-bottom: 4rem; /* Adjust this value to get the desired space */
+.bottomMargin {
+  margin-bottom: 4rem;
 }

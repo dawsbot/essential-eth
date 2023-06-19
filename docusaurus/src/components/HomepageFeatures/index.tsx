@@ -19,8 +19,8 @@ const FeatureList: FeatureItem[] = [
     src: '/img/feather.png',
     description: (
       <>
-        Essential Eth was designed from the ground up to be 20x smaller than
-        ethers.js and web3.js. This compact form facilitates quicker setups and optimizes storage.
+        Essential Eth was designed from the ground up to be <strong>20x smaller than
+        ethers.js and web3.js.</strong> This compact form facilitates quicker setups and optimizes storage.
       </>
     ),
   },
@@ -46,7 +46,8 @@ const FeatureList: FeatureItem[] = [
     src: '/img/test-tube.png',
     description: (
       <>
-        Thanks to Essential Eth's slim codebase, fortified by full TypeScript integration and Jest testing, bugs have nowhere to hide – ensuring a delightful coding experience.
+        Thanks to Essential Eth's slim codebase, fortified by full TypeScript integration and 
+        Jest testing, bugs have nowhere to hide – ensuring a delightful coding experience.
       </>
     ),
   },
@@ -65,8 +66,8 @@ const FeatureList: FeatureItem[] = [
     src: '/img/crossed-swords.png',
     description: (
       <>
-The reliability and stability of Essential Eth are clearly demonstrated by its extensive real-world usage. 
-It is used in production by over 100,000 visitors per month on{' '}
+        The reliability and stability of Essential Eth are clearly demonstrated by its extensive 
+        real-world usage. It is used in production by over 100,000 visitors per month on{' '}
         <a href="https://earni.fi" target="_blank">
           Earnifi 🚁
         </a>
@@ -77,7 +78,7 @@ It is used in production by over 100,000 visitors per month on{' '}
 
 function Feature({ title, src, description }: FeatureItem) {
   return (
-    <div className={clsx('col col--4 myClass')}>
+    <div className={clsx('col col--4 bottomMargin')}>
       <div className="text--center">
         <img src={src} style={{ height: '120px', paddingBottom: '20px' }} />
       </div>
@@ -103,91 +104,95 @@ export default function HomepageFeatures(): JSX.Element {
               </div>
             </div>
           </section>
-          <HomepageContributions />
-          <br />
-          <br />
-          <h2>Utils</h2>
-          <CodeBlock language="typescript">
-            {`import { etherToWei, weiToEther } from 'essential-eth';
-
-weiToEther(1000000000000000000).toNumber();
-// 1
-
-etherToWei('1000').toString();
-// '1000000000000000000000'
-`}
-          </CodeBlock>
-          <br />
-          <CodeBlock language="typescript">
-            {`import { isAddress } from 'essential-eth';
-
-isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
-// true
-
-isAddress('bad');
-// false
-`}
-          </CodeBlock>
-          <br />
-          <CodeBlock language="typescript">
-            {`import { toChecksumAddress } from 'essential-eth';
-
-toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
-// '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
-`}
-          </CodeBlock>
-          <div className={styles.buttons}>
-            <Link
-              className="button button--secondary button--lg"
-              to="/docs/api/modules#functions"
-            >
-              View All Utils
-            </Link>
-          </div>
-          <br />
-          <br />
-          <h2 style={{ marginTop: '160px' }}>JsonRpcProvider</h2>
-          <CodeBlock language="typescript">
-            {`import { JsonRpcProvider } from 'essential-eth';
-
-const provider = new JsonRpcProvider();
-await provider
-  .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
-  .then((balance) => console.log(balance.toString()));
-// "28798127851528138"
-`}
-          </CodeBlock>
-          <br />
-          <h2 style={{ marginTop: '100px' }}>FallthroughProvider</h2>
-          <CodeBlock language="typescript">
-            {`import { FallthroughProvider } from 'essential-eth';
-
-// The FallthroughProvider handles falling through to the next valid URL.
-// It's dynamic to never trust one URL again when it fails * until it has tried all other provided URLs
-// The default timeout for a request is 8 seconds after which it moves to the next URL
-const provider = new FallthroughProvider([
-  'https://bad.com',
-  'https://free-eth-node.com/api/eth',
-]);
-provider.getGasPrice().toNumber();
-/*
-39695942769
-*/
-`}
-          </CodeBlock>
-          <br />
-          <div className={styles.buttons}>
-            <Link
-              className="button button--secondary button--lg"
-              to="/docs/api"
-            >
-              View Full API
-            </Link>
-          </div>
-          <br />
-          <br />
         </div>
       </section>
+      <section style={{backgroundColor: "#303846"}}>
+        <HomepageContributions />
+      </section>
+      <br />
+      <br />
+      <div style={{margin: '50px'}}>
+        <h2>Utils</h2>
+        <CodeBlock language="typescript">
+          {`import { etherToWei, weiToEther } from 'essential-eth';
+            
+            weiToEther(1000000000000000000).toNumber();
+            // 1
+
+            etherToWei('1000').toString();
+            // '1000000000000000000000'
+          `}
+        </CodeBlock>
+        <br />
+        <CodeBlock language="typescript">
+          {`import { isAddress } from 'essential-eth';
+
+            isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
+            // true
+
+            isAddress('bad');
+            // false
+          `}
+        </CodeBlock>
+        <br />
+        <CodeBlock language="typescript">
+          {`import { toChecksumAddress } from 'essential-eth';
+
+            toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
+            // '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
+          `}
+        </CodeBlock>
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/api/modules#functions"
+          >
+            View All Utils
+          </Link>
+        </div>
+        <br />
+        <br />
+        <h2 style={{ marginTop: '160px' }}>JsonRpcProvider</h2>
+        <CodeBlock language="typescript">
+          {`import { JsonRpcProvider } from 'essential-eth';
+            
+            const provider = new JsonRpcProvider();
+            await provider
+            .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
+            .then((balance) => console.log(balance.toString()));
+            // "28798127851528138"
+          `}
+        </CodeBlock>
+        <br />
+        <h2 style={{ marginTop: '100px' }}>FallthroughProvider</h2>
+        <CodeBlock language="typescript">
+          {`import { FallthroughProvider } from 'essential-eth';
+            
+            // The FallthroughProvider handles falling through to the next valid URL.
+            // It's dynamic to never trust one URL again when it fails * until it has tried all other provided URLs
+            // The default timeout for a request is 8 seconds after which it moves to the next URL
+            const provider = new FallthroughProvider([
+            'https://bad.com',
+            'https://free-eth-node.com/api/eth',
+            ]);
+            provider.getGasPrice().toNumber();
+            /*
+            39695942769
+            */
+          `}
+        </CodeBlock>
+        <br />
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/api"
+          >
+            View Full API
+          </Link>
+        </div>
+        <br />
+        <br />
+      </div>
     </>
   );
 }

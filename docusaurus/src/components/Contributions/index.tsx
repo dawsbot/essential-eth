@@ -38,11 +38,12 @@ function Contribute({ title, src, description }: ContributeItem) {
             paddingBottom: '20px',
             float: 'left',
             paddingRight: '3rem',
+            paddingTop: '2rem'
           }}
         />
       </div>
       <div
-        className={'text--left padding-horiz--md'}
+        className={'padding-horiz--md'}
         style={{ padding: '3rem' }}
       >
         <h3>{title}</h3>
@@ -65,7 +66,7 @@ export default function HomepageContributions(): JSX.Element {
     <>
       <section>
         <div className="container">
-          <section style={{ marginTop: '120px', marginBottom: '100px' }}>
+          <section style={{ marginTop: '120px', marginBottom: '100px', margin: '50px'}}>
             <div>
               <div className="row" style={{ justifyContent: 'center' }}>
                 {ContributeList.map((props, idx) => (
