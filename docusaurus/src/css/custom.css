@@ -9,8 +9,8 @@
   --ifm-code-font-size: 95%;
 
   /* Button colors */
-  --secondary: #FFC312;
-  --secondaryShadow: #c2a200;
+  --secondary: #52d4e1; /* Darker shade of --gradient-color3 */
+  --secondaryShadow: #319da8; /* Even darker shade of --gradient-color3 */
   --textInSecondary: #ffffff;
 
   /* Glossy Border colors */
@@ -22,10 +22,10 @@
   --glossy-border-inset-shadow-color2: rgba(255, 255, 255, 0.3);
 
   /* Gradient colors */
-  --gradient-color1: #ff0062;
-  --gradient-color2: #ff00d2;
-  --gradient-color3: #8c00ff;
-  --gradient-color4: #0062ff;
+  --gradient-color4: #ffea4c;
+  --gradient-color2: #ff9d93;
+  --gradient-color3: #d893d1;
+  --gradient-color1: #a8e279;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -39,10 +39,9 @@
   --glossy-border-inset-shadow-color2: rgba(0, 0, 0, 0.3);
 
   /* Gradient colors */
-  --gradient-color1: #cc0062;
-  --gradient-color2: #cc00d2;
-  --gradient-color3: #4c00ff;
-  --gradient-color4: #0062cc;
+  --gradient-color4: #ffea4c;
+  --gradient-color3: #ff9d93;
+  --gradient-color2: #d893d1;
 }
 
 .docusaurus-highlight-code-line {
@@ -75,6 +74,11 @@
   border: 3px solid var(--glossy-border-color);
   padding: 20px;
   background: linear-gradient(to bottom right, var(--glossy-border-background-color1), var(--glossy-border-background-color2));
+  box-shadow: 
+    0px 10px 15px var(--glossy-border-shadow-color),
+    5px 5px 15px var(--glossy-border-shadow-color),
+    inset 0px -3px 10px var(--glossy-border-inset-shadow-color1),
+    inset 0px 3px 10px var(--glossy-border-inset-shadow-color2);
   border-radius: 15px; 
   margin: 50px;
 }

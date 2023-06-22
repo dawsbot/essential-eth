@@ -25,6 +25,17 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
+    title: 'Supports Decentralization',
+    src: '/img/globe.png',
+    description: (
+      <>
+        Choosing Essential Eth means more than using a lean and efficient tool - it 
+        supports Ethereum's decentralized tech stack. This library diversifies front-end tools, 
+        echoing Ethereum's multi-client approach and mitigating risks tied to ecosystem single library reliance.
+      </>
+    ),
+  },
+  {
     title: 'Fast',
     src: '/img/high-voltage.png',
     description: (
@@ -78,7 +89,7 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({ title, src, description }: FeatureItem) {
   return (
-    <div className={clsx('col col--4 bottomMargin')}>
+    <div className={clsx('col col--4 glossy-border bottomMargin')}>
       <div className="text--center">
         <img src={src} style={{ height: '120px', paddingBottom: '20px' }} />
       </div>
@@ -112,36 +123,50 @@ export default function HomepageFeatures(): JSX.Element {
       <br />
       <br />
       <div style={{margin: '50px'}}>
-        <h2>Utils</h2>
+        <h1 style={{fontSize: '40px'}}> Getting Started with Essential Eth</h1>
+        <p style={{fontSize: '18px'}}>Welcome to the Essential Eth library! Designed for both seasoned developers and those new to the Ethereum blockchain, Essential Eth provides easy-to-use functions for all your development needs. In the following section, we've outlined some of the most popular features of the library along with simple examples to get you started:</p>
+        
+        <h2 style={{fontSize: '28px'}}>Utils 🔧 </h2>
+        <p style={{fontSize: '18px', lineHeight: '1.6'}}>The Utils module is your go-to for common Ethereum needs. Whether you're converting between Ether and Wei or validating Ethereum addresses, Utils has you covered. Check out these examples:</p>
+
+        <h3 style={{fontSize: '24px'}}>etherToWei and weiToEther 💸 </h3>
+        <p style={{fontSize: '16px'}}>These functions allow you to easily convert between the two standard units of ether: Ether and Wei. Much like dollars and cents, Ether is often used for high-level transactions, while Wei is the smallest possible unit of the currency, ideal for precision.</p>
         <CodeBlock language="typescript">
           {`import { etherToWei, weiToEther } from 'essential-eth';
             
             weiToEther(1000000000000000000).toNumber();
-            // 1
+            // returns: 1
 
             etherToWei('1000').toString();
-            // '1000000000000000000000'
+            // returns: '1000000000000000000000'
           `}
         </CodeBlock>
         <br />
+
+        <h3 style={{fontSize: '24px'}}>isAddress ✅ </h3>
+        <p style={{fontSize: '16px'}}>The 'isAddress' function validates Ethereum addresses. It checks whether the input string meets the formatting rules for a valid Ethereum address, which is essential for preventing errors during transactions.</p>
         <CodeBlock language="typescript">
           {`import { isAddress } from 'essential-eth';
 
             isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
-            // true
+            // returns: true
 
             isAddress('bad');
-            // false
+            // returns: false
           `}
         </CodeBlock>
         <br />
+
+        <h3 style={{fontSize: '24px'}}>toChecksumAddress 🔑</h3>
+        <p style={{fontSize: '16px'}}>The 'toChecksumAddress' function converts an Ethereum address to a checksum address. Checksum addresses include a mix of capital and lowercase letters, which can help prevent errors due to typos and incorrect input.</p>
         <CodeBlock language="typescript">
           {`import { toChecksumAddress } from 'essential-eth';
 
             toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
-            // '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
+            // returns: '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
           `}
         </CodeBlock>
+
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
@@ -152,7 +177,10 @@ export default function HomepageFeatures(): JSX.Element {
         </div>
         <br />
         <br />
-        <h2 style={{ marginTop: '160px' }}>JsonRpcProvider</h2>
+
+        <h2 style={{fontSize: '28px'}}>JsonRpcProvider 🌐</h2>
+        <p style={{fontSize: '18px', lineHeight: '1.6'}}>The JsonRpcProvider module provides a straightforward way to interact with Ethereum nodes. Whether you're querying account balances or performing other operations, JsonRpcProvider simplifies the process. Here's an example of how to use it:</p>
+
         <CodeBlock language="typescript">
           {`import { JsonRpcProvider } from 'essential-eth';
             
@@ -160,11 +188,14 @@ export default function HomepageFeatures(): JSX.Element {
             await provider
             .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
             .then((balance) => console.log(balance.toString()));
-            // "28798127851528138"
+            // returns: "28798127851528138"
           `}
         </CodeBlock>
         <br />
-        <h2 style={{ marginTop: '100px' }}>FallthroughProvider</h2>
+
+        <h2 style={{fontSize: '28px'}}>FallthroughProvider 🔄 </h2>
+        <p style={{fontSize: '18px', lineHeight: '1.6'}}>The FallthroughProvider is designed for reliability. If one Ethereum node fails to respond, it automatically switches to the next provided URL. This guarantees that your application remains functional, even if individual nodes become unresponsive. Here's an example:</p>
+
         <CodeBlock language="typescript">
           {`import { FallthroughProvider } from 'essential-eth';
             
@@ -176,12 +207,11 @@ export default function HomepageFeatures(): JSX.Element {
             'https://free-eth-node.com/api/eth',
             ]);
             provider.getGasPrice().toNumber();
-            /*
-            39695942769
-            */
+            // returns: 39695942769
           `}
         </CodeBlock>
         <br />
+
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
@@ -193,6 +223,7 @@ export default function HomepageFeatures(): JSX.Element {
         <br />
         <br />
       </div>
+
     </>
   );
 }
