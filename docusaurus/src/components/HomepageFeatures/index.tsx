@@ -117,7 +117,7 @@ export default function HomepageFeatures(): JSX.Element {
           </section>
         </div>
       </section>
-      <section style={{backgroundColor: "#303846"}}>
+      <section className="secondaryBackground">
         <HomepageContributions />
       </section>
       <br />

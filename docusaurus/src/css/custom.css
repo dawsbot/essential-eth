@@ -26,22 +26,32 @@
   --gradient-color2: #ff9d93;
   --gradient-color3: #d893d1;
   --gradient-color1: #a8e279;
+
+  --secondary-background: #303846;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
+  /* Button colors */
+  --secondary: #408b9c; /* Darker version of secondary color for dark mode */
+  --secondaryShadow: #28585c; /* Darker version of secondary shadow color for dark mode */
+  --textInSecondary: #b0dcdc; /* Lighter text color for readability in dark mode */
+
   /* Glossy Border colors */
-  --glossy-border-color: #666;
-  --glossy-border-background-color1: #333;
-  --glossy-border-background-color2: #444;
+  --glossy-border-color: #444;
+  --glossy-border-background-color1: #222;
+  --glossy-border-background-color2: #333;
   --glossy-border-shadow-color: rgba(255, 255, 255, 0.1);
   --glossy-border-inset-shadow-color1: rgba(255, 255, 255, 0.2);
-  --glossy-border-inset-shadow-color2: rgba(0, 0, 0, 0.3);
+  --glossy-border-inset-shadow-color2: rgba(0, 0, 0, 0.5);
 
   /* Gradient colors */
-  --gradient-color4: #ffea4c;
-  --gradient-color3: #ff9d93;
-  --gradient-color2: #d893d1;
+  --gradient-color4: #b38d3e;
+  --gradient-color3: #b35e5b;
+  --gradient-color2: #8c5e88;
+  --gradient-color1: #6f8f5e;
+  
+  --secondary-background: #1c4f5d;
 }
 
 .docusaurus-highlight-code-line {
@@ -52,7 +62,11 @@
 }
 
 [data-theme='dark'] .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.secondaryBackground {
+  background-color: var(--secondary-background);
 }
 
 /* Mobile styles */
@@ -134,13 +148,13 @@
   padding-top: 2rem;
 }
 
-.test {
+.contribute-container {
   margin-left: 100px;
   margin-right: 100px;
 }
 
 @media (max-width: 1000px) {
-  .test {
+  .contribute-container {
     margin-left: 20px;
     margin-right: 20px;
   }

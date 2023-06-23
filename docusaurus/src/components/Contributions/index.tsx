@@ -60,7 +60,7 @@ export default function HomepageContributions(): JSX.Element {
     <>
       <section>
         <div className="container">
-            <div className="test">
+            <div className="contribute-container">
               <div className="row" style={{ justifyContent: 'center' }}>
                 {ContributeList.map((props, idx) => (
                   <Contribute key={idx} {...props} />
