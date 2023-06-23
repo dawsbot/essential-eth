@@ -124,3 +124,28 @@
 .bottomMargin {
   margin-bottom: 4rem;
 }
+
+.contribute-img {
+  height: 300px;
+  width: 300px;
+  padding-bottom: 20px;
+  float: left;
+  padding-right: 3rem;
+  padding-top: 2rem;
+}
+
+.test {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+@media (max-width: 1000px) {
+  .test {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .contribute-img {
+    float: none;
+    padding-right: 0;
+  }
+}

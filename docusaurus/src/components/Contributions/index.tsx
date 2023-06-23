@@ -30,17 +30,10 @@ const ContributeList: ContributeItem[] = [
 function Contribute({ title, src, description }: ContributeItem) {
   return (
     <div className={clsx('col col--9 glossy-border contribute-container')}>
-      <div className="text--center" style={{ marginRight: '2rem' }}>
+      <div className="text--center" style={{ }}>
         <img
           src={src}
-          style={{
-            height: '300px',
-            width: '300px',
-            paddingBottom: '20px',
-            float: 'left',
-            paddingRight: '3rem',
-            paddingTop: '2rem'
-          }}
+          className='contribute-img'
         />
       </div>
       <div
@@ -67,15 +60,13 @@ export default function HomepageContributions(): JSX.Element {
     <>
       <section>
         <div className="container">
-          <section style={{ marginTop: '120px', marginBottom: '100px', margin: '50px'}}>
-            <div>
+            <div className="test">
               <div className="row" style={{ justifyContent: 'center' }}>
                 {ContributeList.map((props, idx) => (
                   <Contribute key={idx} {...props} />
                 ))}
               </div>
             </div>
-          </section>
         </div>
       </section>
     </>
