@@ -78,9 +78,10 @@
 @media (min-width: 1000px) {
   .row.footer__links .col.footer__col {
     text-align: left;
-    &:last-of-type {
-      text-align: right;
-    }
+  }
+
+  .row.footer__links .col.footer__col:last-of-type {
+    text-align: right;
   }
 }
 
@@ -95,6 +96,10 @@
     inset 0px 3px 10px var(--glossy-border-inset-shadow-color2);
   border-radius: 15px; 
   margin: 50px;
+}
+
+.set-width{
+  width: 450px;
 }
 
 .button {
@@ -162,4 +167,10 @@
     float: none;
     padding-right: 0;
   }
+}
+
+.feature-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

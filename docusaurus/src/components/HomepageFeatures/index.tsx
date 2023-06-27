@@ -89,7 +89,7 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({ title, src, description }: FeatureItem) {
   return (
-    <div className={clsx('col col--4 glossy-border bottomMargin')}>
+    <div className={clsx('glossy-border bottomMargin set-width ')}>
       <div className="text--center">
         <img src={src} style={{ height: '120px', paddingBottom: '20px' }} />
       </div>
@@ -104,8 +104,7 @@ function Feature({ title, src, description }: FeatureItem) {
 export default function HomepageFeatures(): JSX.Element {
   return (
     <>
-      <section className={styles.features}>
-        <div className="container">
+          <div className={clsx('feature-row')}>
           <section className={styles.features} style={{ marginTop: '80px' }}>
             <div className="container">
               <div className="row" style={{ justifyContent: 'center' }}>
@@ -115,8 +114,7 @@ export default function HomepageFeatures(): JSX.Element {
               </div>
             </div>
           </section>
-        </div>
-      </section>
+          </div>
       <section className="secondaryBackground">
         <HomepageContributions />
       </section>
