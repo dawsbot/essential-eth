@@ -1,56 +1,48 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Global CSS, including the bundled Infima framework. Infima is designed for 
+ * content-centric websites. You can override its default variables here.
  */
 
-/* You can override the default Infima variables here. */
-:root {
+ :root {
   --ifm-code-font-size: 95%;
-
   /* Button colors */
-  --secondary: #52d4e1; /* Darker shade of --gradient-color3 */
-  --secondaryShadow: #319da8; /* Even darker shade of --gradient-color3 */
+  --secondary: #52d4e1;
+  --secondaryShadow: #319da8;
   --textInSecondary: #ffffff;
-
-  /* Glossy Border colors */
+  /* Glossy border colors */
   --glossy-border-color: #999;
   --glossy-border-background-color1: #fff;
   --glossy-border-background-color2: #eee;
   --glossy-border-shadow-color: rgba(0, 0, 0, 0.1);
   --glossy-border-inset-shadow-color1: rgba(0, 0, 0, 0.2);
   --glossy-border-inset-shadow-color2: rgba(255, 255, 255, 0.3);
-
   /* Gradient colors */
   --gradient-color4: #ffea4c;
   --gradient-color2: #ff9d93;
   --gradient-color3: #d893d1;
   --gradient-color1: #a8e279;
-
+  /* Background color */
   --secondary-background: #303846;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  /* Button colors */
-  --secondary: #408b9c; /* Darker version of secondary color for dark mode */
-  --secondaryShadow: #28585c; /* Darker version of secondary shadow color for dark mode */
-  --textInSecondary: #b0dcdc; /* Lighter text color for readability in dark mode */
-
-  /* Glossy Border colors */
+  /* Button colors for dark mode */
+  --secondary: #408b9c;
+  --secondaryShadow: #28585c;
+  --textInSecondary: #b0dcdc;
+  /* Glossy border colors for dark mode */
   --glossy-border-color: #444;
   --glossy-border-background-color1: #222;
   --glossy-border-background-color2: #333;
   --glossy-border-shadow-color: rgba(255, 255, 255, 0.1);
   --glossy-border-inset-shadow-color1: rgba(255, 255, 255, 0.2);
   --glossy-border-inset-shadow-color2: rgba(0, 0, 0, 0.5);
-
-  /* Gradient colors */
+  /* Gradient colors for dark mode */
   --gradient-color4: #b38d3e;
   --gradient-color3: #b35e5b;
   --gradient-color2: #8c5e88;
   --gradient-color1: #6f8f5e;
-  
+  /* Background color for dark mode */
   --secondary-background: #1c4f5d;
 }
 
@@ -69,39 +61,36 @@
   background-color: var(--secondary-background);
 }
 
-/* Mobile styles */
+/* Footer link styles */
 .row.footer__links .col.footer__col {
   text-align: center;
 }
 
-/* Desktop styles */
 @media (min-width: 1000px) {
   .row.footer__links .col.footer__col {
     text-align: left;
   }
-
   .row.footer__links .col.footer__col:last-of-type {
     text-align: right;
   }
 }
 
+/* Glossy border styles */
 .glossy-border {
   border: 3px solid var(--glossy-border-color);
   padding: 20px;
   background: linear-gradient(to bottom right, var(--glossy-border-background-color1), var(--glossy-border-background-color2));
-  box-shadow: 
-    0px 10px 15px var(--glossy-border-shadow-color),
-    5px 5px 15px var(--glossy-border-shadow-color),
-    inset 0px -3px 10px var(--glossy-border-inset-shadow-color1),
-    inset 0px 3px 10px var(--glossy-border-inset-shadow-color2);
+  box-shadow: 0px 10px 15px var(--glossy-border-shadow-color), 5px 5px 15px var(--glossy-border-shadow-color), 
+    inset 0px -3px 10px var(--glossy-border-inset-shadow-color1), inset 0px 3px 10px var(--glossy-border-inset-shadow-color2);
   border-radius: 15px; 
   margin: 50px;
 }
 
-.set-width{
+.set-width {
   width: 450px;
 }
 
+/* Button styles */
 .button {
   border: none;
   border-radius: 4px;
@@ -111,7 +100,6 @@
   margin: 0.25em 0;
   padding: 0.75em 1em;
   position: relative;
-  transition: none;
   background-color: var(--secondary);
   color: var(--textInSecondary);
   box-shadow: 0 4px var(--secondaryShadow);
@@ -120,7 +108,6 @@
 .button:hover {
   top: 2px;
   box-shadow: 0 2px var(--secondaryShadow);
-  animation: none;
 }
 
 .button:active {
@@ -128,6 +115,7 @@
   top: 4px;
 }
 
+/* Gradient background */
 .gradient-bg {
   background: linear-gradient(45deg, var(--gradient-color1), var(--gradient-color2), var(--gradient-color3), var(--gradient-color4));
   background-size: 200% 200%;
@@ -140,10 +128,12 @@
   100% {background-position: 0% 50%;}
 }
 
+/* Miscellaneous styles */
 .bottomMargin {
   margin-bottom: 4rem;
 }
 
+/* Contribution image styles */
 .contribute-img {
   height: 300px;
   width: 300px;
@@ -153,6 +143,7 @@
   padding-top: 2rem;
 }
 
+/* Contribution container styles */
 .contribute-container {
   margin-left: 100px;
   margin-right: 100px;
@@ -169,8 +160,17 @@
   }
 }
 
+/* Feature row styles */
 .feature-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 2rem 0;
+}
+
+.feature-section {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
 }
