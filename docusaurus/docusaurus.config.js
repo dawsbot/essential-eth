@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Essential Eth',
-  tagline: "A replacement for ethers & web3 that's 20x smaller",
+  tagline: "A simple, lightweight library for building applications on Ethereum.",
   url: 'https://eeth.dev/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
