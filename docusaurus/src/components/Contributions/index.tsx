@@ -1,9 +1,5 @@
-import CodeBlock from '@theme/CodeBlock';
 import clsx from 'clsx';
 import React from 'react';
-// import styles from './styles.module.css';
-// organize-imports-ignore
-import * as ee from '../../../../src/index';
 import Link from '@docusaurus/Link';
 
 interface ContributeItem {
@@ -29,20 +25,15 @@ const ContributeList: ContributeItem[] = [
 
 function Contribute({ title, src, description }: ContributeItem) {
   return (
-    <div className={clsx('col col--9')}>
-      <div className="text--center" style={{ marginRight: '2rem' }}>
+    <div className={clsx('col--9 glossy-border contribute-container')}>
+      <div className="text--center">
         <img
           src={src}
-          style={{
-            height: '300px',
-            paddingBottom: '20px',
-            float: 'left',
-            paddingRight: '3rem',
-          }}
+          className='contribute-img'
         />
       </div>
       <div
-        className={'text--left padding-horiz--md'}
+        className={'padding-horiz--md'}
         style={{ padding: '3rem' }}
       >
         <h3>{title}</h3>
@@ -65,15 +56,16 @@ export default function HomepageContributions(): JSX.Element {
     <>
       <section>
         <div className="container">
-          <section style={{ marginTop: '120px', marginBottom: '100px' }}>
-            <div>
-              <div className="row" style={{ justifyContent: 'center' }}>
+            <div className="contribute-container">
+              <div
+                className="row"
+                style={{ justifyContent: 'center' }}
+              >
                 {ContributeList.map((props, idx) => (
                   <Contribute key={idx} {...props} />
                 ))}
               </div>
             </div>
-          </section>
         </div>
       </section>
     </>

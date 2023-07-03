@@ -1,9 +1,6 @@
 import CodeBlock from '@theme/CodeBlock';
 import clsx from 'clsx';
 import React from 'react';
-import styles from './styles.module.css';
-// organize-imports-ignore
-import * as ee from '../../../../src/index';
 import Link from '@docusaurus/Link';
 import HomepageContributions from '../Contributions';
 
@@ -19,8 +16,19 @@ const FeatureList: FeatureItem[] = [
     src: '/img/feather.png',
     description: (
       <>
-        Essential Eth was designed from the ground up to be 20x smaller than
-        ethers.js and web3.js.
+        Essential Eth was designed from the ground up to be <strong>20x smaller than
+        ethers.js and web3.js.</strong> This compact form facilitates quicker setups and optimizes storage.
+      </>
+    ),
+  },
+  {
+    title: 'Supports Decentralization',
+    src: '/img/globe.png',
+    description: (
+      <>
+        Choosing Essential Eth means more than using a lean and efficient tool - it 
+        supports Ethereum's decentralized tech stack. This library diversifies front-end tools, 
+        echoing Ethereum's multi-client approach and mitigating risks tied to ecosystem single library reliance.
       </>
     ),
   },
@@ -30,7 +38,8 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         The bundle size of essential-eth is <strong>less than 5kb</strong> for
-        most functions.{' '}
+        most functions. Smaller bundles mean faster load times, 
+        leading to a more responsive and efficient user experience.{' '}
         <a
           href="https://bundlephobia.com/package/essential-eth"
           target="_blank"
@@ -45,8 +54,8 @@ const FeatureList: FeatureItem[] = [
     src: '/img/test-tube.png',
     description: (
       <>
-        With full TypeScript integration and jest tests, you can enjoy fewer
-        bugs and a more delightful coding experience.
+        Thanks to Essential Eth's slim codebase, fortified by full TypeScript integration and 
+        Jest testing, bugs have nowhere to hide – ensuring a delightful coding experience.
       </>
     ),
   },
@@ -65,9 +74,10 @@ const FeatureList: FeatureItem[] = [
     src: '/img/crossed-swords.png',
     description: (
       <>
-        Used in production by over 100,000 visitors per month on{' '}
+        The reliability and stability of Essential Eth are clearly demonstrated by its extensive 
+        real-world usage. It is used in production by over 100,000 visitors per month on{' '}
         <a href="https://earni.fi" target="_blank">
-          Earnifi
+          Earnifi 🚁
         </a>
       </>
     ),
@@ -76,7 +86,7 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({ title, src, description }: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('glossy-border bottomMargin set-width ')}>
       <div className="text--center">
         <img src={src} style={{ height: '120px', paddingBottom: '20px' }} />
       </div>
@@ -91,102 +101,136 @@ function Feature({ title, src, description }: FeatureItem) {
 export default function HomepageFeatures(): JSX.Element {
   return (
     <>
-      <section className={styles.features}>
-        <div className="container">
-          <section className={styles.features} style={{ marginTop: '80px' }}>
-            <div className="container">
-              <div className="row" style={{ justifyContent: 'center' }}>
-                {FeatureList.map((props, idx) => (
-                  <Feature key={idx} {...props} />
-                ))}
-              </div>
+      <div className={clsx('feature-row')}>
+        <section className={clsx('feature-section')}>
+          <div className="container">
+            <div className="row" style={{ justifyContent: 'center' }}>
+              {FeatureList.map((props, idx) => (
+                <Feature key={idx} {...props} />
+              ))}
             </div>
-          </section>
-          <HomepageContributions />
-          <br />
-          <br />
-          <h2>Utils</h2>
-          <CodeBlock language="typescript">
-            {`import { etherToWei, weiToEther } from 'essential-eth';
-
-weiToEther(1000000000000000000).toNumber();
-// 1
-
-etherToWei('1000').toString();
-// '1000000000000000000000'
-`}
-          </CodeBlock>
-          <br />
-          <CodeBlock language="typescript">
-            {`import { isAddress } from 'essential-eth';
-
-isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
-// true
-
-isAddress('bad');
-// false
-`}
-          </CodeBlock>
-          <br />
-          <CodeBlock language="typescript">
-            {`import { toChecksumAddress } from 'essential-eth';
-
-toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
-// '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
-`}
-          </CodeBlock>
-          <div className={styles.buttons}>
-            <Link
-              className="button button--secondary button--lg"
-              to="/docs/api/modules#functions"
-            >
-              View All Utils
-            </Link>
           </div>
-          <br />
-          <br />
-          <h2 style={{ marginTop: '160px' }}>JsonRpcProvider</h2>
-          <CodeBlock language="typescript">
-            {`import { JsonRpcProvider } from 'essential-eth';
-
-const provider = new JsonRpcProvider();
-await provider
-  .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
-  .then((balance) => console.log(balance.toString()));
-// "28798127851528138"
-`}
-          </CodeBlock>
-          <br />
-          <h2 style={{ marginTop: '100px' }}>FallthroughProvider</h2>
-          <CodeBlock language="typescript">
-            {`import { FallthroughProvider } from 'essential-eth';
-
-// The FallthroughProvider handles falling through to the next valid URL.
-// It's dynamic to never trust one URL again when it fails * until it has tried all other provided URLs
-// The default timeout for a request is 8 seconds after which it moves to the next URL
-const provider = new FallthroughProvider([
-  'https://bad.com',
-  'https://free-eth-node.com/api/eth',
-]);
-provider.getGasPrice().toNumber();
-/*
-39695942769
-*/
-`}
-          </CodeBlock>
-          <br />
-          <div className={styles.buttons}>
-            <Link
-              className="button button--secondary button--lg"
-              to="/docs/api"
-            >
-              View Full API
-            </Link>
-          </div>
-          <br />
-          <br />
-        </div>
+        </section>
+      </div>
+      <section className="secondaryBackground">
+        <HomepageContributions />
       </section>
+      <br />
+      <br />
+      <div style={{margin: '50px'}}>
+        <h1 style={{fontSize: '40px'}}> Getting Started with Essential Eth</h1>
+        <p style={{fontSize: '18px'}}>Welcome to the Essential Eth library! Designed for both seasoned developers
+         and those new to the Ethereum blockchain, Essential Eth provides easy-to-use functions for all your 
+         development needs. In the following section, we've outlined some of the most popular features of the library 
+         along with simple examples to get you started:</p>
+  
+        <h2 style={{fontSize: '28px'}}>Utils 🔧 </h2>
+        <p style={{fontSize: '18px', lineHeight: '1.6'}}>The Utils module is your go-to for common Ethereum needs.
+         Whether you're converting between Ether and Wei or validating Ethereum addresses, Utils has you covered.
+          Check out these examples:</p>
+  
+        <h3 style={{fontSize: '24px'}}>etherToWei and weiToEther 💸 </h3>
+        <p style={{fontSize: '16px'}}>These functions allow you to easily convert between the two standard units 
+        of ether: Ether and Wei. Much like dollars and cents, Ether is often used for high-level transactions, 
+        while Wei is the smallest possible unit of the currency, ideal for precision.</p>
+        <CodeBlock language="typescript">
+          {`import { etherToWei, weiToEther } from 'essential-eth';
+            
+            weiToEther(1000000000000000000).toNumber();
+            // returns: 1
+  
+            etherToWei('1000').toString();
+            // returns: '1000000000000000000000'
+          `}
+        </CodeBlock>
+        <br />
+  
+        <h3 style={{fontSize: '24px'}}>isAddress ✅ </h3>
+        <p style={{fontSize: '16px'}}>The 'isAddress' function validates Ethereum addresses. It checks whether the 
+        input string meets the formatting rules for a valid Ethereum address, which is essential for preventing errors 
+        during transactions.</p>
+        <CodeBlock language="typescript">
+          {`import { isAddress } from 'essential-eth';
+  
+            isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
+            // returns: true
+  
+            isAddress('bad');
+            // returns: false
+          `}
+        </CodeBlock>
+        <br />
+  
+        <h3 style={{fontSize: '24px'}}>toChecksumAddress 🔑</h3>
+        <p style={{fontSize: '16px'}}>The 'toChecksumAddress' function converts an Ethereum address to a checksum address.
+         Checksum addresses include a mix of capital and lowercase letters, which can help prevent errors due to typos and 
+         incorrect input.</p>
+        <CodeBlock language="typescript">
+          {`import { toChecksumAddress } from 'essential-eth';
+  
+            toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
+            // returns: '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
+          `}
+        </CodeBlock>
+  
+        <div>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/api/modules#functions"
+          >
+            View All Utils
+          </Link>
+        </div>
+        <br />
+        <br />
+  
+        <h2 style={{fontSize: '28px'}}>JsonRpcProvider 🌐</h2>
+        <p style={{fontSize: '18px', lineHeight: '1.6'}}>The JsonRpcProvider module provides a straightforward way to 
+        interact with Ethereum nodes. Whether you're querying account balances or performing other operations, JsonRpcProvider 
+        simplifies the process. Here's an example of how to use it:</p>
+  
+        <CodeBlock language="typescript">
+          {`import { JsonRpcProvider } from 'essential-eth';
+            
+            const provider = new JsonRpcProvider();
+            await provider
+            .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
+            .then((balance) => console.log(balance.toString()));
+            // returns: "28798127851528138"
+          `}
+        </CodeBlock>
+        <br />
+  
+        <h2 style={{fontSize: '28px'}}>FallthroughProvider 🔄 </h2>
+        <p style={{fontSize: '18px', lineHeight: '1.6'}}>The FallthroughProvider is designed for reliability. If one Ethereum node 
+        fails to respond, it automatically switches to the next provided URL. This guarantees that your application remains functional, 
+        even if individual nodes become unresponsive. Here's an example:</p>
+  
+        <CodeBlock language="typescript">
+          {`import { FallthroughProvider } from 'essential-eth';
+            
+            // The FallthroughProvider handles falling through to the next valid URL.
+            // It's dynamic to never trust one URL again when it fails * until it has tried all other provided URLs
+            // The default timeout for a request is 8 seconds after which it moves to the next URL
+            const provider = new FallthroughProvider([
+            'https://bad.com',
+            'https://free-eth-node.com/api/eth',
+            ]);
+            provider.getGasPrice().toNumber();
+            // returns: 39695942769
+          `}
+        </CodeBlock>
+
+        <br />
+        <Link
+          className="button button--secondary button--lg"
+          to="/docs/api"
+        >
+          View Full API
+        </Link>
+        <br />
+        <br />
+      </div>
     </>
-  );
+  );    
 }
