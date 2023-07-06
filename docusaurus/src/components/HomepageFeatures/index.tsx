@@ -117,8 +117,8 @@ export default function HomepageFeatures(): JSX.Element {
       </section>
       <br />
       <br />
-      <div style={{margin: '50px'}}>
-        <h1 style={{fontSize: '40px'}}> Getting Started with Essential Eth</h1>
+      <div style={{margin: '50px' }}  id="core-features"  >
+        <h1 style={{fontSize: '40px'}}> Core Features</h1>
         <p style={{fontSize: '18px'}}>Welcome to the Essential Eth library! Designed for both seasoned developers
          and those new to the Ethereum blockchain, Essential Eth provides easy-to-use functions for all your 
          development needs. In the following section, we've outlined some of the most popular features of the library 
@@ -183,16 +183,22 @@ export default function HomepageFeatures(): JSX.Element {
         </div>
         <br />
         <br />
-  
-        <h2 style={{fontSize: '28px'}}>JsonRpcProvider 🌐</h2>
-        <p style={{fontSize: '18px', lineHeight: '1.6'}}>The JsonRpcProvider module provides a straightforward way to 
-        interact with Ethereum nodes. Whether you're querying account balances or performing other operations, JsonRpcProvider 
-        simplifies the process. Here's an example of how to use it:</p>
+        <h2 style={{fontSize: '28px'}}>Providers 🌐 </h2>
+        <p style={{fontSize: '18px', lineHeight: '1.6'}}>A provider is a connection to an Ethereum node that allows you to communicate with the network. 
+        It serves as an interface between your application and the blockchain. Providers handle the underlying protocol and provide methods to interact 
+        with the Ethereum network, such as sending transactions, retrieving account balances, and querying contract data.
+        Here are some examples on how to connect: </p>
+        <h3 style={{fontSize: '24px'}}>JsonRpcProvider 📡 </h3>
+        <p style={{ fontSize: '18px', lineHeight: '1.6' }}>
+        The JsonRpcProvider module provides a straightforward way to interact with Ethereum nodes using the JSON-RPC protocol. Whether you're querying 
+        account balances or performing other operations, JsonRpcProvider simplifies the process. In the example below, we connect to Infura. Infura is a widely 
+        used Ethereum node provider. Visit their site to <a href="https://infura.io/" target="_blank" rel="noopener noreferrer">set up your own API</a>.
+        </p>
   
         <CodeBlock language="typescript">
           {`import { JsonRpcProvider } from 'essential-eth';
             
-            const provider = new JsonRpcProvider();
+            const provider = new JsonRpcProvider('https://mainnet.infura.io/v3/your-infura-api-key');
             await provider
             .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
             .then((balance) => console.log(balance.toString()));
@@ -201,7 +207,7 @@ export default function HomepageFeatures(): JSX.Element {
         </CodeBlock>
         <br />
   
-        <h2 style={{fontSize: '28px'}}>FallthroughProvider 🔄 </h2>
+        <h3 style={{fontSize: '24px'}}>FallthroughProvider 🔄 </h3>
         <p style={{fontSize: '18px', lineHeight: '1.6'}}>The FallthroughProvider is designed for reliability. If one Ethereum node 
         fails to respond, it automatically switches to the next provided URL. This guarantees that your application remains functional, 
         even if individual nodes become unresponsive. Here's an example:</p>
