@@ -72,8 +72,11 @@ const config = {
             label: 'Providers',
             position: 'left',
           },
-          { to: '/getting_started', label: 'Getting Started', position: 'left' },
-
+          { 
+            href: '/getting_started',
+            label: 'Getting Started',
+            position: 'left' 
+          },
           {
             href: 'https://github.com/earnifi/essential-eth',
             label: 'GitHub',
