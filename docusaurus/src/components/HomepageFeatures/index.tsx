@@ -117,7 +117,7 @@ export default function HomepageFeatures(): JSX.Element {
       </section>
       <br />
       <br />
-      <div style={{margin: '50px' }}  id="core-features"  >
+      <div className={clsx('text-margin')}  id="core-features" >
         <h1 style={{fontSize: '40px'}}> Core Features</h1>
         <p style={{fontSize: '18px'}}>Welcome to the Essential Eth library! Designed for both seasoned developers
          and those new to the Ethereum blockchain, Essential Eth provides easy-to-use functions for all your 
@@ -190,15 +190,15 @@ export default function HomepageFeatures(): JSX.Element {
         Here are some examples on how to connect: </p>
         <h3 style={{fontSize: '24px'}}>JsonRpcProvider 📡 </h3>
         <p style={{ fontSize: '18px', lineHeight: '1.6' }}>
-        The JsonRpcProvider module provides a straightforward way to interact with Ethereum nodes using the JSON-RPC protocol. Whether you're querying 
-        account balances or performing other operations, JsonRpcProvider simplifies the process. In the example below, we connect to Infura. Infura is a widely 
-        used Ethereum node provider. Visit their site to <a href="https://infura.io/" target="_blank" rel="noopener noreferrer">set up your own API</a>.
+        The JsonRpcProvider module provides a straightforward way to 
+        interact with Ethereum nodes. Whether you're querying account balances or performing other operations, JsonRpcProvider 
+        simplifies the process. Here's an example of how to use it:
         </p>
   
         <CodeBlock language="typescript">
           {`import { JsonRpcProvider } from 'essential-eth';
             
-            const provider = new JsonRpcProvider('https://mainnet.infura.io/v3/your-infura-api-key');
+            const provider = new JsonRpcProvider();
             await provider
             .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
             .then((balance) => console.log(balance.toString()));

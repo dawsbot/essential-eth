@@ -1,12 +1,13 @@
 import React from 'react';
 import Layout from '@theme/Layout';
+import clsx from 'clsx';
 import CodeBlock from '@theme/CodeBlock';
 import Link from '@docusaurus/Link';
 
 function GettingStarted() {
   return (
     <Layout title="Getting Started">
-      <div style={{ margin: '50px' }}>
+      <div className={clsx('text-margin')}>
         <h1 style={{ fontSize: '40px' }}>🪶 Getting Started with Essential Eth 🪶</h1>
         <p style={{ fontSize: '18px' }}>Ready to start building on Ethereum? This guide will help you hit the ground running.</p>
 
