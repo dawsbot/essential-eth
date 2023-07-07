@@ -187,7 +187,7 @@ export default function HomepageFeatures(): JSX.Element {
         <p style={{fontSize: '18px', lineHeight: '1.6'}}>A provider is a connection to an Ethereum node that allows you to communicate with the network. 
         It serves as an interface between your application and the blockchain. Providers handle the underlying protocol and provide methods to interact 
         with the Ethereum network, such as sending transactions, retrieving account balances, and querying contract data.
-        Here are some examples on how to connect: </p>
+       </p>
         <h3 style={{fontSize: '24px'}}>JsonRpcProvider 📡 </h3>
         <p style={{ fontSize: '18px', lineHeight: '1.6' }}>
         The JsonRpcProvider module provides a straightforward way to 
