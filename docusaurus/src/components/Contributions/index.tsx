@@ -41,7 +41,7 @@ function Contribute({ title, src, description }: ContributeItem) {
         <div>
           <Link
             className="button button--secondary button--md"
-            to="https://github.com/dawsbot/essential-eth#gitpoap"
+            to="https://www.gitpoap.io/"
           >
             Learn More
           </Link>
