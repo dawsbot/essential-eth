@@ -23,7 +23,7 @@ function GettingStarted() {
           Bundle size is a term in web development that refers to the total size of the files that are sent to a user's browser when they
           visit your website. It's important because it can affect your website's load time, data usage, search engine ranking, and battery
           drain on mobile devices. Essential Eth is designed with a minimalist modular architecture that achieves a bundle size of 32kb,
-          compared to ethers' bundle size of 128kb. Plus, Essential Eth is tree-shaking, which means only the modules you use are included in your final bundle. 🌳✂️
+          compared to ethers' bundle size of 128kb. Plus, Essential Eth is tree-shaken, which means only the modules you use are included in your final bundle. 🌳✂️
         </p>
 
         <h2 style={{ fontSize: '28px' }}>Installation ⚙️</h2>
