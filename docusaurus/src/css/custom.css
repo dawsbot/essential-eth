@@ -174,3 +174,10 @@
   padding: 2rem 0;
   width: 100%;
 }
+
+.text-margin {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
