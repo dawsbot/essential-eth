@@ -181,3 +181,12 @@
   margin-left: 150px;
   margin-right: 150px;
 }
+
+@media (max-width: 1000px) {
+  .text-margin {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
