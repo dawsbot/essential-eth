@@ -1,4 +1,3 @@
-import { from } from 'bops';
 import { hexFalse } from '../classes/utils/encode-decode-transaction';
 import { logger } from '../logger/logger';
 import { tinyBig } from '../shared/tiny-big/tiny-big';
@@ -27,7 +26,7 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
       }
       return arrayify(value);
     case 'string':
-      return from(value);
+      return Buffer.from(value);
     case 'bytes':
       return arrayify(value);
     case 'bool':
