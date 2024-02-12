@@ -86,7 +86,7 @@
     "prettier-plugin-organize-imports": "^3.2.4",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.2.1",
-    "typedoc": "^0.24.5",
+    "typedoc": "^0.25.8",
     "typescript": "^5.3.3",
     "zod": "^3.22.4"
   },
