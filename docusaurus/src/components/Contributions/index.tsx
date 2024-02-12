@@ -1,6 +1,6 @@
+import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import React from 'react';
-import Link from '@docusaurus/Link';
 
 interface ContributeItem {
   title: string;
@@ -27,15 +27,9 @@ function Contribute({ title, src, description }: ContributeItem) {
   return (
     <div className={clsx('col--9 glossy-border contribute-container')}>
       <div className="text--center">
-        <img
-          src={src}
-          className='contribute-img'
-        />
+        <img src={src} className="contribute-img" />
       </div>
-      <div
-        className={'padding-horiz--md'}
-        style={{ padding: '3rem' }}
-      >
+      <div className={'padding-horiz--md'} style={{ padding: '3rem' }}>
         <h3>{title}</h3>
         <p>{description}</p>
         <div>
@@ -56,16 +50,13 @@ export default function HomepageContributions(): JSX.Element {
     <>
       <section>
         <div className="container">
-            <div className="contribute-container">
-              <div
-                className="row"
-                style={{ justifyContent: 'center' }}
-              >
-                {ContributeList.map((props, idx) => (
-                  <Contribute key={idx} {...props} />
-                ))}
-              </div>
+          <div className="contribute-container">
+            <div className="row" style={{ justifyContent: 'center' }}>
+              {ContributeList.map((props, idx) => (
+                <Contribute key={idx} {...props} />
+              ))}
             </div>
+          </div>
         </div>
       </section>
     </>
