@@ -69,7 +69,7 @@ module.exports = {
         'jsdoc/match-description': [
           'off',
           {
-            message: `Description formatting error`,
+            message: 'Description formatting error',
             // The description should match this formatting:
             // /**
             //  * Returns transaction receipt event logs that match a specified filter.

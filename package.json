@@ -5,11 +5,12 @@
   "license": "MIT",
   "sideEffects": false,
   "private": false,
-  "module": "./dist/esm/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "browser": "./dist/cjs/index.umd.js",
   "unpkg": "./dist/cjs/index.umd.js",
   "umd:main": "./dist/cjs/index.umd.js",
-  "main": "./dist/cjs/index.js",
   "source": "src/index.ts",
   "files": [
     "dist/"
@@ -30,13 +31,13 @@
       "name": "JsonRpcProvider",
       "path": "src/index.ts",
       "import": "{ JsonRpcProvider }",
-      "limit": "17.19kb"
+      "limit": "16.96kb"
     },
     {
       "name": "Contract",
       "path": "src/index.ts",
       "import": "{ Contract }",
-      "limit": "15.44kb"
+      "limit": "15.21kb"
     }
   ],
   "scripts": {
@@ -44,10 +45,9 @@
     "test": "npm-run-all --parallel jest compile lint",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix .",
-    "compile": "npm-run-all --parallel build:esm build:cjs build:umd",
+    "compile": "npm-run-all --parallel build:esm-cjs build:umd",
     "build": "rm -rf dist && npm run compile",
-    "build:esm": "tsc -p tsconfig.json",
-    "build:cjs": "swc src -d dist/cjs",
+    "build:esm-cjs": "tsup --metafile",
     "build:umd": "microbundle --external none --format umd",
     "build:readme": "bash ./scripts/markdown-magic/build-readme.sh",
     "jest": "jest",
@@ -62,11 +62,9 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.2.4",
-    "@swc/cli": "^0.1.62",
-    "@swc/core": "^1.3.53",
     "@types/bn.js": "^5.1.1",
     "@types/eslint": "^8.37.0",
-    "@types/jest": "^27.4.1",
+    "@types/jest": "^29.5.12",
     "@types/node": "^18.16.0",
     "@types/prettier": "^2.7.2",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
@@ -77,15 +75,16 @@
     "eslint-plugin-jest": "^26.2.2",
     "eslint-plugin-jsdoc": "^38.0.2",
     "husky": "^7.0.4",
-    "jest": "^27.5.1",
+    "jest": "^29.7.0",
     "lint-staged": "^13.2.1",
     "microbundle": "^0.15.1",
     "npm-run-all": "^4.1.5",
     "perf_hooks": "^0.0.1",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.2",
-    "ts-jest": "^27.1.4",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.2.1",
+    "tsup": "^8.0.2",
     "typedoc": "^0.24.5",
     "typescript": "^4.9.4",
     "zod": "^3.21.4"
