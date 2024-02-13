@@ -13,9 +13,15 @@ describe('utils.stripZeros', () => {
   });
   it('should match expected result - UInt8Array', () => {
     const testCases = [
-      { value: [0, 0, 0, 9, 58, 29, 24], expected: new Uint8Array([9, 58, 29, 24]) },
+      {
+        value: [0, 0, 0, 9, 58, 29, 24],
+        expected: new Uint8Array([9, 58, 29, 24]),
+      },
       { value: [0, 185, 203], expected: new Uint8Array([185, 203]) },
-      { value: [0, 0, 0, 0, 239, 30, 49, 41, 5, 10, 42], expected: new Uint8Array([239, 30, 49, 41, 5, 10, 42]) },
+      {
+        value: [0, 0, 0, 0, 239, 30, 49, 41, 5, 10, 42],
+        expected: new Uint8Array([239, 30, 49, 41, 5, 10, 42]),
+      },
     ];
     testCases.forEach((testCase) => {
       expect(stripZeros(testCase.value)).toStrictEqual(testCase.expected);
