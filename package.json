@@ -19,28 +19,7 @@
   },
   "repository": "https://github.com/dawsbot/essential-eth.git",
   "author": "@dawsbot",
-  "size-limit": [
-    {
-      "name": "etherToWei",
-      "path": "src/index.ts",
-      "import": "{ etherToWei }",
-      "limit": "3.58kb"
-    },
-    {
-      "name": "JsonRpcProvider",
-      "path": "src/index.ts",
-      "import": "{ JsonRpcProvider }",
-      "limit": "17.19kb"
-    },
-    {
-      "name": "Contract",
-      "path": "src/index.ts",
-      "import": "{ Contract }",
-      "limit": "15.44kb"
-    }
-  ],
   "scripts": {
-    "size": "npx size-limit",
     "test": "npm-run-all --parallel jest compile lint",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix .",
