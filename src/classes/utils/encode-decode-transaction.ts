@@ -85,18 +85,21 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
 
   const argsWithTypes: [arg: any, type: ContractTypes][] = (
     jsonABIArgument.inputs || []
-  ).reduce((acc, input, i) => {
-    if (input.type.includes('[')) {
-      // strip array and length like "[2]" from type
-      const basicType = /([^[]*)\[.*$/g.exec(input.type)?.[1] as string;
-      args.forEach((arg: any) => {
-        acc = acc.concat([[arg, basicType]]);
-      });
-      return acc;
-    } else {
-      return acc.concat([[args[i], input.type]]);
-    }
-  }, [] as [arg: any, type: ContractTypes][]);
+  ).reduce(
+    (acc, input, i) => {
+      if (input.type.includes('[')) {
+        // strip array and length like "[2]" from type
+        const basicType = /([^[]*)\[.*$/g.exec(input.type)?.[1] as string;
+        args.forEach((arg: any) => {
+          acc = acc.concat([[arg, basicType]]);
+        });
+        return acc;
+      } else {
+        return acc.concat([[args[i], input.type]]);
+      }
+    },
+    [] as [arg: any, type: ContractTypes][],
+  );
 
   const encodedArgs = argsWithTypes.map(([arg, inputType]) => {
     let rawArg = arg;

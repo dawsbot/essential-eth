@@ -3,7 +3,7 @@
  * content-centric websites. You can override its default variables here.
  */
 
- :root {
+:root {
   --ifm-code-font-size: 95%;
   /* Button colors */
   --secondary: #52d4e1;
@@ -79,10 +79,17 @@
 .glossy-border {
   border: 3px solid var(--glossy-border-color);
   padding: 20px;
-  background: linear-gradient(to bottom right, var(--glossy-border-background-color1), var(--glossy-border-background-color2));
-  box-shadow: 0px 10px 15px var(--glossy-border-shadow-color), 5px 5px 15px var(--glossy-border-shadow-color), 
-    inset 0px -3px 10px var(--glossy-border-inset-shadow-color1), inset 0px 3px 10px var(--glossy-border-inset-shadow-color2);
-  border-radius: 15px; 
+  background: linear-gradient(
+    to bottom right,
+    var(--glossy-border-background-color1),
+    var(--glossy-border-background-color2)
+  );
+  box-shadow:
+    0px 10px 15px var(--glossy-border-shadow-color),
+    5px 5px 15px var(--glossy-border-shadow-color),
+    inset 0px -3px 10px var(--glossy-border-inset-shadow-color1),
+    inset 0px 3px 10px var(--glossy-border-inset-shadow-color2);
+  border-radius: 15px;
   margin: 50px;
 }
 
@@ -117,15 +124,27 @@
 
 /* Gradient background */
 .gradient-bg {
-  background: linear-gradient(45deg, var(--gradient-color1), var(--gradient-color2), var(--gradient-color3), var(--gradient-color4));
+  background: linear-gradient(
+    45deg,
+    var(--gradient-color1),
+    var(--gradient-color2),
+    var(--gradient-color3),
+    var(--gradient-color4)
+  );
   background-size: 200% 200%;
   animation: Gradient 10s ease infinite;
 }
 
 @keyframes Gradient {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Miscellaneous styles */

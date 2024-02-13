@@ -4,7 +4,7 @@
 // 	function baz(uint32 x, bool y) public pure returns (bool r) { r = x > 32 || y; }
 // 	function sam(bytes memory, bool, uint[] memory) public pure {}
 
-import type { JSONABI } from '../../..';
+import type { JSONABI } from '../../../types/Contract.types';
 
 //     }
 export const fooABI: JSONABI = [

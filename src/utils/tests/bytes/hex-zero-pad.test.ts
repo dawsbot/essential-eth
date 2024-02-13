@@ -39,8 +39,14 @@ describe('hexZeroPad', () => {
       { value: '0x27b', expected: '0x00000000000000000000000000027b' },
       { value: 0x0, expected: '0x000000000000000000000000000000' },
       { value: 0x5aaeb605, expected: '0x00000000000000000000005aaeb605' },
-      { value: '0xfB6916095ca1df', expected: '0x0000000000000000fB6916095ca1df' },
-      { value: '0xdbF03B407c01E7cD3CBea99509d93', expected: '0x0dbF03B407c01E7cD3CBea99509d93' },
+      {
+        value: '0xfB6916095ca1df',
+        expected: '0x0000000000000000fB6916095ca1df',
+      },
+      {
+        value: '0xdbF03B407c01E7cD3CBea99509d93',
+        expected: '0x0dbF03B407c01E7cD3CBea99509d93',
+      },
       { value: 0xd1220a0cf4, expected: '0x00000000000000000000d1220a0cf4' },
     ];
     testCases.forEach((testCase) => {

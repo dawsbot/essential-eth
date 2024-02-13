@@ -7,7 +7,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Essential Eth',
-  tagline: "A simple, lightweight library for building applications on Ethereum.",
+  tagline:
+    'A simple, lightweight library for building applications on Ethereum.',
   url: 'https://eeth.dev/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -72,10 +73,10 @@ const config = {
             label: 'Providers',
             position: 'left',
           },
-          { 
+          {
             href: '/getting_started',
             label: 'Getting Started',
-            position: 'left' 
+            position: 'left',
           },
           {
             href: 'https://github.com/earnifi/essential-eth',

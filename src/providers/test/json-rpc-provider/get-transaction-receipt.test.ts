@@ -85,9 +85,8 @@ describe('provider.getTransactionReceipt', () => {
     } as Response);
 
     const spy = jest.spyOn(unfetch, 'default');
-    const transactionReceipt = await provider.getTransactionReceipt(
-      transactionHash,
-    );
+    const transactionReceipt =
+      await provider.getTransactionReceipt(transactionHash);
     expect(spy).toHaveBeenCalledWith(
       rpcUrl,
       buildFetchInit(

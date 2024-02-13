@@ -17,7 +17,7 @@ We have set up a GitHub project [here](https://github.com/dawsbot/essential-eth/
 
 ## Quick bootstrap
 
-* All versions of node 12 and higher are supported
+- All versions of node 12 and higher are supported
 
 ```bash
 # Install and build
