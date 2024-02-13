@@ -26,7 +26,7 @@
     "compile": "npm-run-all --parallel build:esm build:cjs build:umd",
     "build": "rm -rf dist && npm run compile",
     "build:esm": "tsc -p tsconfig.json",
-    "build:cjs": "swc src -d dist/cjs",
+    "build:cjs": "tsc -p tsconfig-cjs.json",
     "build:umd": "microbundle --external none --format umd",
     "build:readme": "bash ./scripts/markdown-magic/build-readme.sh",
     "jest": "jest",
