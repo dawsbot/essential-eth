@@ -7,7 +7,7 @@ describe('utils.toUtf8Bytes', () => {
       { input: '1', expected: new Uint8Array([49]) },
       { input: 'false', expected: new Uint8Array([102, 97, 108, 115, 101]) },
     ];
-    
+
     testCases.forEach((testCase) => {
       expect(toUtf8Bytes(testCase.input)).toStrictEqual(testCase.expected);
     });

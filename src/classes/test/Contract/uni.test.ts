@@ -41,9 +41,8 @@ const essentialEthContract = new EssentialEthContract(
 );
 describe('uNI contract', () => {
   it('should fetch "address" data-type', async () => {
-    const response = await smartContractGetUniTokenAddress(
-      essentialEthContract,
-    );
+    const response =
+      await smartContractGetUniTokenAddress(essentialEthContract);
     expect(response).toBe('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984');
   });
   it('should fetch "bytes32" merkle root', async () => {
