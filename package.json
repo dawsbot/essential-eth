@@ -1,7 +1,7 @@
 {
   "name": "essential-eth",
   "description": "Ultralight JS for Ethereum",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "license": "MIT",
   "sideEffects": false,
   "private": false,
@@ -19,35 +19,14 @@
   },
   "repository": "https://github.com/dawsbot/essential-eth.git",
   "author": "@dawsbot",
-  "size-limit": [
-    {
-      "name": "etherToWei",
-      "path": "src/index.ts",
-      "import": "{ etherToWei }",
-      "limit": "3.58kb"
-    },
-    {
-      "name": "JsonRpcProvider",
-      "path": "src/index.ts",
-      "import": "{ JsonRpcProvider }",
-      "limit": "17.19kb"
-    },
-    {
-      "name": "Contract",
-      "path": "src/index.ts",
-      "import": "{ Contract }",
-      "limit": "15.44kb"
-    }
-  ],
   "scripts": {
-    "size": "npx size-limit",
     "test": "npm-run-all --parallel jest compile lint",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix .",
     "compile": "npm-run-all --parallel build:esm build:cjs build:umd",
     "build": "rm -rf dist && npm run compile",
     "build:esm": "tsc -p tsconfig.json",
-    "build:cjs": "swc src -d dist/cjs",
+    "build:cjs": "tsc -p tsconfig-cjs.json",
     "build:umd": "microbundle --external none --format umd",
     "build:readme": "bash ./scripts/markdown-magic/build-readme.sh",
     "jest": "jest",
