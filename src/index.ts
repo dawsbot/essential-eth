@@ -37,7 +37,28 @@ export { toChecksumAddress } from './utils/to-checksum-address';
 export { toUtf8Bytes } from './utils/to-utf8-bytes';
 export { weiToEther } from './utils/wei-to-ether';
 
-export * from './utils/bytes';
-export * from './utils/hash-message';
-export * from './utils/keccak256';
-export * from './utils/solidity-keccak256';
+export {
+  Bytes,
+  BytesLike,
+  BytesLikeWithNumber,
+  DataOptions,
+  Hexable,
+  SignatureLike,
+  Signature,
+  isBytesLike,
+  isBytes,
+  arrayify,
+  concat,
+  stripZeros,
+  zeroPad,
+  isHexString,
+  hexlify,
+  hexDataLength,
+  hexDataSlice,
+  hexConcat,
+  hexValue,
+  hexStripZeros,
+  hexZeroPad,
+} from './utils/bytes';
+export { keccak256 } from './utils/keccak256';
+export { pack, solidityKeccak256 } from './utils/solidity-keccak256';

@@ -23,7 +23,7 @@
   "scripts": {
     "test": "npm-run-all --parallel jest compile lint",
     "test:all-node-versions": "npx trevor",
-    "lint": "eslint --cache --fix .",
+    "lint": "eslint --cache --fix . --config .eslintrc.cjs",
     "compile": "npm-run-all --parallel build:esm build:cjs build:umd",
     "build": "rm -rf dist && npm run compile",
     "build:esm": "tsc -p tsconfig.json",
@@ -81,7 +81,7 @@
     "*": [
       "prettier --ignore-unknown --write"
     ],
-    "*.{ts,tsx,js,jsx}": "eslint --cache --fix"
+    "*.{ts,tsx,js,jsx}": "eslint --fix --config .eslintrc.cjs"
   },
   "prettier": {
     "trailingComma": "all",
