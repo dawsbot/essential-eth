@@ -6,6 +6,7 @@
   "sideEffects": false,
   "type": "module",
   "private": false,
+  "main": "./dist/cjs/index.js",
   "exports": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "engines": {
