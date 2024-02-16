@@ -4,6 +4,7 @@
   "version": "0.9.1",
   "license": "MIT",
   "sideEffects": false,
+  "type": "module",
   "private": false,
   "module": "./dist/esm/index.js",
   "browser": "./dist/cjs/index.umd.js",

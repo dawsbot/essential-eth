@@ -1,5 +1,6 @@
 dist
 typedoc
 docusaurus
+coverage
 
 markdown.config.js
