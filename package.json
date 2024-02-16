@@ -8,6 +8,7 @@
   "module": "./dist/essential-eth.esm.mjs",
   "main": "./dist/essential-eth.js",
   "unpkg": "./dist/essential-eth.umd.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "require": "./dist/essential-eth.js",
     "default": "./dist/essential-eth.esm.mjs",
