@@ -2,15 +2,18 @@
  * Parse a typedoc output file and generate the markdown code
  * This markdown generated is injected into the root readme via markdown-magic
  */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const stats = require('./typedoc.out.json');
+import stats from './typedoc.out.json';
+import z from 'zod';
 
-const functions = stats.groups.find((g) => g.title === 'Functions').children;
+const functions = z
+  .array(z.number())
+  .parse(stats.groups.find((g) => g.title === 'Functions')?.children);
 
 let functionsMarkdown = '';
 let providerMarkdown = '';
 
 class FunctionSignature {
+  signature;
   constructor(signature) {
     this.signature = signature;
   }
@@ -18,7 +21,12 @@ class FunctionSignature {
     return this.signature.parameters;
   }
   selectSignatureType() {
-    return this.signature.type;
+    const typeSchema = z.object({
+      type: z.string(),
+      target: z.any(),
+      name: z.optional(z.string()),
+    });
+    return typeSchema.parse(this.signature.type);
   }
   selectExamples() {
     return this.signature.comment.blockTags
@@ -35,10 +43,10 @@ functions.map((functionNumber) => {
   const signature = new FunctionSignature(child.signatures[0]);
   const signatureType = signature.selectSignatureType();
   let returnType = signatureType.name;
-  let parameters = signature.selectParameters();
+  const parameters = signature.selectParameters();
 
   const examples = signature.selectExamples();
-  if (signatureType === 'union') {
+  if (signatureType.name === 'union') {
     returnType = signatureType?.types
       ?.map((type) => {
         const typeName = type.value === null ? 'null' : type.name;
@@ -79,7 +87,10 @@ functions.map((functionNumber) => {
   </details>\n`
     : '';
 
+  functionsMarkdown += ``;
+
   functionsMarkdown += `#### [\`${name}\`](https://eeth.dev/docs/api/modules#${name.toLowerCase()})
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+${name}+}])
   \`\`\`typescript
   ${name}(${paramsString || ''}): ${returnType}
   \`\`\`
@@ -115,7 +126,8 @@ function requireSameClassChildren(class1, class2) {
 
 requireSameClassChildren(jsonRpcProvider, fallthroughProvider);
 
-jsonRpcProvider.children
+const children = jsonRpcProvider.children;
+children
   .filter((child) => {
     // filters out the constructor
     return child.kindString === 'Method';
@@ -125,7 +137,7 @@ jsonRpcProvider.children
     const signature = new FunctionSignature(childSignature.signatures[0]);
     const signatureType = signature.selectSignatureType();
     let returnType = signatureType.name;
-    let parameters = signature.selectParameters();
+    const parameters = signature.selectParameters();
 
     const examples = signature.selectExamples();
     if (returnType === 'Promise') {
@@ -189,7 +201,4 @@ jsonRpcProvider.children
 `;
   });
 
-module.exports = {
-  functionsMarkdown,
-  providerMarkdown,
-};
+export { functionsMarkdown, providerMarkdown };
