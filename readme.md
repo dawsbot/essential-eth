@@ -40,7 +40,7 @@
 - 🧪 Strongly tested
 - 🌲 Tree-shaking and no side-effects
 - 🙌 All common JS versions (CommonJS, ESM, & UMD)
-  - ✅ Node 20, 18, 16, 14, & 12
+  - ✅ Node 20, 18, 16, & 14
   - ✅ Web
 
 <br/>

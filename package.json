@@ -16,7 +16,7 @@
   },
   "types": "./dist/esm/index.d.ts",
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "files": [
     "dist/"
