@@ -8,7 +8,7 @@
     🪶 Essential Eth 🪶
   </b>
   <br/>
-  <i>An alternative for ethers & web3 that's 20x smaller</i>
+  <i>An alternative for ethers & web3 that's 10x smaller</i>
   <br/>
 </p>
 
@@ -126,7 +126,7 @@ Browsers:
 
 ```html
 <!-- index.html -->
-<script src="https://unpkg.com/essential-eth@0.9.1"></script>
+<script src="https://unpkg.com/essential-eth@0.9.2-beta.7"></script>
 ```
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END (UNPKG_SCRIPT_TAG) -->
@@ -145,6 +145,8 @@ const { etherToWei } = require('essential-eth');
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (FUNCTIONS) -->
 
 #### [`arrayify`](https://eeth.dev/docs/api/modules#arrayify)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+arrayify+}])
 
 ```typescript
 arrayify(value: number | BytesLike | Hexable, options: DataOptions): Uint8Array
@@ -178,6 +180,8 @@ arrayify('0x1', { hexPad: 'right' });
 
 #### [`computeAddress`](https://eeth.dev/docs/api/modules#computeaddress)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+computeAddress+}])
+
 ```typescript
 computeAddress(key: string): string
 ```
@@ -208,6 +212,8 @@ computeAddress(
   <br/>
 
 #### [`computePublicKey`](https://eeth.dev/docs/api/modules#computepublickey)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+computePublicKey+}])
 
 ```typescript
 computePublicKey(privKey: BytesLike): string
@@ -241,6 +247,8 @@ computePublicKey([
 
 #### [`concat`](https://eeth.dev/docs/api/modules#concat)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+concat+}])
+
 ```typescript
 concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
 ```
@@ -262,6 +270,8 @@ concat([0, 1]);
   <br/>
 
 #### [`etherToGwei`](https://eeth.dev/docs/api/modules#ethertogwei)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+etherToGwei+}])
 
 ```typescript
 etherToGwei(etherQuantity: string | number | TinyBig | Big): TinyBig
@@ -294,6 +304,8 @@ etherToGwei(1000).toNumber();
 
 #### [`etherToWei`](https://eeth.dev/docs/api/modules#ethertowei)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+etherToWei+}])
+
 ```typescript
 etherToWei(etherQuantity: string | number | TinyBig | Big): TinyBig
 ```
@@ -324,6 +336,8 @@ etherToWei(1000).toNumber();
   <br/>
 
 #### [`gweiToEther`](https://eeth.dev/docs/api/modules#gweitoether)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+gweiToEther+}])
 
 ```typescript
 gweiToEther(gweiQuantity: string | number | TinyBig | Big): TinyBig
@@ -356,6 +370,8 @@ gweiToEther(1000000000000).toNumber();
 
 #### [`hashMessage`](https://eeth.dev/docs/api/modules#hashmessage)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hashMessage+}])
+
 ```typescript
 hashMessage(message: string | Bytes): string
 ```
@@ -378,6 +394,8 @@ hashMessage('Hello World');
 
 #### [`hexConcat`](https://eeth.dev/docs/api/modules#hexconcat)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexConcat+}])
+
 ```typescript
 hexConcat(items: Array<BytesLike>): string
 ```
@@ -399,6 +417,8 @@ hexConcat([[2, 4, 0, 1], 9, '0x2934', '0x3947']);
   <br/>
 
 #### [`hexDataLength`](https://eeth.dev/docs/api/modules#hexdatalength)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexDataLength+}])
 
 ```typescript
 hexDataLength(data: BytesLike): undefined
@@ -427,6 +447,8 @@ hexDataLength('0x3925');
 
 #### [`hexDataSlice`](https://eeth.dev/docs/api/modules#hexdataslice)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexDataSlice+}])
+
 ```typescript
 hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
 ```
@@ -449,6 +471,8 @@ hexDataSlice([20, 6, 48], 0, 2);
 
 #### [`hexStripZeros`](https://eeth.dev/docs/api/modules#hexstripzeros)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexStripZeros+}])
+
 ```typescript
 hexStripZeros(value: BytesLike): string
 ```
@@ -470,6 +494,8 @@ hexStripZeros([0, 0, 0, 48]);
   <br/>
 
 #### [`hexValue`](https://eeth.dev/docs/api/modules#hexvalue)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexValue+}])
 
 ```typescript
 hexValue(value: number | bigint | BytesLike | Hexable): string
@@ -497,6 +523,8 @@ hexValue([9, 4, 19, 4]);
   <br/>
 
 #### [`hexZeroPad`](https://eeth.dev/docs/api/modules#hexzeropad)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexZeroPad+}])
 
 ```typescript
 hexZeroPad(value: BytesLikeWithNumber, length: number): string
@@ -530,6 +558,8 @@ hexZeroPad('12345', 1);
 
 #### [`hexlify`](https://eeth.dev/docs/api/modules#hexlify)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexlify+}])
+
 ```typescript
 hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
 ```
@@ -556,6 +586,8 @@ hexlify(14);
   <br/>
 
 #### [`isAddress`](https://eeth.dev/docs/api/modules#isaddress)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isAddress+}])
 
 ```typescript
 isAddress(address: string): boolean
@@ -590,6 +622,8 @@ isAddress('vitalik.eth');
 
 #### [`isBytes`](https://eeth.dev/docs/api/modules#isbytes)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isBytes+}])
+
 ```typescript
 isBytes(value: any): value
 ```
@@ -621,6 +655,8 @@ isBytes(new Uint8Array(1));
   <br/>
 
 #### [`isBytesLike`](https://eeth.dev/docs/api/modules#isbyteslike)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isBytesLike+}])
 
 ```typescript
 isBytesLike(value: any): value
@@ -654,6 +690,8 @@ isBytesLike(new Uint8Array(1));
 
 #### [`isHexString`](https://eeth.dev/docs/api/modules#ishexstring)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isHexString+}])
+
 ```typescript
 isHexString(value: any, length: number): boolean
 ```
@@ -682,6 +720,8 @@ isHexString('0x4924', 4);
 
 #### [`jsonRpcProvider`](https://eeth.dev/docs/api/modules#jsonrpcprovider)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+jsonRpcProvider+}])
+
 ```typescript
 jsonRpcProvider(rpcUrl: string): JsonRpcProvider
 ```
@@ -708,6 +748,8 @@ jsonRpcProvider()
 
 #### [`keccak256`](https://eeth.dev/docs/api/modules#keccak256)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+keccak256+}])
+
 ```typescript
 keccak256(data: BytesLike): string
 ```
@@ -733,6 +775,8 @@ keccak256('0x123');
 
 #### [`pack`](https://eeth.dev/docs/api/modules#pack)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+pack+}])
+
 ```typescript
 pack(types: Array<string>, values: Array<any>): string
 ```
@@ -756,6 +800,8 @@ pack(types, values);
   <br/>
 
 #### [`solidityKeccak256`](https://eeth.dev/docs/api/modules#soliditykeccak256)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+solidityKeccak256+}])
 
 ```typescript
 solidityKeccak256(types: Array<string>, values: Array<any>): string
@@ -791,6 +837,8 @@ solidityKeccak256(types, values);
 
 #### [`splitSignature`](https://eeth.dev/docs/api/modules#splitsignature)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+splitSignature+}])
+
 ```typescript
 splitSignature(signature: SignatureLike): Signature
 ```
@@ -822,6 +870,8 @@ splitSignature(signature);
 
 #### [`stripZeros`](https://eeth.dev/docs/api/modules#stripzeros)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+stripZeros+}])
+
 ```typescript
 stripZeros(value: BytesLike): Uint8Array
 ```
@@ -845,6 +895,8 @@ stripZeros('0x00002834');
 
 #### [`tinyBig`](https://eeth.dev/docs/api/modules#tinybig)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+tinyBig+}])
+
 ```typescript
 tinyBig(value: string | number | TinyBig | Big): TinyBig
 ```
@@ -866,6 +918,8 @@ tinyBig(10).times(3).toNumber();
   <br/>
 
 #### [`toChecksumAddress`](https://eeth.dev/docs/api/modules#tochecksumaddress)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+toChecksumAddress+}])
 
 ```typescript
 toChecksumAddress(address: string): string
@@ -893,6 +947,8 @@ Similar to ["toChecksumAddress" in web3.js](https://web3js.readthedocs.io/en/v1.
 
 #### [`toUtf8Bytes`](https://eeth.dev/docs/api/modules#toutf8bytes)
 
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+toUtf8Bytes+}])
+
 ```typescript
 toUtf8Bytes(data: string): Uint8Array
 ```
@@ -917,6 +973,8 @@ toUtf8Bytes('ethereum');
   <br/>
 
 #### [`weiToEther`](https://eeth.dev/docs/api/modules#weitoether)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+weiToEther+}])
 
 ```typescript
 weiToEther(weiQuantity: string | number | TinyBig | Big): TinyBig
@@ -948,6 +1006,8 @@ weiToEther(1000000000000000000000).toNumber();
   <br/>
 
 #### [`zeroPad`](https://eeth.dev/docs/api/modules#zeropad)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+zeroPad+}])
 
 ```typescript
 zeroPad(value: BytesLike, length: number): Uint8Array

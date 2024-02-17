@@ -17,7 +17,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Essential Eth was designed from the ground up to be{' '}
-        <strong>20x smaller than ethers.js and web3.js.</strong> This compact
+        <strong>10x smaller than ethers.js and web3.js.</strong> This compact
         form facilitates quicker setups and optimizes storage.
       </>
     ),
@@ -147,10 +147,10 @@ export default function HomepageFeatures(): JSX.Element {
         </p>
         <CodeBlock language="typescript">
           {`import { etherToWei, weiToEther } from 'essential-eth';
-            
+
             weiToEther(1000000000000000000).toNumber();
             // returns: 1
-  
+
             etherToWei('1000').toString();
             // returns: '1000000000000000000000'
           `}
@@ -166,10 +166,10 @@ export default function HomepageFeatures(): JSX.Element {
         </p>
         <CodeBlock language="typescript">
           {`import { isAddress } from 'essential-eth';
-  
+
             isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
             // returns: true
-  
+
             isAddress('bad');
             // returns: false
           `}
@@ -185,7 +185,7 @@ export default function HomepageFeatures(): JSX.Element {
         </p>
         <CodeBlock language="typescript">
           {`import { toChecksumAddress } from 'essential-eth';
-  
+
             toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
             // returns: '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
           `}
@@ -220,7 +220,7 @@ export default function HomepageFeatures(): JSX.Element {
 
         <CodeBlock language="typescript">
           {`import { JsonRpcProvider } from 'essential-eth';
-            
+
             const provider = new JsonRpcProvider();
             await provider
             .getBalance('0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8')
@@ -240,7 +240,7 @@ export default function HomepageFeatures(): JSX.Element {
 
         <CodeBlock language="typescript">
           {`import { FallthroughProvider } from 'essential-eth';
-            
+
             // The FallthroughProvider handles falling through to the next valid URL.
             // It's dynamic to never trust one URL again when it fails * until it has tried all other provided URLs
             // The default timeout for a request is 8 seconds after which it moves to the next URL
