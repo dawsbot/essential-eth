@@ -1,5 +1,7 @@
 dist
 typedoc
 docusaurus
+coverage
 
 markdown.config.js
+src/logger/package-version.ts
