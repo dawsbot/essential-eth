@@ -3,7 +3,6 @@ import { Contract as EssentialEthContract } from '../../Contract';
 import { rpcUrls } from './../../../providers/test/rpc-urls';
 import { ensABI } from './ens-abi';
 
-// The JSONABI
 const JSONABI = ensABI;
 
 const rpcURL = rpcUrls.mainnet;

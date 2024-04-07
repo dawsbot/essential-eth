@@ -4,7 +4,6 @@ import { rpcUrls } from '../../../providers/test/rpc-urls';
 import { Contract as EssentialEthContract } from '../../Contract';
 import { abi } from './crv-abi';
 
-// The JSONABI
 const JSONABI = abi;
 
 const rpcURL = rpcUrls.mainnet;
