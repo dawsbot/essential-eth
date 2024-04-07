@@ -1,5 +1,5 @@
-import { functionsMarkdown, providerMarkdown } from './parse-typedoc';
 import path from 'path';
+import { functionsMarkdown, providerMarkdown } from './parse-typedoc';
 
 import markdownMagic from 'markdown-magic';
 import { fileURLToPath } from 'url';

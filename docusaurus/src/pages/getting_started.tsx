@@ -1,8 +1,8 @@
-import React from 'react';
+import Link from '@docusaurus/Link';
+import CodeBlock from '@theme/CodeBlock';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
-import CodeBlock from '@theme/CodeBlock';
-import Link from '@docusaurus/Link';
+import React from 'react';
 
 function GettingStarted() {
   return (

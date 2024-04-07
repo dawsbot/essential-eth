@@ -1,7 +1,7 @@
+import Link from '@docusaurus/Link';
 import CodeBlock from '@theme/CodeBlock';
 import clsx from 'clsx';
 import React from 'react';
-import Link from '@docusaurus/Link';
 import HomepageContributions from '../Contributions';
 
 interface FeatureItem {

@@ -2,8 +2,8 @@
  * Parse a typedoc output file and generate the markdown code
  * This markdown generated is injected into the root readme via markdown-magic
  */
-import stats from './typedoc.out.json';
 import z from 'zod';
+import stats from './typedoc.out.json';
 
 const functions = z
   .array(z.number())

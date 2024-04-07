@@ -49,7 +49,8 @@ function expandType(type: ContractTypes) {
   // https://docs.soliditylang.org/en/v0.8.7/types.html#integers
   if (type === 'uint[]') {
     return 'uint256[]';
-  } else if (type === 'int[]') {
+  }
+  if (type === 'int[]') {
     return 'int256[]';
   }
   return type;
@@ -171,8 +172,17 @@ export function decodeRPCResponse(
     return hexToUtf8(hexToDecode);
   }
   // chunk response every 64 characters
-  const encodedOutputs = slicedResponse.match(/.{1,64}/g);
-  const outputs = (encodedOutputs || []).map((output: string, i: number) => {
+  const encodedOutputs = slicedResponse.match(/.{1,64}/g) || [];
+  if (
+    jsonABIArgument?.outputs?.length === 1 &&
+    jsonABIArgument.outputs[0].type === 'address[]'
+  ) {
+    const unformattedAddresses = encodedOutputs.slice(2);
+    return unformattedAddresses.map((unformattedAddress) => {
+      return toChecksumAddress(`0x${unformattedAddress.slice(24)}`);
+    });
+  }
+  const outputs = encodedOutputs.map((output: string, i: number) => {
     const outputType = (rawOutputs || [])[i].type;
     switch (outputType) {
       case 'bool':
@@ -187,6 +197,7 @@ export function decodeRPCResponse(
         return `0x${output}`;
       case 'uint8':
         return Number(hexToDecimal(`0x${output}`));
+
       default:
         throw new Error(
           `essential-eth does not yet support "${outputType}" outputs. Make a PR today!"`,
