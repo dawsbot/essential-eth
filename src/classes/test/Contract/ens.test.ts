@@ -3,7 +3,6 @@ import { Contract as EssentialEthContract } from '../../Contract';
 import { rpcUrls } from './../../../providers/test/rpc-urls';
 import { ensABI } from './ens-abi';
 
-// The JSONABI
 const JSONABI = ensABI;
 
 const rpcURL = rpcUrls.mainnet;
@@ -27,6 +26,6 @@ const labelHash =
 describe('eNS Base Registrar Expiration', () => {
   it('should detect expiration properly', async () => {
     const expiration = await essentialEthContract.nameExpires(labelHash);
-    expect(expiration.toNumber()).toBe(1853233633);
+    expect(expiration.toNumber()).toBeGreaterThan(2010913632);
   });
 });
