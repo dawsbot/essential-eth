@@ -182,6 +182,15 @@ export function decodeRPCResponse(
       return toChecksumAddress(`0x${unformattedAddress.slice(24)}`);
     });
   }
+  if (
+    jsonABIArgument?.outputs?.length === 1 &&
+    jsonABIArgument.outputs[0].type === 'uint256[]'
+  ) {
+    const unformattedAddresses = encodedOutputs.slice(2);
+    return unformattedAddresses.map((output) => {
+      return tinyBig(hexToDecimal(`0x${output}`));
+    });
+  }
   const outputs = encodedOutputs.map((output: string, i: number) => {
     const outputType = (rawOutputs || [])[i].type;
     switch (outputType) {

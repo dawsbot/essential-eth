@@ -1,12 +1,9 @@
-// import { JsonRpcProvider } from './../../../providers/JsonRpcProvider';
-import { describe, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
-// import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
+import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
 import { rpcUrls } from '../../../providers/test/rpc-urls';
 import { isAddress } from '../../../utils/is-address';
-// import { Contract } from '../../Contract';
-import * as ethers from 'ethers';
-import { Contract as EthersContract } from 'ethers';
+import { Contract } from '../../Contract';
 import { decodeRPCResponse } from '../../utils/encode-decode-transaction';
 import { abi } from './jokerrace-abi';
 
@@ -26,17 +23,17 @@ describe('jokerrace contract', () => {
   });
 
   const contractAddress = '0x5c11016ee4f8ad4ea2ab8b1b366f32d30d48a031';
-  const provider = new ethers.providers.JsonRpcProvider(rpcUrls.oeth, 10);
-  const contract = new EthersContract(contractAddress, abi as any, provider);
+  const provider = new JsonRpcProvider(rpcUrls.oeth);
+  const contract = new Contract(contractAddress, abi as any, provider);
 
   it.only('should decode "uint256[]"', async () => {
-    const res = z
-      .array(z.any())
-      .parse(await contract.getAllProposalIds()) as Array<ethers.BigNumber>;
-    expect(res[0].toString()).toBe(
-      '411630815728427462671225506304137969330783165845371401784824785799307988850',
-    );
+    const res = z.array(z.any()).parse(await contract.getAllProposalIds());
     expect(res).toHaveLength(15);
-    // this was captured by running it on the live network first
+    expect(res[0].toHexString()).toBe(
+      '0xe8f98b88fddcd83cadcc563883e148b27c9f4f25f2f8f315227d8e3d6a0f72',
+    );
+    expect(res[14].toHexString()).toBe(
+      '0xaf1338772f308dc5ff9821c05dcc221d4d5bba2c8545c0f1517bcbe95e701896',
+    );
   });
 });
