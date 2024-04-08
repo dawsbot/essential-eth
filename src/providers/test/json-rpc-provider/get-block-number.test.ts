@@ -15,12 +15,12 @@ const mockPostResponse = JSON.stringify({
 const TEST_URL = 'https://test.com';
 describe('provider.getBlockNumber', () => {
   it('should get number integer', async () => {
-    const essentialEthProvider = new JsonRpcProvider(TEST_URL);
+    const provider = new JsonRpcProvider(TEST_URL);
     mockOf(unfetch.default).mockResolvedValueOnce({
       text: () => Promise.resolve(mockPostResponse),
     } as Response);
     const spy = vi.spyOn(unfetch, 'default');
-    const essentialEthBlockNumber = await essentialEthProvider.getBlockNumber();
+    const essentialEthBlockNumber = await provider.getBlockNumber();
     expect(essentialEthBlockNumber).toBe(10);
     expect(spy).toHaveBeenCalledWith(
       TEST_URL,

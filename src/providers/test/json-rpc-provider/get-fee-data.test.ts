@@ -10,10 +10,10 @@ import { rpcUrls } from './../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
 
-const essentialEthProvider = new JsonRpcProvider(rpcUrl);
+const provider = new JsonRpcProvider(rpcUrl);
 
 vi.mock('isomorphic-unfetch');
-//  essentialEthProvider.getFeeData() calls these methods internally
+//  provider.getFeeData() calls these methods internally
 const mockGetBlockResponse = JSON.stringify({
   jsonrpc: '2.0',
   id: 1,
@@ -38,7 +38,7 @@ describe('provider.getFeeData', () => {
     } as Response);
     const spy = vi.spyOn(unfetch, 'default');
 
-    const feeData = (await essentialEthProvider.getFeeData()) as {
+    const feeData = (await provider.getFeeData()) as {
       gasPrice: TinyBig;
       lastBaseFeePerGas: TinyBig;
       maxFeePerGas: TinyBig;
