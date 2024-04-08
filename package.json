@@ -41,7 +41,7 @@
     "update-deps": "sh ./scripts/pre-commit.sh",
     "pre-commit": "npm run update-deps",
     "prepare": "husky install",
-    "version": "npx genversion --es6 src/logger/package-version.ts && git add src/logger/package-version.ts",
+    "version": "bunx genversion --es6 src/logger/package-version.ts && git add src/logger/package-version.ts",
     "postversion": "git push --follow-tags",
     "prepublishOnly": "npm run build",
     "doc": "typedoc"
