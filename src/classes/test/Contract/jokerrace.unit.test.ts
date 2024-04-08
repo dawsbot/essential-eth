@@ -15,7 +15,7 @@ describe('jokerrace contract', () => {
     expect(addresses.length).toBeGreaterThan(18);
     expect(addresses).toContain('0x0b06ca5DcC8A10Be0951d4E140D4312702B8D0EC');
     addresses.map((address) => {
-      expect(isAddress(address)).toBeTruthy();
+      expect(isAddress(address)).toBe(true);
     });
   });
 

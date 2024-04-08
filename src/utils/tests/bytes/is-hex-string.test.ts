@@ -4,7 +4,7 @@ describe('utils.isHexString', () => {
   it('should return true - hex string', () => {
     const values = ['0x9347', '0x185754', '0x00005823'];
     values.forEach((value) => {
-      expect(isHexString(value)).toBeTruthy();
+      expect(isHexString(value)).toBe(true);
     });
   });
   it('should match expected result- hex string of specific length', () => {
@@ -27,25 +27,25 @@ describe('utils.isHexString', () => {
       [239, 30, 49, 41, 5, 10, 42],
     ];
     values.forEach((value) => {
-      expect(isHexString(value)).toBeFalsy();
+      expect(isHexString(value)).toBe(false);
     });
   });
   it('should return false - number', () => {
     const values = [152, 513, 2354];
     values.forEach((value) => {
-      expect(isHexString(value)).toBeFalsy();
+      expect(isHexString(value)).toBe(false);
     });
   });
   it('should return false - non-hex string', () => {
     const values = ['essential-eth', 'ethers.js', '👋 firek.eth was here hehe'];
     values.forEach((value) => {
-      expect(isHexString(value)).toBeFalsy();
+      expect(isHexString(value)).toBe(false);
     });
   });
   it('should return false - boolean', () => {
     const values = [false, true];
     values.forEach((value) => {
-      expect(isHexString(value)).toBeFalsy();
+      expect(isHexString(value)).toBe(false);
     });
   });
 });

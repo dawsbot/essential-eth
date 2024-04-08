@@ -27,7 +27,7 @@ describe('provider.getGasPrice', () => {
     const spy = vi.spyOn(unfetch, 'default');
 
     const gasPrice = await provider.getGasPrice();
-    expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBeTruthy();
+    expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBe(true);
     expect(gasPrice.toString()).toBe('10');
     expect(spy).toHaveBeenCalledWith(
       rpcUrl,

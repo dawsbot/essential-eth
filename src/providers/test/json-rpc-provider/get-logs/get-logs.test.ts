@@ -13,12 +13,12 @@ import {
   filterAddressFromTo,
   filterAddressTopics,
   filterAll,
-  mockRpcAddressFromToResponse,
-  mockRpcAddressTopicsResponse,
-  mockRpcAllResponse,
   mockfilterAddressFromToLogs,
   mockfilterAddressTopicsLogs,
   mockfilterAllLogs,
+  mockRpcAddressFromToResponse,
+  mockRpcAddressTopicsResponse,
+  mockRpcAllResponse,
 } from './mocks';
 
 const rpcUrl = rpcUrls.mainnet;

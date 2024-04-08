@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import type { TinyBig } from '../../..';
 import { JsonRpcProvider } from '../../../index';
 import { rpcUrls } from '../../../providers/test/rpc-urls';
@@ -88,7 +89,7 @@ describe('cRV contract', () => {
     const canDisable = await contract.can_disable({
       gasLimit: 40955,
     });
-    expect(canDisable).toBeFalsy();
+    expect(canDisable).toBe(false);
   });
   it('should fetch "uint256" disabled_at', async () => {
     const disabledAt = (await contract.disabled_at(address, {
@@ -112,12 +113,12 @@ describe('cRV contract', () => {
     const fundAdminsEnabled = await contract.fund_admins_enabled({
       gasLimit: 40955,
     });
-    expect(fundAdminsEnabled).toBeFalsy();
+    expect(fundAdminsEnabled).toBe(false);
   });
   it('should fetch "bool" fund_admins', async () => {
     const fundAdmins = await contract.fund_admins(address, {
       gasLimit: 40955,
     });
-    expect(fundAdmins).toBeFalsy();
+    expect(fundAdmins).toBe(false);
   });
 });

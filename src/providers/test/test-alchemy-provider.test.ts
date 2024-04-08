@@ -15,6 +15,6 @@ const provider = new AlchemyProvider(ALCHEMY_API_KEY);
 describe('alchemyProvider.getGasPrice', () => {
   it('should return the current gas price', async () => {
     const gasPrice = await provider.getGasPrice();
-    expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBeTruthy();
+    expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBe(true);
   });
 });
