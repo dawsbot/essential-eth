@@ -9,7 +9,7 @@ import { JsonRpcProvider, tinyBig } from '../../../index';
 import { mockOf } from '../mock-of';
 import { rpcUrls } from '../rpc-urls';
 
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 const rpcUrl = rpcUrls.mainnet;
 
 const mockBlocksBetween = 10;
@@ -84,7 +84,7 @@ describe('provider.getTransactionReceipt', () => {
       text: () => Promise.resolve(mockRpcBlockResponse),
     } as Response);
 
-    const spy = jest.spyOn(unfetch, 'default');
+    const spy = vi.spyOn(unfetch, 'default');
     const transactionReceipt =
       await provider.getTransactionReceipt(transactionHash);
     expect(spy).toHaveBeenCalledWith(

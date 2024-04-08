@@ -9,7 +9,7 @@ import { mockOf } from '../mock-of';
 import { rpcUrls } from '../rpc-urls';
 import { TinyBig } from './../../../shared/tiny-big/tiny-big';
 
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 const mockPostResponse = JSON.stringify({
   jsonrpc: '2.0',
   id: 1,
@@ -24,10 +24,10 @@ describe('provider.getGasPrice', () => {
     mockOf(unfetch.default).mockResolvedValueOnce({
       text: () => Promise.resolve(mockPostResponse),
     } as Response);
-    const spy = jest.spyOn(unfetch, 'default');
+    const spy = vi.spyOn(unfetch, 'default');
 
     const gasPrice = await provider.getGasPrice();
-    expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBe(true);
+    expect(z.instanceof(TinyBig).safeParse(gasPrice).success).toBeTruthy();
     expect(gasPrice.toString()).toBe('10');
     expect(spy).toHaveBeenCalledWith(
       rpcUrl,

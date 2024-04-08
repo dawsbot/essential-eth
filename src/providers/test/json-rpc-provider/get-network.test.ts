@@ -24,9 +24,9 @@ describe('provider.getNetwork happy path', () => {
     expect(network.chainId).toBe(config.chainId);
     expect(network.name).toBe(config.name);
 
-    expect(network.ensAddress ? isAddress(network.ensAddress) : true).toBe(
-      true,
-    );
+    expect(
+      network.ensAddress ? isAddress(network.ensAddress) : true,
+    ).toBeTruthy();
   }
 
   it('should return proper mainnet info', async () => {
@@ -42,7 +42,7 @@ describe('provider.getNetwork error handling', () => {
     expect.assertions(1);
     const essentialEth = new JsonRpcProvider(fakeUrls.notRPCButRealHttp);
     await essentialEth.getNetwork().catch((err) => {
-      expect(err instanceof Error).toBe(true);
+      expect(err instanceof Error).toBeTruthy();
     });
   });
 });

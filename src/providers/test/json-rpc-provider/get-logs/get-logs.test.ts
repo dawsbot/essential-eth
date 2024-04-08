@@ -13,16 +13,16 @@ import {
   filterAddressFromTo,
   filterAddressTopics,
   filterAll,
-  mockfilterAddressFromToLogs,
-  mockfilterAddressTopicsLogs,
-  mockfilterAllLogs,
   mockRpcAddressFromToResponse,
   mockRpcAddressTopicsResponse,
   mockRpcAllResponse,
+  mockfilterAddressFromToLogs,
+  mockfilterAddressTopicsLogs,
+  mockfilterAllLogs,
 } from './mocks';
 
 const rpcUrl = rpcUrls.mainnet;
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 
 describe('provider.getLogs', () => {
   const provider = new JsonRpcProvider(rpcUrl);
@@ -36,7 +36,7 @@ describe('provider.getLogs', () => {
       text: () => Promise.resolve(mockResponse),
     } as Response);
 
-    const spy = jest.spyOn(unfetch, 'default');
+    const spy = vi.spyOn(unfetch, 'default');
     const logs = await provider.getLogs(filter);
     expect(spy).toHaveBeenCalledWith(
       rpcUrl,

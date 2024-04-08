@@ -12,7 +12,7 @@ const rpcUrl = rpcUrls.mainnet;
 
 const essentialEthProvider = new JsonRpcProvider(rpcUrl);
 
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 //  essentialEthProvider.getFeeData() calls these methods internally
 const mockGetBlockResponse = JSON.stringify({
   jsonrpc: '2.0',
@@ -36,7 +36,7 @@ describe('provider.getFeeData', () => {
     mockOf(unfetch.default).mockResolvedValueOnce({
       text: () => Promise.resolve(mockGetGasPriceResponse),
     } as Response);
-    const spy = jest.spyOn(unfetch, 'default');
+    const spy = vi.spyOn(unfetch, 'default');
 
     const feeData = (await essentialEthProvider.getFeeData()) as {
       gasPrice: TinyBig;
