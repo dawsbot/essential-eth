@@ -25,7 +25,9 @@ module.exports = {
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     '@typescript-eslint/consistent-type-imports': 'error',
     'vitest/expect-expect': 'warn',
+    'vitest/no-commented-out-tests': 'warn',
   },
+
   overrides: [
     {
       files: 'src/**/*.ts',

@@ -10,8 +10,10 @@ z.string({
   .url('Expected url for "RPC_ORIGIN"')
   .parse(RPC_ORIGIN);
 
+const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
+const MAINNET_RPC_ORIGIN = `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}`;
 export const rpcUrls = {
-  mainnet: `${RPC_ORIGIN}/api/eth`,
+  mainnet: MAINNET_RPC_ORIGIN,
   oeth: `${RPC_ORIGIN}/api/oeth`,
   matic: `${RPC_ORIGIN}/api/MATIC`,
   gno: `${RPC_ORIGIN}/api/gno`,

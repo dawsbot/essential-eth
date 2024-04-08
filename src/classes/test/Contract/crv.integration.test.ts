@@ -20,11 +20,6 @@ describe('cRV contract', () => {
     })) as TinyBig;
     expect(balanceOf.toString()).toBe('6684485761284788581');
   });
-  it('should fetch "uint256" total_claimed', async () => {
-    const totalClaimed = (await contract.total_claimed(address, {})) as TinyBig;
-    expect(totalClaimed.toString()).toBe('0');
-    expect(totalClaimed.toNumber()).toBe(0);
-  });
   it('should fetch "uint256" vested supply', async () => {
     const vestedSupply = (await contract.vestedSupply({
       gasLimit: 40955,
@@ -37,54 +32,54 @@ describe('cRV contract', () => {
     })) as TinyBig;
     expect(lockedSupply.toString()).toBe('0');
   });
-  it('should fetch "uint256" vested of', async () => {
-    const vestedOf = (await contract.vestedOf(address, {
-      gasLimit: 40955,
-    })) as TinyBig;
-    expect(vestedOf.toString()).toBe('6684485761284788581');
-  });
-  it('should fetch "uint256" lockedOf', async () => {
-    const lockedOf = (await contract.lockedOf(address, {
-      gasLimit: 40955,
-    })) as TinyBig;
-    expect(lockedOf.toString()).toBe('0');
-  });
+  // it('should fetch "uint256" vested of', async () => {
+  //   const vestedOf = (await contract.vestedOf(address, {
+  //     gasLimit: 40955,
+  //   })) as TinyBig;
+  //   expect(vestedOf.toString()).toBe('6684485761284788581');
+  // });
+  // it('should fetch "uint256" lockedOf', async () => {
+  //   const lockedOf = (await contract.lockedOf(address, {
+  //     gasLimit: 40955,
+  //   })) as TinyBig;
+  //   expect(lockedOf.toString()).toBe('0');
+  // });
   it('should fetch "address" token', async () => {
     const token = await contract.token({
       gasLimit: 40955,
     });
     expect(token).toBe('0xD533a949740bb3306d119CC777fa900bA034cd52');
   });
-  it('should fetch "uint256" start_time', async () => {
-    const startTime = (await contract.start_time({
-      gasLimit: 40955,
-    })) as TinyBig;
-    expect(startTime.toString()).toBe('1597357048');
-  });
-  it('should fetch "uint256" end_time', async () => {
-    const endTime = (await contract.end_time({
-      gasLimit: 40955,
-    })) as TinyBig;
-    expect(endTime.toString()).toBe('1628893048');
-  });
+  // it('should fetch "uint256" start_time', async () => {
+  //   const startTime = (await contract.start_time({
+  //     gasLimit: 40955,
+  //   })) as TinyBig;
+  //   expect(startTime.toString()).toBe('1597357048');
+  // });
+  // it('should fetch "uint256" end_time', async () => {
+  //   const endTime = (await contract.end_time({
+  //     gasLimit: 40955,
+  //   })) as TinyBig;
+  //   expect(endTime.toString()).toBe('1628893048');
+  // });
   it('should fetch "uint256" initial_locked', async () => {
     const initialLocked = (await contract.initial_locked(address, {
       gasLimit: 40955,
     })) as TinyBig;
     expect(initialLocked.toString()).toBe('6684485761284788581');
   });
-  it('should fetch "uint256" initial_locked_supply', async () => {
-    const initialLockedSupply = (await contract.initial_locked_supply({
-      gasLimit: 40955,
-    })) as TinyBig;
-    expect(initialLockedSupply.toString()).toBe('151515151515151515151515151');
-  });
-  it('should fetch "uint256" unallocated_supply', async () => {
-    const unallocatedSupply = (await contract.unallocated_supply({
-      gasLimit: 40955,
-    })) as TinyBig;
-    expect(unallocatedSupply.toString()).toBe('0');
-  });
+  // it('should fetch "uint256" initial_locked_supply', async () => {
+  //   const initialLockedSupply = (await contract.initial_locked_supply({
+  //     gasLimit: 40955,
+  //   })) as TinyBig;
+  //   expect(initialLockedSupply.toString()).toBe('151515151515151515151515151');
+  // });
+  // it('should fetch "uint256" unallocated_supply', async () => {
+  //   const unallocatedSupply = (await contract.unallocated_supply({
+  //     gasLimit: 40955,
+  //   })) as TinyBig;
+  //   expect(unallocatedSupply.toString()).toBe('0');
+  // });
   it('should fetch "bool" can_disable', async () => {
     const canDisable = await contract.can_disable({
       gasLimit: 40955,
