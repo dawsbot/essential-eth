@@ -1,9 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
-import { JsonRpcProvider } from '../../../providers/JsonRpcProvider';
-import { rpcUrls } from '../../../providers/test/rpc-urls';
 import { isAddress } from '../../../utils/is-address';
-import { Contract } from '../../Contract';
 import { decodeRPCResponse } from '../../utils/encode-decode-transaction';
 import { abi } from './jokerrace-abi';
 
@@ -22,17 +19,17 @@ describe('jokerrace contract', () => {
     });
   });
 
-  const contractAddress = '0x5c11016ee4f8ad4ea2ab8b1b366f32d30d48a031';
-  const provider = new JsonRpcProvider(rpcUrls.oeth);
-  const contract = new Contract(contractAddress, abi as any, provider);
-
-  it.only('should decode "uint256[]"', async () => {
-    const res = z.array(z.any()).parse(await contract.getAllProposalIds());
-    expect(res).toHaveLength(15);
-    expect(res[0].toHexString()).toBe(
+  it('should decode "uint256[]"', async () => {
+    const nodeResponse =
+      '0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000f00e8f98b88fddcd83cadcc563883e148b27c9f4f25f2f8f315227d8e3d6a0f728491630c6c7efc9d5a2622c57d43ed01ff2392398f6434b93d22b1b786fa75e6e5adc006e199a75c676c6329cab6d6eaca42f32b7c6decdfbbe960ade776d0e893129fc1884adcc908f9404ccceaa92d1dc3de58e510ec4cc5a8d4ad7319f3524e33232474d5befe900119f43370f508bd937ad5389dcbc8c04f4db8757fb535bd019c54ecccb742803f025ccacbb820628d571476fdf9332a316ab2b442fefbb61e87e559f2d11c9389914f3c86aba90321c85c4ec8591e94fbefdc2d2f37226333af6060b2585ff42f9ed93e124c12b2aa79298f4f2ddfd7944c3efbfa8f6228c004520097df3d278f2e41f0b90edbb3da6ac4d2aceaee45fbb6184d71e8a8d83c3679766a3c43268836ff0846fbef3063699aa471dbba924eb031d6b14eaf90623042baae670f4a032876cfbeade9b58efb8e9a285acfa38cbc6808eff081f4aa858d6c947b283c92d01dd8521083536c3969acf430610dbba465c3a3b2e9606b927748d0239472f6eb911f1cbbaa36a376c087d8d06d839b28084d93d3c7ebc97e96e059c0dd3c5c2dda4bd1af65c1e17ab32fddd72825d3293ce288a403af1338772f308dc5ff9821c05dcc221d4d5bba2c8545c0f1517bcbe95e701896';
+    const proposalIds = z
+      .array(z.any())
+      .parse(decodeRPCResponse(abi[1], nodeResponse));
+    expect(proposalIds).toHaveLength(15);
+    expect(proposalIds[0].toHexString()).toBe(
       '0xe8f98b88fddcd83cadcc563883e148b27c9f4f25f2f8f315227d8e3d6a0f72',
     );
-    expect(res[14].toHexString()).toBe(
+    expect(proposalIds[14].toHexString()).toBe(
       '0xaf1338772f308dc5ff9821c05dcc221d4d5bba2c8545c0f1517bcbe95e701896',
     );
   });
