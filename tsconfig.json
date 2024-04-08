@@ -1,10 +1,4 @@
 {
-  "ts-node": {
-    "swc": true,
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  },
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
@@ -18,8 +12,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["./src"],
-  "types": ["node", "jest"],
+  "include": ["src"],
+  "types": ["node", "vitest/globals"],
   "exclude": ["src/**/*.test.ts", "markdown.config.js"],
   "typedocOptions": {
     "entryPoints": ["src/index.ts"],

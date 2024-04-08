@@ -10,7 +10,7 @@ const readmePath = path.join(__dirname, '..', '..', 'README.md');
 
 markdownMagic(readmePath, {
   transforms: {
-    FUNCTIONS(content, options) {
+    FUNCTIONS() {
       return functionsMarkdown;
     },
     PROVIDER() {

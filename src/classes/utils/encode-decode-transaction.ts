@@ -151,13 +151,10 @@ export function decodeRPCResponse(
   jsonABIArgument: JSONABIArgument,
   nodeResponse: string,
 ) {
-  const rawOutputs = jsonABIArgument.outputs;
+  const rawOutputs = jsonABIArgument.outputs || [];
   const slicedResponse = nodeResponse.slice(2);
 
-  if (
-    jsonABIArgument?.outputs?.length === 1 &&
-    jsonABIArgument.outputs[0].type === 'string'
-  ) {
+  if (rawOutputs.length === 1 && rawOutputs[0].type === 'string') {
     const [hexOffset, responseData] = [
       slicedResponse.slice(0, 64),
       slicedResponse.slice(64),
@@ -173,17 +170,20 @@ export function decodeRPCResponse(
   }
   // chunk response every 64 characters
   const encodedOutputs = slicedResponse.match(/.{1,64}/g) || [];
-  if (
-    jsonABIArgument?.outputs?.length === 1 &&
-    jsonABIArgument.outputs[0].type === 'address[]'
-  ) {
+  if (rawOutputs.length === 1 && rawOutputs[0].type === 'address[]') {
     const unformattedAddresses = encodedOutputs.slice(2);
     return unformattedAddresses.map((unformattedAddress) => {
       return toChecksumAddress(`0x${unformattedAddress.slice(24)}`);
     });
   }
+  if (rawOutputs?.length === 1 && rawOutputs[0].type === 'uint256[]') {
+    const outputs = encodedOutputs.slice(2);
+    return outputs.map((output) => {
+      return tinyBig(hexToDecimal(`0x${output}`));
+    });
+  }
   const outputs = encodedOutputs.map((output: string, i: number) => {
-    const outputType = (rawOutputs || [])[i].type;
+    const outputType = rawOutputs[i].type;
     switch (outputType) {
       case 'bool':
         return output === hexTrue;

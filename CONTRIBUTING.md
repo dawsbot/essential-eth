@@ -23,7 +23,7 @@ We have set up a GitHub project [here](https://github.com/dawsbot/essential-eth/
 # Install and build
 npm install
 
-# Run jest test suite
+# Run test suite
 npm run test
 ```
 

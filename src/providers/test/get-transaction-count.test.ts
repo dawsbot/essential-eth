@@ -1,11 +1,12 @@
 import * as unfetch from 'isomorphic-unfetch';
+import { describe, expect, it, vi } from 'vitest';
 import { jsonRpcProvider, tinyBig } from '../..';
 import { buildFetchInit, buildRPCPostBody } from '../../classes/utils/fetchers';
 import type { BlockTag } from '../../types/Block.types';
 import { mockOf } from './mock-of';
 import { rpcUrls } from './rpc-urls';
 
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 
 const address = '0x71660c4005ba85c37ccec55d0c4493e66fe775d3';
 
@@ -21,7 +22,7 @@ async function testGetTC(rpcUrl: string, blockTag?: BlockTag) {
     text: () => Promise.resolve(mockPostResponse),
   } as Response);
 
-  const spy = jest.spyOn(unfetch, 'default');
+  const spy = vi.spyOn(unfetch, 'default');
 
   const transactionCount = await provider.getTransactionCount(
     address,

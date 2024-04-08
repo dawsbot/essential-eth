@@ -10,7 +10,7 @@ import { etherToWei } from '../../../utils/ether-to-wei';
 import { mockOf } from '../mock-of';
 import { rpcUrls } from '../rpc-urls';
 
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 
 const rpcUrl = rpcUrls.mainnet;
 
@@ -39,7 +39,7 @@ async function testEstimateGas(transaction: TransactionRequest) {
     text: () => Promise.resolve(mockPostResponse),
   } as Response);
 
-  const spy = jest.spyOn(unfetch, 'default');
+  const spy = vi.spyOn(unfetch, 'default');
 
   const estimatedGas = await provider.estimateGas(transaction);
 

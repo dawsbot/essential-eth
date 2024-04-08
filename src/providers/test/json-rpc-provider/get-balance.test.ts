@@ -8,7 +8,7 @@ import type { BlockTag } from '../../../types/Block.types';
 import { mockOf } from '../mock-of';
 import { rpcUrls } from '../rpc-urls';
 
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 
 const address = '0x0000000000000000000000000000000000000001';
 
@@ -24,7 +24,7 @@ async function testGetBalance(rpcUrl: string, blockTag?: BlockTag) {
     text: () => Promise.resolve(mockPostResponse),
   } as Response);
 
-  const spy = jest.spyOn(unfetch, 'default');
+  const spy = vi.spyOn(unfetch, 'default');
 
   const balance = await provider.getBalance(address, blockTag);
 

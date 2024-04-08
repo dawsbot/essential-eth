@@ -2,6 +2,6 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npm run build:readme
-npx lint-staged
+npx lint-staged --concurrent false
 git add readme.md
 # npm run pre-commit

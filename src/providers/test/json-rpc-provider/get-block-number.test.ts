@@ -6,7 +6,7 @@ import {
 import { JsonRpcProvider } from '../../../index';
 import { mockOf } from '../mock-of';
 
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 const mockPostResponse = JSON.stringify({
   jsonrpc: '2.0',
   id: 1,
@@ -15,12 +15,12 @@ const mockPostResponse = JSON.stringify({
 const TEST_URL = 'https://test.com';
 describe('provider.getBlockNumber', () => {
   it('should get number integer', async () => {
-    const essentialEthProvider = new JsonRpcProvider(TEST_URL);
+    const provider = new JsonRpcProvider(TEST_URL);
     mockOf(unfetch.default).mockResolvedValueOnce({
       text: () => Promise.resolve(mockPostResponse),
     } as Response);
-    const spy = jest.spyOn(unfetch, 'default');
-    const essentialEthBlockNumber = await essentialEthProvider.getBlockNumber();
+    const spy = vi.spyOn(unfetch, 'default');
+    const essentialEthBlockNumber = await provider.getBlockNumber();
     expect(essentialEthBlockNumber).toBe(10);
     expect(spy).toHaveBeenCalledWith(
       TEST_URL,

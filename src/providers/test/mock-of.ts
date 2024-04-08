@@ -10,4 +10,4 @@ export const mockOf = <
   FunctionReturnType,
 >(
   fn: (...args: FunctionParameters) => FunctionReturnType,
-) => fn as jest.Mock<FunctionReturnType, FunctionParameters>;
+) => fn;

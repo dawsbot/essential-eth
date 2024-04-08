@@ -13,7 +13,7 @@ import { rpcUrls } from './../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
 
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 
 // Based on https://etherscan.io/tx/0x277c40de5bf1d4fa06e37dce8e1370dac7273a4b2a883515176f51abaa50d512
 const dataTo = {
@@ -73,7 +73,7 @@ describe('provider.call', () => {
         ),
     } as Response);
 
-    const spy = jest.spyOn(unfetch, 'default');
+    const spy = vi.spyOn(unfetch, 'default');
 
     const callProvider = await provider.call(data);
     expect(callProvider).toBe(expectedResult);

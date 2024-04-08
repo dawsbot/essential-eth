@@ -9,7 +9,7 @@ import { rpcUrls } from './../rpc-urls';
 // Using Polygon to be able to access archive blocks
 // Choosing to use Ethereum mainnet means that as new blocks are generated, block numbers used in testing may be inaccessible and cause tests to fail
 const rpcUrl = rpcUrls.matic;
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 
 // can't test for earliest block (at least for Ethereum) as it's very unlikely there was a smart contract on the first block
 interface InputType {
@@ -45,7 +45,7 @@ const mockInvalidResult = '0x';
 const provider = new JsonRpcProvider(rpcUrl);
 
 async function testGetCode(input: InputType, mockResult: string) {
-  const spy = jest.spyOn(unfetch, 'default');
+  const spy = vi.spyOn(unfetch, 'default');
   spy.mockResolvedValueOnce({
     text: () =>
       Promise.resolve(
