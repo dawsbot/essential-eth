@@ -14,16 +14,16 @@ function timePromise(fn: () => Promise<any>): Promise<number> {
 
 describe('provider.getGasPrice', () => {
   it('should fallthrough on several types of invalid urls', async () => {
-    const essentialEthProvider = new FallthroughProvider([
+    const provider = new FallthroughProvider([
       'https://bad-123123123123.com',
       'https://bad-523123123123.com',
       rpcUrl,
     ]);
-    const block = await essentialEthProvider.getBlock(14631185);
+    const block = await provider.getBlock(14631185);
     expect(block.gasUsed.toString()).toBe('2429588');
   });
   it('should fallthrough after timeout linearly', async () => {
-    const essentialEthProvider = new FallthroughProvider(
+    const provider = new FallthroughProvider(
       [
         'https://flash-the-slow-api.herokuapp.com/delay/10000',
         // url with request delayed by 20 seconds
@@ -33,14 +33,12 @@ describe('provider.getGasPrice', () => {
       ],
       { timeoutDuration: 1000 },
     );
-    await timePromise(() => essentialEthProvider.getBlock(14631000)).then(
-      (duration) => {
-        // times out the first two requests in 1200 ms each
-        // expect(duration).toBeGreaterThan(1200);
-        // finished the last valid request within two seconds
-        expect(duration).toBeLessThan(4000);
-      },
-    );
+    await timePromise(() => provider.getBlock(14631000)).then((duration) => {
+      // times out the first two requests in 1200 ms each
+      // expect(duration).toBeGreaterThan(1200);
+      // finished the last valid request within two seconds
+      expect(duration).toBeLessThan(4000);
+    });
   });
 
   it('should mutex the current rpc selection properly', async () => {

@@ -25,7 +25,7 @@ describe('ether-to-wei', () => {
     expect(etherToWei('9').toNumber()).toBe(9000000000000000000);
 
     /* harder */
-    expect(etherToWei('-0999999.90').toNumber()).toStrictEqual(-9.999999e23);
+    expect(etherToWei('-0999999.90').toNumber()).toBe(-9.999999e23);
   });
 
   it('should throw for wrong types', () => {

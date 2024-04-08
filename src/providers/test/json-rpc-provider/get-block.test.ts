@@ -9,7 +9,7 @@ import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
 import { mockOf } from '../mock-of';
 import { rpcUrls } from '../rpc-urls';
 
-jest.mock('isomorphic-unfetch');
+vi.mock('isomorphic-unfetch');
 
 const rpcUrl = rpcUrls.mainnet;
 
@@ -59,11 +59,11 @@ async function runTest(
   params: (string | number | boolean)[],
   responseIdentifier: string | number,
 ): Promise<void> {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockOf(unfetch.default).mockResolvedValueOnce({
     text: () => Promise.resolve(mockRpcBlockResponse),
   } as Response);
-  const spy = jest.spyOn(unfetch, 'default');
+  const spy = vi.spyOn(unfetch, 'default');
 
   const result = await provider.getBlock(responseIdentifier);
   expect(spy).toHaveBeenCalledWith(
@@ -105,7 +105,7 @@ describe('provider.getBlock error handling', () => {
       text: () => Promise.resolve('200 OK'),
     } as Response);
 
-    const spy = jest.spyOn(unfetch, 'default');
+    const spy = vi.spyOn(unfetch, 'default');
     await provider.getBlock('earliest').catch(async (error) => {
       // error message is Invalid JSON RPC response: "200 OK"
       expect('Invalid JSON RPC response: "200 OK"').toBe(error.message);
@@ -124,7 +124,7 @@ describe('provider.getBlock error handling', () => {
       text: () => Promise.resolve('{}'),
     } as Response);
 
-    const spy = jest.spyOn(unfetch, 'default');
+    const spy = vi.spyOn(unfetch, 'default');
     await provider.getBlock('earliest').catch(async (error) => {
       // error message is Invalid JSON RPC response: {}
       expect(error.message).toBe('Invalid JSON RPC response: {}');

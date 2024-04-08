@@ -1,13 +1,14 @@
+import { describe, expect, it } from 'vitest';
 import type { TinyBig } from '../../..';
 import { JsonRpcProvider } from '../../../index';
+import { rpcUrls } from '../../../providers/test/rpc-urls';
 import { Contract as EssentialEthContract } from '../../Contract';
-import { rpcUrls } from './../../../providers/test/rpc-urls';
 import { feiABI } from './fei-abi';
 
 const JSONABI = feiABI;
 
 const rpcURL = rpcUrls.mainnet;
-const essentialEthProvider = new JsonRpcProvider(rpcURL);
+const provider = new JsonRpcProvider(rpcURL);
 
 // https://etherscan.io/address/0xBFfB152b9392e38CdDc275D818a3Db7FE364596b
 const contractAddress = '0xBFfB152b9392e38CdDc275D818a3Db7FE364596b';
@@ -20,15 +21,11 @@ const smartContractGetFeiAmountsToRedeem = async (
   return merkleRoot;
 };
 
-const essentialEthContract = new EssentialEthContract(
-  contractAddress,
-  JSONABI,
-  essentialEthProvider,
-);
+const contract = new EssentialEthContract(contractAddress, JSONABI, provider);
 describe('fEI contract', () => {
   it('should fetch unclaimed amounts "[uint256, uint256, uint256]" data-type', async () => {
     const essentialEthResponse = await smartContractGetFeiAmountsToRedeem(
-      essentialEthContract,
+      contract,
       '0xf5dBA31743ea341057280bb3AdD5c2Fb505BDC4C',
     );
     expect(essentialEthResponse[0].toString()).toBe('0');
@@ -37,15 +34,15 @@ describe('fEI contract', () => {
     expect(essentialEthResponse[2].toNumber()).toBe(0);
   });
   it('should fetch "uint8" data-type', async () => {
-    const essentialEthResponse = await essentialEthContract.decimals();
+    const essentialEthResponse = await contract.decimals();
     expect(essentialEthResponse).toBe(18);
   });
 
   it('should fetch "string" name data-type', async () => {
-    const essentialEthResponse = await essentialEthContract.symbol();
+    const essentialEthResponse = await contract.symbol();
     expect(essentialEthResponse).toBe('FGEN');
 
-    const essential2EthResponse = await essentialEthContract.name();
+    const essential2EthResponse = await contract.name();
     expect(essential2EthResponse).toBe('Fei Genesis Group');
   });
 });
