@@ -1,7 +1,8 @@
+import { describe, expect, it } from 'vitest';
 import type { TinyBig } from '../../..';
 import { JsonRpcProvider } from '../../../index';
+import { rpcUrls } from '../../../providers/test/rpc-urls';
 import { Contract as EssentialEthContract } from '../../Contract';
-import { rpcUrls } from './../../../providers/test/rpc-urls';
 import { feiABI } from './fei-abi';
 
 const JSONABI = feiABI;

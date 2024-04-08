@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import type { JSONABIArgument } from '../../../types/Contract.types';
 import { encodeData } from '../../utils/encode-decode-transaction';
-import type { JSONABIArgument } from './../../../types/Contract.types';
 import { fooABI } from './foo-abi';
 
 describe('foo encode', () => {
