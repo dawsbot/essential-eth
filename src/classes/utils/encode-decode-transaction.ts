@@ -113,12 +113,13 @@ export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
         break;
       default:
         if (inputType.startsWith('bytes')) {
-          // encode each character to hex
-          const argEncoded = rawArg
-            .split('')
-            .map((character: string) => character.charCodeAt(0).toString(16))
-            .join('');
-          const paddedEncodedArg = argEncoded.padEnd(64, '0');
+          if (Array.isArray(arg)) {
+            throw new Error(
+              `essential-eth does not yet support "${inputType}[]" inputs. Make a PR today!"`,
+            );
+          }
+          const argEncoded = BigInt(arg).toString(16);
+          const paddedEncodedArg = argEncoded.padStart(64, '0');
           return paddedEncodedArg;
         } else if (inputType === 'uint256') {
           const argEncoded = BigInt(arg).toString(16);
