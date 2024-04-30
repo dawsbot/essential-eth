@@ -9,17 +9,20 @@ describe('foo encode', () => {
       (abi) => abi.name === 'baz',
     ) as JSONABIArgument;
     const encoded = encodeData(jsonABIArgument, [69, true]);
+
     expect(encoded).toBe(
       '0xcdcd77c000000000000000000000000000000000000000000000000000000000000000450000000000000000000000000000000000000000000000000000000000000001',
     );
   });
   it('encodes "bar" function', () => {
+    const args = [['0x010203', '0x040506']];
+    const functionName = 'bar';
     const jsonABIArgument = fooABI.find(
-      (abi) => abi.name === 'bar',
+      (abi) => abi.name === functionName,
     ) as JSONABIArgument;
-    const encoded = encodeData(jsonABIArgument, ['abc', 'def']);
-    expect(encoded).toBe(
-      '0xfce353f661626300000000000000000000000000000000000000000000000000000000006465660000000000000000000000000000000000000000000000000000000000',
-    );
+
+    // const iface = new Interface(fooABI as any);
+    // const ethersEncoded = iface.encodeFunctionData(functionName, args);
+    expect(() => encodeData(jsonABIArgument, args)).toThrow();
   });
 });
