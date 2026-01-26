@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun run build:*)",
+      "Bash(npm pack:*)",
+      "Bash(npm install)",
+      "Bash(node test.mjs:*)",
+      "Bash(node test.cjs:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsup:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(tar:*)",
+      "Bash(bun run vitest:*)",
+      "Bash(npm run vitest:*)",
+      "Bash(npx vitest:*)",
+      "Bash(npm uninstall:*)"
+    ]
+  }
+}
