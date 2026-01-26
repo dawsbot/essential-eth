@@ -1,3 +1,4 @@
+.claude/settings.local.json
 .env
 node_modules
 lib

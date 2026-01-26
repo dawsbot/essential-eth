@@ -22,7 +22,7 @@ export default {
     "gno"
   ],
   "137": [
-    "matic"
+    "pol"
   ],
   "250": [
     "ftm"
@@ -52,7 +52,7 @@ export default {
     "avax"
   ],
   "59140": [
-    "linea-testnet"
+    "linea-goerli"
   ],
   "80001": [
     "maticmum"
