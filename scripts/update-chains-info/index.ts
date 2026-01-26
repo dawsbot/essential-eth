@@ -1,7 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import z from 'zod';
 import importantChainIds from './important-chain-ids.json';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const outputFilePath = path.join(
   __dirname,

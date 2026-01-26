@@ -1,22 +1,26 @@
 {
   "name": "essential-eth",
   "description": "Ultralight JS for Ethereum",
-  "version": "0.10.3",
+  "version": "0.11.0",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
   "private": false,
-  "main": "./dist/cjs/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "types": "./dist/esm/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "default": "./dist/cjs/index.js"
+      "types": {
+        "import": "./dist/index.d.ts",
+        "require": "./dist/index.d.cts"
+      },
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
-  "types": "./dist/esm/index.d.ts",
+  "types": "./dist/index.d.ts",
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "files": [
     "dist/"
@@ -27,14 +31,10 @@
   "repository": "https://github.com/dawsbot/essential-eth.git",
   "author": "@dawsbot",
   "scripts": {
-    "test": "npm-run-all --parallel vitest compile lint",
+    "test": "vitest run && tsup && eslint --cache . --config .eslintrc.cjs",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix . --config .eslintrc.cjs",
-    "compile": "npm-run-all --parallel build:esm build:cjs build:umd",
-    "build": "rm -rf dist && npm run compile",
-    "build:esm": "tsc -p tsconfig.json",
-    "build:cjs": "tsc -p tsconfig-cjs.json && printf '{\"type\":\"commonjs\"}' > ./dist/cjs/package.json",
-    "build:umd": "microbundle --external none --format umd",
+    "build": "tsup",
     "build:readme": "bash ./scripts/markdown-magic/build-readme.sh",
     "vitest": "vitest run",
     "build:chains-info": "npx tsx scripts/update-chains-info/index.ts # used in getNetwork()",
@@ -62,11 +62,10 @@
     "husky": "^7.0.4",
     "lint-staged": "^13.2.1",
     "markdown-magic": "^2.6.1",
-    "microbundle": "^0.15.1",
-    "npm-run-all": "^4.1.5",
     "perf_hooks": "^0.0.1",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
+    "tsup": "^8.5.1",
     "typedoc": "^0.24.5",
     "typescript": "^4.9.4",
     "vitest": "^0.34.6",
