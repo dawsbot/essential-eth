@@ -1,5 +1,3 @@
-import type Big from 'big.js';
-import type { TinyBig } from '../shared/tiny-big/tiny-big';
 import type { BytesLike } from './../utils/bytes';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -15,17 +13,17 @@ export type TransactionResponse = Modify<
   {
     blockNumber: number;
     chainId: number;
-    gas: TinyBig;
-    gasLimit: TinyBig;
-    gasPrice: TinyBig;
-    nonce: TinyBig;
+    gas: bigint;
+    gasLimit: bigint;
+    gasPrice: bigint;
+    nonce: bigint;
     transactionIndex: number;
     type: number;
     v: number;
-    value: TinyBig;
+    value: bigint;
   } & {
-    maxFeePerGas: TinyBig;
-    maxPriorityFeePerGas: TinyBig;
+    maxFeePerGas: bigint;
+    maxPriorityFeePerGas: bigint;
     confirmations: number;
   }
 >;
@@ -39,9 +37,9 @@ export type TransactionReceipt = Modify<
   RPCTransactionReceipt,
   {
     blockNumber: number;
-    cumulativeGasUsed: TinyBig;
-    effectiveGasPrice: TinyBig;
-    gasUsed: TinyBig;
+    cumulativeGasUsed: bigint;
+    effectiveGasPrice: bigint;
+    gasUsed: bigint;
     logs: Array<Log>;
     status: number;
     transactionIndex: number;
@@ -68,15 +66,15 @@ export interface RPCTransactionRequest {
 export interface TransactionRequest {
   to?: string;
   from?: string;
-  nonce?: TinyBig | string | Big | number;
-  gas?: TinyBig | number | Big | string;
-  gasPrice?: TinyBig | Big | string | number;
+  nonce?: bigint | string | number;
+  gas?: bigint | number | string;
+  gasPrice?: bigint | string | number;
   data?: BytesLike;
-  value?: TinyBig | string | Big | number;
+  value?: bigint | string | number;
   chainId?: number;
   type?: number;
-  maxPriorityFeePerGas?: TinyBig | string | Big | number;
-  maxFeePerGas?: TinyBig | string | Big | number;
+  maxPriorityFeePerGas?: bigint | string | number;
+  maxFeePerGas?: bigint | string | number;
 }
 
 /**

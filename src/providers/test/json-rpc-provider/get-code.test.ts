@@ -3,7 +3,7 @@ import {
   buildFetchInit,
   buildRPCPostBody,
 } from '../../../classes/utils/fetchers';
-import { JsonRpcProvider, tinyBig } from '../../../index';
+import { JsonRpcProvider } from '../../../index';
 import { rpcUrls } from './../rpc-urls';
 
 // Using Polygon to be able to access archive blocks
@@ -59,7 +59,7 @@ async function testGetCode(input: InputType, mockResult: string) {
 
   const expectedBlockTag =
     typeof input.blockTag === 'number'
-      ? tinyBig(input.blockTag).toHexString()
+      ? '0x' + (input.blockTag as number).toString(16)
       : input.blockTag ?? 'latest';
   expect(spy).toHaveBeenCalledWith(
     rpcUrl,

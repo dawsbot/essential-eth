@@ -5,7 +5,7 @@ export {
   FallthroughProvider,
 } from './providers/FallthroughProvider';
 export { jsonRpcProvider, JsonRpcProvider } from './providers/JsonRpcProvider';
-export { tinyBig, TinyBig } from './shared/tiny-big/tiny-big';
+// TinyBig and big.js removed in favor of native bigint
 export { BlockResponse, BlockTag, RPCBlock } from './types/Block.types';
 export {
   ContractTypes,

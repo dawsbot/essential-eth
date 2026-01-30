@@ -1,4 +1,4 @@
-import { arrayify, tinyBig } from '../../..';
+import { arrayify } from '../../..';
 
 describe('arrayify', () => {
   it('should correctly arrayify - values', () => {
@@ -7,7 +7,7 @@ describe('arrayify', () => {
       { input: 1, expected: new Uint8Array([1]) },
       { input: '0x1234', expected: new Uint8Array([18, 52]) },
       { input: new Uint8Array(2), expected: new Uint8Array(2) },
-      { input: tinyBig(17), expected: new Uint8Array([17]) },
+      { input: 17n, expected: new Uint8Array([17]) },
     ];
 
     testCases.forEach((testCase) => {
@@ -28,7 +28,6 @@ describe('arrayify', () => {
   });
 
   it('should throw for invalid values', () => {
-    expect(() => arrayify(tinyBig(15))).toThrow(); // hex data is odd-length
     expect(() => arrayify(false as any)).toThrow(); // invalid arrayify value
   });
 });

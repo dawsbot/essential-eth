@@ -1,15 +1,15 @@
-import Big from 'big.js';
-import { etherToGwei, tinyBig } from '../../index';
+import { etherToGwei } from '../../index';
 
-describe('gweiToEther', () => {
+describe('etherToGwei', () => {
   it('happy path', () => {
     expect(etherToGwei('100.0').toString()).toBe('100000000000');
-    expect(etherToGwei(100.0).toString()).toBe('100000000000');
-    expect(etherToGwei('0.000000001').toNumber()).toBe(1);
-    expect(etherToGwei(0.000000001).toNumber()).toBe(1);
+    expect(etherToGwei(100).toString()).toBe('100000000000');
+    expect(etherToGwei('0.000000001')).toBe(1n);
+    expect(etherToGwei(1000n).toString()).toBe('1000000000000');
+  });
 
-    expect(etherToGwei(tinyBig(1000)).toNumber()).toBe(1000000000000);
-    expect(etherToGwei(Big(0.000000001)).toNumber()).toBe(1);
+  it('returns bigint', () => {
+    expect(typeof etherToGwei('1')).toBe('bigint');
   });
 
   it('wrong types', () => {

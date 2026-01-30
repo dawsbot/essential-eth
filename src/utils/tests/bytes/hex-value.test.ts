@@ -1,5 +1,4 @@
 import { hexValue } from '../../bytes';
-import { tinyBig } from './../../../shared/tiny-big/tiny-big';
 
 describe('utils.hexValue', () => {
   it('should correctly convert - hex string', () => {
@@ -22,11 +21,11 @@ describe('utils.hexValue', () => {
       expect(hexValue(testCase.value)).toStrictEqual(testCase.expected);
     });
   });
-  it('should correctly convert - TinyBig instance', () => {
+  it('should correctly convert - bigint', () => {
     const testCases = [
-      { value: tinyBig('29389'), expected: '0x72cd' },
-      { value: tinyBig(2834), expected: '0xb12' },
-      { value: tinyBig(402), expected: '0x192' },
+      { value: 29389n, expected: '0x72cd' },
+      { value: 2834n, expected: '0xb12' },
+      { value: 402n, expected: '0x192' },
     ];
     testCases.forEach((testCase) => {
       expect(hexValue(testCase.value)).toStrictEqual(testCase.expected);
@@ -42,7 +41,7 @@ describe('utils.hexValue', () => {
       expect(hexValue(testCase.value)).toStrictEqual(testCase.expected);
     });
   });
-  it('should correctly convert - BigInt', () => {
+  it('should correctly convert - BigInt()', () => {
     const testCases = [
       { value: BigInt(204), expected: '0xcc' },
       { value: BigInt('23491'), expected: '0x5bc3' },

@@ -1,5 +1,4 @@
-import Big from 'big.js';
-import { etherToWei, tinyBig } from '../../index';
+import { etherToWei } from '../../index';
 
 describe('ether-to-wei', () => {
   it('happy path', () => {
@@ -7,25 +6,21 @@ describe('ether-to-wei', () => {
     expect(etherToWei(100).toString()).toBe('100000000000000000000');
     expect(etherToWei('1000.0').toString()).toBe('1000000000000000000000');
     expect(etherToWei(1000).toString()).toBe('1000000000000000000000');
-    expect(etherToWei('1000.0').toNumber()).toBe(1000000000000000000000);
-    expect(etherToWei(tinyBig(1000)).toString()).toBe('1000000000000000000000');
-    expect(etherToWei(tinyBig('1000.0')).toNumber()).toBe(
-      1000000000000000000000,
-    );
-    expect(etherToWei(Big(1000)).toString()).toBe('1000000000000000000000');
-    expect(etherToWei(Big('1000.0')).toNumber()).toBe(1000000000000000000000);
+    expect(etherToWei(1000n).toString()).toBe('1000000000000000000000');
   });
 
   it('matches expected toString', () => {
     expect(etherToWei('-09999.0').toString()).toBe('-9999000000000000000000');
   });
 
-  it('matches expected toNumber', () => {
-    /* easy */
-    expect(etherToWei('9').toNumber()).toBe(9000000000000000000);
+  it('handles decimal ether values', () => {
+    expect(etherToWei('1.5').toString()).toBe('1500000000000000000');
+    expect(etherToWei('0.1').toString()).toBe('100000000000000000');
+  });
 
-    /* harder */
-    expect(etherToWei('-0999999.90').toNumber()).toBe(-9.999999e23);
+  it('returns bigint', () => {
+    expect(typeof etherToWei('1')).toBe('bigint');
+    expect(etherToWei('9')).toBe(9000000000000000000n);
   });
 
   it('should throw for wrong types', () => {

@@ -1,4 +1,3 @@
-import { tinyBig } from '../../shared/tiny-big/tiny-big';
 import type {
   Log,
   RPCLog,
@@ -49,7 +48,7 @@ export function cleanTransactionReceipt(
       case 'cumulativeGasUsed':
       case 'effectiveGasPrice':
       case 'gasUsed':
-        cleanedTransactionReceipt[key] = tinyBig(
+        cleanedTransactionReceipt[key] = BigInt(
           hexToDecimal(transactionReceipt[key]),
         );
         break;

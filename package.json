@@ -81,8 +81,6 @@
   "dependencies": {
     "@noble/hashes": "^2.0.1",
     "@noble/secp256k1": "^1.5.5",
-    "@types/big.js": "^6.1.6",
-    "big.js": "^6.2.1",
     "ethers": "^5.7.2",
     "isomorphic-unfetch": "^3.1.0",
     "sha3": "^2.1.4"

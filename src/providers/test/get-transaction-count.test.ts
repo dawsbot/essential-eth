@@ -1,6 +1,6 @@
 import * as unfetch from 'isomorphic-unfetch';
 import { describe, expect, it, vi } from 'vitest';
-import { jsonRpcProvider, tinyBig } from '../..';
+import { jsonRpcProvider } from '../..';
 import { buildFetchInit, buildRPCPostBody } from '../../classes/utils/fetchers';
 import type { BlockTag } from '../../types/Block.types';
 import { mockOf } from './mock-of';
@@ -33,7 +33,7 @@ async function testGetTC(rpcUrl: string, blockTag?: BlockTag) {
 
   const expectedBlockTag =
     typeof blockTag === 'number'
-      ? tinyBig(blockTag).toHexString()
+      ? '0x' + blockTag.toString(16)
       : blockTag ?? 'latest';
   expect(spy).toHaveBeenCalledWith(
     rpcUrl,

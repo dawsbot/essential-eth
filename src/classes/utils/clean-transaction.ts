@@ -1,4 +1,3 @@
-import { tinyBig } from '../../shared/tiny-big/tiny-big';
 import type {
   RPCTransaction,
   TransactionResponse,
@@ -48,7 +47,7 @@ export function cleanTransaction(
       case 'maxFeePerGas':
       case 'maxPriorityFeePerGas':
       case 'nonce':
-        cleanedTransaction[key] = tinyBig(hexToDecimal(transaction[key]));
+        cleanedTransaction[key] = BigInt(hexToDecimal(transaction[key]));
         break;
     }
   });

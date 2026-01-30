@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { TinyBig } from '../../..';
+
 import { JsonRpcProvider } from '../../../index';
 import { rpcUrls } from '../../../providers/test/rpc-urls';
 import { Contract as EssentialEthContract } from '../../Contract';
@@ -17,31 +17,31 @@ describe('cRV contract', () => {
   it('should fetch "uint256" balanceOf', async () => {
     const balanceOf = (await contract.balanceOf(address, {
       gasLimit: 40955,
-    })) as TinyBig;
+    })) as bigint;
     expect(balanceOf.toString()).toBe('6684485761284788581');
   });
   it('should fetch "uint256" vested supply', async () => {
     const vestedSupply = (await contract.vestedSupply({
       gasLimit: 40955,
-    })) as TinyBig;
+    })) as bigint;
     expect(vestedSupply.toString()).toBe('151515151515151515151515151');
   });
   it('should fetch "uint256" locked supply', async () => {
     const lockedSupply = (await contract.lockedSupply({
       gasLimit: 40955,
-    })) as TinyBig;
+    })) as bigint;
     expect(lockedSupply.toString()).toBe('0');
   });
   // it('should fetch "uint256" vested of', async () => {
   //   const vestedOf = (await contract.vestedOf(address, {
   //     gasLimit: 40955,
-  //   })) as TinyBig;
+  //   })) as bigint;
   //   expect(vestedOf.toString()).toBe('6684485761284788581');
   // });
   // it('should fetch "uint256" lockedOf', async () => {
   //   const lockedOf = (await contract.lockedOf(address, {
   //     gasLimit: 40955,
-  //   })) as TinyBig;
+  //   })) as bigint;
   //   expect(lockedOf.toString()).toBe('0');
   // });
   it('should fetch "address" token', async () => {
@@ -53,31 +53,31 @@ describe('cRV contract', () => {
   // it('should fetch "uint256" start_time', async () => {
   //   const startTime = (await contract.start_time({
   //     gasLimit: 40955,
-  //   })) as TinyBig;
+  //   })) as bigint;
   //   expect(startTime.toString()).toBe('1597357048');
   // });
   // it('should fetch "uint256" end_time', async () => {
   //   const endTime = (await contract.end_time({
   //     gasLimit: 40955,
-  //   })) as TinyBig;
+  //   })) as bigint;
   //   expect(endTime.toString()).toBe('1628893048');
   // });
   it('should fetch "uint256" initial_locked', async () => {
     const initialLocked = (await contract.initial_locked(address, {
       gasLimit: 40955,
-    })) as TinyBig;
+    })) as bigint;
     expect(initialLocked.toString()).toBe('6684485761284788581');
   });
   // it('should fetch "uint256" initial_locked_supply', async () => {
   //   const initialLockedSupply = (await contract.initial_locked_supply({
   //     gasLimit: 40955,
-  //   })) as TinyBig;
+  //   })) as bigint;
   //   expect(initialLockedSupply.toString()).toBe('151515151515151515151515151');
   // });
   // it('should fetch "uint256" unallocated_supply', async () => {
   //   const unallocatedSupply = (await contract.unallocated_supply({
   //     gasLimit: 40955,
-  //   })) as TinyBig;
+  //   })) as bigint;
   //   expect(unallocatedSupply.toString()).toBe('0');
   // });
   it('should fetch "bool" can_disable', async () => {
@@ -89,7 +89,7 @@ describe('cRV contract', () => {
   it('should fetch "uint256" disabled_at', async () => {
     const disabledAt = (await contract.disabled_at(address, {
       gasLimit: 40955,
-    })) as TinyBig;
+    })) as bigint;
     expect(disabledAt.toString()).toBe('0');
   });
   it('should fetch "address" admin', async () => {

@@ -1,7 +1,7 @@
-import Big from 'big.js';
+
 import * as unfetch from 'isomorphic-unfetch';
 import type { TransactionRequest } from '../../..';
-import { JsonRpcProvider, tinyBig } from '../../..';
+import { JsonRpcProvider } from '../../..';
 import {
   buildFetchInit,
   buildRPCPostBody,
@@ -99,21 +99,21 @@ describe('provider.call', () => {
     await testWithMockedResponse(dataFromGasTo);
   });
 
-  it('should return a valid response for given input -- all mixed data as TinyBig', async () => {
+  it('should return a valid response for given input -- all mixed data as bigint', async () => {
     await testWithMockedResponse({
       ...dataFromGasTo,
-      nonce: tinyBig(dataFromGasTo.nonce),
-      gas: tinyBig(dataFromGasTo.gas),
-      value: tinyBig(dataFromGasTo.value),
+      nonce: BigInt(dataFromGasTo.nonce),
+      gas: BigInt(dataFromGasTo.gas),
+      value: BigInt(dataFromGasTo.value),
     });
   });
 
-  it('should return a valid response for given input -- all mixed data as Big', async () => {
+  it('should return a valid response for given input -- all mixed data as bigint (number-like)', async () => {
     await testWithMockedResponse({
       ...dataFromGasTo,
-      nonce: new Big(hexToDecimal(dataFromGasTo.nonce)),
-      gas: new Big(dataFromGasTo.gas),
-      value: new Big(hexToDecimal(dataFromGasTo.value)),
+      nonce: BigInt(hexToDecimal(dataFromGasTo.nonce)),
+      gas: BigInt(dataFromGasTo.gas),
+      value: BigInt(hexToDecimal(dataFromGasTo.value)),
     });
   });
 });

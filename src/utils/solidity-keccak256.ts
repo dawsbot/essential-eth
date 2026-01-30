@@ -1,6 +1,5 @@
 import { hexFalse } from '../classes/utils/encode-decode-transaction';
 import { logger } from '../logger/logger';
-import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { arrayify, concat, hexlify, zeroPad } from './bytes';
 import { keccak256 } from './keccak256';
 
@@ -55,7 +54,12 @@ function _pack(type: string, value: any, isArray?: boolean): Uint8Array {
       size = 256;
     }
 
-    value = tinyBig(value).toTwos(size).toNumber();
+    // Convert to two's complement representation
+    let bigVal = BigInt(value);
+    if (bigVal < 0n) {
+      bigVal = bigVal + (1n << BigInt(size));
+    }
+    value = Number(bigVal);
     const hexValue = hexlify(value);
     return zeroPad(hexValue, size / 8);
   }

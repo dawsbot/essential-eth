@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { TinyBig } from '../../..';
+
 import { JsonRpcProvider } from '../../../index';
 import { rpcUrls } from '../../../providers/test/rpc-urls';
 import { Contract as EssentialEthContract } from '../../Contract';
@@ -17,7 +17,7 @@ const smartContractGetFeiAmountsToRedeem = async (
   contract: EssentialEthContract,
   address: string,
 ) => {
-  const merkleRoot = (await contract.getAmountsToRedeem(address)) as TinyBig[];
+  const merkleRoot = (await contract.getAmountsToRedeem(address)) as bigint[];
   return merkleRoot;
 };
 
@@ -31,7 +31,7 @@ describe('fEI contract', () => {
     expect(essentialEthResponse[0].toString()).toBe('0');
     expect(essentialEthResponse[1].toString()).toBe('0');
     expect(essentialEthResponse[2].toString()).toBe('0');
-    expect(essentialEthResponse[2].toNumber()).toBe(0);
+    expect(Number(essentialEthResponse[2])).toBe(0);
   });
   it('should fetch "uint8" data-type', async () => {
     const essentialEthResponse = await contract.decimals();

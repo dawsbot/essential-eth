@@ -1,6 +1,5 @@
 import { keccak_256 } from '@noble/hashes/sha3.js';
 import { bytesToHex } from '@noble/hashes/utils.js';
-import { tinyBig } from '../../shared/tiny-big/tiny-big';
 import type {
   ContractTypes,
   JSONABIArgument,
@@ -182,7 +181,7 @@ export function decodeRPCResponse(
   if (rawOutputs?.length === 1 && rawOutputs[0].type === 'uint256[]') {
     const outputs = encodedOutputs.slice(2);
     return outputs.map((output) => {
-      return tinyBig(hexToDecimal(`0x${output}`));
+      return BigInt(hexToDecimal(`0x${output}`));
     });
   }
   const outputs = encodedOutputs.map((output: string, i: number) => {
@@ -195,7 +194,7 @@ export function decodeRPCResponse(
         return toChecksumAddress(`0x${output.slice(24)}`);
       case 'uint256':
       case 'uint120':
-        return tinyBig(hexToDecimal(`0x${output}`));
+        return BigInt(hexToDecimal(`0x${output}`));
       case 'bytes32':
         return `0x${output}`;
       case 'uint8':

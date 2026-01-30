@@ -1,37 +1,24 @@
-import Big from 'big.js';
-import { tinyBig, weiToEther } from '../../index';
+import { weiToEther } from '../../index';
 
 describe('wei-to-ether', () => {
   it('happy path', () => {
-    expect(weiToEther('100000000000000000000.0').toString()).toBe('100');
-    expect(weiToEther(100000000000000000000.0).toString()).toBe('100');
-    expect(weiToEther('1000000000000000000000.0').toNumber()).toBe(1000);
-    expect(weiToEther(1000000000000000000000.0).toNumber()).toBe(1000);
-    expect(weiToEther(tinyBig('1000000000000000000000.0')).toNumber()).toBe(
-      1000,
-    );
-    expect(weiToEther(tinyBig(1000000000000000000000.0)).toNumber()).toBe(1000);
-    expect(weiToEther(Big('1000000000000000000000.0')).toNumber()).toBe(1000);
-    expect(weiToEther(Big(1000000000000000000000.0)).toNumber()).toBe(1000);
+    expect(weiToEther('1000000000000000000000')).toBe('1000');
+    expect(weiToEther(1000000000000000000000n)).toBe('1000');
   });
 
-  it('matches expected value toString', () => {
-    expect(weiToEther('10').toString()).toBe('0.00000000000000001');
-    expect(weiToEther('1000000000000000000000').toString()).toBe('1000');
+  it('returns string', () => {
+    expect(typeof weiToEther('1')).toBe('string');
   });
 
-  it('matches expected value toNumber', () => {
-    /* easy */
-    expect(weiToEther('9').toNumber()).toBe(9e-18);
-    expect(weiToEther('9').toNumber()).toBe(9e-18);
-
-    /* harder */
-    expect(weiToEther('999999').toNumber()).toBe(9.99999e-13);
+  it('matches expected value', () => {
+    expect(weiToEther('10')).toBe('0.00000000000000001');
+    expect(weiToEther('1000000000000000000000')).toBe('1000');
+    expect(weiToEther('1500000000000000000')).toBe('1.5');
   });
 
   it('support hex', () => {
-    expect(weiToEther('0x14').toString()).toBe('0.00000000000000002');
-    expect(weiToEther(0x14).toString()).toBe('0.00000000000000002');
+    expect(weiToEther('0x14')).toBe('0.00000000000000002');
+    expect(weiToEther(0x14)).toBe('0.00000000000000002');
   });
 
   it('wrong types', () => {
