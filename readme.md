@@ -20,6 +20,18 @@
 <img src="https://user-images.githubusercontent.com/3408480/133322814-f3d18424-4ba8-4a37-8cbc-c5e6828354a3.png" title="Import size comparison" width="900"/>
 </p>
 
+### Bundle Size Comparison (ESM, minified — Jan 2026)
+
+Measured with esbuild. Smaller is better.
+
+| What you import | essential-eth | ethers.js | viem |
+|-----------------|:---:|:---:|:---:|
+| **Full library** | **74.2 kB** 🏆 | 372.7 kB | 376.0 kB |
+| **Provider** (getBalance, getBlock, etc) | **64.0 kB** 🏆 | 244.5 kB | 298.5 kB |
+| **Contract** (read-only calls) | **60.6 kB** 🏆 | 81.0 kB | 304.5 kB |
+
+essential-eth is **5x smaller** than ethers.js and viem for full-library and provider usage.
+
 ---
 
 [![🧪 tests](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml/badge.svg)](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/Earnifi/essential-eth/branch/master/graph/badge.svg?token=E44EK6RWTZ)](https://codecov.io/gh/Earnifi/essential-eth) ![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth) ![](https://img.shields.io/npm/v/essential-eth)
