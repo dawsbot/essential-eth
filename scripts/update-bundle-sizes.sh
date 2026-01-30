@@ -40,16 +40,19 @@ ESBUILD="$WORK/node_modules/.bin/esbuild"
 echo "export * from '$ROOT/dist/index.js';" > "$WORK/ee-full.js"
 echo "export { JsonRpcProvider, FallthroughProvider } from '$ROOT/dist/index.js';" > "$WORK/ee-provider.js"
 echo "export { Contract } from '$ROOT/dist/index.js';" > "$WORK/ee-contract.js"
+echo "export { weiToEther, etherToWei, etherToGwei, gweiToEther } from '$ROOT/dist/conversions.js';" > "$WORK/ee-conversion.js"
 
 # --- ethers ---
 echo "export * from 'ethers';" > "$WORK/ethers-full.js"
 echo "export { JsonRpcProvider } from 'ethers';" > "$WORK/ethers-provider.js"
 echo "export { Contract } from 'ethers';" > "$WORK/ethers-contract.js"
+echo "export { formatEther, parseEther, formatUnits, parseUnits } from 'ethers';" > "$WORK/ethers-conversion.js"
 
 # --- viem ---
 echo "export * from 'viem';" > "$WORK/viem-full.js"
 echo "export { createPublicClient, http } from 'viem';" > "$WORK/viem-provider.js"
 echo "export { getContract } from 'viem';" > "$WORK/viem-contract.js"
+echo "export { formatEther, parseEther, formatGwei, parseGwei } from 'viem';" > "$WORK/viem-conversion.js"
 
 # ─── 4. Bundle & measure ────────────────────────────────────────────────────
 measure() {
@@ -72,6 +75,10 @@ VIEM_PROV=$(measure "$WORK/viem-provider.js" "$WORK/out-viem-prov.js")
 EE_CONT=$(measure "$WORK/ee-contract.js" "$WORK/out-ee-cont.js")
 ETH_CONT=$(measure "$WORK/ethers-contract.js" "$WORK/out-eth-cont.js")
 VIEM_CONT=$(measure "$WORK/viem-contract.js" "$WORK/out-viem-cont.js")
+
+EE_CONV=$(measure "$WORK/ee-conversion.js" "$WORK/out-ee-conv.js")
+ETH_CONV=$(measure "$WORK/ethers-conversion.js" "$WORK/out-eth-conv.js")
+VIEM_CONV=$(measure "$WORK/viem-conversion.js" "$WORK/out-viem-conv.js")
 
 # ─── 5. Format helpers ──────────────────────────────────────────────────────
 fmt_kb() {
@@ -103,6 +110,10 @@ C_EE_CONT=$(fmt_cell "$EE_CONT" "$ETH_CONT" "$VIEM_CONT")
 C_ETH_CONT=$(fmt_cell "$ETH_CONT" "$EE_CONT" "$VIEM_CONT")
 C_VIEM_CONT=$(fmt_cell "$VIEM_CONT" "$EE_CONT" "$ETH_CONT")
 
+C_EE_CONV=$(fmt_cell "$EE_CONV" "$ETH_CONV" "$VIEM_CONV")
+C_ETH_CONV=$(fmt_cell "$ETH_CONV" "$EE_CONV" "$VIEM_CONV")
+C_VIEM_CONV=$(fmt_cell "$VIEM_CONV" "$EE_CONV" "$ETH_CONV")
+
 # Compute ratio for full library (essential-eth vs the smaller of ethers/viem)
 SMALLER_FULL=$(echo "$ETH_FULL $VIEM_FULL" | awk '{ print ($1 < $2) ? $1 : $2 }')
 RATIO=$(echo "$SMALLER_FULL $EE_FULL" | awk '{ printf "%d", $1 / $2 }')
@@ -119,6 +130,7 @@ Measured with esbuild. Smaller is better.
 | **Full library**                         | $C_EE_FULL | $C_ETH_FULL | $C_VIEM_FULL |
 | **Provider** (getBalance, getBlock, etc) | $C_EE_PROV | $C_ETH_PROV | $C_VIEM_PROV |
 | **Contract** (read-only calls)           | $C_EE_CONT | $C_ETH_CONT | $C_VIEM_CONT |
+| **Conversions** (wei, gwei, ether)       | $C_EE_CONV | $C_ETH_CONV | $C_VIEM_CONV |
 
 essential-eth is **${RATIO}x smaller** than ethers and viem for full-library usage.
 EOF

@@ -16,6 +16,12 @@
       },
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./conversions": {
+      "types": {
+        "import": "./dist/conversions.d.ts"
+      },
+      "import": "./dist/conversions.js"
     }
   },
   "types": "./dist/index.d.ts",
