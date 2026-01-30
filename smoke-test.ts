@@ -37,8 +37,16 @@ import {
   // Utils – conversions
   etherToGwei,
   etherToWei,
+  formatUnits,
   gweiToEther,
+  parseUnits,
   weiToEther,
+  // New utils
+  decodeBytes32String,
+  encodeBytes32String,
+  getAddress,
+  id,
+  toUtf8String,
 } from 'essential-eth';
 
 // ── helpers ─────────────────────────────────────────────────────────────────
@@ -201,6 +209,56 @@ assert(
   'splitSignature .r',
   split.r ===
     '0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b39716',
+);
+
+// ── new utils ───────────────────────────────────────────────────────────────
+console.log('\n🆕 New utilities');
+
+assert(
+  'formatUnits (USDC 6 decimals)',
+  formatUnits(1500000n, 6) === '1.5',
+);
+assert(
+  'parseUnits (USDC 6 decimals)',
+  parseUnits('1.5', 6) === 1500000n,
+);
+assert(
+  'formatUnits default 18',
+  formatUnits(1000000000000000000n) === '1',
+);
+assert(
+  'parseUnits default 18',
+  parseUnits('1') === 1000000000000000000n,
+);
+assert(
+  'id (Transfer event topic)',
+  id('Transfer(address,address,uint256)') ===
+    '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+);
+assert(
+  'id (function selector)',
+  id('balanceOf(address)').slice(0, 10) === '0x70a08231',
+);
+assert(
+  'getAddress',
+  getAddress('0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359') ===
+    '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359',
+);
+assert(
+  'toUtf8String',
+  toUtf8String(new Uint8Array([101, 116, 104])) === 'eth',
+);
+assert(
+  'toUtf8String (hex)',
+  toUtf8String('0x657468') === 'eth',
+);
+assert(
+  'encodeBytes32String',
+  encodeBytes32String('hello').length === 66,
+);
+assert(
+  'decodeBytes32String roundtrip',
+  decodeBytes32String(encodeBytes32String('hello')) === 'hello',
 );
 
 // ── providers (construction only — no network calls) ────────────────────────
