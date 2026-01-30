@@ -18,19 +18,23 @@ essential-eth is **8-12x smaller** than every major Ethereum library. That's not
 | **ethers v6** | 2,191,920 | 394.0 kB | Legacy king. Huge install base but losing ground to viem. |
 | **ox** | 3,140,063 | 615.6 kB | viem team's "Ethereum Standard Library." Low-level. Massive full export. |
 | **web3.js** | 569,797 | 495.1 kB | The original. Can't tree-shake. 453 kB for *conversions*. |
+| **tevm** | 3,756 | N/A (Node EVM) | Full EVM in JS. Different category — runs Solidity locally. Not browser-bundleable. |
 | **essential-eth** | 866 | **39.9 kB** 🏆 | **That's us. 8x smaller. Room to grow.** |
 
-The gap between 866 and 2.5M is the opportunity. The gap between 39.9 kB and 495 kB is the weapon.
+The gap between 866 and 2.5M is the opportunity. The gap between 39.9 kB and 506 kB is the weapon.
 
 | Library | Full Bundle | Provider | Contract | Conversions |
 |---------|:-----------:|:--------:|:--------:|:-----------:|
 | **essential-eth** | **39.9 kB** 🏆 | 28.9 kB | **24.8 kB** 🏆 | **1.2 kB** 🏆 |
 | ethers v6 | 394.0 kB | 260.0 kB | 86.6 kB | 10.4 kB |
 | viem | 348.3 kB | 269.5 kB | 179.8 kB | 2.7 kB |
-| **web3.js** | **495.1 kB** 💀 | **453.8 kB** | **264.9 kB** | **453.8 kB** 💀 |
+| **web3.js** | **506.6 kB** 💀 | **465.3 kB** | **276.5 kB** | **465.3 kB** 💀 |
 | ox | 615.6 kB | 10.9 kB 🏆 | 49.9 kB | 3.7 kB |
+| tevm | N/A* | N/A* | N/A* | 113.7 kB |
 
-> **web3.js ships 453.8 kB just to convert wei to ether.** essential-eth does it in 1.2 kB. That's not a rounding error — that's a 378x difference. And web3 still has 570K weekly downloads.
+> \* tevm is an EVM runtime — most exports require Node.js and can't bundle for browser. Only conversions (re-exported from viem internals) build, and they pull in **113.7 kB** for `formatEther`.
+
+> **web3.js ships 465 kB just to convert wei to ether.** essential-eth does it in 1.2 kB. That's not a rounding error — that's a 388x difference. And web3 still has 570K weekly downloads.
 
 ---
 
