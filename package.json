@@ -26,7 +26,7 @@
   },
   "types": "./dist/index.d.ts",
   "engines": {
-    "node": ">=18"
+    "node": ">=16"
   },
   "files": [
     "dist/"
@@ -64,7 +64,7 @@
     "bn.js": "^5.2.1",
     "dotenv": "^16.0.0",
     "eslint": "^8.16.0",
-    "eslint-plugin-jsdoc": "^50.8.0",
+    "eslint-plugin-jsdoc": "^47.0.2",
     "eslint-plugin-vitest": "^0.1.5",
     "husky": "^7.0.4",
     "lint-staged": "^13.2.1",
@@ -72,7 +72,8 @@
     "perf_hooks": "^0.0.1",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "tsup": "^8.5.1",
+    "tsup": "^7.2.0",
+    "vite": "^4.5.0",
     "typedoc": "^0.24.5",
     "typescript": "^4.9.4",
     "vitest": "^0.34.6",
