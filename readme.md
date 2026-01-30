@@ -26,11 +26,12 @@
 
 Measured with esbuild. Smaller is better.
 
-| What you import                          | essential-eth@0.11.2 | ethers@6.16.0 | viem@2.45.1 |
-| ---------------------------------------- | :------------------: | :-----------: | :---------: |
-| **Full library**                         |    **47.0 kB** 🏆    |   394.0 kB    |  384.6 kB   |
-| **Provider** (getBalance, getBlock, etc) |    **37.4 kB** 🏆    |   260.0 kB    |  305.7 kB   |
-| **Contract** (read-only calls)           |    **33.2 kB** 🏆    |    86.6 kB    |  179.8 kB   |
+| What you import                          | essential-eth@0.11.2 | ethers@6.16.0 |  viem@2.45.1  |
+| ---------------------------------------- | :------------------: | :-----------: | :-----------: |
+| **Full library**                         |    **47.0 kB** 🏆    |   394.0 kB    |   384.6 kB    |
+| **Provider** (getBalance, getBlock, etc) |    **37.4 kB** 🏆    |   260.0 kB    |   305.7 kB    |
+| **Contract** (read-only calls)           |    **33.2 kB** 🏆    |    86.6 kB    |   179.8 kB    |
+| **Conversions** (wei, gwei, ether)       |        9.2 kB        |    10.4 kB    | **2.7 kB** 🏆 |
 
 essential-eth is **8x smaller** than ethers and viem for full-library usage.
 

@@ -5,6 +5,7 @@ export default defineConfig([
     entry: {
       index: 'src/index.ts',
       utils: 'src/utils/index-utils.ts',
+      conversions: 'src/conversions/index.ts',
     },
     format: ['esm'],
     dts: true,
