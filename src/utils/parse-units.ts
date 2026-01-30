@@ -27,9 +27,6 @@ import { parseFixed } from './fixed-point';
  * // 1000000000000000000n
  * ```
  */
-export function parseUnits(
-  value: string,
-  decimals: number = 18,
-): bigint {
+export function parseUnits(value: string, decimals = 18): bigint {
   return parseFixed(value, decimals);
 }
