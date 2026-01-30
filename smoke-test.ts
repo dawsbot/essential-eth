@@ -1,16 +1,27 @@
+/* eslint-disable no-console */
 /**
  * Smoke test — exercises every runtime export from essential-eth.
  * Run: npx tsx smoke-test.ts
  */
 import {
-  // Classes
-  Contract,
-  JsonRpcProvider,
-  FallthroughProvider,
-  jsonRpcProvider,
   // Utils – bytes
   arrayify,
+  // Utils – crypto / address
+  computeAddress,
+  computePublicKey,
   concat,
+  Contract,
+  // New utils
+  decodeBytes32String,
+  encodeBytes32String,
+  // Utils – conversions
+  etherToGwei,
+  etherToWei,
+  FallthroughProvider,
+  formatUnits,
+  getAddress,
+  gweiToEther,
+  hashMessage,
   hexConcat,
   hexDataLength,
   hexDataSlice,
@@ -18,35 +29,24 @@ import {
   hexStripZeros,
   hexValue,
   hexZeroPad,
+  id,
+  isAddress,
   isBytes,
   isBytesLike,
   isHexString,
-  stripZeros,
-  zeroPad,
-  // Utils – crypto / address
-  computeAddress,
-  computePublicKey,
-  hashMessage,
-  isAddress,
+  JsonRpcProvider,
+  jsonRpcProvider,
   keccak256,
   pack,
+  parseUnits,
   solidityKeccak256,
   splitSignature,
+  stripZeros,
   toChecksumAddress,
   toUtf8Bytes,
-  // Utils – conversions
-  etherToGwei,
-  etherToWei,
-  formatUnits,
-  gweiToEther,
-  parseUnits,
-  weiToEther,
-  // New utils
-  decodeBytes32String,
-  encodeBytes32String,
-  getAddress,
-  id,
   toUtf8String,
+  weiToEther,
+  zeroPad,
 } from 'essential-eth';
 
 // ── helpers ─────────────────────────────────────────────────────────────────
@@ -69,14 +69,8 @@ console.log('\n🔄 Conversions');
 // etherToWei now returns bigint
 const wei = etherToWei('1');
 assert('etherToWei("1") returns bigint', typeof wei === 'bigint');
-assert(
-  'etherToWei("1") = 10^18',
-  wei === 1000000000000000000n,
-);
-assert(
-  'etherToWei("1.5")',
-  etherToWei('1.5') === 1500000000000000000n,
-);
+assert('etherToWei("1") = 10^18', wei === 1000000000000000000n);
+assert('etherToWei("1.5")', etherToWei('1.5') === 1500000000000000000n);
 assert(
   'etherToWei(1000)',
   etherToWei(1000).toString() === '1000000000000000000000',
@@ -90,26 +84,17 @@ assert(
   'weiToEther("1500000000000000000") = "1.5"',
   weiToEther('1500000000000000000') === '1.5',
 );
-assert(
-  'weiToEther(bigint)',
-  weiToEther(1000000000000000000000n) === '1000',
-);
+assert('weiToEther(bigint)', weiToEther(1000000000000000000000n) === '1000');
 
 // etherToGwei returns bigint
-assert(
-  'etherToGwei("1")',
-  etherToGwei('1') === 1000000000n,
-);
+assert('etherToGwei("1")', etherToGwei('1') === 1000000000n);
 assert(
   'etherToGwei("1").toString()',
   etherToGwei('1').toString() === '1000000000',
 );
 
 // gweiToEther returns string
-assert(
-  'gweiToEther("1000000000")',
-  gweiToEther('1000000000') === '1',
-);
+assert('gweiToEther("1000000000")', gweiToEther('1000000000') === '1');
 
 // ── bytes utilities ─────────────────────────────────────────────────────────
 console.log('\n📦 Bytes utilities');
@@ -129,10 +114,7 @@ assert(
 assert('hexlify(4)', hexlify(4) === '0x04');
 assert('hexlify(14)', hexlify(14) === '0x0e');
 assert('hexlify(bigint)', hexlify(255n) === '0xff');
-assert(
-  'hexStripZeros([0,0,0,48])',
-  hexStripZeros([0, 0, 0, 48]) === '0x30',
-);
+assert('hexStripZeros([0,0,0,48])', hexStripZeros([0, 0, 0, 48]) === '0x30');
 assert('hexValue(39)', hexValue(39) === '0x27');
 assert('hexValue(bigint)', hexValue(255n) === '0xff');
 assert('hexZeroPad("0x60",2)', hexZeroPad('0x60', 2) === '0x0060');
@@ -142,14 +124,8 @@ assert('isBytesLike([1,2,3])', isBytesLike([1, 2, 3]) === true);
 assert('isBytesLike(false)', isBytesLike(false) === false);
 assert('isHexString("0x4924")', isHexString('0x4924') === true);
 assert('isHexString("nope")', isHexString('nope') === false);
-assert(
-  'stripZeros("0x00002834")',
-  stripZeros('0x00002834').length === 2,
-);
-assert(
-  'zeroPad([39,25,103,45],5)',
-  zeroPad([39, 25, 103, 45], 5).length === 5,
-);
+assert('stripZeros("0x00002834")', stripZeros('0x00002834').length === 2);
+assert('zeroPad([39,25,103,45],5)', zeroPad([39, 25, 103, 45], 5).length === 5);
 
 // ── crypto / address utilities ──────────────────────────────────────────────
 console.log('\n🔐 Crypto & address utilities');
@@ -174,10 +150,7 @@ assert(
   isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab') === true,
 );
 assert('isAddress (invalid)', isAddress('bad') === false);
-assert(
-  'toUtf8Bytes("eth")',
-  toUtf8Bytes('eth').length === 3,
-);
+assert('toUtf8Bytes("eth")', toUtf8Bytes('eth').length === 3);
 assert(
   'computePublicKey',
   computePublicKey(
@@ -197,8 +170,10 @@ assert(
 );
 assert(
   'solidityKeccak256',
-  solidityKeccak256(['string', 'bool', 'uint32'], ['essential-eth is great', true, 14]) ===
-    '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab',
+  solidityKeccak256(
+    ['string', 'bool', 'uint32'],
+    ['essential-eth is great', true, 14],
+  ) === '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab',
 );
 
 const sig =
@@ -214,22 +189,10 @@ assert(
 // ── new utils ───────────────────────────────────────────────────────────────
 console.log('\n🆕 New utilities');
 
-assert(
-  'formatUnits (USDC 6 decimals)',
-  formatUnits(1500000n, 6) === '1.5',
-);
-assert(
-  'parseUnits (USDC 6 decimals)',
-  parseUnits('1.5', 6) === 1500000n,
-);
-assert(
-  'formatUnits default 18',
-  formatUnits(1000000000000000000n) === '1',
-);
-assert(
-  'parseUnits default 18',
-  parseUnits('1') === 1000000000000000000n,
-);
+assert('formatUnits (USDC 6 decimals)', formatUnits(1500000n, 6) === '1.5');
+assert('parseUnits (USDC 6 decimals)', parseUnits('1.5', 6) === 1500000n);
+assert('formatUnits default 18', formatUnits(1000000000000000000n) === '1');
+assert('parseUnits default 18', parseUnits('1') === 1000000000000000000n);
 assert(
   'id (Transfer event topic)',
   id('Transfer(address,address,uint256)') ===
@@ -244,18 +207,9 @@ assert(
   getAddress('0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359') ===
     '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359',
 );
-assert(
-  'toUtf8String',
-  toUtf8String(new Uint8Array([101, 116, 104])) === 'eth',
-);
-assert(
-  'toUtf8String (hex)',
-  toUtf8String('0x657468') === 'eth',
-);
-assert(
-  'encodeBytes32String',
-  encodeBytes32String('hello').length === 66,
-);
+assert('toUtf8String', toUtf8String(new Uint8Array([101, 116, 104])) === 'eth');
+assert('toUtf8String (hex)', toUtf8String('0x657468') === 'eth');
+assert('encodeBytes32String', encodeBytes32String('hello').length === 66);
 assert(
   'decodeBytes32String roundtrip',
   decodeBytes32String(encodeBytes32String('hello')) === 'hello',
@@ -294,7 +248,10 @@ const contract = new Contract(
   provider,
 );
 assert('new Contract', contract != null);
-assert('contract.isClaimed is function', typeof contract.isClaimed === 'function');
+assert(
+  'contract.isClaimed is function',
+  typeof contract.isClaimed === 'function',
+);
 
 // ── summary ─────────────────────────────────────────────────────────────────
 console.log(`\n${'═'.repeat(50)}`);
