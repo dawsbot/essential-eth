@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # scripts/update-bundle-sizes.sh
 #
-# Measures ESM bundle sizes (minified) for essential-eth, ethers, and viem,
+# Measures ESM bundle sizes (minified) for essential-eth, ethers, viem, web3, and ox,
 # then updates the comparison table in readme.md between the sentinel comments:
 #   <!-- BUNDLE-SIZE-TABLE:START -->
 #   <!-- BUNDLE-SIZE-TABLE:END -->
@@ -23,14 +23,17 @@ echo "→ Installing comparison libraries in temp dir..."
 cat > "$WORK/package.json" <<'EOF'
 { "private": true, "type": "module" }
 EOF
-(cd "$WORK" && npm install --save ethers@6 viem esbuild 2>/dev/null)
+(cd "$WORK" && npm install --save ethers@6 viem web3 ox tevm esbuild 2>/dev/null)
 
 # Grab installed versions
 ETHERS_VER=$(node -e "console.log(require('$WORK/node_modules/ethers/package.json').version)")
 VIEM_VER=$(node -e "console.log(require('$WORK/node_modules/viem/package.json').version)")
+WEB3_VER=$(node -e "console.log(require('$WORK/node_modules/web3/package.json').version)")
+OX_VER=$(node -e "console.log(require('$WORK/node_modules/ox/package.json').version)")
+TEVM_VER=$(node -e "console.log(require('$WORK/node_modules/tevm/package.json').version)")
 EETH_VER=$(node -e "console.log(require('$ROOT/package.json').version)")
 
-echo "   essential-eth@$EETH_VER  ethers@$ETHERS_VER  viem@$VIEM_VER"
+echo "   essential-eth@$EETH_VER  ethers@$ETHERS_VER  viem@$VIEM_VER  web3@$WEB3_VER  ox@$OX_VER  tevm@$TEVM_VER"
 
 ESBUILD="$WORK/node_modules/.bin/esbuild"
 
@@ -54,12 +57,33 @@ echo "export { createPublicClient, http } from 'viem';" > "$WORK/viem-provider.j
 echo "export { getContract } from 'viem';" > "$WORK/viem-contract.js"
 echo "export { formatEther, parseEther, formatGwei, parseGwei } from 'viem';" > "$WORK/viem-conversion.js"
 
+# --- web3 ---
+echo "export * from 'web3';" > "$WORK/web3-full.js"
+echo "import Web3 from 'web3'; const w = new Web3(); export { w };" > "$WORK/web3-provider.js"
+echo "import { Contract } from 'web3-eth-contract'; export { Contract };" > "$WORK/web3-contract.js"
+echo "import Web3 from 'web3'; export const { utils } = Web3;" > "$WORK/web3-conversion.js"
+
+# --- ox ---
+echo "export * from 'ox';" > "$WORK/ox-full.js"
+echo "export { RpcTransport } from 'ox';" > "$WORK/ox-provider.js"
+echo "export { Abi, AbiFunction } from 'ox';" > "$WORK/ox-contract.js"
+echo "export { Value } from 'ox';" > "$WORK/ox-conversion.js"
+
+# --- tevm ---
+echo "export * from 'tevm';" > "$WORK/tevm-full.js"
+echo "export { createMemoryClient } from 'tevm';" > "$WORK/tevm-provider.js"
+echo "export { Contract } from 'tevm/contract';" > "$WORK/tevm-contract.js"
+echo "export { formatEther, parseEther } from 'tevm/utils';" > "$WORK/tevm-conversion.js"
+
 # ─── 4. Bundle & measure ────────────────────────────────────────────────────
 measure() {
   local entry="$1" outfile="$2"
-  "$ESBUILD" "$entry" --bundle --format=esm --minify --outfile="$outfile" \
-    --platform=browser --target=es2020 2>/dev/null
-  wc -c < "$outfile" | tr -d ' '
+  if "$ESBUILD" "$entry" --bundle --format=esm --minify --outfile="$outfile" \
+    --platform=browser --target=es2020 2>/dev/null; then
+    wc -c < "$outfile" | tr -d ' '
+  else
+    echo "0"
+  fi
 }
 
 echo "→ Measuring bundle sizes..."
@@ -67,56 +91,98 @@ echo "→ Measuring bundle sizes..."
 EE_FULL=$(measure "$WORK/ee-full.js" "$WORK/out-ee-full.js")
 ETH_FULL=$(measure "$WORK/ethers-full.js" "$WORK/out-eth-full.js")
 VIEM_FULL=$(measure "$WORK/viem-full.js" "$WORK/out-viem-full.js")
+WEB3_FULL=$(measure "$WORK/web3-full.js" "$WORK/out-web3-full.js")
+OX_FULL=$(measure "$WORK/ox-full.js" "$WORK/out-ox-full.js")
+TEVM_FULL=$(measure "$WORK/tevm-full.js" "$WORK/out-tevm-full.js")
 
 EE_PROV=$(measure "$WORK/ee-provider.js" "$WORK/out-ee-prov.js")
 ETH_PROV=$(measure "$WORK/ethers-provider.js" "$WORK/out-eth-prov.js")
 VIEM_PROV=$(measure "$WORK/viem-provider.js" "$WORK/out-viem-prov.js")
+WEB3_PROV=$(measure "$WORK/web3-provider.js" "$WORK/out-web3-prov.js")
+OX_PROV=$(measure "$WORK/ox-provider.js" "$WORK/out-ox-prov.js")
+TEVM_PROV=$(measure "$WORK/tevm-provider.js" "$WORK/out-tevm-prov.js")
 
 EE_CONT=$(measure "$WORK/ee-contract.js" "$WORK/out-ee-cont.js")
 ETH_CONT=$(measure "$WORK/ethers-contract.js" "$WORK/out-eth-cont.js")
 VIEM_CONT=$(measure "$WORK/viem-contract.js" "$WORK/out-viem-cont.js")
+WEB3_CONT=$(measure "$WORK/web3-contract.js" "$WORK/out-web3-cont.js")
+OX_CONT=$(measure "$WORK/ox-contract.js" "$WORK/out-ox-cont.js")
+TEVM_CONT=$(measure "$WORK/tevm-contract.js" "$WORK/out-tevm-cont.js")
 
 EE_CONV=$(measure "$WORK/ee-conversion.js" "$WORK/out-ee-conv.js")
 ETH_CONV=$(measure "$WORK/ethers-conversion.js" "$WORK/out-eth-conv.js")
 VIEM_CONV=$(measure "$WORK/viem-conversion.js" "$WORK/out-viem-conv.js")
+WEB3_CONV=$(measure "$WORK/web3-conversion.js" "$WORK/out-web3-conv.js")
+OX_CONV=$(measure "$WORK/ox-conversion.js" "$WORK/out-ox-conv.js")
+TEVM_CONV=$(measure "$WORK/tevm-conversion.js" "$WORK/out-tevm-conv.js")
 
 # ─── 5. Format helpers ──────────────────────────────────────────────────────
 fmt_kb() {
   echo "$1" | awk '{ printf "%.1f kB", $1 / 1000 }'
 }
 
-# Format a cell: bold + trophy if smallest, plain otherwise
-# Args: bytes_this bytes_a bytes_b
+# Format a cell: bold + trophy if smallest among all values, plain otherwise
+# Args: bytes_this bytes_all...
+# A value of 0 means the build failed — show N/A
 fmt_cell() {
-  local this="$1" a="$2" b="$3"
-  local kb
+  local this="$1"; shift
+  if [ "$this" -eq 0 ]; then
+    echo "N/A"
+    return
+  fi
+  local kb min
   kb=$(fmt_kb "$this")
-  if [ "$this" -le "$a" ] && [ "$this" -le "$b" ]; then
+  min="$this"
+  for v in "$@"; do
+    if [ "$v" -gt 0 ] && [ "$v" -lt "$min" ]; then min="$v"; fi
+  done
+  if [ "$this" -le "$min" ]; then
     echo "**$kb** 🏆"
   else
     echo "$kb"
   fi
 }
 
-C_EE_FULL=$(fmt_cell "$EE_FULL" "$ETH_FULL" "$VIEM_FULL")
-C_ETH_FULL=$(fmt_cell "$ETH_FULL" "$EE_FULL" "$VIEM_FULL")
-C_VIEM_FULL=$(fmt_cell "$VIEM_FULL" "$EE_FULL" "$ETH_FULL")
+# Full library
+ALL_FULL="$EE_FULL $ETH_FULL $VIEM_FULL $WEB3_FULL $OX_FULL $TEVM_FULL"
+C_EE_FULL=$(fmt_cell "$EE_FULL" $ALL_FULL)
+C_ETH_FULL=$(fmt_cell "$ETH_FULL" $ALL_FULL)
+C_VIEM_FULL=$(fmt_cell "$VIEM_FULL" $ALL_FULL)
+C_WEB3_FULL=$(fmt_cell "$WEB3_FULL" $ALL_FULL)
+C_OX_FULL=$(fmt_cell "$OX_FULL" $ALL_FULL)
+C_TEVM_FULL=$(fmt_cell "$TEVM_FULL" $ALL_FULL)
 
-C_EE_PROV=$(fmt_cell "$EE_PROV" "$ETH_PROV" "$VIEM_PROV")
-C_ETH_PROV=$(fmt_cell "$ETH_PROV" "$EE_PROV" "$VIEM_PROV")
-C_VIEM_PROV=$(fmt_cell "$VIEM_PROV" "$EE_PROV" "$ETH_PROV")
+# Provider
+ALL_PROV="$EE_PROV $ETH_PROV $VIEM_PROV $WEB3_PROV $OX_PROV $TEVM_PROV"
+C_EE_PROV=$(fmt_cell "$EE_PROV" $ALL_PROV)
+C_ETH_PROV=$(fmt_cell "$ETH_PROV" $ALL_PROV)
+C_VIEM_PROV=$(fmt_cell "$VIEM_PROV" $ALL_PROV)
+C_WEB3_PROV=$(fmt_cell "$WEB3_PROV" $ALL_PROV)
+C_OX_PROV=$(fmt_cell "$OX_PROV" $ALL_PROV)
+C_TEVM_PROV=$(fmt_cell "$TEVM_PROV" $ALL_PROV)
 
-C_EE_CONT=$(fmt_cell "$EE_CONT" "$ETH_CONT" "$VIEM_CONT")
-C_ETH_CONT=$(fmt_cell "$ETH_CONT" "$EE_CONT" "$VIEM_CONT")
-C_VIEM_CONT=$(fmt_cell "$VIEM_CONT" "$EE_CONT" "$ETH_CONT")
+# Contract
+ALL_CONT="$EE_CONT $ETH_CONT $VIEM_CONT $WEB3_CONT $OX_CONT $TEVM_CONT"
+C_EE_CONT=$(fmt_cell "$EE_CONT" $ALL_CONT)
+C_ETH_CONT=$(fmt_cell "$ETH_CONT" $ALL_CONT)
+C_VIEM_CONT=$(fmt_cell "$VIEM_CONT" $ALL_CONT)
+C_WEB3_CONT=$(fmt_cell "$WEB3_CONT" $ALL_CONT)
+C_OX_CONT=$(fmt_cell "$OX_CONT" $ALL_CONT)
+C_TEVM_CONT=$(fmt_cell "$TEVM_CONT" $ALL_CONT)
 
-C_EE_CONV=$(fmt_cell "$EE_CONV" "$ETH_CONV" "$VIEM_CONV")
-C_ETH_CONV=$(fmt_cell "$ETH_CONV" "$EE_CONV" "$VIEM_CONV")
-C_VIEM_CONV=$(fmt_cell "$VIEM_CONV" "$EE_CONV" "$ETH_CONV")
+# Conversions
+ALL_CONV="$EE_CONV $ETH_CONV $VIEM_CONV $WEB3_CONV $OX_CONV $TEVM_CONV"
+C_EE_CONV=$(fmt_cell "$EE_CONV" $ALL_CONV)
+C_ETH_CONV=$(fmt_cell "$ETH_CONV" $ALL_CONV)
+C_VIEM_CONV=$(fmt_cell "$VIEM_CONV" $ALL_CONV)
+C_WEB3_CONV=$(fmt_cell "$WEB3_CONV" $ALL_CONV)
+C_OX_CONV=$(fmt_cell "$OX_CONV" $ALL_CONV)
+C_TEVM_CONV=$(fmt_cell "$TEVM_CONV" $ALL_CONV)
 
-# Compute ratio for full library (essential-eth vs the smaller of ethers/viem)
-SMALLER_FULL=$(echo "$ETH_FULL $VIEM_FULL" | awk '{ print ($1 < $2) ? $1 : $2 }')
-RATIO=$(echo "$SMALLER_FULL $EE_FULL" | awk '{ printf "%d", $1 / $2 }')
+# Compute ratio for full library (essential-eth vs the next-smallest competitor)
+# Filter out 0 (N/A) values before finding the smallest competitor
+NEXT_SMALLEST=$(echo "$ETH_FULL $VIEM_FULL $WEB3_FULL $OX_FULL $TEVM_FULL" | tr ' ' '\n' | awk '$1 > 0' | sort -n | head -1)
+RATIO=$(echo "$NEXT_SMALLEST $EE_FULL" | awk '{ printf "%d", $1 / $2 }')
 
 # ─── 6. Write the table to a temp file ──────────────────────────────────────
 TABLE_FILE="$WORK/table.md"
@@ -125,14 +191,14 @@ cat > "$TABLE_FILE" <<EOF
 
 Measured with esbuild. Smaller is better.
 
-| What you import                          | essential-eth@$EETH_VER | ethers@$ETHERS_VER | viem@$VIEM_VER |
-| ---------------------------------------- | :---------------------: | :----------------: | :------------: |
-| **Full library**                         | $C_EE_FULL | $C_ETH_FULL | $C_VIEM_FULL |
-| **Provider** (getBalance, getBlock, etc) | $C_EE_PROV | $C_ETH_PROV | $C_VIEM_PROV |
-| **Contract** (read-only calls)           | $C_EE_CONT | $C_ETH_CONT | $C_VIEM_CONT |
-| **Conversions** (wei, gwei, ether)       | $C_EE_CONV | $C_ETH_CONV | $C_VIEM_CONV |
+| What you import                          | essential-eth@$EETH_VER | ethers@$ETHERS_VER | viem@$VIEM_VER | web3@$WEB3_VER | ox@$OX_VER | tevm@$TEVM_VER |
+| ---------------------------------------- | :---------------------: | :----------------: | :------------: | :------------: | :--------: | :----------: |
+| **Full library**                         | $C_EE_FULL | $C_ETH_FULL | $C_VIEM_FULL | $C_WEB3_FULL | $C_OX_FULL | $C_TEVM_FULL |
+| **Provider** (getBalance, getBlock, etc) | $C_EE_PROV | $C_ETH_PROV | $C_VIEM_PROV | $C_WEB3_PROV | $C_OX_PROV | $C_TEVM_PROV |
+| **Contract** (read-only calls)           | $C_EE_CONT | $C_ETH_CONT | $C_VIEM_CONT | $C_WEB3_CONT | $C_OX_CONT | $C_TEVM_CONT |
+| **Conversions** (wei, gwei, ether)       | $C_EE_CONV | $C_ETH_CONV | $C_VIEM_CONV | $C_WEB3_CONV | $C_OX_CONV | $C_TEVM_CONV |
 
-essential-eth is **${RATIO}x smaller** than ethers and viem for full-library usage.
+essential-eth is **${RATIO}x smaller** than the nearest competitor for full-library usage.
 EOF
 
 # ─── 7. Replace in readme.md ────────────────────────────────────────────────
