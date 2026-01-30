@@ -22,15 +22,15 @@
 
 ### Bundle Size Comparison (ESM, minified — Jan 2026)
 
-Measured with esbuild. Smaller is better.
+Measured with esbuild. essential-eth@0.11.2 vs ethers@6.16.0 vs viem@2.45.1. Smaller is better.
 
-| What you import | essential-eth | ethers.js | viem |
-|-----------------|:---:|:---:|:---:|
-| **Full library** | **74.2 kB** 🏆 | 372.7 kB | 376.0 kB |
-| **Provider** (getBalance, getBlock, etc) | **64.0 kB** 🏆 | 244.5 kB | 298.5 kB |
-| **Contract** (read-only calls) | **60.6 kB** 🏆 | 81.0 kB | 304.5 kB |
+| What you import                          | essential-eth  | ethers.js |   viem   |
+| ---------------------------------------- | :------------: | :-------: | :------: |
+| **Full library**                         | **45.7 kB** 🏆 | 372.7 kB  | 376.0 kB |
+| **Provider** (getBalance, getBlock, etc) | **35.4 kB** 🏆 | 244.5 kB  | 298.5 kB |
+| **Contract** (read-only calls)           | **32.1 kB** 🏆 |  81.0 kB  | 304.5 kB |
 
-essential-eth is **5x smaller** than ethers.js and viem for full-library and provider usage.
+essential-eth is **8x smaller** than ethers.js and viem for full-library and provider usage.
 
 ---
 
@@ -64,6 +64,7 @@ essential-eth is **5x smaller** than ethers.js and viem for full-library and pro
 <summary>Click to expand</summary>
 
 - [Why you should replace Ethers.js and web3](#why-you-should-replace-ethersjs-and-web3)
+  - [Bundle Size Comparison (ESM, minified — Jan 2026)](#bundle-size-comparison-esm-minified--jan-2026)
 - [Install](#install)
 - [🛠 Utils](#-utils)
   - [`arrayify`](#arrayify)

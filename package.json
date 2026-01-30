@@ -72,6 +72,7 @@
     "zod": "^3.21.4"
   },
   "dependencies": {
+    "@noble/hashes": "^2.0.1",
     "@noble/secp256k1": "^1.5.5",
     "@types/big.js": "^6.1.6",
     "big.js": "^6.2.1",
