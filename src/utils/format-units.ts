@@ -29,7 +29,7 @@ import { formatFixed, toBigInt } from './fixed-point';
  */
 export function formatUnits(
   value: string | number | bigint,
-  decimals: number = 18,
+  decimals = 18,
 ): string {
   return formatFixed(toBigInt(value), decimals);
 }
