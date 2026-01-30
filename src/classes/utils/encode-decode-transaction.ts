@@ -35,7 +35,6 @@ function hexToUtf8(hex: any) {
 
 /**
  * Expands an integer type to use a default of 256 bits. Used for consistency; not required in Solidity
- *
  * @see https://ethereum.stackexchange.com/questions/43241/why-write-uint256-instead-of-uint-if-theyre-the-same-thing
  * @param type the type to explicitly define as 256 bits
  * @returns the integer type expanded to explicitly be 256 bits when possible
@@ -192,15 +191,18 @@ export function decodeRPCResponse(
       case 'address':
         /* address types have 24 leading zeroes to remove */
         return toChecksumAddress(`0x${output.slice(24)}`);
-      case 'uint256':
-      case 'uint120':
-        return BigInt(hexToDecimal(`0x${output}`));
       case 'bytes32':
         return `0x${output}`;
       case 'uint8':
         return Number(hexToDecimal(`0x${output}`));
 
       default:
+        if (outputType.startsWith('uint')) {
+          return BigInt(hexToDecimal(`0x${output}`));
+        }
+        if (outputType.startsWith('int')) {
+          return BigInt(hexToDecimal(`0x${output}`));
+        }
         throw new Error(
           `essential-eth does not yet support "${outputType}" outputs. Make a PR today!"`,
         );
