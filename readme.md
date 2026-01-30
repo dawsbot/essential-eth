@@ -20,6 +20,22 @@
 <img src="https://user-images.githubusercontent.com/3408480/133322814-f3d18424-4ba8-4a37-8cbc-c5e6828354a3.png" title="Import size comparison" width="900"/>
 </p>
 
+<!-- BUNDLE-SIZE-TABLE:START -->
+
+### Bundle Size Comparison (ESM, minified)
+
+Measured with esbuild. Smaller is better.
+
+| What you import                          | essential-eth@0.11.2 | ethers@6.16.0 | viem@2.45.1 |
+| ---------------------------------------- | :------------------: | :-----------: | :---------: |
+| **Full library**                         |    **47.0 kB** 🏆    |   394.0 kB    |  384.6 kB   |
+| **Provider** (getBalance, getBlock, etc) |    **37.4 kB** 🏆    |   260.0 kB    |  305.7 kB   |
+| **Contract** (read-only calls)           |    **33.2 kB** 🏆    |    86.6 kB    |  179.8 kB   |
+
+essential-eth is **8x smaller** than ethers and viem for full-library usage.
+
+<!-- BUNDLE-SIZE-TABLE:END -->
+
 ---
 
 [![🧪 tests](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml/badge.svg)](https://github.com/Earnifi/essential-eth/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/Earnifi/essential-eth/branch/master/graph/badge.svg?token=E44EK6RWTZ)](https://codecov.io/gh/Earnifi/essential-eth) ![](https://badgen.net/bundlephobia/minzip/essential-eth) ![](https://badgen.net/bundlephobia/tree-shaking/essential-eth) ![](https://img.shields.io/npm/v/essential-eth)
@@ -52,6 +68,7 @@
 <summary>Click to expand</summary>
 
 - [Why you should replace Ethers.js and web3](#why-you-should-replace-ethersjs-and-web3)
+  - [Bundle Size Comparison (ESM, minified)](#bundle-size-comparison-esm-minified)
 - [Install](#install)
 - [🛠 Utils](#-utils)
   - [`arrayify`](#arrayify)

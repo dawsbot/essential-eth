@@ -1,4 +1,5 @@
-import { Keccak } from 'sha3';
+import { keccak_256 } from '@noble/hashes/sha3.js';
+import { bytesToHex } from '@noble/hashes/utils.js';
 import { tinyBig } from '../../shared/tiny-big/tiny-big';
 import type {
   ContractTypes,
@@ -62,14 +63,15 @@ function expandType(type: ContractTypes) {
  * @example
  */
 export function encodeData(jsonABIArgument: JSONABIArgument, args: any[]) {
-  const hash = new Keccak(256);
   /* first 4 bytes will create the data parameter */
   const functionString = `${jsonABIArgument.name}(${jsonABIArgument.inputs.map(
     (input) => expandType(input.type),
   )})`;
 
   // encoding learnt from https://ethereum.stackexchange.com/questions/3514/how-to-call-a-contract-method-using-the-eth-call-json-rpc-api
-  const functionHash = hash.update(functionString).digest('hex');
+  const functionHash = bytesToHex(
+    keccak_256(new TextEncoder().encode(functionString)),
+  );
   // no arrays
   const jsonABIInputsLength = jsonABIArgument.inputs.length;
   let shouldValidateInputLength = true;

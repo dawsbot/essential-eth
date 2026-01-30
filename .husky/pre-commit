@@ -1,6 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+bash scripts/update-bundle-sizes.sh
 npm run build:readme
 npx lint-staged --concurrent false
 git add readme.md
