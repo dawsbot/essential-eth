@@ -5,7 +5,7 @@ import {
   buildRPCPostBody,
 } from '../../../classes/utils/fetchers';
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
-import { JsonRpcProvider, tinyBig } from '../../../index';
+import { JsonRpcProvider } from '../../../index';
 import { mockOf } from '../mock-of';
 import { rpcUrls } from '../rpc-urls';
 
@@ -63,9 +63,9 @@ const mockRpcBlockResponse = JSON.stringify({
 });
 const mockReceipt = {
   ...mockReceiptResponse,
-  cumulativeGasUsed: tinyBig(mockReceiptResponse.cumulativeGasUsed),
-  effectiveGasPrice: tinyBig(mockReceiptResponse.effectiveGasPrice),
-  gasUsed: tinyBig(mockReceiptResponse.gasUsed),
+  cumulativeGasUsed: BigInt(mockReceiptResponse.cumulativeGasUsed),
+  effectiveGasPrice: BigInt(mockReceiptResponse.effectiveGasPrice),
+  gasUsed: BigInt(mockReceiptResponse.gasUsed),
   status: Number(hexToDecimal(mockReceiptResponse.status)),
   logs: mockReceiptResponse.logs.map((log) => cleanLog(log, true)),
   byzantium: true,
@@ -100,8 +100,8 @@ describe('provider.getTransactionReceipt', () => {
       ),
     );
 
-    expect(JSON.stringify(transactionReceipt)).toBe(
-      JSON.stringify(mockReceipt),
+    expect(JSON.stringify(transactionReceipt, (_, v) => typeof v === "bigint" ? v.toString() : v)).toBe(
+      JSON.stringify(mockReceipt, (_, v) => typeof v === "bigint" ? v.toString() : v),
     );
   });
 });

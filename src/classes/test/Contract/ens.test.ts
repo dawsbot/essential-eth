@@ -23,6 +23,6 @@ const labelHash =
 describe('eNS Base Registrar Expiration', () => {
   it('should detect expiration properly', async () => {
     const expiration = await contract.nameExpires(labelHash);
-    expect(expiration.toNumber()).toBeGreaterThan(2010913632);
+    expect(Number(expiration)).toBeGreaterThan(2010913632);
   });
 });

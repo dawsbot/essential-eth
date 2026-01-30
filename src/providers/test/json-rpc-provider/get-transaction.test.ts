@@ -3,7 +3,7 @@ import {
   buildFetchInit,
   buildRPCPostBody,
 } from '../../../classes/utils/fetchers';
-import { JsonRpcProvider, tinyBig } from '../../../index';
+import { JsonRpcProvider } from '../../../index';
 import { mockOf } from '../mock-of';
 import { rpcUrls } from '../rpc-urls';
 
@@ -51,12 +51,12 @@ const mockRpcBlockResponse = JSON.stringify({
 
 const mockTransaction = {
   ...mockTransactionResponse,
-  value: tinyBig(mockTransactionResponse.value),
-  nonce: tinyBig(mockTransactionResponse.nonce),
-  maxPriorityFeePerGas: tinyBig(mockTransactionResponse.maxPriorityFeePerGas),
-  gasPrice: tinyBig(mockTransactionResponse.gasPrice),
-  maxFeePerGas: tinyBig(mockTransactionResponse.maxFeePerGas),
-  gas: tinyBig(mockTransactionResponse.gas),
+  value: BigInt(mockTransactionResponse.value),
+  nonce: BigInt(mockTransactionResponse.nonce),
+  maxPriorityFeePerGas: BigInt(mockTransactionResponse.maxPriorityFeePerGas),
+  gasPrice: BigInt(mockTransactionResponse.gasPrice),
+  maxFeePerGas: BigInt(mockTransactionResponse.maxFeePerGas),
+  gas: BigInt(mockTransactionResponse.gas),
 };
 
 describe('provider.getTransaction', () => {
@@ -87,6 +87,6 @@ describe('provider.getTransaction', () => {
       ),
     );
 
-    expect(JSON.stringify(transaction)).toBe(JSON.stringify(mockTransaction));
+    expect(JSON.stringify(transaction, (_, v) => typeof v === "bigint" ? v.toString() : v)).toBe(JSON.stringify(mockTransaction, (_, v) => typeof v === "bigint" ? v.toString() : v));
   });
 });
