@@ -6,6 +6,8 @@ import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { prepareTransaction } from '../classes/utils/prepare-transaction';
 import { logger } from '../logger/logger';
+import { namehash } from '../utils/namehash';
+import { toChecksumAddress } from '../utils/to-checksum-address';
 import type { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import type { FeeData } from '../types/FeeData.types';
 import type { Filter, FilterByBlockHash } from '../types/Filter.types';
@@ -599,5 +601,85 @@ export abstract class BaseProvider {
       buildRPCPostBody('eth_call', [rpcTransaction, blockTag]),
     )) as string;
     return transactionRes;
+  }
+
+  /**
+   * Resolves an ENS name to an Ethereum address.
+   *
+   * Performs the full ENS resolution process:
+   * 1. Computes the namehash of the ENS name
+   * 2. Queries the ENS Registry for the resolver contract
+   * 3. Queries the resolver for the address
+   *
+   * * [Identical](/docs/api#isd) to [`ethers.provider.resolveName`](https://docs.ethers.io/v5/api/providers/provider/#Provider-resolveName) in ethers.js
+   *
+   * @param name the ENS name to resolve (e.g. 'vitalik.eth')
+   * @returns the Ethereum address the name resolves to, or null if not found
+   * @example
+   * ```javascript
+   * await provider.resolveName('vitalik.eth');
+   * // '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
+   * ```
+   * @example
+   * ```javascript
+   * await provider.resolveName('thisshouldnotexist12345.eth');
+   * // null
+   * ```
+   */
+  public async resolveName(name: string): Promise<string | null> {
+    const ENS_REGISTRY = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
+    const RESOLVER_SELECTOR = '0x0178b8bf'; // resolver(bytes32)
+    const ADDR_SELECTOR = '0x3b3b57de'; // addr(bytes32)
+    const ZERO_ADDRESS =
+      '0x0000000000000000000000000000000000000000000000000000000000000000';
+
+    const node = namehash(name);
+    const nodeWithoutPrefix = node.slice(2);
+
+    // Step 1: Get the resolver address from the ENS Registry
+    const resolverData = RESOLVER_SELECTOR + nodeWithoutPrefix;
+    const resolverResult = await this.call({
+      to: ENS_REGISTRY,
+      data: resolverData,
+    });
+
+    // If no resolver is set, return null
+    if (!resolverResult || resolverResult === ZERO_ADDRESS) {
+      return null;
+    }
+
+    // Extract resolver address from the 32-byte response (last 20 bytes = 40 hex chars)
+    const resolverAddress = '0x' + resolverResult.slice(26);
+
+    // Check if resolver is zero address
+    if (
+      resolverAddress === '0x0000000000000000000000000000000000000000' ||
+      resolverAddress ===
+        '0x' + '0'.repeat(resolverResult.length - 2) // all zeros
+    ) {
+      return null;
+    }
+
+    // Step 2: Get the address from the resolver
+    const addrData = ADDR_SELECTOR + nodeWithoutPrefix;
+    const addrResult = await this.call({
+      to: resolverAddress,
+      data: addrData,
+    });
+
+    // If no address is set, return null
+    if (!addrResult || addrResult === ZERO_ADDRESS) {
+      return null;
+    }
+
+    // Extract address from the 32-byte response (last 20 bytes = 40 hex chars)
+    const rawAddress = '0x' + addrResult.slice(26);
+
+    // Check if address is zero
+    if (rawAddress === '0x0000000000000000000000000000000000000000') {
+      return null;
+    }
+
+    return toChecksumAddress(rawAddress);
   }
 }

@@ -98,6 +98,7 @@ essential-eth is **9x smaller** than ethers and viem for full-library usage.
   - [`isHexString`](#ishexstring)
   - [`jsonRpcProvider`](#jsonrpcprovider)
   - [`keccak256`](#keccak256)
+  - [`namehash`](#namehash)
   - [`pack`](#pack)
   - [`parseUnits`](#parseunits)
   - [`solidityKeccak256`](#soliditykeccak256)
@@ -122,6 +123,7 @@ essential-eth is **9x smaller** than ethers and viem for full-library usage.
   - [`getTransaction`](#gettransaction)
   - [`getTransactionCount`](#gettransactioncount)
   - [`getTransactionReceipt`](#gettransactionreceipt)
+  - [`resolveName`](#resolvename)
 - [Contract](#contract)
   - [`contractFunctionName(args)`](#contractfunctionnameargs)
 - [More Info](#more-info)
@@ -908,6 +910,36 @@ keccak256('essential-eth');
 
 keccak256('0x123');
 // '0x5fa2358263196dbbf23d1ca7a509451f7a2f64c15837bfbb81298b1e3e24e4fa'
+```
+
+  </details>
+
+  <br/>
+
+#### [`namehash`](https://eeth.dev/docs/api/modules#namehash)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+namehash+}])
+
+```typescript
+namehash(name: string): string
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { namehash } from 'essential-eth';
+```
+
+```javascript
+namehash('');
+// '0x0000000000000000000000000000000000000000000000000000000000000000'
+
+namehash('eth');
+// '0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae'
+
+namehash('vitalik.eth');
+// '0xee6c4522aab0003e8d14cd40a6af439055fd2577951148c14b6cea9a53475835'
 ```
 
   </details>
@@ -1707,6 +1739,39 @@ await provider.getTransactionReceipt(
 //   byzantium: true,
 //   confirmations: 298171,
 // }
+```
+
+  </details>
+
+  <br/>
+
+#### [`resolveName`](https://eeth.dev/docs/api/classes/JsonRpcProvider#resolvename)
+
+```typescript
+provider.resolveName(name: string): Promise<string | null>
+```
+
+Resolves an ENS name to an Ethereum address. Returns `null` if the name has no resolver or no address set.
+
+Similar to ["resolveName" in ethers.js](https://docs.ethers.io/v5/api/providers/provider/#Provider-ResolveName)
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { JsonRpcProvider } from 'essential-eth';
+const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
+```
+
+```javascript
+await provider.resolveName('vitalik.eth');
+// '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
+
+await provider.resolveName('daws.eth');
+// '0x5C389...' (resolved address)
+
+await provider.resolveName('thisdoesnotexist12345.eth');
+// null
 ```
 
   </details>

@@ -63,6 +63,7 @@ export { hashMessage } from './utils/hash-message';
 export { id } from './utils/id';
 export { isAddress } from './utils/is-address';
 export { keccak256 } from './utils/keccak256';
+export { namehash } from './utils/namehash';
 export { pack, solidityKeccak256 } from './utils/solidity-keccak256';
 export { parseUnits } from './utils/parse-units';
 export { splitSignature } from './utils/split-signature';
