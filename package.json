@@ -64,7 +64,7 @@
     "bn.js": "^5.2.1",
     "dotenv": "^16.0.0",
     "eslint": "^8.16.0",
-    "eslint-plugin-jsdoc": "^38.0.2",
+    "eslint-plugin-jsdoc": "^50.8.0",
     "eslint-plugin-vitest": "^0.1.5",
     "husky": "^7.0.4",
     "lint-staged": "^13.2.1",
