@@ -1,4 +1,3 @@
-import type { TinyBig } from './../shared/tiny-big/tiny-big';
 import type {
   BlockTransactionResponse,
   RPCTransaction,
@@ -9,15 +8,15 @@ type Modify<T, R> = Omit<T, keyof R> & R;
 export type BlockResponse = Modify<
   RPCBlock,
   {
-    baseFeePerGas: TinyBig;
-    difficulty: TinyBig;
-    gasLimit: TinyBig;
-    gasUsed: TinyBig;
-    nonce: TinyBig;
+    baseFeePerGas: bigint;
+    difficulty: bigint;
+    gasLimit: bigint;
+    gasUsed: bigint;
+    nonce: bigint;
     number: number;
-    size: TinyBig;
-    timestamp: TinyBig;
-    totalDifficulty: TinyBig;
+    size: bigint;
+    timestamp: bigint;
+    totalDifficulty: bigint;
     transactions: Array<string | BlockTransactionResponse>;
   }
 >;

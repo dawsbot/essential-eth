@@ -6,8 +6,6 @@ import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { prepareTransaction } from '../classes/utils/prepare-transaction';
 import { logger } from '../logger/logger';
-import type { TinyBig } from '../shared/tiny-big/tiny-big';
-import { tinyBig } from '../shared/tiny-big/tiny-big';
 import type { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import type { FeeData } from '../types/FeeData.types';
 import type { Filter, FilterByBlockHash } from '../types/Filter.types';
@@ -45,7 +43,7 @@ import chainsInfo from './utils/chains-info';
  */
 function prepBlockTag(blockTag: BlockTag): string {
   return typeof blockTag === 'number'
-    ? tinyBig(blockTag).toHexString()
+    ? '0x' + blockTag.toString(16)
     : blockTag;
 }
 
@@ -146,20 +144,20 @@ export abstract class BaseProvider {
    * //   blockNumber: 14578286,
    * //   chainId: 1,
    * //   from: "0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4",
-   * //   gas: { TinyBig: 112163 },
-   * //   gasPrice: { TinyBig: 48592426858 },
+   * //   gas: 112163n,
+   * //   gasPrice: 48592426858n,
    * //   hash: "0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789",
    * //   input: "0x83259f17000000000000000000000000000000000000000000...",
-   * //   maxFeePerGas: { TinyBig: 67681261618 },
-   * //   maxPriorityFeePerGas: { TinyBig: 1500000000 },
-   * //   nonce: { TinyBig: 129 },
+   * //   maxFeePerGas: 67681261618n,
+   * //   maxPriorityFeePerGas: 1500000000n,
+   * //   nonce: 129n,
    * //   r: "0x59a7c15b12c18cd68d6c440963d959bff3e73831ffc938e75ecad07f7ee43fbc",
    * //   s: "0x1ebaf05f0d9273b16c2a7748b150a79d22533a8cd74552611cbe620fee3dcf1c",
    * //   to: "0x39B72d136ba3e4ceF35F48CD09587ffaB754DD8B",
    * //   transactionIndex: 29,
    * //   type: 2,
    * //   v: 0,
-   * //   value: { TinyBig: 0 },
+   * //   value: 0n,
    * //   confirmations: 298140,
    * // }
    * ```
@@ -195,10 +193,10 @@ export abstract class BaseProvider {
    * //   blockHash: "0x876810a013dbcd140f6fd6048c1dc33abbb901f1f96b394c2fa63aef3cb40b5d",
    * //   blockNumber: 14578286,
    * //   contractAddress: null,
-   * //   cumulativeGasUsed: { TinyBig: 3067973 },
-   * //   effectiveGasPrice: { TinyBig: 48592426858 },
+   * //   cumulativeGasUsed: 3067973n,
+   * //   effectiveGasPrice: 48592426858n,
    * //   from: "0xdfD9dE5f6FA60BD70636c0900752E93a6144AEd4",
-   * //   gasUsed: { TinyBig: 112163 },
+   * //   gasUsed: 112163n,
    * //   logs: [
    * //     {
    * //       address: "0x0eDF9bc41Bbc1354c70e2107F80C42caE7FBBcA8",
@@ -304,11 +302,11 @@ export abstract class BaseProvider {
    * ```javascript
    * await provider.getBlock(14879862);
    * // {
-   * //   baseFeePerGas: { TinyBig: 39095728776 },
-   * //   difficulty: { TinyBig: 14321294455359973 },
+   * //   baseFeePerGas: 39095728776n,
+   * //   difficulty: 14321294455359973n,
    * //   extraData: "0x486976656f6e2073672d6865617679",
-   * //   gasLimit: { TinyBig: 29970620 },
-   * //   gasUsed: { TinyBig: 20951384 },
+   * //   gasLimit: 29970620n,
+   * //   gasUsed: 20951384n,
    * //   hash: "0x563b458ec3c4f87393b53f70bdddc0058497109b784d8cacd9247ddf267049ab",
    * //   logsBloom:
    * //     "0x9f38794fe80b521794df6efad8b0d2e9582f9ec3959a3f9384bda0fa371cfa5fac5af9d515c6bdf1ec325f5b5f7ebdd6a3a9fae17b38a86d4dc4b0971afc68d8086640550f4c156e6f923f4a1bb94fb0bed6cdcc474c5c64bfeff7a4a906f72b9a7b94004ee58efc53d63ac66961acd3a431b2d896cc9fd75f6072960bced45f770587caf130f57504decfcb63c6ca8fbc5bdbd749edd5a99a7375d2b81872289adb775fb3c928259f4be39c6d3f4d5b6217822979bb88c1f1fb62429b1b6d41cf4e3f77f9e1db3f5723108f1e5b1255dd734ad8cdb11e7ea22487c788e67c83777b6f395e504ca59c64f52245ee6de3804cf809e5caa4f0ea6a9aa9eb6ed801",
@@ -319,10 +317,10 @@ export abstract class BaseProvider {
    * //   parentHash: "0x95986ae14a71face8d9a6a379edd875b2e8bc73e4de0d9d460e7752bddb0f579",
    * //   receiptsRoot: "0x8e6ba2fd9bee602b653dae6e3132f16538c2c5df24f1df8c000392053f73defa",
    * //   sha3Uncles: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
-   * //   size: { TinyBig: 134483 },
+   * //   size: 134483n,
    * //   stateRoot: "0xbf2bb67bd1c741f3d00904b8451d7c2cf4e3a2726f5a5884792ede2074747b85",
-   * //   timestamp: { TinyBig: 1654016186 },
-   * //   totalDifficulty: { TinyBig: 50478104614257705213748 },
+   * //   timestamp: 1654016186n,
+   * //   totalDifficulty: 50478104614257705213748n,
    * //   transactions: [
    * //     "0xb3326a9149809603a2c28545e50e4f7d16e194bf5ee9764e0544603854c4a8d2",
    * //     "0x8b42095f8d335404a4896b2817b8e5e3d86a5a87cb434a8eec295d5280a7f48e",
@@ -360,7 +358,7 @@ export abstract class BaseProvider {
    * Gives an estimate of the current gas price in wei.
    *
    * * [Similar](/docs/api#isd) to [`ethers.provider.getGasPrice`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getGasPrice) in ethers.js, does not have a parameter specifying what unit you'd like to return. See also [`weiToEther`](/docs/api/modules#weitoether) and [`etherToGwei`](/docs/api/modules#ethertogwei)
-   * * [Identical](/docs/api#isd) to [`web3.eth.getGasPrice`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getgasprice) in web3.js, returns a number (TinyBig) instead of a string
+   * * [Identical](/docs/api#isd) to [`web3.eth.getGasPrice`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getgasprice) in web3.js, returns a number (bigint) instead of a string
    *
    * @returns an estimate of the current gas price in wei
    * @example
@@ -369,18 +367,18 @@ export abstract class BaseProvider {
    * // 52493941856
    * ```
    */
-  public async getGasPrice(): Promise<TinyBig> {
+  public async getGasPrice(): Promise<bigint> {
     const hexGasPrice = (await this.post(
       buildRPCPostBody('eth_gasPrice', []),
     )) as string;
-    return tinyBig(hexToDecimal(hexGasPrice));
+    return BigInt(hexToDecimal(hexGasPrice));
   }
 
   /**
    * Returns the balance of the account in wei.
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getBalance`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBalance) in ethers.js
-   * * [Identical](/docs/api#isd) to [`web3.eth.getBalance`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getbalance) in web3.js, returns a number (TinyBig) instead of a string
+   * * [Identical](/docs/api#isd) to [`web3.eth.getBalance`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getbalance) in web3.js, returns a number (bigint) instead of a string
    *
    * @param address the address to check the balance of
    * @param blockTag the block to check the specified address' balance on
@@ -394,12 +392,12 @@ export abstract class BaseProvider {
   public async getBalance(
     address: string,
     blockTag: BlockTag = 'latest',
-  ): Promise<TinyBig> {
+  ): Promise<bigint> {
     blockTag = prepBlockTag(blockTag);
     const hexBalance = (await this.post(
       buildRPCPostBody('eth_getBalance', [address, blockTag]),
     )) as string;
-    return tinyBig(hexToDecimal(hexBalance));
+    return BigInt(hexToDecimal(hexBalance));
   }
 
   /**
@@ -445,15 +443,15 @@ export abstract class BaseProvider {
    *   data: "0xd0e30db0",
    *   value: etherToWei('1.0').toHexString(),
    * });
-   * // { TinyBig: "27938" }
+   * // 27938n
    * ```
    */
-  public async estimateGas(transaction: TransactionRequest): Promise<TinyBig> {
+  public async estimateGas(transaction: TransactionRequest): Promise<bigint> {
     const rpcTransaction = prepareTransaction(transaction);
     const gasUsed = (await this.post(
       buildRPCPostBody('eth_estimateGas', [rpcTransaction]),
     )) as string;
-    return tinyBig(hexToDecimal(gasUsed));
+    return BigInt(hexToDecimal(gasUsed));
   }
 
   /**
@@ -468,10 +466,10 @@ export abstract class BaseProvider {
    * ```javascript
    * await provider.getFeeData();
    * // {
-   * //   gasPrice: { TinyBig: "14184772639" },
-   * //   lastBaseFeePerGas: { TinyBig: "14038523098" },
-   * //   maxFeePerGas: { TinyBig: "29577046196" },
-   * //   maxPriorityFeePerGas: { TinyBig: "1500000000" }
+   * //   gasPrice: 14184772639n,
+   * //   lastBaseFeePerGas: 14038523098n,
+   * //   maxFeePerGas: 29577046196n,
+   * //   maxPriorityFeePerGas: 1500000000n
    * // }
    * ```
    */
@@ -490,10 +488,8 @@ export abstract class BaseProvider {
       // using the formula "check if the base fee is correct".
       // See: https://eips.ethereum.org/EIPS/eip-1559
       lastBaseFeePerGas = block.baseFeePerGas;
-      maxPriorityFeePerGas = tinyBig('1500000000');
-      maxFeePerGas = tinyBig(
-        block.baseFeePerGas.mul(2).add(maxPriorityFeePerGas),
-      );
+      maxPriorityFeePerGas = BigInt('1500000000');
+      maxFeePerGas = block.baseFeePerGas * 2n + maxPriorityFeePerGas;
     }
 
     return { lastBaseFeePerGas, maxFeePerGas, maxPriorityFeePerGas, gasPrice };

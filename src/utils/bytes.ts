@@ -57,7 +57,7 @@ export interface Signature {
  * @returns whether or not the value is Hexable
  * @example
  * ```javascript
- * const val = tinyBig(203);
+ * const val = { toHexString: () => '0xcb' };
  * isHexable(val);
  * // true
  * ```
@@ -182,7 +182,7 @@ export function isBytes(value: any): value is Bytes {
  * ```
  */
 export function arrayify(
-  value: BytesLike | Hexable | number,
+  value: BytesLike | Hexable | number | bigint,
   options?: DataOptions,
 ): Uint8Array {
   if (!options) {
@@ -202,6 +202,16 @@ export function arrayify(
     }
 
     return new Uint8Array(result);
+  }
+
+  if (typeof value === 'bigint') {
+    const hex = (value as bigint).toString(16).padStart(2, '0');
+    const padded = hex.length % 2 ? '0' + hex : hex;
+    const result = new Uint8Array(padded.length / 2);
+    for (let i = 0; i < result.length; i++) {
+      result[i] = parseInt(padded.substring(i * 2, i * 2 + 2), 16);
+    }
+    return result;
   }
 
   if (

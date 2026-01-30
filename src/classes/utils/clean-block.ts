@@ -1,4 +1,3 @@
-import { tinyBig } from '../../shared/tiny-big/tiny-big';
 import type { BlockResponse, RPCBlock } from '../../types/Block.types';
 import type { RPCTransaction } from '../../types/Transaction.types';
 import { toChecksumAddress } from '../../utils/to-checksum-address';
@@ -140,7 +139,7 @@ export function cleanBlock(
       case 'size':
       case 'timestamp':
       case 'baseFeePerGas':
-        cleanedBlock[key] = tinyBig(hexToDecimal(block[key]));
+        cleanedBlock[key] = BigInt(hexToDecimal(block[key]));
         break;
       case 'number':
         cleanedBlock[key] = Number(hexToDecimal(block[key]));

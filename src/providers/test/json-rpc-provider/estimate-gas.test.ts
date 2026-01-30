@@ -24,7 +24,7 @@ const dataToValue = {
   to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
   // `function deposit() payable`
   data: '0xd0e30db0',
-  value: etherToWei(0.001).toNumber(),
+  value: etherToWei("0.001"),
 };
 
 async function testEstimateGas(transaction: TransactionRequest) {

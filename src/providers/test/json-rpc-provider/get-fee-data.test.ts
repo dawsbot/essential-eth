@@ -3,7 +3,6 @@ import {
   buildFetchInit,
   buildRPCPostBody,
 } from '../../../classes/utils/fetchers';
-import type { TinyBig } from '../../../shared/tiny-big/tiny-big';
 import { JsonRpcProvider } from '../../JsonRpcProvider';
 import { mockOf } from '../mock-of';
 import { rpcUrls } from './../rpc-urls';
@@ -38,19 +37,14 @@ describe('provider.getFeeData', () => {
     } as Response);
     const spy = vi.spyOn(unfetch, 'default');
 
-    const feeData = (await provider.getFeeData()) as {
-      gasPrice: TinyBig;
-      lastBaseFeePerGas: TinyBig;
-      maxFeePerGas: TinyBig;
-      maxPriorityFeePerGas: TinyBig;
-    };
+    const feeData = await provider.getFeeData();
     expect(feeData.gasPrice.toString()).toBe('10');
     // lastBaseFeePerGas should be equal to the mocked baseFeePerGas value
-    expect(feeData.lastBaseFeePerGas.toString()).toBe('10');
+    expect(feeData.lastBaseFeePerGas!.toString()).toBe('10');
     // maxFeePerGas is calculated as (baseFeePerGas * 2) + maxPriorityFeePerGas, (10 * 2) + 1500000000 = 1500000020
-    expect(feeData.maxFeePerGas.toString()).toBe('1500000020');
+    expect(feeData.maxFeePerGas!.toString()).toBe('1500000020');
     // maxPriorityFeePerGas is a constant value (1500000000) in the getFeeData function
-    expect(feeData.maxPriorityFeePerGas.toString()).toBe('1500000000');
+    expect(feeData.maxPriorityFeePerGas!.toString()).toBe('1500000000');
     expect(spy).toHaveBeenCalledWith(
       rpcUrl,
       buildFetchInit(

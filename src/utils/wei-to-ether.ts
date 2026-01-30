@@ -1,7 +1,5 @@
-import type Big from 'big.js';
-import type { TinyBig } from '../shared/tiny-big/tiny-big';
-import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { validateType } from '../shared/validate-type';
+import { formatFixed, toBigInt } from './fixed-point';
 
 /**
  * Convert from Wei to Ether
@@ -11,35 +9,18 @@ import { validateType } from '../shared/validate-type';
  * Similar to ["fromWei" in web3.js](https://web3js.readthedocs.io/en/v1.7.1/web3-utils.html#fromwei)
  *
  * @param weiQuantity the amount of wei to convert to ether
- * @returns a number of ether equivalent to the specified wei
+ * @returns a string decimal representation of ether equivalent to the specified wei
  * @example
  * ```javascript
- * weiToEther('1000000000000000000000').toString()
+ * weiToEther('1000000000000000000000')
  * // '1000'
- * weiToEther(1000000000000000000000).toString()
+ * weiToEther(1000000000000000000000)
  * // '1000'
- * ```
- * @example
- * ```javascript
- * weiToEther('1000000000000000000000').toNumber()
- * // 1000
- * weiToEther(1000000000000000000000).toNumber()
- * // 1000
  * ```
  */
 export function weiToEther(
-  weiQuantity: string | number | TinyBig | Big,
-): TinyBig {
-  validateType(weiQuantity, ['string', 'number', 'object']);
-  // eslint-disable-next-line no-useless-catch
-  try {
-    let _weiQuantity = weiQuantity;
-    if (typeof weiQuantity === 'string' && weiQuantity.slice(0, 2) === '0x') {
-      _weiQuantity = BigInt(weiQuantity).toString();
-    }
-    const result = tinyBig(_weiQuantity).div('1000000000000000000');
-    return tinyBig(result);
-  } catch (error) {
-    throw error;
-  }
+  weiQuantity: string | number | bigint,
+): string {
+  validateType(weiQuantity, ['string', 'number', 'bigint']);
+  return formatFixed(toBigInt(weiQuantity), 18);
 }

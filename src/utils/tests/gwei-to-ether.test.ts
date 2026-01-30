@@ -1,17 +1,16 @@
-import Big from 'big.js';
-import { gweiToEther, tinyBig } from '../../index';
+import { gweiToEther } from '../../index';
 
 describe('gweiToEther', () => {
   it('happy path', () => {
-    expect(gweiToEther('100000000000.0').toString()).toBe('100');
-    expect(gweiToEther(100000000000.0).toString()).toBe('100');
-    expect(gweiToEther('1000000000000.0').toNumber()).toBe(1000);
-    expect(gweiToEther(1000000000000.0).toNumber()).toBe(1000);
+    expect(gweiToEther('100000000000')).toBe('100');
+    expect(gweiToEther(100000000000)).toBe('100');
+    expect(gweiToEther('1000000000000')).toBe('1000');
+    expect(gweiToEther(1000000000000)).toBe('1000');
+    expect(gweiToEther(1000000000000n)).toBe('1000');
+  });
 
-    expect(gweiToEther(tinyBig('1000000000000.0')).toNumber()).toBe(1000);
-    expect(gweiToEther(tinyBig(1000000000000.0)).toNumber()).toBe(1000);
-    expect(gweiToEther(Big('1000000000000.0')).toNumber()).toBe(1000);
-    expect(gweiToEther(Big(1000000000000.0)).toNumber()).toBe(1000);
+  it('returns string', () => {
+    expect(typeof gweiToEther('1')).toBe('string');
   });
 
   it('wrong types', () => {

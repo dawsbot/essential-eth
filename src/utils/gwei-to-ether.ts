@@ -1,7 +1,5 @@
-import type Big from 'big.js';
-import { tinyBig } from '../shared/tiny-big/tiny-big';
 import { validateType } from '../shared/validate-type';
-import type { TinyBig } from './../shared/tiny-big/tiny-big';
+import { formatFixed, toBigInt } from './fixed-point';
 
 /**
  * Convert from Gwei to Ether
@@ -11,26 +9,18 @@ import type { TinyBig } from './../shared/tiny-big/tiny-big';
  * No direct equivalent in web3; requires multiple functions to achieve.
  *
  * @param gweiQuantity the amount of gwei to convert to ether
- * @returns a number of ether equivalent to the specified gwei
+ * @returns a string decimal representation of ether equivalent to the specified gwei
  * @example
  * ```javascript
- * gweiToEther('1000000000000').toString()
+ * gweiToEther('1000000000000')
  * // '1000'
- * gweiToEther(1000000000000).toString()
+ * gweiToEther(1000000000000)
  * // '1000'
- * ```
- * @example
- * ```javascript
- * gweiToEther('1000000000000').toNumber()
- * // 1000
- * gweiToEther(1000000000000).toNumber()
- * // 1000
  * ```
  */
 export function gweiToEther(
-  gweiQuantity: string | number | TinyBig | Big,
-): TinyBig {
-  validateType(gweiQuantity, ['string', 'number', 'object']);
-  const result = tinyBig(gweiQuantity).div('1000000000');
-  return tinyBig(result);
+  gweiQuantity: string | number | bigint,
+): string {
+  validateType(gweiQuantity, ['string', 'number', 'bigint']);
+  return formatFixed(toBigInt(gweiQuantity), 9);
 }

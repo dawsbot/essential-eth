@@ -1,5 +1,5 @@
 import * as unfetch from 'isomorphic-unfetch';
-import { JsonRpcProvider, tinyBig, toChecksumAddress } from '../../..';
+import { JsonRpcProvider, toChecksumAddress } from '../../..';
 import type { RPCMethodName } from '../../../classes/utils/fetchers';
 import {
   buildFetchInit,
@@ -46,12 +46,12 @@ const mockBlock = {
   ...mockBlockResponse,
   number: Number(hexToDecimal(mockBlockResponse.number)),
   miner: toChecksumAddress(mockBlockResponse.miner),
-  totalDifficulty: tinyBig(mockBlockResponse.totalDifficulty),
-  difficulty: tinyBig(mockBlockResponse.difficulty),
-  gasLimit: tinyBig(mockBlockResponse.gasLimit),
-  gasUsed: tinyBig(mockBlockResponse.gasUsed),
-  size: tinyBig(mockBlockResponse.size),
-  timestamp: tinyBig(mockBlockResponse.timestamp),
+  totalDifficulty: BigInt(mockBlockResponse.totalDifficulty),
+  difficulty: BigInt(mockBlockResponse.difficulty),
+  gasLimit: BigInt(mockBlockResponse.gasLimit),
+  gasUsed: BigInt(mockBlockResponse.gasUsed),
+  size: BigInt(mockBlockResponse.size),
+  timestamp: BigInt(mockBlockResponse.timestamp),
 };
 
 async function runTest(
@@ -71,7 +71,7 @@ async function runTest(
     buildFetchInit(buildRPCPostBody(method, params)),
   );
 
-  expect(JSON.stringify(result)).toBe(JSON.stringify(mockBlock));
+  expect(JSON.stringify(result, (_, v) => typeof v === "bigint" ? v.toString() : v)).toBe(JSON.stringify(mockBlock, (_, v) => typeof v === "bigint" ? v.toString() : v));
 }
 
 describe('provider.getBlock', () => {
@@ -87,7 +87,7 @@ describe('provider.getBlock', () => {
   it(`should match mocked block -- specific block number as decimal integer. (block #${blockNumber})`, async () => {
     await runTest(
       'eth_getBlockByNumber',
-      [tinyBig(blockNumber).toHexString(), false],
+      ["0x" + blockNumber.toString(16), false],
       blockNumber,
     );
   });
