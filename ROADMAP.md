@@ -8,13 +8,29 @@ ethers.js won by being simpler than web3. viem is gaining by being type-safe. es
 
 ## The Moat
 
-essential-eth is **10x smaller** than ethers and viem. That's not an optimization — it's a structural advantage. ethers and viem *cannot* shed that weight without breaking changes. Every feature they add makes them heavier. Every feature we add keeps us lean. Time is on our side.
+essential-eth is **8-12x smaller** than every major Ethereum library. That's not an optimization — it's a structural advantage. The competitors *cannot* shed that weight without breaking changes. Every feature they add makes them heavier. Every feature we add keeps us lean. Time is on our side.
+
+### The Competitive Landscape (weekly npm downloads)
+
+| Library | Downloads | Full Bundle | Notes |
+|---------|----------:|:-----------:|-------|
+| **viem** | 2,521,118 | 348.3 kB | Current momentum leader. wagmi ecosystem lock-in. |
+| **ethers v6** | 2,191,920 | 394.0 kB | Legacy king. Huge install base but losing ground to viem. |
+| **ox** | 3,140,063 | 615.6 kB | viem team's "Ethereum Standard Library." Low-level. Massive full export. |
+| **web3.js** | 569,797 | 495.1 kB | The original. Can't tree-shake. 453 kB for *conversions*. |
+| **essential-eth** | 866 | **39.9 kB** 🏆 | **That's us. 8x smaller. Room to grow.** |
+
+The gap between 866 and 2.5M is the opportunity. The gap between 39.9 kB and 495 kB is the weapon.
 
 | Library | Full Bundle | Provider | Contract | Conversions |
 |---------|:-----------:|:--------:|:--------:|:-----------:|
-| **essential-eth** | **39.9 kB** 🏆 | **28.9 kB** 🏆 | **24.8 kB** 🏆 | **1.2 kB** 🏆 |
+| **essential-eth** | **39.9 kB** 🏆 | 28.9 kB | **24.8 kB** 🏆 | **1.2 kB** 🏆 |
 | ethers v6 | 394.0 kB | 260.0 kB | 86.6 kB | 10.4 kB |
-| viem | 384.6 kB | 305.7 kB | 179.8 kB | 2.7 kB |
+| viem | 348.3 kB | 269.5 kB | 179.8 kB | 2.7 kB |
+| **web3.js** | **495.1 kB** 💀 | **453.8 kB** | **264.9 kB** | **453.8 kB** 💀 |
+| ox | 615.6 kB | 10.9 kB 🏆 | 49.9 kB | 3.7 kB |
+
+> **web3.js ships 453.8 kB just to convert wei to ether.** essential-eth does it in 1.2 kB. That's not a rounding error — that's a 378x difference. And web3 still has 570K weekly downloads.
 
 ---
 
