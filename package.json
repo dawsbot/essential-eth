@@ -44,7 +44,8 @@
     "version": "bunx genversion --es6 src/logger/package-version.ts && git add src/logger/package-version.ts",
     "postversion": "git push --follow-tags",
     "prepublishOnly": "npm run build",
-    "doc": "typedoc"
+    "doc": "typedoc",
+    "update:bundle-sizes": "bash scripts/update-bundle-sizes.sh"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.2.4",
