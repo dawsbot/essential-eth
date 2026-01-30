@@ -48,16 +48,25 @@ export {
   stripZeros,
   zeroPad,
 } from './utils/bytes';
+export {
+  encodeBytes32String,
+  decodeBytes32String,
+} from './utils/bytes32-string';
 export { computeAddress } from './utils/compute-address';
 export { computePublicKey } from './utils/compute-public-key';
 export { etherToGwei } from './utils/ether-to-gwei';
+export { formatUnits } from './utils/format-units';
+export { getAddress } from './utils/get-address';
 export { etherToWei } from './utils/ether-to-wei';
 export { gweiToEther } from './utils/gwei-to-ether';
 export { hashMessage } from './utils/hash-message';
+export { id } from './utils/id';
 export { isAddress } from './utils/is-address';
 export { keccak256 } from './utils/keccak256';
 export { pack, solidityKeccak256 } from './utils/solidity-keccak256';
+export { parseUnits } from './utils/parse-units';
 export { splitSignature } from './utils/split-signature';
 export { toChecksumAddress } from './utils/to-checksum-address';
 export { toUtf8Bytes } from './utils/to-utf8-bytes';
+export { toUtf8String } from './utils/to-utf8-string';
 export { weiToEther } from './utils/wei-to-ether';
