@@ -123,6 +123,7 @@ essential-eth is **9x smaller** than ethers and viem for full-library usage.
   - [`getTransaction`](#gettransaction)
   - [`getTransactionCount`](#gettransactioncount)
   - [`getTransactionReceipt`](#gettransactionreceipt)
+  - [`resolveName`](#resolvename)
 - [Contract](#contract)
   - [`contractFunctionName(args)`](#contractfunctionnameargs)
 - [More Info](#more-info)
@@ -1738,6 +1739,39 @@ await provider.getTransactionReceipt(
 //   byzantium: true,
 //   confirmations: 298171,
 // }
+```
+
+  </details>
+
+  <br/>
+
+#### [`resolveName`](https://eeth.dev/docs/api/classes/JsonRpcProvider#resolvename)
+
+```typescript
+provider.resolveName(name: string): Promise<string | null>
+```
+
+Resolves an ENS name to an Ethereum address. Returns `null` if the name has no resolver or no address set.
+
+Similar to ["resolveName" in ethers.js](https://docs.ethers.io/v5/api/providers/provider/#Provider-ResolveName)
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { JsonRpcProvider } from 'essential-eth';
+const provider = new JsonRpcProvider('RPC URL HERE' /* Try Infura or POKT */);
+```
+
+```javascript
+await provider.resolveName('vitalik.eth');
+// '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
+
+await provider.resolveName('daws.eth');
+// '0x5C389...' (resolved address)
+
+await provider.resolveName('thisdoesnotexist12345.eth');
+// null
 ```
 
   </details>
