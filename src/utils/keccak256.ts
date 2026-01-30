@@ -1,4 +1,5 @@
-import { Keccak } from 'sha3';
+import { keccak_256 } from '@noble/hashes/sha3.js';
+import { bytesToHex } from '@noble/hashes/utils.js';
 import type { BytesLike } from './bytes';
 
 /**
@@ -16,13 +17,15 @@ import type { BytesLike } from './bytes';
  * ```
  */
 export function keccak256(data: BytesLike): string {
-  let bufferableData;
+  let bytes: Uint8Array;
   if (typeof data === 'string') {
-    bufferableData = Buffer.from(data.replace(/^0x/, ''), 'hex');
+    const hex = data.replace(/^0x/, '');
+    bytes = new Uint8Array(hex.length / 2);
+    for (let i = 0; i < bytes.length; i++) {
+      bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
+    }
   } else {
-    bufferableData = Buffer.from(data as any);
+    bytes = new Uint8Array(data as any);
   }
-  const keccak = new Keccak(256);
-  const addressHash = '0x' + keccak.update(bufferableData).digest('hex');
-  return addressHash;
+  return '0x' + bytesToHex(keccak_256(bytes));
 }

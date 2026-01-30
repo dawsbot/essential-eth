@@ -1,4 +1,5 @@
-import { Keccak } from 'sha3';
+import { keccak_256 } from '@noble/hashes/sha3.js';
+import { bytesToHex } from '@noble/hashes/utils.js';
 import { validateType } from '../shared/validate-type';
 
 /**
@@ -24,12 +25,11 @@ export function toChecksumAddress(address: string) {
   }
 
   const _address = address.toLowerCase().replace(/^0x/i, '');
-  const keccak = new Keccak(256);
-  const addressHash = keccak.update(_address).digest('hex').replace(/^0x/i, '');
+  const addressBytes = new TextEncoder().encode(_address);
+  const addressHash = bytesToHex(keccak_256(addressBytes));
   let checksumAddress = '0x';
 
   for (let i = 0; i < _address.length; i++) {
-    // If ith character is 8 to f then make it uppercase
     if (parseInt(addressHash[i], 16) > 7) {
       checksumAddress += _address[i].toUpperCase();
     } else {
