@@ -152,3 +152,4 @@ mv "$README.tmp" "$README"
 echo "✅ Bundle size table updated in readme.md"
 echo ""
 cat "$TABLE_FILE"
+npx prettier --write readme.md
