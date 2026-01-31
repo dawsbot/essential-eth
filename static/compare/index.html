@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bundle Size Comparison — essential-eth</title>
+<meta name="description" content="Compare bundle sizes: essential-eth vs ethers, viem, web3.js, and ox. See how much you could save.">
+<meta property="og:title" content="Bundle Size Comparison — essential-eth">
+<meta property="og:description" content="essential-eth is 39.9 kB. ethers is 394 kB. See the full comparison.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bundle Size Comparison — essential-eth">
+<meta name="twitter:description" content="essential-eth is 39.9 kB. ethers is 394 kB. See the full comparison.">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root {
+    --brand: #52d4e1;
+    --brand-dim: #319da8;
+    --brand-glow: rgba(82,212,225,0.15);
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --bg-hover: #1c2333;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-dim: #8b949e;
+    --text-bright: #ffffff;
+    --green: #3fb950;
+    --red: #f85149;
+    --orange: #d29922;
+    --purple: #bc8cff;
+    --pink: #f778ba;
+    --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --bar-max: 615.6;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  a { color: var(--brand); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Layout */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 4rem 0 2rem;
+  }
+  .hero h1 {
+    font-family: var(--mono);
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--brand); }
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero .size-highlight {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.3em;
+    margin-top: 1.5rem;
+    font-family: var(--mono);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    color: var(--brand);
+    line-height: 1.1;
+  }
+  .hero .size-highlight small {
+    font-size: 0.4em;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .hero .versus {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-dim);
+  }
+  .hero .versus strong { color: var(--text); }
+
+  /* Section */
+  section { margin-bottom: 3rem; }
+  section h2 {
+    font-family: var(--mono);
+    font-size: 1.3rem;
+    color: var(--text-bright);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Bar chart */
+  .chart { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .chart-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 80px;
+    align-items: center;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    .chart-row {
+      grid-template-columns: 100px 1fr 65px;
+      gap: 0.5rem;
+    }
+  }
+
+  .chart-label {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .chart-bar-wrap {
+    height: 36px;
+    background: var(--bg-card);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .chart-bar {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+  }
+
+  .chart-bar.brand { background: linear-gradient(90deg, var(--brand), var(--brand-dim)); }
+  .chart-bar.ethers { background: linear-gradient(90deg, #6366f1, #4f46e5); }
+  .chart-bar.viem { background: linear-gradient(90deg, #f59e0b, #d97706); }
+  .chart-bar.web3 { background: linear-gradient(90deg, #f85149, #da3633); }
+  .chart-bar.ox { background: linear-gradient(90deg, #bc8cff, #8b5cf6); }
+
+  .chart-value {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .chart-section-title {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    padding-left: 0;
+  }
+
+  /* Savings calculator */
+  .calculator {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  .calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .calc-header h3 {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--text-bright);
+  }
+
+  .checkboxes {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .checkbox-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .checkbox-item input[type="checkbox"]:checked {
+    background: var(--brand);
+    border-color: var(--brand);
+  }
+  .checkbox-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--bg);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .checkbox-item span {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .checkbox-item .cb-size {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .savings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .savings-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .savings-card:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+  }
+
+  .savings-card .lib-name {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .savings-card .saved {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.2;
+  }
+  .savings-card .saved.zero {
+    color: var(--text-dim);
+  }
+  .savings-card .saved.negative {
+    color: var(--red);
+  }
+
+  .savings-card .pct {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+  }
+
+  .no-selection {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  .share-row {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .share-btn {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .share-btn:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+  .share-btn.copied {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  /* Data table */
+  .data-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+  }
+  table.data-table th,
+  table.data-table td {
+    padding: 0.75rem 1rem;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  table.data-table th {
+    background: var(--bg-card);
+    color: var(--text-dim);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  table.data-table th:first-child,
+  table.data-table td:first-child {
+    text-align: left;
+  }
+  table.data-table tr:last-child td { border-bottom: none; }
+  table.data-table tr:hover td { background: var(--bg-hover); }
+  table.data-table td:first-child { font-weight: 600; color: var(--text-bright); }
+  .smallest { color: var(--green); font-weight: 700; }
+
+  /* Footer */
+  footer {
+    margin-top: 2rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .install-cmd {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    color: var(--brand);
+    cursor: pointer;
+    transition: border-color 0.2s;
+    margin-bottom: 1rem;
+  }
+  .install-cmd:hover { border-color: var(--brand); }
+  .install-cmd::before {
+    content: '$ ';
+    color: var(--text-dim);
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+  }
+  .footer-links a:hover { color: var(--brand); }
+
+  .footer-note {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <header class="hero animate-in">
+    <h1><span>essential-eth</span> is tiny</h1>
+    <p>A comparison of minified + gzipped bundle sizes for Ethereum libraries</p>
+    <div class="size-highlight">39.9 kB <small>min+gzip</small></div>
+    <div class="versus">vs ethers <strong>394 kB</strong> · viem <strong>348 kB</strong> · web3.js <strong>507 kB</strong> · ox <strong>616 kB</strong></div>
+  </header>
+
+  <!-- Total bundle chart -->
+  <section class="animate-in delay-1">
+    <h2>// total bundle size</h2>
+    <div class="chart" id="total-chart">
+      <div class="chart-row">
+        <div class="chart-label" style="color:var(--brand)">essential-eth</div>
+        <div class="chart-bar-wrap"><div class="chart-bar brand" style="width:0%" data-target="6.48"></div></div>
+        <div class="chart-value">39.9 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#818cf8">ethers v6</div>
+        <div class="chart-bar-wrap"><div class="chart-bar ethers" style="width:0%" data-target="64.04"></div></div>
+        <div class="chart-value">394.0 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#fbbf24">viem</div>
+        <div class="chart-bar-wrap"><div class="chart-bar viem" style="width:0%" data-target="56.6"></div></div>
+        <div class="chart-value">348.3 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#f85149">web3.js</div>
+        <div class="chart-bar-wrap"><div class="chart-bar web3" style="width:0%" data-target="82.3"></div></div>
+        <div class="chart-value">506.6 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#bc8cff">ox</div>
+        <div class="chart-bar-wrap"><div class="chart-bar ox" style="width:0%" data-target="100"></div></div>
+        <div class="chart-value">615.6 kB</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sub-category charts -->
+  <section class="animate-in delay-2">
+    <h2>// by category</h2>
+
+    <div class="chart-section-title">Provider</div>
+    <div class="chart" id="provider-chart">
+      <div class="chart-row">
+        <div class="chart-label" style="color:var(--brand)">essential-eth</div>
+        <div class="chart-bar-wrap"><div class="chart-bar brand" style="width:0%" data-target="6.21"></div></div>
+        <div class="chart-value">28.9 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#818cf8">ethers v6</div>
+        <div class="chart-bar-wrap"><div class="chart-bar ethers" style="width:0%" data-target="55.88"></div></div>
+        <div class="chart-value">260.0 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#fbbf24">viem</div>
+        <div class="chart-bar-wrap"><div class="chart-bar viem" style="width:0%" data-target="57.92"></div></div>
+        <div class="chart-value">269.5 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#f85149">web3.js</div>
+        <div class="chart-bar-wrap"><div class="chart-bar web3" style="width:0%" data-target="100"></div></div>
+        <div class="chart-value">465.3 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#bc8cff">ox</div>
+        <div class="chart-bar-wrap"><div class="chart-bar ox" style="width:0%" data-target="2.34"></div></div>
+        <div class="chart-value">10.9 kB</div>
+      </div>
+    </div>
+
+    <div class="chart-section-title">Contract</div>
+    <div class="chart" id="contract-chart">
+      <div class="chart-row">
+        <div class="chart-label" style="color:var(--brand)">essential-eth</div>
+        <div class="chart-bar-wrap"><div class="chart-bar brand" style="width:0%" data-target="8.96"></div></div>
+        <div class="chart-value">24.8 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#818cf8">ethers v6</div>
+        <div class="chart-bar-wrap"><div class="chart-bar ethers" style="width:0%" data-target="31.3"></div></div>
+        <div class="chart-value">86.6 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#fbbf24">viem</div>
+        <div class="chart-bar-wrap"><div class="chart-bar viem" style="width:0%" data-target="65.02"></div></div>
+        <div class="chart-value">179.8 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#f85149">web3.js</div>
+        <div class="chart-bar-wrap"><div class="chart-bar web3" style="width:0%" data-target="100"></div></div>
+        <div class="chart-value">276.5 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#bc8cff">ox</div>
+        <div class="chart-bar-wrap"><div class="chart-bar ox" style="width:0%" data-target="18.04"></div></div>
+        <div class="chart-value">49.9 kB</div>
+      </div>
+    </div>
+
+    <div class="chart-section-title">Conversions</div>
+    <div class="chart" id="conv-chart">
+      <div class="chart-row">
+        <div class="chart-label" style="color:var(--brand)">essential-eth</div>
+        <div class="chart-bar-wrap"><div class="chart-bar brand" style="width:0%" data-target="0.26"></div></div>
+        <div class="chart-value">1.2 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#818cf8">ethers v6</div>
+        <div class="chart-bar-wrap"><div class="chart-bar ethers" style="width:0%" data-target="2.24"></div></div>
+        <div class="chart-value">10.4 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#fbbf24">viem</div>
+        <div class="chart-bar-wrap"><div class="chart-bar viem" style="width:0%" data-target="0.58"></div></div>
+        <div class="chart-value">2.7 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#f85149">web3.js</div>
+        <div class="chart-bar-wrap"><div class="chart-bar web3" style="width:0%" data-target="100"></div></div>
+        <div class="chart-value">465.3 kB</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label" style="color:#bc8cff">ox</div>
+        <div class="chart-bar-wrap"><div class="chart-bar ox" style="width:0%" data-target="0.80"></div></div>
+        <div class="chart-value">3.7 kB</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Raw data table -->
+  <section class="animate-in delay-3">
+    <h2>// raw data (kB, min+gzip)</h2>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>essential-eth</th>
+            <th>ethers v6</th>
+            <th>viem</th>
+            <th>web3.js</th>
+            <th>ox</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Provider</td>
+            <td class="smallest">28.9</td>
+            <td>260.0</td>
+            <td>269.5</td>
+            <td>465.3</td>
+            <td>10.9</td>
+          </tr>
+          <tr>
+            <td>Contract</td>
+            <td class="smallest">24.8</td>
+            <td>86.6</td>
+            <td>179.8</td>
+            <td>276.5</td>
+            <td>49.9</td>
+          </tr>
+          <tr>
+            <td>Conversions</td>
+            <td class="smallest">1.2</td>
+            <td>10.4</td>
+            <td>2.7</td>
+            <td>465.3</td>
+            <td>3.7</td>
+          </tr>
+          <tr style="border-top:2px solid var(--border)">
+            <td><strong>Total</strong></td>
+            <td class="smallest"><strong>39.9</strong></td>
+            <td><strong>394.0</strong></td>
+            <td><strong>348.3</strong></td>
+            <td><strong>506.6</strong></td>
+            <td><strong>615.6</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Savings Calculator -->
+  <section class="animate-in delay-4">
+    <h2>// what would you save?</h2>
+    <div class="calculator">
+      <div class="calc-header">
+        <h3>Select the imports you use:</h3>
+      </div>
+      <div class="checkboxes" id="checkboxes">
+        <label class="checkbox-item">
+          <input type="checkbox" id="cb-provider" value="provider">
+          <span>Provider <span class="cb-size">(28.9 kB)</span></span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" id="cb-contract" value="contract">
+          <span>Contract <span class="cb-size">(24.8 kB)</span></span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" id="cb-conversions" value="conversions">
+          <span>Conversions <span class="cb-size">(1.2 kB)</span></span>
+        </label>
+      </div>
+
+      <div id="savings-output">
+        <div class="no-selection">☝️ Select at least one import to see your savings</div>
+      </div>
+
+      <div class="share-row">
+        <button class="share-btn" id="share-btn" onclick="copyShareLink()">📋 Copy shareable link</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="animate-in delay-5">
+    <div class="install-cmd" onclick="copyInstall()" id="install-cmd" title="Click to copy">npm install essential-eth</div>
+    <div class="footer-links">
+      <a href="https://github.com/dawsbot/essential-eth" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.npmjs.com/package/essential-eth" target="_blank" rel="noopener">npm</a>
+      <a href="https://essential-eth.vercel.app" target="_blank" rel="noopener">Docs</a>
+    </div>
+    <p class="footer-note">
+      Bundle sizes measured via <a href="https://bundlephobia.com" target="_blank" rel="noopener">bundlephobia</a> (min+gzip).
+      <br>essential-eth — a tiny, tree-shakeable alternative to ethers.js &amp; web3.js
+    </p>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // --- Data ---
+  const categories = {
+    provider:    { label: 'Provider',    ee: 28.9, ethers: 260.0, viem: 269.5, web3: 465.3, ox: 10.9 },
+    contract:    { label: 'Contract',    ee: 24.8, ethers: 86.6,  viem: 179.8, web3: 276.5, ox: 49.9 },
+    conversions: { label: 'Conversions', ee: 1.2,  ethers: 10.4,  viem: 2.7,   web3: 465.3, ox: 3.7  }
+  };
+
+  const libs = [
+    { key: 'ethers', label: 'ethers v6' },
+    { key: 'viem',   label: 'viem' },
+    { key: 'web3',   label: 'web3.js' },
+    { key: 'ox',     label: 'ox' }
+  ];
+
+  // --- Animate bars on load ---
+  function animateBars() {
+    document.querySelectorAll('.chart-bar').forEach(function(bar, i) {
+      var target = bar.getAttribute('data-target');
+      setTimeout(function() {
+        bar.style.width = target + '%';
+      }, 100 + i * 40);
+    });
+  }
+
+  // --- Savings calculator ---
+  function getChecked() {
+    return {
+      provider:    document.getElementById('cb-provider').checked,
+      contract:    document.getElementById('cb-contract').checked,
+      conversions: document.getElementById('cb-conversions').checked
+    };
+  }
+
+  function updateSavings() {
+    var checked = getChecked();
+    var any = checked.provider || checked.contract || checked.conversions;
+    var output = document.getElementById('savings-output');
+
+    // Update URL hash
+    var hash = (checked.provider ? 'p' : '') + (checked.contract ? 'c' : '') + (checked.conversions ? 'v' : '');
+    if (hash) {
+      history.replaceState(null, '', '#' + hash);
+    } else {
+      history.replaceState(null, '', location.pathname);
+    }
+
+    if (!any) {
+      output.innerHTML = '<div class="no-selection">☝️ Select at least one import to see your savings</div>';
+      return;
+    }
+
+    // Sum selected for each lib
+    var eeTotal = 0;
+    var libTotals = {};
+    libs.forEach(function(l) { libTotals[l.key] = 0; });
+
+    Object.keys(categories).forEach(function(catKey) {
+      if (!checked[catKey]) return;
+      var cat = categories[catKey];
+      eeTotal += cat.ee;
+      libs.forEach(function(l) {
+        libTotals[l.key] += cat[l.key];
+      });
+    });
+
+    var html = '<div class="savings-grid">';
+    libs.forEach(function(l) {
+      var saved = libTotals[l.key] - eeTotal;
+      var pct = libTotals[l.key] > 0 ? Math.round((saved / libTotals[l.key]) * 100) : 0;
+      var cls = saved > 0 ? '' : (saved === 0 ? 'zero' : 'negative');
+      var sign = saved > 0 ? '−' : (saved < 0 ? '+' : '');
+      var absSaved = Math.abs(saved).toFixed(1);
+
+      html += '<div class="savings-card">';
+      html += '<div class="lib-name">vs ' + l.label + '</div>';
+      html += '<div class="saved ' + cls + '">' + sign + absSaved + ' kB</div>';
+      if (saved > 0) {
+        html += '<div class="pct">' + pct + '% smaller</div>';
+      } else if (saved < 0) {
+        html += '<div class="pct">' + Math.abs(pct) + '% larger</div>';
+      }
+      html += '</div>';
+    });
+    html += '</div>';
+
+    // Summary line
+    var maxSaved = 0;
+    var maxLib = '';
+    libs.forEach(function(l) {
+      var s = libTotals[l.key] - eeTotal;
+      if (s > maxSaved) { maxSaved = s; maxLib = l.label; }
+    });
+
+    if (maxSaved > 0) {
+      html += '<p style="text-align:center;margin-top:1.5rem;color:var(--text-dim);font-size:0.9rem;">';
+      html += 'You\'d save up to <strong style="color:var(--green)">' + maxSaved.toFixed(1) + ' kB</strong> switching from ' + maxLib + ' to essential-eth';
+      html += '</p>';
+    }
+
+    output.innerHTML = html;
+  }
+
+  // --- Restore state from hash ---
+  function restoreFromHash() {
+    var hash = location.hash.replace('#', '');
+    if (!hash) return;
+    if (hash.indexOf('p') !== -1) document.getElementById('cb-provider').checked = true;
+    if (hash.indexOf('c') !== -1) document.getElementById('cb-contract').checked = true;
+    if (hash.indexOf('v') !== -1) document.getElementById('cb-conversions').checked = true;
+    updateSavings();
+  }
+
+  // --- Share link ---
+  window.copyShareLink = function() {
+    var btn = document.getElementById('share-btn');
+    var url = location.href;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(function() {
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = '📋 Copy shareable link';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  };
+
+  // --- Copy install command ---
+  window.copyInstall = function() {
+    var el = document.getElementById('install-cmd');
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText('npm install essential-eth').then(function() {
+        var orig = el.textContent;
+        el.textContent = 'Copied!';
+        setTimeout(function() { el.textContent = orig; }, 1500);
+      });
+    }
+  };
+
+  // --- Event listeners ---
+  document.getElementById('cb-provider').addEventListener('change', updateSavings);
+  document.getElementById('cb-contract').addEventListener('change', updateSavings);
+  document.getElementById('cb-conversions').addEventListener('change', updateSavings);
+
+  // --- Init ---
+  restoreFromHash();
+  requestAnimationFrame(function() {
+    setTimeout(animateBars, 200);
+  });
+})();
+</script>
+
+</body>
+</html>
