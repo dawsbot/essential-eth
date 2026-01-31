@@ -84,10 +84,43 @@ const signature = signMessage(message, privateKey);
 
 Zero-dependency. Synchronous. Mobile-native mindset.
 
+## Migrating from viem
+
+**Before (viem):**
+
+```javascript
+import { formatEther, parseEther, getAddress, isAddress } from 'viem';
+import { privateKeyToAccount } from 'viem/accounts';
+
+const account = privateKeyToAccount(privateKey);
+const formatted = formatEther(balance);
+const parsed = parseEther('1.5');
+const addr = getAddress(rawAddress);
+```
+
+**After (essential-eth):**
+
+```javascript
+import {
+  weiToEther,
+  etherToWei,
+  toChecksumAddress,
+  isAddress,
+} from 'essential-eth';
+
+const formatted = weiToEther(balance);
+const parsed = etherToWei('1.5');
+const addr = toChecksumAddress(rawAddress);
+```
+
+viem's tree-shaking helps on web, but React Native's Metro bundler doesn't tree-shake as aggressively. You end up pulling in chain definitions, ABI utilities, and transport layers you never import. essential-eth has zero internal cross-dependencies — you get exactly what you import.
+
 ## Migration Checklist
 
-- ✅ Replace ethers.js with essential-eth
-- ✅ Remove any web3 or ethers polyfill packages
+- ✅ Replace ethers.js / viem with essential-eth
+- ✅ Remove any web3, ethers, or viem polyfill packages
+- ✅ Replace `formatEther`/`parseEther` with `weiToEther`/`etherToWei`
+- ✅ Replace `getAddress` with `toChecksumAddress`
 - ✅ Use synchronous function calls (no async/await for basic operations)
 - ✅ Test bundle size: `npm run build && du -h ./build`
 - ✅ Profile app install size on iOS App Store / Google Play

@@ -66,10 +66,34 @@ const sig = signMessage(message, privateKey);
 
 Same result. **450ms faster.** Way cheaper.
 
+## Migrating from viem
+
+**Before (viem):**
+
+```javascript
+import { createPublicClient, http } from 'viem';
+import { mainnet } from 'viem/chains';
+
+const client = createPublicClient({ chain: mainnet, transport: http(rpcUrl) });
+const balance = await client.getBalance({ address });
+```
+
+**After (essential-eth):**
+
+```javascript
+import { JsonRpcProvider } from 'essential-eth';
+
+const provider = new JsonRpcProvider(rpcUrl);
+const balance = await provider.getBalance(address);
+```
+
+viem requires chain config objects and transport abstractions for every call. In a serverless function that fires once and dies, that setup overhead is pure waste. essential-eth gives you a direct provider with zero ceremony.
+
 ## Migration Checklist
 
-- ✅ Remove ethers.js from dependencies
+- ✅ Remove ethers.js / viem from dependencies
 - ✅ Replace wallet/signer patterns with direct function calls
+- ✅ Replace `createPublicClient` / `createWalletClient` with `JsonRpcProvider`
 - ✅ Use named imports to tree-shake anything you don't need
 - ✅ Test cold start performance: `wrangler publish --local` or `vercel dev`
 - ✅ Profile bundle impact: `npm run build && du -h .next/`

@@ -84,10 +84,37 @@ const sig = signMessage(message, privateKey);
 
 Synchronous. No async/await overhead. Bot responds in milliseconds.
 
+## Migrating from viem
+
+**Before (viem):**
+
+```javascript
+import { createPublicClient, http, formatEther } from 'viem';
+import { mainnet } from 'viem/chains';
+
+const client = createPublicClient({ chain: mainnet, transport: http() });
+const balance = await client.getBalance({ address: userAddress });
+bot.sendMessage(chatId, `Balance: ${formatEther(balance)} ETH`);
+```
+
+**After (essential-eth):**
+
+```javascript
+import { JsonRpcProvider, weiToEther } from 'essential-eth';
+
+const provider = new JsonRpcProvider();
+const balance = await provider.getBalance(userAddress);
+bot.sendMessage(chatId, `Balance: ${weiToEther(balance)} ETH`);
+```
+
+viem's client/chain/transport pattern makes sense for dApps, but for a bot that just needs to check balances or sign messages, it's unnecessary ceremony. essential-eth's `JsonRpcProvider` connects directly — no chain configs, no transport wrappers, **38 MB less RAM**.
+
 ## Migration Checklist
 
-- ✅ Replace ethers.js with essential-eth
+- ✅ Replace ethers.js / viem with essential-eth
 - ✅ Remove async/await from signing logic (synchronous now)
+- ✅ Replace `createPublicClient` with `JsonRpcProvider`
+- ✅ Replace `formatEther`/`parseEther` with `weiToEther`/`etherToWei`
 - ✅ Test memory footprint: `node --max-old-space-size=256 bot.js` and check RSS
 - ✅ Measure response latency with `/time` commands
 - ✅ Deploy and monitor CPU/memory metrics

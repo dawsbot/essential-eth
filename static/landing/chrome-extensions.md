@@ -49,11 +49,38 @@ const sig = signMessage(message, privateKey);
 
 No async wrapper, no overhead. Just the cryptography you need.
 
+## Migrating from viem
+
+**Before (viem):**
+
+```javascript
+import { createWalletClient, http } from 'viem';
+import { privateKeyToAccount } from 'viem/accounts';
+import { mainnet } from 'viem/chains';
+
+const account = privateKeyToAccount(privateKey);
+const client = createWalletClient({
+  account,
+  chain: mainnet,
+  transport: http(),
+});
+const sig = await client.signMessage({ message });
+```
+
+**After (essential-eth):**
+
+```javascript
+import { signMessage } from 'essential-eth';
+const sig = signMessage(message, privateKey);
+```
+
+viem's modular architecture is great for web apps, but in a service worker you're paying for chain configs, transports, and client abstractions you'll never use. essential-eth gives you the crypto primitives directly — no setup, no async, no 348 kB penalty.
+
 ## Migration Checklist
 
-- ✅ Replace `ethers.Wallet` with `signMessage()`, `signTransaction()`
-- ✅ Replace `ethers.getAddress()` with `formatAddress()`
-- ✅ Replace `ethers.id()` with `hashMessage()`
+- ✅ Replace `ethers.Wallet` / `privateKeyToAccount` with `signMessage()`, `signTransaction()`
+- ✅ Replace `ethers.getAddress()` / `getAddress()` (viem) with `formatAddress()`
+- ✅ Replace `ethers.id()` / `keccak256(toHex())` (viem) with `hashMessage()`
 - ✅ Keep the same private key format — everything works with hex strings
 - ✅ Test your service worker reload time with DevTools
 
