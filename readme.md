@@ -64,6 +64,17 @@ essential-eth is **8x smaller** than the nearest alternative for full-library us
 
 <br/>
 
+## Who Is This For?
+
+Essential-eth is built for developers where size and speed matter. Check out dedicated guides for your use case:
+
+- **[Chrome Extension Developers](https://github.com/dawsbot/essential-eth/blob/master/static/landing/chrome-extensions.md)** — Service worker size budgets are brutal. 39.9 kB vs ethers' 394 kB makes a real difference.
+- **[Serverless & Edge Functions](https://github.com/dawsbot/essential-eth/blob/master/static/landing/serverless.md)** — Cold starts cost money. Get sub-10ms startup instead of 200ms+.
+- **[React Native Apps](https://github.com/dawsbot/essential-eth/blob/master/static/landing/react-native.md)** — Every KB impacts app store download times. Essential-eth adds 12 kB, ethers adds 104 kB.
+- **[Telegram/Discord Bots](https://github.com/dawsbot/essential-eth/blob/master/static/landing/telegram-bots.md)** — Minimal memory footprint, instant response times. 2 MB vs 45 MB for ethers.
+
+<br/>
+
 ## Table of Contents
 
 
@@ -73,6 +84,7 @@ essential-eth is **8x smaller** than the nearest alternative for full-library us
 
 - [Why you should replace Ethers.js and web3](#why-you-should-replace-ethersjs-and-web3)
   - [Bundle Size Comparison (ESM, minified)](#bundle-size-comparison-esm-minified)
+- [Who Is This For?](#who-is-this-for)
 - [Install](#install)
 - [🛠 Utils](#-utils)
     - [`arrayify`](#arrayify)
