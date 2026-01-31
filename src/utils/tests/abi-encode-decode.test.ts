@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { encodeFunctionData, decodeFunctionResult } from '../abi-encode-decode';
+import { describe, expect, it } from 'vitest';
 import type { JSONABI } from '../../types/Contract.types';
+import { decodeFunctionResult, encodeFunctionData } from '../abi-encode-decode';
 
 const erc20ABI: JSONABI = [
   {

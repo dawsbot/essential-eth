@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { decodeEventLog } from '../decode-event-log';
 import type { JSONABI } from '../../types/Contract.types';
+import { decodeEventLog } from '../decode-event-log';
 
 const erc20ABI: JSONABI = [
   {
@@ -47,12 +47,8 @@ describe('decodeEventLog', () => {
     });
 
     expect(result.eventName).toBe('Transfer');
-    expect(result.args.from).toBe(
-      '0xABC0000000000000000000000000000000000001',
-    );
-    expect(result.args.to).toBe(
-      '0xaBc0000000000000000000000000000000000002',
-    );
+    expect(result.args.from).toBe('0xABC0000000000000000000000000000000000001');
+    expect(result.args.to).toBe('0xaBc0000000000000000000000000000000000002');
     expect(result.args.value).toBe(BigInt(100));
   });
 

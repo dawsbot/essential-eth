@@ -19,9 +19,7 @@ describe('provider.resolveName', () => {
   });
 
   it('should return null for a non-existent name', async () => {
-    const address = await provider.resolveName(
-      'thisshouldnotexist12345.eth',
-    );
+    const address = await provider.resolveName('thisshouldnotexist12345.eth');
     expect(address).toBeNull();
   });
 });

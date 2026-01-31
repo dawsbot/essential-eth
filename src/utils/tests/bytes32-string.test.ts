@@ -1,4 +1,4 @@
-import { encodeBytes32String, decodeBytes32String } from '../../index';
+import { decodeBytes32String, encodeBytes32String } from '../../index';
 
 describe('encodeBytes32String', () => {
   it('encodes a short string', () => {
@@ -12,7 +12,6 @@ describe('encodeBytes32String', () => {
     const encoded = encodeBytes32String('');
     expect(encoded.length).toBe(66); // 0x + 64 hex chars
     expect(encoded).toMatch(/^0x0+$/);
-    
   });
 
   it('throws for string > 31 bytes', () => {
@@ -32,11 +31,7 @@ describe('decodeBytes32String', () => {
   });
 
   it('decodes empty bytes32', () => {
-    expect(
-      decodeBytes32String(
-        '0x' + '00'.repeat(32),
-      ),
-    ).toBe('');
+    expect(decodeBytes32String('0x' + '00'.repeat(32))).toBe('');
   });
 
   it('roundtrips', () => {

@@ -7,7 +7,6 @@ import { parseFixed } from './fixed-point';
  * No direct equivalent in ether.js; requires multiple functions to achieve.
  *
  * No direct equivalent in web3; requires multiple functions to achieve.
- *
  * @param etherQuantity the amount of ether to convert to gwei
  * @returns a bigint of gwei equivalent to the specified ether
  * @example
@@ -18,9 +17,7 @@ import { parseFixed } from './fixed-point';
  * // '1000000000000'
  * ```
  */
-export function etherToGwei(
-  etherQuantity: string | number | bigint,
-): bigint {
+export function etherToGwei(etherQuantity: string | number | bigint): bigint {
   validateType(etherQuantity, ['string', 'number', 'bigint']);
   return parseFixed(String(etherQuantity), 9);
 }

@@ -10,9 +10,7 @@ describe('toUtf8String', () => {
   });
 
   it('decodes essential-eth', () => {
-    expect(
-      toUtf8String('0x657373656e7469616c2d657468'),
-    ).toBe('essential-eth');
+    expect(toUtf8String('0x657373656e7469616c2d657468')).toBe('essential-eth');
   });
 
   it('handles empty input', () => {

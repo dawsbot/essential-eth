@@ -4,7 +4,6 @@
  * Run: npx tsx smoke-test.ts
  */
 import {
-  // Utils – bytes
   arrayify,
   // Utils – crypto / address
   computeAddress,

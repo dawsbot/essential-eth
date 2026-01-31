@@ -100,8 +100,14 @@ describe('provider.getTransactionReceipt', () => {
       ),
     );
 
-    expect(JSON.stringify(transactionReceipt, (_, v) => typeof v === "bigint" ? v.toString() : v)).toBe(
-      JSON.stringify(mockReceipt, (_, v) => typeof v === "bigint" ? v.toString() : v),
+    expect(
+      JSON.stringify(transactionReceipt, (_, v) =>
+        typeof v === 'bigint' ? v.toString() : v,
+      ),
+    ).toBe(
+      JSON.stringify(mockReceipt, (_, v) =>
+        typeof v === 'bigint' ? v.toString() : v,
+      ),
     );
   });
 });

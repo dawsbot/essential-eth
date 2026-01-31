@@ -6,8 +6,6 @@ import { buildRPCPostBody, post } from '../classes/utils/fetchers';
 import { hexToDecimal } from '../classes/utils/hex-to-decimal';
 import { prepareTransaction } from '../classes/utils/prepare-transaction';
 import { logger } from '../logger/logger';
-import { namehash } from '../utils/namehash';
-import { toChecksumAddress } from '../utils/to-checksum-address';
 import type { BlockResponse, BlockTag, RPCBlock } from '../types/Block.types';
 import type { FeeData } from '../types/FeeData.types';
 import type { Filter, FilterByBlockHash } from '../types/Filter.types';
@@ -21,6 +19,8 @@ import type {
   TransactionRequest,
   TransactionResponse,
 } from '../types/Transaction.types';
+import { namehash } from '../utils/namehash';
+import { toChecksumAddress } from '../utils/to-checksum-address';
 import chainsInfo from './utils/chains-info';
 
 /**
@@ -28,7 +28,6 @@ import chainsInfo from './utils/chains-info';
  *
  * * No equivalent in ethers.js
  * * No equivalent in web3.js
- *
  * @internal
  * @param blockTag the block tag to convert/return as a hex string
  * @returns the specified block tag formatted as a hex string
@@ -44,9 +43,7 @@ import chainsInfo from './utils/chains-info';
  * ```
  */
 function prepBlockTag(blockTag: BlockTag): string {
-  return typeof blockTag === 'number'
-    ? '0x' + blockTag.toString(16)
-    : blockTag;
+  return typeof blockTag === 'number' ? '0x' + blockTag.toString(16) : blockTag;
 }
 
 export abstract class BaseProvider {
@@ -82,7 +79,6 @@ export abstract class BaseProvider {
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getNetwork`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getNetwork) in ethers.js
    * * [Similar](/docs/api#isd) to [`web3.eth.getChainId`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getchainid) in web3.js, returns more than just the `chainId`
-   *
    * @returns information about the network this provider is currently connected to
    * @example
    * ```javascript
@@ -114,7 +110,6 @@ export abstract class BaseProvider {
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getBlockNumber`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBlockNumber) in ethers.js
    * * [Identical](/docs/api#isd) to [`web3.eth.getBlockNumber`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getblocknumber) in web3.js
-   *
    * @returns the number of the most recently mined block
    * @example
    * ```javascript
@@ -134,7 +129,6 @@ export abstract class BaseProvider {
    *
    * * [Similar](/docs/api#isd) to [`ethers.provider.getTransaction`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransaction) in ethers.js, does not have `wait` method that waits until the transaction has been mined
    * * [Similar](/docs/api#isd) to [`web3.eth.getTransaction`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#gettransaction) in web3.js, some information returned using different types
-   *
    * @param transactionHash the hash of the transaction to get information about
    * @returns information about the specified transaction
    * @example
@@ -185,7 +179,6 @@ export abstract class BaseProvider {
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getTransactionReceipt`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionReceipt) in ethers.js
    * * [Similar](/docs/api#isd) to [`web3.eth.getTransactionReceipt`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#gettransactionreceipt) in web3.js, some information returned using different types
-   *
    * @param transactionHash the hash of the transaction to get information about
    * @returns information about the specified transaction that has already been mined
    * @example
@@ -260,7 +253,6 @@ export abstract class BaseProvider {
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getTransactionCount`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getTransactionCount) in ethers.js
    * * [Identical](/docs/api#isd) to [`web3.eth.getTransactionCount`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#gettransactioncount) in web3.js
-   *
    * @param address the address to count number of sent transactions
    * @param blockTag the block to count transactions up to, inclusive
    * @returns the number of transactions sent by the specified address
@@ -296,7 +288,6 @@ export abstract class BaseProvider {
    *
    * * [Similar](/docs/api#isd) to [`ethers.provider.getBlock`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs) in ethers.js, includes some additional information. Can also return block with full transaction objects, similar to [`ethers.providers.getBlockWithTransactions`]
    * * [Identical](/docs/api#isd) to [`web3.eth.getBlock`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs) in web3.js
-   *
    * @param timeFrame The number, hash, or text-based description ('latest', 'earliest', or 'pending') of the block to collect information on.
    * @param returnTransactionObjects Whether to also return data about the transactions on the block.
    * @returns A BlockResponse object with information about the specified block
@@ -361,7 +352,6 @@ export abstract class BaseProvider {
    *
    * * [Similar](/docs/api#isd) to [`ethers.provider.getGasPrice`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getGasPrice) in ethers.js, does not have a parameter specifying what unit you'd like to return. See also [`weiToEther`](/docs/api/modules#weitoether) and [`etherToGwei`](/docs/api/modules#ethertogwei)
    * * [Identical](/docs/api#isd) to [`web3.eth.getGasPrice`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getgasprice) in web3.js, returns a number (bigint) instead of a string
-   *
    * @returns an estimate of the current gas price in wei
    * @example
    * ```javascript
@@ -381,7 +371,6 @@ export abstract class BaseProvider {
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getBalance`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getBalance) in ethers.js
    * * [Identical](/docs/api#isd) to [`web3.eth.getBalance`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getbalance) in web3.js, returns a number (bigint) instead of a string
-   *
    * @param address the address to check the balance of
    * @param blockTag the block to check the specified address' balance on
    * @returns the balance of the network's native token for the specified address on the specified block
@@ -407,7 +396,6 @@ export abstract class BaseProvider {
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getCode`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getCode) in ethers.js
    * * [Identical](/docs/api#isd) to [`web3.eth.getCode`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getcode) in web3.js
-   *
    * @param address the contract address to get the contract code from
    * @param blockTag the block height to search for the contract code from. Contract code can change, so this allows for checking a specific block
    * @returns the contract creation code for the specified address at the specified block height
@@ -434,7 +422,6 @@ export abstract class BaseProvider {
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.estimateGas`](https://docs.ethers.io/v5/api/providers/provider/#Provider-estimateGas) in ethers.js
    * * [Identical](/docs/api#isd) to [`web3.eth.estimateGas`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#estimateGas) in web3.js
-   *
    * @param transaction the transaction to check the estimated gas cost for
    * @returns the estimated amount of gas charged for submitting the specified transaction to the blockchain
    * @example
@@ -462,7 +449,6 @@ export abstract class BaseProvider {
    * For legacy transactions and networks which do not support EIP-1559, the gasPrice should be used.Returns an estimate of the amount of gas that would be required to submit transaction to the network.
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getFeeData`](https://docs.ethers.org/v5/api/providers/provider/#Provider-getFeeData) in ethers.js
-   *
    * @returns an object with gas estimates for the network currently
    * @example
    * ```javascript
@@ -503,7 +489,6 @@ export abstract class BaseProvider {
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.getLogs`](https://docs.ethers.io/v5/api/providers/provider/#Provider-getLogs) in ethers.js
    * * [Identical](/docs/api#isd) to [`web3.eth.getPastLogs`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#getpastlogs) in web3.js
-   *
    * @param filter parameters to filter the logs by
    * @returns an array of logs matching the specified filter
    * @example
@@ -559,7 +544,6 @@ export abstract class BaseProvider {
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.call`](https://docs.ethers.io/v5/api/providers/provider/#Provider-call) in ethers.js
    * * [Identical](/docs/api#isd) to [`web3.eth.call`](https://web3js.readthedocs.io/en/v1.7.3/web3-eth.html#call) in web3.js
-   *
    * @param transaction the transaction object to, in theory, execute. Doesn't actually get added to the blockchain.
    * @param blockTag the block to execute this transaction on
    * @returns the result of executing the transaction on the specified block
@@ -612,7 +596,6 @@ export abstract class BaseProvider {
    * 3. Queries the resolver for the address
    *
    * * [Identical](/docs/api#isd) to [`ethers.provider.resolveName`](https://docs.ethers.io/v5/api/providers/provider/#Provider-resolveName) in ethers.js
-   *
    * @param name the ENS name to resolve (e.g. 'vitalik.eth')
    * @returns the Ethereum address the name resolves to, or null if not found
    * @example
@@ -654,8 +637,7 @@ export abstract class BaseProvider {
     // Check if resolver is zero address
     if (
       resolverAddress === '0x0000000000000000000000000000000000000000' ||
-      resolverAddress ===
-        '0x' + '0'.repeat(resolverResult.length - 2) // all zeros
+      resolverAddress === '0x' + '0'.repeat(resolverResult.length - 2) // all zeros
     ) {
       return null;
     }

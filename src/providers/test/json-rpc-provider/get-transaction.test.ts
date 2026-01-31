@@ -87,6 +87,14 @@ describe('provider.getTransaction', () => {
       ),
     );
 
-    expect(JSON.stringify(transaction, (_, v) => typeof v === "bigint" ? v.toString() : v)).toBe(JSON.stringify(mockTransaction, (_, v) => typeof v === "bigint" ? v.toString() : v));
+    expect(
+      JSON.stringify(transaction, (_, v) =>
+        typeof v === 'bigint' ? v.toString() : v,
+      ),
+    ).toBe(
+      JSON.stringify(mockTransaction, (_, v) =>
+        typeof v === 'bigint' ? v.toString() : v,
+      ),
+    );
   });
 });
