@@ -20,20 +20,22 @@
 <img src="https://user-images.githubusercontent.com/3408480/133322814-f3d18424-4ba8-4a37-8cbc-c5e6828354a3.png" title="Import size comparison" width="900"/>
 </p>
 
+
 <!-- BUNDLE-SIZE-TABLE:START -->
 
 ### Bundle Size Comparison (ESM, minified)
 
 Measured with esbuild. Smaller is better.
 
-| What you import                          | essential-eth@0.13.0 | ethers@6.16.0 | viem@2.45.1 | web3@4.16.0 |   ox@0.12.0    | tevm@1.0.0-next.149 |
-| ---------------------------------------- | :------------------: | :-----------: | :---------: | :---------: | :------------: | :-----------------: |
-| **Full library**                         |    **40.8 kB** 🏆    |   394.0 kB    |  348.3 kB   |  506.6 kB   |    615.6 kB    |         N/A         |
-| **Provider** (getBalance, getBlock, etc) |       29.9 kB        |   260.0 kB    |  269.5 kB   |  465.3 kB   | **10.9 kB** 🏆 |         N/A         |
-| **Contract** (read-only calls)           |    **24.8 kB** 🏆    |    86.6 kB    |  179.8 kB   |  276.5 kB   |    49.9 kB     |         N/A         |
-| **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆     |    10.4 kB    |   2.7 kB    |  465.3 kB   |     3.7 kB     |      113.7 kB       |
+| What you import                          | essential-eth@0.13.0 | ethers@6.16.0 | viem@2.45.1 | web3@4.16.0 |   ox@0.12.0    |
+| ---------------------------------------- | :------------------: | :-----------: | :---------: | :---------: | :------------: |
+| **Full library**                         |    **42.2 kB** 🏆    |   394.0 kB    |  348.3 kB   |  495.8 kB   |    612.8 kB    |
+| **Provider** (getBalance, getBlock, etc) |       29.9 kB        |   260.0 kB    |  269.5 kB   |  454.5 kB   | **10.9 kB** 🏆 |
+| **Contract** (read-only calls)           |    **24.8 kB** 🏆    |    86.6 kB    |  179.8 kB   |  264.9 kB   |    49.9 kB     |
+| **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆     |    10.4 kB    |   2.7 kB    |  454.5 kB   |     3.7 kB     |
 
-essential-eth is **8x smaller** than the nearest competitor for full-library usage.
+essential-eth is **8x smaller** than the nearest alternative for full-library usage.
+
 
 <!-- BUNDLE-SIZE-TABLE:END -->
 
@@ -64,6 +66,7 @@ essential-eth is **8x smaller** than the nearest competitor for full-library usa
 
 ## Table of Contents
 
+
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Click to expand) -->
 <details>
 <summary>Click to expand</summary>
@@ -72,60 +75,65 @@ essential-eth is **8x smaller** than the nearest competitor for full-library usa
   - [Bundle Size Comparison (ESM, minified)](#bundle-size-comparison-esm-minified)
 - [Install](#install)
 - [🛠 Utils](#-utils)
-  - [`arrayify`](#arrayify)
-  - [`computeAddress`](#computeaddress)
-  - [`computePublicKey`](#computepublickey)
-  - [`concat`](#concat)
-  - [`decodeBytes32String`](#decodebytes32string)
-  - [`encodeBytes32String`](#encodebytes32string)
-  - [`etherToGwei`](#ethertogwei)
-  - [`etherToWei`](#ethertowei)
-  - [`formatUnits`](#formatunits)
-  - [`getAddress`](#getaddress)
-  - [`gweiToEther`](#gweitoether)
-  - [`hashMessage`](#hashmessage)
-  - [`hexConcat`](#hexconcat)
-  - [`hexDataLength`](#hexdatalength)
-  - [`hexDataSlice`](#hexdataslice)
-  - [`hexStripZeros`](#hexstripzeros)
-  - [`hexValue`](#hexvalue)
-  - [`hexZeroPad`](#hexzeropad)
-  - [`hexlify`](#hexlify)
-  - [`id`](#id)
-  - [`isAddress`](#isaddress)
-  - [`isBytes`](#isbytes)
-  - [`isBytesLike`](#isbyteslike)
-  - [`isHexString`](#ishexstring)
-  - [`jsonRpcProvider`](#jsonrpcprovider)
-  - [`keccak256`](#keccak256)
-  - [`namehash`](#namehash)
-  - [`pack`](#pack)
-  - [`parseUnits`](#parseunits)
-  - [`solidityKeccak256`](#soliditykeccak256)
-  - [`splitSignature`](#splitsignature)
-  - [`stripZeros`](#stripzeros)
-  - [`toChecksumAddress`](#tochecksumaddress)
-  - [`toUtf8Bytes`](#toutf8bytes)
-  - [`toUtf8String`](#toutf8string)
-  - [`weiToEther`](#weitoether)
-  - [`zeroPad`](#zeropad)
+    - [`arrayify`](#arrayify)
+    - [`computeAddress`](#computeaddress)
+    - [`computePublicKey`](#computepublickey)
+    - [`concat`](#concat)
+    - [`decodeBytes32String`](#decodebytes32string)
+    - [`decodeEventLog`](#decodeeventlog)
+    - [`decodeFunctionResult`](#decodefunctionresult)
+    - [`encodeBytes32String`](#encodebytes32string)
+    - [`encodeFunctionData`](#encodefunctiondata)
+    - [`etherToGwei`](#ethertogwei)
+    - [`etherToWei`](#ethertowei)
+    - [`formatUnits`](#formatunits)
+    - [`getAddress`](#getaddress)
+    - [`getEventSignature`](#geteventsignature)
+    - [`getEventTopic`](#geteventtopic)
+    - [`gweiToEther`](#gweitoether)
+    - [`hashMessage`](#hashmessage)
+    - [`hexConcat`](#hexconcat)
+    - [`hexDataLength`](#hexdatalength)
+    - [`hexDataSlice`](#hexdataslice)
+    - [`hexStripZeros`](#hexstripzeros)
+    - [`hexValue`](#hexvalue)
+    - [`hexZeroPad`](#hexzeropad)
+    - [`hexlify`](#hexlify)
+    - [`id`](#id)
+    - [`isAddress`](#isaddress)
+    - [`isBytes`](#isbytes)
+    - [`isBytesLike`](#isbyteslike)
+    - [`isHexString`](#ishexstring)
+    - [`jsonRpcProvider`](#jsonrpcprovider)
+    - [`keccak256`](#keccak256)
+    - [`namehash`](#namehash)
+    - [`pack`](#pack)
+    - [`parseUnits`](#parseunits)
+    - [`solidityKeccak256`](#soliditykeccak256)
+    - [`splitSignature`](#splitsignature)
+    - [`stripZeros`](#stripzeros)
+    - [`toChecksumAddress`](#tochecksumaddress)
+    - [`toUtf8Bytes`](#toutf8bytes)
+    - [`toUtf8String`](#toutf8string)
+    - [`weiToEther`](#weitoether)
+    - [`zeroPad`](#zeropad)
 - [Providers](#providers)
-  - [`call`](#call)
-  - [`estimateGas`](#estimategas)
-  - [`getBalance`](#getbalance)
-  - [`getBlock`](#getblock)
-  - [`getBlockNumber`](#getblocknumber)
-  - [`getCode`](#getcode)
-  - [`getFeeData`](#getfeedata)
-  - [`getGasPrice`](#getgasprice)
-  - [`getLogs`](#getlogs)
-  - [`getNetwork`](#getnetwork)
-  - [`getTransaction`](#gettransaction)
-  - [`getTransactionCount`](#gettransactioncount)
-  - [`getTransactionReceipt`](#gettransactionreceipt)
-  - [`resolveName`](#resolvename)
+    - [`call`](#call)
+    - [`estimateGas`](#estimategas)
+    - [`getBalance`](#getbalance)
+    - [`getBlock`](#getblock)
+    - [`getBlockNumber`](#getblocknumber)
+    - [`getCode`](#getcode)
+    - [`getFeeData`](#getfeedata)
+    - [`getGasPrice`](#getgasprice)
+    - [`getLogs`](#getlogs)
+    - [`getNetwork`](#getnetwork)
+    - [`getTransaction`](#gettransaction)
+    - [`getTransactionCount`](#gettransactioncount)
+    - [`getTransactionReceipt`](#gettransactionreceipt)
+    - [`resolveName`](#resolvename)
 - [Contract](#contract)
-  - [`contractFunctionName(args)`](#contractfunctionnameargs)
+    - [`contractFunctionName(args)`](#contractfunctionnameargs)
 - [More Info](#more-info)
   - [Identical vs Similar vs Dissimilar {&#035;isd}](#identical-vs-similar-vs-dissimilar-isd)
   - [Miscellaneous](#miscellaneous)
@@ -148,12 +156,15 @@ yarn add essential-eth # TypeScript included
 
 Browsers:
 
+
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (UNPKG_SCRIPT_TAG) -->
 
 ```html
+
 <!-- index.html -->
 <script src="https://unpkg.com/essential-eth@0.13.0"></script>
 ```
+      
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END (UNPKG_SCRIPT_TAG) -->
 
@@ -168,33 +179,29 @@ import { etherToWei } from 'essential-eth';
 const { etherToWei } = require('essential-eth');
 ```
 
+
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (FUNCTIONS) -->
-
 #### [`arrayify`](https://eeth.dev/docs/api/modules#arrayify)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+arrayify+}])
-
-```typescript
-arrayify(value: number | bigint | BytesLike | Hexable, options: DataOptions): Uint8Array
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+arrayify+}])
+  ```typescript
+  arrayify(value: number | bigint | BytesLike | Hexable, options: DataOptions): Uint8Array
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { arrayify } from 'essential-eth';
-```
+  ```js
+  import { arrayify } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 arrayify(1);
 // Uint8Array(1) [ 1 ]
 ```
-
 ```javascript
 arrayify(0x1234);
 // Uint8Array(2) [ 18, 52 ]
 ```
-
 ```javascript
 arrayify('0x1', { hexPad: 'right' });
 // Uint8Array(1) [ 16 ]
@@ -205,31 +212,24 @@ arrayify('0x1', { hexPad: 'right' });
   <br/>
 
 #### [`computeAddress`](https://eeth.dev/docs/api/modules#computeaddress)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+computeAddress+}])
-
-```typescript
-computeAddress(key: string): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+computeAddress+}])
+  ```typescript
+  computeAddress(key: string): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { computeAddress } from 'essential-eth';
-```
+  ```js
+  import { computeAddress } from 'essential-eth';
+  ```
 
-```javascript
-computeAddress(
-  '0x0458eb591f407aef12936bd2989ca699cf5061de9c4964dd6eb6005fd8f580c407434447e813969a1be6e9954b002cad84dfc67a69e032b273e4695e7d0db2d952',
-); // public key
+  ```javascript
+computeAddress('0x0458eb591f407aef12936bd2989ca699cf5061de9c4964dd6eb6005fd8f580c407434447e813969a1be6e9954b002cad84dfc67a69e032b273e4695e7d0db2d952'); // public key
 // '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
 ```
-
 ```javascript
-computeAddress(
-  '0x2f2c419acf4a1da8c1ebea75bb3fcfbd3ec2aa3bf0162901ccdc2f38b8f92427',
-); // private key
+computeAddress('0x2f2c419acf4a1da8c1ebea75bb3fcfbd3ec2aa3bf0162901ccdc2f38b8f92427'); // private key
 // '0xA2902059a7BF992f1450BACD7357CCAa5cC8336a'
 ```
 
@@ -238,32 +238,24 @@ computeAddress(
   <br/>
 
 #### [`computePublicKey`](https://eeth.dev/docs/api/modules#computepublickey)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+computePublicKey+}])
-
-```typescript
-computePublicKey(privKey: BytesLike): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+computePublicKey+}])
+  ```typescript
+  computePublicKey(privKey: BytesLike): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { computePublicKey } from 'essential-eth';
-```
+  ```js
+  import { computePublicKey } from 'essential-eth';
+  ```
 
-```javascript
-computePublicKey(
-  '0xb27cc8dea0177d910110e8d3ec5480d56c723abf433529f4063f261ffdb9297c',
-);
+  ```javascript
+computePublicKey('0xb27cc8dea0177d910110e8d3ec5480d56c723abf433529f4063f261ffdb9297c');
 // '0x045cd0032015eecfde49f82f4e149d804e8ac6e3a0bface32e37c72a71ceac864fe84da7e8df84342f7b11dfb753c4d158f636142b46b29cf7f0f171ae0aa4fb87'
 ```
-
 ```javascript
-computePublicKey([
-  50, 102, 50, 99, 52, 49, 57, 97, 99, 102, 52, 97, 49, 100, 97, 56, 99, 49,
-  101, 98, 101, 97, 55, 53, 98, 98, 51, 102, 99, 102, 98, 100,
-]);
+computePublicKey([50,102,50,99,52,49,57,97,99,102,52,97,49,100,97,56,99,49,101,98,101,97,55,53,98,98,51,102,99,102,98,100]);
 // '0x04a9cea77eca949df84f661cee153426fb51f2294b9364b4fac240df57360b9b0ac9c99e4d7966491ab4c81f8c82e0cd24ec5759832ad4ab736d22c7d90b806ee8'
 ```
 
@@ -272,21 +264,19 @@ computePublicKey([
   <br/>
 
 #### [`concat`](https://eeth.dev/docs/api/modules#concat)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+concat+}])
-
-```typescript
-concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+concat+}])
+  ```typescript
+  concat(arrayOfBytesLike: Array<BytesLikeWithNumber>): Uint8Array
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { concat } from 'essential-eth';
-```
+  ```js
+  import { concat } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 concat([0, 1]);
 // Uint8Array(2) [ 0, 1 ]
 ```
@@ -296,24 +286,20 @@ concat([0, 1]);
   <br/>
 
 #### [`decodeBytes32String`](https://eeth.dev/docs/api/modules#decodebytes32string)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+decodeBytes32String+}])
-
-```typescript
-decodeBytes32String(bytes32: string): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+decodeBytes32String+}])
+  ```typescript
+  decodeBytes32String(bytes32: string): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { decodeBytes32String } from 'essential-eth';
-```
+  ```js
+  import { decodeBytes32String } from 'essential-eth';
+  ```
 
-```javascript
-decodeBytes32String(
-  '0x657373656e7469616c2d657468000000000000000000000000000000000000',
-);
+  ```javascript
+decodeBytes32String('0x657373656e7469616c2d657468000000000000000000000000000000000000')
 // 'essential-eth'
 ```
 
@@ -321,23 +307,83 @@ decodeBytes32String(
 
   <br/>
 
-#### [`encodeBytes32String`](https://eeth.dev/docs/api/modules#encodebytes32string)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+encodeBytes32String+}])
-
-```typescript
-encodeBytes32String(text: string): string
-```
-
+#### [`decodeEventLog`](https://eeth.dev/docs/api/modules#decodeeventlog)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+decodeEventLog+}])
+  ```typescript
+  decodeEventLog(abi: JSONABI, log: undefined): undefined
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { encodeBytes32String } from 'essential-eth';
+  ```js
+  import { decodeEventLog } from 'essential-eth';
+  ```
+
+  ```javascript
+const result = decodeEventLog(erc20ABI, {
+  topics: [
+    '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+    '0x000000000000000000000000abc0000000000000000000000000000000000001',
+    '0x000000000000000000000000abc0000000000000000000000000000000000002',
+  ],
+  data: '0x0000000000000000000000000000000000000000000000000000000000000064',
+});
+// { eventName: 'Transfer', args: { from: '0xABC0...0001', to: '0xaBc0...0002', value: 100n } }
 ```
 
-```javascript
-encodeBytes32String('essential-eth');
+  </details>
+
+  <br/>
+
+#### [`decodeFunctionResult`](https://eeth.dev/docs/api/modules#decodefunctionresult)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+decodeFunctionResult+}])
+  ```typescript
+  decodeFunctionResult(abi: JSONABI, functionName: string, data: string): any
+  ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { decodeFunctionResult } from 'essential-eth';
+  ```
+
+  ```typescript
+import { decodeFunctionResult } from 'essential-eth';
+
+const abi = [
+  {
+    name: 'balanceOf',
+    type: 'function',
+    inputs: [{ name: 'owner', type: 'address' }],
+    outputs: [{ name: 'balance', type: 'uint256' }],
+  },
+];
+
+const result = decodeFunctionResult(abi, 'balanceOf', '0x000...0001');
+// result === 1n
+```
+
+  </details>
+
+  <br/>
+
+#### [`encodeBytes32String`](https://eeth.dev/docs/api/modules#encodebytes32string)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+encodeBytes32String+}])
+  ```typescript
+  encodeBytes32String(text: string): string
+  ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { encodeBytes32String } from 'essential-eth';
+  ```
+
+  ```javascript
+encodeBytes32String('essential-eth')
 // '0x657373656e7469616c2d657468000000000000000000000000000000000000'
 ```
 
@@ -345,25 +391,57 @@ encodeBytes32String('essential-eth');
 
   <br/>
 
-#### [`etherToGwei`](https://eeth.dev/docs/api/modules#ethertogwei)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+etherToGwei+}])
-
-```typescript
-etherToGwei(etherQuantity: string | number | bigint): bigint
-```
-
+#### [`encodeFunctionData`](https://eeth.dev/docs/api/modules#encodefunctiondata)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+encodeFunctionData+}])
+  ```typescript
+  encodeFunctionData(abi: JSONABI, functionName: string, args?: undefined): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { etherToGwei } from 'essential-eth';
+  ```js
+  import { encodeFunctionData } from 'essential-eth';
+  ```
+
+  ```typescript
+import { encodeFunctionData } from 'essential-eth';
+
+const abi = [
+  {
+    name: 'balanceOf',
+    type: 'function',
+    inputs: [{ name: 'owner', type: 'address' }],
+    outputs: [{ name: 'balance', type: 'uint256' }],
+  },
+];
+
+const data = encodeFunctionData(abi, 'balanceOf', [
+  '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+]);
 ```
 
-```javascript
-etherToGwei('1000').toString();
+  </details>
+
+  <br/>
+
+#### [`etherToGwei`](https://eeth.dev/docs/api/modules#ethertogwei)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+etherToGwei+}])
+  ```typescript
+  etherToGwei(etherQuantity: string | number | bigint): bigint
+  ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { etherToGwei } from 'essential-eth';
+  ```
+
+  ```javascript
+etherToGwei('1000').toString()
 // '1000000000000'
-etherToGwei(1000).toString();
+etherToGwei(1000).toString()
 // '1000000000000'
 ```
 
@@ -372,24 +450,22 @@ etherToGwei(1000).toString();
   <br/>
 
 #### [`etherToWei`](https://eeth.dev/docs/api/modules#ethertowei)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+etherToWei+}])
-
-```typescript
-etherToWei(etherQuantity: string | number | bigint): bigint
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+etherToWei+}])
+  ```typescript
+  etherToWei(etherQuantity: string | number | bigint): bigint
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { etherToWei } from 'essential-eth';
-```
+  ```js
+  import { etherToWei } from 'essential-eth';
+  ```
 
-```javascript
-etherToWei('1000').toString();
+  ```javascript
+etherToWei('1000').toString()
 // '1000000000000000000000'
-etherToWei(1000).toString();
+etherToWei(1000).toString()
 // '1000000000000000000000'
 ```
 
@@ -398,32 +474,28 @@ etherToWei(1000).toString();
   <br/>
 
 #### [`formatUnits`](https://eeth.dev/docs/api/modules#formatunits)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+formatUnits+}])
-
-```typescript
-formatUnits(value: string | number | bigint, decimals?: number): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+formatUnits+}])
+  ```typescript
+  formatUnits(value: string | number | bigint, decimals?: number): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { formatUnits } from 'essential-eth';
-```
+  ```js
+  import { formatUnits } from 'essential-eth';
+  ```
 
-```javascript
-formatUnits(1000000n, 6);
+  ```javascript
+formatUnits(1000000n, 6)
 // '1'
 ```
-
 ```javascript
-formatUnits('1000000000000000000', 18);
+formatUnits('1000000000000000000', 18)
 // '1'
 ```
-
 ```javascript
-formatUnits(1500000n, 6);
+formatUnits(1500000n, 6)
 // '1.5'
 ```
 
@@ -432,22 +504,20 @@ formatUnits(1500000n, 6);
   <br/>
 
 #### [`getAddress`](https://eeth.dev/docs/api/modules#getaddress)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+getAddress+}])
-
-```typescript
-getAddress(address: string): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+getAddress+}])
+  ```typescript
+  getAddress(address: string): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { getAddress } from 'essential-eth';
-```
+  ```js
+  import { getAddress } from 'essential-eth';
+  ```
 
-```javascript
-getAddress('0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359');
+  ```javascript
+getAddress('0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359')
 // '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
 ```
 
@@ -455,25 +525,78 @@ getAddress('0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359');
 
   <br/>
 
-#### [`gweiToEther`](https://eeth.dev/docs/api/modules#gweitoether)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+gweiToEther+}])
-
-```typescript
-gweiToEther(gweiQuantity: string | number | bigint): string
-```
-
+#### [`getEventSignature`](https://eeth.dev/docs/api/modules#geteventsignature)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+getEventSignature+}])
+  ```typescript
+  getEventSignature(abi: JSONABI, eventName: string): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { gweiToEther } from 'essential-eth';
+  ```js
+  import { getEventSignature } from 'essential-eth';
+  ```
+
+  ```javascript
+const abi = [
+  {
+    type: 'event',
+    name: 'Transfer',
+    inputs: [
+      { name: 'from', type: 'address', indexed: true },
+      { name: 'to', type: 'address', indexed: true },
+      { name: 'value', type: 'uint256', indexed: false },
+    ],
+  },
+];
+getEventSignature(abi, 'Transfer');
+// '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
 ```
 
-```javascript
-gweiToEther('1000000000000');
+  </details>
+
+  <br/>
+
+#### [`getEventTopic`](https://eeth.dev/docs/api/modules#geteventtopic)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+getEventTopic+}])
+  ```typescript
+  getEventTopic(eventSignature: string): string
+  ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { getEventTopic } from 'essential-eth';
+  ```
+
+  ```javascript
+getEventTopic('Transfer(address,address,uint256)');
+// '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+```
+
+  </details>
+
+  <br/>
+
+#### [`gweiToEther`](https://eeth.dev/docs/api/modules#gweitoether)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+gweiToEther+}])
+  ```typescript
+  gweiToEther(gweiQuantity: string | number | bigint): string
+  ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { gweiToEther } from 'essential-eth';
+  ```
+
+  ```javascript
+gweiToEther('1000000000000')
 // '1000'
-gweiToEther(1000000000000);
+gweiToEther(1000000000000)
 // '1000'
 ```
 
@@ -482,22 +605,20 @@ gweiToEther(1000000000000);
   <br/>
 
 #### [`hashMessage`](https://eeth.dev/docs/api/modules#hashmessage)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hashMessage+}])
-
-```typescript
-hashMessage(message: string | Bytes): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hashMessage+}])
+  ```typescript
+  hashMessage(message: string | Bytes): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { hashMessage } from 'essential-eth';
-```
+  ```js
+  import { hashMessage } from 'essential-eth';
+  ```
 
-```javascript
-hashMessage('Hello World');
+  ```javascript
+hashMessage("Hello World");
 // '0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2'
 ```
 
@@ -506,21 +627,19 @@ hashMessage('Hello World');
   <br/>
 
 #### [`hexConcat`](https://eeth.dev/docs/api/modules#hexconcat)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexConcat+}])
-
-```typescript
-hexConcat(items: Array<BytesLike>): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexConcat+}])
+  ```typescript
+  hexConcat(items: Array<BytesLike>): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { hexConcat } from 'essential-eth';
-```
+  ```js
+  import { hexConcat } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 hexConcat([[2, 4, 0, 1], 9, '0x2934', '0x3947']);
 // '0x020400010929343947'
 ```
@@ -530,25 +649,22 @@ hexConcat([[2, 4, 0, 1], 9, '0x2934', '0x3947']);
   <br/>
 
 #### [`hexDataLength`](https://eeth.dev/docs/api/modules#hexdatalength)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexDataLength+}])
-
-```typescript
-hexDataLength(data: BytesLike): undefined
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexDataLength+}])
+  ```typescript
+  hexDataLength(data: BytesLike): undefined
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { hexDataLength } from 'essential-eth';
-```
+  ```js
+  import { hexDataLength } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 hexDataLength([2, 4, 0, 1]);
 // 4
 ```
-
 ```javascript
 hexDataLength('0x3925');
 // 2
@@ -559,21 +675,19 @@ hexDataLength('0x3925');
   <br/>
 
 #### [`hexDataSlice`](https://eeth.dev/docs/api/modules#hexdataslice)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexDataSlice+}])
-
-```typescript
-hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexDataSlice+}])
+  ```typescript
+  hexDataSlice(data: BytesLikeWithNumber, offset: number, endOffset: number): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { hexDataSlice } from 'essential-eth';
-```
+  ```js
+  import { hexDataSlice } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 hexDataSlice([20, 6, 48], 0, 2);
 // '0x1406'
 ```
@@ -583,22 +697,20 @@ hexDataSlice([20, 6, 48], 0, 2);
   <br/>
 
 #### [`hexStripZeros`](https://eeth.dev/docs/api/modules#hexstripzeros)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexStripZeros+}])
-
-```typescript
-hexStripZeros(value: BytesLike): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexStripZeros+}])
+  ```typescript
+  hexStripZeros(value: BytesLike): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { hexStripZeros } from 'essential-eth';
-```
+  ```js
+  import { hexStripZeros } from 'essential-eth';
+  ```
 
-```javascript
-hexStripZeros([0, 0, 0, 48]);
+  ```javascript
+hexStripZeros([0,0,0,48]);
 // '0x30'
 ```
 
@@ -607,25 +719,22 @@ hexStripZeros([0, 0, 0, 48]);
   <br/>
 
 #### [`hexValue`](https://eeth.dev/docs/api/modules#hexvalue)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexValue+}])
-
-```typescript
-hexValue(value: number | bigint | BytesLike | Hexable): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexValue+}])
+  ```typescript
+  hexValue(value: number | bigint | BytesLike | Hexable): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { hexValue } from 'essential-eth';
-```
+  ```js
+  import { hexValue } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 hexValue(39);
 // '0x27'
 ```
-
 ```javascript
 hexValue([9, 4, 19, 4]);
 // '0x9041304'
@@ -636,30 +745,26 @@ hexValue([9, 4, 19, 4]);
   <br/>
 
 #### [`hexZeroPad`](https://eeth.dev/docs/api/modules#hexzeropad)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexZeroPad+}])
-
-```typescript
-hexZeroPad(value: BytesLikeWithNumber, length: number): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexZeroPad+}])
+  ```typescript
+  hexZeroPad(value: BytesLikeWithNumber, length: number): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { hexZeroPad } from 'essential-eth';
-```
+  ```js
+  import { hexZeroPad } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 hexZeroPad('0x60', 2);
 // '0x0060'
 ```
-
 ```javascript
 hexZeroPad(0x60, 3);
 // '0x000060'
 ```
-
 ```javascript
 hexZeroPad('12345', 1);
 // Throws
@@ -670,25 +775,22 @@ hexZeroPad('12345', 1);
   <br/>
 
 #### [`hexlify`](https://eeth.dev/docs/api/modules#hexlify)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexlify+}])
-
-```typescript
-hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexlify+}])
+  ```typescript
+  hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { hexlify } from 'essential-eth';
-```
+  ```js
+  import { hexlify } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 hexlify(4);
 // '0x04'
 ```
-
 ```javascript
 hexlify(14);
 // '0x0e'
@@ -699,28 +801,25 @@ hexlify(14);
   <br/>
 
 #### [`id`](https://eeth.dev/docs/api/modules#id)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+id+}])
-
-```typescript
-id(text: string): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+id+}])
+  ```typescript
+  id(text: string): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { id } from 'essential-eth';
-```
+  ```js
+  import { id } from 'essential-eth';
+  ```
 
-```javascript
-id('Transfer(address,address,uint256)');
+  ```javascript
+id('Transfer(address,address,uint256)')
 // '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
 ```
-
 ```javascript
 // Get a function selector (first 4 bytes)
-id('balanceOf(address)').slice(0, 10);
+id('balanceOf(address)').slice(0, 10)
 // '0x70a08231'
 ```
 
@@ -729,30 +828,26 @@ id('balanceOf(address)').slice(0, 10);
   <br/>
 
 #### [`isAddress`](https://eeth.dev/docs/api/modules#isaddress)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isAddress+}])
-
-```typescript
-isAddress(address: string): boolean
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isAddress+}])
+  ```typescript
+  isAddress(address: string): boolean
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { isAddress } from 'essential-eth';
-```
+  ```js
+  import { isAddress } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 isAddress('0xc0deaf6bd3f0c6574a6a625ef2f22f62a5150eab');
 // true
 ```
-
 ```javascript
 isAddress('bad');
 // false
 ```
-
 ```javascript
 // Does NOT support ENS.
 isAddress('vitalik.eth');
@@ -764,30 +859,26 @@ isAddress('vitalik.eth');
   <br/>
 
 #### [`isBytes`](https://eeth.dev/docs/api/modules#isbytes)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isBytes+}])
-
-```typescript
-isBytes(value: any): value
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isBytes+}])
+  ```typescript
+  isBytes(value: any): value
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { isBytes } from 'essential-eth';
-```
+  ```js
+  import { isBytes } from 'essential-eth';
+  ```
 
-```javascript
-isBytes([1, 2, 3]);
+  ```javascript
+isBytes([1,2,3]);
 // true
 ```
-
 ```javascript
 isBytes(false);
 // false
 ```
-
 ```javascript
 isBytes(new Uint8Array(1));
 // true
@@ -798,30 +889,26 @@ isBytes(new Uint8Array(1));
   <br/>
 
 #### [`isBytesLike`](https://eeth.dev/docs/api/modules#isbyteslike)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isBytesLike+}])
-
-```typescript
-isBytesLike(value: any): value
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isBytesLike+}])
+  ```typescript
+  isBytesLike(value: any): value
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { isBytesLike } from 'essential-eth';
-```
+  ```js
+  import { isBytesLike } from 'essential-eth';
+  ```
 
-```javascript
-isBytesLike([1, 2, 3]);
+  ```javascript
+isBytesLike([1,2,3]);
 // true
 ```
-
 ```javascript
 isBytesLike(false);
 // false
 ```
-
 ```javascript
 isBytesLike(new Uint8Array(1));
 // true
@@ -832,25 +919,22 @@ isBytesLike(new Uint8Array(1));
   <br/>
 
 #### [`isHexString`](https://eeth.dev/docs/api/modules#ishexstring)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isHexString+}])
-
-```typescript
-isHexString(value: any, length: number): boolean
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+isHexString+}])
+  ```typescript
+  isHexString(value: any, length: number): boolean
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { isHexString } from 'essential-eth';
-```
+  ```js
+  import { isHexString } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 isHexString('0x4924');
 // true
 ```
-
 ```javascript
 isHexString('0x4924', 4);
 // false
@@ -862,26 +946,22 @@ isHexString('0x4924', 4);
   <br/>
 
 #### [`jsonRpcProvider`](https://eeth.dev/docs/api/modules#jsonrpcprovider)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+jsonRpcProvider+}])
-
-```typescript
-jsonRpcProvider(rpcUrl: string): JsonRpcProvider
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+jsonRpcProvider+}])
+  ```typescript
+  jsonRpcProvider(rpcUrl: string): JsonRpcProvider
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { jsonRpcProvider } from 'essential-eth';
-```
+  ```js
+  import { jsonRpcProvider } from 'essential-eth';
+  ```
 
-```javascript
-jsonRpcProvider()
-  .getBlock('latest')
-  .then((block) => {
-    console.log(block.number);
-  });
+  ```javascript
+jsonRpcProvider().getBlock('latest').then(block => {
+  console.log(block.number);
+})
 // 14530496
 ```
 
@@ -890,21 +970,19 @@ jsonRpcProvider()
   <br/>
 
 #### [`keccak256`](https://eeth.dev/docs/api/modules#keccak256)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+keccak256+}])
-
-```typescript
-keccak256(data: BytesLike): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+keccak256+}])
+  ```typescript
+  keccak256(data: BytesLike): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { keccak256 } from 'essential-eth';
-```
+  ```js
+  import { keccak256 } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 keccak256('essential-eth');
 // '0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'
 
@@ -917,21 +995,19 @@ keccak256('0x123');
   <br/>
 
 #### [`namehash`](https://eeth.dev/docs/api/modules#namehash)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+namehash+}])
-
-```typescript
-namehash(name: string): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+namehash+}])
+  ```typescript
+  namehash(name: string): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { namehash } from 'essential-eth';
-```
+  ```js
+  import { namehash } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 namehash('');
 // '0x0000000000000000000000000000000000000000000000000000000000000000'
 
@@ -947,21 +1023,19 @@ namehash('vitalik.eth');
   <br/>
 
 #### [`pack`](https://eeth.dev/docs/api/modules#pack)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+pack+}])
-
-```typescript
-pack(types: Array<string>, values: Array<any>): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+pack+}])
+  ```typescript
+  pack(types: Array<string>, values: Array<any>): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { pack } from 'essential-eth';
-```
+  ```js
+  import { pack } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 const types = ['bool', 'string', 'uint64'];
 const values = [true, 'text', 30];
 pack(types, values);
@@ -973,32 +1047,28 @@ pack(types, values);
   <br/>
 
 #### [`parseUnits`](https://eeth.dev/docs/api/modules#parseunits)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+parseUnits+}])
-
-```typescript
-parseUnits(value: string, decimals?: number): bigint
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+parseUnits+}])
+  ```typescript
+  parseUnits(value: string, decimals?: number): bigint
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { parseUnits } from 'essential-eth';
-```
+  ```js
+  import { parseUnits } from 'essential-eth';
+  ```
 
-```javascript
-parseUnits('1', 6);
+  ```javascript
+parseUnits('1', 6)
 // 1000000n
 ```
-
 ```javascript
-parseUnits('1.5', 6);
+parseUnits('1.5', 6)
 // 1500000n
 ```
-
 ```javascript
-parseUnits('1', 18);
+parseUnits('1', 18)
 // 1000000000000000000n
 ```
 
@@ -1007,33 +1077,27 @@ parseUnits('1', 18);
   <br/>
 
 #### [`solidityKeccak256`](https://eeth.dev/docs/api/modules#soliditykeccak256)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+solidityKeccak256+}])
-
-```typescript
-solidityKeccak256(types: Array<string>, values: Array<any>): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+solidityKeccak256+}])
+  ```typescript
+  solidityKeccak256(types: Array<string>, values: Array<any>): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { solidityKeccak256 } from 'essential-eth';
-```
+  ```js
+  import { solidityKeccak256 } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 const types = ['string', 'bool', 'uint32'];
 const values = ['essential-eth is great', true, 14];
 solidityKeccak256(types, values);
 // '0xe4d4c8e809faac09d58f468f0aeab9474fe8965d554c6c0f868c433c3fd6acab'
 ```
-
 ```javascript
 const types = ['bytes4', 'uint32[5]'];
-const values = [
-  [116, 101, 115, 116],
-  [5, 3, 4, 9, 18],
-];
+const values = [[116, 101, 115, 116], [5, 3, 4, 9, 18]];
 solidityKeccak256(types, values);
 // '0x038707a887f09355dc545412b058e7ba8f3c74047050c7c5e5e52eec608053d9'
 ```
@@ -1043,32 +1107,30 @@ solidityKeccak256(types, values);
   <br/>
 
 #### [`splitSignature`](https://eeth.dev/docs/api/modules#splitsignature)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+splitSignature+}])
-
-```typescript
-splitSignature(signature: SignatureLike): Signature
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+splitSignature+}])
+  ```typescript
+  splitSignature(signature: SignatureLike): Signature
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { splitSignature } from 'essential-eth';
-```
+  ```js
+  import { splitSignature } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 const signature = '0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee331b';
 splitSignature(signature);
-{
- r: "0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b39716",
- s: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
- _vs: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
- recoveryParam: 0,
- v: 27,
- yParityAndS: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
- compact: "0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33"
-}
+ {
+   r: "0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b39716",
+   s: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
+   _vs: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
+   recoveryParam: 0,
+   v: 27,
+   yParityAndS: "0x47252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33",
+   compact: "0x60bc4ed91f2021aefe7045f3f77bd12f87eb733aee24bd1965343b3c27b3971647252185b7d2abb411b01b5d1ac4ab41ea486df1e9b396758c1aec6c1b6eee33"
+ }
 ```
 
   </details>
@@ -1076,21 +1138,19 @@ splitSignature(signature);
   <br/>
 
 #### [`stripZeros`](https://eeth.dev/docs/api/modules#stripzeros)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+stripZeros+}])
-
-```typescript
-stripZeros(value: BytesLike): Uint8Array
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+stripZeros+}])
+  ```typescript
+  stripZeros(value: BytesLike): Uint8Array
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { stripZeros } from 'essential-eth';
-```
+  ```js
+  import { stripZeros } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 stripZeros('0x00002834');
 // Uint8Array { [Iterator]  0: 40, 1: 52 }
 // Equivalent to '0x2834'
@@ -1101,24 +1161,23 @@ stripZeros('0x00002834');
   <br/>
 
 #### [`toChecksumAddress`](https://eeth.dev/docs/api/modules#tochecksumaddress)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+toChecksumAddress+}])
-
-```typescript
-toChecksumAddress(address: string): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+toChecksumAddress+}])
+  ```typescript
+  toChecksumAddress(address: string): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { toChecksumAddress } from 'essential-eth';
-```
+  ```js
+  import { toChecksumAddress } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 toChecksumAddress('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359');
 // '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
 ```
+
 
 Similar to ["getAddress" in ethers.js](https://docs.ethers.io/v5/api/utils/address/#utils-getAddress)
 
@@ -1129,21 +1188,19 @@ Similar to ["toChecksumAddress" in web3.js](https://web3js.readthedocs.io/en/v1.
   <br/>
 
 #### [`toUtf8Bytes`](https://eeth.dev/docs/api/modules#toutf8bytes)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+toUtf8Bytes+}])
-
-```typescript
-toUtf8Bytes(data: string): Uint8Array
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+toUtf8Bytes+}])
+  ```typescript
+  toUtf8Bytes(data: string): Uint8Array
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { toUtf8Bytes } from 'essential-eth';
-```
+  ```js
+  import { toUtf8Bytes } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 toUtf8Bytes('essential-eth');
 // Uint8Array { [Iterator] 0: 101, 1: 115, 2: 115, 3: 101, 4: 110, 5: 116, 6: 105, 7: 97, 8: 108, 9: 45, 10: 101, 11: 116, 12: 104 }
 
@@ -1156,27 +1213,24 @@ toUtf8Bytes('ethereum');
   <br/>
 
 #### [`toUtf8String`](https://eeth.dev/docs/api/modules#toutf8string)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+toUtf8String+}])
-
-```typescript
-toUtf8String(bytes: BytesLike): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+toUtf8String+}])
+  ```typescript
+  toUtf8String(bytes: BytesLike): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { toUtf8String } from 'essential-eth';
-```
+  ```js
+  import { toUtf8String } from 'essential-eth';
+  ```
 
-```javascript
-toUtf8String(new Uint8Array([101, 116, 104]));
+  ```javascript
+toUtf8String(new Uint8Array([101, 116, 104]))
 // 'eth'
 ```
-
 ```javascript
-toUtf8String('0x657468');
+toUtf8String('0x657468')
 // 'eth'
 ```
 
@@ -1185,24 +1239,22 @@ toUtf8String('0x657468');
   <br/>
 
 #### [`weiToEther`](https://eeth.dev/docs/api/modules#weitoether)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+weiToEther+}])
-
-```typescript
-weiToEther(weiQuantity: string | number | bigint): string
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+weiToEther+}])
+  ```typescript
+  weiToEther(weiQuantity: string | number | bigint): string
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { weiToEther } from 'essential-eth';
-```
+  ```js
+  import { weiToEther } from 'essential-eth';
+  ```
 
-```javascript
-weiToEther('1000000000000000000000');
+  ```javascript
+weiToEther('1000000000000000000000')
 // '1000'
-weiToEther(1000000000000000000000);
+weiToEther(1000000000000000000000)
 // '1000'
 ```
 
@@ -1211,26 +1263,23 @@ weiToEther(1000000000000000000000);
   <br/>
 
 #### [`zeroPad`](https://eeth.dev/docs/api/modules#zeropad)
-
-![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+zeroPad+}])
-
-```typescript
-zeroPad(value: BytesLike, length: number): Uint8Array
-```
-
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+zeroPad+}])
+  ```typescript
+  zeroPad(value: BytesLike, length: number): Uint8Array
+  ```
+  
   <details>
   <summary>View Example</summary>
 
-```js
-import { zeroPad } from 'essential-eth';
-```
+  ```js
+  import { zeroPad } from 'essential-eth';
+  ```
 
-```javascript
+  ```javascript
 zeroPad('0x039284');
 // Uint8Array { [Iterator]  0: 0, 1: 0, 2: 0, 3: 3, 4: 146, 5: 132 }
 // Equivalent to 0x000000039284
 ```
-
 ```javascript
 zeroPad([39, 25, 103, 45], 5);
 // Uint8Array { [Iterator]  0: 0, 1: 39, 2: 25, 3: 103, 4: 45 }
@@ -1239,6 +1288,8 @@ zeroPad([39, 25, 103, 45], 5);
   </details>
 
   <br/>
+
+
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
 
@@ -1279,8 +1330,8 @@ provider.getGasPrice().toNumber();
 
  <br/>
 
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (PROVIDER) -->
 
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (PROVIDER) -->
 #### [`call`](https://eeth.dev/docs/api/classes/JsonRpcProvider#call)
 
 ```typescript
