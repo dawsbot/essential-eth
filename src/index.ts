@@ -53,6 +53,7 @@ export {
   decodeBytes32String,
 } from './utils/bytes32-string';
 export { computeAddress } from './utils/compute-address';
+export { decodeEventLog } from './utils/decode-event-log';
 export { computePublicKey } from './utils/compute-public-key';
 export { etherToGwei } from './utils/ether-to-gwei';
 export { formatUnits } from './utils/format-units';
