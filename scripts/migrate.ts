@@ -70,6 +70,45 @@ const MIGRATION_MAP: Record<string, MigrationEntry> = {
 
   // Encoding
   encodePacked: { name: 'pack', note: 'Renamed: encodePacked → pack' },
+
+  // ABI
+  decodeFunctionResult: { name: 'decodeFunctionResult' },
+  encodeFunctionData: { name: 'encodeFunctionData' },
+
+  // Events
+  decodeEventLog: { name: 'decodeEventLog' },
+  toEventSignature: {
+    name: 'getEventSignature',
+    note: 'Renamed: toEventSignature → getEventSignature',
+  },
+  toEventHash: {
+    name: 'getEventTopic',
+    note: 'Renamed: toEventHash → getEventTopic',
+  },
+
+  // String / UTF-8
+  stringToBytes: {
+    name: 'toUtf8Bytes',
+    note: 'Renamed: stringToBytes → toUtf8Bytes',
+  },
+  bytesToString: {
+    name: 'toUtf8String',
+    note: 'Renamed: bytesToString → toUtf8String',
+  },
+
+  // Hex utilities
+  concatHex: {
+    name: 'hexConcat',
+    note: 'Renamed: concatHex → hexConcat',
+  },
+  slice: {
+    name: 'hexDataSlice',
+    note: 'Renamed: slice → hexDataSlice',
+  },
+  size: {
+    name: 'hexDataLength',
+    note: 'Renamed: size → hexDataLength',
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -377,9 +416,7 @@ if (totalUnsupported > 0) {
   console.log('Estimated bundle savings: ~300 kB (viem full → essential-eth)');
   process.exit(1);
 } else if (totalMigrated > 0) {
-  console.log(
-    '\n✅ All viem imports successfully migrated to essential-eth!',
-  );
+  console.log('\n✅ All viem imports successfully migrated to essential-eth!');
   console.log('Estimated bundle savings: ~300 kB (viem full → essential-eth)');
 } else {
   console.log('\nNo viem imports found. Nothing to migrate.');

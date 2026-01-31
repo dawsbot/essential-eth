@@ -14,27 +14,37 @@ npx tsx scripts/migrate.ts ./src
 
 ## What gets migrated
 
-| viem | essential-eth | Notes |
-| --- | --- | --- |
-| `formatEther` | `weiToEther` | renamed |
-| `parseEther` | `etherToWei` | renamed |
-| `formatUnits` | `formatUnits` | same |
-| `parseUnits` | `parseUnits` | same |
-| `formatGwei` | `gweiToEther` | renamed |
-| `parseGwei` | `etherToGwei` | renamed |
-| `getAddress` | `getAddress` | same |
-| `isAddress` | `isAddress` | same |
-| `keccak256` | `keccak256` | same |
-| `hashMessage` | `hashMessage` | same |
-| `toHex` | `hexlify` | renamed |
-| `toBytes` | `arrayify` | renamed |
-| `concat` | `concat` | same |
-| `pad` | `zeroPad` | renamed |
-| `trim` | `stripZeros` | renamed |
-| `isHex` | `isHexString` | renamed |
-| `isBytes` | `isBytes` | same |
-| `namehash` | `namehash` | same |
-| `encodePacked` | `pack` | renamed |
+| viem                   | essential-eth          | Notes   |
+| ---------------------- | ---------------------- | ------- |
+| `formatEther`          | `weiToEther`           | renamed |
+| `parseEther`           | `etherToWei`           | renamed |
+| `formatUnits`          | `formatUnits`          | same    |
+| `parseUnits`           | `parseUnits`           | same    |
+| `formatGwei`           | `gweiToEther`          | renamed |
+| `parseGwei`            | `etherToGwei`          | renamed |
+| `getAddress`           | `getAddress`           | same    |
+| `isAddress`            | `isAddress`            | same    |
+| `keccak256`            | `keccak256`            | same    |
+| `hashMessage`          | `hashMessage`          | same    |
+| `toHex`                | `hexlify`              | renamed |
+| `toBytes`              | `arrayify`             | renamed |
+| `concat`               | `concat`               | same    |
+| `pad`                  | `zeroPad`              | renamed |
+| `trim`                 | `stripZeros`           | renamed |
+| `isHex`                | `isHexString`          | renamed |
+| `isBytes`              | `isBytes`              | same    |
+| `namehash`             | `namehash`             | same    |
+| `encodePacked`         | `pack`                 | renamed |
+| `decodeFunctionResult` | `decodeFunctionResult` | same    |
+| `encodeFunctionData`   | `encodeFunctionData`   | same    |
+| `decodeEventLog`       | `decodeEventLog`       | same    |
+| `toEventSignature`     | `getEventSignature`    | renamed |
+| `toEventHash`          | `getEventTopic`        | renamed |
+| `stringToBytes`        | `toUtf8Bytes`          | renamed |
+| `bytesToString`        | `toUtf8String`         | renamed |
+| `concatHex`            | `hexConcat`            | renamed |
+| `slice`                | `hexDataSlice`         | renamed |
+| `size`                 | `hexDataLength`        | renamed |
 
 ## How it works
 
