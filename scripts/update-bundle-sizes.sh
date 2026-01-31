@@ -179,8 +179,8 @@ C_WEB3_CONV=$(fmt_cell "$WEB3_CONV" $ALL_CONV)
 C_OX_CONV=$(fmt_cell "$OX_CONV" $ALL_CONV)
 C_TEVM_CONV=$(fmt_cell "$TEVM_CONV" $ALL_CONV)
 
-# Compute ratio for full library (essential-eth vs the next-smallest competitor)
-# Filter out 0 (N/A) values before finding the smallest competitor
+# Compute ratio for full library (essential-eth vs the next-smallest alternative)
+# Filter out 0 (N/A) values before finding the smallest alternative
 NEXT_SMALLEST=$(echo "$ETH_FULL $VIEM_FULL $WEB3_FULL $OX_FULL $TEVM_FULL" | tr ' ' '\n' | awk '$1 > 0' | sort -n | head -1)
 RATIO=$(echo "$NEXT_SMALLEST $EE_FULL" | awk '{ printf "%d", $1 / $2 }')
 
@@ -198,7 +198,7 @@ Measured with esbuild. Smaller is better.
 | **Contract** (read-only calls)           | $C_EE_CONT | $C_ETH_CONT | $C_VIEM_CONT | $C_WEB3_CONT | $C_OX_CONT | $C_TEVM_CONT |
 | **Conversions** (wei, gwei, ether)       | $C_EE_CONV | $C_ETH_CONV | $C_VIEM_CONV | $C_WEB3_CONV | $C_OX_CONV | $C_TEVM_CONV |
 
-essential-eth is **${RATIO}x smaller** than the nearest competitor for full-library usage.
+essential-eth is **${RATIO}x smaller** than the nearest alternative for full-library usage.
 EOF
 
 # ─── 7. Replace in readme.md ────────────────────────────────────────────────

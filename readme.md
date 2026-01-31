@@ -33,7 +33,7 @@ Measured with esbuild. Smaller is better.
 | **Contract** (read-only calls)           |    **24.8 kB** 🏆    |    86.6 kB    |  179.8 kB   |  276.5 kB   |    49.9 kB     |         N/A         |
 | **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆     |    10.4 kB    |   2.7 kB    |  465.3 kB   |     3.7 kB     |      113.7 kB       |
 
-essential-eth is **8x smaller** than the nearest competitor for full-library usage.
+essential-eth is **8x smaller** than the nearest alternative for full-library usage.
 
 <!-- BUNDLE-SIZE-TABLE:END -->
 
