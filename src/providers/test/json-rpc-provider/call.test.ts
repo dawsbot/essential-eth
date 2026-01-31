@@ -1,4 +1,3 @@
-
 import * as unfetch from 'isomorphic-unfetch';
 import type { TransactionRequest } from '../../..';
 import { JsonRpcProvider } from '../../..';
