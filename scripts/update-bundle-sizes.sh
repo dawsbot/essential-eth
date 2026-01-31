@@ -18,22 +18,21 @@ trap 'rm -rf "$WORK"' EXIT
 echo "→ Building essential-eth..."
 (cd "$ROOT" && npx tsup --silent 2>/dev/null || npx tsup)
 
-# ─── 2. Set up a temp workspace with ethers + viem ──────────────────────────
+# ─── 2. Set up a temp workspace with comparison libraries ────────────────────
 echo "→ Installing comparison libraries in temp dir..."
 cat > "$WORK/package.json" <<'EOF'
 { "private": true, "type": "module" }
 EOF
-(cd "$WORK" && bun install ethers@6 viem web3 ox tevm esbuild 2>/dev/null)
+(cd "$WORK" && bun install ethers@6 viem web3 ox esbuild 2>/dev/null)
 
 # Grab installed versions
 ETHERS_VER=$(node -e "console.log(require('$WORK/node_modules/ethers/package.json').version)")
 VIEM_VER=$(node -e "console.log(require('$WORK/node_modules/viem/package.json').version)")
 WEB3_VER=$(node -e "console.log(require('$WORK/node_modules/web3/package.json').version)")
 OX_VER=$(node -e "console.log(require('$WORK/node_modules/ox/package.json').version)")
-TEVM_VER=$(node -e "console.log(require('$WORK/node_modules/tevm/package.json').version)")
 EETH_VER=$(node -e "console.log(require('$ROOT/package.json').version)")
 
-echo "   essential-eth@$EETH_VER  ethers@$ETHERS_VER  viem@$VIEM_VER  web3@$WEB3_VER  ox@$OX_VER  tevm@$TEVM_VER"
+echo "   essential-eth@$EETH_VER  ethers@$ETHERS_VER  viem@$VIEM_VER  web3@$WEB3_VER  ox@$OX_VER"
 
 ESBUILD="$WORK/node_modules/.bin/esbuild"
 
@@ -69,12 +68,6 @@ echo "export { RpcTransport } from 'ox';" > "$WORK/ox-provider.js"
 echo "export { Abi, AbiFunction } from 'ox';" > "$WORK/ox-contract.js"
 echo "export { Value } from 'ox';" > "$WORK/ox-conversion.js"
 
-# --- tevm ---
-echo "export * from 'tevm';" > "$WORK/tevm-full.js"
-echo "export { createMemoryClient } from 'tevm';" > "$WORK/tevm-provider.js"
-echo "export { Contract } from 'tevm/contract';" > "$WORK/tevm-contract.js"
-echo "export { formatEther, parseEther } from 'tevm/utils';" > "$WORK/tevm-conversion.js"
-
 # ─── 4. Bundle & measure ────────────────────────────────────────────────────
 measure() {
   local entry="$1" outfile="$2"
@@ -88,7 +81,7 @@ measure() {
 
 echo "→ Measuring bundle sizes (parallel)..."
 
-# Run all 24 esbuild bundles in parallel, writing byte counts to result files
+# Run all esbuild bundles in parallel, writing byte counts to result files
 measure_async() {
   local entry="$1" outfile="$2" resultfile="$3"
   measure "$entry" "$outfile" > "$resultfile" &
@@ -99,28 +92,24 @@ measure_async "$WORK/ethers-full.js"      "$WORK/out-eth-full.js"    "$WORK/r-et
 measure_async "$WORK/viem-full.js"        "$WORK/out-viem-full.js"   "$WORK/r-viem-full"
 measure_async "$WORK/web3-full.js"        "$WORK/out-web3-full.js"   "$WORK/r-web3-full"
 measure_async "$WORK/ox-full.js"          "$WORK/out-ox-full.js"     "$WORK/r-ox-full"
-measure_async "$WORK/tevm-full.js"        "$WORK/out-tevm-full.js"   "$WORK/r-tevm-full"
 
 measure_async "$WORK/ee-provider.js"      "$WORK/out-ee-prov.js"     "$WORK/r-ee-prov"
 measure_async "$WORK/ethers-provider.js"  "$WORK/out-eth-prov.js"    "$WORK/r-eth-prov"
 measure_async "$WORK/viem-provider.js"    "$WORK/out-viem-prov.js"   "$WORK/r-viem-prov"
 measure_async "$WORK/web3-provider.js"    "$WORK/out-web3-prov.js"   "$WORK/r-web3-prov"
 measure_async "$WORK/ox-provider.js"      "$WORK/out-ox-prov.js"     "$WORK/r-ox-prov"
-measure_async "$WORK/tevm-provider.js"    "$WORK/out-tevm-prov.js"   "$WORK/r-tevm-prov"
 
 measure_async "$WORK/ee-contract.js"      "$WORK/out-ee-cont.js"     "$WORK/r-ee-cont"
 measure_async "$WORK/ethers-contract.js"  "$WORK/out-eth-cont.js"    "$WORK/r-eth-cont"
 measure_async "$WORK/viem-contract.js"    "$WORK/out-viem-cont.js"   "$WORK/r-viem-cont"
 measure_async "$WORK/web3-contract.js"    "$WORK/out-web3-cont.js"   "$WORK/r-web3-cont"
 measure_async "$WORK/ox-contract.js"      "$WORK/out-ox-cont.js"     "$WORK/r-ox-cont"
-measure_async "$WORK/tevm-contract.js"    "$WORK/out-tevm-cont.js"   "$WORK/r-tevm-cont"
 
 measure_async "$WORK/ee-conversion.js"    "$WORK/out-ee-conv.js"     "$WORK/r-ee-conv"
 measure_async "$WORK/ethers-conversion.js" "$WORK/out-eth-conv.js"   "$WORK/r-eth-conv"
 measure_async "$WORK/viem-conversion.js"  "$WORK/out-viem-conv.js"   "$WORK/r-viem-conv"
 measure_async "$WORK/web3-conversion.js"  "$WORK/out-web3-conv.js"   "$WORK/r-web3-conv"
 measure_async "$WORK/ox-conversion.js"    "$WORK/out-ox-conv.js"     "$WORK/r-ox-conv"
-measure_async "$WORK/tevm-conversion.js"  "$WORK/out-tevm-conv.js"   "$WORK/r-tevm-conv"
 
 wait
 
@@ -130,28 +119,24 @@ ETH_FULL=$(cat "$WORK/r-eth-full")
 VIEM_FULL=$(cat "$WORK/r-viem-full")
 WEB3_FULL=$(cat "$WORK/r-web3-full")
 OX_FULL=$(cat "$WORK/r-ox-full")
-TEVM_FULL=$(cat "$WORK/r-tevm-full")
 
 EE_PROV=$(cat "$WORK/r-ee-prov")
 ETH_PROV=$(cat "$WORK/r-eth-prov")
 VIEM_PROV=$(cat "$WORK/r-viem-prov")
 WEB3_PROV=$(cat "$WORK/r-web3-prov")
 OX_PROV=$(cat "$WORK/r-ox-prov")
-TEVM_PROV=$(cat "$WORK/r-tevm-prov")
 
 EE_CONT=$(cat "$WORK/r-ee-cont")
 ETH_CONT=$(cat "$WORK/r-eth-cont")
 VIEM_CONT=$(cat "$WORK/r-viem-cont")
 WEB3_CONT=$(cat "$WORK/r-web3-cont")
 OX_CONT=$(cat "$WORK/r-ox-cont")
-TEVM_CONT=$(cat "$WORK/r-tevm-cont")
 
 EE_CONV=$(cat "$WORK/r-ee-conv")
 ETH_CONV=$(cat "$WORK/r-eth-conv")
 VIEM_CONV=$(cat "$WORK/r-viem-conv")
 WEB3_CONV=$(cat "$WORK/r-web3-conv")
 OX_CONV=$(cat "$WORK/r-ox-conv")
-TEVM_CONV=$(cat "$WORK/r-tevm-conv")
 
 # ─── 5. Format helpers ──────────────────────────────────────────────────────
 fmt_kb() {
@@ -181,44 +166,40 @@ fmt_cell() {
 }
 
 # Full library
-ALL_FULL="$EE_FULL $ETH_FULL $VIEM_FULL $WEB3_FULL $OX_FULL $TEVM_FULL"
+ALL_FULL="$EE_FULL $ETH_FULL $VIEM_FULL $WEB3_FULL $OX_FULL"
 C_EE_FULL=$(fmt_cell "$EE_FULL" $ALL_FULL)
 C_ETH_FULL=$(fmt_cell "$ETH_FULL" $ALL_FULL)
 C_VIEM_FULL=$(fmt_cell "$VIEM_FULL" $ALL_FULL)
 C_WEB3_FULL=$(fmt_cell "$WEB3_FULL" $ALL_FULL)
 C_OX_FULL=$(fmt_cell "$OX_FULL" $ALL_FULL)
-C_TEVM_FULL=$(fmt_cell "$TEVM_FULL" $ALL_FULL)
 
 # Provider
-ALL_PROV="$EE_PROV $ETH_PROV $VIEM_PROV $WEB3_PROV $OX_PROV $TEVM_PROV"
+ALL_PROV="$EE_PROV $ETH_PROV $VIEM_PROV $WEB3_PROV $OX_PROV"
 C_EE_PROV=$(fmt_cell "$EE_PROV" $ALL_PROV)
 C_ETH_PROV=$(fmt_cell "$ETH_PROV" $ALL_PROV)
 C_VIEM_PROV=$(fmt_cell "$VIEM_PROV" $ALL_PROV)
 C_WEB3_PROV=$(fmt_cell "$WEB3_PROV" $ALL_PROV)
 C_OX_PROV=$(fmt_cell "$OX_PROV" $ALL_PROV)
-C_TEVM_PROV=$(fmt_cell "$TEVM_PROV" $ALL_PROV)
 
 # Contract
-ALL_CONT="$EE_CONT $ETH_CONT $VIEM_CONT $WEB3_CONT $OX_CONT $TEVM_CONT"
+ALL_CONT="$EE_CONT $ETH_CONT $VIEM_CONT $WEB3_CONT $OX_CONT"
 C_EE_CONT=$(fmt_cell "$EE_CONT" $ALL_CONT)
 C_ETH_CONT=$(fmt_cell "$ETH_CONT" $ALL_CONT)
 C_VIEM_CONT=$(fmt_cell "$VIEM_CONT" $ALL_CONT)
 C_WEB3_CONT=$(fmt_cell "$WEB3_CONT" $ALL_CONT)
 C_OX_CONT=$(fmt_cell "$OX_CONT" $ALL_CONT)
-C_TEVM_CONT=$(fmt_cell "$TEVM_CONT" $ALL_CONT)
 
 # Conversions
-ALL_CONV="$EE_CONV $ETH_CONV $VIEM_CONV $WEB3_CONV $OX_CONV $TEVM_CONV"
+ALL_CONV="$EE_CONV $ETH_CONV $VIEM_CONV $WEB3_CONV $OX_CONV"
 C_EE_CONV=$(fmt_cell "$EE_CONV" $ALL_CONV)
 C_ETH_CONV=$(fmt_cell "$ETH_CONV" $ALL_CONV)
 C_VIEM_CONV=$(fmt_cell "$VIEM_CONV" $ALL_CONV)
 C_WEB3_CONV=$(fmt_cell "$WEB3_CONV" $ALL_CONV)
 C_OX_CONV=$(fmt_cell "$OX_CONV" $ALL_CONV)
-C_TEVM_CONV=$(fmt_cell "$TEVM_CONV" $ALL_CONV)
 
 # Compute ratio for full library (essential-eth vs the next-smallest alternative)
 # Filter out 0 (N/A) values before finding the smallest alternative
-NEXT_SMALLEST=$(echo "$ETH_FULL $VIEM_FULL $WEB3_FULL $OX_FULL $TEVM_FULL" | tr ' ' '\n' | awk '$1 > 0' | sort -n | head -1)
+NEXT_SMALLEST=$(echo "$ETH_FULL $VIEM_FULL $WEB3_FULL $OX_FULL" | tr ' ' '\n' | awk '$1 > 0' | sort -n | head -1)
 RATIO=$(echo "$NEXT_SMALLEST $EE_FULL" | awk '{ printf "%d", $1 / $2 }')
 
 # ─── 6. Write the table to a temp file ──────────────────────────────────────
@@ -228,12 +209,12 @@ cat > "$TABLE_FILE" <<EOF
 
 Measured with esbuild. Smaller is better.
 
-| What you import                          | essential-eth@$EETH_VER | ethers@$ETHERS_VER | viem@$VIEM_VER | web3@$WEB3_VER | ox@$OX_VER | tevm@$TEVM_VER |
-| ---------------------------------------- | :---------------------: | :----------------: | :------------: | :------------: | :--------: | :----------: |
-| **Full library**                         | $C_EE_FULL | $C_ETH_FULL | $C_VIEM_FULL | $C_WEB3_FULL | $C_OX_FULL | $C_TEVM_FULL |
-| **Provider** (getBalance, getBlock, etc) | $C_EE_PROV | $C_ETH_PROV | $C_VIEM_PROV | $C_WEB3_PROV | $C_OX_PROV | $C_TEVM_PROV |
-| **Contract** (read-only calls)           | $C_EE_CONT | $C_ETH_CONT | $C_VIEM_CONT | $C_WEB3_CONT | $C_OX_CONT | $C_TEVM_CONT |
-| **Conversions** (wei, gwei, ether)       | $C_EE_CONV | $C_ETH_CONV | $C_VIEM_CONV | $C_WEB3_CONV | $C_OX_CONV | $C_TEVM_CONV |
+| What you import                          | essential-eth@$EETH_VER | ethers@$ETHERS_VER | viem@$VIEM_VER | web3@$WEB3_VER | ox@$OX_VER |
+| ---------------------------------------- | :---------------------: | :----------------: | :------------: | :------------: | :--------: |
+| **Full library**                         | $C_EE_FULL | $C_ETH_FULL | $C_VIEM_FULL | $C_WEB3_FULL | $C_OX_FULL |
+| **Provider** (getBalance, getBlock, etc) | $C_EE_PROV | $C_ETH_PROV | $C_VIEM_PROV | $C_WEB3_PROV | $C_OX_PROV |
+| **Contract** (read-only calls)           | $C_EE_CONT | $C_ETH_CONT | $C_VIEM_CONT | $C_WEB3_CONT | $C_OX_CONT |
+| **Conversions** (wei, gwei, ether)       | $C_EE_CONV | $C_ETH_CONV | $C_VIEM_CONV | $C_WEB3_CONV | $C_OX_CONV |
 
 essential-eth is **${RATIO}x smaller** than the nearest alternative for full-library usage.
 EOF
