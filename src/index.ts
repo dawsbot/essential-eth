@@ -78,3 +78,9 @@ export { toChecksumAddress } from './utils/to-checksum-address';
 export { toUtf8Bytes } from './utils/to-utf8-bytes';
 export { toUtf8String } from './utils/to-utf8-string';
 export { weiToEther } from './utils/wei-to-ether';
+export {
+  multicall,
+  multicallSameContract,
+  MulticallCall,
+  MulticallResult,
+} from './utils/multicall';
