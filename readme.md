@@ -28,7 +28,7 @@ Measured with esbuild. Smaller is better.
 
 | What you import                          | essential-eth@0.13.0 | ethers@6.16.0 | viem@2.45.1 | web3@4.16.0 |   ox@0.12.0    | tevm@1.0.0-next.149 |
 | ---------------------------------------- | :------------------: | :-----------: | :---------: | :---------: | :------------: | :-----------------: |
-| **Full library**                         |    **40.8 kB** 🏆    |   394.0 kB    |  348.3 kB   |  506.6 kB   |    615.6 kB    |         N/A         |
+| **Full library**                         |    **42.2 kB** 🏆    |   394.0 kB    |  348.3 kB   |  506.6 kB   |    615.6 kB    |         N/A         |
 | **Provider** (getBalance, getBlock, etc) |       29.9 kB        |   260.0 kB    |  269.5 kB   |  465.3 kB   | **10.9 kB** 🏆 |         N/A         |
 | **Contract** (read-only calls)           |    **24.8 kB** 🏆    |    86.6 kB    |  179.8 kB   |  276.5 kB   |    49.9 kB     |         N/A         |
 | **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆     |    10.4 kB    |   2.7 kB    |  465.3 kB   |     3.7 kB     |      113.7 kB       |
@@ -77,11 +77,16 @@ essential-eth is **8x smaller** than the nearest competitor for full-library usa
   - [`computePublicKey`](#computepublickey)
   - [`concat`](#concat)
   - [`decodeBytes32String`](#decodebytes32string)
+  - [`decodeEventLog`](#decodeeventlog)
+  - [`decodeFunctionResult`](#decodefunctionresult)
   - [`encodeBytes32String`](#encodebytes32string)
+  - [`encodeFunctionData`](#encodefunctiondata)
   - [`etherToGwei`](#ethertogwei)
   - [`etherToWei`](#ethertowei)
   - [`formatUnits`](#formatunits)
   - [`getAddress`](#getaddress)
+  - [`getEventSignature`](#geteventsignature)
+  - [`getEventTopic`](#geteventtopic)
   - [`gweiToEther`](#gweitoether)
   - [`hashMessage`](#hashmessage)
   - [`hexConcat`](#hexconcat)
@@ -321,6 +326,72 @@ decodeBytes32String(
 
   <br/>
 
+#### [`decodeEventLog`](https://eeth.dev/docs/api/modules#decodeeventlog)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+decodeEventLog+}])
+
+```typescript
+decodeEventLog(abi: JSONABI, log: undefined): undefined
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { decodeEventLog } from 'essential-eth';
+```
+
+```javascript
+const result = decodeEventLog(erc20ABI, {
+  topics: [
+    '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+    '0x000000000000000000000000abc0000000000000000000000000000000000001',
+    '0x000000000000000000000000abc0000000000000000000000000000000000002',
+  ],
+  data: '0x0000000000000000000000000000000000000000000000000000000000000064',
+});
+// { eventName: 'Transfer', args: { from: '0xABC0...0001', to: '0xaBc0...0002', value: 100n } }
+```
+
+  </details>
+
+  <br/>
+
+#### [`decodeFunctionResult`](https://eeth.dev/docs/api/modules#decodefunctionresult)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+decodeFunctionResult+}])
+
+```typescript
+decodeFunctionResult(abi: JSONABI, functionName: string, data: string): any
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { decodeFunctionResult } from 'essential-eth';
+```
+
+```typescript
+import { decodeFunctionResult } from 'essential-eth';
+
+const abi = [
+  {
+    name: 'balanceOf',
+    type: 'function',
+    inputs: [{ name: 'owner', type: 'address' }],
+    outputs: [{ name: 'balance', type: 'uint256' }],
+  },
+];
+
+const result = decodeFunctionResult(abi, 'balanceOf', '0x000...0001');
+// result === 1n
+```
+
+  </details>
+
+  <br/>
+
 #### [`encodeBytes32String`](https://eeth.dev/docs/api/modules#encodebytes32string)
 
 ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+encodeBytes32String+}])
@@ -339,6 +410,42 @@ import { encodeBytes32String } from 'essential-eth';
 ```javascript
 encodeBytes32String('essential-eth');
 // '0x657373656e7469616c2d657468000000000000000000000000000000000000'
+```
+
+  </details>
+
+  <br/>
+
+#### [`encodeFunctionData`](https://eeth.dev/docs/api/modules#encodefunctiondata)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+encodeFunctionData+}])
+
+```typescript
+encodeFunctionData(abi: JSONABI, functionName: string, args?: undefined): string
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { encodeFunctionData } from 'essential-eth';
+```
+
+```typescript
+import { encodeFunctionData } from 'essential-eth';
+
+const abi = [
+  {
+    name: 'balanceOf',
+    type: 'function',
+    inputs: [{ name: 'owner', type: 'address' }],
+    outputs: [{ name: 'balance', type: 'uint256' }],
+  },
+];
+
+const data = encodeFunctionData(abi, 'balanceOf', [
+  '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+]);
 ```
 
   </details>
@@ -449,6 +556,65 @@ import { getAddress } from 'essential-eth';
 ```javascript
 getAddress('0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359');
 // '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'
+```
+
+  </details>
+
+  <br/>
+
+#### [`getEventSignature`](https://eeth.dev/docs/api/modules#geteventsignature)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+getEventSignature+}])
+
+```typescript
+getEventSignature(abi: JSONABI, eventName: string): string
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { getEventSignature } from 'essential-eth';
+```
+
+```javascript
+const abi = [
+  {
+    type: 'event',
+    name: 'Transfer',
+    inputs: [
+      { name: 'from', type: 'address', indexed: true },
+      { name: 'to', type: 'address', indexed: true },
+      { name: 'value', type: 'uint256', indexed: false },
+    ],
+  },
+];
+getEventSignature(abi, 'Transfer');
+// '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+```
+
+  </details>
+
+  <br/>
+
+#### [`getEventTopic`](https://eeth.dev/docs/api/modules#geteventtopic)
+
+![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+getEventTopic+}])
+
+```typescript
+getEventTopic(eventSignature: string): string
+```
+
+  <details>
+  <summary>View Example</summary>
+
+```js
+import { getEventTopic } from 'essential-eth';
+```
+
+```javascript
+getEventTopic('Transfer(address,address,uint256)');
+// '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
 ```
 
   </details>
