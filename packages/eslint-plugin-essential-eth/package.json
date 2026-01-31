@@ -1,0 +1,26 @@
+{
+  "name": "eslint-plugin-essential-eth",
+  "version": "0.1.0",
+  "description": "ESLint plugin that suggests essential-eth as a lighter alternative to ethers.js and viem",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest tests/"
+  },
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "ethereum",
+    "essential-eth",
+    "ethers",
+    "viem"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": ">=7.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0"
+  }
+}
