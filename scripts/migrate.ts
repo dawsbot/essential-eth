@@ -15,6 +15,37 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ---------------------------------------------------------------------------
+// Discover all exports from essential-eth so the map stays in sync
+// automatically as new exports are added to the package.
+// ---------------------------------------------------------------------------
+
+function discoverEssentialEthExports(): Set<string> {
+  const indexPath = path.resolve(__dirname, '..', 'src', 'index.ts');
+  const content = fs.readFileSync(indexPath, 'utf-8');
+  const names = new Set<string>();
+
+  // Match named exports: export { Foo, Bar } from '...'
+  const exportBlockRegex = /export\s*\{([^}]*)\}/g;
+  let match: RegExpExecArray | null;
+  while ((match = exportBlockRegex.exec(content)) !== null) {
+    for (const token of match[1].split(',')) {
+      // Handle `Foo as Bar` (take the exported name, i.e. the "as" part)
+      const parts = token.trim().split(/\s+as\s+/);
+      const name = (parts.length > 1 ? parts[1] : parts[0]).trim();
+      if (name) names.add(name);
+    }
+  }
+
+  return names;
+}
+
+const essentialEthExports = discoverEssentialEthExports();
 
 // ---------------------------------------------------------------------------
 // Migration map: viem export name → essential-eth export name
@@ -111,6 +142,19 @@ const MIGRATION_MAP: Record<string, MigrationEntry> = {
   },
 };
 
+// Auto-add same-name entries for any essential-eth export that isn't already
+// covered by the explicit map above. This means newly added exports (types,
+// functions, etc.) are picked up automatically without touching this file.
+for (const name of essentialEthExports) {
+  // Check if this name is already a key (viem name) or a target (essential-eth name)
+  const alreadyMapped =
+    name in MIGRATION_MAP ||
+    Object.values(MIGRATION_MAP).some((e) => e.name === name);
+  if (!alreadyMapped) {
+    MIGRATION_MAP[name] = { name };
+  }
+}
+
 // ---------------------------------------------------------------------------
 // CLI argument parsing
 // ---------------------------------------------------------------------------
@@ -179,21 +223,31 @@ function findFiles(dir: string): string[] {
 // Import parsing & rewriting
 // ---------------------------------------------------------------------------
 
+interface ParsedSymbol {
+  /** The symbol name (without `type` keyword or alias) */
+  name: string;
+  /** Whether this symbol had an inline `type` keyword */
+  isInlineType: boolean;
+}
+
 interface ParsedImport {
   /** Full matched text including the import statement */
   fullMatch: string;
   /** Individual imported symbols */
-  symbols: string[];
+  symbols: ParsedSymbol[];
   /** The module specifier (e.g. 'viem', 'viem/chains') */
   source: string;
   /** Start index in file content */
   index: number;
+  /** Whether this is a type-only import (`import type { ... }`) */
+  isTypeImport: boolean;
 }
 
 /**
  * Find all import statements from viem (including subpath imports).
  * Handles:
  *   import { a, b } from 'viem'
+ *   import type { a, b } from 'viem'
  *   import { a, b } from "viem"
  *   import { a, b } from 'viem/chains'
  *   Multi-line imports
@@ -202,24 +256,31 @@ function findViemImports(content: string): ParsedImport[] {
   const results: ParsedImport[] = [];
 
   // Match import { ... } from 'viem...' or "viem..."
+  // Also matches `import type { ... }` for type-only imports
   // The [\s\S]*? handles multi-line destructured imports
   const importRegex =
-    /import\s*\{([^}]*)\}\s*from\s*['"]((viem)(\/[^'"]*)?)['"]\s*;?/g;
+    /import\s+(type\s+)?\{([^}]*)\}\s*from\s*['"]((viem)(\/[^'"]*)?)['"]\s*;?/g;
 
   let match: RegExpExecArray | null;
   while ((match = importRegex.exec(content)) !== null) {
-    const symbolsRaw = match[1];
-    const source = match[2];
+    const isTypeImport = match[1] != null;
+    const symbolsRaw = match[2];
+    const source = match[3];
 
-    // Parse symbols, handling aliases like "formatEther as fe"
-    const symbols = symbolsRaw
+    // Parse symbols, handling:
+    //   - aliases like "formatEther as fe"
+    //   - inline type keywords like "type Address"
+    const symbols: ParsedSymbol[] = symbolsRaw
       .split(',')
       .map((s) => s.trim())
       .filter((s) => s.length > 0)
-      // Extract the original name (before 'as')
       .map((s) => {
-        const parts = s.split(/\s+as\s+/);
-        return parts[0].trim();
+        // Detect and strip inline `type` keyword (e.g. `type Address` → `Address`)
+        const isInlineType = /^type\s+/.test(s);
+        const stripped = s.replace(/^type\s+/, '');
+        // Extract the original name (before 'as')
+        const parts = stripped.split(/\s+as\s+/);
+        return { name: parts[0].trim(), isInlineType };
       });
 
     results.push({
@@ -227,6 +288,7 @@ function findViemImports(content: string): ParsedImport[] {
       symbols,
       source,
       index: match.index,
+      isTypeImport,
     });
   }
 
@@ -261,11 +323,11 @@ function processFile(filePath: string): FileResult {
   const sortedImports = [...imports].sort((a, b) => b.index - a.index);
 
   for (const imp of sortedImports) {
-    const supported: string[] = [];
-    const unsupported: string[] = [];
+    const supported: ParsedSymbol[] = [];
+    const unsupported: ParsedSymbol[] = [];
 
     for (const sym of imp.symbols) {
-      if (MIGRATION_MAP[sym]) {
+      if (MIGRATION_MAP[sym.name]) {
         supported.push(sym);
       } else {
         unsupported.push(sym);
@@ -274,14 +336,14 @@ function processFile(filePath: string): FileResult {
 
     // Track unsupported
     for (const sym of unsupported) {
-      result.unsupported.push(sym);
+      result.unsupported.push(sym.name);
     }
 
     // Track migrated
     for (const sym of supported) {
-      const entry = MIGRATION_MAP[sym];
+      const entry = MIGRATION_MAP[sym.name];
       result.migrated.push({
-        viemName: sym,
+        viemName: sym.name,
         essentialName: entry.name,
         note: entry.note,
       });
@@ -291,9 +353,19 @@ function processFile(filePath: string): FileResult {
 
     result.modified = true;
 
-    // Build replacement import(s)
-    const essentialSymbols = supported.map((s) => MIGRATION_MAP[s].name);
-    const essentialImport = `import { ${essentialSymbols.join(', ')} } from 'essential-eth';`;
+    // Build replacement import(s), preserving both `import type` and
+    // inline `type` keywords (e.g. `import { type Address }`)
+    const typePrefix = imp.isTypeImport ? 'type ' : '';
+
+    function formatSymbol(sym: ParsedSymbol, mappedName: string): string {
+      const inlineType = !imp.isTypeImport && sym.isInlineType ? 'type ' : '';
+      return `${inlineType}${mappedName}`;
+    }
+
+    const essentialSymbols = supported.map((s) =>
+      formatSymbol(s, MIGRATION_MAP[s.name].name),
+    );
+    const essentialImport = `import ${typePrefix}{ ${essentialSymbols.join(', ')} } from 'essential-eth';`;
 
     let replacement: string;
     if (unsupported.length === 0) {
@@ -301,7 +373,11 @@ function processFile(filePath: string): FileResult {
       replacement = essentialImport;
     } else {
       // Split: keep viem import for unsupported, add essential-eth for supported
-      const viemImport = `import { ${unsupported.join(', ')} } from '${imp.source}';`;
+      const viemUnsupported = unsupported.map((s) => {
+        const inlineType = !imp.isTypeImport && s.isInlineType ? 'type ' : '';
+        return `${inlineType}${s.name}`;
+      });
+      const viemImport = `import ${typePrefix}{ ${viemUnsupported.join(', ')} } from '${imp.source}';`;
       replacement = `${essentialImport}\n${viemImport}`;
     }
 
@@ -315,11 +391,11 @@ function processFile(filePath: string): FileResult {
     // We need to be careful to only replace the identifier, not substrings.
     // Use word-boundary matching.
     for (const sym of supported) {
-      const entry = MIGRATION_MAP[sym];
-      if (entry.name !== sym) {
+      const entry = MIGRATION_MAP[sym.name];
+      if (entry.name !== sym.name) {
         // Symbol was renamed — replace all usages
         // Match the symbol as a standalone identifier (not part of a larger word)
-        const usageRegex = new RegExp(`\\b${sym}\\b`, 'g');
+        const usageRegex = new RegExp(`\\b${sym.name}\\b`, 'g');
         // But skip the import line we just wrote — we'll do a two-pass approach:
         // since we already wrote the correct import, we replace in the rest of content.
         // Actually the import line uses the NEW name already, so replacing old→new
