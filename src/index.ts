@@ -55,6 +55,7 @@ export {
 export { computeAddress } from './utils/compute-address';
 export { computePublicKey } from './utils/compute-public-key';
 export { etherToGwei } from './utils/ether-to-gwei';
+export { getEventSignature, getEventTopic } from './utils/event-topic';
 export { formatUnits } from './utils/format-units';
 export { getAddress } from './utils/get-address';
 export { etherToWei } from './utils/ether-to-wei';
