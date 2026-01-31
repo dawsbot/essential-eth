@@ -68,25 +68,25 @@ These are the reasons people evaluate essential-eth, love it, and then can't swi
 - **Why it matters:** Without this, essential-eth is read-only. Nobody building a real dApp can fully switch. They keep ethers/viem around for signing, which means they never remove it from their bundle.
 - **Design principle:** Don't implement HD wallets, mnemonics, BIP-39 — that's optional complexity. Start with raw private key signing. Keep it tiny.
 
-### 🔲 ABI Encoding/Decoding as First-Class Exports
+### ✅ ABI Encoding/Decoding as First-Class Exports (partial)
 
-- **Status:** NOT STARTED
+- **Status:** DONE (PR #309) — `encodeFunctionData` and `decodeFunctionResult` shipped
 - **Priority:** HIGH
 - **What's needed:**
-  - `encodeFunctionData(abi, functionName, args)`
-  - `decodeFunctionResult(abi, functionName, data)`
+  - ~~`encodeFunctionData(abi, functionName, args)`~~
+  - ~~`decodeFunctionResult(abi, functionName, data)`~~
   - `encodeDeployData(abi, bytecode, args)`
   - `Interface` class or equivalent
 - **Why it matters:** The Contract class already does this internally. Exposing it lets other tools embed essential-eth's encoder — 3-5 kB ABI encoding that other libraries and build tools can depend on. This is how you get adopted indirectly.
 
-### 🔲 Event Decoding & Logs
+### ✅ Event Decoding & Logs (partial)
 
-- **Status:** NOT STARTED
+- **Status:** DONE (PRs #308, #311) — `decodeEventLog`, `getEventTopic`, `getEventSignature` shipped
 - **Priority:** MEDIUM
 - **What's needed:**
-  - `decodeEventLog(abi, log)`
+  - ~~`decodeEventLog(abi, log)`~~
   - Contract event listeners (`contract.on('Transfer', ...)`)
-  - Topic hashing utilities
+  - ~~Topic hashing utilities~~
 - **Why it matters:** Parsing event logs is bread-and-butter for indexers, dashboards, and analytics. Can't be a complete library without it.
 
 ### 🔲 WebSocket Provider
