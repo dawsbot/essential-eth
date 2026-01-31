@@ -1,5 +1,5 @@
-import { toUtf8Bytes } from './to-utf8-bytes';
 import { hexlify } from './bytes';
+import { toUtf8Bytes } from './to-utf8-bytes';
 import { toUtf8String } from './to-utf8-string';
 
 /**
@@ -7,7 +7,6 @@ import { toUtf8String } from './to-utf8-string';
  * shorter, as one byte is used for the null terminator in Solidity.
  *
  * Similar to ["encodeBytes32String" in ethers.js v6](https://docs.ethers.io/v6/api/abi/#encodeBytes32String)
- *
  * @param text the string to encode (max 31 bytes UTF-8)
  * @returns a 66-character hex string (bytes32)
  * @example
@@ -31,7 +30,6 @@ export function encodeBytes32String(text: string): string {
  * Decode a bytes32 hex value into a string, stripping trailing null bytes.
  *
  * Similar to ["decodeBytes32String" in ethers.js v6](https://docs.ethers.io/v6/api/abi/#decodeBytes32String)
- *
  * @param bytes32 the bytes32 hex string to decode
  * @returns the decoded string
  * @example

@@ -71,7 +71,15 @@ async function runTest(
     buildFetchInit(buildRPCPostBody(method, params)),
   );
 
-  expect(JSON.stringify(result, (_, v) => typeof v === "bigint" ? v.toString() : v)).toBe(JSON.stringify(mockBlock, (_, v) => typeof v === "bigint" ? v.toString() : v));
+  expect(
+    JSON.stringify(result, (_, v) =>
+      typeof v === 'bigint' ? v.toString() : v,
+    ),
+  ).toBe(
+    JSON.stringify(mockBlock, (_, v) =>
+      typeof v === 'bigint' ? v.toString() : v,
+    ),
+  );
 }
 
 describe('provider.getBlock', () => {
@@ -87,7 +95,7 @@ describe('provider.getBlock', () => {
   it(`should match mocked block -- specific block number as decimal integer. (block #${blockNumber})`, async () => {
     await runTest(
       'eth_getBlockByNumber',
-      ["0x" + blockNumber.toString(16), false],
+      ['0x' + blockNumber.toString(16), false],
       blockNumber,
     );
   });

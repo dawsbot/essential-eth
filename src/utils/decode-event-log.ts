@@ -1,12 +1,11 @@
 import type { JSONABI, JSONABIArgument } from '../types/Contract.types';
 import { keccak256 } from './keccak256';
-import { toUtf8Bytes } from './to-utf8-bytes';
 import { toChecksumAddress } from './to-checksum-address';
+import { toUtf8Bytes } from './to-utf8-bytes';
 
 /**
  * Computes the event topic hash (keccak256 of the event signature).
  * Implemented inline to avoid cross-branch dependencies.
- *
  * @param event the ABI entry for the event
  * @returns the keccak256 hash of the event signature
  */
@@ -18,7 +17,6 @@ function computeEventTopic(event: JSONABIArgument): string {
 
 /**
  * Decodes a single ABI-encoded value from a 64-character hex chunk.
- *
  * @param hexChunk a 64-character hex string (no 0x prefix)
  * @param type the Solidity type to decode as
  * @returns the decoded value
@@ -52,9 +50,10 @@ function decodeValue(hexChunk: string, type: string): any {
  *
  * Matches topic0 against event signatures in the ABI, then decodes
  * indexed parameters from topics[1..] and non-indexed parameters from data.
- *
  * @param abi the JSON ABI array containing event definitions
  * @param log the log object with topics array and data hex string
+ * @param log.topics
+ * @param log.data
  * @returns an object with eventName and decoded args
  * @example
  * ```javascript
@@ -88,9 +87,7 @@ export function decodeEventLog(
   }
 
   if (!matchedEvent) {
-    throw new Error(
-      `No matching event found in ABI for topic0: ${topic0}`,
-    );
+    throw new Error(`No matching event found in ABI for topic0: ${topic0}`);
   }
 
   const args: Record<string, any> = {};
@@ -104,9 +101,7 @@ export function decodeEventLog(
     if (input.indexed) {
       // Indexed params come from topics[1..]
       const topicHex = log.topics[topicIndex];
-      const hexChunk = topicHex.startsWith('0x')
-        ? topicHex.slice(2)
-        : topicHex;
+      const hexChunk = topicHex.startsWith('0x') ? topicHex.slice(2) : topicHex;
       args[input.name] = decodeValue(hexChunk, input.type);
       topicIndex++;
     } else {

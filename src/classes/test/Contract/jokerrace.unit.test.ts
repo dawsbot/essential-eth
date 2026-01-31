@@ -26,10 +26,10 @@ describe('jokerrace contract', () => {
       .array(z.any())
       .parse(decodeRPCResponse(abi[1], nodeResponse));
     expect(proposalIds).toHaveLength(15);
-    expect("0x" + BigInt(proposalIds[0]).toString(16)).toBe(
+    expect('0x' + BigInt(proposalIds[0]).toString(16)).toBe(
       '0xe8f98b88fddcd83cadcc563883e148b27c9f4f25f2f8f315227d8e3d6a0f72',
     );
-    expect("0x" + BigInt(proposalIds[14]).toString(16)).toBe(
+    expect('0x' + BigInt(proposalIds[14]).toString(16)).toBe(
       '0xaf1338772f308dc5ff9821c05dcc221d4d5bba2c8545c0f1517bcbe95e701896',
     );
   });
