@@ -14,6 +14,7 @@ export {
 } from './types/Contract.types';
 export { Filter, FilterByBlockHash } from './types/Filter.types';
 export { Network } from './types/Network.types';
+export { Address, Hash, Hex, LogTopic } from './types/Primitives.types';
 export {
   BlockTransactionResponse,
   Log,
