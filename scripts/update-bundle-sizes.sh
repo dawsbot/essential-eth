@@ -23,7 +23,7 @@ echo "→ Installing comparison libraries in temp dir..."
 cat > "$WORK/package.json" <<'EOF'
 { "private": true, "type": "module" }
 EOF
-(cd "$WORK" && npm install --save ethers@6 viem web3 ox tevm esbuild 2>/dev/null)
+(cd "$WORK" && bun install ethers@6 viem web3 ox tevm esbuild 2>/dev/null)
 
 # Grab installed versions
 ETHERS_VER=$(node -e "console.log(require('$WORK/node_modules/ethers/package.json').version)")
@@ -86,35 +86,72 @@ measure() {
   fi
 }
 
-echo "→ Measuring bundle sizes..."
+echo "→ Measuring bundle sizes (parallel)..."
 
-EE_FULL=$(measure "$WORK/ee-full.js" "$WORK/out-ee-full.js")
-ETH_FULL=$(measure "$WORK/ethers-full.js" "$WORK/out-eth-full.js")
-VIEM_FULL=$(measure "$WORK/viem-full.js" "$WORK/out-viem-full.js")
-WEB3_FULL=$(measure "$WORK/web3-full.js" "$WORK/out-web3-full.js")
-OX_FULL=$(measure "$WORK/ox-full.js" "$WORK/out-ox-full.js")
-TEVM_FULL=$(measure "$WORK/tevm-full.js" "$WORK/out-tevm-full.js")
+# Run all 24 esbuild bundles in parallel, writing byte counts to result files
+measure_async() {
+  local entry="$1" outfile="$2" resultfile="$3"
+  measure "$entry" "$outfile" > "$resultfile" &
+}
 
-EE_PROV=$(measure "$WORK/ee-provider.js" "$WORK/out-ee-prov.js")
-ETH_PROV=$(measure "$WORK/ethers-provider.js" "$WORK/out-eth-prov.js")
-VIEM_PROV=$(measure "$WORK/viem-provider.js" "$WORK/out-viem-prov.js")
-WEB3_PROV=$(measure "$WORK/web3-provider.js" "$WORK/out-web3-prov.js")
-OX_PROV=$(measure "$WORK/ox-provider.js" "$WORK/out-ox-prov.js")
-TEVM_PROV=$(measure "$WORK/tevm-provider.js" "$WORK/out-tevm-prov.js")
+measure_async "$WORK/ee-full.js"          "$WORK/out-ee-full.js"     "$WORK/r-ee-full"
+measure_async "$WORK/ethers-full.js"      "$WORK/out-eth-full.js"    "$WORK/r-eth-full"
+measure_async "$WORK/viem-full.js"        "$WORK/out-viem-full.js"   "$WORK/r-viem-full"
+measure_async "$WORK/web3-full.js"        "$WORK/out-web3-full.js"   "$WORK/r-web3-full"
+measure_async "$WORK/ox-full.js"          "$WORK/out-ox-full.js"     "$WORK/r-ox-full"
+measure_async "$WORK/tevm-full.js"        "$WORK/out-tevm-full.js"   "$WORK/r-tevm-full"
 
-EE_CONT=$(measure "$WORK/ee-contract.js" "$WORK/out-ee-cont.js")
-ETH_CONT=$(measure "$WORK/ethers-contract.js" "$WORK/out-eth-cont.js")
-VIEM_CONT=$(measure "$WORK/viem-contract.js" "$WORK/out-viem-cont.js")
-WEB3_CONT=$(measure "$WORK/web3-contract.js" "$WORK/out-web3-cont.js")
-OX_CONT=$(measure "$WORK/ox-contract.js" "$WORK/out-ox-cont.js")
-TEVM_CONT=$(measure "$WORK/tevm-contract.js" "$WORK/out-tevm-cont.js")
+measure_async "$WORK/ee-provider.js"      "$WORK/out-ee-prov.js"     "$WORK/r-ee-prov"
+measure_async "$WORK/ethers-provider.js"  "$WORK/out-eth-prov.js"    "$WORK/r-eth-prov"
+measure_async "$WORK/viem-provider.js"    "$WORK/out-viem-prov.js"   "$WORK/r-viem-prov"
+measure_async "$WORK/web3-provider.js"    "$WORK/out-web3-prov.js"   "$WORK/r-web3-prov"
+measure_async "$WORK/ox-provider.js"      "$WORK/out-ox-prov.js"     "$WORK/r-ox-prov"
+measure_async "$WORK/tevm-provider.js"    "$WORK/out-tevm-prov.js"   "$WORK/r-tevm-prov"
 
-EE_CONV=$(measure "$WORK/ee-conversion.js" "$WORK/out-ee-conv.js")
-ETH_CONV=$(measure "$WORK/ethers-conversion.js" "$WORK/out-eth-conv.js")
-VIEM_CONV=$(measure "$WORK/viem-conversion.js" "$WORK/out-viem-conv.js")
-WEB3_CONV=$(measure "$WORK/web3-conversion.js" "$WORK/out-web3-conv.js")
-OX_CONV=$(measure "$WORK/ox-conversion.js" "$WORK/out-ox-conv.js")
-TEVM_CONV=$(measure "$WORK/tevm-conversion.js" "$WORK/out-tevm-conv.js")
+measure_async "$WORK/ee-contract.js"      "$WORK/out-ee-cont.js"     "$WORK/r-ee-cont"
+measure_async "$WORK/ethers-contract.js"  "$WORK/out-eth-cont.js"    "$WORK/r-eth-cont"
+measure_async "$WORK/viem-contract.js"    "$WORK/out-viem-cont.js"   "$WORK/r-viem-cont"
+measure_async "$WORK/web3-contract.js"    "$WORK/out-web3-cont.js"   "$WORK/r-web3-cont"
+measure_async "$WORK/ox-contract.js"      "$WORK/out-ox-cont.js"     "$WORK/r-ox-cont"
+measure_async "$WORK/tevm-contract.js"    "$WORK/out-tevm-cont.js"   "$WORK/r-tevm-cont"
+
+measure_async "$WORK/ee-conversion.js"    "$WORK/out-ee-conv.js"     "$WORK/r-ee-conv"
+measure_async "$WORK/ethers-conversion.js" "$WORK/out-eth-conv.js"   "$WORK/r-eth-conv"
+measure_async "$WORK/viem-conversion.js"  "$WORK/out-viem-conv.js"   "$WORK/r-viem-conv"
+measure_async "$WORK/web3-conversion.js"  "$WORK/out-web3-conv.js"   "$WORK/r-web3-conv"
+measure_async "$WORK/ox-conversion.js"    "$WORK/out-ox-conv.js"     "$WORK/r-ox-conv"
+measure_async "$WORK/tevm-conversion.js"  "$WORK/out-tevm-conv.js"   "$WORK/r-tevm-conv"
+
+wait
+
+# Read results
+EE_FULL=$(cat "$WORK/r-ee-full")
+ETH_FULL=$(cat "$WORK/r-eth-full")
+VIEM_FULL=$(cat "$WORK/r-viem-full")
+WEB3_FULL=$(cat "$WORK/r-web3-full")
+OX_FULL=$(cat "$WORK/r-ox-full")
+TEVM_FULL=$(cat "$WORK/r-tevm-full")
+
+EE_PROV=$(cat "$WORK/r-ee-prov")
+ETH_PROV=$(cat "$WORK/r-eth-prov")
+VIEM_PROV=$(cat "$WORK/r-viem-prov")
+WEB3_PROV=$(cat "$WORK/r-web3-prov")
+OX_PROV=$(cat "$WORK/r-ox-prov")
+TEVM_PROV=$(cat "$WORK/r-tevm-prov")
+
+EE_CONT=$(cat "$WORK/r-ee-cont")
+ETH_CONT=$(cat "$WORK/r-eth-cont")
+VIEM_CONT=$(cat "$WORK/r-viem-cont")
+WEB3_CONT=$(cat "$WORK/r-web3-cont")
+OX_CONT=$(cat "$WORK/r-ox-cont")
+TEVM_CONT=$(cat "$WORK/r-tevm-cont")
+
+EE_CONV=$(cat "$WORK/r-ee-conv")
+ETH_CONV=$(cat "$WORK/r-eth-conv")
+VIEM_CONV=$(cat "$WORK/r-viem-conv")
+WEB3_CONV=$(cat "$WORK/r-web3-conv")
+OX_CONV=$(cat "$WORK/r-ox-conv")
+TEVM_CONV=$(cat "$WORK/r-tevm-conv")
 
 # ─── 5. Format helpers ──────────────────────────────────────────────────────
 fmt_kb() {
