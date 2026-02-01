@@ -29,12 +29,12 @@ Measured with esbuild. Smaller is better.
 
 | What you import                          | essential-eth@0.13.0 | ethers@6.16.0 | viem@2.45.1 | web3@4.16.0 |   ox@0.12.0    |
 | ---------------------------------------- | :------------------: | :-----------: | :---------: | :---------: | :------------: |
-| **Full library**                         |    **42.2 kB** 🏆    |   394.0 kB    |  348.3 kB   |  495.8 kB   |    612.8 kB    |
-| **Provider** (getBalance, getBlock, etc) |       29.9 kB        |   260.0 kB    |  269.5 kB   |  454.5 kB   | **10.9 kB** 🏆 |
-| **Contract** (read-only calls)           |    **24.8 kB** 🏆    |    86.6 kB    |  179.8 kB   |  264.9 kB   |    49.9 kB     |
+| **Full library**                         |    **89.1 kB** 🏆    |   394.0 kB    |  348.3 kB   |  495.8 kB   |    612.8 kB    |
+| **Provider** (getBalance, getBlock, etc) |       73.2 kB        |   260.0 kB    |  269.5 kB   |  454.5 kB   | **10.9 kB** 🏆 |
+| **Contract** (read-only calls)           |       68.1 kB        |    86.6 kB    |  179.8 kB   |  264.9 kB   | **49.9 kB** 🏆 |
 | **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆     |    10.4 kB    |   2.7 kB    |  454.5 kB   |     3.7 kB     |
 
-essential-eth is **8x smaller** than the nearest alternative for full-library usage.
+essential-eth is **3x smaller** than the nearest alternative for full-library usage.
 
 
 <!-- BUNDLE-SIZE-TABLE:END -->
