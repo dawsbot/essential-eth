@@ -30,6 +30,23 @@ module.exports = {
 
   overrides: [
     {
+      files: ['packages/**/*.js'],
+      env: {
+        node: true,
+        jest: true,
+      },
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/consistent-type-imports': 'off',
+        'vitest/expect-expect': 'off',
+        'vitest/no-commented-out-tests': 'off',
+      },
+      globals: {
+        test: 'readonly',
+        expect: 'readonly',
+      },
+    },
+    {
       files: 'src/**/*.ts',
       excludedFiles: '*.test.ts',
       plugins: ['jsdoc'],
