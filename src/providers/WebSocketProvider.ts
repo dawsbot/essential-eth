@@ -2,6 +2,8 @@ import { BaseProvider } from './BaseProvider';
 
 type SubscriptionType = 'newHeads' | 'logs' | 'newPendingTransactions';
 
+type EventCallback = (...args: any[]) => void;
+
 interface PendingRequest {
   resolve: (value: any) => void;
   reject: (reason: any) => void;
@@ -30,7 +32,6 @@ function getWebSocketConstructor(): typeof WebSocket {
  *
  * Supports all the same methods as {@link JsonRpcProvider} (getBalance, getBlock, etc.)
  * plus real-time subscriptions via `eth_subscribe` / `eth_unsubscribe`.
- *
  * @example
  * ```javascript
  * const provider = new WebSocketProvider('wss://eth-mainnet.g.alchemy.com/v2/YOUR_KEY');
@@ -54,8 +55,8 @@ export class WebSocketProvider extends BaseProvider {
   private _wsUrl: string;
   private _requestId = 0;
   private _pendingRequests: Map<number, PendingRequest> = new Map();
-  private _subscriptions: Map<string, Set<Function>> = new Map();
-  private _eventListeners: Map<string, Set<Function>> = new Map();
+  private _subscriptions: Map<string, Set<EventCallback>> = new Map();
+  private _eventListeners: Map<string, Set<EventCallback>> = new Map();
   private _subscriptionIdToEvent: Map<string, string> = new Map();
   private _destroyed = false;
   private _reconnectAttempts = 0;
@@ -194,7 +195,6 @@ export class WebSocketProvider extends BaseProvider {
 
   /**
    * Send a raw JSON-RPC request over the WebSocket and wait for the response.
-   *
    * @param body JSON-RPC request body. The `id` field is overwritten with an auto-incrementing counter.
    * @returns the `result` field from the JSON-RPC response
    */
@@ -233,16 +233,13 @@ export class WebSocketProvider extends BaseProvider {
 
   /**
    * Subscribe to real-time Ethereum events via `eth_subscribe`.
-   *
    * @param type The subscription type: `'newHeads'`, `'logs'`, or `'newPendingTransactions'`
    * @param params Optional parameters (e.g. filter object for `'logs'`)
    * @returns The subscription ID returned by the node
-   *
    * @example
    * ```javascript
    * const subId = await provider.subscribe('newHeads');
    * ```
-   *
    * @example
    * ```javascript
    * const subId = await provider.subscribe('logs', {
@@ -251,10 +248,7 @@ export class WebSocketProvider extends BaseProvider {
    * });
    * ```
    */
-  async subscribe(
-    type: SubscriptionType,
-    params?: object,
-  ): Promise<string> {
+  async subscribe(type: SubscriptionType, params?: object): Promise<string> {
     const rpcParams: unknown[] = [type];
     if (params) {
       rpcParams.push(params);
@@ -283,7 +277,6 @@ export class WebSocketProvider extends BaseProvider {
 
   /**
    * Unsubscribe from a previously created subscription.
-   *
    * @param subscriptionId The subscription ID to cancel (returned by {@link subscribe})
    * @returns `true` if successfully unsubscribed, `false` otherwise
    */
@@ -309,11 +302,10 @@ export class WebSocketProvider extends BaseProvider {
    * - `'pending'` → `newPendingTransactions` subscription notifications
    * - `'logs'` → `logs` subscription notifications
    * - Any subscription ID → direct subscription callbacks
-   *
    * @param event The event name or subscription ID
    * @param callback The function to call when the event fires
    */
-  on(event: string, callback: Function): this {
+  on(event: string, callback: EventCallback): this {
     if (!this._eventListeners.has(event)) {
       this._eventListeners.set(event, new Set());
     }
@@ -323,11 +315,10 @@ export class WebSocketProvider extends BaseProvider {
 
   /**
    * Remove an event listener. If no callback is provided, removes all listeners for that event.
-   *
    * @param event The event name or subscription ID
    * @param callback The specific callback to remove, or omit to remove all
    */
-  off(event: string, callback?: Function): this {
+  off(event: string, callback?: EventCallback): this {
     if (!callback) {
       this._eventListeners.delete(event);
     } else {

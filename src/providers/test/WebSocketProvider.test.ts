@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 // ---- WebSocket mock ----
 
@@ -274,7 +274,7 @@ describe('WebSocketProvider', () => {
   });
 
   it('on() returns this for chaining', () => {
-    const result = provider.on('block', () => {});
+    const result = provider.on('block', vi.fn());
     expect(result).toBe(provider);
   });
 
@@ -311,10 +311,7 @@ describe('WebSocketProvider', () => {
 
     const subReq = JSON.parse(ws.sent[ws.sent.length - 1]);
     // Verify params include the filter
-    expect(subReq.params).toEqual([
-      'logs',
-      { address: '0xabc' },
-    ]);
+    expect(subReq.params).toEqual(['logs', { address: '0xabc' }]);
 
     ws.simulateMessage({
       jsonrpc: '2.0',
