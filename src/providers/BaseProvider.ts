@@ -664,4 +664,127 @@ export abstract class BaseProvider {
 
     return toChecksumAddress(rawAddress);
   }
+
+  /**
+   * Performs reverse ENS resolution to get the ENS name associated with an address.
+   *
+   * Performs the full ENS reverse resolution process:
+   * 1. Formats the address as a reverse lookup: `{address}.addr.reverse`
+   * 2. Computes the namehash of the reverse name
+   * 3. Queries the ENS Registry for the resolver contract
+   * 4. Queries the resolver for the name
+   * 5. Verifies the name resolves back to the original address (per ENSIP-3)
+   *
+   * * [Identical](/docs/api#isd) to [`viem.getEnsName`](https://viem.sh/docs/ens/actions/getEnsName) in viem
+   * @param address the Ethereum address to look up (e.g. '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045')
+   * @returns the ENS name the address resolves to, or null if not found or verification fails
+   * @example
+   * ```javascript
+   * await provider.lookupAddress('0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045');
+   * // 'vitalik.eth'
+   * ```
+   * @example
+   * ```javascript
+   * await provider.lookupAddress('0x0000000000000000000000000000000000000000');
+   * // null
+   * ```
+   */
+  public async lookupAddress(address: string): Promise<string | null> {
+    const ENS_REGISTRY = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
+    const RESOLVER_SELECTOR = '0x0178b8bf'; // resolver(bytes32)
+    const NAME_SELECTOR = '0x691f3431'; // name(bytes32)
+    const ZERO_ADDRESS =
+      '0x0000000000000000000000000000000000000000000000000000000000000000';
+
+    // Format the address for reverse lookup: {address}.addr.reverse
+    const addressLower = address.toLowerCase();
+    const addressWithoutPrefix = addressLower.startsWith('0x')
+      ? addressLower.slice(2)
+      : addressLower;
+    const reverseName = `${addressWithoutPrefix}.addr.reverse`;
+
+    // Compute the namehash of the reverse name
+    const node = namehash(reverseName);
+    const nodeWithoutPrefix = node.slice(2);
+
+    // Step 1: Get the resolver address from the ENS Registry
+    const resolverData = RESOLVER_SELECTOR + nodeWithoutPrefix;
+    const resolverResult = await this.call({
+      to: ENS_REGISTRY,
+      data: resolverData,
+    });
+
+    // If no resolver is set, return null
+    if (!resolverResult || resolverResult === ZERO_ADDRESS) {
+      return null;
+    }
+
+    // Extract resolver address from the 32-byte response (last 20 bytes = 40 hex chars)
+    const resolverAddress = '0x' + resolverResult.slice(26);
+
+    // Check if resolver is zero address
+    if (
+      resolverAddress === '0x0000000000000000000000000000000000000000' ||
+      resolverAddress === '0x' + '0'.repeat(resolverResult.length - 2) // all zeros
+    ) {
+      return null;
+    }
+
+    // Step 2: Get the name from the resolver
+    const nameData = NAME_SELECTOR + nodeWithoutPrefix;
+    const nameResult = await this.call({
+      to: resolverAddress,
+      data: nameData,
+    });
+
+    // If no name is set, return null
+    if (!nameResult || nameResult === ZERO_ADDRESS) {
+      return null;
+    }
+
+    // Decode the returned name string
+    // The result is ABI-encoded as a string: offset (32 bytes) + length (32 bytes) + data
+    // The offset at position 0 typically points to 0x20 (32 bytes)
+    // At that offset, we have: length (32 bytes) + string data (padded to 32 bytes)
+
+    // Skip 0x and first 64 chars (offset value)
+    const lengthHex = nameResult.slice(2 + 64, 2 + 128);
+    const length = parseInt(lengthHex, 16);
+
+    if (length === 0) {
+      return null;
+    }
+
+    // The string data starts after the length (position 2 + 128)
+    const dataHex = nameResult.slice(2 + 128);
+
+    // Convert hex to string
+    const name = dataHex
+      .slice(0, length * 2) // length is in bytes, so multiply by 2 for hex chars
+      .match(/.{1,2}/g)
+      ?.map((byte) => String.fromCharCode(parseInt(byte, 16)))
+      .join('');
+
+    if (!name) {
+      return null;
+    }
+
+    // Step 3: Verify the name resolves back to the original address (ENSIP-3)
+    try {
+      const verifyAddress = await this.resolveName(name);
+      const normalizedAddress = addressLower.startsWith('0x')
+        ? addressLower
+        : '0x' + addressLower;
+      const normalizedVerifyAddress = verifyAddress?.toLowerCase();
+
+      if (normalizedVerifyAddress !== normalizedAddress) {
+        return null;
+      }
+    } catch {
+      // If verification fails, return null
+      return null;
+    }
+
+    return name;
+  }
 }
