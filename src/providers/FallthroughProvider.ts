@@ -26,7 +26,6 @@ export interface ConstructorOptions {
 const DEFAULT_TIMEOUT_DURATION = 8000;
 
 /**
- * @beta
  * A JSON RPC Provider which moves to the next URL when one fails.
  */
 export class FallthroughProvider extends BaseProvider {

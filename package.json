@@ -51,6 +51,8 @@
     "postversion": "git push --follow-tags",
     "prepublishOnly": "npm run build",
     "doc": "typedoc",
+    "docs:dev": "npm run dev --prefix docs-site",
+    "docs:build": "npm run build --prefix docs-site",
     "update:bundle-sizes": "bash scripts/update-bundle-sizes.sh"
   },
   "devDependencies": {

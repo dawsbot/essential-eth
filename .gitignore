@@ -5,9 +5,6 @@ lib
 dist
 coverage
 
-# typedoc accidental html output
-docs
-
 .versions
 .eslintcache
 *.docker*
