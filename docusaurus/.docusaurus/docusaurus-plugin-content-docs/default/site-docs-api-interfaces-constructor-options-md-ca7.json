@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/interfaces/ConstructorOptions",
+  "id": "api/interfaces/ConstructorOptions",
+  "title": "Interface: ConstructorOptions",
+  "description": "Properties",
+  "source": "@site/docs/api/interfaces/ConstructorOptions.md",
+  "sourceDirName": "api/interfaces",
+  "slug": "/api/interfaces/ConstructorOptions",
+  "permalink": "/docs/api/interfaces/ConstructorOptions",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "ConstructorOptions",
+    "title": "Interface: ConstructorOptions",
+    "sidebar_label": "ConstructorOptions",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "JsonRpcProvider",
+    "permalink": "/docs/api/classes/JsonRpcProvider"
+  },
+  "next": {
+    "title": "DataOptions",
+    "permalink": "/docs/api/interfaces/DataOptions"
+  }
+}

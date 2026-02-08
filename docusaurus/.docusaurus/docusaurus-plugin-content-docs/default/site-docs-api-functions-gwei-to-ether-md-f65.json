@@ -1,0 +1,24 @@
+{
+  "unversionedId": "api/functions/gweiToEther",
+  "id": "api/functions/gweiToEther",
+  "title": "Function: gweiToEther()",
+  "description": "gweiToEther(gweiQuantity): string",
+  "source": "@site/docs/api/functions/gweiToEther.md",
+  "sourceDirName": "api/functions",
+  "slug": "/api/functions/gweiToEther",
+  "permalink": "/docs/api/functions/gweiToEther",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/api/functions/gweiToEther.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Function: getAddress()",
+    "permalink": "/docs/api/functions/getAddress"
+  },
+  "next": {
+    "title": "Function: hashMessage()",
+    "permalink": "/docs/api/functions/hashMessage"
+  }
+}

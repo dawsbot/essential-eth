@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/interfaces/FilterByBlockHash",
+  "id": "api/interfaces/FilterByBlockHash",
+  "title": "Interface: FilterByBlockHash",
+  "description": "Hierarchy",
+  "source": "@site/docs/api/interfaces/FilterByBlockHash.md",
+  "sourceDirName": "api/interfaces",
+  "slug": "/api/interfaces/FilterByBlockHash",
+  "permalink": "/docs/api/interfaces/FilterByBlockHash",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "FilterByBlockHash",
+    "title": "Interface: FilterByBlockHash",
+    "sidebar_label": "FilterByBlockHash",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Filter",
+    "permalink": "/docs/api/interfaces/Filter"
+  },
+  "next": {
+    "title": "Hexable",
+    "permalink": "/docs/api/interfaces/Hexable"
+  }
+}

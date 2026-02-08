@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/classes/FallthroughProvider",
+  "id": "api/classes/FallthroughProvider",
+  "title": "Class: FallthroughProvider",
+  "description": "beta",
+  "source": "@site/docs/api/classes/FallthroughProvider.md",
+  "sourceDirName": "api/classes",
+  "slug": "/api/classes/FallthroughProvider",
+  "permalink": "/docs/api/classes/FallthroughProvider",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "FallthroughProvider",
+    "title": "Class: FallthroughProvider",
+    "sidebar_label": "FallthroughProvider",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "JsonRpcProvider",
+    "permalink": "/docs/api/classes/JsonRpcProvider"
+  },
+  "next": {
+    "title": "Readme",
+    "permalink": "/docs/api/"
+  }
+}
