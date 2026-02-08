@@ -56,7 +56,7 @@
     "update:bundle-sizes": "bash scripts/update-bundle-sizes.sh"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^8.2.4",
+    "@size-limit/preset-small-lib": "^12.0.0",
     "@types/bn.js": "^5.1.1",
     "@types/eslint": "^8.37.0",
     "@types/node": "^18.16.0",
@@ -74,11 +74,11 @@
     "perf_hooks": "^0.0.1",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "tsup": "^7.2.0",
-    "vite": "^4.5.0",
+    "tsup": "^8.5.1",
+    "vite": "^7.3.1",
     "typedoc": "^0.24.5",
     "typescript": "^4.9.4",
-    "vitest": "^0.34.6",
+    "vitest": "^4.0.18",
     "zod": "^3.21.4"
   },
   "dependencies": {
