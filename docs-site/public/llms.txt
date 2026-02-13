@@ -1,0 +1,22 @@
+# essential-eth
+
+> Essential-eth is a lightweight (43 kB), tree-shakeable Ethereum utility library for JavaScript and TypeScript. It serves as a minimal alternative to ethers.js and web3.js, using native bigint instead of BigNumber classes. It supports read-only provider interactions, smart contract calls, unit conversions, hashing, ABI encoding, and address utilities.
+
+Essential-eth provides three entry points of increasing size: `essential-eth/conversions` (~1.2 kB, unit conversions only), `essential-eth/utils` (utilities without providers), and `essential-eth` (full library with providers and contracts). It requires Node.js 16+ and works in browsers, serverless functions, and React Native.
+
+## Documentation
+
+- [Getting Started](https://eeth.dev/api/readme/): Installation, quick start, and overview
+- [JsonRpcProvider](https://eeth.dev/api/classes/jsonrpcprovider/): Single-endpoint JSON-RPC provider for EVM chains
+- [FallthroughProvider](https://eeth.dev/api/classes/fallthroughprovider/): Multi-endpoint provider with automatic fallback
+- [AlchemyProvider](https://eeth.dev/api/classes/alchemyprovider/): Alchemy-specific provider configuration
+- [API Reference](https://eeth.dev/api/): Full TypeDoc-generated API reference
+
+## Source
+
+- [GitHub Repository](https://github.com/dawsbot/essential-eth): Source code, issues, and contributions
+- [npm Package](https://www.npmjs.com/package/essential-eth): Package registry listing
+
+## Optional
+
+- [Changelog](https://github.com/dawsbot/essential-eth/releases): Release notes and version history
