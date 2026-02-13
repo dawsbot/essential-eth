@@ -38,7 +38,7 @@
   "repository": "https://github.com/dawsbot/essential-eth.git",
   "author": "@dawsbot",
   "scripts": {
-    "test": "vitest run && tsup && eslint --cache . --config .eslintrc.cjs",
+    "test": "vitest run && tsup && eslint --cache . --config .eslintrc.cjs && node scripts/lint-skill-docs.mjs",
     "test:all-node-versions": "npx trevor",
     "lint": "eslint --cache --fix . --config .eslintrc.cjs",
     "build": "tsup",

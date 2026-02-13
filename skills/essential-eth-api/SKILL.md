@@ -16,18 +16,29 @@ essential-eth is a tree-shakeable Ethereum library using native `bigint` (no Big
 Create a provider to interact with an EVM chain via JSON-RPC:
 
 ```typescript
-import { JsonRpcProvider, FallthroughProvider } from 'essential-eth';
+import {
+  JsonRpcProvider,
+  jsonRpcProvider,
+  FallthroughProvider,
+  AlchemyProvider,
+} from 'essential-eth';
 
 // Single RPC
 const provider = new JsonRpcProvider(
   'https://eth-mainnet.g.alchemy.com/v2/KEY',
 );
 
+// Factory function (avoids "new")
+const provider2 = jsonRpcProvider('https://rpc.ankr.com/eth');
+
 // Multiple RPCs with automatic fallback
-const provider = new FallthroughProvider([
+const fallthrough = new FallthroughProvider([
   'https://eth-mainnet.g.alchemy.com/v2/KEY',
   'https://rpc.ankr.com/eth',
 ]);
+
+// Alchemy shorthand
+const alchemy = new AlchemyProvider({ apiKey: 'KEY' });
 ```
 
 ### Provider methods
@@ -54,10 +65,10 @@ All methods return Promises.
 
 ## Contract
 
-Read-only smart contract interaction:
+Read-only smart contract interaction. `Contract` and `BaseContract` are equivalent (`Contract` extends `BaseContract`):
 
 ```typescript
-import { Contract, JsonRpcProvider } from 'essential-eth';
+import { Contract, BaseContract, JsonRpcProvider } from 'essential-eth';
 
 const provider = new JsonRpcProvider('https://rpc.ankr.com/eth');
 const dai = new Contract(
@@ -114,7 +125,8 @@ import {
 } from 'essential-eth';
 
 keccak256('0x1234');
-solidityKeccak256(['address', 'uint256'], ['0x...', 100]);
+solidityKeccak256(['address', 'uint256'], ['0x...', 100]); // also exported as pack
+
 id('Transfer(address,address,uint256)'); // keccak256 of UTF-8 string
 hashMessage('hello'); // EIP-191 prefixed hash
 namehash('vitalik.eth'); // ENS namehash
@@ -134,6 +146,7 @@ isAddress('0x...'); // boolean
 getAddress('0x...'); // checksummed or throws
 toChecksumAddress('0x...'); // checksummed address
 computeAddress('0x04...'); // address from public key
+computePublicKey('0x...'); // uncompressed public key from compressed
 ```
 
 ## ABI Encoding
@@ -167,6 +180,7 @@ import {
   hexDataSlice,
   hexDataLength,
   hexStripZeros,
+  hexValue,
 } from 'essential-eth';
 
 arrayify('0x1234'); // Uint8Array([0x12, 0x34])
@@ -186,6 +200,14 @@ toUtf8Bytes('hello'); // Uint8Array
 toUtf8String(new Uint8Array([])); // string
 encodeBytes32String('hello'); // bytes32 hex
 decodeBytes32String('0x...'); // string
+```
+
+## Signature Utilities
+
+```typescript
+import { splitSignature } from 'essential-eth';
+
+splitSignature('0x...'); // { r, s, v, recoveryParam, compact }
 ```
 
 ## Event Utilities
