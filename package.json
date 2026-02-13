@@ -29,7 +29,8 @@
     "node": ">=16"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "skills/"
   ],
   "bugs": {
     "url": "https://github.com/dawsbot/essential-eth/issues"
