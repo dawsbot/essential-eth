@@ -1,0 +1,24 @@
+{
+  "unversionedId": "api/type-aliases/BlockResponse",
+  "id": "api/type-aliases/BlockResponse",
+  "title": "Type Alias: BlockResponse",
+  "description": "BlockResponse = Modify\\",
+  "source": "@site/docs/api/type-aliases/BlockResponse.md",
+  "sourceDirName": "api/type-aliases",
+  "slug": "/api/type-aliases/BlockResponse",
+  "permalink": "/docs/api/type-aliases/BlockResponse",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/api/type-aliases/BlockResponse.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "essential-eth",
+    "permalink": "/docs/api/globals"
+  },
+  "next": {
+    "title": "Type Alias: BlockTag",
+    "permalink": "/docs/api/type-aliases/BlockTag"
+  }
+}

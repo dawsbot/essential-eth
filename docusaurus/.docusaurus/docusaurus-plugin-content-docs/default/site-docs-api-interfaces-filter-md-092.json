@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/interfaces/Filter",
+  "id": "api/interfaces/Filter",
+  "title": "Interface: Filter",
+  "description": "param block as starting point for range, inclusive",
+  "source": "@site/docs/api/interfaces/Filter.md",
+  "sourceDirName": "api/interfaces",
+  "slug": "/api/interfaces/Filter",
+  "permalink": "/docs/api/interfaces/Filter",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "Filter",
+    "title": "Interface: Filter",
+    "sidebar_label": "Filter",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "DataOptions",
+    "permalink": "/docs/api/interfaces/DataOptions"
+  },
+  "next": {
+    "title": "FilterByBlockHash",
+    "permalink": "/docs/api/interfaces/FilterByBlockHash"
+  }
+}

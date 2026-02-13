@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/interfaces/RPCBlock",
+  "id": "api/interfaces/RPCBlock",
+  "title": "Interface: RPCBlock",
+  "description": "Exact response from backend",
+  "source": "@site/docs/api/interfaces/RPCBlock.md",
+  "sourceDirName": "api/interfaces",
+  "slug": "/api/interfaces/RPCBlock",
+  "permalink": "/docs/api/interfaces/RPCBlock",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "RPCBlock",
+    "title": "Interface: RPCBlock",
+    "sidebar_label": "RPCBlock",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Network",
+    "permalink": "/docs/api/interfaces/Network"
+  },
+  "next": {
+    "title": "RPCLog",
+    "permalink": "/docs/api/interfaces/RPCLog"
+  }
+}

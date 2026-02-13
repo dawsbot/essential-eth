@@ -1,0 +1,24 @@
+{
+  "unversionedId": "api/functions/hexDataLength",
+  "id": "api/functions/hexDataLength",
+  "title": "Function: hexDataLength()",
+  "description": "hexDataLength(data): number \\| null",
+  "source": "@site/docs/api/functions/hexDataLength.md",
+  "sourceDirName": "api/functions",
+  "slug": "/api/functions/hexDataLength",
+  "permalink": "/docs/api/functions/hexDataLength",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/api/functions/hexDataLength.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Function: hexConcat()",
+    "permalink": "/docs/api/functions/hexConcat"
+  },
+  "next": {
+    "title": "Function: hexDataSlice()",
+    "permalink": "/docs/api/functions/hexDataSlice"
+  }
+}

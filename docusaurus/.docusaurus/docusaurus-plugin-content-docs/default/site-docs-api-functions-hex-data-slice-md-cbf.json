@@ -1,0 +1,24 @@
+{
+  "unversionedId": "api/functions/hexDataSlice",
+  "id": "api/functions/hexDataSlice",
+  "title": "Function: hexDataSlice()",
+  "description": "hexDataSlice(data, offset, endOffset?): string",
+  "source": "@site/docs/api/functions/hexDataSlice.md",
+  "sourceDirName": "api/functions",
+  "slug": "/api/functions/hexDataSlice",
+  "permalink": "/docs/api/functions/hexDataSlice",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/api/functions/hexDataSlice.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Function: hexDataLength()",
+    "permalink": "/docs/api/functions/hexDataLength"
+  },
+  "next": {
+    "title": "Function: hexStripZeros()",
+    "permalink": "/docs/api/functions/hexStripZeros"
+  }
+}

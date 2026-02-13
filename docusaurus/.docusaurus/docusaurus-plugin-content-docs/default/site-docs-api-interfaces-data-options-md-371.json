@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/interfaces/DataOptions",
+  "id": "api/interfaces/DataOptions",
+  "title": "Interface: DataOptions",
+  "description": "Properties",
+  "source": "@site/docs/api/interfaces/DataOptions.md",
+  "sourceDirName": "api/interfaces",
+  "slug": "/api/interfaces/DataOptions",
+  "permalink": "/docs/api/interfaces/DataOptions",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "DataOptions",
+    "title": "Interface: DataOptions",
+    "sidebar_label": "DataOptions",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "ConstructorOptions",
+    "permalink": "/docs/api/interfaces/ConstructorOptions"
+  },
+  "next": {
+    "title": "Filter",
+    "permalink": "/docs/api/interfaces/Filter"
+  }
+}

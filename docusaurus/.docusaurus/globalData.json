@@ -1,0 +1,383 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "api/classes/JsonRpcProvider",
+          "docs": [
+            {
+              "id": "api/classes/AlchemyProvider",
+              "path": "/docs/api/classes/AlchemyProvider",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/classes/BaseContract",
+              "path": "/docs/api/classes/BaseContract",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/classes/Contract",
+              "path": "/docs/api/classes/Contract",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/classes/FallthroughProvider",
+              "path": "/docs/api/classes/FallthroughProvider",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/classes/JsonRpcProvider",
+              "path": "/docs/api/classes/JsonRpcProvider",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/arrayify",
+              "path": "/docs/api/functions/arrayify",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/computeAddress",
+              "path": "/docs/api/functions/computeAddress",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/computePublicKey",
+              "path": "/docs/api/functions/computePublicKey",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/concat",
+              "path": "/docs/api/functions/concat",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/decodeBytes32String",
+              "path": "/docs/api/functions/decodeBytes32String",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/encodeBytes32String",
+              "path": "/docs/api/functions/encodeBytes32String",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/etherToGwei",
+              "path": "/docs/api/functions/etherToGwei",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/etherToWei",
+              "path": "/docs/api/functions/etherToWei",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/formatUnits",
+              "path": "/docs/api/functions/formatUnits",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/getAddress",
+              "path": "/docs/api/functions/getAddress",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/gweiToEther",
+              "path": "/docs/api/functions/gweiToEther",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/hashMessage",
+              "path": "/docs/api/functions/hashMessage",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/hexConcat",
+              "path": "/docs/api/functions/hexConcat",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/hexDataLength",
+              "path": "/docs/api/functions/hexDataLength",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/hexDataSlice",
+              "path": "/docs/api/functions/hexDataSlice",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/hexlify",
+              "path": "/docs/api/functions/hexlify",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/hexStripZeros",
+              "path": "/docs/api/functions/hexStripZeros",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/hexValue",
+              "path": "/docs/api/functions/hexValue",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/hexZeroPad",
+              "path": "/docs/api/functions/hexZeroPad",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/id",
+              "path": "/docs/api/functions/id",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/isAddress",
+              "path": "/docs/api/functions/isAddress",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/isBytes",
+              "path": "/docs/api/functions/isBytes",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/isBytesLike",
+              "path": "/docs/api/functions/isBytesLike",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/isHexString",
+              "path": "/docs/api/functions/isHexString",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/jsonRpcProvider",
+              "path": "/docs/api/functions/jsonRpcProvider",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/keccak256",
+              "path": "/docs/api/functions/keccak256",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/namehash",
+              "path": "/docs/api/functions/namehash",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/pack",
+              "path": "/docs/api/functions/pack",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/parseUnits",
+              "path": "/docs/api/functions/parseUnits",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/solidityKeccak256",
+              "path": "/docs/api/functions/solidityKeccak256",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/splitSignature",
+              "path": "/docs/api/functions/splitSignature",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/stripZeros",
+              "path": "/docs/api/functions/stripZeros",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/toChecksumAddress",
+              "path": "/docs/api/functions/toChecksumAddress",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/toUtf8Bytes",
+              "path": "/docs/api/functions/toUtf8Bytes",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/toUtf8String",
+              "path": "/docs/api/functions/toUtf8String",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/weiToEther",
+              "path": "/docs/api/functions/weiToEther",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/functions/zeroPad",
+              "path": "/docs/api/functions/zeroPad",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/globals",
+              "path": "/docs/api/globals",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/index",
+              "path": "/docs/api/",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/ConstructorOptions",
+              "path": "/docs/api/interfaces/ConstructorOptions",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/DataOptions",
+              "path": "/docs/api/interfaces/DataOptions",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/Filter",
+              "path": "/docs/api/interfaces/Filter",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/FilterByBlockHash",
+              "path": "/docs/api/interfaces/FilterByBlockHash",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/Hexable",
+              "path": "/docs/api/interfaces/Hexable",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/JSONABIArgument",
+              "path": "/docs/api/interfaces/JSONABIArgument",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/Network",
+              "path": "/docs/api/interfaces/Network",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/RPCBlock",
+              "path": "/docs/api/interfaces/RPCBlock",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/RPCLog",
+              "path": "/docs/api/interfaces/RPCLog",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/RPCTransaction",
+              "path": "/docs/api/interfaces/RPCTransaction",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/RPCTransactionReceipt",
+              "path": "/docs/api/interfaces/RPCTransactionReceipt",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/RPCTransactionRequest",
+              "path": "/docs/api/interfaces/RPCTransactionRequest",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/Signature",
+              "path": "/docs/api/interfaces/Signature",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/interfaces/TransactionRequest",
+              "path": "/docs/api/interfaces/TransactionRequest",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/modules",
+              "path": "/docs/api/modules",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/BlockResponse",
+              "path": "/docs/api/type-aliases/BlockResponse",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/BlockTag",
+              "path": "/docs/api/type-aliases/BlockTag",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/BlockTransactionResponse",
+              "path": "/docs/api/type-aliases/BlockTransactionResponse",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/Bytes",
+              "path": "/docs/api/type-aliases/Bytes",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/BytesLike",
+              "path": "/docs/api/type-aliases/BytesLike",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/BytesLikeWithNumber",
+              "path": "/docs/api/type-aliases/BytesLikeWithNumber",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/ContractTypes",
+              "path": "/docs/api/type-aliases/ContractTypes",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/JSONABI",
+              "path": "/docs/api/type-aliases/JSONABI",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/Log",
+              "path": "/docs/api/type-aliases/Log",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/SignatureLike",
+              "path": "/docs/api/type-aliases/SignatureLike",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/TransactionReceipt",
+              "path": "/docs/api/type-aliases/TransactionReceipt",
+              "sidebar": "sidebar"
+            },
+            {
+              "id": "api/type-aliases/TransactionResponse",
+              "path": "/docs/api/type-aliases/TransactionResponse",
+              "sidebar": "sidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "sidebar": {
+              "link": {
+                "path": "/docs/api/classes/JsonRpcProvider",
+                "label": "api/classes/JsonRpcProvider"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

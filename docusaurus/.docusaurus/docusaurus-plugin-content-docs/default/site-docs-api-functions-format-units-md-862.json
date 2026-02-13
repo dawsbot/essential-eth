@@ -1,0 +1,24 @@
+{
+  "unversionedId": "api/functions/formatUnits",
+  "id": "api/functions/formatUnits",
+  "title": "Function: formatUnits()",
+  "description": "formatUnits(value, decimals): string",
+  "source": "@site/docs/api/functions/formatUnits.md",
+  "sourceDirName": "api/functions",
+  "slug": "/api/functions/formatUnits",
+  "permalink": "/docs/api/functions/formatUnits",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/api/functions/formatUnits.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Function: etherToWei()",
+    "permalink": "/docs/api/functions/etherToWei"
+  },
+  "next": {
+    "title": "Function: getAddress()",
+    "permalink": "/docs/api/functions/getAddress"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "unversionedId": "api/functions/hexlify",
+  "id": "api/functions/hexlify",
+  "title": "Function: hexlify()",
+  "description": "hexlify(value, options?): string",
+  "source": "@site/docs/api/functions/hexlify.md",
+  "sourceDirName": "api/functions",
+  "slug": "/api/functions/hexlify",
+  "permalink": "/docs/api/functions/hexlify",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/api/functions/hexlify.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Function: hexZeroPad()",
+    "permalink": "/docs/api/functions/hexZeroPad"
+  },
+  "next": {
+    "title": "Function: id()",
+    "permalink": "/docs/api/functions/id"
+  }
+}
