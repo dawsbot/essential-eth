@@ -1,0 +1,27 @@
+{
+  "unversionedId": "api/classes/JsonRpcProvider",
+  "id": "api/classes/JsonRpcProvider",
+  "title": "Class: JsonRpcProvider",
+  "description": "Hierarchy",
+  "source": "@site/docs/api/classes/JsonRpcProvider.md",
+  "sourceDirName": "api/classes",
+  "slug": "/api/classes/JsonRpcProvider",
+  "permalink": "/docs/api/classes/JsonRpcProvider",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "JsonRpcProvider",
+    "title": "Class: JsonRpcProvider",
+    "sidebar_label": "JsonRpcProvider",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "next": {
+    "title": "FallthroughProvider",
+    "permalink": "/docs/api/classes/FallthroughProvider"
+  }
+}

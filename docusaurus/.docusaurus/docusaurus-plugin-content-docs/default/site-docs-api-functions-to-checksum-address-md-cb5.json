@@ -1,0 +1,24 @@
+{
+  "unversionedId": "api/functions/toChecksumAddress",
+  "id": "api/functions/toChecksumAddress",
+  "title": "Function: toChecksumAddress()",
+  "description": "toChecksumAddress(address): string",
+  "source": "@site/docs/api/functions/toChecksumAddress.md",
+  "sourceDirName": "api/functions",
+  "slug": "/api/functions/toChecksumAddress",
+  "permalink": "/docs/api/functions/toChecksumAddress",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/api/functions/toChecksumAddress.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Function: stripZeros()",
+    "permalink": "/docs/api/functions/stripZeros"
+  },
+  "next": {
+    "title": "Function: toUtf8Bytes()",
+    "permalink": "/docs/api/functions/toUtf8Bytes"
+  }
+}

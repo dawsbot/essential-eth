@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/interfaces/RPCTransaction",
+  "id": "api/interfaces/RPCTransaction",
+  "title": "Interface: RPCTransaction",
+  "description": "Hierarchy",
+  "source": "@site/docs/api/interfaces/RPCTransaction.md",
+  "sourceDirName": "api/interfaces",
+  "slug": "/api/interfaces/RPCTransaction",
+  "permalink": "/docs/api/interfaces/RPCTransaction",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "RPCTransaction",
+    "title": "Interface: RPCTransaction",
+    "sidebar_label": "RPCTransaction",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "RPCLog",
+    "permalink": "/docs/api/interfaces/RPCLog"
+  },
+  "next": {
+    "title": "RPCTransactionReceipt",
+    "permalink": "/docs/api/interfaces/RPCTransactionReceipt"
+  }
+}

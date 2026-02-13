@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/interfaces/TransactionRequest",
+  "id": "api/interfaces/TransactionRequest",
+  "title": "Interface: TransactionRequest",
+  "description": "Properties",
+  "source": "@site/docs/api/interfaces/TransactionRequest.md",
+  "sourceDirName": "api/interfaces",
+  "slug": "/api/interfaces/TransactionRequest",
+  "permalink": "/docs/api/interfaces/TransactionRequest",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "TransactionRequest",
+    "title": "Interface: TransactionRequest",
+    "sidebar_label": "TransactionRequest",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Signature",
+    "permalink": "/docs/api/interfaces/Signature"
+  },
+  "next": {
+    "title": "Function: arrayify()",
+    "permalink": "/docs/api/functions/arrayify"
+  }
+}

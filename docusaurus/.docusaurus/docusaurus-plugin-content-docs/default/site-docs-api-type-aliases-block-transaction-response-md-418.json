@@ -1,0 +1,24 @@
+{
+  "unversionedId": "api/type-aliases/BlockTransactionResponse",
+  "id": "api/type-aliases/BlockTransactionResponse",
+  "title": "Type Alias: BlockTransactionResponse",
+  "description": "BlockTransactionResponse = Omit\\",
+  "source": "@site/docs/api/type-aliases/BlockTransactionResponse.md",
+  "sourceDirName": "api/type-aliases",
+  "slug": "/api/type-aliases/BlockTransactionResponse",
+  "permalink": "/docs/api/type-aliases/BlockTransactionResponse",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/api/type-aliases/BlockTransactionResponse.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Type Alias: BlockTag",
+    "permalink": "/docs/api/type-aliases/BlockTag"
+  },
+  "next": {
+    "title": "Type Alias: Bytes",
+    "permalink": "/docs/api/type-aliases/Bytes"
+  }
+}

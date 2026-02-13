@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/interfaces/JSONABIArgument",
+  "id": "api/interfaces/JSONABIArgument",
+  "title": "Interface: JSONABIArgument",
+  "description": "Properties",
+  "source": "@site/docs/api/interfaces/JSONABIArgument.md",
+  "sourceDirName": "api/interfaces",
+  "slug": "/api/interfaces/JSONABIArgument",
+  "permalink": "/docs/api/interfaces/JSONABIArgument",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "JSONABIArgument",
+    "title": "Interface: JSONABIArgument",
+    "sidebar_label": "JSONABIArgument",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "Hexable",
+    "permalink": "/docs/api/interfaces/Hexable"
+  },
+  "next": {
+    "title": "Network",
+    "permalink": "/docs/api/interfaces/Network"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "unversionedId": "api/functions/arrayify",
+  "id": "api/functions/arrayify",
+  "title": "Function: arrayify()",
+  "description": "arrayify(value, options?): Uint8Array",
+  "source": "@site/docs/api/functions/arrayify.md",
+  "sourceDirName": "api/functions",
+  "slug": "/api/functions/arrayify",
+  "permalink": "/docs/api/functions/arrayify",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/api/functions/arrayify.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "TransactionRequest",
+    "permalink": "/docs/api/interfaces/TransactionRequest"
+  },
+  "next": {
+    "title": "Function: computeAddress()",
+    "permalink": "/docs/api/functions/computeAddress"
+  }
+}

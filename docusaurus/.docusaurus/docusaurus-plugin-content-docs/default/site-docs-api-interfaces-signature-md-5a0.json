@@ -1,0 +1,31 @@
+{
+  "unversionedId": "api/interfaces/Signature",
+  "id": "api/interfaces/Signature",
+  "title": "Interface: Signature",
+  "description": "Properties",
+  "source": "@site/docs/api/interfaces/Signature.md",
+  "sourceDirName": "api/interfaces",
+  "slug": "/api/interfaces/Signature",
+  "permalink": "/docs/api/interfaces/Signature",
+  "draft": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "Signature",
+    "title": "Interface: Signature",
+    "sidebar_label": "Signature",
+    "sidebar_position": 0,
+    "custom_edit_url": null
+  },
+  "sidebar": "sidebar",
+  "previous": {
+    "title": "RPCTransactionRequest",
+    "permalink": "/docs/api/interfaces/RPCTransactionRequest"
+  },
+  "next": {
+    "title": "TransactionRequest",
+    "permalink": "/docs/api/interfaces/TransactionRequest"
+  }
+}
