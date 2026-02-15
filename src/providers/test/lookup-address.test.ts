@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { jsonRpcProvider } from '../..';
-import { rpcUrls } from './rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from './rpc-urls';
 
 // These are integration tests that require network access.
 // They will call the ENS Registry and resolver contracts on mainnet.
-describe('provider.lookupAddress', () => {
-  const provider = jsonRpcProvider(rpcUrls.mainnet);
+describe.skipIf(skipWithoutAlchemyKey)('provider.lookupAddress', () => {
+  const provider = jsonRpcProvider(rpcUrls.mainnet!);
 
   it('should resolve vitalik.eth address to the correct name', async () => {
     const name = await provider.lookupAddress(

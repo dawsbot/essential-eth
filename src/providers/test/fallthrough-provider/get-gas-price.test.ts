@@ -1,7 +1,7 @@
 // performance polyfill required to support node <= 14
 import { performance } from 'perf_hooks';
 import { FallthroughProvider } from '../../../index';
-import { rpcUrls } from '../rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from '../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
 
@@ -12,7 +12,7 @@ function timePromise(fn: () => Promise<any>): Promise<number> {
   return fn().then(onPromiseDone, onPromiseDone);
 }
 
-describe('provider.getGasPrice', () => {
+describe.skipIf(skipWithoutAlchemyKey)('provider.getGasPrice', () => {
   it('should fallthrough on several types of invalid urls', async () => {
     const provider = new FallthroughProvider([
       'https://bad-123123123123.com',

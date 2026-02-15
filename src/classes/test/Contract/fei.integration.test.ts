@@ -1,14 +1,17 @@
 import { describe, expect, it } from 'vitest';
 
 import { JsonRpcProvider } from '../../../index';
-import { rpcUrls } from '../../../providers/test/rpc-urls';
+import {
+  rpcUrls,
+  skipWithoutAlchemyKey,
+} from '../../../providers/test/rpc-urls';
 import { Contract as EssentialEthContract } from '../../Contract';
 import { feiABI } from './fei-abi';
 
 const JSONABI = feiABI;
 
 const rpcURL = rpcUrls.mainnet;
-const provider = new JsonRpcProvider(rpcURL);
+const provider = rpcURL ? new JsonRpcProvider(rpcURL) : null;
 
 // https://etherscan.io/address/0xBFfB152b9392e38CdDc275D818a3Db7FE364596b
 const contractAddress = '0xBFfB152b9392e38CdDc275D818a3Db7FE364596b';
@@ -21,8 +24,10 @@ const smartContractGetFeiAmountsToRedeem = async (
   return merkleRoot;
 };
 
-const contract = new EssentialEthContract(contractAddress, JSONABI, provider);
-describe('fEI contract', () => {
+const contract = provider
+  ? new EssentialEthContract(contractAddress, JSONABI, provider)
+  : null;
+describe.skipIf(skipWithoutAlchemyKey)('fEI contract', () => {
   it('should fetch unclaimed amounts "[uint256, uint256, uint256]" data-type', async () => {
     const essentialEthResponse = await smartContractGetFeiAmountsToRedeem(
       contract,

@@ -11,7 +11,10 @@ z.string({
   .parse(RPC_ORIGIN);
 
 const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
-const MAINNET_RPC_ORIGIN = `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}`;
+const MAINNET_RPC_ORIGIN = ALCHEMY_API_KEY
+  ? `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}`
+  : undefined;
+
 export const rpcUrls = {
   mainnet: MAINNET_RPC_ORIGIN,
   oeth: `${RPC_ORIGIN}/api/oeth`,
@@ -21,3 +24,9 @@ export const rpcUrls = {
   arb1: `${RPC_ORIGIN}/api/arb1`,
   gor: `${RPC_ORIGIN}/api/gor`,
 };
+
+/**
+ * Helper to skip integration tests that require Alchemy API key when it's not available.
+ * Use with vitest's describe.skipIf() or it.skipIf()
+ */
+export const skipWithoutAlchemyKey = !ALCHEMY_API_KEY;

@@ -7,11 +7,11 @@ import {
 } from '../../../classes/utils/fetchers';
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
 import { mockOf } from '../mock-of';
-import { rpcUrls } from '../rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from '../rpc-urls';
 
 vi.mock('isomorphic-unfetch');
 
-const rpcUrl = rpcUrls.mainnet;
+const rpcUrl = rpcUrls.mainnet!;
 
 const provider = new JsonRpcProvider(rpcUrl);
 
@@ -82,7 +82,7 @@ async function runTest(
   );
 }
 
-describe('provider.getBlock', () => {
+describe.skipIf(skipWithoutAlchemyKey)('provider.getBlock', () => {
   it('should match mocked -- latest', async () => {
     await runTest('eth_getBlockByNumber', ['latest', false], 'latest');
   });
@@ -107,42 +107,45 @@ describe('provider.getBlock', () => {
   });
 });
 
-describe('provider.getBlock error handling', () => {
-  it('should handle empty 200 http response', async () => {
-    mockOf(unfetch.default).mockResolvedValueOnce({
-      text: () => Promise.resolve('200 OK'),
-    } as Response);
+describe.skipIf(skipWithoutAlchemyKey)(
+  'provider.getBlock error handling',
+  () => {
+    it('should handle empty 200 http response', async () => {
+      mockOf(unfetch.default).mockResolvedValueOnce({
+        text: () => Promise.resolve('200 OK'),
+      } as Response);
 
-    const spy = vi.spyOn(unfetch, 'default');
-    await provider.getBlock('earliest').catch(async (error) => {
-      // error message is Invalid JSON RPC response: "200 OK"
-      expect('Invalid JSON RPC response: "200 OK"').toBe(error.message);
+      const spy = vi.spyOn(unfetch, 'default');
+      await provider.getBlock('earliest').catch(async (error) => {
+        // error message is Invalid JSON RPC response: "200 OK"
+        expect('Invalid JSON RPC response: "200 OK"').toBe(error.message);
+      });
+
+      expect(spy).toHaveBeenCalledWith(
+        rpcUrl,
+        buildFetchInit(
+          buildRPCPostBody('eth_getBlockByNumber', ['earliest', false]),
+        ),
+      );
     });
 
-    expect(spy).toHaveBeenCalledWith(
-      rpcUrl,
-      buildFetchInit(
-        buildRPCPostBody('eth_getBlockByNumber', ['earliest', false]),
-      ),
-    );
-  });
+    it('should handle empty JSON object', async () => {
+      mockOf(unfetch.default).mockResolvedValueOnce({
+        text: () => Promise.resolve('{}'),
+      } as Response);
 
-  it('should handle empty JSON object', async () => {
-    mockOf(unfetch.default).mockResolvedValueOnce({
-      text: () => Promise.resolve('{}'),
-    } as Response);
+      const spy = vi.spyOn(unfetch, 'default');
+      await provider.getBlock('earliest').catch(async (error) => {
+        // error message is Invalid JSON RPC response: {}
+        expect(error.message).toBe('Invalid JSON RPC response: {}');
+      });
 
-    const spy = vi.spyOn(unfetch, 'default');
-    await provider.getBlock('earliest').catch(async (error) => {
-      // error message is Invalid JSON RPC response: {}
-      expect(error.message).toBe('Invalid JSON RPC response: {}');
+      expect(spy).toHaveBeenCalledWith(
+        rpcUrl,
+        buildFetchInit(
+          buildRPCPostBody('eth_getBlockByNumber', ['earliest', false]),
+        ),
+      );
     });
-
-    expect(spy).toHaveBeenCalledWith(
-      rpcUrl,
-      buildFetchInit(
-        buildRPCPostBody('eth_getBlockByNumber', ['earliest', false]),
-      ),
-    );
-  });
-});
+  },
+);

@@ -8,7 +8,7 @@ import {
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
 import { prepareTransaction } from '../../../classes/utils/prepare-transaction';
 import { mockOf } from '../mock-of';
-import { rpcUrls } from './../rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from './../rpc-urls';
 
 const rpcUrl = rpcUrls.mainnet;
 
@@ -34,8 +34,8 @@ const dataFromGasTo = {
   maxFeePerGas: '0xffffffffff',
 };
 
-describe('provider.call', () => {
-  const provider = new JsonRpcProvider(rpcUrl);
+describe.skipIf(skipWithoutAlchemyKey)('provider.call', () => {
+  const provider = new JsonRpcProvider(rpcUrl!);
 
   it('throws', async () => {
     await expect(

@@ -5,9 +5,9 @@ import {
 } from '../../../classes/utils/fetchers';
 import { JsonRpcProvider } from '../../JsonRpcProvider';
 import { mockOf } from '../mock-of';
-import { rpcUrls } from './../rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from './../rpc-urls';
 
-const rpcUrl = rpcUrls.mainnet;
+const rpcUrl = rpcUrls.mainnet!;
 
 const provider = new JsonRpcProvider(rpcUrl);
 
@@ -27,7 +27,7 @@ const mockGetGasPriceResponse = JSON.stringify({
   result: '0xa',
 });
 
-describe('provider.getFeeData', () => {
+describe.skipIf(skipWithoutAlchemyKey)('provider.getFeeData', () => {
   it('should match mocked responses', async () => {
     mockOf(unfetch.default).mockResolvedValueOnce({
       text: () => Promise.resolve(mockGetBlockResponse),

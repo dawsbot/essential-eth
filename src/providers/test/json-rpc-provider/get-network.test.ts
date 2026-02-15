@@ -1,5 +1,5 @@
 import { isAddress, JsonRpcProvider } from '../../../index';
-import { fakeUrls, rpcUrls } from '../rpc-urls';
+import { fakeUrls, rpcUrls, skipWithoutAlchemyKey } from '../rpc-urls';
 
 const testConfig = {
   mainnet: {
@@ -29,9 +29,12 @@ describe('provider.getNetwork happy path', () => {
     );
   }
 
-  it('should return proper mainnet info', async () => {
-    await testNetwork('mainnet');
-  });
+  it.skipIf(skipWithoutAlchemyKey)(
+    'should return proper mainnet info',
+    async () => {
+      await testNetwork('mainnet');
+    },
+  );
   it('should return optimism info', async () => {
     await testNetwork('oeth');
   });

@@ -8,11 +8,11 @@ import {
 import { prepareTransaction } from '../../../classes/utils/prepare-transaction';
 import { etherToWei } from '../../../utils/ether-to-wei';
 import { mockOf } from '../mock-of';
-import { rpcUrls } from '../rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from '../rpc-urls';
 
 vi.mock('isomorphic-unfetch');
 
-const rpcUrl = rpcUrls.mainnet;
+const rpcUrl = rpcUrls.mainnet!;
 
 const dataTo = {
   to: '0x4976fb03C32e5B8cfe2b6cCB31c09Ba78EBaBa41',
@@ -52,7 +52,7 @@ async function testEstimateGas(transaction: TransactionRequest) {
   );
 }
 
-describe('provider.estimateGas', () => {
+describe.skipIf(skipWithoutAlchemyKey)('provider.estimateGas', () => {
   it('should estimate gas with data and to', async () => {
     await testEstimateGas(dataTo);
   });

@@ -8,7 +8,7 @@ import { JsonRpcProvider } from '../../../../index';
 import type { Filter } from '../../../../types/Filter.types';
 import type { RPCLog } from '../../../../types/Transaction.types';
 import { mockOf } from '../../mock-of';
-import { rpcUrls } from '../../rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from '../../rpc-urls';
 import {
   filterAddressFromTo,
   filterAddressTopics,
@@ -24,8 +24,8 @@ import {
 const rpcUrl = rpcUrls.mainnet;
 vi.mock('isomorphic-unfetch');
 
-describe('provider.getLogs', () => {
-  const provider = new JsonRpcProvider(rpcUrl);
+describe.skipIf(skipWithoutAlchemyKey)('provider.getLogs', () => {
+  const provider = new JsonRpcProvider(rpcUrl!);
 
   async function testGetLogs(
     mockResponse: string,

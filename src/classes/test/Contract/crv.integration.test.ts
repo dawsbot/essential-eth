@@ -1,18 +1,23 @@
 import { describe, expect, it } from 'vitest';
 
 import { JsonRpcProvider } from '../../../index';
-import { rpcUrls } from '../../../providers/test/rpc-urls';
+import {
+  rpcUrls,
+  skipWithoutAlchemyKey,
+} from '../../../providers/test/rpc-urls';
 import { Contract as EssentialEthContract } from '../../Contract';
 import { abi } from './crv-abi';
 
 const rpcURL = rpcUrls.mainnet;
-const provider = new JsonRpcProvider(rpcURL);
+const provider = rpcURL ? new JsonRpcProvider(rpcURL) : null;
 
 // https://etherscan.io/address/0x575CCD8e2D300e2377B43478339E364000318E2c
 const contractAddress = '0x575CCD8e2D300e2377B43478339E364000318E2c';
 
-const contract = new EssentialEthContract(contractAddress, abi, provider);
-describe('cRV contract', () => {
+const contract = provider
+  ? new EssentialEthContract(contractAddress, abi, provider)
+  : null;
+describe.skipIf(skipWithoutAlchemyKey)('cRV contract', () => {
   const address = '0xf8cd644baf494d13406187cf8628754dca0a10c2';
   it('should fetch "uint256" balanceOf', async () => {
     const balanceOf = (await contract.balanceOf(address, {

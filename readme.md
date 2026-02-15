@@ -27,7 +27,7 @@
 
 Measured with esbuild. Smaller is better.
 
-| What you import                          | essential-eth@1.1.0 | ethers@6.16.0 | viem@2.45.3 | web3@4.16.0 |   ox@0.12.1    |
+| What you import                          | essential-eth@1.1.0 | ethers@6.16.0 | viem@2.46.0 | web3@4.16.0 |   ox@0.12.1    |
 | ---------------------------------------- | :-----------------: | :-----------: | :---------: | :---------: | :------------: |
 | **Full library**                         |   **43.1 kB** 🏆    |   394.0 kB    |  385.3 kB   |  495.8 kB   |    612.8 kB    |
 | **Provider** (getBalance, getBlock, etc) |       30.8 kB       |   260.0 kB    |  306.5 kB   |  454.5 kB   | **10.9 kB** 🏆 |

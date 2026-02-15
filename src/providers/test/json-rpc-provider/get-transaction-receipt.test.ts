@@ -7,10 +7,10 @@ import {
 import { hexToDecimal } from '../../../classes/utils/hex-to-decimal';
 import { JsonRpcProvider } from '../../../index';
 import { mockOf } from '../mock-of';
-import { rpcUrls } from '../rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from '../rpc-urls';
 
 vi.mock('isomorphic-unfetch');
-const rpcUrl = rpcUrls.mainnet;
+const rpcUrl = rpcUrls.mainnet!;
 
 const mockBlocksBetween = 10;
 const mockReceiptResponse = {
@@ -71,7 +71,7 @@ const mockReceipt = {
   byzantium: true,
 };
 
-describe('provider.getTransactionReceipt', () => {
+describe.skipIf(skipWithoutAlchemyKey)('provider.getTransactionReceipt', () => {
   it('should match mocked transaction receipt', async () => {
     const transactionHash =
       '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789';

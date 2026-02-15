@@ -5,11 +5,11 @@ import {
 } from '../../../classes/utils/fetchers';
 import { JsonRpcProvider } from '../../../index';
 import { mockOf } from '../mock-of';
-import { rpcUrls } from '../rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from '../rpc-urls';
 
 vi.mock('isomorphic-unfetch');
 
-const rpcUrl = rpcUrls.mainnet;
+const rpcUrl = rpcUrls.mainnet!;
 
 const mockBlocksBetween = 10;
 const mockTransactionResponse = {
@@ -59,7 +59,7 @@ const mockTransaction = {
   gas: BigInt(mockTransactionResponse.gas),
 };
 
-describe('provider.getTransaction', () => {
+describe.skipIf(skipWithoutAlchemyKey)('provider.getTransaction', () => {
   it('should fetch transaction and add confirmations properly', async () => {
     const transactionHash =
       '0x9014ae6ef92464338355a79e5150e542ff9a83e2323318b21f40d6a3e65b4789';

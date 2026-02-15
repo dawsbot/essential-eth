@@ -5,7 +5,7 @@ import {
 } from '../../../classes/utils/fetchers';
 import { JsonRpcProvider } from '../../../index';
 import { mockOf } from '../mock-of';
-import { rpcUrls } from '../rpc-urls';
+import { rpcUrls, skipWithoutAlchemyKey } from '../rpc-urls';
 
 vi.mock('isomorphic-unfetch');
 const mockPostResponse = JSON.stringify({
@@ -14,9 +14,9 @@ const mockPostResponse = JSON.stringify({
   result: '0xa',
 });
 
-const rpcUrl = rpcUrls.mainnet;
+const rpcUrl = rpcUrls.mainnet!;
 
-describe('provider.getGasPrice', () => {
+describe.skipIf(skipWithoutAlchemyKey)('provider.getGasPrice', () => {
   it('should get bigint', async () => {
     const provider = new JsonRpcProvider(rpcUrl);
     mockOf(unfetch.default).mockResolvedValueOnce({
