@@ -9,7 +9,9 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:vitest/recommended',
+    // eslint-plugin-vitest >=0.5 exposes flat configs under the old names;
+    // 'legacy-recommended' is the eslintrc-format equivalent
+    'plugin:vitest/legacy-recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
