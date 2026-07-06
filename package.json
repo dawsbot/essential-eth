@@ -67,6 +67,7 @@
     "bn.js": "^5.2.1",
     "dotenv": "^16.0.0",
     "eslint": "^8.16.0",
+    "ethers": "^5.7.2",
     "eslint-plugin-jsdoc": "^47.0.2",
     "eslint-plugin-vitest": "^0.1.5",
     "husky": "^7.0.4",
@@ -85,7 +86,6 @@
   "dependencies": {
     "@noble/hashes": "^2.0.1",
     "@noble/secp256k1": "^1.5.5",
-    "ethers": "^5.7.2",
     "isomorphic-unfetch": "^3.1.0",
     "sha3": "^2.1.4"
   },
