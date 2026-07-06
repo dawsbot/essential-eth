@@ -27,14 +27,14 @@
 
 Measured with esbuild. Smaller is better.
 
-| What you import                          | essential-eth@1.1.0 | ethers@6.16.0 | viem@2.46.0 | web3@4.16.0 |   ox@0.12.1    |
+| What you import                          | essential-eth@1.1.0 | ethers@6.17.0 | viem@2.54.6 | web3@4.16.0 |   ox@0.14.30   |
 | ---------------------------------------- | :-----------------: | :-----------: | :---------: | :---------: | :------------: |
-| **Full library**                         |   **43.1 kB** 🏆    |   394.0 kB    |  385.3 kB   |  495.8 kB   |    612.8 kB    |
-| **Provider** (getBalance, getBlock, etc) |       30.8 kB       |   260.0 kB    |  306.5 kB   |  454.5 kB   | **10.9 kB** 🏆 |
-| **Contract** (read-only calls)           |   **24.8 kB** 🏆    |    86.6 kB    |  180.1 kB   |  264.9 kB   |    49.9 kB     |
-| **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆    |    10.4 kB    |   2.7 kB    |  454.5 kB   |     3.7 kB     |
+| **Full library**                         |   **43.1 kB** 🏆    |   398.2 kB    |  400.6 kB   |  495.8 kB   |    621.5 kB    |
+| **Provider** (getBalance, getBlock, etc) |       30.8 kB       |   264.1 kB    |  318.8 kB   |  454.5 kB   | **10.9 kB** 🏆 |
+| **Contract** (read-only calls)           |   **24.9 kB** 🏆    |    86.6 kB    |  184.0 kB   |  265.0 kB   |    49.9 kB     |
+| **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆    |    10.4 kB    |   2.8 kB    |  454.5 kB   |     3.7 kB     |
 
-essential-eth is **8x smaller** than the nearest alternative for full-library usage.
+essential-eth is **9x smaller** than the nearest alternative for full-library usage.
 
 
 <!-- BUNDLE-SIZE-TABLE:END -->
@@ -107,10 +107,10 @@ Essential-eth is built for developers where size and speed matter. Check out ded
     - [`hexConcat`](#hexconcat)
     - [`hexDataLength`](#hexdatalength)
     - [`hexDataSlice`](#hexdataslice)
+    - [`hexlify`](#hexlify)
     - [`hexStripZeros`](#hexstripzeros)
     - [`hexValue`](#hexvalue)
     - [`hexZeroPad`](#hexzeropad)
-    - [`hexlify`](#hexlify)
     - [`id`](#id)
     - [`isAddress`](#isaddress)
     - [`isBytes`](#isbytes)
@@ -708,6 +708,32 @@ hexDataSlice([20, 6, 48], 0, 2);
 
   <br/>
 
+#### [`hexlify`](https://eeth.dev/docs/api/modules#hexlify)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexlify+}])
+  ```typescript
+  hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
+  ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { hexlify } from 'essential-eth';
+  ```
+
+  ```javascript
+hexlify(4);
+// '0x04'
+```
+```javascript
+hexlify(14);
+// '0x0e'
+```
+
+  </details>
+
+  <br/>
+
 #### [`hexStripZeros`](https://eeth.dev/docs/api/modules#hexstripzeros)
   ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexStripZeros+}])
   ```typescript
@@ -780,32 +806,6 @@ hexZeroPad(0x60, 3);
 ```javascript
 hexZeroPad('12345', 1);
 // Throws
-```
-
-  </details>
-
-  <br/>
-
-#### [`hexlify`](https://eeth.dev/docs/api/modules#hexlify)
-  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+hexlify+}])
-  ```typescript
-  hexlify(value: number | bigint | BytesLike | Hexable, options: DataOptions): string
-  ```
-  
-  <details>
-  <summary>View Example</summary>
-
-  ```js
-  import { hexlify } from 'essential-eth';
-  ```
-
-  ```javascript
-hexlify(4);
-// '0x04'
-```
-```javascript
-hexlify(14);
-// '0x0e'
 ```
 
   </details>

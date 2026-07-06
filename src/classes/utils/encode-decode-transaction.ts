@@ -28,7 +28,7 @@ function hexToUtf8(hex: any) {
   }
   try {
     return decodeURIComponent(escape(str)); // Convert UTF-8 to Unicode
-  } catch (e) {
+  } catch {
     return str; // Return original string if conversion fails
   }
 }
