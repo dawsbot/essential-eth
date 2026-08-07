@@ -27,12 +27,12 @@
 
 Measured with esbuild. Smaller is better.
 
-| What you import                          | essential-eth@1.1.0 | ethers@6.16.0 | viem@2.46.0 | web3@4.16.0 |   ox@0.12.1    |
-| ---------------------------------------- | :-----------------: | :-----------: | :---------: | :---------: | :------------: |
-| **Full library**                         |   **43.1 kB** 🏆    |   394.0 kB    |  385.3 kB   |  495.8 kB   |    612.8 kB    |
-| **Provider** (getBalance, getBlock, etc) |       30.8 kB       |   260.0 kB    |  306.5 kB   |  454.5 kB   | **10.9 kB** 🏆 |
-| **Contract** (read-only calls)           |   **24.8 kB** 🏆    |    86.6 kB    |  180.1 kB   |  264.9 kB   |    49.9 kB     |
-| **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆    |    10.4 kB    |   2.7 kB    |  454.5 kB   |     3.7 kB     |
+| What you import                          | essential-eth@0.13.0 | ethers@6.16.0 | viem@2.46.0 | web3@4.16.0 |   ox@0.12.1    |
+| ---------------------------------------- | :------------------: | :-----------: | :---------: | :---------: | :------------: |
+| **Full library**                         |    **44.0 kB** 🏆    |   394.0 kB    |  385.3 kB   |  495.8 kB   |    612.8 kB    |
+| **Provider** (getBalance, getBlock, etc) |       30.0 kB        |   260.0 kB    |  306.5 kB   |  454.5 kB   | **10.9 kB** 🏆 |
+| **Contract** (read-only calls)           |    **24.9 kB** 🏆    |    86.6 kB    |  180.1 kB   |  264.9 kB   |    49.9 kB     |
+| **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆     |    10.4 kB    |   2.7 kB    |  454.5 kB   |     3.7 kB     |
 
 essential-eth is **8x smaller** than the nearest alternative for full-library usage.
 
@@ -118,6 +118,8 @@ Essential-eth is built for developers where size and speed matter. Check out ded
     - [`isHexString`](#ishexstring)
     - [`jsonRpcProvider`](#jsonrpcprovider)
     - [`keccak256`](#keccak256)
+    - [`multicall`](#multicall)
+    - [`multicallSameContract`](#multicallsamecontract)
     - [`namehash`](#namehash)
     - [`pack`](#pack)
     - [`parseUnits`](#parseunits)
@@ -149,7 +151,7 @@ Essential-eth is built for developers where size and speed matter. Check out ded
 - [More Info](#more-info)
   - [Identical vs Similar vs Dissimilar {&#035;isd}](#identical-vs-similar-vs-dissimilar-isd)
   - [Miscellaneous](#miscellaneous)
-- [Contributing](#contributing)
+- [Contributing and GitPOAP](#contributing-and-gitpoap)
 
 </details>
 
@@ -174,7 +176,7 @@ Browsers:
 ```html
 
 <!-- index.html -->
-<script src="https://unpkg.com/essential-eth@1.1.0"></script>
+<script src="https://unpkg.com/essential-eth@0.13.0"></script>
 ```
       
 
@@ -1000,6 +1002,78 @@ keccak256('essential-eth');
 
 keccak256('0x123');
 // '0x5fa2358263196dbbf23d1ca7a509451f7a2f64c15837bfbb81298b1e3e24e4fa'
+```
+
+  </details>
+
+  <br/>
+
+#### [`multicall`](https://eeth.dev/docs/api/modules#multicall)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+multicall+}])
+  ```typescript
+  multicall(provider: MulticallProvider, calls: undefined): Promise
+  ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { multicall } from 'essential-eth';
+  ```
+
+  ```typescript
+import { JsonRpcProvider, multicall } from 'essential-eth';
+
+const provider = new JsonRpcProvider('https://free-eth-node.com/api/eth');
+const results = await multicall(provider, [
+  {
+    target: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+    abi: daiAbi,
+    functionName: 'balanceOf',
+    args: ['0x...'],
+  },
+  {
+    target: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+    abi: daiAbi,
+    functionName: 'totalSupply',
+  },
+]);
+// results[0] = { success: true, data: 1000000000000000000n }
+// results[1] = { success: true, data: 5000000000000000000000000n }
+```
+
+  </details>
+
+  <br/>
+
+#### [`multicallSameContract`](https://eeth.dev/docs/api/modules#multicallsamecontract)
+  ![](https://deno.bundlejs.com/badge?q=essential-eth&treeshake=[{+multicallSameContract+}])
+  ```typescript
+  multicallSameContract(provider: MulticallProvider, contractAddress: string, abi: JSONABI, calls: undefined): Promise
+  ```
+  
+  <details>
+  <summary>View Example</summary>
+
+  ```js
+  import { multicallSameContract } from 'essential-eth';
+  ```
+
+  ```typescript
+import { JsonRpcProvider, multicallSameContract } from 'essential-eth';
+
+const provider = new JsonRpcProvider('https://free-eth-node.com/api/eth');
+const results = await multicallSameContract(
+  provider,
+  '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+  daiAbi,
+  [
+    { functionName: 'name' },
+    { functionName: 'symbol' },
+    { functionName: 'decimals' },
+    { functionName: 'balanceOf', args: ['0x...'] },
+  ],
+);
 ```
 
   </details>
@@ -1943,6 +2017,8 @@ Note: In `web3.js`, almost every method or function can be passed a callback. `e
 - [📓 View changelog (by looking at releases diff)](https://github.com/dawsbot/essential-eth/releases)
 - [📋 View our project board](https://github.com/dawsbot/essential-eth/projects/1)
 
-## Contributing
+## Contributing and GitPOAP
 
 We welcome and appreciate all contributions to Essential Eth! If you're interested in helping us improve this library, please read our [Contributing Guidelines](https://github.com/dawsbot/essential-eth/blob/master/CONTRIBUTING.md) to understand the types of contributions we're looking for and the process of making them.
+
+In partnership with GitPOAP, Essential ETH wants to recognize **all** contributors for their contributions toward the growth of this library. More information about GitPOAP can be found on the [Contributing Guidelines](https://github.com/dawsbot/essential-eth/blob/master/CONTRIBUTING.md#GitPOAP).
