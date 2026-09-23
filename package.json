@@ -69,6 +69,7 @@
     "eslint": "^8.16.0",
     "eslint-plugin-jsdoc": "^47.0.2",
     "eslint-plugin-vitest": "^0.1.5",
+    "ethers": "^5.7.2",
     "husky": "^7.0.4",
     "lint-staged": "^13.2.1",
     "markdown-magic": "^2.6.1",
@@ -85,7 +86,6 @@
   "dependencies": {
     "@noble/hashes": "^2.0.1",
     "@noble/secp256k1": "^1.5.5",
-    "ethers": "^5.7.2",
     "isomorphic-unfetch": "^3.1.0",
     "sha3": "^2.1.4"
   },

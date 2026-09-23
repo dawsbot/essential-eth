@@ -27,12 +27,12 @@
 
 Measured with esbuild. Smaller is better.
 
-| What you import                          | essential-eth@1.1.0 | ethers@6.16.0 | viem@2.46.0 | web3@4.16.0 |   ox@0.12.1    |
-| ---------------------------------------- | :-----------------: | :-----------: | :---------: | :---------: | :------------: |
-| **Full library**                         |   **43.1 kB** 🏆    |   394.0 kB    |  385.3 kB   |  495.8 kB   |    612.8 kB    |
-| **Provider** (getBalance, getBlock, etc) |       30.8 kB       |   260.0 kB    |  306.5 kB   |  454.5 kB   | **10.9 kB** 🏆 |
-| **Contract** (read-only calls)           |   **24.8 kB** 🏆    |    86.6 kB    |  180.1 kB   |  264.9 kB   |    49.9 kB     |
-| **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆    |    10.4 kB    |   2.7 kB    |  454.5 kB   |     3.7 kB     |
+| What you import                          | essential-eth@1.1.0 | ethers@6.17.0 | viem@2.56.8 | web3@4.16.0 |   ox@1.8.1    |
+| ---------------------------------------- | :-----------------: | :-----------: | :---------: | :---------: | :-----------: |
+| **Full library**                         |   **43.1 kB** 🏆    |   398.2 kB    |  385.7 kB   |  495.8 kB   |   732.4 kB    |
+| **Provider** (getBalance, getBlock, etc) |       30.8 kB       |   264.1 kB    |  301.6 kB   |  454.5 kB   | **7.3 kB** 🏆 |
+| **Contract** (read-only calls)           |   **24.9 kB** 🏆    |    86.6 kB    |  185.1 kB   |  265.0 kB   |    52.3 kB    |
+| **Conversions** (wei, gwei, ether)       |    **1.2 kB** 🏆    |    10.4 kB    |   2.0 kB    |  454.5 kB   |    3.4 kB     |
 
 essential-eth is **8x smaller** than the nearest alternative for full-library usage.
 
