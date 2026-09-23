@@ -7,9 +7,13 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Essential Eth',
-      social: {
-        github: 'https://github.com/dawsbot/essential-eth',
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/dawsbot/essential-eth',
+        },
+      ],
       customCss: ['./src/styles/custom.css'],
       plugins: [
         starlightTypeDoc({
