@@ -1,4 +1,5 @@
 export { BaseContract, Contract } from './classes/Contract';
+export { Wallet } from './classes/Wallet';
 export { AlchemyProvider } from './providers/AlchemyProvider';
 export {
   ConstructorOptions,
